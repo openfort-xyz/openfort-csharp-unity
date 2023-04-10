@@ -1,0 +1,20 @@
+{
+  "name": "com.openfort.sdk",
+  "version": "0.1.0",
+  "displayName": "Openfort SDK",
+  "description": "Official Unity SDK for Openfort.\n\nDetails at openfort.xyz",
+  "unity": "2020.3",
+  "author": {
+    "name": "Openfort",
+    "email": "openfort@openfort.xyz"
+  },
+  "keywords": [
+    "web3",
+    "ethereum",
+    "polygon",
+    "smart contracts"
+  ],
+  "gitDependencies": {
+    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.3.3"
+  }
+}
