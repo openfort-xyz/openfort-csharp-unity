@@ -12,10 +12,16 @@ namespace OpenfortSdk
 
 
         public static PlayersApi PlayersApi;
-
+        public static AccountsApi AccountsApi;
+        public static AllowFunctionsApi AllowFunctionsApi;
+        public static ContractsApi ContractsApi;
+        public static LogsApi LogsApi;
+        public static PoliciesApi PoliciesApi;
+        public static ProjectsApi ProjectsApi;
+        public static TransactionIntentsApi TransactionIntentsApi;
 
         static ApiClient apiClient;
-        static string baseUrl = "https://api.openfort.xyz";
+        static string baseUrl = "http://localhost:3000";
 
         public static string PublishedKey
         {
@@ -34,10 +40,14 @@ namespace OpenfortSdk
         static Openfort()
         {
             apiClient = new ApiClient(baseUrl);
-
-
-
+            AccountsApi = new AccountsApi(apiClient);
+            AllowFunctionsApi = new AllowFunctionsApi(apiClient);
+            ContractsApi = new ContractsApi(apiClient);
             PlayersApi = new PlayersApi(apiClient);
+            LogsApi = new LogsApi(apiClient);
+            PoliciesApi = new PoliciesApi(apiClient);
+            ProjectsApi = new ProjectsApi(apiClient);
+            TransactionIntentsApi = new TransactionIntentsApi(apiClient);
 
         }
 

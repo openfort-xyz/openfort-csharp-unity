@@ -1,34 +1,35 @@
+
 using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Object = System.Object;
 
-
 namespace OpenfortSdk
 {
     [Serializable]
-    public partial class AccountModel
+    public partial class AllowFunctionResponse
     {
         public string id;
         public DateTime created_at;
-        public bool deployed;
-        public int chain_id;
-        public string address;
+        public string type;
+        public string function_name;
+        public ContractResponse contract;
+
 
         /// <summary>
         /// Empty constructor is for use in generics with where: new()
         /// </summary>
-        public AccountModel()
+        public AllowFunctionResponse()
         {
         }
 
-        public AccountModel(string id, DateTime created_at, bool deployed, int chain_id, string address)
+        public AllowFunctionResponse(string id, DateTime created_at, string type, string function_name, ContractResponse contract)
         {
             this.id = id;
             this.created_at = created_at;
-            this.deployed = deployed;
-            this.chain_id = chain_id;
-            this.address = address;
+            this.type = type;
+            this.function_name = function_name;
+            this.contract = contract;
 
         }
 

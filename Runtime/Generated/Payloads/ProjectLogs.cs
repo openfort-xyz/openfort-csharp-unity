@@ -1,29 +1,27 @@
+
 using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Object = System.Object;
 
-
 namespace OpenfortSdk
 {
     [Serializable]
-    public partial class GetPlayersData200Response
+    public partial class ProjectLogs
     {
-
-        public string object_type;
         public string url;
-        public List<PlayerModel> data;
+        public List<Log> data;
 
         /// <summary>
         /// Empty constructor is for use in generics with where: new()
         /// </summary>
-        public GetPlayersData200Response()
+        public ProjectLogs()
         {
         }
 
-        public GetPlayersData200Response(string object_type, string url, List<PlayerModel> data)
+        public ProjectLogs(string url, List<Log> data)
         {
-            this.object_type = object_type;
+
             this.url = url;
             this.data = data;
         }
