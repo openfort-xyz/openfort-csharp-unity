@@ -3,14 +3,14 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Object = System.Object;
-
+using Newtonsoft.Json;
 namespace OpenfortSdk
 {
     [Serializable]
     public partial class TransactionIntentRequest
     {
         public string player;
-        public double chain_id;
+        public int chain_id;
         public string policy;
         public string project;
         public string account;
@@ -24,7 +24,7 @@ namespace OpenfortSdk
         {
         }
 
-        public TransactionIntentRequest(string player, double chain_id, string policy, string project, string account, bool optimistic, List<Interaction> interactions)
+        public TransactionIntentRequest(string player, int chain_id, string policy, string project, string account, bool optimistic, List<Interaction> interactions)
         {
             this.player = player;
             this.chain_id = chain_id;
@@ -37,7 +37,7 @@ namespace OpenfortSdk
 
         public override string ToString()
         {
-            return JsonUtility.ToJson(this);
+            return JsonConvert.SerializeObject(this);
         }
     }
 }

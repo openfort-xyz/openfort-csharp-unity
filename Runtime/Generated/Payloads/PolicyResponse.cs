@@ -12,7 +12,7 @@ namespace OpenfortSdk
         public string id;
         public DateTime created_at;
         public string name;
-        public double chain_id;
+        public int chain_id;
         public string strategy;
         public List<AllowFunctionResponse> allow_functions;
 
@@ -24,7 +24,7 @@ namespace OpenfortSdk
         {
         }
 
-        public PolicyResponse(string id, DateTime created_at, string name, double chain_id, string strategy, List<AllowFunctionResponse> allow_functions)
+        public PolicyResponse(string id, DateTime created_at, string name, int chain_id, string strategy, List<AllowFunctionResponse> allow_functions)
         {
             this.id = id;
             this.created_at = created_at;

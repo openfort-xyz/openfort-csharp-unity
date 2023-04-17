@@ -10,7 +10,7 @@ namespace OpenfortSdk
     public partial class PolicyUpdateRequest
     {
         public string name;
-        public double chain_id;
+        public int chain_id;
         public string strategy;
         public string project;
 
@@ -21,7 +21,7 @@ namespace OpenfortSdk
         {
         }
 
-        public PolicyUpdateRequest(string name, double chain_id, string strategy, string project)
+        public PolicyUpdateRequest(string name, int chain_id, string strategy, string project)
         {
             this.name = name;
             this.chain_id = chain_id;

@@ -11,7 +11,7 @@ namespace OpenfortSdk
     {
         public string name;
         public string project;
-        public double chain_id;
+        public int chain_id;
         public string player;
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace OpenfortSdk
         {
         }
 
-        public AccountRequest(string name, string project, double chain_id, string player)
+        public AccountRequest(string name, string project, int chain_id, string player)
         {
             this.name = name;
             this.project = project;

@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Object = System.Object;
+using Newtonsoft.Json;
 
 namespace OpenfortSdk
 {
@@ -12,7 +13,7 @@ namespace OpenfortSdk
         public string id;
         public DateTime created_at;
         public DateTime updated_at;
-        public double chain_id;
+        public int chain_id;
         public string user_operation_hash;
         public UserOpResult user_operation;
         public string policy;
@@ -29,7 +30,7 @@ namespace OpenfortSdk
         {
         }
 
-        public TransactionIntentResponse(string id, DateTime created_at, DateTime updated_at, double chain_id, string user_operation_hash, UserOpResult user_operation, string policy, string player, string account, List<Interaction> transactions, ResponseResponse response)
+        public TransactionIntentResponse(string id, DateTime created_at, DateTime updated_at, int chain_id, string user_operation_hash, UserOpResult user_operation, string policy, string player, string account, List<Interaction> transactions, ResponseResponse response)
         {
             this.id = id;
             this.created_at = created_at;
@@ -45,9 +46,10 @@ namespace OpenfortSdk
 
         }
 
+
         public override string ToString()
         {
-            return JsonUtility.ToJson(this);
+            return JsonConvert.SerializeObject(this);
         }
     }
 }

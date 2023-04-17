@@ -21,7 +21,7 @@ namespace OpenfortSdk
         public static TransactionIntentsApi TransactionIntentsApi;
 
         static ApiClient apiClient;
-        static string baseUrl = "http://api.openfort.xyz";
+        static string baseUrl = "https://api.openfort.xyz";
 
         public static string PublishedKey
         {

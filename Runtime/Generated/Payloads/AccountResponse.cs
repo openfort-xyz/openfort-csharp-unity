@@ -14,7 +14,7 @@ namespace OpenfortSdk
         public string address;
         public bool deployed;
 
-        public double chain_id;
+        public int chain_id;
         public List<TransactionIntentResponse> transaction_intents;
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace OpenfortSdk
         {
         }
 
-        public AccountResponse(string id, DateTime created_at, string address, bool deployed, double chain_id, List<TransactionIntentResponse> transaction_intents)
+        public AccountResponse(string id, DateTime created_at, string address, bool deployed, int chain_id, List<TransactionIntentResponse> transaction_intents)
         {
             this.id = id;
             this.created_at = created_at;

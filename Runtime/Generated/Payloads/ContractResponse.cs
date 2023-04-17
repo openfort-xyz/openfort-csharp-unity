@@ -12,7 +12,7 @@ namespace OpenfortSdk
         public string id;
         public DateTime created_at;
         public string name;
-        public double chain_id;
+        public int chain_id;
         public string address;
         public ContractResponseAbi abi;
         public bool public_verification;
@@ -25,7 +25,7 @@ namespace OpenfortSdk
         {
         }
 
-        public ContractResponse(string id, DateTime created_at, string name, double chain_id, string address, ContractResponseAbi abi, bool public_verification)
+        public ContractResponse(string id, DateTime created_at, string name, int chain_id, string address, ContractResponseAbi abi, bool public_verification)
         {
             this.id = id;
             this.created_at = created_at;

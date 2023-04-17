@@ -10,7 +10,7 @@ namespace OpenfortSdk
     public partial class ContractRequest
     {
         public string name;
-        public double chain_id;
+        public int chain_id;
         public string address;
         public ContractResponseAbi abi;
         public bool public_verification;
@@ -23,7 +23,7 @@ namespace OpenfortSdk
         {
         }
 
-        public ContractRequest(string name, double chain_id, string address, ContractResponseAbi abi, bool public_verification, string project)
+        public ContractRequest(string name, int chain_id, string address, ContractResponseAbi abi, bool public_verification, string project)
         {
             this.name = name;
             this.chain_id = chain_id;
