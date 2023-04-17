@@ -129,7 +129,7 @@ namespace OpenfortSdk
             foreach (var keyValuePair in dictionary)
             {
                 string newPrefix = string.IsNullOrEmpty(prefix) ? keyValuePair.Key : $"{prefix}[{keyValuePair.Key}]";
-                Debug.Log(keyValuePair.Key + " " + keyValuePair.Value);
+
                 if (keyValuePair.Value is List<object> list)
                 {
                     ProcessList(list, newPrefix, form);
