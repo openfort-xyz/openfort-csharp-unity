@@ -8,7 +8,7 @@ Open `Packages/manifest.json` and add these lines:
 
 ```
 "com.openfort.sdk": "https://github.com/openfort-xyz/openfort-csharp-unity.git",
-"com.unity.nuget.newtonsoft-json": "3.0.1":
+"com.unity.nuget.newtonsoft-json": "3.0.1",
 "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.3.3"
 ```
 
