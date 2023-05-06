@@ -96,5 +96,13 @@ namespace OpenfortSdk
         {
             return await apiClient.Post<PlayerResponse>($"/v1/players/{id}", playerRequest, headers: headers);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>Object</returns>
+		public async UniTask<Object> CreateSession(string id, PlayerSessionRequest playerSessionRequest, Dictionary<string, string> headers = null)
+        {
+            return await apiClient.Post<Object>($"/v1/players/{id}/session", playerSessionRequest, headers: headers);
+        }
     }
 }
