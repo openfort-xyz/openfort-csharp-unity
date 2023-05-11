@@ -9,7 +9,7 @@ namespace OpenfortSdk
     [Serializable]
     public partial class PlayerSessionRequest
     {
-        public string publicKey;
+        public string public_key;
         public string policy;
 
         /// <summary>
