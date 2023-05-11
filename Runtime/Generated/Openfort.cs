@@ -11,7 +11,6 @@ namespace OpenfortSdk
     {
 
 
-        public static PlayersApi PlayersApi;
         public static AccountsApi AccountsApi;
         public static AllowFunctionsApi AllowFunctionsApi;
         public static ContractsApi ContractsApi;
@@ -43,7 +42,6 @@ namespace OpenfortSdk
             AccountsApi = new AccountsApi(apiClient);
             AllowFunctionsApi = new AllowFunctionsApi(apiClient);
             ContractsApi = new ContractsApi(apiClient);
-            PlayersApi = new PlayersApi(apiClient);
             LogsApi = new LogsApi(apiClient);
             PoliciesApi = new PoliciesApi(apiClient);
             ProjectsApi = new ProjectsApi(apiClient);

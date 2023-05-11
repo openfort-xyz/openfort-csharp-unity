@@ -4,8 +4,6 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 namespace OpenfortSdk
 {
     public class HttpClient
@@ -33,7 +31,7 @@ namespace OpenfortSdk
         {
             HttpResponse response = new HttpResponse();
             // TODO: don't automatically replace empty arrays w null just to get items to work
-            var requestJson = body == null ? string.Empty : JsonConvert.SerializeObject(body);
+            var requestJson = body == null ? string.Empty : JsonUtility.ToJson(body);
 
             WWWForm form;
 
@@ -109,50 +107,6 @@ namespace OpenfortSdk
         public static WWWForm CreateFormFromJson(string json)
         {
 
-            Dictionary<string, object> FlattenJObjectToDictionary(JObject jobject)
-            {
-                Dictionary<string, object> result = new Dictionary<string, object>();
-
-                foreach (var property in jobject.Properties())
-                {
-                    if (property.Value.Type == JTokenType.Object)
-                    {
-                        result[property.Name] = FlattenJObjectToDictionary((JObject)property.Value);
-                    }
-                    else if (property.Value.Type == JTokenType.Array)
-                    {
-                        JArray jArray = (JArray)property.Value;
-                        List<object> objectList = new List<object>();
-
-                        foreach (var item in jArray)
-                        {
-                            if (item.Type == JTokenType.Object)
-                            {
-                                objectList.Add(FlattenJObjectToDictionary((JObject)item));
-                            }
-                            else
-                            {
-                                objectList.Add(item);
-                            }
-                        }
-
-                        result[property.Name] = objectList;
-                    }
-                    else
-                    {
-                        result[property.Name] = property.Value;
-                    }
-                }
-
-                return result;
-            }
-            Dictionary<string, object> DeserializeJsonToDictionary(string json)
-            {
-                JObject jobject = JObject.Parse(json);
-                Dictionary<string, object> dictionary = FlattenJObjectToDictionary(jobject);
-                return dictionary;
-            }
-
             if (string.IsNullOrEmpty(json))
             {
                 return null;
@@ -160,9 +114,7 @@ namespace OpenfortSdk
 
             var form = new WWWForm();
 
-            Dictionary<string, object> dictionary = DeserializeJsonToDictionary(json);
-
-            // var dictionary = JsonUtility.FromJson<Dictionary<string, object>>(json);
+            var dictionary = JsonUtility.FromJson<Dictionary<string, object>>(json);
             // Debug.Log dictionary 
 
             ProcessDictionary(dictionary, "", form);
