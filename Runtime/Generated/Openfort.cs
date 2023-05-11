@@ -15,9 +15,9 @@ namespace OpenfortSdk
         public Openfort(string token)
         {
             _configuration = new Configuration(
-                new Dictionary<string, string>{{"Authorization", "Bearer " + token}},
-                new Dictionary<string, string>{{"Authorization", token}},
-                new Dictionary<string, string>{{"Authorization", "Bearer"}});
+                new Dictionary<string, string> { { "Authorization", "Bearer " + token } },
+                new Dictionary<string, string> { { "Authorization", token } },
+                new Dictionary<string, string> { { "Authorization", "Bearer" } });
             _apiClient = new ApiClient(_configuration.BasePath);
         }
 
