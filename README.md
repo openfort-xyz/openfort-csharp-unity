@@ -33,47 +33,7 @@ And add these urls:
 
 2. Set credentials in `Edit > Project Settings > Openfort`
 
-3. Add a GameObject to your scene with this MonoBehaviour in a file called `OpenfortHelloWorld.cs`:
-
-```csharp
-using System.Collections;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using OpenfortSdk;
-using UnityEngine;
-
-public class OpenfortHelloWorld : MonoBehaviour
-{
-    public Chain chain = Chain.MATICMUMBAI;
-
-    async UniTaskVoid Start()
-    {
-
-        if (string.IsNullOrEmpty(Config.PublishedKey))
-        {
-            Debug.LogError($"Openfort Publishable key are not set. Please set them in Edit > Project Settings > Openfort");
-            return;
-        }
-
-        Log($"Getting players...");
-        var client = new Openfort(Config.PublishedKey);
-        var response = await client.PlayersApi.GetPlayersAsync();
-
-        Log($"Received players...");
-        Log($"{response}");
-        for (int i = 0; i < response.Data.Count; i++)
-        {
-            Log($"{response.Data[i]}");
-        }
-    }
-    void Log(string s)
-    {
-        Debug.Log($"{Time.frameCount} | {s}");
-    }
-}
-```
-
-4. Generate keypair for player and register session
+3. Generate keypair for player and register session
 
 ```csharp
 using System.Collections;
@@ -90,6 +50,7 @@ public class OpenfortHelloWorld : MonoBehaviour
         if (privateKey == null) {
             var keyPair = KeyPair.Generate();
             // TODO: call the games server endpoint to authenticate user and create session in openfort with keyPair.PublicBase64
+            // To get public key use keyPair.PublicBase64 property
             keyPair.SaveToPlayerPrefs(); // In case of the previous step success save the key 
         } else {
             // The key has been loaded and ready to use
