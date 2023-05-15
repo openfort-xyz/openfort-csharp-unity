@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Org.BouncyCastle.Asn1.X9;
+using Org.BouncyCastle.Asn1.Sec;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Parameters;
@@ -22,11 +23,6 @@ namespace OpenfortSdk.Crypto
         {
             _public = keyPair.Public as ECPublicKeyParameters;
             _private = keyPair.Private as ECPrivateKeyParameters;
-        }
-
-        public KeyPair(ECPrivateKeyParameters privateKey)
-        {
-            _private = privateKey;
         }
 
         public ECPublicKeyParameters Public
@@ -89,8 +85,13 @@ namespace OpenfortSdk.Crypto
                 return null;
             }
             var keyInfo = Convert.FromBase64String(result);
-            var privateKey = PrivateKeyFactory.CreateKey(keyInfo);
-            return new KeyPair(privateKey as ECPrivateKeyParameters);
+            var privateKey = PrivateKeyFactory.CreateKey(keyInfo) as ECPrivateKeyParameters;
+
+            var q = privateKey.Parameters.G.Multiply(privateKey.D);
+            var publicKey = new ECPublicKeyParameters(privateKey.AlgorithmName, q, SecObjectIdentifiers.SecP256k1);
+            var keyPair = new AsymmetricCipherKeyPair(publicKey, privateKey);
+
+            return new KeyPair(keyPair);
         }
 
         public static KeyPair Generate()
