@@ -5,38 +5,38 @@ using Org.BouncyCastle.Asn1.X9;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Parameters;
+using Org.BouncyCastle.Pkcs;
 using Org.BouncyCastle.Security;
 using System.Text;
+using UnityEngine;
+using System.IO;
 
 namespace OpenfortSdk.Crypto
 {
     public class KeyPair
     {
-        private readonly AsymmetricCipherKeyPair _keyPair;
+        private readonly ECPublicKeyParameters _public;
+        private readonly ECPrivateKeyParameters _private;
 
         public KeyPair(AsymmetricCipherKeyPair keyPair)
         {
-            _keyPair = keyPair;
+            _public = keyPair.Public as ECPublicKeyParameters;
+            _private = keyPair.Private as ECPrivateKeyParameters;
+        }
+
+        public KeyPair(ECPrivateKeyParameters privateKey)
+        {
+            _private = privateKey;
         }
 
         public ECPublicKeyParameters Public
         {
-            get => _keyPair.Public as ECPublicKeyParameters;
+            get => _public;
         }
 
         public ECPrivateKeyParameters Private
         {
-            get => _keyPair.Private as ECPrivateKeyParameters;
-        }
-
-        public string PublicHex
-        {
-            get => ToHex(Public.Q.GetEncoded());
-        }
-
-        public string PrivateHex
-        {
-            get => ToHex(Private.D.ToByteArrayUnsigned());
+            get => _private;
         }
 
         public string PublicBase64
@@ -46,7 +46,11 @@ namespace OpenfortSdk.Crypto
 
         public string PrivateBase64
         {
-            get => Convert.ToBase64String(Private.D.ToByteArrayUnsigned());
+            get {
+                var bcKeyInfo = PrivateKeyInfoFactory.CreatePrivateKeyInfo(Private);
+                var pkcs8Blob = bcKeyInfo.GetDerEncoded();
+                return Convert.ToBase64String(pkcs8Blob);
+            }
         }
 
         public string Sign(string msg)
@@ -70,6 +74,36 @@ namespace OpenfortSdk.Crypto
             signer.Init(false, Public);
             signer.BlockUpdate(msgBytes, 0, msgBytes.Length);
             return signer.VerifySignature(sigBytes);
+        }
+
+        public void SaveToPlayerPrefs()
+        {
+            PlayerPrefs.SetString("openfort", PrivateBase64);
+        }
+
+        public static KeyPair GetFromPlayerPrefs()
+        {
+            var result = PlayerPrefs.GetString("openfort");
+            if (string.IsNullOrEmpty(result))
+            {
+                return null;
+            }
+            var keyInfo = Convert.FromBase64String(result);
+            var privateKey = PrivateKeyFactory.CreateKey(keyInfo);
+            return new KeyPair(privateKey as ECPrivateKeyParameters);
+        }
+
+        public static KeyPair Generate()
+        {
+            var curve = ECNamedCurveTable.GetByName("secp256k1");
+            var domainParams = new ECDomainParameters(curve.Curve, curve.G, curve.N, curve.H, curve.GetSeed());
+
+            var secureRandom = new SecureRandom();
+            var keyParams = new ECKeyGenerationParameters(domainParams, secureRandom);
+
+            var generator = new ECKeyPairGenerator("ECDSA");
+            generator.Init(keyParams);
+            return new KeyPair(generator.GenerateKeyPair());
         }
 
         static string ToHex(byte[] data) => String.Concat(data.Select(x => x.ToString("x2")));
