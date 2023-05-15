@@ -57,13 +57,13 @@ public class OpenfortHelloWorld : MonoBehaviour
 
         Log($"Getting players...");
         var client = new Openfort(Config.PublishedKey);
-        var response = await client.PlayersApi.GetPlayers();
+        var response = await client.PlayersApi.GetPlayersAsync();
 
         Log($"Received players...");
         Log($"{response}");
-        for (int i = 0; i < response.data.Count; i++)
+        for (int i = 0; i < response.Data.Count; i++)
         {
-            Log($"{response.data[i]}");
+            Log($"{response.Data[i]}");
         }
     }
     void Log(string s)
