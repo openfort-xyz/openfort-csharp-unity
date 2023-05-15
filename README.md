@@ -54,13 +54,11 @@ public class OpenfortHelloWorld : MonoBehaviour
             Debug.LogError($"Openfort Publishable key are not set. Please set them in Edit > Project Settings > Openfort");
             return;
         }
-        Config.LogLevel = LogLevel.Debug;
 
         Log($"Getting players...");
-        Openfort.PublishedKey = Config.PublishedKey;
-        Openfort.SecretKey = Config.SecretKey;
+        var client = new Openfort(Config.PublishedKey);
+        var response = await client.PlayersApi.GetPlayers();
 
-        var response = await Openfort.PlayersApi.GetPlayers();
         Log($"Received players...");
         Log($"{response}");
         for (int i = 0; i < response.data.Count; i++)
@@ -75,6 +73,30 @@ public class OpenfortHelloWorld : MonoBehaviour
 }
 ```
 
+4. Generate keypair for player and register session
+
+```csharp
+using System.Collections;
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using OpenfortSdk.Crypto;
+using UnityEngine;
+
+public class OpenfortHelloWorld : MonoBehaviour
+{
+    async UniTaskVoid Start()
+    {
+        var privateKey = KeyPair.GetFromPlayerPrefs(); // Load player key from Player prefs
+        if (privateKey == null) {
+            var keyPair = KeyPair.Generate();
+            // TODO: call the games server endpoint to authenticate user and create session in openfort with keyPair.PublicBase64
+            keyPair.SaveToPlayerPrefs(); // In case of the previous step success save the key 
+        } else {
+            // The key has been loaded and ready to use
+        }
+    }
+}
+```
 ## Support
 
 The Unity SDK is a work in progress. For support, [open an issue](https://github.com/openfort-xyz/openfort-csharp-unity/issues).
