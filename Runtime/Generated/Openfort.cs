@@ -1,72 +1,114 @@
 using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using System.Diagnostics;
-using Debug = UnityEngine.Debug;
+using OpenfortSdk.Api;
+using OpenfortSdk.Client;
 
 namespace OpenfortSdk
 {
-    public static class Openfort
+    public class Openfort
     {
+        private readonly Configuration _configuration;
+        private readonly ApiClient _apiClient;
 
-
-        public static PlayersApi PlayersApi;
-        public static AccountsApi AccountsApi;
-        public static AllowFunctionsApi AllowFunctionsApi;
-        public static ContractsApi ContractsApi;
-        public static LogsApi LogsApi;
-        public static PoliciesApi PoliciesApi;
-        public static ProjectsApi ProjectsApi;
-        public static TransactionIntentsApi TransactionIntentsApi;
-
-        static ApiClient apiClient;
-        static string baseUrl = "https://api.openfort.xyz";
-
-        public static string PublishedKey
+        public Openfort(string token)
         {
-            get => apiClient.headers.ContainsKey("Authorization") ? apiClient.headers["Authorization"] : null;
-            set => apiClient.headers["Authorization"] = "Bearer " + value;
+            _configuration = new Configuration(
+                new Dictionary<string, string> { { "Authorization", "Bearer " + token } },
+                new Dictionary<string, string> { { "Authorization", token } },
+                new Dictionary<string, string> { { "Authorization", "Bearer" } });
+            _apiClient = new ApiClient(_configuration.BasePath);
         }
 
-        public static string SecretKey
+        private ContractsApi _contractsApi;
+        public ContractsApi ContractsApi
         {
-            get => apiClient.headers.ContainsKey("Authorization") ? apiClient.headers["Authorization"] : null;
-            set => apiClient.headers["Authorization"] = "Bearer " + value;
-        }
-
-
-
-        static Openfort()
-        {
-            apiClient = new ApiClient(baseUrl);
-            AccountsApi = new AccountsApi(apiClient);
-            AllowFunctionsApi = new AllowFunctionsApi(apiClient);
-            ContractsApi = new ContractsApi(apiClient);
-            PlayersApi = new PlayersApi(apiClient);
-            LogsApi = new LogsApi(apiClient);
-            PoliciesApi = new PoliciesApi(apiClient);
-            ProjectsApi = new ProjectsApi(apiClient);
-            TransactionIntentsApi = new TransactionIntentsApi(apiClient);
-
-        }
-
-        // Don't log in build unless users opt in
-        [Conditional("UNITY_EDITOR"), Conditional("OPENFORT_LOGGING")]
-        static void Log(LogLevel level, string msg)
-        {
-            if (Config.LogLevel == LogLevel.None || Config.LogLevel < level) { return; }
-            switch (Config.LogLevel)
+            get
             {
-                case LogLevel.Warning:
-                    Debug.LogWarning($"Openfort | {Time.frameCount} | {msg}");
-                    break;
-                case LogLevel.Error:
-                    Debug.LogError($"Openfort | {Time.frameCount} | {msg}");
-                    break;
-                default:
-                    Debug.Log($"Openfort | {Time.frameCount} | {msg}");
-                    break;
+                if (_contractsApi == null)
+                {
+                    _contractsApi = new ContractsApi(_apiClient, _apiClient, _configuration);
+                }
+                return _contractsApi;
+            }
+        }
+
+        private DefaultApi _defaultApi;
+        public DefaultApi DefaultApi
+        {
+            get
+            {
+                if (_defaultApi == null)
+                {
+                    _defaultApi = new DefaultApi(_apiClient, _apiClient, _configuration);
+                }
+                return _defaultApi;
+            }
+        }
+
+        private LogsApi _logsApi;
+        public LogsApi LogsApi
+        {
+            get
+            {
+                if (_logsApi == null)
+                {
+                    _logsApi = new LogsApi(_apiClient, _apiClient, _configuration);
+                }
+                return _logsApi;
+            }
+        }
+
+        private PlayersApi _playersApi;
+        public PlayersApi PlayersApi
+        {
+            get
+            {
+                if (_playersApi == null)
+                {
+                    _playersApi = new PlayersApi(_apiClient, _apiClient, _configuration);
+                }
+                return _playersApi;
+            }
+        }
+
+        private PoliciesApi _policiesApi;
+        public PoliciesApi PoliciesApi
+        {
+            get
+            {
+                if (_policiesApi == null)
+                {
+                    _policiesApi = new PoliciesApi(_apiClient, _apiClient, _configuration);
+                }
+                return _policiesApi;
+            }
+        }
+
+        private ProjectsApi _projectsApi;
+        public ProjectsApi ProjectsApi
+        {
+            get
+            {
+                if (_projectsApi == null)
+                {
+                    _projectsApi = new ProjectsApi(_apiClient, _apiClient, _configuration);
+                }
+                return _projectsApi;
+            }
+        }
+
+        private TransactionIntentsApi _transactionIntentsApi;
+        public TransactionIntentsApi TransactionIntentsApi
+        {
+            get
+            {
+                if (_transactionIntentsApi == null)
+                {
+                    _transactionIntentsApi = new TransactionIntentsApi(_apiClient, _apiClient, _configuration);
+                }
+                return _transactionIntentsApi;
             }
         }
     }
