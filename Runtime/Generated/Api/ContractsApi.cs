@@ -15,10 +15,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
-using OpenfortSdk.Client;
-using OpenfortSdk.Model;
+using Openfort.Client;
+using Openfort.Model;
 
-namespace OpenfortSdk.Api
+namespace Openfort.Api
 {
 
     /// <summary>
@@ -33,7 +33,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates an contract object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="chainId"></param>
         /// <param name="address"> (optional)</param>
@@ -49,7 +49,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates an contract object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="chainId"></param>
         /// <param name="address"> (optional)</param>
@@ -64,7 +64,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ContractResponse</returns>
@@ -76,7 +76,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of ContractResponse</returns>
@@ -87,7 +87,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ContractsResponse</returns>
         ContractsResponse GetContracts(string project = default(string));
@@ -98,7 +98,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of ContractsResponse</returns>
         ApiResponse<ContractsResponse> GetContractsWithHttpInfo(string project = default(string));
@@ -117,7 +117,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates an contract object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="chainId"></param>
         /// <param name="address"> (optional)</param>
@@ -134,7 +134,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates an contract object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="chainId"></param>
         /// <param name="address"> (optional)</param>
@@ -150,7 +150,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -163,7 +163,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -175,7 +175,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractsResponse</returns>
@@ -187,7 +187,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractsResponse)</returns>
@@ -208,7 +208,7 @@ namespace OpenfortSdk.Api
     /// </summary>
     public partial class ContractsApi : IDisposable, IContractsApi
     {
-        private OpenfortSdk.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private Openfort.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ContractsApi"/> class.
@@ -230,14 +230,14 @@ namespace OpenfortSdk.Api
         /// <returns></returns>
         public ContractsApi(string basePath)
         {
-            this.Configuration = OpenfortSdk.Client.Configuration.MergeConfigurations(
-                OpenfortSdk.Client.GlobalConfiguration.Instance,
-                new OpenfortSdk.Client.Configuration { BasePath = basePath }
+            this.Configuration = Openfort.Client.Configuration.MergeConfigurations(
+                Openfort.Client.GlobalConfiguration.Instance,
+                new Openfort.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new OpenfortSdk.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Openfort.Client.ApiClient(this.Configuration.BasePath);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = OpenfortSdk.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Openfort.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -248,18 +248,18 @@ namespace OpenfortSdk.Api
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public ContractsApi(OpenfortSdk.Client.Configuration configuration)
+        public ContractsApi(Openfort.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
-            this.Configuration = OpenfortSdk.Client.Configuration.MergeConfigurations(
-                OpenfortSdk.Client.GlobalConfiguration.Instance,
+            this.Configuration = Openfort.Client.Configuration.MergeConfigurations(
+                Openfort.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new OpenfortSdk.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Openfort.Client.ApiClient(this.Configuration.BasePath);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = OpenfortSdk.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Openfort.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -270,7 +270,7 @@ namespace OpenfortSdk.Api
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public ContractsApi(OpenfortSdk.Client.ISynchronousClient client, OpenfortSdk.Client.IAsynchronousClient asyncClient, OpenfortSdk.Client.IReadableConfiguration configuration)
+        public ContractsApi(Openfort.Client.ISynchronousClient client, Openfort.Client.IAsynchronousClient asyncClient, Openfort.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -279,7 +279,7 @@ namespace OpenfortSdk.Api
             this.Client = client;
             this.AsynchronousClient = asyncClient;
             this.Configuration = configuration;
-            this.ExceptionFactory = OpenfortSdk.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Openfort.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -293,17 +293,17 @@ namespace OpenfortSdk.Api
         /// <summary>
         /// Holds the ApiClient if created
         /// </summary>
-        public OpenfortSdk.Client.ApiClient ApiClient { get; set; } = null;
+        public Openfort.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public OpenfortSdk.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public Openfort.Client.IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public OpenfortSdk.Client.ISynchronousClient Client { get; set; }
+        public Openfort.Client.ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -318,12 +318,12 @@ namespace OpenfortSdk.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public OpenfortSdk.Client.IReadableConfiguration Configuration { get; set; }
+        public Openfort.Client.IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public OpenfortSdk.Client.ExceptionFactory ExceptionFactory
+        public Openfort.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -339,7 +339,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates an contract object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="chainId"></param>
         /// <param name="address"> (optional)</param>
@@ -349,14 +349,14 @@ namespace OpenfortSdk.Api
         /// <returns>ContractResponse</returns>
         public ContractResponse CreateContract(string name, double chainId, string address = default(string), ContractResponseAbi abi = default(ContractResponseAbi), bool? publicVerification = default(bool?), string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<ContractResponse> localVarResponse = CreateContractWithHttpInfo(name, chainId, address, abi, publicVerification, project);
+            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = CreateContractWithHttpInfo(name, chainId, address, abi, publicVerification, project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Creates an contract object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="chainId"></param>
         /// <param name="address"> (optional)</param>
@@ -364,13 +364,13 @@ namespace OpenfortSdk.Api
         /// <param name="publicVerification"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of ContractResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<ContractResponse> CreateContractWithHttpInfo(string name, double chainId, string address = default(string), ContractResponseAbi abi = default(ContractResponseAbi), bool? publicVerification = default(bool?), string project = default(string))
+        public Openfort.Client.ApiResponse<ContractResponse> CreateContractWithHttpInfo(string name, double chainId, string address = default(string), ContractResponseAbi abi = default(ContractResponseAbi), bool? publicVerification = default(bool?), string project = default(string))
         {
             // verify the required parameter 'name' is set
             if (name == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'name' when calling ContractsApi->CreateContract");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling ContractsApi->CreateContract");
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -381,29 +381,29 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.FormParameters.Add("name", OpenfortSdk.Client.ClientUtils.ParameterToString(name)); // form parameter
-            localVarRequestOptions.FormParameters.Add("chain_id", OpenfortSdk.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
+            localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
             if (address != null)
             {
-                localVarRequestOptions.FormParameters.Add("address", OpenfortSdk.Client.ClientUtils.ParameterToString(address)); // form parameter
+                localVarRequestOptions.FormParameters.Add("address", Openfort.Client.ClientUtils.ParameterToString(address)); // form parameter
             }
             if (abi != null)
             {
-                localVarRequestOptions.FormParameters.Add("abi", OpenfortSdk.Client.ClientUtils.ParameterToString(abi)); // form parameter
+                localVarRequestOptions.FormParameters.Add("abi", Openfort.Client.ClientUtils.ParameterToString(abi)); // form parameter
             }
             if (publicVerification != null)
             {
-                localVarRequestOptions.FormParameters.Add("public_verification", OpenfortSdk.Client.ClientUtils.ParameterToString(publicVerification)); // form parameter
+                localVarRequestOptions.FormParameters.Add("public_verification", Openfort.Client.ClientUtils.ParameterToString(publicVerification)); // form parameter
             }
             if (project != null)
             {
-                localVarRequestOptions.FormParameters.Add("project", OpenfortSdk.Client.ClientUtils.ParameterToString(project)); // form parameter
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
 
 
@@ -422,7 +422,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates an contract object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="chainId"></param>
         /// <param name="address"> (optional)</param>
@@ -435,9 +435,9 @@ namespace OpenfortSdk.Api
         {
             var task = CreateContractWithHttpInfoAsync(name, chainId, address, abi, publicVerification, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<ContractResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<ContractResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -445,7 +445,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates an contract object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="chainId"></param>
         /// <param name="address"> (optional)</param>
@@ -454,14 +454,14 @@ namespace OpenfortSdk.Api
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<ContractResponse>> CreateContractWithHttpInfoAsync(string name, double chainId, string address = default(string), ContractResponseAbi abi = default(ContractResponseAbi), bool? publicVerification = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractResponse>> CreateContractWithHttpInfoAsync(string name, double chainId, string address = default(string), ContractResponseAbi abi = default(ContractResponseAbi), bool? publicVerification = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'name' is set
             if (name == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'name' when calling ContractsApi->CreateContract");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling ContractsApi->CreateContract");
 
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -473,29 +473,29 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.FormParameters.Add("name", OpenfortSdk.Client.ClientUtils.ParameterToString(name)); // form parameter
-            localVarRequestOptions.FormParameters.Add("chain_id", OpenfortSdk.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
+            localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
             if (address != null)
             {
-                localVarRequestOptions.FormParameters.Add("address", OpenfortSdk.Client.ClientUtils.ParameterToString(address)); // form parameter
+                localVarRequestOptions.FormParameters.Add("address", Openfort.Client.ClientUtils.ParameterToString(address)); // form parameter
             }
             if (abi != null)
             {
-                localVarRequestOptions.FormParameters.Add("abi", OpenfortSdk.Client.ClientUtils.ParameterToString(abi)); // form parameter
+                localVarRequestOptions.FormParameters.Add("abi", Openfort.Client.ClientUtils.ParameterToString(abi)); // form parameter
             }
             if (publicVerification != null)
             {
-                localVarRequestOptions.FormParameters.Add("public_verification", OpenfortSdk.Client.ClientUtils.ParameterToString(publicVerification)); // form parameter
+                localVarRequestOptions.FormParameters.Add("public_verification", Openfort.Client.ClientUtils.ParameterToString(publicVerification)); // form parameter
             }
             if (project != null)
             {
-                localVarRequestOptions.FormParameters.Add("project", OpenfortSdk.Client.ClientUtils.ParameterToString(project)); // form parameter
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
 
 
@@ -521,30 +521,30 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ContractResponse</returns>
         public ContractResponse GetContract(string id, string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<ContractResponse> localVarResponse = GetContractWithHttpInfo(id, project);
+            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = GetContractWithHttpInfo(id, project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of ContractResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<ContractResponse> GetContractWithHttpInfo(string id, string project = default(string))
+        public Openfort.Client.ApiResponse<ContractResponse> GetContractWithHttpInfo(string id, string project = default(string))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling ContractsApi->GetContract");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling ContractsApi->GetContract");
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -554,16 +554,16 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -582,7 +582,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -591,9 +591,9 @@ namespace OpenfortSdk.Api
         {
             var task = GetContractWithHttpInfoAsync(id, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<ContractResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<ContractResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -601,19 +601,19 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<ContractResponse>> GetContractWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractResponse>> GetContractWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling ContractsApi->GetContract");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling ContractsApi->GetContract");
 
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -624,16 +624,16 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -659,24 +659,24 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ContractsResponse</returns>
         public ContractsResponse GetContracts(string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<ContractsResponse> localVarResponse = GetContractsWithHttpInfo(project);
+            Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = GetContractsWithHttpInfo(project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of ContractsResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<ContractsResponse> GetContractsWithHttpInfo(string project = default(string))
+        public Openfort.Client.ApiResponse<ContractsResponse> GetContractsWithHttpInfo(string project = default(string))
         {
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -686,15 +686,15 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -713,7 +713,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractsResponse</returns>
@@ -721,9 +721,9 @@ namespace OpenfortSdk.Api
         {
             var task = GetContractsWithHttpInfoAsync(project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<ContractsResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<ContractsResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -731,14 +731,14 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractsResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -749,15 +749,15 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 

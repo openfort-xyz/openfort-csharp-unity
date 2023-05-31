@@ -1,7 +1,7 @@
 using UnityEditor;
 
 #if UNITY_2018_3_OR_NEWER
-namespace OpenfortSdk.Editor
+namespace Openfort.Editor
 {
     internal class OpenfortSettingsEditor
     {

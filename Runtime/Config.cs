@@ -1,4 +1,4 @@
-namespace OpenfortSdk
+namespace Openfort
 {
     public static class Config
     {

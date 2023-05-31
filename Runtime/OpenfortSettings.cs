@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-namespace OpenfortSdk
+namespace Openfort
 {
     public class OpenfortSettings : ScriptableObject
     {

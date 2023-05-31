@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OpenfortSdk
+namespace Openfort
 {
     internal class Controller : MonoBehaviour
     {

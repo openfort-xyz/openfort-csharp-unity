@@ -15,10 +15,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
-using OpenfortSdk.Client;
-using OpenfortSdk.Model;
+using Openfort.Client;
+using Openfort.Model;
 
-namespace OpenfortSdk.Api
+namespace Openfort.Api
 {
 
     /// <summary>
@@ -33,7 +33,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates a project object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
         /// <param name="project"> (optional)</param>
@@ -46,7 +46,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates a project object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
         /// <param name="project"> (optional)</param>
@@ -55,7 +55,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         /// 
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>GetProjectResponse</returns>
         GetProjectResponse Get();
 
@@ -65,13 +65,13 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of GetProjectResponse</returns>
         ApiResponse<GetProjectResponse> GetWithHttpInfo();
         /// <summary>
         /// 
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <returns>ProjectResponse</returns>
         ProjectResponse GetProject(string id);
@@ -82,14 +82,14 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <returns>ApiResponse of ProjectResponse</returns>
         ApiResponse<ProjectResponse> GetProjectWithHttpInfo(string id);
         /// <summary>
         /// 
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <returns>ProjectsResponse</returns>
         ProjectsResponse GetProjects(string project = default(string));
@@ -100,7 +100,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of ProjectsResponse</returns>
         ApiResponse<ProjectsResponse> GetProjectsWithHttpInfo(string project = default(string));
@@ -110,7 +110,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Updates a project object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
@@ -124,7 +124,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Updates a project object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
@@ -146,7 +146,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates a project object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
         /// <param name="project"> (optional)</param>
@@ -160,7 +160,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates a project object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
         /// <param name="project"> (optional)</param>
@@ -173,7 +173,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetProjectResponse</returns>
         System.Threading.Tasks.Task<GetProjectResponse> GetAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -184,7 +184,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetProjectResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetProjectResponse>> GetWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -194,7 +194,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProjectResponse</returns>
@@ -206,7 +206,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProjectResponse)</returns>
@@ -217,7 +217,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProjectsResponse</returns>
@@ -229,7 +229,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProjectsResponse)</returns>
@@ -240,7 +240,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Updates a project object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
@@ -255,7 +255,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Updates a project object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
@@ -279,7 +279,7 @@ namespace OpenfortSdk.Api
     /// </summary>
     public partial class ProjectsApi : IDisposable, IProjectsApi
     {
-        private OpenfortSdk.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private Openfort.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectsApi"/> class.
@@ -301,14 +301,14 @@ namespace OpenfortSdk.Api
         /// <returns></returns>
         public ProjectsApi(string basePath)
         {
-            this.Configuration = OpenfortSdk.Client.Configuration.MergeConfigurations(
-                OpenfortSdk.Client.GlobalConfiguration.Instance,
-                new OpenfortSdk.Client.Configuration { BasePath = basePath }
+            this.Configuration = Openfort.Client.Configuration.MergeConfigurations(
+                Openfort.Client.GlobalConfiguration.Instance,
+                new Openfort.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new OpenfortSdk.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Openfort.Client.ApiClient(this.Configuration.BasePath);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = OpenfortSdk.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Openfort.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -319,18 +319,18 @@ namespace OpenfortSdk.Api
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public ProjectsApi(OpenfortSdk.Client.Configuration configuration)
+        public ProjectsApi(Openfort.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
-            this.Configuration = OpenfortSdk.Client.Configuration.MergeConfigurations(
-                OpenfortSdk.Client.GlobalConfiguration.Instance,
+            this.Configuration = Openfort.Client.Configuration.MergeConfigurations(
+                Openfort.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new OpenfortSdk.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Openfort.Client.ApiClient(this.Configuration.BasePath);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = OpenfortSdk.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Openfort.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -341,7 +341,7 @@ namespace OpenfortSdk.Api
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public ProjectsApi(OpenfortSdk.Client.ISynchronousClient client, OpenfortSdk.Client.IAsynchronousClient asyncClient, OpenfortSdk.Client.IReadableConfiguration configuration)
+        public ProjectsApi(Openfort.Client.ISynchronousClient client, Openfort.Client.IAsynchronousClient asyncClient, Openfort.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -350,7 +350,7 @@ namespace OpenfortSdk.Api
             this.Client = client;
             this.AsynchronousClient = asyncClient;
             this.Configuration = configuration;
-            this.ExceptionFactory = OpenfortSdk.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Openfort.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -364,17 +364,17 @@ namespace OpenfortSdk.Api
         /// <summary>
         /// Holds the ApiClient if created
         /// </summary>
-        public OpenfortSdk.Client.ApiClient ApiClient { get; set; } = null;
+        public Openfort.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public OpenfortSdk.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public Openfort.Client.IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public OpenfortSdk.Client.ISynchronousClient Client { get; set; }
+        public Openfort.Client.ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -389,12 +389,12 @@ namespace OpenfortSdk.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public OpenfortSdk.Client.IReadableConfiguration Configuration { get; set; }
+        public Openfort.Client.IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public OpenfortSdk.Client.ExceptionFactory ExceptionFactory
+        public Openfort.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -410,32 +410,32 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates a project object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <returns>ProjectResponse</returns>
         public ProjectResponse CreateProject(string name, bool? livemode = default(bool?), string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<ProjectResponse> localVarResponse = CreateProjectWithHttpInfo(name, livemode, project);
+            Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = CreateProjectWithHttpInfo(name, livemode, project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Creates a project object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of ProjectResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<ProjectResponse> CreateProjectWithHttpInfo(string name, bool? livemode = default(bool?), string project = default(string))
+        public Openfort.Client.ApiResponse<ProjectResponse> CreateProjectWithHttpInfo(string name, bool? livemode = default(bool?), string project = default(string))
         {
             // verify the required parameter 'name' is set
             if (name == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'name' when calling ProjectsApi->CreateProject");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling ProjectsApi->CreateProject");
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -446,20 +446,20 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.FormParameters.Add("name", OpenfortSdk.Client.ClientUtils.ParameterToString(name)); // form parameter
+            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
             if (livemode != null)
             {
-                localVarRequestOptions.FormParameters.Add("livemode", OpenfortSdk.Client.ClientUtils.ParameterToString(livemode)); // form parameter
+                localVarRequestOptions.FormParameters.Add("livemode", Openfort.Client.ClientUtils.ParameterToString(livemode)); // form parameter
             }
             if (project != null)
             {
-                localVarRequestOptions.FormParameters.Add("project", OpenfortSdk.Client.ClientUtils.ParameterToString(project)); // form parameter
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
 
 
@@ -478,7 +478,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates a project object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
         /// <param name="project"> (optional)</param>
@@ -488,9 +488,9 @@ namespace OpenfortSdk.Api
         {
             var task = CreateProjectWithHttpInfoAsync(name, livemode, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<ProjectResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<ProjectResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -498,20 +498,20 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates a project object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProjectResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<ProjectResponse>> CreateProjectWithHttpInfoAsync(string name, bool? livemode = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ProjectResponse>> CreateProjectWithHttpInfoAsync(string name, bool? livemode = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'name' is set
             if (name == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'name' when calling ProjectsApi->CreateProject");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling ProjectsApi->CreateProject");
 
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -523,20 +523,20 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.FormParameters.Add("name", OpenfortSdk.Client.ClientUtils.ParameterToString(name)); // form parameter
+            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
             if (livemode != null)
             {
-                localVarRequestOptions.FormParameters.Add("livemode", OpenfortSdk.Client.ClientUtils.ParameterToString(livemode)); // form parameter
+                localVarRequestOptions.FormParameters.Add("livemode", Openfort.Client.ClientUtils.ParameterToString(livemode)); // form parameter
             }
             if (project != null)
             {
-                localVarRequestOptions.FormParameters.Add("project", OpenfortSdk.Client.ClientUtils.ParameterToString(project)); // form parameter
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
 
 
@@ -562,22 +562,22 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>GetProjectResponse</returns>
         public GetProjectResponse Get()
         {
-            OpenfortSdk.Client.ApiResponse<GetProjectResponse> localVarResponse = GetWithHttpInfo();
+            Openfort.Client.ApiResponse<GetProjectResponse> localVarResponse = GetWithHttpInfo();
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of GetProjectResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<GetProjectResponse> GetWithHttpInfo()
+        public Openfort.Client.ApiResponse<GetProjectResponse> GetWithHttpInfo()
         {
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -587,10 +587,10 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
@@ -616,16 +616,16 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetProjectResponse</returns>
         public async System.Threading.Tasks.Task<GetProjectResponse> GetAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetWithHttpInfoAsync(cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<GetProjectResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<GetProjectResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<GetProjectResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<GetProjectResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -633,13 +633,13 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetProjectResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<GetProjectResponse>> GetWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<GetProjectResponse>> GetWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -650,10 +650,10 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
@@ -686,28 +686,28 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <returns>ProjectResponse</returns>
         public ProjectResponse GetProject(string id)
         {
-            OpenfortSdk.Client.ApiResponse<ProjectResponse> localVarResponse = GetProjectWithHttpInfo(id);
+            Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = GetProjectWithHttpInfo(id);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <returns>ApiResponse of ProjectResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<ProjectResponse> GetProjectWithHttpInfo(string id)
+        public Openfort.Client.ApiResponse<ProjectResponse> GetProjectWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling ProjectsApi->GetProject");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling ProjectsApi->GetProject");
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -717,13 +717,13 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
 
 
             // make the HTTP request
@@ -741,7 +741,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProjectResponse</returns>
@@ -749,9 +749,9 @@ namespace OpenfortSdk.Api
         {
             var task = GetProjectWithHttpInfoAsync(id, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<ProjectResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<ProjectResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -759,18 +759,18 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProjectResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<ProjectResponse>> GetProjectWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ProjectResponse>> GetProjectWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling ProjectsApi->GetProject");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling ProjectsApi->GetProject");
 
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -781,13 +781,13 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
 
 
             // make the HTTP request
@@ -812,24 +812,24 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <returns>ProjectsResponse</returns>
         public ProjectsResponse GetProjects(string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<ProjectsResponse> localVarResponse = GetProjectsWithHttpInfo(project);
+            Openfort.Client.ApiResponse<ProjectsResponse> localVarResponse = GetProjectsWithHttpInfo(project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of ProjectsResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<ProjectsResponse> GetProjectsWithHttpInfo(string project = default(string))
+        public Openfort.Client.ApiResponse<ProjectsResponse> GetProjectsWithHttpInfo(string project = default(string))
         {
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -839,15 +839,15 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -866,7 +866,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProjectsResponse</returns>
@@ -874,9 +874,9 @@ namespace OpenfortSdk.Api
         {
             var task = GetProjectsWithHttpInfoAsync(project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<ProjectsResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<ProjectsResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<ProjectsResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<ProjectsResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -884,14 +884,14 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProjectsResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<ProjectsResponse>> GetProjectsWithHttpInfoAsync(string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ProjectsResponse>> GetProjectsWithHttpInfoAsync(string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -902,15 +902,15 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -936,7 +936,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Updates a project object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
@@ -944,30 +944,30 @@ namespace OpenfortSdk.Api
         /// <returns>ProjectResponse</returns>
         public ProjectResponse UpdateProject(string id, string name, bool? livemode = default(bool?), string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<ProjectResponse> localVarResponse = UpdateProjectWithHttpInfo(id, name, livemode, project);
+            Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = UpdateProjectWithHttpInfo(id, name, livemode, project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Updates a project object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of ProjectResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<ProjectResponse> UpdateProjectWithHttpInfo(string id, string name, bool? livemode = default(bool?), string project = default(string))
+        public Openfort.Client.ApiResponse<ProjectResponse> UpdateProjectWithHttpInfo(string id, string name, bool? livemode = default(bool?), string project = default(string))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling ProjectsApi->UpdateProject");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling ProjectsApi->UpdateProject");
 
             // verify the required parameter 'name' is set
             if (name == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'name' when calling ProjectsApi->UpdateProject");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling ProjectsApi->UpdateProject");
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -978,21 +978,21 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.FormParameters.Add("name", OpenfortSdk.Client.ClientUtils.ParameterToString(name)); // form parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
             if (livemode != null)
             {
-                localVarRequestOptions.FormParameters.Add("livemode", OpenfortSdk.Client.ClientUtils.ParameterToString(livemode)); // form parameter
+                localVarRequestOptions.FormParameters.Add("livemode", Openfort.Client.ClientUtils.ParameterToString(livemode)); // form parameter
             }
             if (project != null)
             {
-                localVarRequestOptions.FormParameters.Add("project", OpenfortSdk.Client.ClientUtils.ParameterToString(project)); // form parameter
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
 
 
@@ -1011,7 +1011,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Updates a project object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
@@ -1022,9 +1022,9 @@ namespace OpenfortSdk.Api
         {
             var task = UpdateProjectWithHttpInfoAsync(id, name, livemode, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<ProjectResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<ProjectResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -1032,25 +1032,25 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Updates a project object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="livemode"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProjectResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<ProjectResponse>> UpdateProjectWithHttpInfoAsync(string id, string name, bool? livemode = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ProjectResponse>> UpdateProjectWithHttpInfoAsync(string id, string name, bool? livemode = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling ProjectsApi->UpdateProject");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling ProjectsApi->UpdateProject");
 
             // verify the required parameter 'name' is set
             if (name == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'name' when calling ProjectsApi->UpdateProject");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling ProjectsApi->UpdateProject");
 
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -1062,21 +1062,21 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.FormParameters.Add("name", OpenfortSdk.Client.ClientUtils.ParameterToString(name)); // form parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
             if (livemode != null)
             {
-                localVarRequestOptions.FormParameters.Add("livemode", OpenfortSdk.Client.ClientUtils.ParameterToString(livemode)); // form parameter
+                localVarRequestOptions.FormParameters.Add("livemode", Openfort.Client.ClientUtils.ParameterToString(livemode)); // form parameter
             }
             if (project != null)
             {
-                localVarRequestOptions.FormParameters.Add("project", OpenfortSdk.Client.ClientUtils.ParameterToString(project)); // form parameter
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
 
 

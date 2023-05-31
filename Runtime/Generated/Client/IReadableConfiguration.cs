@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 
-namespace OpenfortSdk.Client
+namespace Openfort.Client
 {
     /// <summary>
     /// Represents a readable-only configuration contract.

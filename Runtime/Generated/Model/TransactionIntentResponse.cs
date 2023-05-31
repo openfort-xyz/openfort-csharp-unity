@@ -21,9 +21,9 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using OpenAPIDateConverter = OpenfortSdk.Client.OpenAPIDateConverter;
+using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 
-namespace OpenfortSdk.Model
+namespace Openfort.Model
 {
     /// <summary>
     /// TransactionIntentResponse
@@ -47,11 +47,12 @@ namespace OpenfortSdk.Model
         /// <param name="userOperation">userOperation.</param>
         /// <param name="policy">policy (required).</param>
         /// <param name="player">player (required).</param>
+        /// <param name="nextAction">nextAction (required).</param>
         /// <param name="account">account.</param>
         /// <param name="transactions">transactions (required).</param>
         /// <param name="response">response (required).</param>
         /// <param name="_object">_object (required).</param>
-        public TransactionIntentResponse(string id = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), double chainId = default(double), string userOperationHash = default(string), UserOpResult userOperation = default(UserOpResult), string policy = default(string), string player = default(string), string account = default(string), List<Interaction> transactions = default(List<Interaction>), ResponseResponse response = default(ResponseResponse), string _object = default(string))
+        public TransactionIntentResponse(string id = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), double chainId = default(double), string userOperationHash = default(string), UserOpResult userOperation = default(UserOpResult), string policy = default(string), string player = default(string), Object nextAction = default(Object), string account = default(string), List<Interaction> transactions = default(List<Interaction>), ResponseResponse response = default(ResponseResponse), string _object = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -80,6 +81,12 @@ namespace OpenfortSdk.Model
                 throw new ArgumentNullException("player is a required property for TransactionIntentResponse and cannot be null");
             }
             this.Player = player;
+            // to ensure "nextAction" is required (not null)
+            if (nextAction == null)
+            {
+                throw new ArgumentNullException("nextAction is a required property for TransactionIntentResponse and cannot be null");
+            }
+            this.NextAction = nextAction;
             // to ensure "transactions" is required (not null)
             if (transactions == null)
             {
@@ -151,6 +158,12 @@ namespace OpenfortSdk.Model
         public string Player { get; set; }
 
         /// <summary>
+        /// Gets or Sets NextAction
+        /// </summary>
+        [DataMember(Name = "next_action", IsRequired = true, EmitDefaultValue = true)]
+        public Object NextAction { get; set; }
+
+        /// <summary>
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name = "account", EmitDefaultValue = false)]
@@ -190,6 +203,7 @@ namespace OpenfortSdk.Model
             sb.Append("  UserOperation: ").Append(UserOperation).Append("\n");
             sb.Append("  Policy: ").Append(Policy).Append("\n");
             sb.Append("  Player: ").Append(Player).Append("\n");
+            sb.Append("  NextAction: ").Append(NextAction).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  Transactions: ").Append(Transactions).Append("\n");
             sb.Append("  Response: ").Append(Response).Append("\n");
@@ -269,6 +283,11 @@ namespace OpenfortSdk.Model
                     this.Player.Equals(input.Player))
                 ) && 
                 (
+                    this.NextAction == input.NextAction ||
+                    (this.NextAction != null &&
+                    this.NextAction.Equals(input.NextAction))
+                ) && 
+                (
                     this.Account == input.Account ||
                     (this.Account != null &&
                     this.Account.Equals(input.Account))
@@ -328,6 +347,10 @@ namespace OpenfortSdk.Model
                 if (this.Player != null)
                 {
                     hashCode = (hashCode * 59) + this.Player.GetHashCode();
+                }
+                if (this.NextAction != null)
+                {
+                    hashCode = (hashCode * 59) + this.NextAction.GetHashCode();
                 }
                 if (this.Account != null)
                 {

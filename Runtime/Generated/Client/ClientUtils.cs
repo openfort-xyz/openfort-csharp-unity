@@ -19,7 +19,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace OpenfortSdk.Client
+namespace Openfort.Client
 {
     /// <summary>
     /// Utility functions providing some benefit to API client consumers.

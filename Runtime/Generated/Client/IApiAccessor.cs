@@ -11,7 +11,7 @@
 
 using System;
 
-namespace OpenfortSdk.Client
+namespace Openfort.Client
 {
     /// <summary>
     /// Represents configuration aspects required to interact with the API endpoints.

@@ -11,7 +11,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace OpenfortSdk.Client
+namespace Openfort.Client
 {
     /// <summary>
     /// A URI builder

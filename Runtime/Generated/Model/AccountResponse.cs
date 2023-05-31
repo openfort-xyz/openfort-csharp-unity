@@ -21,9 +21,9 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using OpenAPIDateConverter = OpenfortSdk.Client.OpenAPIDateConverter;
+using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 
-namespace OpenfortSdk.Model
+namespace Openfort.Model
 {
     /// <summary>
     /// AccountResponse

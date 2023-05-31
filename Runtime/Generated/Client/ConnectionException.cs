@@ -12,7 +12,7 @@
 using System;
 using UnityEngine.Networking;
 
-namespace OpenfortSdk.Client
+namespace Openfort.Client
 {
     public class ConnectionException : Exception
     {

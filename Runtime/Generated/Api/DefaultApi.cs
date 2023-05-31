@@ -15,10 +15,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
-using OpenfortSdk.Client;
-using OpenfortSdk.Model;
+using Openfort.Client;
+using Openfort.Model;
 
-namespace OpenfortSdk.Api
+namespace Openfort.Api
 {
 
     /// <summary>
@@ -33,7 +33,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates an account object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID</param>
         /// <param name="project">The project ID (optional)</param>
         /// <param name="chainId">The chain_id (optional)</param>
@@ -46,7 +46,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates an account object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID</param>
         /// <param name="project">The project ID (optional)</param>
         /// <param name="chainId">The chain_id (optional)</param>
@@ -58,7 +58,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates an allow function object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
         /// <param name="contract"></param>
@@ -73,7 +73,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates an allow function object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
         /// <param name="contract"></param>
@@ -87,7 +87,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>AccountResponse</returns>
@@ -99,7 +99,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of AccountResponse</returns>
@@ -110,7 +110,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>InventoryResponse</returns>
@@ -122,7 +122,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of InventoryResponse</returns>
@@ -133,7 +133,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>AccountsResponse</returns>
@@ -145,7 +145,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of AccountsResponse</returns>
@@ -156,7 +156,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Returns a list of your allow functions for the given policy. The allow functions are returned sorted by creation date, with the most recently created allow functions appearing first.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="policy">Specifies the unique policy ID. (optional)</param>
         /// <returns>AllowFunctionsResponse</returns>
@@ -168,7 +168,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Returns a list of your allow functions for the given policy. The allow functions are returned sorted by creation date, with the most recently created allow functions appearing first.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="policy">Specifies the unique policy ID. (optional)</param>
         /// <returns>ApiResponse of AllowFunctionsResponse</returns>
@@ -179,7 +179,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Updates your allow functions object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
@@ -195,7 +195,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Updates your allow functions object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
@@ -219,7 +219,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates an account object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID</param>
         /// <param name="project">The project ID (optional)</param>
         /// <param name="chainId">The chain_id (optional)</param>
@@ -233,7 +233,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates an account object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID</param>
         /// <param name="project">The project ID (optional)</param>
         /// <param name="chainId">The chain_id (optional)</param>
@@ -246,7 +246,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates an allow function object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
         /// <param name="contract"></param>
@@ -262,7 +262,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates an allow function object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
         /// <param name="contract"></param>
@@ -277,7 +277,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -290,7 +290,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -302,7 +302,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -315,7 +315,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -327,7 +327,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -340,7 +340,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -352,7 +352,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Returns a list of your allow functions for the given policy. The allow functions are returned sorted by creation date, with the most recently created allow functions appearing first.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="policy">Specifies the unique policy ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -365,7 +365,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Returns a list of your allow functions for the given policy. The allow functions are returned sorted by creation date, with the most recently created allow functions appearing first.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="policy">Specifies the unique policy ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -377,7 +377,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Updates your allow functions object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
@@ -394,7 +394,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Updates your allow functions object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
@@ -420,7 +420,7 @@ namespace OpenfortSdk.Api
     /// </summary>
     public partial class DefaultApi : IDisposable, IDefaultApi
     {
-        private OpenfortSdk.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private Openfort.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultApi"/> class.
@@ -442,14 +442,14 @@ namespace OpenfortSdk.Api
         /// <returns></returns>
         public DefaultApi(string basePath)
         {
-            this.Configuration = OpenfortSdk.Client.Configuration.MergeConfigurations(
-                OpenfortSdk.Client.GlobalConfiguration.Instance,
-                new OpenfortSdk.Client.Configuration { BasePath = basePath }
+            this.Configuration = Openfort.Client.Configuration.MergeConfigurations(
+                Openfort.Client.GlobalConfiguration.Instance,
+                new Openfort.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new OpenfortSdk.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Openfort.Client.ApiClient(this.Configuration.BasePath);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = OpenfortSdk.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Openfort.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -460,18 +460,18 @@ namespace OpenfortSdk.Api
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public DefaultApi(OpenfortSdk.Client.Configuration configuration)
+        public DefaultApi(Openfort.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
-            this.Configuration = OpenfortSdk.Client.Configuration.MergeConfigurations(
-                OpenfortSdk.Client.GlobalConfiguration.Instance,
+            this.Configuration = Openfort.Client.Configuration.MergeConfigurations(
+                Openfort.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new OpenfortSdk.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Openfort.Client.ApiClient(this.Configuration.BasePath);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = OpenfortSdk.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Openfort.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -482,7 +482,7 @@ namespace OpenfortSdk.Api
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public DefaultApi(OpenfortSdk.Client.ISynchronousClient client, OpenfortSdk.Client.IAsynchronousClient asyncClient, OpenfortSdk.Client.IReadableConfiguration configuration)
+        public DefaultApi(Openfort.Client.ISynchronousClient client, Openfort.Client.IAsynchronousClient asyncClient, Openfort.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -491,7 +491,7 @@ namespace OpenfortSdk.Api
             this.Client = client;
             this.AsynchronousClient = asyncClient;
             this.Configuration = configuration;
-            this.ExceptionFactory = OpenfortSdk.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Openfort.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -505,17 +505,17 @@ namespace OpenfortSdk.Api
         /// <summary>
         /// Holds the ApiClient if created
         /// </summary>
-        public OpenfortSdk.Client.ApiClient ApiClient { get; set; } = null;
+        public Openfort.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public OpenfortSdk.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public Openfort.Client.IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public OpenfortSdk.Client.ISynchronousClient Client { get; set; }
+        public Openfort.Client.ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -530,12 +530,12 @@ namespace OpenfortSdk.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public OpenfortSdk.Client.IReadableConfiguration Configuration { get; set; }
+        public Openfort.Client.IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public OpenfortSdk.Client.ExceptionFactory ExceptionFactory
+        public Openfort.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -551,32 +551,32 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates an account object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID</param>
         /// <param name="project">The project ID (optional)</param>
         /// <param name="chainId">The chain_id (optional)</param>
         /// <returns>AccountResponse</returns>
         public AccountResponse CreateAccount(string player, string project = default(string), double? chainId = default(double?))
         {
-            OpenfortSdk.Client.ApiResponse<AccountResponse> localVarResponse = CreateAccountWithHttpInfo(player, project, chainId);
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = CreateAccountWithHttpInfo(player, project, chainId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Creates an account object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID</param>
         /// <param name="project">The project ID (optional)</param>
         /// <param name="chainId">The chain_id (optional)</param>
         /// <returns>ApiResponse of AccountResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<AccountResponse> CreateAccountWithHttpInfo(string player, string project = default(string), double? chainId = default(double?))
+        public Openfort.Client.ApiResponse<AccountResponse> CreateAccountWithHttpInfo(string player, string project = default(string), double? chainId = default(double?))
         {
             // verify the required parameter 'player' is set
             if (player == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'player' when calling DefaultApi->CreateAccount");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'player' when calling DefaultApi->CreateAccount");
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -587,21 +587,21 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (project != null)
             {
-                localVarRequestOptions.FormParameters.Add("project", OpenfortSdk.Client.ClientUtils.ParameterToString(project)); // form parameter
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
             if (chainId != null)
             {
-                localVarRequestOptions.FormParameters.Add("chain_id", OpenfortSdk.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+                localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
             }
-            localVarRequestOptions.FormParameters.Add("player", OpenfortSdk.Client.ClientUtils.ParameterToString(player)); // form parameter
+            localVarRequestOptions.FormParameters.Add("player", Openfort.Client.ClientUtils.ParameterToString(player)); // form parameter
 
 
             // make the HTTP request
@@ -619,7 +619,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates an account object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID</param>
         /// <param name="project">The project ID (optional)</param>
         /// <param name="chainId">The chain_id (optional)</param>
@@ -629,9 +629,9 @@ namespace OpenfortSdk.Api
         {
             var task = CreateAccountWithHttpInfoAsync(player, project, chainId, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<AccountResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<AccountResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -639,20 +639,20 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates an account object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID</param>
         /// <param name="project">The project ID (optional)</param>
         /// <param name="chainId">The chain_id (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<AccountResponse>> CreateAccountWithHttpInfoAsync(string player, string project = default(string), double? chainId = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountResponse>> CreateAccountWithHttpInfoAsync(string player, string project = default(string), double? chainId = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'player' is set
             if (player == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'player' when calling DefaultApi->CreateAccount");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'player' when calling DefaultApi->CreateAccount");
 
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -664,21 +664,21 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (project != null)
             {
-                localVarRequestOptions.FormParameters.Add("project", OpenfortSdk.Client.ClientUtils.ParameterToString(project)); // form parameter
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
             if (chainId != null)
             {
-                localVarRequestOptions.FormParameters.Add("chain_id", OpenfortSdk.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+                localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
             }
-            localVarRequestOptions.FormParameters.Add("player", OpenfortSdk.Client.ClientUtils.ParameterToString(player)); // form parameter
+            localVarRequestOptions.FormParameters.Add("player", Openfort.Client.ClientUtils.ParameterToString(player)); // form parameter
 
 
             // make the HTTP request
@@ -703,7 +703,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates an allow function object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
         /// <param name="contract"></param>
@@ -712,35 +712,35 @@ namespace OpenfortSdk.Api
         /// <returns>AllowFunctionResponse</returns>
         public AllowFunctionResponse CreateAllowFunction(string type, string functionName, string contract, string policy = default(string), string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<AllowFunctionResponse> localVarResponse = CreateAllowFunctionWithHttpInfo(type, functionName, contract, policy, project);
+            Openfort.Client.ApiResponse<AllowFunctionResponse> localVarResponse = CreateAllowFunctionWithHttpInfo(type, functionName, contract, policy, project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Creates an allow function object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
         /// <param name="contract"></param>
         /// <param name="policy"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of AllowFunctionResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<AllowFunctionResponse> CreateAllowFunctionWithHttpInfo(string type, string functionName, string contract, string policy = default(string), string project = default(string))
+        public Openfort.Client.ApiResponse<AllowFunctionResponse> CreateAllowFunctionWithHttpInfo(string type, string functionName, string contract, string policy = default(string), string project = default(string))
         {
             // verify the required parameter 'type' is set
             if (type == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'type' when calling DefaultApi->CreateAllowFunction");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'type' when calling DefaultApi->CreateAllowFunction");
 
             // verify the required parameter 'functionName' is set
             if (functionName == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'functionName' when calling DefaultApi->CreateAllowFunction");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'functionName' when calling DefaultApi->CreateAllowFunction");
 
             // verify the required parameter 'contract' is set
             if (contract == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'contract' when calling DefaultApi->CreateAllowFunction");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'contract' when calling DefaultApi->CreateAllowFunction");
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -751,23 +751,23 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.FormParameters.Add("type", OpenfortSdk.Client.ClientUtils.ParameterToString(type)); // form parameter
-            localVarRequestOptions.FormParameters.Add("function_name", OpenfortSdk.Client.ClientUtils.ParameterToString(functionName)); // form parameter
+            localVarRequestOptions.FormParameters.Add("type", Openfort.Client.ClientUtils.ParameterToString(type)); // form parameter
+            localVarRequestOptions.FormParameters.Add("function_name", Openfort.Client.ClientUtils.ParameterToString(functionName)); // form parameter
             if (policy != null)
             {
-                localVarRequestOptions.FormParameters.Add("policy", OpenfortSdk.Client.ClientUtils.ParameterToString(policy)); // form parameter
+                localVarRequestOptions.FormParameters.Add("policy", Openfort.Client.ClientUtils.ParameterToString(policy)); // form parameter
             }
             if (project != null)
             {
-                localVarRequestOptions.FormParameters.Add("project", OpenfortSdk.Client.ClientUtils.ParameterToString(project)); // form parameter
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
-            localVarRequestOptions.FormParameters.Add("contract", OpenfortSdk.Client.ClientUtils.ParameterToString(contract)); // form parameter
+            localVarRequestOptions.FormParameters.Add("contract", Openfort.Client.ClientUtils.ParameterToString(contract)); // form parameter
 
 
             // make the HTTP request
@@ -785,7 +785,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates an allow function object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
         /// <param name="contract"></param>
@@ -797,9 +797,9 @@ namespace OpenfortSdk.Api
         {
             var task = CreateAllowFunctionWithHttpInfoAsync(type, functionName, contract, policy, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<AllowFunctionResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<AllowFunctionResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<AllowFunctionResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<AllowFunctionResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -807,7 +807,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates an allow function object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
         /// <param name="contract"></param>
@@ -815,22 +815,22 @@ namespace OpenfortSdk.Api
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AllowFunctionResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<AllowFunctionResponse>> CreateAllowFunctionWithHttpInfoAsync(string type, string functionName, string contract, string policy = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AllowFunctionResponse>> CreateAllowFunctionWithHttpInfoAsync(string type, string functionName, string contract, string policy = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'type' is set
             if (type == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'type' when calling DefaultApi->CreateAllowFunction");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'type' when calling DefaultApi->CreateAllowFunction");
 
             // verify the required parameter 'functionName' is set
             if (functionName == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'functionName' when calling DefaultApi->CreateAllowFunction");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'functionName' when calling DefaultApi->CreateAllowFunction");
 
             // verify the required parameter 'contract' is set
             if (contract == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'contract' when calling DefaultApi->CreateAllowFunction");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'contract' when calling DefaultApi->CreateAllowFunction");
 
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -842,23 +842,23 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.FormParameters.Add("type", OpenfortSdk.Client.ClientUtils.ParameterToString(type)); // form parameter
-            localVarRequestOptions.FormParameters.Add("function_name", OpenfortSdk.Client.ClientUtils.ParameterToString(functionName)); // form parameter
+            localVarRequestOptions.FormParameters.Add("type", Openfort.Client.ClientUtils.ParameterToString(type)); // form parameter
+            localVarRequestOptions.FormParameters.Add("function_name", Openfort.Client.ClientUtils.ParameterToString(functionName)); // form parameter
             if (policy != null)
             {
-                localVarRequestOptions.FormParameters.Add("policy", OpenfortSdk.Client.ClientUtils.ParameterToString(policy)); // form parameter
+                localVarRequestOptions.FormParameters.Add("policy", Openfort.Client.ClientUtils.ParameterToString(policy)); // form parameter
             }
             if (project != null)
             {
-                localVarRequestOptions.FormParameters.Add("project", OpenfortSdk.Client.ClientUtils.ParameterToString(project)); // form parameter
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
-            localVarRequestOptions.FormParameters.Add("contract", OpenfortSdk.Client.ClientUtils.ParameterToString(contract)); // form parameter
+            localVarRequestOptions.FormParameters.Add("contract", Openfort.Client.ClientUtils.ParameterToString(contract)); // form parameter
 
 
             // make the HTTP request
@@ -883,30 +883,30 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>AccountResponse</returns>
         public AccountResponse GetAccount(string id, string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<AccountResponse> localVarResponse = GetAccountWithHttpInfo(id, project);
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = GetAccountWithHttpInfo(id, project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of AccountResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<AccountResponse> GetAccountWithHttpInfo(string id, string project = default(string))
+        public Openfort.Client.ApiResponse<AccountResponse> GetAccountWithHttpInfo(string id, string project = default(string))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling DefaultApi->GetAccount");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling DefaultApi->GetAccount");
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -916,16 +916,16 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -944,7 +944,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -953,9 +953,9 @@ namespace OpenfortSdk.Api
         {
             var task = GetAccountWithHttpInfoAsync(id, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<AccountResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<AccountResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -963,19 +963,19 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<AccountResponse>> GetAccountWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountResponse>> GetAccountWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling DefaultApi->GetAccount");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling DefaultApi->GetAccount");
 
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -986,16 +986,16 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -1021,30 +1021,30 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>InventoryResponse</returns>
         public InventoryResponse GetAccountInventory(string id, string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<InventoryResponse> localVarResponse = GetAccountInventoryWithHttpInfo(id, project);
+            Openfort.Client.ApiResponse<InventoryResponse> localVarResponse = GetAccountInventoryWithHttpInfo(id, project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of InventoryResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<InventoryResponse> GetAccountInventoryWithHttpInfo(string id, string project = default(string))
+        public Openfort.Client.ApiResponse<InventoryResponse> GetAccountInventoryWithHttpInfo(string id, string project = default(string))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling DefaultApi->GetAccountInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling DefaultApi->GetAccountInventory");
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1054,16 +1054,16 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -1082,7 +1082,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1091,9 +1091,9 @@ namespace OpenfortSdk.Api
         {
             var task = GetAccountInventoryWithHttpInfoAsync(id, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<InventoryResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<InventoryResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<InventoryResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<InventoryResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -1101,19 +1101,19 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<InventoryResponse>> GetAccountInventoryWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<InventoryResponse>> GetAccountInventoryWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling DefaultApi->GetAccountInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling DefaultApi->GetAccountInventory");
 
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1124,16 +1124,16 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -1159,30 +1159,30 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>AccountsResponse</returns>
         public AccountsResponse GetAccounts(string player, string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<AccountsResponse> localVarResponse = GetAccountsWithHttpInfo(player, project);
+            Openfort.Client.ApiResponse<AccountsResponse> localVarResponse = GetAccountsWithHttpInfo(player, project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of AccountsResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<AccountsResponse> GetAccountsWithHttpInfo(string player, string project = default(string))
+        public Openfort.Client.ApiResponse<AccountsResponse> GetAccountsWithHttpInfo(string player, string project = default(string))
         {
             // verify the required parameter 'player' is set
             if (player == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'player' when calling DefaultApi->GetAccounts");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'player' when calling DefaultApi->GetAccounts");
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1192,16 +1192,16 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "player", player));
+            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "player", player));
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -1220,7 +1220,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1229,9 +1229,9 @@ namespace OpenfortSdk.Api
         {
             var task = GetAccountsWithHttpInfoAsync(player, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<AccountsResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<AccountsResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<AccountsResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<AccountsResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -1239,19 +1239,19 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountsResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<AccountsResponse>> GetAccountsWithHttpInfoAsync(string player, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountsResponse>> GetAccountsWithHttpInfoAsync(string player, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'player' is set
             if (player == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'player' when calling DefaultApi->GetAccounts");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'player' when calling DefaultApi->GetAccounts");
 
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1262,16 +1262,16 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "player", player));
+            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "player", player));
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -1297,26 +1297,26 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Returns a list of your allow functions for the given policy. The allow functions are returned sorted by creation date, with the most recently created allow functions appearing first.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="policy">Specifies the unique policy ID. (optional)</param>
         /// <returns>AllowFunctionsResponse</returns>
         public AllowFunctionsResponse GetAllowFunctions(string project = default(string), string policy = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<AllowFunctionsResponse> localVarResponse = GetAllowFunctionsWithHttpInfo(project, policy);
+            Openfort.Client.ApiResponse<AllowFunctionsResponse> localVarResponse = GetAllowFunctionsWithHttpInfo(project, policy);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Returns a list of your allow functions for the given policy. The allow functions are returned sorted by creation date, with the most recently created allow functions appearing first.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="policy">Specifies the unique policy ID. (optional)</param>
         /// <returns>ApiResponse of AllowFunctionsResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<AllowFunctionsResponse> GetAllowFunctionsWithHttpInfo(string project = default(string), string policy = default(string))
+        public Openfort.Client.ApiResponse<AllowFunctionsResponse> GetAllowFunctionsWithHttpInfo(string project = default(string), string policy = default(string))
         {
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1326,19 +1326,19 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
             if (policy != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "policy", policy));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "policy", policy));
             }
 
 
@@ -1357,7 +1357,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Returns a list of your allow functions for the given policy. The allow functions are returned sorted by creation date, with the most recently created allow functions appearing first.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="policy">Specifies the unique policy ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1366,9 +1366,9 @@ namespace OpenfortSdk.Api
         {
             var task = GetAllowFunctionsWithHttpInfoAsync(project, policy, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<AllowFunctionsResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<AllowFunctionsResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<AllowFunctionsResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<AllowFunctionsResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -1376,15 +1376,15 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Returns a list of your allow functions for the given policy. The allow functions are returned sorted by creation date, with the most recently created allow functions appearing first.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="policy">Specifies the unique policy ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AllowFunctionsResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<AllowFunctionsResponse>> GetAllowFunctionsWithHttpInfoAsync(string project = default(string), string policy = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AllowFunctionsResponse>> GetAllowFunctionsWithHttpInfoAsync(string project = default(string), string policy = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1395,19 +1395,19 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
             if (policy != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "policy", policy));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "policy", policy));
             }
 
 
@@ -1433,7 +1433,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Updates your allow functions object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
@@ -1443,14 +1443,14 @@ namespace OpenfortSdk.Api
         /// <returns>AllowFunctionResponse</returns>
         public AllowFunctionResponse UpdateAllowFunction(string id, string type, string functionName, string contract, string policy = default(string), string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<AllowFunctionResponse> localVarResponse = UpdateAllowFunctionWithHttpInfo(id, type, functionName, contract, policy, project);
+            Openfort.Client.ApiResponse<AllowFunctionResponse> localVarResponse = UpdateAllowFunctionWithHttpInfo(id, type, functionName, contract, policy, project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Updates your allow functions object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
@@ -1458,25 +1458,25 @@ namespace OpenfortSdk.Api
         /// <param name="policy"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of AllowFunctionResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<AllowFunctionResponse> UpdateAllowFunctionWithHttpInfo(string id, string type, string functionName, string contract, string policy = default(string), string project = default(string))
+        public Openfort.Client.ApiResponse<AllowFunctionResponse> UpdateAllowFunctionWithHttpInfo(string id, string type, string functionName, string contract, string policy = default(string), string project = default(string))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling DefaultApi->UpdateAllowFunction");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling DefaultApi->UpdateAllowFunction");
 
             // verify the required parameter 'type' is set
             if (type == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'type' when calling DefaultApi->UpdateAllowFunction");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'type' when calling DefaultApi->UpdateAllowFunction");
 
             // verify the required parameter 'functionName' is set
             if (functionName == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'functionName' when calling DefaultApi->UpdateAllowFunction");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'functionName' when calling DefaultApi->UpdateAllowFunction");
 
             // verify the required parameter 'contract' is set
             if (contract == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'contract' when calling DefaultApi->UpdateAllowFunction");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'contract' when calling DefaultApi->UpdateAllowFunction");
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -1487,24 +1487,24 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.FormParameters.Add("type", OpenfortSdk.Client.ClientUtils.ParameterToString(type)); // form parameter
-            localVarRequestOptions.FormParameters.Add("function_name", OpenfortSdk.Client.ClientUtils.ParameterToString(functionName)); // form parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.FormParameters.Add("type", Openfort.Client.ClientUtils.ParameterToString(type)); // form parameter
+            localVarRequestOptions.FormParameters.Add("function_name", Openfort.Client.ClientUtils.ParameterToString(functionName)); // form parameter
             if (policy != null)
             {
-                localVarRequestOptions.FormParameters.Add("policy", OpenfortSdk.Client.ClientUtils.ParameterToString(policy)); // form parameter
+                localVarRequestOptions.FormParameters.Add("policy", Openfort.Client.ClientUtils.ParameterToString(policy)); // form parameter
             }
             if (project != null)
             {
-                localVarRequestOptions.FormParameters.Add("project", OpenfortSdk.Client.ClientUtils.ParameterToString(project)); // form parameter
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
-            localVarRequestOptions.FormParameters.Add("contract", OpenfortSdk.Client.ClientUtils.ParameterToString(contract)); // form parameter
+            localVarRequestOptions.FormParameters.Add("contract", Openfort.Client.ClientUtils.ParameterToString(contract)); // form parameter
 
 
             // make the HTTP request
@@ -1522,7 +1522,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Updates your allow functions object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
@@ -1535,9 +1535,9 @@ namespace OpenfortSdk.Api
         {
             var task = UpdateAllowFunctionWithHttpInfoAsync(id, type, functionName, contract, policy, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<AllowFunctionResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<AllowFunctionResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<AllowFunctionResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<AllowFunctionResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -1545,7 +1545,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Updates your allow functions object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
         /// <param name="type"></param>
         /// <param name="functionName"></param>
@@ -1554,26 +1554,26 @@ namespace OpenfortSdk.Api
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AllowFunctionResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<AllowFunctionResponse>> UpdateAllowFunctionWithHttpInfoAsync(string id, string type, string functionName, string contract, string policy = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AllowFunctionResponse>> UpdateAllowFunctionWithHttpInfoAsync(string id, string type, string functionName, string contract, string policy = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling DefaultApi->UpdateAllowFunction");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling DefaultApi->UpdateAllowFunction");
 
             // verify the required parameter 'type' is set
             if (type == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'type' when calling DefaultApi->UpdateAllowFunction");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'type' when calling DefaultApi->UpdateAllowFunction");
 
             // verify the required parameter 'functionName' is set
             if (functionName == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'functionName' when calling DefaultApi->UpdateAllowFunction");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'functionName' when calling DefaultApi->UpdateAllowFunction");
 
             // verify the required parameter 'contract' is set
             if (contract == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'contract' when calling DefaultApi->UpdateAllowFunction");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'contract' when calling DefaultApi->UpdateAllowFunction");
 
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -1585,24 +1585,24 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.FormParameters.Add("type", OpenfortSdk.Client.ClientUtils.ParameterToString(type)); // form parameter
-            localVarRequestOptions.FormParameters.Add("function_name", OpenfortSdk.Client.ClientUtils.ParameterToString(functionName)); // form parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.FormParameters.Add("type", Openfort.Client.ClientUtils.ParameterToString(type)); // form parameter
+            localVarRequestOptions.FormParameters.Add("function_name", Openfort.Client.ClientUtils.ParameterToString(functionName)); // form parameter
             if (policy != null)
             {
-                localVarRequestOptions.FormParameters.Add("policy", OpenfortSdk.Client.ClientUtils.ParameterToString(policy)); // form parameter
+                localVarRequestOptions.FormParameters.Add("policy", Openfort.Client.ClientUtils.ParameterToString(policy)); // form parameter
             }
             if (project != null)
             {
-                localVarRequestOptions.FormParameters.Add("project", OpenfortSdk.Client.ClientUtils.ParameterToString(project)); // form parameter
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
-            localVarRequestOptions.FormParameters.Add("contract", OpenfortSdk.Client.ClientUtils.ParameterToString(contract)); // form parameter
+            localVarRequestOptions.FormParameters.Add("contract", Openfort.Client.ClientUtils.ParameterToString(contract)); // form parameter
 
 
             // make the HTTP request

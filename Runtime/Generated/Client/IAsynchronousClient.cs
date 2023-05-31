@@ -12,7 +12,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace OpenfortSdk.Client
+namespace Openfort.Client
 {
     /// <summary>
     /// Contract for Asynchronous RESTful API interactions.

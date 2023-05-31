@@ -12,7 +12,7 @@
 using System;
 using System.IO;
 
-namespace OpenfortSdk.Client
+namespace Openfort.Client
 {
     /// <summary>
     /// Contract for Synchronous RESTful API interactions.

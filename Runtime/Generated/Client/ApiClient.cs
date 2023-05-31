@@ -31,7 +31,7 @@ using System.Net.Http.Headers;
 using UnityEngine.Networking;
 using UnityEngine;
 
-namespace OpenfortSdk.Client
+namespace Openfort.Client
 {
     /// <summary>
     /// To Serialize/Deserialize JSON using our custom logic, but only when ContentType is JSON.
@@ -71,10 +71,10 @@ namespace OpenfortSdk.Client
         /// <returns>A JSON string.</returns>
         public string Serialize(object obj)
         {
-            if (obj != null && obj is OpenfortSdk.Model.AbstractOpenAPISchema)
+            if (obj != null && obj is Openfort.Model.AbstractOpenAPISchema)
             {
                 // the object to be serialized is an oneOf/anyOf schema
-                return ((OpenfortSdk.Model.AbstractOpenAPISchema)obj).ToJson();
+                return ((Openfort.Model.AbstractOpenAPISchema)obj).ToJson();
             }
             else
             {
@@ -200,7 +200,7 @@ namespace OpenfortSdk.Client
         /// Initializes a new instance of the <see cref="ApiClient" />, defaulting to the global configurations' base url.
         /// </summary>
         public ApiClient() :
-                 this(OpenfortSdk.Client.GlobalConfiguration.Instance.BasePath)
+                 this(Openfort.Client.GlobalConfiguration.Instance.BasePath)
         {
         }
 
@@ -428,7 +428,7 @@ namespace OpenfortSdk.Client
                 object responseData = deserializer.Deserialize<T>(request);
 
                 // if the response type is oneOf/anyOf, call FromJSON to deserialize the data
-                if (typeof(OpenfortSdk.Model.AbstractOpenAPISchema).IsAssignableFrom(typeof(T)))
+                if (typeof(Openfort.Model.AbstractOpenAPISchema).IsAssignableFrom(typeof(T)))
                 {
                     responseData = (T) typeof(T).GetMethod("FromJson").Invoke(null, new object[] { new ByteArrayContent(request.downloadHandler.data) });
                 }

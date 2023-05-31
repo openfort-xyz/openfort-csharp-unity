@@ -1,23 +1,31 @@
 using System;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using Org.BouncyCastle.Asn1.X9;
+using Openfort.Extensions;
 using Org.BouncyCastle.Asn1.Sec;
+using Org.BouncyCastle.Asn1.X9;
 using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Parameters;
-using Org.BouncyCastle.Pkcs;
+using Org.BouncyCastle.Crypto.Signers;
+using Org.BouncyCastle.Math;
 using Org.BouncyCastle.Security;
-using System.Text;
+using Org.BouncyCastle.Utilities.Encoders;
 using UnityEngine;
-using System.IO;
 
-namespace OpenfortSdk.Crypto
+namespace Openfort.Crypto
 {
     public class KeyPair
     {
+        static readonly X9ECParameters curve = ECNamedCurveTable.GetByName("secp256k1");
+        static readonly ECDomainParameters domainParams = new ECDomainParameters(curve.Curve, curve.G, curve.N, curve.H, curve.GetSeed());
+
         private readonly ECPublicKeyParameters _public;
         private readonly ECPrivateKeyParameters _private;
+        private ECDsaSigner _signer;
 
         public KeyPair(AsymmetricCipherKeyPair keyPair)
         {
@@ -35,57 +43,93 @@ namespace OpenfortSdk.Crypto
             get => _private;
         }
 
-        public string PublicBase64
+        public string PublicHex
         {
-            get => Convert.ToBase64String(Public.Q.GetEncoded());
+            get => Public.Q.GetEncoded().ToHex();
         }
 
-        public string PrivateBase64
+        public string PrivateHex
         {
-            get {
-                var bcKeyInfo = PrivateKeyInfoFactory.CreatePrivateKeyInfo(Private);
-                var pkcs8Blob = bcKeyInfo.GetDerEncoded();
-                return Convert.ToBase64String(pkcs8Blob);
+            get => Private.D.ToHex();
+        }
+
+        private ECDsaSigner Signer
+        {
+            get
+            {
+                if (_signer == null)
+                {
+                    _signer = new ECDsaSigner(new HMacDsaKCalculator(new Sha256Digest()));
+                    _signer.Init(true, Private);
+                }
+                return _signer;
             }
+        }
+
+        private byte[] HashMessage(byte[] msg)
+        {
+            // "\x19Ethereum Signed Message:\n"
+            byte[] prefixBytes = {25, 69, 116, 104, 101, 114, 101, 117, 109, 32, 83, 105, 103, 110, 101, 100, 32, 77, 101, 115, 115, 97, 103, 101, 58, 10};
+            byte[] lengthBytes = Encoding.UTF8.GetBytes(msg.Length.ToString());
+            byte[] txBytes = prefixBytes.Concat(lengthBytes).Concat(msg).ToArray();
+
+
+            var digest = new KeccakDigest(256);
+            digest.BlockUpdate(txBytes, 0, txBytes.Length);
+            var calculatedHash = new byte[32];
+            digest.DoFinal(calculatedHash, 0);
+            
+            return calculatedHash;
+        }
+
+        private string FormatSignature(BigInteger[] signature) {
+            var r = signature[0];
+            var s = signature[1];
+            var otherS = curve.Curve.Order.Subtract(s);
+
+            if (s.CompareTo(otherS) == 1)
+            {
+                s = otherS;
+            }
+
+            return string.Format("0x{0}{1}1b", r.ToString(16), s.ToString(16));
+        }
+
+        public string Sign(byte[] msg)
+        {
+            var calculatedHash = HashMessage(msg);
+            var signature = Signer.GenerateSignature(calculatedHash);
+            return FormatSignature(signature);
         }
 
         public string Sign(string msg)
         {
-            byte[] msgBytes = Encoding.UTF8.GetBytes(msg);
-
-            ISigner signer = SignerUtilities.GetSigner("SHA-256withECDSA");
-            signer.Init(true, Private);
-            signer.BlockUpdate(msgBytes, 0, msgBytes.Length);
-            byte[] sigBytes = signer.GenerateSignature();
-
-            return Convert.ToBase64String(sigBytes);
-        }
-
-        public bool VerifySignature(string signature, string msg)
-        {
-            byte[] msgBytes = Encoding.UTF8.GetBytes(msg);
-            byte[] sigBytes = Convert.FromBase64String(signature);
-
-            ISigner signer = SignerUtilities.GetSigner("SHA-256withECDSA");
-            signer.Init(false, Public);
-            signer.BlockUpdate(msgBytes, 0, msgBytes.Length);
-            return signer.VerifySignature(sigBytes);
+            return Sign(Hex.Decode(msg.TrimHexPrefix()));
         }
 
         public void SaveToPlayerPrefs()
         {
-            PlayerPrefs.SetString("openfort", PrivateBase64);
+            PlayerPrefs.SetString("openfort", PrivateHex);
         }
 
-        public static KeyPair GetFromPlayerPrefs()
+        public static KeyPair LoadFromPlayerPrefs()
         {
-            var result = PlayerPrefs.GetString("openfort");
-            if (string.IsNullOrEmpty(result))
+            var savedPrivateKey = PlayerPrefs.GetString("openfort");
+            if (string.IsNullOrEmpty(savedPrivateKey))
             {
                 return null;
             }
-            var keyInfo = Convert.FromBase64String(result);
-            var privateKey = PrivateKeyFactory.CreateKey(keyInfo) as ECPrivateKeyParameters;
+
+            BigInteger privateKeyValue;
+            try
+            {
+                privateKeyValue = new BigInteger(savedPrivateKey.TrimHexPrefix(), 16);
+            }
+            catch
+            {
+                return null;
+            }
+            var privateKey = new ECPrivateKeyParameters(privateKeyValue, domainParams);
 
             var q = privateKey.Parameters.G.Multiply(privateKey.D);
             var publicKey = new ECPublicKeyParameters(privateKey.AlgorithmName, q, SecObjectIdentifiers.SecP256k1);
@@ -96,9 +140,6 @@ namespace OpenfortSdk.Crypto
 
         public static KeyPair Generate()
         {
-            var curve = ECNamedCurveTable.GetByName("secp256k1");
-            var domainParams = new ECDomainParameters(curve.Curve, curve.G, curve.N, curve.H, curve.GetSeed());
-
             var secureRandom = new SecureRandom();
             var keyParams = new ECKeyGenerationParameters(domainParams, secureRandom);
 
@@ -106,7 +147,5 @@ namespace OpenfortSdk.Crypto
             generator.Init(keyParams);
             return new KeyPair(generator.GenerateKeyPair());
         }
-
-        static string ToHex(byte[] data) => String.Concat(data.Select(x => x.ToString("x2")));
     }
 }

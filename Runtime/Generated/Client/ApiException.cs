@@ -11,7 +11,7 @@
 
 using System;
 
-namespace OpenfortSdk.Client
+namespace Openfort.Client
 {
     /// <summary>
     /// API Exception

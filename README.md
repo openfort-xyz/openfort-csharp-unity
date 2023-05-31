@@ -39,21 +39,22 @@ And add these urls:
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using OpenfortSdk.Crypto;
 using UnityEngine;
+using Openfort;
 
 public class OpenfortHelloWorld : MonoBehaviour
 {
     async UniTaskVoid Start()
     {
-        var privateKey = KeyPair.GetFromPlayerPrefs(); // Load player key from Player prefs
-        if (privateKey == null) {
-            var keyPair = KeyPair.Generate();
+        var openfort = new OpenfortClient("pk_test_XXXXXXX");
+        if (openfort.LoadSessionKey() == null) { // Load player key from Player prefs
+            openfort.GenerateSessionKey();
             // TODO: call the games server endpoint to authenticate user and create session in openfort with keyPair.PublicBase64
             // To get public key use keyPair.PublicBase64 property
-            keyPair.SaveToPlayerPrefs(); // In case of the previous step success save the key 
-        } else {
-            // The key has been loaded and ready to use
+            openfort.SaveToPlayerPrefs(); // In case of the previous step success save the key
+
+            var signature = openfort.SignMessage(message);
+            openfort.SendSignatureSessionRequest(sessionId, signature);
         }
     }
 }

@@ -1,18 +1,22 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using System.Diagnostics;
-using OpenfortSdk.Api;
-using OpenfortSdk.Client;
+using Openfort.Api;
+using Openfort.Client;
+using Openfort.Crypto;
+using Openfort.Model;
 
-namespace OpenfortSdk
+namespace Openfort
 {
-    public class Openfort
+    public class OpenfortClient
     {
         private readonly Configuration _configuration;
         private readonly ApiClient _apiClient;
+        private KeyPair _sessionKey; 
 
-        public Openfort(string token)
+        public OpenfortClient(string token)
         {
             _configuration = new Configuration(
                 new Dictionary<string, string> { { "Authorization", "Bearer " + token } },
@@ -21,81 +25,16 @@ namespace OpenfortSdk
             _apiClient = new ApiClient(_configuration.BasePath);
         }
 
-        private ContractsApi _contractsApi;
-        public ContractsApi ContractsApi
+        private SessionsApi _sessionApi;
+        public SessionsApi SessionApi
         {
             get
             {
-                if (_contractsApi == null)
+                if (_sessionApi == null)
                 {
-                    _contractsApi = new ContractsApi(_apiClient, _apiClient, _configuration);
+                    _sessionApi = new SessionsApi(_apiClient, _apiClient, _configuration);
                 }
-                return _contractsApi;
-            }
-        }
-
-        private DefaultApi _defaultApi;
-        public DefaultApi DefaultApi
-        {
-            get
-            {
-                if (_defaultApi == null)
-                {
-                    _defaultApi = new DefaultApi(_apiClient, _apiClient, _configuration);
-                }
-                return _defaultApi;
-            }
-        }
-
-        private LogsApi _logsApi;
-        public LogsApi LogsApi
-        {
-            get
-            {
-                if (_logsApi == null)
-                {
-                    _logsApi = new LogsApi(_apiClient, _apiClient, _configuration);
-                }
-                return _logsApi;
-            }
-        }
-
-        private PlayersApi _playersApi;
-        public PlayersApi PlayersApi
-        {
-            get
-            {
-                if (_playersApi == null)
-                {
-                    _playersApi = new PlayersApi(_apiClient, _apiClient, _configuration);
-                }
-                return _playersApi;
-            }
-        }
-
-        private PoliciesApi _policiesApi;
-        public PoliciesApi PoliciesApi
-        {
-            get
-            {
-                if (_policiesApi == null)
-                {
-                    _policiesApi = new PoliciesApi(_apiClient, _apiClient, _configuration);
-                }
-                return _policiesApi;
-            }
-        }
-
-        private ProjectsApi _projectsApi;
-        public ProjectsApi ProjectsApi
-        {
-            get
-            {
-                if (_projectsApi == null)
-                {
-                    _projectsApi = new ProjectsApi(_apiClient, _apiClient, _configuration);
-                }
-                return _projectsApi;
+                return _sessionApi;
             }
         }
 
@@ -110,6 +49,57 @@ namespace OpenfortSdk
                 }
                 return _transactionIntentsApi;
             }
+        }
+
+        public KeyPair SessionKey
+        {
+            get
+            {
+                if (_sessionKey == null)
+                {
+                    throw new Exception("Session key is not initialized");
+                }
+                return _sessionKey;
+            }
+        }
+
+        public KeyPair CreateSessionKey()
+        {
+            _sessionKey = KeyPair.Generate();
+            return _sessionKey;
+        }
+
+        public KeyPair LoadSessionKey()
+        {
+            _sessionKey = KeyPair.LoadFromPlayerPrefs();
+            return _sessionKey;
+        } 
+
+        public void SaveSessionKey()
+        {
+            SessionKey.SaveToPlayerPrefs();
+        } 
+
+        public string SignMessage(byte[] msg)
+        {
+            return SessionKey.Sign(msg);
+        }
+
+        public string SignMessage(string msg)
+        {
+            return SessionKey.Sign(msg);
+        }
+
+        public async Task<SessionResponse> SendSignatureSessionRequest(string sessionId, string signature)
+        {
+            var result = await SessionApi.SignatureSessionAsync(sessionId, signature);
+            return result;
+        }
+
+        public async Task<TransactionIntentResponse> SendSignatureTransactionIntentRequest(string sessionId, string signature)
+        {
+            var result = await TransactionIntentsApi.SignatureAsync(sessionId, signature);
+            return result;
         }
     }
 }

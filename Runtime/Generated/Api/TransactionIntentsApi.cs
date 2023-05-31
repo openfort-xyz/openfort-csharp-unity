@@ -15,10 +15,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
-using OpenfortSdk.Client;
-using OpenfortSdk.Model;
+using Openfort.Client;
+using Openfort.Model;
 
-namespace OpenfortSdk.Api
+namespace Openfort.Api
 {
 
     /// <summary>
@@ -33,7 +33,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates a transaction intent object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
         /// <param name="chainId"></param>
         /// <param name="optimistic"></param>
@@ -49,7 +49,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates a transaction intent object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
         /// <param name="chainId"></param>
         /// <param name="optimistic"></param>
@@ -64,7 +64,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Updates a transaction intent object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <returns>TransactionIntentResponse</returns>
@@ -76,7 +76,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Updates a transaction intent object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of TransactionIntentResponse</returns>
@@ -84,10 +84,14 @@ namespace OpenfortSdk.Api
         /// <summary>
         /// 
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
+        /// <param name="take"> (optional)</param>
         /// <returns>TransactionIntentsResponse</returns>
-        TransactionIntentsResponse GetTransactionIntents(string project = default(string));
+        TransactionIntentsResponse GetTransactionIntents(string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), double? take = default(double?));
 
         /// <summary>
         /// 
@@ -95,14 +99,41 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
+        /// <param name="take"> (optional)</param>
         /// <returns>ApiResponse of TransactionIntentsResponse</returns>
-        ApiResponse<TransactionIntentsResponse> GetTransactionIntentsWithHttpInfo(string project = default(string));
+        ApiResponse<TransactionIntentsResponse> GetTransactionIntentsWithHttpInfo(string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), double? take = default(double?));
         /// <summary>
         /// 
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <remarks>
+        /// Confirms the creation of a transaction intent with an external owner.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactionIntent"></param>
+        /// <param name="signature"></param>
+        /// <returns>TransactionIntentResponse</returns>
+        TransactionIntentResponse Signature(string transactionIntent, string signature);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Confirms the creation of a transaction intent with an external owner.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactionIntent"></param>
+        /// <param name="signature"></param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        ApiResponse<TransactionIntentResponse> SignatureWithHttpInfo(string transactionIntent, string signature);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <returns>TransactionIntentResponse</returns>
@@ -114,7 +145,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of TransactionIntentResponse</returns>
@@ -122,7 +153,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         /// 
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <returns>TransactionIntentsResponse</returns>
         TransactionIntentsResponse UpdateTransactionIntentsResponse(string project = default(string));
@@ -133,7 +164,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of TransactionIntentsResponse</returns>
         ApiResponse<TransactionIntentsResponse> UpdateTransactionIntentsResponseWithHttpInfo(string project = default(string));
@@ -152,7 +183,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates a transaction intent object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
         /// <param name="chainId"></param>
         /// <param name="optimistic"></param>
@@ -169,7 +200,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Creates a transaction intent object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
         /// <param name="chainId"></param>
         /// <param name="optimistic"></param>
@@ -185,7 +216,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Updates a transaction intent object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -198,7 +229,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// Updates a transaction intent object.
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -210,11 +241,15 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
+        /// <param name="take"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionIntentsResponse</returns>
-        System.Threading.Tasks.Task<TransactionIntentsResponse> GetTransactionIntentsAsync(string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<TransactionIntentsResponse> GetTransactionIntentsAsync(string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), double? take = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -222,18 +257,47 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
+        /// <param name="take"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionIntentsResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionIntentsResponse>> GetTransactionIntentsWithHttpInfoAsync(string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<TransactionIntentsResponse>> GetTransactionIntentsWithHttpInfoAsync(string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), double? take = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Confirms the creation of a transaction intent with an external owner.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactionIntent"></param>
+        /// <param name="signature"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        System.Threading.Tasks.Task<TransactionIntentResponse> SignatureAsync(string transactionIntent, string signature, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Confirms the creation of a transaction intent with an external owner.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactionIntent"></param>
+        /// <param name="signature"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> SignatureWithHttpInfoAsync(string transactionIntent, string signature, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -246,7 +310,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -258,7 +322,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionIntentsResponse</returns>
@@ -270,7 +334,7 @@ namespace OpenfortSdk.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionIntentsResponse)</returns>
@@ -291,7 +355,7 @@ namespace OpenfortSdk.Api
     /// </summary>
     public partial class TransactionIntentsApi : IDisposable, ITransactionIntentsApi
     {
-        private OpenfortSdk.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private Openfort.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionIntentsApi"/> class.
@@ -313,14 +377,14 @@ namespace OpenfortSdk.Api
         /// <returns></returns>
         public TransactionIntentsApi(string basePath)
         {
-            this.Configuration = OpenfortSdk.Client.Configuration.MergeConfigurations(
-                OpenfortSdk.Client.GlobalConfiguration.Instance,
-                new OpenfortSdk.Client.Configuration { BasePath = basePath }
+            this.Configuration = Openfort.Client.Configuration.MergeConfigurations(
+                Openfort.Client.GlobalConfiguration.Instance,
+                new Openfort.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new OpenfortSdk.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Openfort.Client.ApiClient(this.Configuration.BasePath);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = OpenfortSdk.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Openfort.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -331,18 +395,18 @@ namespace OpenfortSdk.Api
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public TransactionIntentsApi(OpenfortSdk.Client.Configuration configuration)
+        public TransactionIntentsApi(Openfort.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
-            this.Configuration = OpenfortSdk.Client.Configuration.MergeConfigurations(
-                OpenfortSdk.Client.GlobalConfiguration.Instance,
+            this.Configuration = Openfort.Client.Configuration.MergeConfigurations(
+                Openfort.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new OpenfortSdk.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Openfort.Client.ApiClient(this.Configuration.BasePath);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = OpenfortSdk.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Openfort.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -353,7 +417,7 @@ namespace OpenfortSdk.Api
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public TransactionIntentsApi(OpenfortSdk.Client.ISynchronousClient client, OpenfortSdk.Client.IAsynchronousClient asyncClient, OpenfortSdk.Client.IReadableConfiguration configuration)
+        public TransactionIntentsApi(Openfort.Client.ISynchronousClient client, Openfort.Client.IAsynchronousClient asyncClient, Openfort.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -362,7 +426,7 @@ namespace OpenfortSdk.Api
             this.Client = client;
             this.AsynchronousClient = asyncClient;
             this.Configuration = configuration;
-            this.ExceptionFactory = OpenfortSdk.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Openfort.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -376,17 +440,17 @@ namespace OpenfortSdk.Api
         /// <summary>
         /// Holds the ApiClient if created
         /// </summary>
-        public OpenfortSdk.Client.ApiClient ApiClient { get; set; } = null;
+        public Openfort.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public OpenfortSdk.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public Openfort.Client.IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public OpenfortSdk.Client.ISynchronousClient Client { get; set; }
+        public Openfort.Client.ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -401,12 +465,12 @@ namespace OpenfortSdk.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public OpenfortSdk.Client.IReadableConfiguration Configuration { get; set; }
+        public Openfort.Client.IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public OpenfortSdk.Client.ExceptionFactory ExceptionFactory
+        public Openfort.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -422,7 +486,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates a transaction intent object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
         /// <param name="chainId"></param>
         /// <param name="optimistic"></param>
@@ -432,14 +496,14 @@ namespace OpenfortSdk.Api
         /// <returns>TransactionIntentResponse</returns>
         public TransactionIntentResponse CreateTransactionIntent(string player, double chainId, bool optimistic, List<Interaction> interactions, string policy = default(string), string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<TransactionIntentResponse> localVarResponse = CreateTransactionIntentWithHttpInfo(player, chainId, optimistic, interactions, policy, project);
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = CreateTransactionIntentWithHttpInfo(player, chainId, optimistic, interactions, policy, project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Creates a transaction intent object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
         /// <param name="chainId"></param>
         /// <param name="optimistic"></param>
@@ -447,17 +511,17 @@ namespace OpenfortSdk.Api
         /// <param name="policy"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of TransactionIntentResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<TransactionIntentResponse> CreateTransactionIntentWithHttpInfo(string player, double chainId, bool optimistic, List<Interaction> interactions, string policy = default(string), string project = default(string))
+        public Openfort.Client.ApiResponse<TransactionIntentResponse> CreateTransactionIntentWithHttpInfo(string player, double chainId, bool optimistic, List<Interaction> interactions, string policy = default(string), string project = default(string))
         {
             // verify the required parameter 'player' is set
             if (player == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'player' when calling TransactionIntentsApi->CreateTransactionIntent");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'player' when calling TransactionIntentsApi->CreateTransactionIntent");
 
             // verify the required parameter 'interactions' is set
             if (interactions == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'interactions' when calling TransactionIntentsApi->CreateTransactionIntent");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'interactions' when calling TransactionIntentsApi->CreateTransactionIntent");
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -468,24 +532,24 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.FormParameters.Add("player", OpenfortSdk.Client.ClientUtils.ParameterToString(player)); // form parameter
-            localVarRequestOptions.FormParameters.Add("chain_id", OpenfortSdk.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+            localVarRequestOptions.FormParameters.Add("player", Openfort.Client.ClientUtils.ParameterToString(player)); // form parameter
+            localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
             if (policy != null)
             {
-                localVarRequestOptions.FormParameters.Add("policy", OpenfortSdk.Client.ClientUtils.ParameterToString(policy)); // form parameter
+                localVarRequestOptions.FormParameters.Add("policy", Openfort.Client.ClientUtils.ParameterToString(policy)); // form parameter
             }
             if (project != null)
             {
-                localVarRequestOptions.FormParameters.Add("project", OpenfortSdk.Client.ClientUtils.ParameterToString(project)); // form parameter
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
-            localVarRequestOptions.FormParameters.Add("optimistic", OpenfortSdk.Client.ClientUtils.ParameterToString(optimistic)); // form parameter
-            localVarRequestOptions.FormParameters.Add("interactions", OpenfortSdk.Client.ClientUtils.ParameterToString(interactions)); // form parameter
+            localVarRequestOptions.FormParameters.Add("optimistic", Openfort.Client.ClientUtils.ParameterToString(optimistic)); // form parameter
+            localVarRequestOptions.FormParameters.Add("interactions", Openfort.Client.ClientUtils.ParameterToString(interactions)); // form parameter
 
 
             // make the HTTP request
@@ -503,7 +567,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates a transaction intent object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
         /// <param name="chainId"></param>
         /// <param name="optimistic"></param>
@@ -516,9 +580,9 @@ namespace OpenfortSdk.Api
         {
             var task = CreateTransactionIntentWithHttpInfoAsync(player, chainId, optimistic, interactions, policy, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -526,7 +590,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Creates a transaction intent object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
         /// <param name="chainId"></param>
         /// <param name="optimistic"></param>
@@ -535,18 +599,18 @@ namespace OpenfortSdk.Api
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<TransactionIntentResponse>> CreateTransactionIntentWithHttpInfoAsync(string player, double chainId, bool optimistic, List<Interaction> interactions, string policy = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> CreateTransactionIntentWithHttpInfoAsync(string player, double chainId, bool optimistic, List<Interaction> interactions, string policy = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'player' is set
             if (player == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'player' when calling TransactionIntentsApi->CreateTransactionIntent");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'player' when calling TransactionIntentsApi->CreateTransactionIntent");
 
             // verify the required parameter 'interactions' is set
             if (interactions == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'interactions' when calling TransactionIntentsApi->CreateTransactionIntent");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'interactions' when calling TransactionIntentsApi->CreateTransactionIntent");
 
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -558,24 +622,24 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.FormParameters.Add("player", OpenfortSdk.Client.ClientUtils.ParameterToString(player)); // form parameter
-            localVarRequestOptions.FormParameters.Add("chain_id", OpenfortSdk.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+            localVarRequestOptions.FormParameters.Add("player", Openfort.Client.ClientUtils.ParameterToString(player)); // form parameter
+            localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
             if (policy != null)
             {
-                localVarRequestOptions.FormParameters.Add("policy", OpenfortSdk.Client.ClientUtils.ParameterToString(policy)); // form parameter
+                localVarRequestOptions.FormParameters.Add("policy", Openfort.Client.ClientUtils.ParameterToString(policy)); // form parameter
             }
             if (project != null)
             {
-                localVarRequestOptions.FormParameters.Add("project", OpenfortSdk.Client.ClientUtils.ParameterToString(project)); // form parameter
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
-            localVarRequestOptions.FormParameters.Add("optimistic", OpenfortSdk.Client.ClientUtils.ParameterToString(optimistic)); // form parameter
-            localVarRequestOptions.FormParameters.Add("interactions", OpenfortSdk.Client.ClientUtils.ParameterToString(interactions)); // form parameter
+            localVarRequestOptions.FormParameters.Add("optimistic", Openfort.Client.ClientUtils.ParameterToString(optimistic)); // form parameter
+            localVarRequestOptions.FormParameters.Add("interactions", Openfort.Client.ClientUtils.ParameterToString(interactions)); // form parameter
 
 
             // make the HTTP request
@@ -600,30 +664,30 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Updates a transaction intent object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <returns>TransactionIntentResponse</returns>
         public TransactionIntentResponse GetTransactionIntent(string id, string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<TransactionIntentResponse> localVarResponse = GetTransactionIntentWithHttpInfo(id, project);
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = GetTransactionIntentWithHttpInfo(id, project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Updates a transaction intent object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of TransactionIntentResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<TransactionIntentResponse> GetTransactionIntentWithHttpInfo(string id, string project = default(string))
+        public Openfort.Client.ApiResponse<TransactionIntentResponse> GetTransactionIntentWithHttpInfo(string id, string project = default(string))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionIntentsApi->GetTransactionIntent");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionIntentsApi->GetTransactionIntent");
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -633,16 +697,16 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -661,7 +725,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Updates a transaction intent object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -670,9 +734,9 @@ namespace OpenfortSdk.Api
         {
             var task = GetTransactionIntentWithHttpInfoAsync(id, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -680,19 +744,19 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  Updates a transaction intent object.
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<TransactionIntentResponse>> GetTransactionIntentWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> GetTransactionIntentWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionIntentsApi->GetTransactionIntent");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionIntentsApi->GetTransactionIntent");
 
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -703,16 +767,16 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -738,24 +802,32 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
+        /// <param name="take"> (optional)</param>
         /// <returns>TransactionIntentsResponse</returns>
-        public TransactionIntentsResponse GetTransactionIntents(string project = default(string))
+        public TransactionIntentsResponse GetTransactionIntents(string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), double? take = default(double?))
         {
-            OpenfortSdk.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = GetTransactionIntentsWithHttpInfo(project);
+            Openfort.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = GetTransactionIntentsWithHttpInfo(project, filter, order, skip, take);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
+        /// <param name="take"> (optional)</param>
         /// <returns>ApiResponse of TransactionIntentsResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<TransactionIntentsResponse> GetTransactionIntentsWithHttpInfo(string project = default(string))
+        public Openfort.Client.ApiResponse<TransactionIntentsResponse> GetTransactionIntentsWithHttpInfo(string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), double? take = default(double?))
         {
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -765,15 +837,31 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+            }
+            if (filter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+            }
+            if (order != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+            }
+            if (take != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "take", take));
             }
 
 
@@ -792,17 +880,21 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
+        /// <param name="take"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionIntentsResponse</returns>
-        public async System.Threading.Tasks.Task<TransactionIntentsResponse> GetTransactionIntentsAsync(string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<TransactionIntentsResponse> GetTransactionIntentsAsync(string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), double? take = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetTransactionIntentsWithHttpInfoAsync(project, cancellationToken);
+            var task = GetTransactionIntentsWithHttpInfoAsync(project, filter, order, skip, take, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -810,14 +902,18 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
+        /// <param name="take"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionIntentsResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<TransactionIntentsResponse>> GetTransactionIntentsWithHttpInfoAsync(string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentsResponse>> GetTransactionIntentsWithHttpInfoAsync(string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), double? take = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -828,15 +924,31 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+            }
+            if (filter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+            }
+            if (order != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+            }
+            if (take != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "take", take));
             }
 
 
@@ -860,32 +972,186 @@ namespace OpenfortSdk.Api
         }
 
         /// <summary>
+        ///  Confirms the creation of a transaction intent with an external owner.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactionIntent"></param>
+        /// <param name="signature"></param>
+        /// <returns>TransactionIntentResponse</returns>
+        public TransactionIntentResponse Signature(string transactionIntent, string signature)
+        {
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = SignatureWithHttpInfo(transactionIntent, signature);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Confirms the creation of a transaction intent with an external owner.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactionIntent"></param>
+        /// <param name="signature"></param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        public Openfort.Client.ApiResponse<TransactionIntentResponse> SignatureWithHttpInfo(string transactionIntent, string signature)
+        {
+            // verify the required parameter 'transactionIntent' is set
+            if (transactionIntent == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'transactionIntent' when calling TransactionIntentsApi->Signature");
+
+            // verify the required parameter 'signature' is set
+            if (signature == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'signature' when calling TransactionIntentsApi->Signature");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/x-www-form-urlencoded"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("transaction_intent", Openfort.Client.ClientUtils.ParameterToString(transactionIntent)); // path parameter
+            localVarRequestOptions.FormParameters.Add("signature", Openfort.Client.ClientUtils.ParameterToString(signature)); // form parameter
+
+            // authentication (pk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<TransactionIntentResponse>("/v1/transaction_intents/{transaction_intent}/signature", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("Signature", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Confirms the creation of a transaction intent with an external owner.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactionIntent"></param>
+        /// <param name="signature"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        public async System.Threading.Tasks.Task<TransactionIntentResponse> SignatureAsync(string transactionIntent, string signature, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = SignatureWithHttpInfoAsync(transactionIntent, signature, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Confirms the creation of a transaction intent with an external owner.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactionIntent"></param>
+        /// <param name="signature"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> SignatureWithHttpInfoAsync(string transactionIntent, string signature, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'transactionIntent' is set
+            if (transactionIntent == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'transactionIntent' when calling TransactionIntentsApi->Signature");
+
+            // verify the required parameter 'signature' is set
+            if (signature == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'signature' when calling TransactionIntentsApi->Signature");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/x-www-form-urlencoded"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("transaction_intent", Openfort.Client.ClientUtils.ParameterToString(transactionIntent)); // path parameter
+            localVarRequestOptions.FormParameters.Add("signature", Openfort.Client.ClientUtils.ParameterToString(signature)); // form parameter
+
+            // authentication (pk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<TransactionIntentResponse>("/v1/transaction_intents/{transaction_intent}/signature", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("Signature", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <returns>TransactionIntentResponse</returns>
         public TransactionIntentResponse UpdateTransactionIntentResponse(string id, string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<TransactionIntentResponse> localVarResponse = UpdateTransactionIntentResponseWithHttpInfo(id, project);
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = UpdateTransactionIntentResponseWithHttpInfo(id, project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of TransactionIntentResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<TransactionIntentResponse> UpdateTransactionIntentResponseWithHttpInfo(string id, string project = default(string))
+        public Openfort.Client.ApiResponse<TransactionIntentResponse> UpdateTransactionIntentResponseWithHttpInfo(string id, string project = default(string))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionIntentsApi->UpdateTransactionIntentResponse");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionIntentsApi->UpdateTransactionIntentResponse");
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -895,16 +1161,16 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -923,7 +1189,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -932,9 +1198,9 @@ namespace OpenfortSdk.Api
         {
             var task = UpdateTransactionIntentResponseWithHttpInfoAsync(id, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -942,19 +1208,19 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<TransactionIntentResponse>> UpdateTransactionIntentResponseWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> UpdateTransactionIntentResponseWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new OpenfortSdk.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionIntentsApi->UpdateTransactionIntentResponse");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionIntentsApi->UpdateTransactionIntentResponse");
 
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -965,16 +1231,16 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("id", OpenfortSdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -1000,24 +1266,24 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <returns>TransactionIntentsResponse</returns>
         public TransactionIntentsResponse UpdateTransactionIntentsResponse(string project = default(string))
         {
-            OpenfortSdk.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = UpdateTransactionIntentsResponseWithHttpInfo(project);
+            Openfort.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = UpdateTransactionIntentsResponseWithHttpInfo(project);
             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of TransactionIntentsResponse</returns>
-        public OpenfortSdk.Client.ApiResponse<TransactionIntentsResponse> UpdateTransactionIntentsResponseWithHttpInfo(string project = default(string))
+        public Openfort.Client.ApiResponse<TransactionIntentsResponse> UpdateTransactionIntentsResponseWithHttpInfo(string project = default(string))
         {
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1027,15 +1293,15 @@ namespace OpenfortSdk.Api
                 "application/json"
             };
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -1054,7 +1320,7 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionIntentsResponse</returns>
@@ -1062,9 +1328,9 @@ namespace OpenfortSdk.Api
         {
             var task = UpdateTransactionIntentsResponseWithHttpInfoAsync(project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            OpenfortSdk.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            OpenfortSdk.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -1072,14 +1338,14 @@ namespace OpenfortSdk.Api
         /// <summary>
         ///  
         /// </summary>
-        /// <exception cref="OpenfortSdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionIntentsResponse)</returns>
-        public async System.Threading.Tasks.Task<OpenfortSdk.Client.ApiResponse<TransactionIntentsResponse>> UpdateTransactionIntentsResponseWithHttpInfoAsync(string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentsResponse>> UpdateTransactionIntentsResponseWithHttpInfoAsync(string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            OpenfortSdk.Client.RequestOptions localVarRequestOptions = new OpenfortSdk.Client.RequestOptions();
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1090,15 +1356,15 @@ namespace OpenfortSdk.Api
             };
 
 
-            var localVarContentType = OpenfortSdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = OpenfortSdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (project != null)
             {
-                localVarRequestOptions.QueryParameters.Add(OpenfortSdk.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 

@@ -20,7 +20,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Net.Http;
 
-namespace OpenfortSdk.Client
+namespace Openfort.Client
 {
     /// <summary>
     /// Represents a set of configuration settings
@@ -514,7 +514,7 @@ namespace OpenfortSdk.Client
         /// </summary>
         public static string ToDebugReport()
         {
-            string report = "C# SDK (OpenfortSdk) Debug Report:\n";
+            string report = "C# SDK (Openfort) Debug Report:\n";
             report += "    OS: " + System.Environment.OSVersion + "\n";
             report += "    .NET Framework Version: " + System.Environment.Version  + "\n";
             report += "    Version of the API: 1.0.0\n";
