@@ -48,7 +48,7 @@ namespace Openfort.Model
         /// <param name="assetType">assetType (required).</param>
         /// <param name="address">address.</param>
         /// <param name="tokenId">tokenId.</param>
-        /// <param name="amount">amount.</param>
+        /// <param name="amount">amount in Wei.</param>
         public AssetInventory(AssetType assetType = default(AssetType), string address = default(string), double tokenId = default(double), double amount = default(double))
         {
             this.AssetType = assetType;
@@ -70,8 +70,9 @@ namespace Openfort.Model
         public double TokenId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// amount in Wei
         /// </summary>
+        /// <value>amount in Wei</value>
         [DataMember(Name = "amount", EmitDefaultValue = false)]
         public double Amount { get; set; }
 

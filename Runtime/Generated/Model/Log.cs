@@ -41,13 +41,12 @@ namespace Openfort.Model
         /// </summary>
         /// <param name="id">id (required).</param>
         /// <param name="timestamp">timestamp (required).</param>
-        /// <param name="projectId">projectId (required).</param>
         /// <param name="_event">_event (required).</param>
         /// <param name="requestBody">requestBody (required).</param>
         /// <param name="status">status (required).</param>
         /// <param name="responseTime">responseTime (required).</param>
         /// <param name="responseData">responseData (required).</param>
-        public Log(string id = default(string), string timestamp = default(string), string projectId = default(string), string _event = default(string), Object requestBody = default(Object), double status = default(double), double responseTime = default(double), Object responseData = default(Object))
+        public Log(string id = default(string), string timestamp = default(string), string _event = default(string), Object requestBody = default(Object), double status = default(double), double responseTime = default(double), Object responseData = default(Object))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -61,12 +60,6 @@ namespace Openfort.Model
                 throw new ArgumentNullException("timestamp is a required property for Log and cannot be null");
             }
             this.Timestamp = timestamp;
-            // to ensure "projectId" is required (not null)
-            if (projectId == null)
-            {
-                throw new ArgumentNullException("projectId is a required property for Log and cannot be null");
-            }
-            this.ProjectId = projectId;
             // to ensure "_event" is required (not null)
             if (_event == null)
             {
@@ -102,12 +95,6 @@ namespace Openfort.Model
         public string Timestamp { get; set; }
 
         /// <summary>
-        /// Gets or Sets ProjectId
-        /// </summary>
-        [DataMember(Name = "project_id", IsRequired = true, EmitDefaultValue = true)]
-        public string ProjectId { get; set; }
-
-        /// <summary>
         /// Gets or Sets Event
         /// </summary>
         [DataMember(Name = "event", IsRequired = true, EmitDefaultValue = true)]
@@ -116,7 +103,7 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets RequestBody
         /// </summary>
-        [DataMember(Name = "requestBody", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "request_body", IsRequired = true, EmitDefaultValue = true)]
         public Object RequestBody { get; set; }
 
         /// <summary>
@@ -128,13 +115,13 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets ResponseTime
         /// </summary>
-        [DataMember(Name = "responseTime", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "response_time", IsRequired = true, EmitDefaultValue = true)]
         public double ResponseTime { get; set; }
 
         /// <summary>
         /// Gets or Sets ResponseData
         /// </summary>
-        [DataMember(Name = "responseData", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "response_data", IsRequired = true, EmitDefaultValue = true)]
         public Object ResponseData { get; set; }
 
         /// <summary>
@@ -147,7 +134,6 @@ namespace Openfort.Model
             sb.Append("class Log {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  ProjectId: ").Append(ProjectId).Append("\n");
             sb.Append("  Event: ").Append(Event).Append("\n");
             sb.Append("  RequestBody: ").Append(RequestBody).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
@@ -199,11 +185,6 @@ namespace Openfort.Model
                     this.Timestamp.Equals(input.Timestamp))
                 ) && 
                 (
-                    this.ProjectId == input.ProjectId ||
-                    (this.ProjectId != null &&
-                    this.ProjectId.Equals(input.ProjectId))
-                ) && 
-                (
                     this.Event == input.Event ||
                     (this.Event != null &&
                     this.Event.Equals(input.Event))
@@ -244,10 +225,6 @@ namespace Openfort.Model
                 if (this.Timestamp != null)
                 {
                     hashCode = (hashCode * 59) + this.Timestamp.GetHashCode();
-                }
-                if (this.ProjectId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ProjectId.GetHashCode();
                 }
                 if (this.Event != null)
                 {

@@ -14,7 +14,7 @@ namespace Openfort
     {
         private readonly Configuration _configuration;
         private readonly ApiClient _apiClient;
-        private KeyPair _sessionKey; 
+        private KeyPair _sessionKey;
 
         public OpenfortClient(string token)
         {
@@ -73,12 +73,12 @@ namespace Openfort
         {
             _sessionKey = KeyPair.LoadFromPlayerPrefs();
             return _sessionKey;
-        } 
+        }
 
         public void SaveSessionKey()
         {
             SessionKey.SaveToPlayerPrefs();
-        } 
+        }
 
         public string SignMessage(byte[] msg)
         {

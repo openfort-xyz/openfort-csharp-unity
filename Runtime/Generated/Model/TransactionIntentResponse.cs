@@ -40,19 +40,19 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="TransactionIntentResponse" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
+        /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="updatedAt">updatedAt (required).</param>
         /// <param name="chainId">chainId (required).</param>
         /// <param name="userOperationHash">userOperationHash (required).</param>
         /// <param name="userOperation">userOperation.</param>
         /// <param name="policy">policy (required).</param>
-        /// <param name="player">player (required).</param>
-        /// <param name="nextAction">nextAction (required).</param>
+        /// <param name="player">player.</param>
+        /// <param name="nextAction">nextAction.</param>
         /// <param name="account">account.</param>
-        /// <param name="transactions">transactions (required).</param>
+        /// <param name="interactions">interactions (required).</param>
         /// <param name="response">response (required).</param>
-        /// <param name="_object">_object (required).</param>
-        public TransactionIntentResponse(string id = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), double chainId = default(double), string userOperationHash = default(string), UserOpResult userOperation = default(UserOpResult), string policy = default(string), string player = default(string), Object nextAction = default(Object), string account = default(string), List<Interaction> transactions = default(List<Interaction>), ResponseResponse response = default(ResponseResponse), string _object = default(string))
+        public TransactionIntentResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), double chainId = default(double), string userOperationHash = default(string), PrismaJsonValue userOperation = default(PrismaJsonValue), TransactionIntentResponsePolicy policy = default(TransactionIntentResponsePolicy), TransactionIntentResponsePlayer player = default(TransactionIntentResponsePlayer), Object nextAction = default(Object), TransactionIntentResponseAccount account = default(TransactionIntentResponseAccount), List<Interaction> interactions = default(List<Interaction>), ResponseResponse response = default(ResponseResponse))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -60,6 +60,12 @@ namespace Openfort.Model
                 throw new ArgumentNullException("id is a required property for TransactionIntentResponse and cannot be null");
             }
             this.Id = id;
+            // to ensure "_object" is required (not null)
+            if (_object == null)
+            {
+                throw new ArgumentNullException("_object is a required property for TransactionIntentResponse and cannot be null");
+            }
+            this.Object = _object;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
             this.ChainId = chainId;
@@ -75,37 +81,21 @@ namespace Openfort.Model
                 throw new ArgumentNullException("policy is a required property for TransactionIntentResponse and cannot be null");
             }
             this.Policy = policy;
-            // to ensure "player" is required (not null)
-            if (player == null)
+            // to ensure "interactions" is required (not null)
+            if (interactions == null)
             {
-                throw new ArgumentNullException("player is a required property for TransactionIntentResponse and cannot be null");
+                throw new ArgumentNullException("interactions is a required property for TransactionIntentResponse and cannot be null");
             }
-            this.Player = player;
-            // to ensure "nextAction" is required (not null)
-            if (nextAction == null)
-            {
-                throw new ArgumentNullException("nextAction is a required property for TransactionIntentResponse and cannot be null");
-            }
-            this.NextAction = nextAction;
-            // to ensure "transactions" is required (not null)
-            if (transactions == null)
-            {
-                throw new ArgumentNullException("transactions is a required property for TransactionIntentResponse and cannot be null");
-            }
-            this.Transactions = transactions;
+            this.Interactions = interactions;
             // to ensure "response" is required (not null)
             if (response == null)
             {
                 throw new ArgumentNullException("response is a required property for TransactionIntentResponse and cannot be null");
             }
             this.Response = response;
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for TransactionIntentResponse and cannot be null");
-            }
-            this.Object = _object;
             this.UserOperation = userOperation;
+            this.Player = player;
+            this.NextAction = nextAction;
             this.Account = account;
         }
 
@@ -114,6 +104,12 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public string Object { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt
@@ -142,50 +138,44 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets UserOperation
         /// </summary>
-        [DataMember(Name = "user_operation", EmitDefaultValue = false)]
-        public UserOpResult UserOperation { get; set; }
+        [DataMember(Name = "user_operation", EmitDefaultValue = true)]
+        public PrismaJsonValue UserOperation { get; set; }
 
         /// <summary>
         /// Gets or Sets Policy
         /// </summary>
         [DataMember(Name = "policy", IsRequired = true, EmitDefaultValue = true)]
-        public string Policy { get; set; }
+        public TransactionIntentResponsePolicy Policy { get; set; }
 
         /// <summary>
         /// Gets or Sets Player
         /// </summary>
-        [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
-        public string Player { get; set; }
+        [DataMember(Name = "player", EmitDefaultValue = false)]
+        public TransactionIntentResponsePlayer Player { get; set; }
 
         /// <summary>
         /// Gets or Sets NextAction
         /// </summary>
-        [DataMember(Name = "next_action", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "next_action", EmitDefaultValue = true)]
         public Object NextAction { get; set; }
 
         /// <summary>
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name = "account", EmitDefaultValue = false)]
-        public string Account { get; set; }
+        public TransactionIntentResponseAccount Account { get; set; }
 
         /// <summary>
-        /// Gets or Sets Transactions
+        /// Gets or Sets Interactions
         /// </summary>
-        [DataMember(Name = "transactions", IsRequired = true, EmitDefaultValue = true)]
-        public List<Interaction> Transactions { get; set; }
+        [DataMember(Name = "interactions", IsRequired = true, EmitDefaultValue = true)]
+        public List<Interaction> Interactions { get; set; }
 
         /// <summary>
         /// Gets or Sets Response
         /// </summary>
         [DataMember(Name = "response", IsRequired = true, EmitDefaultValue = true)]
         public ResponseResponse Response { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Object
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -196,6 +186,7 @@ namespace Openfort.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class TransactionIntentResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
@@ -205,9 +196,8 @@ namespace Openfort.Model
             sb.Append("  Player: ").Append(Player).Append("\n");
             sb.Append("  NextAction: ").Append(NextAction).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
-            sb.Append("  Transactions: ").Append(Transactions).Append("\n");
+            sb.Append("  Interactions: ").Append(Interactions).Append("\n");
             sb.Append("  Response: ").Append(Response).Append("\n");
-            sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -247,6 +237,11 @@ namespace Openfort.Model
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.Object == input.Object ||
+                    (this.Object != null &&
+                    this.Object.Equals(input.Object))
                 ) && 
                 (
                     this.CreatedAt == input.CreatedAt ||
@@ -293,20 +288,15 @@ namespace Openfort.Model
                     this.Account.Equals(input.Account))
                 ) && 
                 (
-                    this.Transactions == input.Transactions ||
-                    this.Transactions != null &&
-                    input.Transactions != null &&
-                    this.Transactions.SequenceEqual(input.Transactions)
+                    this.Interactions == input.Interactions ||
+                    this.Interactions != null &&
+                    input.Interactions != null &&
+                    this.Interactions.SequenceEqual(input.Interactions)
                 ) && 
                 (
                     this.Response == input.Response ||
                     (this.Response != null &&
                     this.Response.Equals(input.Response))
-                ) && 
-                (
-                    this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
                 );
         }
 
@@ -322,6 +312,10 @@ namespace Openfort.Model
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
+                if (this.Object != null)
+                {
+                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 }
                 if (this.CreatedAt != null)
                 {
@@ -356,17 +350,13 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Account.GetHashCode();
                 }
-                if (this.Transactions != null)
+                if (this.Interactions != null)
                 {
-                    hashCode = (hashCode * 59) + this.Transactions.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Interactions.GetHashCode();
                 }
                 if (this.Response != null)
                 {
                     hashCode = (hashCode * 59) + this.Response.GetHashCode();
-                }
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 }
                 return hashCode;
             }

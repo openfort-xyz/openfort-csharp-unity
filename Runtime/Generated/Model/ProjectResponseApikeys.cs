@@ -27,34 +27,43 @@ using System.Reflection;
 namespace Openfort.Model
 {
     /// <summary>
-    /// ContractResponseAbi
+    /// ProjectResponseApikeys
     /// </summary>
-    [JsonConverter(typeof(ContractResponseAbiJsonConverter))]
-    [DataContract(Name = "ContractResponse_abi")]
-    public partial class ContractResponseAbi : AbstractOpenAPISchema, IEquatable<ContractResponseAbi>
+    [JsonConverter(typeof(ProjectResponseApikeysJsonConverter))]
+    [DataContract(Name = "ProjectResponse_apikeys")]
+    public partial class ProjectResponseApikeys : AbstractOpenAPISchema, IEquatable<ProjectResponseApikeys>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContractResponseAbi" /> class
-        /// with the <see cref="string" /> class
+        /// Initializes a new instance of the <see cref="ProjectResponseApikeys" /> class.
         /// </summary>
-        /// <param name="actualInstance">An instance of string.</param>
-        public ContractResponseAbi(string actualInstance)
+        public ProjectResponseApikeys()
         {
-            this.IsNullable = false;
+            this.IsNullable = true;
             this.SchemaType= "anyOf";
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContractResponseAbi" /> class
-        /// with the <see cref="List{ContractResponseAbiAnyOfInner}" /> class
+        /// Initializes a new instance of the <see cref="ProjectResponseApikeys" /> class
+        /// with the <see cref="List{ApiKeyResponse}" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of List&lt;ContractResponseAbiAnyOfInner&gt;.</param>
-        public ContractResponseAbi(List<ContractResponseAbiAnyOfInner> actualInstance)
+        /// <param name="actualInstance">An instance of List&lt;ApiKeyResponse&gt;.</param>
+        public ProjectResponseApikeys(List<ApiKeyResponse> actualInstance)
         {
-            this.IsNullable = false;
+            this.IsNullable = true;
             this.SchemaType= "anyOf";
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+            this.ActualInstance = actualInstance;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectResponseApikeys" /> class
+        /// with the <see cref="List{String}" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of List&lt;string&gt;.</param>
+        public ProjectResponseApikeys(List<string> actualInstance)
+        {
+            this.IsNullable = true;
+            this.SchemaType= "anyOf";
+            this.ActualInstance = actualInstance;
         }
 
 
@@ -71,39 +80,29 @@ namespace Openfort.Model
             }
             set
             {
-                if (value.GetType() == typeof(List<ContractResponseAbiAnyOfInner>))
+                if (value.GetType() == typeof(List<ApiKeyResponse>))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(string))
+                else if (value.GetType() == typeof(List<string>))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: List<ContractResponseAbiAnyOfInner>, string");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: List<ApiKeyResponse>, List<string>");
                 }
             }
         }
 
         /// <summary>
-        /// Get the actual instance of `string`. If the actual instance is not `string`,
+        /// Get the actual instance of `List&lt;ApiKeyResponse&gt;`. If the actual instance is not `List&lt;ApiKeyResponse&gt;`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of string</returns>
-        public string GetString()
+        /// <returns>An instance of List&lt;ApiKeyResponse&gt;</returns>
+        public List<ApiKeyResponse> GetList()
         {
-            return (string)this.ActualInstance;
-        }
-
-        /// <summary>
-        /// Get the actual instance of `List&lt;ContractResponseAbiAnyOfInner&gt;`. If the actual instance is not `List&lt;ContractResponseAbiAnyOfInner&gt;`,
-        /// the InvalidClassException will be thrown
-        /// </summary>
-        /// <returns>An instance of List&lt;ContractResponseAbiAnyOfInner&gt;</returns>
-        public List<ContractResponseAbiAnyOfInner> GetList()
-        {
-            return (List<ContractResponseAbiAnyOfInner>)this.ActualInstance;
+            return (List<ApiKeyResponse>)this.ActualInstance;
         }
 
         /// <summary>
@@ -113,7 +112,7 @@ namespace Openfort.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ContractResponseAbi {\n");
+            sb.Append("class ProjectResponseApikeys {\n");
             sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -125,45 +124,45 @@ namespace Openfort.Model
         /// <returns>JSON string presentation of the object</returns>
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(this.ActualInstance, ContractResponseAbi.SerializerSettings);
+            return JsonConvert.SerializeObject(this.ActualInstance, ProjectResponseApikeys.SerializerSettings);
         }
 
         /// <summary>
-        /// Converts the JSON string into an instance of ContractResponseAbi
+        /// Converts the JSON string into an instance of ProjectResponseApikeys
         /// </summary>
         /// <param name="jsonString">JSON string</param>
-        /// <returns>An instance of ContractResponseAbi</returns>
-        public static ContractResponseAbi FromJson(string jsonString)
+        /// <returns>An instance of ProjectResponseApikeys</returns>
+        public static ProjectResponseApikeys FromJson(string jsonString)
         {
-            ContractResponseAbi newContractResponseAbi = null;
+            ProjectResponseApikeys newProjectResponseApikeys = null;
 
             if (string.IsNullOrEmpty(jsonString))
             {
-                return newContractResponseAbi;
+                return newProjectResponseApikeys;
             }
 
             try
             {
-                newContractResponseAbi = new ContractResponseAbi(JsonConvert.DeserializeObject<List<ContractResponseAbiAnyOfInner>>(jsonString, ContractResponseAbi.SerializerSettings));
+                newProjectResponseApikeys = new ProjectResponseApikeys(JsonConvert.DeserializeObject<List<ApiKeyResponse>>(jsonString, ProjectResponseApikeys.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
-                return newContractResponseAbi;
+                return newProjectResponseApikeys;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into List<ContractResponseAbiAnyOfInner>: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into List<ApiKeyResponse>: {1}", jsonString, exception.ToString()));
             }
 
             try
             {
-                newContractResponseAbi = new ContractResponseAbi(JsonConvert.DeserializeObject<string>(jsonString, ContractResponseAbi.SerializerSettings));
+                newProjectResponseApikeys = new ProjectResponseApikeys(JsonConvert.DeserializeObject<List<string>>(jsonString, ProjectResponseApikeys.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
-                return newContractResponseAbi;
+                return newProjectResponseApikeys;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into string: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into List<string>: {1}", jsonString, exception.ToString()));
             }
 
             // no match found, throw an exception
@@ -177,15 +176,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ContractResponseAbi);
+            return this.Equals(input as ProjectResponseApikeys);
         }
 
         /// <summary>
-        /// Returns true if ContractResponseAbi instances are equal
+        /// Returns true if ProjectResponseApikeys instances are equal
         /// </summary>
-        /// <param name="input">Instance of ContractResponseAbi to be compared</param>
+        /// <param name="input">Instance of ProjectResponseApikeys to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ContractResponseAbi input)
+        public bool Equals(ProjectResponseApikeys input)
         {
             if (input == null)
                 return false;
@@ -211,9 +210,9 @@ namespace Openfort.Model
     }
 
     /// <summary>
-    /// Custom JSON converter for ContractResponseAbi
+    /// Custom JSON converter for ProjectResponseApikeys
     /// </summary>
-    public class ContractResponseAbiJsonConverter : JsonConverter
+    public class ProjectResponseApikeysJsonConverter : JsonConverter
     {
         /// <summary>
         /// To write the JSON string
@@ -223,7 +222,7 @@ namespace Openfort.Model
         /// <param name="serializer">JSON Serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue((string)(typeof(ContractResponseAbi).GetMethod("ToJson").Invoke(value, null)));
+            writer.WriteRawValue((string)(typeof(ProjectResponseApikeys).GetMethod("ToJson").Invoke(value, null)));
         }
 
         /// <summary>
@@ -238,7 +237,7 @@ namespace Openfort.Model
         {
             if(reader.TokenType != JsonToken.Null)
             {
-                return ContractResponseAbi.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                return ProjectResponseApikeys.FromJson(JObject.Load(reader).ToString(Formatting.None));
             }
             return null;
         }

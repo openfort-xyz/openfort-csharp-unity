@@ -26,40 +26,40 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// AllowFunctionsResponse
+    /// SessionsResponse
     /// </summary>
-    [DataContract(Name = "AllowFunctionsResponse")]
-    public partial class AllowFunctionsResponse : IEquatable<AllowFunctionsResponse>
+    [DataContract(Name = "SessionsResponse")]
+    public partial class SessionsResponse : IEquatable<SessionsResponse>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AllowFunctionsResponse" /> class.
+        /// Initializes a new instance of the <see cref="SessionsResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected AllowFunctionsResponse() { }
+        protected SessionsResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="AllowFunctionsResponse" /> class.
+        /// Initializes a new instance of the <see cref="SessionsResponse" /> class.
         /// </summary>
         /// <param name="_object">_object (required).</param>
         /// <param name="url">url (required).</param>
         /// <param name="data">data (required).</param>
-        public AllowFunctionsResponse(string _object = default(string), string url = default(string), List<AllowFunctionResponse> data = default(List<AllowFunctionResponse>))
+        public SessionsResponse(string _object = default(string), string url = default(string), List<SessionResponse> data = default(List<SessionResponse>))
         {
             // to ensure "_object" is required (not null)
             if (_object == null)
             {
-                throw new ArgumentNullException("_object is a required property for AllowFunctionsResponse and cannot be null");
+                throw new ArgumentNullException("_object is a required property for SessionsResponse and cannot be null");
             }
             this.Object = _object;
             // to ensure "url" is required (not null)
             if (url == null)
             {
-                throw new ArgumentNullException("url is a required property for AllowFunctionsResponse and cannot be null");
+                throw new ArgumentNullException("url is a required property for SessionsResponse and cannot be null");
             }
             this.Url = url;
             // to ensure "data" is required (not null)
             if (data == null)
             {
-                throw new ArgumentNullException("data is a required property for AllowFunctionsResponse and cannot be null");
+                throw new ArgumentNullException("data is a required property for SessionsResponse and cannot be null");
             }
             this.Data = data;
         }
@@ -80,7 +80,7 @@ namespace Openfort.Model
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
-        public List<AllowFunctionResponse> Data { get; set; }
+        public List<SessionResponse> Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -89,7 +89,7 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AllowFunctionsResponse {\n");
+            sb.Append("class SessionsResponse {\n");
             sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
@@ -113,15 +113,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AllowFunctionsResponse);
+            return this.Equals(input as SessionsResponse);
         }
 
         /// <summary>
-        /// Returns true if AllowFunctionsResponse instances are equal
+        /// Returns true if SessionsResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of AllowFunctionsResponse to be compared</param>
+        /// <param name="input">Instance of SessionsResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AllowFunctionsResponse input)
+        public bool Equals(SessionsResponse input)
         {
             if (input == null)
             {

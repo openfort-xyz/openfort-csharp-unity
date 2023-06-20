@@ -40,14 +40,14 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="ContractResponse" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
+        /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="chainId">chainId (required).</param>
         /// <param name="address">address (required).</param>
         /// <param name="abi">abi (required).</param>
         /// <param name="publicVerification">publicVerification (required).</param>
-        /// <param name="_object">_object (required).</param>
-        public ContractResponse(string id = default(string), DateTime createdAt = default(DateTime), string name = default(string), double chainId = default(double), string address = default(string), ContractResponseAbi abi = default(ContractResponseAbi), bool publicVerification = default(bool), string _object = default(string))
+        public ContractResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), string name = default(string), double chainId = default(double), string address = default(string), PrismaJsonValue abi = default(PrismaJsonValue), bool publicVerification = default(bool))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -55,6 +55,12 @@ namespace Openfort.Model
                 throw new ArgumentNullException("id is a required property for ContractResponse and cannot be null");
             }
             this.Id = id;
+            // to ensure "_object" is required (not null)
+            if (_object == null)
+            {
+                throw new ArgumentNullException("_object is a required property for ContractResponse and cannot be null");
+            }
+            this.Object = _object;
             this.CreatedAt = createdAt;
             // to ensure "name" is required (not null)
             if (name == null)
@@ -76,12 +82,6 @@ namespace Openfort.Model
             }
             this.Abi = abi;
             this.PublicVerification = publicVerification;
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for ContractResponse and cannot be null");
-            }
-            this.Object = _object;
         }
 
         /// <summary>
@@ -89,6 +89,12 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public string Object { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt
@@ -118,19 +124,13 @@ namespace Openfort.Model
         /// Gets or Sets Abi
         /// </summary>
         [DataMember(Name = "abi", IsRequired = true, EmitDefaultValue = true)]
-        public ContractResponseAbi Abi { get; set; }
+        public PrismaJsonValue Abi { get; set; }
 
         /// <summary>
         /// Gets or Sets PublicVerification
         /// </summary>
         [DataMember(Name = "public_verification", IsRequired = true, EmitDefaultValue = true)]
         public bool PublicVerification { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Object
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -141,13 +141,13 @@ namespace Openfort.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ContractResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  Abi: ").Append(Abi).Append("\n");
             sb.Append("  PublicVerification: ").Append(PublicVerification).Append("\n");
-            sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -189,6 +189,11 @@ namespace Openfort.Model
                     this.Id.Equals(input.Id))
                 ) && 
                 (
+                    this.Object == input.Object ||
+                    (this.Object != null &&
+                    this.Object.Equals(input.Object))
+                ) && 
+                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
@@ -215,11 +220,6 @@ namespace Openfort.Model
                 (
                     this.PublicVerification == input.PublicVerification ||
                     this.PublicVerification.Equals(input.PublicVerification)
-                ) && 
-                (
-                    this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
                 );
         }
 
@@ -235,6 +235,10 @@ namespace Openfort.Model
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
+                if (this.Object != null)
+                {
+                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 }
                 if (this.CreatedAt != null)
                 {
@@ -254,10 +258,6 @@ namespace Openfort.Model
                     hashCode = (hashCode * 59) + this.Abi.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.PublicVerification.GetHashCode();
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                }
                 return hashCode;
             }
         }

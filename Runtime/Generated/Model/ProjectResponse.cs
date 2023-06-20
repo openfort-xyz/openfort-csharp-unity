@@ -40,13 +40,13 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="ProjectResponse" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
+        /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="livemode">livemode (required).</param>
         /// <param name="logoUrl">logoUrl.</param>
         /// <param name="apikeys">apikeys (required).</param>
-        /// <param name="_object">_object (required).</param>
-        public ProjectResponse(string id = default(string), DateTime createdAt = default(DateTime), string name = default(string), bool livemode = default(bool), string logoUrl = default(string), List<ApiKeyResponse> apikeys = default(List<ApiKeyResponse>), string _object = default(string))
+        public ProjectResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), string name = default(string), bool livemode = default(bool), string logoUrl = default(string), ProjectResponseApikeys apikeys = default(ProjectResponseApikeys))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -54,6 +54,12 @@ namespace Openfort.Model
                 throw new ArgumentNullException("id is a required property for ProjectResponse and cannot be null");
             }
             this.Id = id;
+            // to ensure "_object" is required (not null)
+            if (_object == null)
+            {
+                throw new ArgumentNullException("_object is a required property for ProjectResponse and cannot be null");
+            }
+            this.Object = _object;
             this.CreatedAt = createdAt;
             // to ensure "name" is required (not null)
             if (name == null)
@@ -68,12 +74,6 @@ namespace Openfort.Model
                 throw new ArgumentNullException("apikeys is a required property for ProjectResponse and cannot be null");
             }
             this.Apikeys = apikeys;
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for ProjectResponse and cannot be null");
-            }
-            this.Object = _object;
             this.LogoUrl = logoUrl;
         }
 
@@ -82,6 +82,12 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public string Object { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt
@@ -111,13 +117,7 @@ namespace Openfort.Model
         /// Gets or Sets Apikeys
         /// </summary>
         [DataMember(Name = "apikeys", IsRequired = true, EmitDefaultValue = true)]
-        public List<ApiKeyResponse> Apikeys { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Object
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
+        public ProjectResponseApikeys Apikeys { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -128,12 +128,12 @@ namespace Openfort.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ProjectResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Livemode: ").Append(Livemode).Append("\n");
             sb.Append("  LogoUrl: ").Append(LogoUrl).Append("\n");
             sb.Append("  Apikeys: ").Append(Apikeys).Append("\n");
-            sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -175,6 +175,11 @@ namespace Openfort.Model
                     this.Id.Equals(input.Id))
                 ) && 
                 (
+                    this.Object == input.Object ||
+                    (this.Object != null &&
+                    this.Object.Equals(input.Object))
+                ) && 
+                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
@@ -195,14 +200,8 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.Apikeys == input.Apikeys ||
-                    this.Apikeys != null &&
-                    input.Apikeys != null &&
-                    this.Apikeys.SequenceEqual(input.Apikeys)
-                ) && 
-                (
-                    this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
+                    (this.Apikeys != null &&
+                    this.Apikeys.Equals(input.Apikeys))
                 );
         }
 
@@ -218,6 +217,10 @@ namespace Openfort.Model
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
+                if (this.Object != null)
+                {
+                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 }
                 if (this.CreatedAt != null)
                 {
@@ -235,10 +238,6 @@ namespace Openfort.Model
                 if (this.Apikeys != null)
                 {
                     hashCode = (hashCode * 59) + this.Apikeys.GetHashCode();
-                }
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 }
                 return hashCode;
             }

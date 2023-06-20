@@ -34,11 +34,11 @@ namespace Openfort.Api
         /// Creates a player object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
+        /// <param name="name"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <returns>PlayerResponse</returns>
-        PlayerResponse CreatePlayer(string name, string description = default(string), string project = default(string));
+        PlayerResponse CreatePlayer(string name = default(string), string description = default(string), string project = default(string));
 
         /// <summary>
         /// 
@@ -47,11 +47,11 @@ namespace Openfort.Api
         /// Creates a player object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
+        /// <param name="name"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of PlayerResponse</returns>
-        ApiResponse<PlayerResponse> CreatePlayerWithHttpInfo(string name, string description = default(string), string project = default(string));
+        ApiResponse<PlayerResponse> CreatePlayerWithHttpInfo(string name = default(string), string description = default(string), string project = default(string));
         /// <summary>
         /// 
         /// </summary>
@@ -59,12 +59,12 @@ namespace Openfort.Api
         /// Updates an account object of an existing player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="player2">The player ID</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="chainId">The chain_id</param>
         /// <param name="project">The project ID (optional)</param>
-        /// <param name="chainId">The chain_id (optional)</param>
+        /// <param name="externalOwnerAddress">The address of the external owner (optional)</param>
         /// <returns>AccountResponse</returns>
-        AccountResponse CreatePlayerAccount(string player, string player2, string project = default(string), double? chainId = default(double?));
+        AccountResponse CreatePlayerAccount(string id, double chainId, string project = default(string), string externalOwnerAddress = default(string));
 
         /// <summary>
         /// 
@@ -73,37 +73,49 @@ namespace Openfort.Api
         /// Updates an account object of an existing player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="player2">The player ID</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="chainId">The chain_id</param>
         /// <param name="project">The project ID (optional)</param>
-        /// <param name="chainId">The chain_id (optional)</param>
+        /// <param name="externalOwnerAddress">The address of the external owner (optional)</param>
         /// <returns>ApiResponse of AccountResponse</returns>
-        ApiResponse<AccountResponse> CreatePlayerAccountWithHttpInfo(string player, string player2, string project = default(string), double? chainId = default(double?));
+        ApiResponse<AccountResponse> CreatePlayerAccountWithHttpInfo(string id, double chainId, string project = default(string), string externalOwnerAddress = default(string));
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Creates the session for the player.
+        /// Creates a session object for the given player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player"></param>
-        /// <param name="publicKey"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="validUntil"></param>
+        /// <param name="validAfter"></param>
         /// <param name="policy"> (optional)</param>
-        /// <returns></returns>
-        void CreateSession(string player, string publicKey, string policy = default(string));
+        /// <param name="externalOwnerAddress"> (optional)</param>
+        /// <param name="whitelist"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <returns>SessionResponse</returns>
+        SessionResponse CreatePlayerSession(string id, string address, double chainId, double validUntil, double validAfter, string policy = default(string), string externalOwnerAddress = default(string), List<string> whitelist = default(List<string>), double? limit = default(double?));
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Creates the session for the player.
+        /// Creates a session object for the given player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player"></param>
-        /// <param name="publicKey"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="validUntil"></param>
+        /// <param name="validAfter"></param>
         /// <param name="policy"> (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> CreateSessionWithHttpInfo(string player, string publicKey, string policy = default(string));
+        /// <param name="externalOwnerAddress"> (optional)</param>
+        /// <param name="whitelist"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <returns>ApiResponse of SessionResponse</returns>
+        ApiResponse<SessionResponse> CreatePlayerSessionWithHttpInfo(string id, string address, double chainId, double validUntil, double validAfter, string policy = default(string), string externalOwnerAddress = default(string), List<string> whitelist = default(List<string>), double? limit = default(double?));
         /// <summary>
         /// 
         /// </summary>
@@ -113,8 +125,9 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <returns>PlayerResponse</returns>
-        PlayerResponse GetPlayer(string id, string project = default(string));
+        PlayerResponse GetPlayer(string id, string project = default(string), List<string> expand = default(List<string>));
 
         /// <summary>
         /// 
@@ -125,8 +138,9 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <returns>ApiResponse of PlayerResponse</returns>
-        ApiResponse<PlayerResponse> GetPlayerWithHttpInfo(string id, string project = default(string));
+        ApiResponse<PlayerResponse> GetPlayerWithHttpInfo(string id, string project = default(string), List<string> expand = default(List<string>));
         /// <summary>
         /// 
         /// </summary>
@@ -134,10 +148,11 @@ namespace Openfort.Api
         /// Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>AccountsResponse</returns>
-        AccountsResponse GetPlayerAccounts(string player, string project = default(string));
+        AccountsResponse GetPlayerAccounts(string id, List<string> expand = default(List<string>), string project = default(string));
 
         /// <summary>
         /// 
@@ -146,10 +161,11 @@ namespace Openfort.Api
         /// Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of AccountsResponse</returns>
-        ApiResponse<AccountsResponse> GetPlayerAccountsWithHttpInfo(string player, string project = default(string));
+        ApiResponse<AccountsResponse> GetPlayerAccountsWithHttpInfo(string id, List<string> expand = default(List<string>), string project = default(string));
         /// <summary>
         /// 
         /// </summary>
@@ -182,9 +198,14 @@ namespace Openfort.Api
         /// Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <returns>PlayersResponse</returns>
-        PlayersResponse GetPlayers(string project = default(string));
+        PlayersResponse GetPlayers(List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?));
 
         /// <summary>
         /// 
@@ -193,49 +214,72 @@ namespace Openfort.Api
         /// Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <returns>ApiResponse of PlayersResponse</returns>
-        ApiResponse<PlayersResponse> GetPlayersWithHttpInfo(string project = default(string));
+        ApiResponse<PlayersResponse> GetPlayersWithHttpInfo(List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?));
         /// <summary>
         /// 
         /// </summary>
+        /// <remarks>
+        /// Creates a session object for the given player.
+        /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <returns>AuthResponse</returns>
-        AuthResponse Login(string email, string password);
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="policy"> (optional)</param>
+        /// <returns>SessionResponse</returns>
+        SessionResponse RevokePlayerSession(string id, string address, double chainId, string policy = default(string));
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a session object for the given player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <returns>ApiResponse of AuthResponse</returns>
-        ApiResponse<AuthResponse> LoginWithHttpInfo(string email, string password);
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="policy"> (optional)</param>
+        /// <returns>ApiResponse of SessionResponse</returns>
+        ApiResponse<SessionResponse> RevokePlayerSessionWithHttpInfo(string id, string address, double chainId, string policy = default(string));
         /// <summary>
         /// 
         /// </summary>
+        /// <remarks>
+        /// Transfer ownership of an account to an address.
+        /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <returns>AuthResponse</returns>
-        AuthResponse Signup(string email, string password);
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="policy">The policy ID</param>
+        /// <param name="chainId">The chain_id where the account is.</param>
+        /// <param name="newOwnerAddress">The address of the new owner</param>
+        /// <param name="project">The project ID (optional)</param>
+        /// <param name="player">The player ID (optional)</param>
+        /// <returns>TransactionIntentResponse</returns>
+        TransactionIntentResponse TransferAccountOwnership(string id, string policy, double chainId, string newOwnerAddress, string project = default(string), string player = default(string));
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// 
+        /// Transfer ownership of an account to an address.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <returns>ApiResponse of AuthResponse</returns>
-        ApiResponse<AuthResponse> SignupWithHttpInfo(string email, string password);
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="policy">The policy ID</param>
+        /// <param name="chainId">The chain_id where the account is.</param>
+        /// <param name="newOwnerAddress">The address of the new owner</param>
+        /// <param name="project">The project ID (optional)</param>
+        /// <param name="player">The player ID (optional)</param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        ApiResponse<TransactionIntentResponse> TransferAccountOwnershipWithHttpInfo(string id, string policy, double chainId, string newOwnerAddress, string project = default(string), string player = default(string));
         /// <summary>
         /// 
         /// </summary>
@@ -243,12 +287,12 @@ namespace Openfort.Api
         /// Updates a player object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="name"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <returns>PlayerResponse</returns>
-        PlayerResponse UpdatePlayer(string id, string name, string description = default(string), string project = default(string));
+        PlayerResponse UpdatePlayer(string id, string name = default(string), string description = default(string), string project = default(string));
 
         /// <summary>
         /// 
@@ -257,12 +301,12 @@ namespace Openfort.Api
         /// Updates a player object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="name"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of PlayerResponse</returns>
-        ApiResponse<PlayerResponse> UpdatePlayerWithHttpInfo(string id, string name, string description = default(string), string project = default(string));
+        ApiResponse<PlayerResponse> UpdatePlayerWithHttpInfo(string id, string name = default(string), string description = default(string), string project = default(string));
         #endregion Synchronous Operations
     }
 
@@ -279,12 +323,12 @@ namespace Openfort.Api
         /// Creates a player object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
+        /// <param name="name"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlayerResponse</returns>
-        System.Threading.Tasks.Task<PlayerResponse> CreatePlayerAsync(string name, string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PlayerResponse> CreatePlayerAsync(string name = default(string), string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -293,12 +337,12 @@ namespace Openfort.Api
         /// Creates a player object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
+        /// <param name="name"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlayerResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PlayerResponse>> CreatePlayerWithHttpInfoAsync(string name, string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PlayerResponse>> CreatePlayerWithHttpInfoAsync(string name = default(string), string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -306,13 +350,13 @@ namespace Openfort.Api
         /// Updates an account object of an existing player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="player2">The player ID</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="chainId">The chain_id</param>
         /// <param name="project">The project ID (optional)</param>
-        /// <param name="chainId">The chain_id (optional)</param>
+        /// <param name="externalOwnerAddress">The address of the external owner (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountResponse</returns>
-        System.Threading.Tasks.Task<AccountResponse> CreatePlayerAccountAsync(string player, string player2, string project = default(string), double? chainId = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<AccountResponse> CreatePlayerAccountAsync(string id, double chainId, string project = default(string), string externalOwnerAddress = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -321,40 +365,52 @@ namespace Openfort.Api
         /// Updates an account object of an existing player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="player2">The player ID</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="chainId">The chain_id</param>
         /// <param name="project">The project ID (optional)</param>
-        /// <param name="chainId">The chain_id (optional)</param>
+        /// <param name="externalOwnerAddress">The address of the external owner (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountResponse>> CreatePlayerAccountWithHttpInfoAsync(string player, string player2, string project = default(string), double? chainId = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AccountResponse>> CreatePlayerAccountWithHttpInfoAsync(string id, double chainId, string project = default(string), string externalOwnerAddress = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Creates the session for the player.
+        /// Creates a session object for the given player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player"></param>
-        /// <param name="publicKey"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="validUntil"></param>
+        /// <param name="validAfter"></param>
         /// <param name="policy"> (optional)</param>
+        /// <param name="externalOwnerAddress"> (optional)</param>
+        /// <param name="whitelist"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task CreateSessionAsync(string player, string publicKey, string policy = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of SessionResponse</returns>
+        System.Threading.Tasks.Task<SessionResponse> CreatePlayerSessionAsync(string id, string address, double chainId, double validUntil, double validAfter, string policy = default(string), string externalOwnerAddress = default(string), List<string> whitelist = default(List<string>), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Creates the session for the player.
+        /// Creates a session object for the given player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player"></param>
-        /// <param name="publicKey"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="validUntil"></param>
+        /// <param name="validAfter"></param>
         /// <param name="policy"> (optional)</param>
+        /// <param name="externalOwnerAddress"> (optional)</param>
+        /// <param name="whitelist"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> CreateSessionWithHttpInfoAsync(string player, string publicKey, string policy = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SessionResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SessionResponse>> CreatePlayerSessionWithHttpInfoAsync(string id, string address, double chainId, double validUntil, double validAfter, string policy = default(string), string externalOwnerAddress = default(string), List<string> whitelist = default(List<string>), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -364,9 +420,10 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlayerResponse</returns>
-        System.Threading.Tasks.Task<PlayerResponse> GetPlayerAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PlayerResponse> GetPlayerAsync(string id, string project = default(string), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -377,9 +434,10 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlayerResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PlayerResponse>> GetPlayerWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PlayerResponse>> GetPlayerWithHttpInfoAsync(string id, string project = default(string), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -387,11 +445,12 @@ namespace Openfort.Api
         /// Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountsResponse</returns>
-        System.Threading.Tasks.Task<AccountsResponse> GetPlayerAccountsAsync(string player, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<AccountsResponse> GetPlayerAccountsAsync(string id, List<string> expand = default(List<string>), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -400,11 +459,12 @@ namespace Openfort.Api
         /// Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountsResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountsResponse>> GetPlayerAccountsWithHttpInfoAsync(string player, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AccountsResponse>> GetPlayerAccountsWithHttpInfoAsync(string id, List<string> expand = default(List<string>), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -439,10 +499,15 @@ namespace Openfort.Api
         /// Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlayersResponse</returns>
-        System.Threading.Tasks.Task<PlayersResponse> GetPlayersAsync(string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PlayersResponse> GetPlayersAsync(List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -451,60 +516,77 @@ namespace Openfort.Api
         /// Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlayersResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PlayersResponse>> GetPlayersWithHttpInfoAsync(string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PlayersResponse>> GetPlayersWithHttpInfoAsync(List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a session object for the given player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="policy"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of AuthResponse</returns>
-        System.Threading.Tasks.Task<AuthResponse> LoginAsync(string email, string password, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of SessionResponse</returns>
+        System.Threading.Tasks.Task<SessionResponse> RevokePlayerSessionAsync(string id, string address, double chainId, string policy = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a session object for the given player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="policy"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (AuthResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AuthResponse>> LoginWithHttpInfoAsync(string email, string password, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (SessionResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SessionResponse>> RevokePlayerSessionWithHttpInfoAsync(string id, string address, double chainId, string policy = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// 
+        /// Transfer ownership of an account to an address.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="policy">The policy ID</param>
+        /// <param name="chainId">The chain_id where the account is.</param>
+        /// <param name="newOwnerAddress">The address of the new owner</param>
+        /// <param name="project">The project ID (optional)</param>
+        /// <param name="player">The player ID (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of AuthResponse</returns>
-        System.Threading.Tasks.Task<AuthResponse> SignupAsync(string email, string password, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of TransactionIntentResponse</returns>
+        System.Threading.Tasks.Task<TransactionIntentResponse> TransferAccountOwnershipAsync(string id, string policy, double chainId, string newOwnerAddress, string project = default(string), string player = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// 
+        /// Transfer ownership of an account to an address.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="policy">The policy ID</param>
+        /// <param name="chainId">The chain_id where the account is.</param>
+        /// <param name="newOwnerAddress">The address of the new owner</param>
+        /// <param name="project">The project ID (optional)</param>
+        /// <param name="player">The player ID (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (AuthResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AuthResponse>> SignupWithHttpInfoAsync(string email, string password, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> TransferAccountOwnershipWithHttpInfoAsync(string id, string policy, double chainId, string newOwnerAddress, string project = default(string), string player = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -512,13 +594,13 @@ namespace Openfort.Api
         /// Updates a player object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="name"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlayerResponse</returns>
-        System.Threading.Tasks.Task<PlayerResponse> UpdatePlayerAsync(string id, string name, string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PlayerResponse> UpdatePlayerAsync(string id, string name = default(string), string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -527,13 +609,13 @@ namespace Openfort.Api
         /// Updates a player object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="name"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlayerResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PlayerResponse>> UpdatePlayerWithHttpInfoAsync(string id, string name, string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PlayerResponse>> UpdatePlayerWithHttpInfoAsync(string id, string name = default(string), string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -682,11 +764,11 @@ namespace Openfort.Api
         ///  Creates a player object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
+        /// <param name="name"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <returns>PlayerResponse</returns>
-        public PlayerResponse CreatePlayer(string name, string description = default(string), string project = default(string))
+        public PlayerResponse CreatePlayer(string name = default(string), string description = default(string), string project = default(string))
         {
             Openfort.Client.ApiResponse<PlayerResponse> localVarResponse = CreatePlayerWithHttpInfo(name, description, project);
             return localVarResponse.Data;
@@ -696,16 +778,12 @@ namespace Openfort.Api
         ///  Creates a player object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
+        /// <param name="name"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of PlayerResponse</returns>
-        public Openfort.Client.ApiResponse<PlayerResponse> CreatePlayerWithHttpInfo(string name, string description = default(string), string project = default(string))
+        public Openfort.Client.ApiResponse<PlayerResponse> CreatePlayerWithHttpInfo(string name = default(string), string description = default(string), string project = default(string))
         {
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling PlayersApi->CreatePlayer");
-
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -723,7 +801,10 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
+            if (name != null)
+            {
+                localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
+            }
             if (description != null)
             {
                 localVarRequestOptions.FormParameters.Add("description", Openfort.Client.ClientUtils.ParameterToString(description)); // form parameter
@@ -750,12 +831,12 @@ namespace Openfort.Api
         ///  Creates a player object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
+        /// <param name="name"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlayerResponse</returns>
-        public async System.Threading.Tasks.Task<PlayerResponse> CreatePlayerAsync(string name, string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PlayerResponse> CreatePlayerAsync(string name = default(string), string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = CreatePlayerWithHttpInfoAsync(name, description, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -770,17 +851,13 @@ namespace Openfort.Api
         ///  Creates a player object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
+        /// <param name="name"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlayerResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PlayerResponse>> CreatePlayerWithHttpInfoAsync(string name, string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PlayerResponse>> CreatePlayerWithHttpInfoAsync(string name = default(string), string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling PlayersApi->CreatePlayer");
-
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -800,7 +877,10 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
+            if (name != null)
+            {
+                localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
+            }
             if (description != null)
             {
                 localVarRequestOptions.FormParameters.Add("description", Openfort.Client.ClientUtils.ParameterToString(description)); // form parameter
@@ -834,14 +914,14 @@ namespace Openfort.Api
         ///  Updates an account object of an existing player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="player2">The player ID</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="chainId">The chain_id</param>
         /// <param name="project">The project ID (optional)</param>
-        /// <param name="chainId">The chain_id (optional)</param>
+        /// <param name="externalOwnerAddress">The address of the external owner (optional)</param>
         /// <returns>AccountResponse</returns>
-        public AccountResponse CreatePlayerAccount(string player, string player2, string project = default(string), double? chainId = default(double?))
+        public AccountResponse CreatePlayerAccount(string id, double chainId, string project = default(string), string externalOwnerAddress = default(string))
         {
-            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = CreatePlayerAccountWithHttpInfo(player, player2, project, chainId);
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = CreatePlayerAccountWithHttpInfo(id, chainId, project, externalOwnerAddress);
             return localVarResponse.Data;
         }
 
@@ -849,20 +929,16 @@ namespace Openfort.Api
         ///  Updates an account object of an existing player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="player2">The player ID</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="chainId">The chain_id</param>
         /// <param name="project">The project ID (optional)</param>
-        /// <param name="chainId">The chain_id (optional)</param>
+        /// <param name="externalOwnerAddress">The address of the external owner (optional)</param>
         /// <returns>ApiResponse of AccountResponse</returns>
-        public Openfort.Client.ApiResponse<AccountResponse> CreatePlayerAccountWithHttpInfo(string player, string player2, string project = default(string), double? chainId = default(double?))
+        public Openfort.Client.ApiResponse<AccountResponse> CreatePlayerAccountWithHttpInfo(string id, double chainId, string project = default(string), string externalOwnerAddress = default(string))
         {
-            // verify the required parameter 'player' is set
-            if (player == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'player' when calling PlayersApi->CreatePlayerAccount");
-
-            // verify the required parameter 'player2' is set
-            if (player2 == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'player2' when calling PlayersApi->CreatePlayerAccount");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->CreatePlayerAccount");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -881,20 +957,20 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("player", Openfort.Client.ClientUtils.ParameterToString(player)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (project != null)
             {
                 localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
-            if (chainId != null)
+            localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+            if (externalOwnerAddress != null)
             {
-                localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+                localVarRequestOptions.FormParameters.Add("external_owner_address", Openfort.Client.ClientUtils.ParameterToString(externalOwnerAddress)); // form parameter
             }
-            localVarRequestOptions.FormParameters.Add("player", Openfort.Client.ClientUtils.ParameterToString(player2)); // form parameter
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<AccountResponse>("/v1/players/{player}/accounts", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AccountResponse>("/v1/players/{id}/accounts", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -909,15 +985,15 @@ namespace Openfort.Api
         ///  Updates an account object of an existing player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="player2">The player ID</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="chainId">The chain_id</param>
         /// <param name="project">The project ID (optional)</param>
-        /// <param name="chainId">The chain_id (optional)</param>
+        /// <param name="externalOwnerAddress">The address of the external owner (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountResponse</returns>
-        public async System.Threading.Tasks.Task<AccountResponse> CreatePlayerAccountAsync(string player, string player2, string project = default(string), double? chainId = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<AccountResponse> CreatePlayerAccountAsync(string id, double chainId, string project = default(string), string externalOwnerAddress = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = CreatePlayerAccountWithHttpInfoAsync(player, player2, project, chainId, cancellationToken);
+            var task = CreatePlayerAccountWithHttpInfoAsync(id, chainId, project, externalOwnerAddress, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<AccountResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -930,21 +1006,17 @@ namespace Openfort.Api
         ///  Updates an account object of an existing player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="player2">The player ID</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="chainId">The chain_id</param>
         /// <param name="project">The project ID (optional)</param>
-        /// <param name="chainId">The chain_id (optional)</param>
+        /// <param name="externalOwnerAddress">The address of the external owner (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountResponse>> CreatePlayerAccountWithHttpInfoAsync(string player, string player2, string project = default(string), double? chainId = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountResponse>> CreatePlayerAccountWithHttpInfoAsync(string id, double chainId, string project = default(string), string externalOwnerAddress = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'player' is set
-            if (player == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'player' when calling PlayersApi->CreatePlayerAccount");
-
-            // verify the required parameter 'player2' is set
-            if (player2 == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'player2' when calling PlayersApi->CreatePlayerAccount");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->CreatePlayerAccount");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -965,21 +1037,21 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("player", Openfort.Client.ClientUtils.ParameterToString(player)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (project != null)
             {
                 localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
             }
-            if (chainId != null)
+            localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+            if (externalOwnerAddress != null)
             {
-                localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+                localVarRequestOptions.FormParameters.Add("external_owner_address", Openfort.Client.ClientUtils.ParameterToString(externalOwnerAddress)); // form parameter
             }
-            localVarRequestOptions.FormParameters.Add("player", Openfort.Client.ClientUtils.ParameterToString(player2)); // form parameter
 
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<AccountResponse>("/v1/players/{player}/accounts", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<AccountResponse>("/v1/players/{id}/accounts", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -997,35 +1069,48 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Creates the session for the player.
+        ///  Creates a session object for the given player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player"></param>
-        /// <param name="publicKey"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="validUntil"></param>
+        /// <param name="validAfter"></param>
         /// <param name="policy"> (optional)</param>
-        /// <returns></returns>
-        public void CreateSession(string player, string publicKey, string policy = default(string))
+        /// <param name="externalOwnerAddress"> (optional)</param>
+        /// <param name="whitelist"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <returns>SessionResponse</returns>
+        public SessionResponse CreatePlayerSession(string id, string address, double chainId, double validUntil, double validAfter, string policy = default(string), string externalOwnerAddress = default(string), List<string> whitelist = default(List<string>), double? limit = default(double?))
         {
-            CreateSessionWithHttpInfo(player, publicKey, policy);
+            Openfort.Client.ApiResponse<SessionResponse> localVarResponse = CreatePlayerSessionWithHttpInfo(id, address, chainId, validUntil, validAfter, policy, externalOwnerAddress, whitelist, limit);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Creates the session for the player.
+        ///  Creates a session object for the given player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player"></param>
-        /// <param name="publicKey"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="validUntil"></param>
+        /// <param name="validAfter"></param>
         /// <param name="policy"> (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Openfort.Client.ApiResponse<Object> CreateSessionWithHttpInfo(string player, string publicKey, string policy = default(string))
+        /// <param name="externalOwnerAddress"> (optional)</param>
+        /// <param name="whitelist"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <returns>ApiResponse of SessionResponse</returns>
+        public Openfort.Client.ApiResponse<SessionResponse> CreatePlayerSessionWithHttpInfo(string id, string address, double chainId, double validUntil, double validAfter, string policy = default(string), string externalOwnerAddress = default(string), List<string> whitelist = default(List<string>), double? limit = default(double?))
         {
-            // verify the required parameter 'player' is set
-            if (player == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'player' when calling PlayersApi->CreateSession");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->CreatePlayerSession");
 
-            // verify the required parameter 'publicKey' is set
-            if (publicKey == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'publicKey' when calling PlayersApi->CreateSession");
+            // verify the required parameter 'address' is set
+            if (address == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'address' when calling PlayersApi->CreatePlayerSession");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -1035,6 +1120,7 @@ namespace Openfort.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1043,20 +1129,35 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("player", Openfort.Client.ClientUtils.ParameterToString(player)); // path parameter
-            localVarRequestOptions.FormParameters.Add("public_key", Openfort.Client.ClientUtils.ParameterToString(publicKey)); // form parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.FormParameters.Add("address", Openfort.Client.ClientUtils.ParameterToString(address)); // form parameter
             if (policy != null)
             {
                 localVarRequestOptions.FormParameters.Add("policy", Openfort.Client.ClientUtils.ParameterToString(policy)); // form parameter
             }
+            if (externalOwnerAddress != null)
+            {
+                localVarRequestOptions.FormParameters.Add("external_owner_address", Openfort.Client.ClientUtils.ParameterToString(externalOwnerAddress)); // form parameter
+            }
+            localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+            localVarRequestOptions.FormParameters.Add("valid_until", Openfort.Client.ClientUtils.ParameterToString(validUntil)); // form parameter
+            localVarRequestOptions.FormParameters.Add("valid_after", Openfort.Client.ClientUtils.ParameterToString(validAfter)); // form parameter
+            if (whitelist != null)
+            {
+                localVarRequestOptions.FormParameters.Add("whitelist", Openfort.Client.ClientUtils.ParameterToString(whitelist)); // form parameter
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.FormParameters.Add("limit", Openfort.Client.ClientUtils.ParameterToString(limit)); // form parameter
+            }
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/players/{player}/session", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<SessionResponse>("/v1/players/{id}/sessions", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("CreateSession", localVarResponse);
+                Exception _exception = this.ExceptionFactory("CreatePlayerSession", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1064,42 +1165,55 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Creates the session for the player.
+        ///  Creates a session object for the given player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player"></param>
-        /// <param name="publicKey"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="validUntil"></param>
+        /// <param name="validAfter"></param>
         /// <param name="policy"> (optional)</param>
+        /// <param name="externalOwnerAddress"> (optional)</param>
+        /// <param name="whitelist"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task CreateSessionAsync(string player, string publicKey, string policy = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of SessionResponse</returns>
+        public async System.Threading.Tasks.Task<SessionResponse> CreatePlayerSessionAsync(string id, string address, double chainId, double validUntil, double validAfter, string policy = default(string), string externalOwnerAddress = default(string), List<string> whitelist = default(List<string>), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = CreateSessionWithHttpInfoAsync(player, publicKey, policy, cancellationToken);
+            var task = CreatePlayerSessionWithHttpInfoAsync(id, address, chainId, validUntil, validAfter, policy, externalOwnerAddress, whitelist, limit, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<SessionResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            await task;
+            Openfort.Client.ApiResponse<SessionResponse> localVarResponse = await task;
 #endif
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Creates the session for the player.
+        ///  Creates a session object for the given player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player"></param>
-        /// <param name="publicKey"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="validUntil"></param>
+        /// <param name="validAfter"></param>
         /// <param name="policy"> (optional)</param>
+        /// <param name="externalOwnerAddress"> (optional)</param>
+        /// <param name="whitelist"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<Object>> CreateSessionWithHttpInfoAsync(string player, string publicKey, string policy = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (SessionResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<SessionResponse>> CreatePlayerSessionWithHttpInfoAsync(string id, string address, double chainId, double validUntil, double validAfter, string policy = default(string), string externalOwnerAddress = default(string), List<string> whitelist = default(List<string>), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'player' is set
-            if (player == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'player' when calling PlayersApi->CreateSession");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->CreatePlayerSession");
 
-            // verify the required parameter 'publicKey' is set
-            if (publicKey == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'publicKey' when calling PlayersApi->CreateSession");
+            // verify the required parameter 'address' is set
+            if (address == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'address' when calling PlayersApi->CreatePlayerSession");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -1110,6 +1224,7 @@ namespace Openfort.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -1119,17 +1234,32 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("player", Openfort.Client.ClientUtils.ParameterToString(player)); // path parameter
-            localVarRequestOptions.FormParameters.Add("public_key", Openfort.Client.ClientUtils.ParameterToString(publicKey)); // form parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.FormParameters.Add("address", Openfort.Client.ClientUtils.ParameterToString(address)); // form parameter
             if (policy != null)
             {
                 localVarRequestOptions.FormParameters.Add("policy", Openfort.Client.ClientUtils.ParameterToString(policy)); // form parameter
+            }
+            if (externalOwnerAddress != null)
+            {
+                localVarRequestOptions.FormParameters.Add("external_owner_address", Openfort.Client.ClientUtils.ParameterToString(externalOwnerAddress)); // form parameter
+            }
+            localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+            localVarRequestOptions.FormParameters.Add("valid_until", Openfort.Client.ClientUtils.ParameterToString(validUntil)); // form parameter
+            localVarRequestOptions.FormParameters.Add("valid_after", Openfort.Client.ClientUtils.ParameterToString(validAfter)); // form parameter
+            if (whitelist != null)
+            {
+                localVarRequestOptions.FormParameters.Add("whitelist", Openfort.Client.ClientUtils.ParameterToString(whitelist)); // form parameter
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.FormParameters.Add("limit", Openfort.Client.ClientUtils.ParameterToString(limit)); // form parameter
             }
 
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<Object>("/v1/players/{player}/session", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<SessionResponse>("/v1/players/{id}/sessions", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -1139,7 +1269,7 @@ namespace Openfort.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("CreateSession", localVarResponse);
+                Exception _exception = this.ExceptionFactory("CreatePlayerSession", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1152,10 +1282,11 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <returns>PlayerResponse</returns>
-        public PlayerResponse GetPlayer(string id, string project = default(string))
+        public PlayerResponse GetPlayer(string id, string project = default(string), List<string> expand = default(List<string>))
         {
-            Openfort.Client.ApiResponse<PlayerResponse> localVarResponse = GetPlayerWithHttpInfo(id, project);
+            Openfort.Client.ApiResponse<PlayerResponse> localVarResponse = GetPlayerWithHttpInfo(id, project, expand);
             return localVarResponse.Data;
         }
 
@@ -1165,8 +1296,9 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <returns>ApiResponse of PlayerResponse</returns>
-        public Openfort.Client.ApiResponse<PlayerResponse> GetPlayerWithHttpInfo(string id, string project = default(string))
+        public Openfort.Client.ApiResponse<PlayerResponse> GetPlayerWithHttpInfo(string id, string project = default(string), List<string> expand = default(List<string>))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1192,6 +1324,10 @@ namespace Openfort.Api
             if (project != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+            }
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
             }
 
 
@@ -1213,11 +1349,12 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlayerResponse</returns>
-        public async System.Threading.Tasks.Task<PlayerResponse> GetPlayerAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PlayerResponse> GetPlayerAsync(string id, string project = default(string), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetPlayerWithHttpInfoAsync(id, project, cancellationToken);
+            var task = GetPlayerWithHttpInfoAsync(id, project, expand, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<PlayerResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -1232,9 +1369,10 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlayerResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PlayerResponse>> GetPlayerWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PlayerResponse>> GetPlayerWithHttpInfoAsync(string id, string project = default(string), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1262,6 +1400,10 @@ namespace Openfort.Api
             if (project != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+            }
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
             }
 
 
@@ -1288,12 +1430,13 @@ namespace Openfort.Api
         ///  Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>AccountsResponse</returns>
-        public AccountsResponse GetPlayerAccounts(string player, string project = default(string))
+        public AccountsResponse GetPlayerAccounts(string id, List<string> expand = default(List<string>), string project = default(string))
         {
-            Openfort.Client.ApiResponse<AccountsResponse> localVarResponse = GetPlayerAccountsWithHttpInfo(player, project);
+            Openfort.Client.ApiResponse<AccountsResponse> localVarResponse = GetPlayerAccountsWithHttpInfo(id, expand, project);
             return localVarResponse.Data;
         }
 
@@ -1301,14 +1444,15 @@ namespace Openfort.Api
         ///  Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of AccountsResponse</returns>
-        public Openfort.Client.ApiResponse<AccountsResponse> GetPlayerAccountsWithHttpInfo(string player, string project = default(string))
+        public Openfort.Client.ApiResponse<AccountsResponse> GetPlayerAccountsWithHttpInfo(string id, List<string> expand = default(List<string>), string project = default(string))
         {
-            // verify the required parameter 'player' is set
-            if (player == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'player' when calling PlayersApi->GetPlayerAccounts");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->GetPlayerAccounts");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -1326,7 +1470,11 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("player", Openfort.Client.ClientUtils.ParameterToString(player)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
             if (project != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
@@ -1334,7 +1482,7 @@ namespace Openfort.Api
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<AccountsResponse>("/v1/players/{player}/accounts", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AccountsResponse>("/v1/players/{id}/accounts", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1349,13 +1497,14 @@ namespace Openfort.Api
         ///  Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountsResponse</returns>
-        public async System.Threading.Tasks.Task<AccountsResponse> GetPlayerAccountsAsync(string player, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<AccountsResponse> GetPlayerAccountsAsync(string id, List<string> expand = default(List<string>), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetPlayerAccountsWithHttpInfoAsync(player, project, cancellationToken);
+            var task = GetPlayerAccountsWithHttpInfoAsync(id, expand, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<AccountsResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -1368,15 +1517,16 @@ namespace Openfort.Api
         ///  Returns a list of your accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountsResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountsResponse>> GetPlayerAccountsWithHttpInfoAsync(string player, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountsResponse>> GetPlayerAccountsWithHttpInfoAsync(string id, List<string> expand = default(List<string>), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'player' is set
-            if (player == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'player' when calling PlayersApi->GetPlayerAccounts");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->GetPlayerAccounts");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -1396,7 +1546,11 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("player", Openfort.Client.ClientUtils.ParameterToString(player)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
             if (project != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
@@ -1405,7 +1559,7 @@ namespace Openfort.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.GetAsync<AccountsResponse>("/v1/players/{player}/accounts", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.GetAsync<AccountsResponse>("/v1/players/{id}/accounts", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -1570,11 +1724,16 @@ namespace Openfort.Api
         ///  Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <returns>PlayersResponse</returns>
-        public PlayersResponse GetPlayers(string project = default(string))
+        public PlayersResponse GetPlayers(List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?))
         {
-            Openfort.Client.ApiResponse<PlayersResponse> localVarResponse = GetPlayersWithHttpInfo(project);
+            Openfort.Client.ApiResponse<PlayersResponse> localVarResponse = GetPlayersWithHttpInfo(expand, limit, project, filter, order, skip);
             return localVarResponse.Data;
         }
 
@@ -1582,9 +1741,14 @@ namespace Openfort.Api
         ///  Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <returns>ApiResponse of PlayersResponse</returns>
-        public Openfort.Client.ApiResponse<PlayersResponse> GetPlayersWithHttpInfo(string project = default(string))
+        public Openfort.Client.ApiResponse<PlayersResponse> GetPlayersWithHttpInfo(List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?))
         {
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -1602,9 +1766,29 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
             if (project != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+            }
+            if (filter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+            }
+            if (order != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
 
 
@@ -1624,12 +1808,17 @@ namespace Openfort.Api
         ///  Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlayersResponse</returns>
-        public async System.Threading.Tasks.Task<PlayersResponse> GetPlayersAsync(string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PlayersResponse> GetPlayersAsync(List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetPlayersWithHttpInfoAsync(project, cancellationToken);
+            var task = GetPlayersWithHttpInfoAsync(expand, limit, project, filter, order, skip, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<PlayersResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -1642,10 +1831,15 @@ namespace Openfort.Api
         ///  Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlayersResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PlayersResponse>> GetPlayersWithHttpInfoAsync(string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PlayersResponse>> GetPlayersWithHttpInfoAsync(List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -1665,9 +1859,29 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
             if (project != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
+            }
+            if (filter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+            }
+            if (order != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
 
 
@@ -1691,346 +1905,38 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  
+        ///  Creates a session object for the given player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <returns>AuthResponse</returns>
-        public AuthResponse Login(string email, string password)
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="policy"> (optional)</param>
+        /// <returns>SessionResponse</returns>
+        public SessionResponse RevokePlayerSession(string id, string address, double chainId, string policy = default(string))
         {
-            Openfort.Client.ApiResponse<AuthResponse> localVarResponse = LoginWithHttpInfo(email, password);
+            Openfort.Client.ApiResponse<SessionResponse> localVarResponse = RevokePlayerSessionWithHttpInfo(id, address, chainId, policy);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        ///  Creates a session object for the given player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <returns>ApiResponse of AuthResponse</returns>
-        public Openfort.Client.ApiResponse<AuthResponse> LoginWithHttpInfo(string email, string password)
-        {
-            // verify the required parameter 'email' is set
-            if (email == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'email' when calling PlayersApi->Login");
-
-            // verify the required parameter 'password' is set
-            if (password == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'password' when calling PlayersApi->Login");
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.FormParameters.Add("email", Openfort.Client.ClientUtils.ParameterToString(email)); // form parameter
-            localVarRequestOptions.FormParameters.Add("password", Openfort.Client.ClientUtils.ParameterToString(password)); // form parameter
-
-            // authentication (pk) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<AuthResponse>("/v1/players/login", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("Login", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of AuthResponse</returns>
-        public async System.Threading.Tasks.Task<AuthResponse> LoginAsync(string email, string password, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            var task = LoginWithHttpInfoAsync(email, password, cancellationToken);
-#if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<AuthResponse> localVarResponse = await task.ConfigureAwait(false);
-#else
-            Openfort.Client.ApiResponse<AuthResponse> localVarResponse = await task;
-#endif
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (AuthResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AuthResponse>> LoginWithHttpInfoAsync(string email, string password, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'email' is set
-            if (email == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'email' when calling PlayersApi->Login");
-
-            // verify the required parameter 'password' is set
-            if (password == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'password' when calling PlayersApi->Login");
-
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.FormParameters.Add("email", Openfort.Client.ClientUtils.ParameterToString(email)); // form parameter
-            localVarRequestOptions.FormParameters.Add("password", Openfort.Client.ClientUtils.ParameterToString(password)); // form parameter
-
-            // authentication (pk) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-
-            var task = this.AsynchronousClient.PostAsync<AuthResponse>("/v1/players/login", localVarRequestOptions, this.Configuration, cancellationToken);
-
-#if UNITY_EDITOR || !UNITY_WEBGL
-            var localVarResponse = await task.ConfigureAwait(false);
-#else
-            var localVarResponse = await task;
-#endif
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("Login", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <returns>AuthResponse</returns>
-        public AuthResponse Signup(string email, string password)
-        {
-            Openfort.Client.ApiResponse<AuthResponse> localVarResponse = SignupWithHttpInfo(email, password);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <returns>ApiResponse of AuthResponse</returns>
-        public Openfort.Client.ApiResponse<AuthResponse> SignupWithHttpInfo(string email, string password)
-        {
-            // verify the required parameter 'email' is set
-            if (email == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'email' when calling PlayersApi->Signup");
-
-            // verify the required parameter 'password' is set
-            if (password == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'password' when calling PlayersApi->Signup");
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.FormParameters.Add("email", Openfort.Client.ClientUtils.ParameterToString(email)); // form parameter
-            localVarRequestOptions.FormParameters.Add("password", Openfort.Client.ClientUtils.ParameterToString(password)); // form parameter
-
-            // authentication (pk) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<AuthResponse>("/v1/players/signup", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("Signup", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of AuthResponse</returns>
-        public async System.Threading.Tasks.Task<AuthResponse> SignupAsync(string email, string password, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            var task = SignupWithHttpInfoAsync(email, password, cancellationToken);
-#if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<AuthResponse> localVarResponse = await task.ConfigureAwait(false);
-#else
-            Openfort.Client.ApiResponse<AuthResponse> localVarResponse = await task;
-#endif
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (AuthResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AuthResponse>> SignupWithHttpInfoAsync(string email, string password, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'email' is set
-            if (email == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'email' when calling PlayersApi->Signup");
-
-            // verify the required parameter 'password' is set
-            if (password == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'password' when calling PlayersApi->Signup");
-
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.FormParameters.Add("email", Openfort.Client.ClientUtils.ParameterToString(email)); // form parameter
-            localVarRequestOptions.FormParameters.Add("password", Openfort.Client.ClientUtils.ParameterToString(password)); // form parameter
-
-            // authentication (pk) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-
-            var task = this.AsynchronousClient.PostAsync<AuthResponse>("/v1/players/signup", localVarRequestOptions, this.Configuration, cancellationToken);
-
-#if UNITY_EDITOR || !UNITY_WEBGL
-            var localVarResponse = await task.ConfigureAwait(false);
-#else
-            var localVarResponse = await task;
-#endif
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("Signup", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  Updates a player object.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="project"> (optional)</param>
-        /// <returns>PlayerResponse</returns>
-        public PlayerResponse UpdatePlayer(string id, string name, string description = default(string), string project = default(string))
-        {
-            Openfort.Client.ApiResponse<PlayerResponse> localVarResponse = UpdatePlayerWithHttpInfo(id, name, description, project);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Updates a player object.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="project"> (optional)</param>
-        /// <returns>ApiResponse of PlayerResponse</returns>
-        public Openfort.Client.ApiResponse<PlayerResponse> UpdatePlayerWithHttpInfo(string id, string name, string description = default(string), string project = default(string))
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="policy"> (optional)</param>
+        /// <returns>ApiResponse of SessionResponse</returns>
+        public Openfort.Client.ApiResponse<SessionResponse> RevokePlayerSessionWithHttpInfo(string id, string address, double chainId, string policy = default(string))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->UpdatePlayer");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->RevokePlayerSession");
 
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling PlayersApi->UpdatePlayer");
+            // verify the required parameter 'address' is set
+            if (address == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'address' when calling PlayersApi->RevokePlayerSession");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -2050,7 +1956,352 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
+            localVarRequestOptions.FormParameters.Add("address", Openfort.Client.ClientUtils.ParameterToString(address)); // form parameter
+            if (policy != null)
+            {
+                localVarRequestOptions.FormParameters.Add("policy", Openfort.Client.ClientUtils.ParameterToString(policy)); // form parameter
+            }
+            localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<SessionResponse>("/v1/players/{id}/sessions/revoke", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RevokePlayerSession", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Creates a session object for the given player.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="policy"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SessionResponse</returns>
+        public async System.Threading.Tasks.Task<SessionResponse> RevokePlayerSessionAsync(string id, string address, double chainId, string policy = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = RevokePlayerSessionWithHttpInfoAsync(id, address, chainId, policy, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<SessionResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<SessionResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Creates a session object for the given player.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="address"></param>
+        /// <param name="chainId"></param>
+        /// <param name="policy"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SessionResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<SessionResponse>> RevokePlayerSessionWithHttpInfoAsync(string id, string address, double chainId, string policy = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->RevokePlayerSession");
+
+            // verify the required parameter 'address' is set
+            if (address == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'address' when calling PlayersApi->RevokePlayerSession");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/x-www-form-urlencoded"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.FormParameters.Add("address", Openfort.Client.ClientUtils.ParameterToString(address)); // form parameter
+            if (policy != null)
+            {
+                localVarRequestOptions.FormParameters.Add("policy", Openfort.Client.ClientUtils.ParameterToString(policy)); // form parameter
+            }
+            localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<SessionResponse>("/v1/players/{id}/sessions/revoke", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RevokePlayerSession", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Transfer ownership of an account to an address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="policy">The policy ID</param>
+        /// <param name="chainId">The chain_id where the account is.</param>
+        /// <param name="newOwnerAddress">The address of the new owner</param>
+        /// <param name="project">The project ID (optional)</param>
+        /// <param name="player">The player ID (optional)</param>
+        /// <returns>TransactionIntentResponse</returns>
+        public TransactionIntentResponse TransferAccountOwnership(string id, string policy, double chainId, string newOwnerAddress, string project = default(string), string player = default(string))
+        {
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = TransferAccountOwnershipWithHttpInfo(id, policy, chainId, newOwnerAddress, project, player);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Transfer ownership of an account to an address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="policy">The policy ID</param>
+        /// <param name="chainId">The chain_id where the account is.</param>
+        /// <param name="newOwnerAddress">The address of the new owner</param>
+        /// <param name="project">The project ID (optional)</param>
+        /// <param name="player">The player ID (optional)</param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        public Openfort.Client.ApiResponse<TransactionIntentResponse> TransferAccountOwnershipWithHttpInfo(string id, string policy, double chainId, string newOwnerAddress, string project = default(string), string player = default(string))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->TransferAccountOwnership");
+
+            // verify the required parameter 'policy' is set
+            if (policy == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'policy' when calling PlayersApi->TransferAccountOwnership");
+
+            // verify the required parameter 'newOwnerAddress' is set
+            if (newOwnerAddress == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'newOwnerAddress' when calling PlayersApi->TransferAccountOwnership");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/x-www-form-urlencoded"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (project != null)
+            {
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
+            }
+            localVarRequestOptions.FormParameters.Add("policy", Openfort.Client.ClientUtils.ParameterToString(policy)); // form parameter
+            localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+            localVarRequestOptions.FormParameters.Add("new_owner_address", Openfort.Client.ClientUtils.ParameterToString(newOwnerAddress)); // form parameter
+            if (player != null)
+            {
+                localVarRequestOptions.FormParameters.Add("player", Openfort.Client.ClientUtils.ParameterToString(player)); // form parameter
+            }
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<TransactionIntentResponse>("/v1/players/{id}/transfer-ownership", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("TransferAccountOwnership", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Transfer ownership of an account to an address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="policy">The policy ID</param>
+        /// <param name="chainId">The chain_id where the account is.</param>
+        /// <param name="newOwnerAddress">The address of the new owner</param>
+        /// <param name="project">The project ID (optional)</param>
+        /// <param name="player">The player ID (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        public async System.Threading.Tasks.Task<TransactionIntentResponse> TransferAccountOwnershipAsync(string id, string policy, double chainId, string newOwnerAddress, string project = default(string), string player = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = TransferAccountOwnershipWithHttpInfoAsync(id, policy, chainId, newOwnerAddress, project, player, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Transfer ownership of an account to an address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="policy">The policy ID</param>
+        /// <param name="chainId">The chain_id where the account is.</param>
+        /// <param name="newOwnerAddress">The address of the new owner</param>
+        /// <param name="project">The project ID (optional)</param>
+        /// <param name="player">The player ID (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> TransferAccountOwnershipWithHttpInfoAsync(string id, string policy, double chainId, string newOwnerAddress, string project = default(string), string player = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->TransferAccountOwnership");
+
+            // verify the required parameter 'policy' is set
+            if (policy == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'policy' when calling PlayersApi->TransferAccountOwnership");
+
+            // verify the required parameter 'newOwnerAddress' is set
+            if (newOwnerAddress == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'newOwnerAddress' when calling PlayersApi->TransferAccountOwnership");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/x-www-form-urlencoded"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (project != null)
+            {
+                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
+            }
+            localVarRequestOptions.FormParameters.Add("policy", Openfort.Client.ClientUtils.ParameterToString(policy)); // form parameter
+            localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
+            localVarRequestOptions.FormParameters.Add("new_owner_address", Openfort.Client.ClientUtils.ParameterToString(newOwnerAddress)); // form parameter
+            if (player != null)
+            {
+                localVarRequestOptions.FormParameters.Add("player", Openfort.Client.ClientUtils.ParameterToString(player)); // form parameter
+            }
+
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<TransactionIntentResponse>("/v1/players/{id}/transfer-ownership", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("TransferAccountOwnership", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Updates a player object.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="project"> (optional)</param>
+        /// <returns>PlayerResponse</returns>
+        public PlayerResponse UpdatePlayer(string id, string name = default(string), string description = default(string), string project = default(string))
+        {
+            Openfort.Client.ApiResponse<PlayerResponse> localVarResponse = UpdatePlayerWithHttpInfo(id, name, description, project);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Updates a player object.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="project"> (optional)</param>
+        /// <returns>ApiResponse of PlayerResponse</returns>
+        public Openfort.Client.ApiResponse<PlayerResponse> UpdatePlayerWithHttpInfo(string id, string name = default(string), string description = default(string), string project = default(string))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->UpdatePlayer");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/x-www-form-urlencoded"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (name != null)
+            {
+                localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
+            }
             if (description != null)
             {
                 localVarRequestOptions.FormParameters.Add("description", Openfort.Client.ClientUtils.ParameterToString(description)); // form parameter
@@ -2077,13 +2328,13 @@ namespace Openfort.Api
         ///  Updates a player object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="name"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlayerResponse</returns>
-        public async System.Threading.Tasks.Task<PlayerResponse> UpdatePlayerAsync(string id, string name, string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PlayerResponse> UpdatePlayerAsync(string id, string name = default(string), string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = UpdatePlayerWithHttpInfoAsync(id, name, description, project, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -2098,21 +2349,17 @@ namespace Openfort.Api
         ///  Updates a player object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="name"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlayerResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PlayerResponse>> UpdatePlayerWithHttpInfoAsync(string id, string name, string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PlayerResponse>> UpdatePlayerWithHttpInfoAsync(string id, string name = default(string), string description = default(string), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->UpdatePlayer");
-
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling PlayersApi->UpdatePlayer");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -2134,7 +2381,10 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
+            if (name != null)
+            {
+                localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
+            }
             if (description != null)
             {
                 localVarRequestOptions.FormParameters.Add("description", Openfort.Client.ClientUtils.ParameterToString(description)); // form parameter

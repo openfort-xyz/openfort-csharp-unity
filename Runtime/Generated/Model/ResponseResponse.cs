@@ -42,12 +42,12 @@ namespace Openfort.Model
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="blockNumber">blockNumber (required).</param>
         /// <param name="transactionHash">transactionHash (required).</param>
-        /// <param name="gasUsed">gasUsed (required).</param>
-        /// <param name="status">status (required).</param>
-        /// <param name="logs">logs (required).</param>
-        /// <param name="to">to (required).</param>
-        /// <param name="error">error (required).</param>
-        public ResponseResponse(DateTime createdAt = default(DateTime), double? blockNumber = default(double?), string transactionHash = default(string), double gasUsed = default(double), double status = default(double), List<string> logs = default(List<string>), string to = default(string), string error = default(string))
+        /// <param name="gasUsed">gasUsed.</param>
+        /// <param name="status">status.</param>
+        /// <param name="logs">logs.</param>
+        /// <param name="to">to.</param>
+        /// <param name="error">error.</param>
+        public ResponseResponse(DateTime createdAt = default(DateTime), double? blockNumber = default(double?), string transactionHash = default(string), double? gasUsed = default(double?), double? status = default(double?), PrismaJsonValue logs = default(PrismaJsonValue), string to = default(string), PrismaJsonValue error = default(PrismaJsonValue))
         {
             this.CreatedAt = createdAt;
             // to ensure "blockNumber" is required (not null)
@@ -64,23 +64,8 @@ namespace Openfort.Model
             this.TransactionHash = transactionHash;
             this.GasUsed = gasUsed;
             this.Status = status;
-            // to ensure "logs" is required (not null)
-            if (logs == null)
-            {
-                throw new ArgumentNullException("logs is a required property for ResponseResponse and cannot be null");
-            }
             this.Logs = logs;
-            // to ensure "to" is required (not null)
-            if (to == null)
-            {
-                throw new ArgumentNullException("to is a required property for ResponseResponse and cannot be null");
-            }
             this.To = to;
-            // to ensure "error" is required (not null)
-            if (error == null)
-            {
-                throw new ArgumentNullException("error is a required property for ResponseResponse and cannot be null");
-            }
             this.Error = error;
         }
 
@@ -105,32 +90,32 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets GasUsed
         /// </summary>
-        [DataMember(Name = "gas_used", IsRequired = true, EmitDefaultValue = true)]
-        public double GasUsed { get; set; }
+        [DataMember(Name = "gas_used", EmitDefaultValue = true)]
+        public double? GasUsed { get; set; }
 
         /// <summary>
         /// Gets or Sets Status
         /// </summary>
-        [DataMember(Name = "status", IsRequired = true, EmitDefaultValue = true)]
-        public double Status { get; set; }
+        [DataMember(Name = "status", EmitDefaultValue = true)]
+        public double? Status { get; set; }
 
         /// <summary>
         /// Gets or Sets Logs
         /// </summary>
-        [DataMember(Name = "logs", IsRequired = true, EmitDefaultValue = true)]
-        public List<string> Logs { get; set; }
+        [DataMember(Name = "logs", EmitDefaultValue = true)]
+        public PrismaJsonValue Logs { get; set; }
 
         /// <summary>
         /// Gets or Sets To
         /// </summary>
-        [DataMember(Name = "to", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "to", EmitDefaultValue = true)]
         public string To { get; set; }
 
         /// <summary>
         /// Gets or Sets Error
         /// </summary>
-        [DataMember(Name = "error", IsRequired = true, EmitDefaultValue = true)]
-        public string Error { get; set; }
+        [DataMember(Name = "error", EmitDefaultValue = true)]
+        public PrismaJsonValue Error { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -200,17 +185,18 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.GasUsed == input.GasUsed ||
-                    this.GasUsed.Equals(input.GasUsed)
+                    (this.GasUsed != null &&
+                    this.GasUsed.Equals(input.GasUsed))
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.Logs == input.Logs ||
-                    this.Logs != null &&
-                    input.Logs != null &&
-                    this.Logs.SequenceEqual(input.Logs)
+                    (this.Logs != null &&
+                    this.Logs.Equals(input.Logs))
                 ) && 
                 (
                     this.To == input.To ||
@@ -245,8 +231,14 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.TransactionHash.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.GasUsed.GetHashCode();
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.GasUsed != null)
+                {
+                    hashCode = (hashCode * 59) + this.GasUsed.GetHashCode();
+                }
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.Logs != null)
                 {
                     hashCode = (hashCode * 59) + this.Logs.GetHashCode();

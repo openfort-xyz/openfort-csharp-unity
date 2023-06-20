@@ -40,13 +40,14 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="AccountResponse" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
+        /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="address">address (required).</param>
         /// <param name="deployed">deployed (required).</param>
-        /// <param name="_object">_object (required).</param>
+        /// <param name="custodial">custodial (required).</param>
         /// <param name="chainId">chainId (required).</param>
-        /// <param name="transactionIntents">transactionIntents (required).</param>
-        public AccountResponse(string id = default(string), DateTime createdAt = default(DateTime), string address = default(string), bool deployed = default(bool), string _object = default(string), double chainId = default(double), List<TransactionIntentResponse> transactionIntents = default(List<TransactionIntentResponse>))
+        /// <param name="transactionIntents">transactionIntents.</param>
+        public AccountResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), string address = default(string), bool deployed = default(bool), bool custodial = default(bool), double chainId = default(double), PolicyResponseTransactionIntents transactionIntents = default(PolicyResponseTransactionIntents))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -54,6 +55,12 @@ namespace Openfort.Model
                 throw new ArgumentNullException("id is a required property for AccountResponse and cannot be null");
             }
             this.Id = id;
+            // to ensure "_object" is required (not null)
+            if (_object == null)
+            {
+                throw new ArgumentNullException("_object is a required property for AccountResponse and cannot be null");
+            }
+            this.Object = _object;
             this.CreatedAt = createdAt;
             // to ensure "address" is required (not null)
             if (address == null)
@@ -62,18 +69,8 @@ namespace Openfort.Model
             }
             this.Address = address;
             this.Deployed = deployed;
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for AccountResponse and cannot be null");
-            }
-            this.Object = _object;
+            this.Custodial = custodial;
             this.ChainId = chainId;
-            // to ensure "transactionIntents" is required (not null)
-            if (transactionIntents == null)
-            {
-                throw new ArgumentNullException("transactionIntents is a required property for AccountResponse and cannot be null");
-            }
             this.TransactionIntents = transactionIntents;
         }
 
@@ -82,6 +79,12 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public string Object { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt
@@ -102,10 +105,10 @@ namespace Openfort.Model
         public bool Deployed { get; set; }
 
         /// <summary>
-        /// Gets or Sets Object
+        /// Gets or Sets Custodial
         /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
+        [DataMember(Name = "custodial", IsRequired = true, EmitDefaultValue = true)]
+        public bool Custodial { get; set; }
 
         /// <summary>
         /// Gets or Sets ChainId
@@ -116,8 +119,8 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets TransactionIntents
         /// </summary>
-        [DataMember(Name = "transaction_intents", IsRequired = true, EmitDefaultValue = true)]
-        public List<TransactionIntentResponse> TransactionIntents { get; set; }
+        [DataMember(Name = "transaction_intents", EmitDefaultValue = false)]
+        public PolicyResponseTransactionIntents TransactionIntents { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -128,10 +131,11 @@ namespace Openfort.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class AccountResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  Deployed: ").Append(Deployed).Append("\n");
-            sb.Append("  Object: ").Append(Object).Append("\n");
+            sb.Append("  Custodial: ").Append(Custodial).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
             sb.Append("}\n");
@@ -175,6 +179,11 @@ namespace Openfort.Model
                     this.Id.Equals(input.Id))
                 ) && 
                 (
+                    this.Object == input.Object ||
+                    (this.Object != null &&
+                    this.Object.Equals(input.Object))
+                ) && 
+                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
@@ -189,9 +198,8 @@ namespace Openfort.Model
                     this.Deployed.Equals(input.Deployed)
                 ) && 
                 (
-                    this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
+                    this.Custodial == input.Custodial ||
+                    this.Custodial.Equals(input.Custodial)
                 ) && 
                 (
                     this.ChainId == input.ChainId ||
@@ -199,9 +207,8 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.TransactionIntents == input.TransactionIntents ||
-                    this.TransactionIntents != null &&
-                    input.TransactionIntents != null &&
-                    this.TransactionIntents.SequenceEqual(input.TransactionIntents)
+                    (this.TransactionIntents != null &&
+                    this.TransactionIntents.Equals(input.TransactionIntents))
                 );
         }
 
@@ -218,6 +225,10 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
+                if (this.Object != null)
+                {
+                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
+                }
                 if (this.CreatedAt != null)
                 {
                     hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
@@ -227,10 +238,7 @@ namespace Openfort.Model
                     hashCode = (hashCode * 59) + this.Address.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Deployed.GetHashCode();
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Custodial.GetHashCode();
                 hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
                 if (this.TransactionIntents != null)
                 {

@@ -40,14 +40,18 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="SessionResponse" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
-        /// <param name="createdAt">createdAt (required).</param>
         /// <param name="_object">_object (required).</param>
+        /// <param name="createdAt">createdAt (required).</param>
+        /// <param name="updatedAt">updatedAt (required).</param>
+        /// <param name="isActive">isActive.</param>
+        /// <param name="address">address (required).</param>
         /// <param name="validAfter">validAfter.</param>
         /// <param name="validUntil">validUntil.</param>
         /// <param name="whitelist">whitelist.</param>
         /// <param name="limit">limit.</param>
         /// <param name="nextAction">nextAction (required).</param>
-        public SessionResponse(string id = default(string), DateTime createdAt = default(DateTime), string _object = default(string), string validAfter = default(string), string validUntil = default(string), List<string> whitelist = default(List<string>), double limit = default(double), Object nextAction = default(Object))
+        /// <param name="transactionIntents">transactionIntents (required).</param>
+        public SessionResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), bool isActive = default(bool), string address = default(string), string validAfter = default(string), string validUntil = default(string), List<string> whitelist = default(List<string>), double limit = default(double), Object nextAction = default(Object), SessionResponseTransactionIntents transactionIntents = default(SessionResponseTransactionIntents))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -55,19 +59,33 @@ namespace Openfort.Model
                 throw new ArgumentNullException("id is a required property for SessionResponse and cannot be null");
             }
             this.Id = id;
-            this.CreatedAt = createdAt;
             // to ensure "_object" is required (not null)
             if (_object == null)
             {
                 throw new ArgumentNullException("_object is a required property for SessionResponse and cannot be null");
             }
             this.Object = _object;
+            this.CreatedAt = createdAt;
+            this.UpdatedAt = updatedAt;
+            // to ensure "address" is required (not null)
+            if (address == null)
+            {
+                throw new ArgumentNullException("address is a required property for SessionResponse and cannot be null");
+            }
+            this.Address = address;
             // to ensure "nextAction" is required (not null)
             if (nextAction == null)
             {
                 throw new ArgumentNullException("nextAction is a required property for SessionResponse and cannot be null");
             }
             this.NextAction = nextAction;
+            // to ensure "transactionIntents" is required (not null)
+            if (transactionIntents == null)
+            {
+                throw new ArgumentNullException("transactionIntents is a required property for SessionResponse and cannot be null");
+            }
+            this.TransactionIntents = transactionIntents;
+            this.IsActive = isActive;
             this.ValidAfter = validAfter;
             this.ValidUntil = validUntil;
             this.Whitelist = whitelist;
@@ -81,16 +99,34 @@ namespace Openfort.Model
         public string Id { get; set; }
 
         /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public string Object { get; set; }
+
+        /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets Object
+        /// Gets or Sets UpdatedAt
         /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
+        [DataMember(Name = "updated_at", IsRequired = true, EmitDefaultValue = true)]
+        public DateTime UpdatedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets IsActive
+        /// </summary>
+        [DataMember(Name = "is_active", EmitDefaultValue = true)]
+        public bool IsActive { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Address
+        /// </summary>
+        [DataMember(Name = "address", IsRequired = true, EmitDefaultValue = true)]
+        public string Address { get; set; }
 
         /// <summary>
         /// Gets or Sets ValidAfter
@@ -123,6 +159,12 @@ namespace Openfort.Model
         public Object NextAction { get; set; }
 
         /// <summary>
+        /// Gets or Sets TransactionIntents
+        /// </summary>
+        [DataMember(Name = "transaction_intents", IsRequired = true, EmitDefaultValue = true)]
+        public SessionResponseTransactionIntents TransactionIntents { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -131,13 +173,17 @@ namespace Openfort.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class SessionResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Object: ").Append(Object).Append("\n");
+            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+            sb.Append("  IsActive: ").Append(IsActive).Append("\n");
+            sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  ValidAfter: ").Append(ValidAfter).Append("\n");
             sb.Append("  ValidUntil: ").Append(ValidUntil).Append("\n");
             sb.Append("  Whitelist: ").Append(Whitelist).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("  NextAction: ").Append(NextAction).Append("\n");
+            sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -179,14 +225,28 @@ namespace Openfort.Model
                     this.Id.Equals(input.Id))
                 ) && 
                 (
+                    this.Object == input.Object ||
+                    (this.Object != null &&
+                    this.Object.Equals(input.Object))
+                ) && 
+                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
-                    this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
+                ) && 
+                (
+                    this.IsActive == input.IsActive ||
+                    this.IsActive.Equals(input.IsActive)
+                ) && 
+                (
+                    this.Address == input.Address ||
+                    (this.Address != null &&
+                    this.Address.Equals(input.Address))
                 ) && 
                 (
                     this.ValidAfter == input.ValidAfter ||
@@ -212,6 +272,11 @@ namespace Openfort.Model
                     this.NextAction == input.NextAction ||
                     (this.NextAction != null &&
                     this.NextAction.Equals(input.NextAction))
+                ) && 
+                (
+                    this.TransactionIntents == input.TransactionIntents ||
+                    (this.TransactionIntents != null &&
+                    this.TransactionIntents.Equals(input.TransactionIntents))
                 );
         }
 
@@ -228,13 +293,22 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
+                if (this.Object != null)
+                {
+                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
+                }
                 if (this.CreatedAt != null)
                 {
                     hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 }
-                if (this.Object != null)
+                if (this.UpdatedAt != null)
                 {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
+                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.IsActive.GetHashCode();
+                if (this.Address != null)
+                {
+                    hashCode = (hashCode * 59) + this.Address.GetHashCode();
                 }
                 if (this.ValidAfter != null)
                 {
@@ -252,6 +326,10 @@ namespace Openfort.Model
                 if (this.NextAction != null)
                 {
                     hashCode = (hashCode * 59) + this.NextAction.GetHashCode();
+                }
+                if (this.TransactionIntents != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransactionIntents.GetHashCode();
                 }
                 return hashCode;
             }

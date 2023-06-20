@@ -27,18 +27,18 @@ using System.Reflection;
 namespace Openfort.Model
 {
     /// <summary>
-    /// ContractResponseAbiAnyOfInner
+    /// PolicyResponseTransactionIntents
     /// </summary>
-    [JsonConverter(typeof(ContractResponseAbiAnyOfInnerJsonConverter))]
-    [DataContract(Name = "ContractResponse_abi_anyOf_inner")]
-    public partial class ContractResponseAbiAnyOfInner : AbstractOpenAPISchema, IEquatable<ContractResponseAbiAnyOfInner>
+    [JsonConverter(typeof(PolicyResponseTransactionIntentsJsonConverter))]
+    [DataContract(Name = "PolicyResponse_transaction_intents")]
+    public partial class PolicyResponseTransactionIntents : AbstractOpenAPISchema, IEquatable<PolicyResponseTransactionIntents>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContractResponseAbiAnyOfInner" /> class
-        /// with the <see cref="string" /> class
+        /// Initializes a new instance of the <see cref="PolicyResponseTransactionIntents" /> class
+        /// with the <see cref="List{TransactionIntentResponse}" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of string.</param>
-        public ContractResponseAbiAnyOfInner(string actualInstance)
+        /// <param name="actualInstance">An instance of List&lt;TransactionIntentResponse&gt;.</param>
+        public PolicyResponseTransactionIntents(List<TransactionIntentResponse> actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -46,23 +46,11 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContractResponseAbiAnyOfInner" /> class
-        /// with the <see cref="Fragment" /> class
+        /// Initializes a new instance of the <see cref="PolicyResponseTransactionIntents" /> class
+        /// with the <see cref="List{String}" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of Fragment.</param>
-        public ContractResponseAbiAnyOfInner(Fragment actualInstance)
-        {
-            this.IsNullable = false;
-            this.SchemaType= "anyOf";
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ContractResponseAbiAnyOfInner" /> class
-        /// with the <see cref="JsonFragment" /> class
-        /// </summary>
-        /// <param name="actualInstance">An instance of JsonFragment.</param>
-        public ContractResponseAbiAnyOfInner(JsonFragment actualInstance)
+        /// <param name="actualInstance">An instance of List&lt;string&gt;.</param>
+        public PolicyResponseTransactionIntents(List<string> actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -83,53 +71,29 @@ namespace Openfort.Model
             }
             set
             {
-                if (value.GetType() == typeof(Fragment))
+                if (value.GetType() == typeof(List<TransactionIntentResponse>))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(JsonFragment))
-                {
-                    this._actualInstance = value;
-                }
-                else if (value.GetType() == typeof(string))
+                else if (value.GetType() == typeof(List<string>))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: Fragment, JsonFragment, string");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: List<TransactionIntentResponse>, List<string>");
                 }
             }
         }
 
         /// <summary>
-        /// Get the actual instance of `string`. If the actual instance is not `string`,
+        /// Get the actual instance of `List&lt;TransactionIntentResponse&gt;`. If the actual instance is not `List&lt;TransactionIntentResponse&gt;`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of string</returns>
-        public string GetString()
+        /// <returns>An instance of List&lt;TransactionIntentResponse&gt;</returns>
+        public List<TransactionIntentResponse> GetList()
         {
-            return (string)this.ActualInstance;
-        }
-
-        /// <summary>
-        /// Get the actual instance of `Fragment`. If the actual instance is not `Fragment`,
-        /// the InvalidClassException will be thrown
-        /// </summary>
-        /// <returns>An instance of Fragment</returns>
-        public Fragment GetFragment()
-        {
-            return (Fragment)this.ActualInstance;
-        }
-
-        /// <summary>
-        /// Get the actual instance of `JsonFragment`. If the actual instance is not `JsonFragment`,
-        /// the InvalidClassException will be thrown
-        /// </summary>
-        /// <returns>An instance of JsonFragment</returns>
-        public JsonFragment GetJsonFragment()
-        {
-            return (JsonFragment)this.ActualInstance;
+            return (List<TransactionIntentResponse>)this.ActualInstance;
         }
 
         /// <summary>
@@ -139,7 +103,7 @@ namespace Openfort.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ContractResponseAbiAnyOfInner {\n");
+            sb.Append("class PolicyResponseTransactionIntents {\n");
             sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -151,57 +115,45 @@ namespace Openfort.Model
         /// <returns>JSON string presentation of the object</returns>
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(this.ActualInstance, ContractResponseAbiAnyOfInner.SerializerSettings);
+            return JsonConvert.SerializeObject(this.ActualInstance, PolicyResponseTransactionIntents.SerializerSettings);
         }
 
         /// <summary>
-        /// Converts the JSON string into an instance of ContractResponseAbiAnyOfInner
+        /// Converts the JSON string into an instance of PolicyResponseTransactionIntents
         /// </summary>
         /// <param name="jsonString">JSON string</param>
-        /// <returns>An instance of ContractResponseAbiAnyOfInner</returns>
-        public static ContractResponseAbiAnyOfInner FromJson(string jsonString)
+        /// <returns>An instance of PolicyResponseTransactionIntents</returns>
+        public static PolicyResponseTransactionIntents FromJson(string jsonString)
         {
-            ContractResponseAbiAnyOfInner newContractResponseAbiAnyOfInner = null;
+            PolicyResponseTransactionIntents newPolicyResponseTransactionIntents = null;
 
             if (string.IsNullOrEmpty(jsonString))
             {
-                return newContractResponseAbiAnyOfInner;
+                return newPolicyResponseTransactionIntents;
             }
 
             try
             {
-                newContractResponseAbiAnyOfInner = new ContractResponseAbiAnyOfInner(JsonConvert.DeserializeObject<Fragment>(jsonString, ContractResponseAbiAnyOfInner.SerializerSettings));
+                newPolicyResponseTransactionIntents = new PolicyResponseTransactionIntents(JsonConvert.DeserializeObject<List<TransactionIntentResponse>>(jsonString, PolicyResponseTransactionIntents.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
-                return newContractResponseAbiAnyOfInner;
+                return newPolicyResponseTransactionIntents;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into Fragment: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into List<TransactionIntentResponse>: {1}", jsonString, exception.ToString()));
             }
 
             try
             {
-                newContractResponseAbiAnyOfInner = new ContractResponseAbiAnyOfInner(JsonConvert.DeserializeObject<JsonFragment>(jsonString, ContractResponseAbiAnyOfInner.SerializerSettings));
+                newPolicyResponseTransactionIntents = new PolicyResponseTransactionIntents(JsonConvert.DeserializeObject<List<string>>(jsonString, PolicyResponseTransactionIntents.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
-                return newContractResponseAbiAnyOfInner;
+                return newPolicyResponseTransactionIntents;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into JsonFragment: {1}", jsonString, exception.ToString()));
-            }
-
-            try
-            {
-                newContractResponseAbiAnyOfInner = new ContractResponseAbiAnyOfInner(JsonConvert.DeserializeObject<string>(jsonString, ContractResponseAbiAnyOfInner.SerializerSettings));
-                // deserialization is considered successful at this point if no exception has been thrown.
-                return newContractResponseAbiAnyOfInner;
-            }
-            catch (Exception exception)
-            {
-                // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into string: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into List<string>: {1}", jsonString, exception.ToString()));
             }
 
             // no match found, throw an exception
@@ -215,15 +167,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ContractResponseAbiAnyOfInner);
+            return this.Equals(input as PolicyResponseTransactionIntents);
         }
 
         /// <summary>
-        /// Returns true if ContractResponseAbiAnyOfInner instances are equal
+        /// Returns true if PolicyResponseTransactionIntents instances are equal
         /// </summary>
-        /// <param name="input">Instance of ContractResponseAbiAnyOfInner to be compared</param>
+        /// <param name="input">Instance of PolicyResponseTransactionIntents to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ContractResponseAbiAnyOfInner input)
+        public bool Equals(PolicyResponseTransactionIntents input)
         {
             if (input == null)
                 return false;
@@ -249,9 +201,9 @@ namespace Openfort.Model
     }
 
     /// <summary>
-    /// Custom JSON converter for ContractResponseAbiAnyOfInner
+    /// Custom JSON converter for PolicyResponseTransactionIntents
     /// </summary>
-    public class ContractResponseAbiAnyOfInnerJsonConverter : JsonConverter
+    public class PolicyResponseTransactionIntentsJsonConverter : JsonConverter
     {
         /// <summary>
         /// To write the JSON string
@@ -261,7 +213,7 @@ namespace Openfort.Model
         /// <param name="serializer">JSON Serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue((string)(typeof(ContractResponseAbiAnyOfInner).GetMethod("ToJson").Invoke(value, null)));
+            writer.WriteRawValue((string)(typeof(PolicyResponseTransactionIntents).GetMethod("ToJson").Invoke(value, null)));
         }
 
         /// <summary>
@@ -276,7 +228,7 @@ namespace Openfort.Model
         {
             if(reader.TokenType != JsonToken.Null)
             {
-                return ContractResponseAbiAnyOfInner.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                return PolicyResponseTransactionIntents.FromJson(JObject.Load(reader).ToString(Formatting.None));
             }
             return null;
         }

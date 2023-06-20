@@ -40,13 +40,14 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="PolicyResponse" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
+        /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="chainId">chainId (required).</param>
         /// <param name="strategy">strategy (required).</param>
-        /// <param name="allowFunctions">allowFunctions (required).</param>
-        /// <param name="_object">_object (required).</param>
-        public PolicyResponse(string id = default(string), DateTime createdAt = default(DateTime), string name = default(string), double chainId = default(double), string strategy = default(string), List<AllowFunctionResponse> allowFunctions = default(List<AllowFunctionResponse>), string _object = default(string))
+        /// <param name="transactionIntents">transactionIntents.</param>
+        /// <param name="policyRules">policyRules.</param>
+        public PolicyResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), string name = default(string), double chainId = default(double), Object strategy = default(Object), PolicyResponseTransactionIntents transactionIntents = default(PolicyResponseTransactionIntents), PolicyResponsePolicyRules policyRules = default(PolicyResponsePolicyRules))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -54,6 +55,12 @@ namespace Openfort.Model
                 throw new ArgumentNullException("id is a required property for PolicyResponse and cannot be null");
             }
             this.Id = id;
+            // to ensure "_object" is required (not null)
+            if (_object == null)
+            {
+                throw new ArgumentNullException("_object is a required property for PolicyResponse and cannot be null");
+            }
+            this.Object = _object;
             this.CreatedAt = createdAt;
             // to ensure "name" is required (not null)
             if (name == null)
@@ -68,18 +75,8 @@ namespace Openfort.Model
                 throw new ArgumentNullException("strategy is a required property for PolicyResponse and cannot be null");
             }
             this.Strategy = strategy;
-            // to ensure "allowFunctions" is required (not null)
-            if (allowFunctions == null)
-            {
-                throw new ArgumentNullException("allowFunctions is a required property for PolicyResponse and cannot be null");
-            }
-            this.AllowFunctions = allowFunctions;
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for PolicyResponse and cannot be null");
-            }
-            this.Object = _object;
+            this.TransactionIntents = transactionIntents;
+            this.PolicyRules = policyRules;
         }
 
         /// <summary>
@@ -87,6 +84,12 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public string Object { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt
@@ -110,19 +113,19 @@ namespace Openfort.Model
         /// Gets or Sets Strategy
         /// </summary>
         [DataMember(Name = "strategy", IsRequired = true, EmitDefaultValue = true)]
-        public string Strategy { get; set; }
+        public Object Strategy { get; set; }
 
         /// <summary>
-        /// Gets or Sets AllowFunctions
+        /// Gets or Sets TransactionIntents
         /// </summary>
-        [DataMember(Name = "allow_functions", IsRequired = true, EmitDefaultValue = true)]
-        public List<AllowFunctionResponse> AllowFunctions { get; set; }
+        [DataMember(Name = "transaction_intents", EmitDefaultValue = false)]
+        public PolicyResponseTransactionIntents TransactionIntents { get; set; }
 
         /// <summary>
-        /// Gets or Sets Object
+        /// Gets or Sets PolicyRules
         /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
+        [DataMember(Name = "policy_rules", EmitDefaultValue = false)]
+        public PolicyResponsePolicyRules PolicyRules { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -133,12 +136,13 @@ namespace Openfort.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class PolicyResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  Strategy: ").Append(Strategy).Append("\n");
-            sb.Append("  AllowFunctions: ").Append(AllowFunctions).Append("\n");
-            sb.Append("  Object: ").Append(Object).Append("\n");
+            sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
+            sb.Append("  PolicyRules: ").Append(PolicyRules).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -180,6 +184,11 @@ namespace Openfort.Model
                     this.Id.Equals(input.Id))
                 ) && 
                 (
+                    this.Object == input.Object ||
+                    (this.Object != null &&
+                    this.Object.Equals(input.Object))
+                ) && 
+                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
@@ -199,15 +208,14 @@ namespace Openfort.Model
                     this.Strategy.Equals(input.Strategy))
                 ) && 
                 (
-                    this.AllowFunctions == input.AllowFunctions ||
-                    this.AllowFunctions != null &&
-                    input.AllowFunctions != null &&
-                    this.AllowFunctions.SequenceEqual(input.AllowFunctions)
+                    this.TransactionIntents == input.TransactionIntents ||
+                    (this.TransactionIntents != null &&
+                    this.TransactionIntents.Equals(input.TransactionIntents))
                 ) && 
                 (
-                    this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
+                    this.PolicyRules == input.PolicyRules ||
+                    (this.PolicyRules != null &&
+                    this.PolicyRules.Equals(input.PolicyRules))
                 );
         }
 
@@ -224,6 +232,10 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
+                if (this.Object != null)
+                {
+                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
+                }
                 if (this.CreatedAt != null)
                 {
                     hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
@@ -237,13 +249,13 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Strategy.GetHashCode();
                 }
-                if (this.AllowFunctions != null)
+                if (this.TransactionIntents != null)
                 {
-                    hashCode = (hashCode * 59) + this.AllowFunctions.GetHashCode();
+                    hashCode = (hashCode * 59) + this.TransactionIntents.GetHashCode();
                 }
-                if (this.Object != null)
+                if (this.PolicyRules != null)
                 {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
+                    hashCode = (hashCode * 59) + this.PolicyRules.GetHashCode();
                 }
                 return hashCode;
             }
