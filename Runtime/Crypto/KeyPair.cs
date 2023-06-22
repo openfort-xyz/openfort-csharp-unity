@@ -112,6 +112,11 @@ namespace Openfort.Crypto
             PlayerPrefs.SetString("openfort", PrivateHex);
         }
 
+        public void RemoveFromPlayerPrefs()
+        {
+            PlayerPrefs.DeleteKey("openfort");
+        }
+
         public static KeyPair LoadFromPlayerPrefs()
         {
             var savedPrivateKey = PlayerPrefs.GetString("openfort");

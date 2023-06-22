@@ -80,6 +80,11 @@ namespace Openfort
             SessionKey.SaveToPlayerPrefs();
         }
 
+        public void RemoveSessionKey()
+        {
+            SessionKey.RemoveFromPlayerPrefs();
+        }
+
         public string SignMessage(byte[] msg)
         {
             return SessionKey.Sign(msg);
