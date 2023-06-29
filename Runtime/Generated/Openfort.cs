@@ -97,13 +97,13 @@ namespace Openfort
 
         public async Task<SessionResponse> SendSignatureSessionRequest(string sessionId, string signature)
         {
-            var result = await SessionApi.SignatureSessionAsync(sessionId, signature);
+            var result = await SessionApi.SignatureSessionAsync(sessionId, new SignatureRequest(signature));
             return result;
         }
 
         public async Task<TransactionIntentResponse> SendSignatureTransactionIntentRequest(string sessionId, string signature)
         {
-            var result = await TransactionIntentsApi.SignatureAsync(sessionId, signature);
+            var result = await TransactionIntentsApi.SignatureAsync(sessionId, new SignatureRequest(signature));
             return result;
         }
     }

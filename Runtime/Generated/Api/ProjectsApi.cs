@@ -34,11 +34,9 @@ namespace Openfort.Api
         /// Creates a project object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <returns>ProjectResponse</returns>
-        ProjectResponse CreateProject(string name, bool? livemode = default(bool?), string project = default(string));
+        ProjectResponse CreateProject(ProjectRequest projectRequest);
 
         /// <summary>
         /// 
@@ -47,11 +45,9 @@ namespace Openfort.Api
         /// Creates a project object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <returns>ApiResponse of ProjectResponse</returns>
-        ApiResponse<ProjectResponse> CreateProjectWithHttpInfo(string name, bool? livemode = default(bool?), string project = default(string));
+        ApiResponse<ProjectResponse> CreateProjectWithHttpInfo(ProjectRequest projectRequest);
         /// <summary>
         /// 
         /// </summary>
@@ -112,11 +108,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <returns>ProjectResponse</returns>
-        ProjectResponse UpdateProject(string id, string name, bool? livemode = default(bool?), string project = default(string));
+        ProjectResponse UpdateProject(string id, ProjectRequest projectRequest);
 
         /// <summary>
         /// 
@@ -126,11 +120,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <returns>ApiResponse of ProjectResponse</returns>
-        ApiResponse<ProjectResponse> UpdateProjectWithHttpInfo(string id, string name, bool? livemode = default(bool?), string project = default(string));
+        ApiResponse<ProjectResponse> UpdateProjectWithHttpInfo(string id, ProjectRequest projectRequest);
         #endregion Synchronous Operations
     }
 
@@ -147,12 +139,10 @@ namespace Openfort.Api
         /// Creates a project object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProjectResponse</returns>
-        System.Threading.Tasks.Task<ProjectResponse> CreateProjectAsync(string name, bool? livemode = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ProjectResponse> CreateProjectAsync(ProjectRequest projectRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -161,12 +151,10 @@ namespace Openfort.Api
         /// Creates a project object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProjectResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProjectResponse>> CreateProjectWithHttpInfoAsync(string name, bool? livemode = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ProjectResponse>> CreateProjectWithHttpInfoAsync(ProjectRequest projectRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -242,12 +230,10 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProjectResponse</returns>
-        System.Threading.Tasks.Task<ProjectResponse> UpdateProjectAsync(string id, string name, bool? livemode = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ProjectResponse> UpdateProjectAsync(string id, ProjectRequest projectRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -257,12 +243,10 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProjectResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProjectResponse>> UpdateProjectWithHttpInfoAsync(string id, string name, bool? livemode = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ProjectResponse>> UpdateProjectWithHttpInfoAsync(string id, ProjectRequest projectRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -411,13 +395,11 @@ namespace Openfort.Api
         ///  Creates a project object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <returns>ProjectResponse</returns>
-        public ProjectResponse CreateProject(string name, bool? livemode = default(bool?), string project = default(string))
+        public ProjectResponse CreateProject(ProjectRequest projectRequest)
         {
-            Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = CreateProjectWithHttpInfo(name, livemode, project);
+            Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = CreateProjectWithHttpInfo(projectRequest);
             return localVarResponse.Data;
         }
 
@@ -425,20 +407,18 @@ namespace Openfort.Api
         ///  Creates a project object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <returns>ApiResponse of ProjectResponse</returns>
-        public Openfort.Client.ApiResponse<ProjectResponse> CreateProjectWithHttpInfo(string name, bool? livemode = default(bool?), string project = default(string))
+        public Openfort.Client.ApiResponse<ProjectResponse> CreateProjectWithHttpInfo(ProjectRequest projectRequest)
         {
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling ProjectsApi->CreateProject");
+            // verify the required parameter 'projectRequest' is set
+            if (projectRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'projectRequest' when calling ProjectsApi->CreateProject");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
-                "application/x-www-form-urlencoded"
+                "application/json"
             };
 
             // to determine the Accept header
@@ -452,15 +432,7 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
-            if (livemode != null)
-            {
-                localVarRequestOptions.FormParameters.Add("livemode", Openfort.Client.ClientUtils.ParameterToString(livemode)); // form parameter
-            }
-            if (project != null)
-            {
-                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
-            }
+            localVarRequestOptions.Data = projectRequest;
 
 
             // make the HTTP request
@@ -479,14 +451,12 @@ namespace Openfort.Api
         ///  Creates a project object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProjectResponse</returns>
-        public async System.Threading.Tasks.Task<ProjectResponse> CreateProjectAsync(string name, bool? livemode = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ProjectResponse> CreateProjectAsync(ProjectRequest projectRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = CreateProjectWithHttpInfoAsync(name, livemode, project, cancellationToken);
+            var task = CreateProjectWithHttpInfoAsync(projectRequest, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -499,22 +469,20 @@ namespace Openfort.Api
         ///  Creates a project object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProjectResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ProjectResponse>> CreateProjectWithHttpInfoAsync(string name, bool? livemode = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ProjectResponse>> CreateProjectWithHttpInfoAsync(ProjectRequest projectRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling ProjectsApi->CreateProject");
+            // verify the required parameter 'projectRequest' is set
+            if (projectRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'projectRequest' when calling ProjectsApi->CreateProject");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
-                "application/x-www-form-urlencoded"
+                "application/json"
             };
 
             // to determine the Accept header
@@ -529,15 +497,7 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
-            if (livemode != null)
-            {
-                localVarRequestOptions.FormParameters.Add("livemode", Openfort.Client.ClientUtils.ParameterToString(livemode)); // form parameter
-            }
-            if (project != null)
-            {
-                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
-            }
+            localVarRequestOptions.Data = projectRequest;
 
 
             // make the HTTP request
@@ -938,13 +898,11 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <returns>ProjectResponse</returns>
-        public ProjectResponse UpdateProject(string id, string name, bool? livemode = default(bool?), string project = default(string))
+        public ProjectResponse UpdateProject(string id, ProjectRequest projectRequest)
         {
-            Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = UpdateProjectWithHttpInfo(id, name, livemode, project);
+            Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = UpdateProjectWithHttpInfo(id, projectRequest);
             return localVarResponse.Data;
         }
 
@@ -953,24 +911,22 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <returns>ApiResponse of ProjectResponse</returns>
-        public Openfort.Client.ApiResponse<ProjectResponse> UpdateProjectWithHttpInfo(string id, string name, bool? livemode = default(bool?), string project = default(string))
+        public Openfort.Client.ApiResponse<ProjectResponse> UpdateProjectWithHttpInfo(string id, ProjectRequest projectRequest)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling ProjectsApi->UpdateProject");
 
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling ProjectsApi->UpdateProject");
+            // verify the required parameter 'projectRequest' is set
+            if (projectRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'projectRequest' when calling ProjectsApi->UpdateProject");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
-                "application/x-www-form-urlencoded"
+                "application/json"
             };
 
             // to determine the Accept header
@@ -985,15 +941,7 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
-            if (livemode != null)
-            {
-                localVarRequestOptions.FormParameters.Add("livemode", Openfort.Client.ClientUtils.ParameterToString(livemode)); // form parameter
-            }
-            if (project != null)
-            {
-                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
-            }
+            localVarRequestOptions.Data = projectRequest;
 
 
             // make the HTTP request
@@ -1013,14 +961,12 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProjectResponse</returns>
-        public async System.Threading.Tasks.Task<ProjectResponse> UpdateProjectAsync(string id, string name, bool? livemode = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ProjectResponse> UpdateProjectAsync(string id, ProjectRequest projectRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = UpdateProjectWithHttpInfoAsync(id, name, livemode, project, cancellationToken);
+            var task = UpdateProjectWithHttpInfoAsync(id, projectRequest, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<ProjectResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -1034,26 +980,24 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="livemode"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="projectRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProjectResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ProjectResponse>> UpdateProjectWithHttpInfoAsync(string id, string name, bool? livemode = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ProjectResponse>> UpdateProjectWithHttpInfoAsync(string id, ProjectRequest projectRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling ProjectsApi->UpdateProject");
 
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling ProjectsApi->UpdateProject");
+            // verify the required parameter 'projectRequest' is set
+            if (projectRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'projectRequest' when calling ProjectsApi->UpdateProject");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
-                "application/x-www-form-urlencoded"
+                "application/json"
             };
 
             // to determine the Accept header
@@ -1069,15 +1013,7 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
-            if (livemode != null)
-            {
-                localVarRequestOptions.FormParameters.Add("livemode", Openfort.Client.ClientUtils.ParameterToString(livemode)); // form parameter
-            }
-            if (project != null)
-            {
-                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
-            }
+            localVarRequestOptions.Data = projectRequest;
 
 
             // make the HTTP request

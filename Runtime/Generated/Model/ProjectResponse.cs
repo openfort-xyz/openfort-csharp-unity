@@ -31,6 +31,12 @@ namespace Openfort.Model
     [DataContract(Name = "ProjectResponse")]
     public partial class ProjectResponse : IEquatable<ProjectResponse>
     {
+
+        /// <summary>
+        /// Gets or Sets PkPolicy
+        /// </summary>
+        [DataMember(Name = "pk_policy", IsRequired = true, EmitDefaultValue = true)]
+        public PKPolicy PkPolicy { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectResponse" /> class.
         /// </summary>
@@ -42,11 +48,13 @@ namespace Openfort.Model
         /// <param name="id">id (required).</param>
         /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
+        /// <param name="updatedAt">updatedAt (required).</param>
         /// <param name="name">name (required).</param>
+        /// <param name="pkPolicy">pkPolicy (required).</param>
         /// <param name="livemode">livemode (required).</param>
         /// <param name="logoUrl">logoUrl.</param>
         /// <param name="apikeys">apikeys (required).</param>
-        public ProjectResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), string name = default(string), bool livemode = default(bool), string logoUrl = default(string), ProjectResponseApikeys apikeys = default(ProjectResponseApikeys))
+        public ProjectResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), string name = default(string), PKPolicy pkPolicy = default(PKPolicy), bool livemode = default(bool), string logoUrl = default(string), ProjectResponseApikeys apikeys = default(ProjectResponseApikeys))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -61,12 +69,14 @@ namespace Openfort.Model
             }
             this.Object = _object;
             this.CreatedAt = createdAt;
+            this.UpdatedAt = updatedAt;
             // to ensure "name" is required (not null)
             if (name == null)
             {
                 throw new ArgumentNullException("name is a required property for ProjectResponse and cannot be null");
             }
             this.Name = name;
+            this.PkPolicy = pkPolicy;
             this.Livemode = livemode;
             // to ensure "apikeys" is required (not null)
             if (apikeys == null)
@@ -94,6 +104,12 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
         public DateTime CreatedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets UpdatedAt
+        /// </summary>
+        [DataMember(Name = "updated_at", IsRequired = true, EmitDefaultValue = true)]
+        public DateTime UpdatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
@@ -130,7 +146,9 @@ namespace Openfort.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  PkPolicy: ").Append(PkPolicy).Append("\n");
             sb.Append("  Livemode: ").Append(Livemode).Append("\n");
             sb.Append("  LogoUrl: ").Append(LogoUrl).Append("\n");
             sb.Append("  Apikeys: ").Append(Apikeys).Append("\n");
@@ -185,9 +203,18 @@ namespace Openfort.Model
                     this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
+                ) && 
+                (
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this.PkPolicy == input.PkPolicy ||
+                    this.PkPolicy.Equals(input.PkPolicy)
                 ) && 
                 (
                     this.Livemode == input.Livemode ||
@@ -226,10 +253,15 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 }
+                if (this.UpdatedAt != null)
+                {
+                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+                }
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.PkPolicy.GetHashCode();
                 hashCode = (hashCode * 59) + this.Livemode.GetHashCode();
                 if (this.LogoUrl != null)
                 {

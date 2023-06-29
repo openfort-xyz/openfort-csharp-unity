@@ -34,14 +34,9 @@ namespace Openfort.Api
         /// Creates a contract object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="chainId"></param>
-        /// <param name="address"> (optional)</param>
-        /// <param name="abi"> (optional)</param>
-        /// <param name="publicVerification"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="contractRequest"></param>
         /// <returns>ContractResponse</returns>
-        ContractResponse CreateContract(string name, double chainId, string address = default(string), PrismaJsonValue abi = default(PrismaJsonValue), bool? publicVerification = default(bool?), string project = default(string));
+        ContractResponse CreateContract(ContractRequest contractRequest);
 
         /// <summary>
         /// 
@@ -50,14 +45,9 @@ namespace Openfort.Api
         /// Creates a contract object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="chainId"></param>
-        /// <param name="address"> (optional)</param>
-        /// <param name="abi"> (optional)</param>
-        /// <param name="publicVerification"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="contractRequest"></param>
         /// <returns>ApiResponse of ContractResponse</returns>
-        ApiResponse<ContractResponse> CreateContractWithHttpInfo(string name, double chainId, string address = default(string), PrismaJsonValue abi = default(PrismaJsonValue), bool? publicVerification = default(bool?), string project = default(string));
+        ApiResponse<ContractResponse> CreateContractWithHttpInfo(ContractRequest contractRequest);
         /// <summary>
         /// 
         /// </summary>
@@ -110,7 +100,7 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
+        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <returns>ContractsResponse</returns>
         ContractsResponse GetContracts(string project = default(string), double? limit = default(double?));
 
@@ -122,7 +112,7 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
+        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <returns>ApiResponse of ContractsResponse</returns>
         ApiResponse<ContractsResponse> GetContractsWithHttpInfo(string project = default(string), double? limit = default(double?));
         #endregion Synchronous Operations
@@ -141,15 +131,10 @@ namespace Openfort.Api
         /// Creates a contract object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="chainId"></param>
-        /// <param name="address"> (optional)</param>
-        /// <param name="abi"> (optional)</param>
-        /// <param name="publicVerification"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="contractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractResponse</returns>
-        System.Threading.Tasks.Task<ContractResponse> CreateContractAsync(string name, double chainId, string address = default(string), PrismaJsonValue abi = default(PrismaJsonValue), bool? publicVerification = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ContractResponse> CreateContractAsync(ContractRequest contractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -158,15 +143,10 @@ namespace Openfort.Api
         /// Creates a contract object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="chainId"></param>
-        /// <param name="address"> (optional)</param>
-        /// <param name="abi"> (optional)</param>
-        /// <param name="publicVerification"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="contractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ContractResponse>> CreateContractWithHttpInfoAsync(string name, double chainId, string address = default(string), PrismaJsonValue abi = default(PrismaJsonValue), bool? publicVerification = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ContractResponse>> CreateContractWithHttpInfoAsync(ContractRequest contractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -223,7 +203,7 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
+        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractsResponse</returns>
         System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(string project = default(string), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -236,7 +216,7 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
+        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractsResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(string project = default(string), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -388,16 +368,11 @@ namespace Openfort.Api
         ///  Creates a contract object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="chainId"></param>
-        /// <param name="address"> (optional)</param>
-        /// <param name="abi"> (optional)</param>
-        /// <param name="publicVerification"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="contractRequest"></param>
         /// <returns>ContractResponse</returns>
-        public ContractResponse CreateContract(string name, double chainId, string address = default(string), PrismaJsonValue abi = default(PrismaJsonValue), bool? publicVerification = default(bool?), string project = default(string))
+        public ContractResponse CreateContract(ContractRequest contractRequest)
         {
-            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = CreateContractWithHttpInfo(name, chainId, address, abi, publicVerification, project);
+            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = CreateContractWithHttpInfo(contractRequest);
             return localVarResponse.Data;
         }
 
@@ -405,23 +380,18 @@ namespace Openfort.Api
         ///  Creates a contract object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="chainId"></param>
-        /// <param name="address"> (optional)</param>
-        /// <param name="abi"> (optional)</param>
-        /// <param name="publicVerification"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="contractRequest"></param>
         /// <returns>ApiResponse of ContractResponse</returns>
-        public Openfort.Client.ApiResponse<ContractResponse> CreateContractWithHttpInfo(string name, double chainId, string address = default(string), PrismaJsonValue abi = default(PrismaJsonValue), bool? publicVerification = default(bool?), string project = default(string))
+        public Openfort.Client.ApiResponse<ContractResponse> CreateContractWithHttpInfo(ContractRequest contractRequest)
         {
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling ContractsApi->CreateContract");
+            // verify the required parameter 'contractRequest' is set
+            if (contractRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'contractRequest' when calling ContractsApi->CreateContract");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
-                "application/x-www-form-urlencoded"
+                "application/json"
             };
 
             // to determine the Accept header
@@ -435,24 +405,7 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
-            localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
-            if (address != null)
-            {
-                localVarRequestOptions.FormParameters.Add("address", Openfort.Client.ClientUtils.ParameterToString(address)); // form parameter
-            }
-            if (abi != null)
-            {
-                localVarRequestOptions.FormParameters.Add("abi", Openfort.Client.ClientUtils.ParameterToString(abi)); // form parameter
-            }
-            if (publicVerification != null)
-            {
-                localVarRequestOptions.FormParameters.Add("public_verification", Openfort.Client.ClientUtils.ParameterToString(publicVerification)); // form parameter
-            }
-            if (project != null)
-            {
-                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
-            }
+            localVarRequestOptions.Data = contractRequest;
 
 
             // make the HTTP request
@@ -471,17 +424,12 @@ namespace Openfort.Api
         ///  Creates a contract object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="chainId"></param>
-        /// <param name="address"> (optional)</param>
-        /// <param name="abi"> (optional)</param>
-        /// <param name="publicVerification"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="contractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractResponse</returns>
-        public async System.Threading.Tasks.Task<ContractResponse> CreateContractAsync(string name, double chainId, string address = default(string), PrismaJsonValue abi = default(PrismaJsonValue), bool? publicVerification = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ContractResponse> CreateContractAsync(ContractRequest contractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = CreateContractWithHttpInfoAsync(name, chainId, address, abi, publicVerification, project, cancellationToken);
+            var task = CreateContractWithHttpInfoAsync(contractRequest, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<ContractResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -494,25 +442,20 @@ namespace Openfort.Api
         ///  Creates a contract object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="chainId"></param>
-        /// <param name="address"> (optional)</param>
-        /// <param name="abi"> (optional)</param>
-        /// <param name="publicVerification"> (optional)</param>
-        /// <param name="project"> (optional)</param>
+        /// <param name="contractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractResponse>> CreateContractWithHttpInfoAsync(string name, double chainId, string address = default(string), PrismaJsonValue abi = default(PrismaJsonValue), bool? publicVerification = default(bool?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractResponse>> CreateContractWithHttpInfoAsync(ContractRequest contractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'name' when calling ContractsApi->CreateContract");
+            // verify the required parameter 'contractRequest' is set
+            if (contractRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'contractRequest' when calling ContractsApi->CreateContract");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
-                "application/x-www-form-urlencoded"
+                "application/json"
             };
 
             // to determine the Accept header
@@ -527,24 +470,7 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.FormParameters.Add("name", Openfort.Client.ClientUtils.ParameterToString(name)); // form parameter
-            localVarRequestOptions.FormParameters.Add("chain_id", Openfort.Client.ClientUtils.ParameterToString(chainId)); // form parameter
-            if (address != null)
-            {
-                localVarRequestOptions.FormParameters.Add("address", Openfort.Client.ClientUtils.ParameterToString(address)); // form parameter
-            }
-            if (abi != null)
-            {
-                localVarRequestOptions.FormParameters.Add("abi", Openfort.Client.ClientUtils.ParameterToString(abi)); // form parameter
-            }
-            if (publicVerification != null)
-            {
-                localVarRequestOptions.FormParameters.Add("public_verification", Openfort.Client.ClientUtils.ParameterToString(publicVerification)); // form parameter
-            }
-            if (project != null)
-            {
-                localVarRequestOptions.FormParameters.Add("project", Openfort.Client.ClientUtils.ParameterToString(project)); // form parameter
-            }
+            localVarRequestOptions.Data = contractRequest;
 
 
             // make the HTTP request
@@ -835,7 +761,7 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
+        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <returns>ContractsResponse</returns>
         public ContractsResponse GetContracts(string project = default(string), double? limit = default(double?))
         {
@@ -848,7 +774,7 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
+        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <returns>ApiResponse of ContractsResponse</returns>
         public Openfort.Client.ApiResponse<ContractsResponse> GetContractsWithHttpInfo(string project = default(string), double? limit = default(double?))
         {
@@ -895,7 +821,7 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
+        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractsResponse</returns>
         public async System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(string project = default(string), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -914,7 +840,7 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="project">Specifies the unique project ID. (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
+        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractsResponse)</returns>
         public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(string project = default(string), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))

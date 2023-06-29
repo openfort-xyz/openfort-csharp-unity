@@ -26,10 +26,10 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// PolicyRuleResponse
+    /// PolicyAllowFunctionRequest
     /// </summary>
-    [DataContract(Name = "PolicyRuleResponse")]
-    public partial class PolicyRuleResponse : IEquatable<PolicyRuleResponse>
+    [DataContract(Name = "PolicyAllowFunctionRequest")]
+    public partial class PolicyAllowFunctionRequest : IEquatable<PolicyAllowFunctionRequest>
     {
 
         /// <summary>
@@ -38,66 +38,34 @@ namespace Openfort.Model
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public PolicySchema Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PolicyRuleResponse" /> class.
+        /// Initializes a new instance of the <see cref="PolicyAllowFunctionRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected PolicyRuleResponse() { }
+        protected PolicyAllowFunctionRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PolicyRuleResponse" /> class.
+        /// Initializes a new instance of the <see cref="PolicyAllowFunctionRequest" /> class.
         /// </summary>
-        /// <param name="id">id (required).</param>
-        /// <param name="_object">_object (required).</param>
-        /// <param name="createdAt">createdAt (required).</param>
         /// <param name="type">type (required).</param>
         /// <param name="functionName">functionName (required).</param>
+        /// <param name="project">project.</param>
         /// <param name="contract">contract (required).</param>
-        public PolicyRuleResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), PolicySchema type = default(PolicySchema), string functionName = default(string), PolicyRuleResponseContract contract = default(PolicyRuleResponseContract))
+        public PolicyAllowFunctionRequest(PolicySchema type = default(PolicySchema), string functionName = default(string), string project = default(string), string contract = default(string))
         {
-            // to ensure "id" is required (not null)
-            if (id == null)
-            {
-                throw new ArgumentNullException("id is a required property for PolicyRuleResponse and cannot be null");
-            }
-            this.Id = id;
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for PolicyRuleResponse and cannot be null");
-            }
-            this.Object = _object;
-            this.CreatedAt = createdAt;
             this.Type = type;
             // to ensure "functionName" is required (not null)
             if (functionName == null)
             {
-                throw new ArgumentNullException("functionName is a required property for PolicyRuleResponse and cannot be null");
+                throw new ArgumentNullException("functionName is a required property for PolicyAllowFunctionRequest and cannot be null");
             }
             this.FunctionName = functionName;
             // to ensure "contract" is required (not null)
             if (contract == null)
             {
-                throw new ArgumentNullException("contract is a required property for PolicyRuleResponse and cannot be null");
+                throw new ArgumentNullException("contract is a required property for PolicyAllowFunctionRequest and cannot be null");
             }
             this.Contract = contract;
+            this.Project = project;
         }
-
-        /// <summary>
-        /// Gets or Sets Id
-        /// </summary>
-        [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
-        public string Id { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Object
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
-
-        /// <summary>
-        /// Gets or Sets CreatedAt
-        /// </summary>
-        [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets FunctionName
@@ -106,10 +74,16 @@ namespace Openfort.Model
         public string FunctionName { get; set; }
 
         /// <summary>
+        /// Gets or Sets Project
+        /// </summary>
+        [DataMember(Name = "project", EmitDefaultValue = false)]
+        public string Project { get; set; }
+
+        /// <summary>
         /// Gets or Sets Contract
         /// </summary>
         [DataMember(Name = "contract", IsRequired = true, EmitDefaultValue = true)]
-        public PolicyRuleResponseContract Contract { get; set; }
+        public string Contract { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,12 +92,10 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PolicyRuleResponse {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Object: ").Append(Object).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("class PolicyAllowFunctionRequest {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  FunctionName: ").Append(FunctionName).Append("\n");
+            sb.Append("  Project: ").Append(Project).Append("\n");
             sb.Append("  Contract: ").Append(Contract).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -145,36 +117,21 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PolicyRuleResponse);
+            return this.Equals(input as PolicyAllowFunctionRequest);
         }
 
         /// <summary>
-        /// Returns true if PolicyRuleResponse instances are equal
+        /// Returns true if PolicyAllowFunctionRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of PolicyRuleResponse to be compared</param>
+        /// <param name="input">Instance of PolicyAllowFunctionRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PolicyRuleResponse input)
+        public bool Equals(PolicyAllowFunctionRequest input)
         {
             if (input == null)
             {
                 return false;
             }
             return 
-                (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
-                ) && 
-                (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
-                ) && 
                 (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
@@ -183,6 +140,11 @@ namespace Openfort.Model
                     this.FunctionName == input.FunctionName ||
                     (this.FunctionName != null &&
                     this.FunctionName.Equals(input.FunctionName))
+                ) && 
+                (
+                    this.Project == input.Project ||
+                    (this.Project != null &&
+                    this.Project.Equals(input.Project))
                 ) && 
                 (
                     this.Contract == input.Contract ||
@@ -200,22 +162,14 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                {
-                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
-                }
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                }
-                if (this.CreatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 if (this.FunctionName != null)
                 {
                     hashCode = (hashCode * 59) + this.FunctionName.GetHashCode();
+                }
+                if (this.Project != null)
+                {
+                    hashCode = (hashCode * 59) + this.Project.GetHashCode();
                 }
                 if (this.Contract != null)
                 {
