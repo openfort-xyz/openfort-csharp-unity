@@ -40,9 +40,10 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="Interaction" /> class.
         /// </summary>
         /// <param name="contract">contract (required).</param>
+        /// <param name="value">value.</param>
         /// <param name="functionName">functionName (required).</param>
         /// <param name="functionArgs">functionArgs (required).</param>
-        public Interaction(string contract = default(string), string functionName = default(string), List<Object> functionArgs = default(List<Object>))
+        public Interaction(string contract = default(string), string value = default(string), string functionName = default(string), List<Object> functionArgs = default(List<Object>))
         {
             // to ensure "contract" is required (not null)
             if (contract == null)
@@ -62,6 +63,7 @@ namespace Openfort.Model
                 throw new ArgumentNullException("functionArgs is a required property for Interaction and cannot be null");
             }
             this.FunctionArgs = functionArgs;
+            this.Value = value;
         }
 
         /// <summary>
@@ -69,6 +71,12 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "contract", IsRequired = true, EmitDefaultValue = true)]
         public string Contract { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Value
+        /// </summary>
+        [DataMember(Name = "value", EmitDefaultValue = true)]
+        public string Value { get; set; }
 
         /// <summary>
         /// Gets or Sets FunctionName
@@ -91,6 +99,7 @@ namespace Openfort.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class Interaction {\n");
             sb.Append("  Contract: ").Append(Contract).Append("\n");
+            sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("  FunctionName: ").Append(FunctionName).Append("\n");
             sb.Append("  FunctionArgs: ").Append(FunctionArgs).Append("\n");
             sb.Append("}\n");
@@ -134,6 +143,11 @@ namespace Openfort.Model
                     this.Contract.Equals(input.Contract))
                 ) && 
                 (
+                    this.Value == input.Value ||
+                    (this.Value != null &&
+                    this.Value.Equals(input.Value))
+                ) && 
+                (
                     this.FunctionName == input.FunctionName ||
                     (this.FunctionName != null &&
                     this.FunctionName.Equals(input.FunctionName))
@@ -158,6 +172,10 @@ namespace Openfort.Model
                 if (this.Contract != null)
                 {
                     hashCode = (hashCode * 59) + this.Contract.GetHashCode();
+                }
+                if (this.Value != null)
+                {
+                    hashCode = (hashCode * 59) + this.Value.GetHashCode();
                 }
                 if (this.FunctionName != null)
                 {
