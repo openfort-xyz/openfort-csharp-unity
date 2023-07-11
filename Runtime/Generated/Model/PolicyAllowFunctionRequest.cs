@@ -47,9 +47,8 @@ namespace Openfort.Model
         /// </summary>
         /// <param name="type">type (required).</param>
         /// <param name="functionName">functionName (required).</param>
-        /// <param name="project">project.</param>
         /// <param name="contract">contract (required).</param>
-        public PolicyAllowFunctionRequest(PolicySchema type = default(PolicySchema), string functionName = default(string), string project = default(string), string contract = default(string))
+        public PolicyAllowFunctionRequest(PolicySchema type = default(PolicySchema), string functionName = default(string), string contract = default(string))
         {
             this.Type = type;
             // to ensure "functionName" is required (not null)
@@ -64,7 +63,6 @@ namespace Openfort.Model
                 throw new ArgumentNullException("contract is a required property for PolicyAllowFunctionRequest and cannot be null");
             }
             this.Contract = contract;
-            this.Project = project;
         }
 
         /// <summary>
@@ -72,12 +70,6 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "function_name", IsRequired = true, EmitDefaultValue = true)]
         public string FunctionName { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Project
-        /// </summary>
-        [DataMember(Name = "project", EmitDefaultValue = false)]
-        public string Project { get; set; }
 
         /// <summary>
         /// Gets or Sets Contract
@@ -95,7 +87,6 @@ namespace Openfort.Model
             sb.Append("class PolicyAllowFunctionRequest {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  FunctionName: ").Append(FunctionName).Append("\n");
-            sb.Append("  Project: ").Append(Project).Append("\n");
             sb.Append("  Contract: ").Append(Contract).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -142,11 +133,6 @@ namespace Openfort.Model
                     this.FunctionName.Equals(input.FunctionName))
                 ) && 
                 (
-                    this.Project == input.Project ||
-                    (this.Project != null &&
-                    this.Project.Equals(input.Project))
-                ) && 
-                (
                     this.Contract == input.Contract ||
                     (this.Contract != null &&
                     this.Contract.Equals(input.Contract))
@@ -166,10 +152,6 @@ namespace Openfort.Model
                 if (this.FunctionName != null)
                 {
                     hashCode = (hashCode * 59) + this.FunctionName.GetHashCode();
-                }
-                if (this.Project != null)
-                {
-                    hashCode = (hashCode * 59) + this.Project.GetHashCode();
                 }
                 if (this.Contract != null)
                 {

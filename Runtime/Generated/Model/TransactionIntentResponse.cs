@@ -52,7 +52,7 @@ namespace Openfort.Model
         /// <param name="account">account.</param>
         /// <param name="interactions">interactions (required).</param>
         /// <param name="response">response (required).</param>
-        public TransactionIntentResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), double chainId = default(double), string userOperationHash = default(string), PrismaJsonValue userOperation = default(PrismaJsonValue), TransactionIntentResponsePolicy policy = default(TransactionIntentResponsePolicy), TransactionIntentResponsePlayer player = default(TransactionIntentResponsePlayer), Object nextAction = default(Object), TransactionIntentResponseAccount account = default(TransactionIntentResponseAccount), List<Interaction> interactions = default(List<Interaction>), ResponseResponse response = default(ResponseResponse))
+        public TransactionIntentResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), double chainId = default(double), string userOperationHash = default(string), JsonValue userOperation = default(JsonValue), TransactionIntentResponsePolicy policy = default(TransactionIntentResponsePolicy), TransactionIntentResponsePlayer player = default(TransactionIntentResponsePlayer), Object nextAction = default(Object), TransactionIntentResponseAccount account = default(TransactionIntentResponseAccount), List<InteractionResponse> interactions = default(List<InteractionResponse>), ResponseResponse response = default(ResponseResponse))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -139,7 +139,7 @@ namespace Openfort.Model
         /// Gets or Sets UserOperation
         /// </summary>
         [DataMember(Name = "user_operation", EmitDefaultValue = true)]
-        public PrismaJsonValue UserOperation { get; set; }
+        public JsonValue UserOperation { get; set; }
 
         /// <summary>
         /// Gets or Sets Policy
@@ -169,7 +169,7 @@ namespace Openfort.Model
         /// Gets or Sets Interactions
         /// </summary>
         [DataMember(Name = "interactions", IsRequired = true, EmitDefaultValue = true)]
-        public List<Interaction> Interactions { get; set; }
+        public List<InteractionResponse> Interactions { get; set; }
 
         /// <summary>
         /// Gets or Sets Response

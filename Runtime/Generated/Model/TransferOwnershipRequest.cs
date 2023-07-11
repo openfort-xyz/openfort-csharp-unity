@@ -39,10 +39,9 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferOwnershipRequest" /> class.
         /// </summary>
-        /// <param name="project">The project ID.</param>
         /// <param name="newOwnerAddress">The address of the new owner (required).</param>
         /// <param name="policy">The policy ID (required).</param>
-        public TransferOwnershipRequest(string project = default(string), string newOwnerAddress = default(string), string policy = default(string))
+        public TransferOwnershipRequest(string newOwnerAddress = default(string), string policy = default(string))
         {
             // to ensure "newOwnerAddress" is required (not null)
             if (newOwnerAddress == null)
@@ -56,15 +55,7 @@ namespace Openfort.Model
                 throw new ArgumentNullException("policy is a required property for TransferOwnershipRequest and cannot be null");
             }
             this.Policy = policy;
-            this.Project = project;
         }
-
-        /// <summary>
-        /// The project ID
-        /// </summary>
-        /// <value>The project ID</value>
-        [DataMember(Name = "project", EmitDefaultValue = false)]
-        public string Project { get; set; }
 
         /// <summary>
         /// The address of the new owner
@@ -88,7 +79,6 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class TransferOwnershipRequest {\n");
-            sb.Append("  Project: ").Append(Project).Append("\n");
             sb.Append("  NewOwnerAddress: ").Append(NewOwnerAddress).Append("\n");
             sb.Append("  Policy: ").Append(Policy).Append("\n");
             sb.Append("}\n");
@@ -127,11 +117,6 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Project == input.Project ||
-                    (this.Project != null &&
-                    this.Project.Equals(input.Project))
-                ) && 
-                (
                     this.NewOwnerAddress == input.NewOwnerAddress ||
                     (this.NewOwnerAddress != null &&
                     this.NewOwnerAddress.Equals(input.NewOwnerAddress))
@@ -152,10 +137,6 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Project != null)
-                {
-                    hashCode = (hashCode * 59) + this.Project.GetHashCode();
-                }
                 if (this.NewOwnerAddress != null)
                 {
                     hashCode = (hashCode * 59) + this.NewOwnerAddress.GetHashCode();

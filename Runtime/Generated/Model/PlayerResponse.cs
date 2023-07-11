@@ -43,13 +43,12 @@ namespace Openfort.Model
         /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="name">name (required).</param>
-        /// <param name="livemode">livemode (required).</param>
         /// <param name="email">email (required).</param>
         /// <param name="description">description (required).</param>
         /// <param name="metadata">metadata (required).</param>
         /// <param name="transactionIntents">transactionIntents.</param>
         /// <param name="accounts">accounts.</param>
-        public PlayerResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), string name = default(string), bool livemode = default(bool), string email = default(string), string description = default(string), string metadata = default(string), PolicyResponseTransactionIntents transactionIntents = default(PolicyResponseTransactionIntents), PlayerResponseAccounts accounts = default(PlayerResponseAccounts))
+        public PlayerResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), string name = default(string), string email = default(string), string description = default(string), string metadata = default(string), PolicyResponseTransactionIntents transactionIntents = default(PolicyResponseTransactionIntents), PlayerResponseAccounts accounts = default(PlayerResponseAccounts))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -70,7 +69,6 @@ namespace Openfort.Model
                 throw new ArgumentNullException("name is a required property for PlayerResponse and cannot be null");
             }
             this.Name = name;
-            this.Livemode = livemode;
             // to ensure "email" is required (not null)
             if (email == null)
             {
@@ -118,12 +116,6 @@ namespace Openfort.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Livemode
-        /// </summary>
-        [DataMember(Name = "livemode", IsRequired = true, EmitDefaultValue = true)]
-        public bool Livemode { get; set; }
-
-        /// <summary>
         /// Gets or Sets Email
         /// </summary>
         [DataMember(Name = "email", IsRequired = true, EmitDefaultValue = true)]
@@ -165,7 +157,6 @@ namespace Openfort.Model
             sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Livemode: ").Append(Livemode).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
@@ -227,10 +218,6 @@ namespace Openfort.Model
                     this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.Livemode == input.Livemode ||
-                    this.Livemode.Equals(input.Livemode)
-                ) && 
-                (
                     this.Email == input.Email ||
                     (this.Email != null &&
                     this.Email.Equals(input.Email))
@@ -282,7 +269,6 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Livemode.GetHashCode();
                 if (this.Email != null)
                 {
                     hashCode = (hashCode * 59) + this.Email.GetHashCode();

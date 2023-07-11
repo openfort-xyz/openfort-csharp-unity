@@ -39,12 +39,11 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PlayerTransferOwnershipRequest" /> class.
         /// </summary>
-        /// <param name="project">The project ID.</param>
         /// <param name="policy">The policy ID (required).</param>
         /// <param name="chainId">The chain_id where the account is. (required).</param>
         /// <param name="newOwnerAddress">The address of the new owner (required).</param>
         /// <param name="player">The player ID.</param>
-        public PlayerTransferOwnershipRequest(string project = default(string), string policy = default(string), double chainId = default(double), string newOwnerAddress = default(string), string player = default(string))
+        public PlayerTransferOwnershipRequest(string policy = default(string), double chainId = default(double), string newOwnerAddress = default(string), string player = default(string))
         {
             // to ensure "policy" is required (not null)
             if (policy == null)
@@ -59,16 +58,8 @@ namespace Openfort.Model
                 throw new ArgumentNullException("newOwnerAddress is a required property for PlayerTransferOwnershipRequest and cannot be null");
             }
             this.NewOwnerAddress = newOwnerAddress;
-            this.Project = project;
             this.Player = player;
         }
-
-        /// <summary>
-        /// The project ID
-        /// </summary>
-        /// <value>The project ID</value>
-        [DataMember(Name = "project", EmitDefaultValue = false)]
-        public string Project { get; set; }
 
         /// <summary>
         /// The policy ID
@@ -106,7 +97,6 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class PlayerTransferOwnershipRequest {\n");
-            sb.Append("  Project: ").Append(Project).Append("\n");
             sb.Append("  Policy: ").Append(Policy).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  NewOwnerAddress: ").Append(NewOwnerAddress).Append("\n");
@@ -147,11 +137,6 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Project == input.Project ||
-                    (this.Project != null &&
-                    this.Project.Equals(input.Project))
-                ) && 
-                (
                     this.Policy == input.Policy ||
                     (this.Policy != null &&
                     this.Policy.Equals(input.Policy))
@@ -181,10 +166,6 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Project != null)
-                {
-                    hashCode = (hashCode * 59) + this.Project.GetHashCode();
-                }
                 if (this.Policy != null)
                 {
                     hashCode = (hashCode * 59) + this.Policy.GetHashCode();

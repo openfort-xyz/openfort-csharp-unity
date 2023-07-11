@@ -42,8 +42,7 @@ namespace Openfort.Model
         /// <param name="name">name (required).</param>
         /// <param name="chainId">chainId (required).</param>
         /// <param name="strategy">strategy.</param>
-        /// <param name="project">project.</param>
-        public PolicyRequest(string name = default(string), double chainId = default(double), Strategy strategy = default(Strategy), string project = default(string))
+        public PolicyRequest(string name = default(string), double chainId = default(double), Strategy strategy = default(Strategy))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -53,7 +52,6 @@ namespace Openfort.Model
             this.Name = name;
             this.ChainId = chainId;
             this.Strategy = strategy;
-            this.Project = project;
         }
 
         /// <summary>
@@ -75,12 +73,6 @@ namespace Openfort.Model
         public Strategy Strategy { get; set; }
 
         /// <summary>
-        /// Gets or Sets Project
-        /// </summary>
-        [DataMember(Name = "project", EmitDefaultValue = false)]
-        public string Project { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -91,7 +83,6 @@ namespace Openfort.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  Strategy: ").Append(Strategy).Append("\n");
-            sb.Append("  Project: ").Append(Project).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -140,11 +131,6 @@ namespace Openfort.Model
                     this.Strategy == input.Strategy ||
                     (this.Strategy != null &&
                     this.Strategy.Equals(input.Strategy))
-                ) && 
-                (
-                    this.Project == input.Project ||
-                    (this.Project != null &&
-                    this.Project.Equals(input.Project))
                 );
         }
 
@@ -165,10 +151,6 @@ namespace Openfort.Model
                 if (this.Strategy != null)
                 {
                     hashCode = (hashCode * 59) + this.Strategy.GetHashCode();
-                }
-                if (this.Project != null)
-                {
-                    hashCode = (hashCode * 59) + this.Project.GetHashCode();
                 }
                 return hashCode;
             }

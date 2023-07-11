@@ -31,6 +31,18 @@ namespace Openfort.Model
     [DataContract(Name = "ProjectRequest")]
     public partial class ProjectRequest : IEquatable<ProjectRequest>
     {
+
+        /// <summary>
+        /// Gets or Sets PkPolicy
+        /// </summary>
+        [DataMember(Name = "pk_policy", EmitDefaultValue = false)]
+        public PKPolicy? PkPolicy { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PkLocation
+        /// </summary>
+        [DataMember(Name = "pk_location", EmitDefaultValue = false)]
+        public PKLocation? PkLocation { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectRequest" /> class.
         /// </summary>
@@ -40,11 +52,9 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="ProjectRequest" /> class.
         /// </summary>
         /// <param name="name">name (required).</param>
-        /// <param name="livemode">livemode.</param>
-        /// <param name="project">project.</param>
         /// <param name="pkPolicy">pkPolicy.</param>
         /// <param name="pkLocation">pkLocation.</param>
-        public ProjectRequest(string name = default(string), bool livemode = default(bool), string project = default(string), string pkPolicy = default(string), string pkLocation = default(string))
+        public ProjectRequest(string name = default(string), PKPolicy? pkPolicy = default(PKPolicy?), PKLocation? pkLocation = default(PKLocation?))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -52,8 +62,6 @@ namespace Openfort.Model
                 throw new ArgumentNullException("name is a required property for ProjectRequest and cannot be null");
             }
             this.Name = name;
-            this.Livemode = livemode;
-            this.Project = project;
             this.PkPolicy = pkPolicy;
             this.PkLocation = pkLocation;
         }
@@ -65,30 +73,6 @@ namespace Openfort.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Livemode
-        /// </summary>
-        [DataMember(Name = "livemode", EmitDefaultValue = true)]
-        public bool Livemode { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Project
-        /// </summary>
-        [DataMember(Name = "project", EmitDefaultValue = false)]
-        public string Project { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PkPolicy
-        /// </summary>
-        [DataMember(Name = "pk_policy", EmitDefaultValue = false)]
-        public string PkPolicy { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PkLocation
-        /// </summary>
-        [DataMember(Name = "pk_location", EmitDefaultValue = false)]
-        public string PkLocation { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -97,8 +81,6 @@ namespace Openfort.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ProjectRequest {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Livemode: ").Append(Livemode).Append("\n");
-            sb.Append("  Project: ").Append(Project).Append("\n");
             sb.Append("  PkPolicy: ").Append(PkPolicy).Append("\n");
             sb.Append("  PkLocation: ").Append(PkLocation).Append("\n");
             sb.Append("}\n");
@@ -142,23 +124,12 @@ namespace Openfort.Model
                     this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.Livemode == input.Livemode ||
-                    this.Livemode.Equals(input.Livemode)
-                ) && 
-                (
-                    this.Project == input.Project ||
-                    (this.Project != null &&
-                    this.Project.Equals(input.Project))
-                ) && 
-                (
                     this.PkPolicy == input.PkPolicy ||
-                    (this.PkPolicy != null &&
-                    this.PkPolicy.Equals(input.PkPolicy))
+                    this.PkPolicy.Equals(input.PkPolicy)
                 ) && 
                 (
                     this.PkLocation == input.PkLocation ||
-                    (this.PkLocation != null &&
-                    this.PkLocation.Equals(input.PkLocation))
+                    this.PkLocation.Equals(input.PkLocation)
                 );
         }
 
@@ -175,19 +146,8 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Livemode.GetHashCode();
-                if (this.Project != null)
-                {
-                    hashCode = (hashCode * 59) + this.Project.GetHashCode();
-                }
-                if (this.PkPolicy != null)
-                {
-                    hashCode = (hashCode * 59) + this.PkPolicy.GetHashCode();
-                }
-                if (this.PkLocation != null)
-                {
-                    hashCode = (hashCode * 59) + this.PkLocation.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.PkPolicy.GetHashCode();
+                hashCode = (hashCode * 59) + this.PkLocation.GetHashCode();
                 return hashCode;
             }
         }

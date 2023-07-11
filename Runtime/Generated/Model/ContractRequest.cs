@@ -41,11 +41,10 @@ namespace Openfort.Model
         /// </summary>
         /// <param name="name">name (required).</param>
         /// <param name="chainId">chainId (required).</param>
-        /// <param name="address">address.</param>
+        /// <param name="address">address (required).</param>
         /// <param name="abi">abi.</param>
         /// <param name="publicVerification">publicVerification.</param>
-        /// <param name="project">project.</param>
-        public ContractRequest(string name = default(string), double chainId = default(double), string address = default(string), PrismaJsonValue abi = default(PrismaJsonValue), bool publicVerification = default(bool), string project = default(string))
+        public ContractRequest(string name = default(string), double chainId = default(double), string address = default(string), PrismaJsonValue abi = default(PrismaJsonValue), bool publicVerification = default(bool))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -54,10 +53,14 @@ namespace Openfort.Model
             }
             this.Name = name;
             this.ChainId = chainId;
+            // to ensure "address" is required (not null)
+            if (address == null)
+            {
+                throw new ArgumentNullException("address is a required property for ContractRequest and cannot be null");
+            }
             this.Address = address;
             this.Abi = abi;
             this.PublicVerification = publicVerification;
-            this.Project = project;
         }
 
         /// <summary>
@@ -75,7 +78,7 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets Address
         /// </summary>
-        [DataMember(Name = "address", EmitDefaultValue = false)]
+        [DataMember(Name = "address", IsRequired = true, EmitDefaultValue = true)]
         public string Address { get; set; }
 
         /// <summary>
@@ -91,12 +94,6 @@ namespace Openfort.Model
         public bool PublicVerification { get; set; }
 
         /// <summary>
-        /// Gets or Sets Project
-        /// </summary>
-        [DataMember(Name = "project", EmitDefaultValue = false)]
-        public string Project { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -109,7 +106,6 @@ namespace Openfort.Model
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  Abi: ").Append(Abi).Append("\n");
             sb.Append("  PublicVerification: ").Append(PublicVerification).Append("\n");
-            sb.Append("  Project: ").Append(Project).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -167,11 +163,6 @@ namespace Openfort.Model
                 (
                     this.PublicVerification == input.PublicVerification ||
                     this.PublicVerification.Equals(input.PublicVerification)
-                ) && 
-                (
-                    this.Project == input.Project ||
-                    (this.Project != null &&
-                    this.Project.Equals(input.Project))
                 );
         }
 
@@ -198,10 +189,6 @@ namespace Openfort.Model
                     hashCode = (hashCode * 59) + this.Abi.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.PublicVerification.GetHashCode();
-                if (this.Project != null)
-                {
-                    hashCode = (hashCode * 59) + this.Project.GetHashCode();
-                }
                 return hashCode;
             }
         }

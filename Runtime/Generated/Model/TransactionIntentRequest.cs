@@ -43,10 +43,9 @@ namespace Openfort.Model
         /// <param name="chainId">chainId (required).</param>
         /// <param name="policy">policy.</param>
         /// <param name="externalOwnerAddress">externalOwnerAddress.</param>
-        /// <param name="project">project.</param>
         /// <param name="optimistic">optimistic (required).</param>
         /// <param name="interactions">interactions (required).</param>
-        public TransactionIntentRequest(string player = default(string), double chainId = default(double), string policy = default(string), string externalOwnerAddress = default(string), string project = default(string), bool optimistic = default(bool), List<Interaction> interactions = default(List<Interaction>))
+        public TransactionIntentRequest(string player = default(string), double chainId = default(double), string policy = default(string), string externalOwnerAddress = default(string), bool optimistic = default(bool), List<Interaction> interactions = default(List<Interaction>))
         {
             // to ensure "player" is required (not null)
             if (player == null)
@@ -64,7 +63,6 @@ namespace Openfort.Model
             this.Interactions = interactions;
             this.Policy = policy;
             this.ExternalOwnerAddress = externalOwnerAddress;
-            this.Project = project;
         }
 
         /// <summary>
@@ -92,12 +90,6 @@ namespace Openfort.Model
         public string ExternalOwnerAddress { get; set; }
 
         /// <summary>
-        /// Gets or Sets Project
-        /// </summary>
-        [DataMember(Name = "project", EmitDefaultValue = false)]
-        public string Project { get; set; }
-
-        /// <summary>
         /// Gets or Sets Optimistic
         /// </summary>
         [DataMember(Name = "optimistic", IsRequired = true, EmitDefaultValue = true)]
@@ -121,7 +113,6 @@ namespace Openfort.Model
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  Policy: ").Append(Policy).Append("\n");
             sb.Append("  ExternalOwnerAddress: ").Append(ExternalOwnerAddress).Append("\n");
-            sb.Append("  Project: ").Append(Project).Append("\n");
             sb.Append("  Optimistic: ").Append(Optimistic).Append("\n");
             sb.Append("  Interactions: ").Append(Interactions).Append("\n");
             sb.Append("}\n");
@@ -179,11 +170,6 @@ namespace Openfort.Model
                     this.ExternalOwnerAddress.Equals(input.ExternalOwnerAddress))
                 ) && 
                 (
-                    this.Project == input.Project ||
-                    (this.Project != null &&
-                    this.Project.Equals(input.Project))
-                ) && 
-                (
                     this.Optimistic == input.Optimistic ||
                     this.Optimistic.Equals(input.Optimistic)
                 ) && 
@@ -216,10 +202,6 @@ namespace Openfort.Model
                 if (this.ExternalOwnerAddress != null)
                 {
                     hashCode = (hashCode * 59) + this.ExternalOwnerAddress.GetHashCode();
-                }
-                if (this.Project != null)
-                {
-                    hashCode = (hashCode * 59) + this.Project.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Optimistic.GetHashCode();
                 if (this.Interactions != null)

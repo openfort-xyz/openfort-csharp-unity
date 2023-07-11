@@ -36,12 +36,10 @@ namespace Openfort.Model
         /// </summary>
         /// <param name="name">name.</param>
         /// <param name="description">description.</param>
-        /// <param name="project">project.</param>
-        public PlayerRequest(string name = default(string), string description = default(string), string project = default(string))
+        public PlayerRequest(string name = default(string), string description = default(string))
         {
             this.Name = name;
             this.Description = description;
-            this.Project = project;
         }
 
         /// <summary>
@@ -57,12 +55,6 @@ namespace Openfort.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or Sets Project
-        /// </summary>
-        [DataMember(Name = "project", EmitDefaultValue = false)]
-        public string Project { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -72,7 +64,6 @@ namespace Openfort.Model
             sb.Append("class PlayerRequest {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  Project: ").Append(Project).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -117,11 +108,6 @@ namespace Openfort.Model
                     this.Description == input.Description ||
                     (this.Description != null &&
                     this.Description.Equals(input.Description))
-                ) && 
-                (
-                    this.Project == input.Project ||
-                    (this.Project != null &&
-                    this.Project.Equals(input.Project))
                 );
         }
 
@@ -141,10 +127,6 @@ namespace Openfort.Model
                 if (this.Description != null)
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
-                }
-                if (this.Project != null)
-                {
-                    hashCode = (hashCode * 59) + this.Project.GetHashCode();
                 }
                 return hashCode;
             }

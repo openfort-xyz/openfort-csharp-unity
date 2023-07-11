@@ -26,51 +26,43 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// GetProjectResponse
+    /// CreatePlayerRequest
     /// </summary>
-    [DataContract(Name = "GetProjectResponse")]
-    public partial class GetProjectResponse : IEquatable<GetProjectResponse>
+    [DataContract(Name = "CreatePlayerRequest")]
+    public partial class CreatePlayerRequest : IEquatable<CreatePlayerRequest>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetProjectResponse" /> class.
+        /// Initializes a new instance of the <see cref="CreatePlayerRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected GetProjectResponse() { }
+        protected CreatePlayerRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetProjectResponse" /> class.
+        /// Initializes a new instance of the <see cref="CreatePlayerRequest" /> class.
         /// </summary>
-        /// <param name="id">id (required).</param>
-        /// <param name="name">name.</param>
-        /// <param name="logoUrl">logoUrl.</param>
-        public GetProjectResponse(string id = default(string), string name = default(string), string logoUrl = default(string))
+        /// <param name="name">name (required).</param>
+        /// <param name="description">description.</param>
+        public CreatePlayerRequest(string name = default(string), string description = default(string))
         {
-            // to ensure "id" is required (not null)
-            if (id == null)
+            // to ensure "name" is required (not null)
+            if (name == null)
             {
-                throw new ArgumentNullException("id is a required property for GetProjectResponse and cannot be null");
+                throw new ArgumentNullException("name is a required property for CreatePlayerRequest and cannot be null");
             }
-            this.Id = id;
             this.Name = name;
-            this.LogoUrl = logoUrl;
+            this.Description = description;
         }
-
-        /// <summary>
-        /// Gets or Sets Id
-        /// </summary>
-        [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
-        public string Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets LogoUrl
+        /// Gets or Sets Description
         /// </summary>
-        [DataMember(Name = "logo_url", EmitDefaultValue = true)]
-        public string LogoUrl { get; set; }
+        [DataMember(Name = "description", EmitDefaultValue = false)]
+        public string Description { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -79,10 +71,9 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetProjectResponse {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("class CreatePlayerRequest {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  LogoUrl: ").Append(LogoUrl).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -103,15 +94,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GetProjectResponse);
+            return this.Equals(input as CreatePlayerRequest);
         }
 
         /// <summary>
-        /// Returns true if GetProjectResponse instances are equal
+        /// Returns true if CreatePlayerRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of GetProjectResponse to be compared</param>
+        /// <param name="input">Instance of CreatePlayerRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GetProjectResponse input)
+        public bool Equals(CreatePlayerRequest input)
         {
             if (input == null)
             {
@@ -119,19 +110,14 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.LogoUrl == input.LogoUrl ||
-                    (this.LogoUrl != null &&
-                    this.LogoUrl.Equals(input.LogoUrl))
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 );
         }
 
@@ -144,17 +130,13 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                {
-                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
-                }
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
-                if (this.LogoUrl != null)
+                if (this.Description != null)
                 {
-                    hashCode = (hashCode * 59) + this.LogoUrl.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
                 return hashCode;
             }

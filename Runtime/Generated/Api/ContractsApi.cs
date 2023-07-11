@@ -77,9 +77,8 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ContractResponse</returns>
-        ContractResponse GetContract(string id, string project = default(string));
+        ContractResponse GetContract(string id);
 
         /// <summary>
         /// 
@@ -89,9 +88,8 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of ContractResponse</returns>
-        ApiResponse<ContractResponse> GetContractWithHttpInfo(string id, string project = default(string));
+        ApiResponse<ContractResponse> GetContractWithHttpInfo(string id);
         /// <summary>
         /// 
         /// </summary>
@@ -99,10 +97,11 @@ namespace Openfort.Api
         /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <returns>ContractsResponse</returns>
-        ContractsResponse GetContracts(string project = default(string), double? limit = default(double?));
+        ContractsResponse GetContracts(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?));
 
         /// <summary>
         /// 
@@ -111,10 +110,11 @@ namespace Openfort.Api
         /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <returns>ApiResponse of ContractsResponse</returns>
-        ApiResponse<ContractsResponse> GetContractsWithHttpInfo(string project = default(string), double? limit = default(double?));
+        ApiResponse<ContractsResponse> GetContractsWithHttpInfo(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?));
         #endregion Synchronous Operations
     }
 
@@ -178,10 +178,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractResponse</returns>
-        System.Threading.Tasks.Task<ContractResponse> GetContractAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ContractResponse> GetContractAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -191,10 +190,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ContractResponse>> GetContractWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ContractResponse>> GetContractWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -202,11 +200,12 @@ namespace Openfort.Api
         /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractsResponse</returns>
-        System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(string project = default(string), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -215,11 +214,12 @@ namespace Openfort.Api
         /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractsResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(string project = default(string), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -623,11 +623,10 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ContractResponse</returns>
-        public ContractResponse GetContract(string id, string project = default(string))
+        public ContractResponse GetContract(string id)
         {
-            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = GetContractWithHttpInfo(id, project);
+            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = GetContractWithHttpInfo(id);
             return localVarResponse.Data;
         }
 
@@ -636,9 +635,8 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of ContractResponse</returns>
-        public Openfort.Client.ApiResponse<ContractResponse> GetContractWithHttpInfo(string id, string project = default(string))
+        public Openfort.Client.ApiResponse<ContractResponse> GetContractWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -661,10 +659,6 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
-            }
 
 
             // make the HTTP request
@@ -684,12 +678,11 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractResponse</returns>
-        public async System.Threading.Tasks.Task<ContractResponse> GetContractAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ContractResponse> GetContractAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetContractWithHttpInfoAsync(id, project, cancellationToken);
+            var task = GetContractWithHttpInfoAsync(id, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<ContractResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -703,10 +696,9 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractResponse>> GetContractWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractResponse>> GetContractWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -731,10 +723,6 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
-            }
 
 
             // make the HTTP request
@@ -760,12 +748,13 @@ namespace Openfort.Api
         ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <returns>ContractsResponse</returns>
-        public ContractsResponse GetContracts(string project = default(string), double? limit = default(double?))
+        public ContractsResponse GetContracts(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?))
         {
-            Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = GetContractsWithHttpInfo(project, limit);
+            Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = GetContractsWithHttpInfo(limit, order, skip);
             return localVarResponse.Data;
         }
 
@@ -773,10 +762,11 @@ namespace Openfort.Api
         ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <returns>ApiResponse of ContractsResponse</returns>
-        public Openfort.Client.ApiResponse<ContractsResponse> GetContractsWithHttpInfo(string project = default(string), double? limit = default(double?))
+        public Openfort.Client.ApiResponse<ContractsResponse> GetContractsWithHttpInfo(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?))
         {
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -794,13 +784,17 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
-            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (order != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
 
 
@@ -820,13 +814,14 @@ namespace Openfort.Api
         ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractsResponse</returns>
-        public async System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(string project = default(string), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetContractsWithHttpInfoAsync(project, limit, cancellationToken);
+            var task = GetContractsWithHttpInfoAsync(limit, order, skip, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -839,11 +834,12 @@ namespace Openfort.Api
         ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractsResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(string project = default(string), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -863,13 +859,17 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
-            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (order != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
 
 

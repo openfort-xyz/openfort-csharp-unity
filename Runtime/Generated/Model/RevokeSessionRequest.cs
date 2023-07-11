@@ -41,9 +41,10 @@ namespace Openfort.Model
         /// </summary>
         /// <param name="player">player (required).</param>
         /// <param name="chainId">chainId (required).</param>
+        /// <param name="optimistic">optimistic.</param>
         /// <param name="address">address (required).</param>
         /// <param name="policy">policy.</param>
-        public RevokeSessionRequest(string player = default(string), double chainId = default(double), string address = default(string), string policy = default(string))
+        public RevokeSessionRequest(string player = default(string), double chainId = default(double), bool optimistic = default(bool), string address = default(string), string policy = default(string))
         {
             // to ensure "player" is required (not null)
             if (player == null)
@@ -58,6 +59,7 @@ namespace Openfort.Model
                 throw new ArgumentNullException("address is a required property for RevokeSessionRequest and cannot be null");
             }
             this.Address = address;
+            this.Optimistic = optimistic;
             this.Policy = policy;
         }
 
@@ -72,6 +74,12 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "chain_id", IsRequired = true, EmitDefaultValue = true)]
         public double ChainId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Optimistic
+        /// </summary>
+        [DataMember(Name = "optimistic", EmitDefaultValue = true)]
+        public bool Optimistic { get; set; }
 
         /// <summary>
         /// Gets or Sets Address
@@ -95,6 +103,7 @@ namespace Openfort.Model
             sb.Append("class RevokeSessionRequest {\n");
             sb.Append("  Player: ").Append(Player).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
+            sb.Append("  Optimistic: ").Append(Optimistic).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  Policy: ").Append(Policy).Append("\n");
             sb.Append("}\n");
@@ -142,6 +151,10 @@ namespace Openfort.Model
                     this.ChainId.Equals(input.ChainId)
                 ) && 
                 (
+                    this.Optimistic == input.Optimistic ||
+                    this.Optimistic.Equals(input.Optimistic)
+                ) && 
+                (
                     this.Address == input.Address ||
                     (this.Address != null &&
                     this.Address.Equals(input.Address))
@@ -167,6 +180,7 @@ namespace Openfort.Model
                     hashCode = (hashCode * 59) + this.Player.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
+                hashCode = (hashCode * 59) + this.Optimistic.GetHashCode();
                 if (this.Address != null)
                 {
                     hashCode = (hashCode * 59) + this.Address.GetHashCode();

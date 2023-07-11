@@ -57,9 +57,8 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>AccountResponse</returns>
-        AccountResponse GetAccount(string id, List<string> expand = default(List<string>), string project = default(string));
+        AccountResponse GetAccount(string id, List<string> expand = default(List<string>));
 
         /// <summary>
         /// 
@@ -70,9 +69,8 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of AccountResponse</returns>
-        ApiResponse<AccountResponse> GetAccountWithHttpInfo(string id, List<string> expand = default(List<string>), string project = default(string));
+        ApiResponse<AccountResponse> GetAccountWithHttpInfo(string id, List<string> expand = default(List<string>));
         /// <summary>
         /// 
         /// </summary>
@@ -81,9 +79,8 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>InventoryResponse</returns>
-        InventoryResponse GetAccountInventory(string id, string project = default(string));
+        InventoryResponse GetAccountInventory(string id);
 
         /// <summary>
         /// 
@@ -93,9 +90,8 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of InventoryResponse</returns>
-        ApiResponse<InventoryResponse> GetAccountInventoryWithHttpInfo(string id, string project = default(string));
+        ApiResponse<InventoryResponse> GetAccountInventoryWithHttpInfo(string id);
         /// <summary>
         /// 
         /// </summary>
@@ -106,9 +102,8 @@ namespace Openfort.Api
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>AccountsResponse</returns>
-        AccountsResponse GetAccounts(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string));
+        AccountsResponse GetAccounts(string player, List<string> expand = default(List<string>), double? limit = default(double?));
 
         /// <summary>
         /// 
@@ -120,9 +115,31 @@ namespace Openfort.Api
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of AccountsResponse</returns>
-        ApiResponse<AccountsResponse> GetAccountsWithHttpInfo(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string));
+        ApiResponse<AccountsResponse> GetAccountsWithHttpInfo(string player, List<string> expand = default(List<string>), double? limit = default(double?));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Sign a given payload
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="signPayloadRequest"></param>
+        /// <returns>SignPayloadResponse</returns>
+        SignPayloadResponse SignPayload(string id, SignPayloadRequest signPayloadRequest);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Sign a given payload
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="signPayloadRequest"></param>
+        /// <returns>ApiResponse of SignPayloadResponse</returns>
+        ApiResponse<SignPayloadResponse> SignPayloadWithHttpInfo(string id, SignPayloadRequest signPayloadRequest);
         /// <summary>
         /// 
         /// </summary>
@@ -187,10 +204,9 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountResponse</returns>
-        System.Threading.Tasks.Task<AccountResponse> GetAccountAsync(string id, List<string> expand = default(List<string>), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<AccountResponse> GetAccountAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -201,10 +217,9 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountResponse>> GetAccountWithHttpInfoAsync(string id, List<string> expand = default(List<string>), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AccountResponse>> GetAccountWithHttpInfoAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -213,10 +228,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryResponse</returns>
-        System.Threading.Tasks.Task<InventoryResponse> GetAccountInventoryAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<InventoryResponse> GetAccountInventoryAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -226,10 +240,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InventoryResponse>> GetAccountInventoryWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<InventoryResponse>> GetAccountInventoryWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -240,10 +253,9 @@ namespace Openfort.Api
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountsResponse</returns>
-        System.Threading.Tasks.Task<AccountsResponse> GetAccountsAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<AccountsResponse> GetAccountsAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -255,10 +267,34 @@ namespace Openfort.Api
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountsResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountsResponse>> GetAccountsWithHttpInfoAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AccountsResponse>> GetAccountsWithHttpInfoAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Sign a given payload
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="signPayloadRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SignPayloadResponse</returns>
+        System.Threading.Tasks.Task<SignPayloadResponse> SignPayloadAsync(string id, SignPayloadRequest signPayloadRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Sign a given payload
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="signPayloadRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SignPayloadResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SignPayloadResponse>> SignPayloadWithHttpInfoAsync(string id, SignPayloadRequest signPayloadRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -562,11 +598,10 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>AccountResponse</returns>
-        public AccountResponse GetAccount(string id, List<string> expand = default(List<string>), string project = default(string))
+        public AccountResponse GetAccount(string id, List<string> expand = default(List<string>))
         {
-            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = GetAccountWithHttpInfo(id, expand, project);
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = GetAccountWithHttpInfo(id, expand);
             return localVarResponse.Data;
         }
 
@@ -576,9 +611,8 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of AccountResponse</returns>
-        public Openfort.Client.ApiResponse<AccountResponse> GetAccountWithHttpInfo(string id, List<string> expand = default(List<string>), string project = default(string))
+        public Openfort.Client.ApiResponse<AccountResponse> GetAccountWithHttpInfo(string id, List<string> expand = default(List<string>))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -604,10 +638,6 @@ namespace Openfort.Api
             if (expand != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
-            }
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -629,12 +659,11 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountResponse</returns>
-        public async System.Threading.Tasks.Task<AccountResponse> GetAccountAsync(string id, List<string> expand = default(List<string>), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<AccountResponse> GetAccountAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetAccountWithHttpInfoAsync(id, expand, project, cancellationToken);
+            var task = GetAccountWithHttpInfoAsync(id, expand, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<AccountResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -649,10 +678,9 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountResponse>> GetAccountWithHttpInfoAsync(string id, List<string> expand = default(List<string>), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountResponse>> GetAccountWithHttpInfoAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -680,10 +708,6 @@ namespace Openfort.Api
             if (expand != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
-            }
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -711,11 +735,10 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>InventoryResponse</returns>
-        public InventoryResponse GetAccountInventory(string id, string project = default(string))
+        public InventoryResponse GetAccountInventory(string id)
         {
-            Openfort.Client.ApiResponse<InventoryResponse> localVarResponse = GetAccountInventoryWithHttpInfo(id, project);
+            Openfort.Client.ApiResponse<InventoryResponse> localVarResponse = GetAccountInventoryWithHttpInfo(id);
             return localVarResponse.Data;
         }
 
@@ -724,9 +747,8 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of InventoryResponse</returns>
-        public Openfort.Client.ApiResponse<InventoryResponse> GetAccountInventoryWithHttpInfo(string id, string project = default(string))
+        public Openfort.Client.ApiResponse<InventoryResponse> GetAccountInventoryWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -749,10 +771,6 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
-            }
 
 
             // make the HTTP request
@@ -772,12 +790,11 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryResponse</returns>
-        public async System.Threading.Tasks.Task<InventoryResponse> GetAccountInventoryAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<InventoryResponse> GetAccountInventoryAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetAccountInventoryWithHttpInfoAsync(id, project, cancellationToken);
+            var task = GetAccountInventoryWithHttpInfoAsync(id, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<InventoryResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -791,10 +808,9 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<InventoryResponse>> GetAccountInventoryWithHttpInfoAsync(string id, string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<InventoryResponse>> GetAccountInventoryWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -819,10 +835,6 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
-            }
 
 
             // make the HTTP request
@@ -851,11 +863,10 @@ namespace Openfort.Api
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>AccountsResponse</returns>
-        public AccountsResponse GetAccounts(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string))
+        public AccountsResponse GetAccounts(string player, List<string> expand = default(List<string>), double? limit = default(double?))
         {
-            Openfort.Client.ApiResponse<AccountsResponse> localVarResponse = GetAccountsWithHttpInfo(player, expand, limit, project);
+            Openfort.Client.ApiResponse<AccountsResponse> localVarResponse = GetAccountsWithHttpInfo(player, expand, limit);
             return localVarResponse.Data;
         }
 
@@ -866,9 +877,8 @@ namespace Openfort.Api
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <returns>ApiResponse of AccountsResponse</returns>
-        public Openfort.Client.ApiResponse<AccountsResponse> GetAccountsWithHttpInfo(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string))
+        public Openfort.Client.ApiResponse<AccountsResponse> GetAccountsWithHttpInfo(string player, List<string> expand = default(List<string>), double? limit = default(double?))
         {
             // verify the required parameter 'player' is set
             if (player == null)
@@ -898,10 +908,6 @@ namespace Openfort.Api
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -924,12 +930,11 @@ namespace Openfort.Api
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountsResponse</returns>
-        public async System.Threading.Tasks.Task<AccountsResponse> GetAccountsAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<AccountsResponse> GetAccountsAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetAccountsWithHttpInfoAsync(player, expand, limit, project, cancellationToken);
+            var task = GetAccountsWithHttpInfoAsync(player, expand, limit, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<AccountsResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -945,10 +950,9 @@ namespace Openfort.Api
         /// <param name="player">Specifies the unique player ID.</param>
         /// <param name="expand">whether to expand the response or not (optional)</param>
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountsResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountsResponse>> GetAccountsWithHttpInfoAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountsResponse>> GetAccountsWithHttpInfoAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'player' is set
             if (player == null)
@@ -981,10 +985,6 @@ namespace Openfort.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
-            }
 
 
             // make the HTTP request
@@ -1000,6 +1000,148 @@ namespace Openfort.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAccounts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Sign a given payload
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="signPayloadRequest"></param>
+        /// <returns>SignPayloadResponse</returns>
+        public SignPayloadResponse SignPayload(string id, SignPayloadRequest signPayloadRequest)
+        {
+            Openfort.Client.ApiResponse<SignPayloadResponse> localVarResponse = SignPayloadWithHttpInfo(id, signPayloadRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Sign a given payload
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="signPayloadRequest"></param>
+        /// <returns>ApiResponse of SignPayloadResponse</returns>
+        public Openfort.Client.ApiResponse<SignPayloadResponse> SignPayloadWithHttpInfo(string id, SignPayloadRequest signPayloadRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->SignPayload");
+
+            // verify the required parameter 'signPayloadRequest' is set
+            if (signPayloadRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'signPayloadRequest' when calling AccountsApi->SignPayload");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = signPayloadRequest;
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<SignPayloadResponse>("/v1/accounts/{id}/sign-payload", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SignPayload", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Sign a given payload
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="signPayloadRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SignPayloadResponse</returns>
+        public async System.Threading.Tasks.Task<SignPayloadResponse> SignPayloadAsync(string id, SignPayloadRequest signPayloadRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = SignPayloadWithHttpInfoAsync(id, signPayloadRequest, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<SignPayloadResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<SignPayloadResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Sign a given payload
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="signPayloadRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SignPayloadResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<SignPayloadResponse>> SignPayloadWithHttpInfoAsync(string id, SignPayloadRequest signPayloadRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->SignPayload");
+
+            // verify the required parameter 'signPayloadRequest' is set
+            if (signPayloadRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'signPayloadRequest' when calling AccountsApi->SignPayload");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = signPayloadRequest;
+
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<SignPayloadResponse>("/v1/accounts/{id}/sign-payload", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SignPayload", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

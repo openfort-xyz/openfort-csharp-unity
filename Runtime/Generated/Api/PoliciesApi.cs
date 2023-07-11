@@ -96,11 +96,11 @@ namespace Openfort.Api
         /// Gets all policy objects for a given project.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <returns>PoliciesResponse</returns>
-        PoliciesResponse GetPolicies(string project = default(string), double? limit = default(double?), List<string> expand = default(List<string>));
+        PoliciesResponse GetPolicies(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?));
 
         /// <summary>
         /// 
@@ -109,11 +109,11 @@ namespace Openfort.Api
         /// Gets all policy objects for a given project.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <returns>ApiResponse of PoliciesResponse</returns>
-        ApiResponse<PoliciesResponse> GetPoliciesWithHttpInfo(string project = default(string), double? limit = default(double?), List<string> expand = default(List<string>));
+        ApiResponse<PoliciesResponse> GetPoliciesWithHttpInfo(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?));
         /// <summary>
         /// 
         /// </summary>
@@ -122,10 +122,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="project"> (optional)</param>
         /// <param name="expand"> (optional)</param>
         /// <returns>PolicyResponse</returns>
-        PolicyResponse GetPolicy(string id, string project = default(string), List<string> expand = default(List<string>));
+        PolicyResponse GetPolicy(string id, List<string> expand = default(List<string>));
 
         /// <summary>
         /// 
@@ -135,19 +134,17 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="project"> (optional)</param>
         /// <param name="expand"> (optional)</param>
         /// <returns>ApiResponse of PolicyResponse</returns>
-        ApiResponse<PolicyResponse> GetPolicyWithHttpInfo(string id, string project = default(string), List<string> expand = default(List<string>));
+        ApiResponse<PolicyResponse> GetPolicyWithHttpInfo(string id, List<string> expand = default(List<string>));
         /// <summary>
         /// 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="expand"> (optional)</param>
-        /// <param name="project"> (optional)</param>
         /// <returns>PolicyRulesResponse</returns>
-        PolicyRulesResponse GetPolicyAllowFunctions(string id, List<string> expand = default(List<string>), string project = default(string));
+        PolicyRulesResponse GetPolicyAllowFunctions(string id, List<string> expand = default(List<string>));
 
         /// <summary>
         /// 
@@ -158,9 +155,8 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="expand"> (optional)</param>
-        /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of PolicyRulesResponse</returns>
-        ApiResponse<PolicyRulesResponse> GetPolicyAllowFunctionsWithHttpInfo(string id, List<string> expand = default(List<string>), string project = default(string));
+        ApiResponse<PolicyRulesResponse> GetPolicyAllowFunctionsWithHttpInfo(string id, List<string> expand = default(List<string>));
         /// <summary>
         /// 
         /// </summary>
@@ -337,12 +333,12 @@ namespace Openfort.Api
         /// Gets all policy objects for a given project.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PoliciesResponse</returns>
-        System.Threading.Tasks.Task<PoliciesResponse> GetPoliciesAsync(string project = default(string), double? limit = default(double?), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PoliciesResponse> GetPoliciesAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -351,12 +347,12 @@ namespace Openfort.Api
         /// Gets all policy objects for a given project.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PoliciesResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PoliciesResponse>> GetPoliciesWithHttpInfoAsync(string project = default(string), double? limit = default(double?), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PoliciesResponse>> GetPoliciesWithHttpInfoAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -365,11 +361,10 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="project"> (optional)</param>
         /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PolicyResponse</returns>
-        System.Threading.Tasks.Task<PolicyResponse> GetPolicyAsync(string id, string project = default(string), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PolicyResponse> GetPolicyAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -379,11 +374,10 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="project"> (optional)</param>
         /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PolicyResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PolicyResponse>> GetPolicyWithHttpInfoAsync(string id, string project = default(string), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PolicyResponse>> GetPolicyWithHttpInfoAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -393,10 +387,9 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="expand"> (optional)</param>
-        /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PolicyRulesResponse</returns>
-        System.Threading.Tasks.Task<PolicyRulesResponse> GetPolicyAllowFunctionsAsync(string id, List<string> expand = default(List<string>), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PolicyRulesResponse> GetPolicyAllowFunctionsAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -407,10 +400,9 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="expand"> (optional)</param>
-        /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PolicyRulesResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PolicyRulesResponse>> GetPolicyAllowFunctionsWithHttpInfoAsync(string id, List<string> expand = default(List<string>), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PolicyRulesResponse>> GetPolicyAllowFunctionsWithHttpInfoAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -1061,13 +1053,13 @@ namespace Openfort.Api
         ///  Gets all policy objects for a given project.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <returns>PoliciesResponse</returns>
-        public PoliciesResponse GetPolicies(string project = default(string), double? limit = default(double?), List<string> expand = default(List<string>))
+        public PoliciesResponse GetPolicies(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?))
         {
-            Openfort.Client.ApiResponse<PoliciesResponse> localVarResponse = GetPoliciesWithHttpInfo(project, limit, expand);
+            Openfort.Client.ApiResponse<PoliciesResponse> localVarResponse = GetPoliciesWithHttpInfo(limit, expand, skip);
             return localVarResponse.Data;
         }
 
@@ -1075,11 +1067,11 @@ namespace Openfort.Api
         ///  Gets all policy objects for a given project.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <returns>ApiResponse of PoliciesResponse</returns>
-        public Openfort.Client.ApiResponse<PoliciesResponse> GetPoliciesWithHttpInfo(string project = default(string), double? limit = default(double?), List<string> expand = default(List<string>))
+        public Openfort.Client.ApiResponse<PoliciesResponse> GetPoliciesWithHttpInfo(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?))
         {
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -1097,10 +1089,6 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
-            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
@@ -1108,6 +1096,10 @@ namespace Openfort.Api
             if (expand != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
 
 
@@ -1127,14 +1119,14 @@ namespace Openfort.Api
         ///  Gets all policy objects for a given project.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PoliciesResponse</returns>
-        public async System.Threading.Tasks.Task<PoliciesResponse> GetPoliciesAsync(string project = default(string), double? limit = default(double?), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PoliciesResponse> GetPoliciesAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetPoliciesWithHttpInfoAsync(project, limit, expand, cancellationToken);
+            var task = GetPoliciesWithHttpInfoAsync(limit, expand, skip, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<PoliciesResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -1147,12 +1139,12 @@ namespace Openfort.Api
         ///  Gets all policy objects for a given project.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="project"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
+        /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PoliciesResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PoliciesResponse>> GetPoliciesWithHttpInfoAsync(string project = default(string), double? limit = default(double?), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PoliciesResponse>> GetPoliciesWithHttpInfoAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -1172,10 +1164,6 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
-            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
@@ -1183,6 +1171,10 @@ namespace Openfort.Api
             if (expand != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
 
 
@@ -1210,12 +1202,11 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="project"> (optional)</param>
         /// <param name="expand"> (optional)</param>
         /// <returns>PolicyResponse</returns>
-        public PolicyResponse GetPolicy(string id, string project = default(string), List<string> expand = default(List<string>))
+        public PolicyResponse GetPolicy(string id, List<string> expand = default(List<string>))
         {
-            Openfort.Client.ApiResponse<PolicyResponse> localVarResponse = GetPolicyWithHttpInfo(id, project, expand);
+            Openfort.Client.ApiResponse<PolicyResponse> localVarResponse = GetPolicyWithHttpInfo(id, expand);
             return localVarResponse.Data;
         }
 
@@ -1224,10 +1215,9 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="project"> (optional)</param>
         /// <param name="expand"> (optional)</param>
         /// <returns>ApiResponse of PolicyResponse</returns>
-        public Openfort.Client.ApiResponse<PolicyResponse> GetPolicyWithHttpInfo(string id, string project = default(string), List<string> expand = default(List<string>))
+        public Openfort.Client.ApiResponse<PolicyResponse> GetPolicyWithHttpInfo(string id, List<string> expand = default(List<string>))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1250,10 +1240,6 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
-            }
             if (expand != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
@@ -1277,13 +1263,12 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="project"> (optional)</param>
         /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PolicyResponse</returns>
-        public async System.Threading.Tasks.Task<PolicyResponse> GetPolicyAsync(string id, string project = default(string), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PolicyResponse> GetPolicyAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetPolicyWithHttpInfoAsync(id, project, expand, cancellationToken);
+            var task = GetPolicyWithHttpInfoAsync(id, expand, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<PolicyResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -1297,11 +1282,10 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="project"> (optional)</param>
         /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PolicyResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PolicyResponse>> GetPolicyWithHttpInfoAsync(string id, string project = default(string), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PolicyResponse>> GetPolicyWithHttpInfoAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1326,10 +1310,6 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
-            }
             if (expand != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
@@ -1361,11 +1341,10 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="expand"> (optional)</param>
-        /// <param name="project"> (optional)</param>
         /// <returns>PolicyRulesResponse</returns>
-        public PolicyRulesResponse GetPolicyAllowFunctions(string id, List<string> expand = default(List<string>), string project = default(string))
+        public PolicyRulesResponse GetPolicyAllowFunctions(string id, List<string> expand = default(List<string>))
         {
-            Openfort.Client.ApiResponse<PolicyRulesResponse> localVarResponse = GetPolicyAllowFunctionsWithHttpInfo(id, expand, project);
+            Openfort.Client.ApiResponse<PolicyRulesResponse> localVarResponse = GetPolicyAllowFunctionsWithHttpInfo(id, expand);
             return localVarResponse.Data;
         }
 
@@ -1375,9 +1354,8 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="expand"> (optional)</param>
-        /// <param name="project"> (optional)</param>
         /// <returns>ApiResponse of PolicyRulesResponse</returns>
-        public Openfort.Client.ApiResponse<PolicyRulesResponse> GetPolicyAllowFunctionsWithHttpInfo(string id, List<string> expand = default(List<string>), string project = default(string))
+        public Openfort.Client.ApiResponse<PolicyRulesResponse> GetPolicyAllowFunctionsWithHttpInfo(string id, List<string> expand = default(List<string>))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1403,10 +1381,6 @@ namespace Openfort.Api
             if (expand != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
-            }
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 
@@ -1428,12 +1402,11 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="expand"> (optional)</param>
-        /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PolicyRulesResponse</returns>
-        public async System.Threading.Tasks.Task<PolicyRulesResponse> GetPolicyAllowFunctionsAsync(string id, List<string> expand = default(List<string>), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PolicyRulesResponse> GetPolicyAllowFunctionsAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetPolicyAllowFunctionsWithHttpInfoAsync(id, expand, project, cancellationToken);
+            var task = GetPolicyAllowFunctionsWithHttpInfoAsync(id, expand, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<PolicyRulesResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -1448,10 +1421,9 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="expand"> (optional)</param>
-        /// <param name="project"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PolicyRulesResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PolicyRulesResponse>> GetPolicyAllowFunctionsWithHttpInfoAsync(string id, List<string> expand = default(List<string>), string project = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PolicyRulesResponse>> GetPolicyAllowFunctionsWithHttpInfoAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1479,10 +1451,6 @@ namespace Openfort.Api
             if (expand != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
-            }
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
 
 

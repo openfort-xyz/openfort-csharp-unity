@@ -51,10 +51,8 @@ namespace Openfort.Model
         /// <param name="updatedAt">updatedAt (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="pkPolicy">pkPolicy (required).</param>
-        /// <param name="livemode">livemode (required).</param>
-        /// <param name="logoUrl">logoUrl.</param>
-        /// <param name="apikeys">apikeys (required).</param>
-        public ProjectResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), string name = default(string), PKPolicy pkPolicy = default(PKPolicy), bool livemode = default(bool), string logoUrl = default(string), ProjectResponseApikeys apikeys = default(ProjectResponseApikeys))
+        /// <param name="apikeys">apikeys.</param>
+        public ProjectResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), string name = default(string), PKPolicy pkPolicy = default(PKPolicy), List<ApiKeyResponse> apikeys = default(List<ApiKeyResponse>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -77,14 +75,7 @@ namespace Openfort.Model
             }
             this.Name = name;
             this.PkPolicy = pkPolicy;
-            this.Livemode = livemode;
-            // to ensure "apikeys" is required (not null)
-            if (apikeys == null)
-            {
-                throw new ArgumentNullException("apikeys is a required property for ProjectResponse and cannot be null");
-            }
             this.Apikeys = apikeys;
-            this.LogoUrl = logoUrl;
         }
 
         /// <summary>
@@ -118,22 +109,10 @@ namespace Openfort.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Livemode
-        /// </summary>
-        [DataMember(Name = "livemode", IsRequired = true, EmitDefaultValue = true)]
-        public bool Livemode { get; set; }
-
-        /// <summary>
-        /// Gets or Sets LogoUrl
-        /// </summary>
-        [DataMember(Name = "logo_url", EmitDefaultValue = true)]
-        public string LogoUrl { get; set; }
-
-        /// <summary>
         /// Gets or Sets Apikeys
         /// </summary>
-        [DataMember(Name = "apikeys", IsRequired = true, EmitDefaultValue = true)]
-        public ProjectResponseApikeys Apikeys { get; set; }
+        [DataMember(Name = "apikeys", EmitDefaultValue = false)]
+        public List<ApiKeyResponse> Apikeys { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -149,8 +128,6 @@ namespace Openfort.Model
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  PkPolicy: ").Append(PkPolicy).Append("\n");
-            sb.Append("  Livemode: ").Append(Livemode).Append("\n");
-            sb.Append("  LogoUrl: ").Append(LogoUrl).Append("\n");
             sb.Append("  Apikeys: ").Append(Apikeys).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -217,18 +194,10 @@ namespace Openfort.Model
                     this.PkPolicy.Equals(input.PkPolicy)
                 ) && 
                 (
-                    this.Livemode == input.Livemode ||
-                    this.Livemode.Equals(input.Livemode)
-                ) && 
-                (
-                    this.LogoUrl == input.LogoUrl ||
-                    (this.LogoUrl != null &&
-                    this.LogoUrl.Equals(input.LogoUrl))
-                ) && 
-                (
                     this.Apikeys == input.Apikeys ||
-                    (this.Apikeys != null &&
-                    this.Apikeys.Equals(input.Apikeys))
+                    this.Apikeys != null &&
+                    input.Apikeys != null &&
+                    this.Apikeys.SequenceEqual(input.Apikeys)
                 );
         }
 
@@ -262,11 +231,6 @@ namespace Openfort.Model
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.PkPolicy.GetHashCode();
-                hashCode = (hashCode * 59) + this.Livemode.GetHashCode();
-                if (this.LogoUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.LogoUrl.GetHashCode();
-                }
                 if (this.Apikeys != null)
                 {
                     hashCode = (hashCode * 59) + this.Apikeys.GetHashCode();

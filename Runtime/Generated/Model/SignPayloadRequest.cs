@@ -26,43 +26,36 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// SignatureRequest
+    /// SignPayloadRequest
     /// </summary>
-    [DataContract(Name = "SignatureRequest")]
-    public partial class SignatureRequest : IEquatable<SignatureRequest>
+    [DataContract(Name = "SignPayloadRequest")]
+    public partial class SignPayloadRequest : IEquatable<SignPayloadRequest>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SignatureRequest" /> class.
+        /// Initializes a new instance of the <see cref="SignPayloadRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SignatureRequest() { }
+        protected SignPayloadRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SignatureRequest" /> class.
+        /// Initializes a new instance of the <see cref="SignPayloadRequest" /> class.
         /// </summary>
-        /// <param name="signature">signature (required).</param>
-        /// <param name="optimistic">optimistic.</param>
-        public SignatureRequest(string signature = default(string), bool optimistic = default(bool))
+        /// <param name="payload">Payload to sign (required).</param>
+        public SignPayloadRequest(string payload = default(string))
         {
-            // to ensure "signature" is required (not null)
-            if (signature == null)
+            // to ensure "payload" is required (not null)
+            if (payload == null)
             {
-                throw new ArgumentNullException("signature is a required property for SignatureRequest and cannot be null");
+                throw new ArgumentNullException("payload is a required property for SignPayloadRequest and cannot be null");
             }
-            this.Signature = signature;
-            this.Optimistic = optimistic;
+            this.Payload = payload;
         }
 
         /// <summary>
-        /// Gets or Sets Signature
+        /// Payload to sign
         /// </summary>
-        [DataMember(Name = "signature", IsRequired = true, EmitDefaultValue = true)]
-        public string Signature { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Optimistic
-        /// </summary>
-        [DataMember(Name = "optimistic", EmitDefaultValue = true)]
-        public bool Optimistic { get; set; }
+        /// <value>Payload to sign</value>
+        [DataMember(Name = "payload", IsRequired = true, EmitDefaultValue = true)]
+        public string Payload { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,9 +64,8 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SignatureRequest {\n");
-            sb.Append("  Signature: ").Append(Signature).Append("\n");
-            sb.Append("  Optimistic: ").Append(Optimistic).Append("\n");
+            sb.Append("class SignPayloadRequest {\n");
+            sb.Append("  Payload: ").Append(Payload).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -94,15 +86,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SignatureRequest);
+            return this.Equals(input as SignPayloadRequest);
         }
 
         /// <summary>
-        /// Returns true if SignatureRequest instances are equal
+        /// Returns true if SignPayloadRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of SignatureRequest to be compared</param>
+        /// <param name="input">Instance of SignPayloadRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SignatureRequest input)
+        public bool Equals(SignPayloadRequest input)
         {
             if (input == null)
             {
@@ -110,13 +102,9 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Signature == input.Signature ||
-                    (this.Signature != null &&
-                    this.Signature.Equals(input.Signature))
-                ) && 
-                (
-                    this.Optimistic == input.Optimistic ||
-                    this.Optimistic.Equals(input.Optimistic)
+                    this.Payload == input.Payload ||
+                    (this.Payload != null &&
+                    this.Payload.Equals(input.Payload))
                 );
         }
 
@@ -129,11 +117,10 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Signature != null)
+                if (this.Payload != null)
                 {
-                    hashCode = (hashCode * 59) + this.Signature.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Payload.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Optimistic.GetHashCode();
                 return hashCode;
             }
         }

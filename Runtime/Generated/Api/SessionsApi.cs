@@ -58,12 +58,11 @@ namespace Openfort.Api
         /// <param name="player"></param>
         /// <param name="expand"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
         /// <returns>SessionsResponse</returns>
-        SessionsResponse GetPlayerSessions(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?));
+        SessionsResponse GetPlayerSessions(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?));
 
         /// <summary>
         /// 
@@ -75,12 +74,11 @@ namespace Openfort.Api
         /// <param name="player"></param>
         /// <param name="expand"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
         /// <returns>ApiResponse of SessionsResponse</returns>
-        ApiResponse<SessionsResponse> GetPlayerSessionsWithHttpInfo(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?));
+        ApiResponse<SessionsResponse> GetPlayerSessionsWithHttpInfo(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?));
         /// <summary>
         /// 
         /// </summary>
@@ -167,13 +165,12 @@ namespace Openfort.Api
         /// <param name="player"></param>
         /// <param name="expand"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SessionsResponse</returns>
-        System.Threading.Tasks.Task<SessionsResponse> GetPlayerSessionsAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SessionsResponse> GetPlayerSessionsAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -185,13 +182,12 @@ namespace Openfort.Api
         /// <param name="player"></param>
         /// <param name="expand"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SessionsResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SessionsResponse>> GetPlayerSessionsWithHttpInfoAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SessionsResponse>> GetPlayerSessionsWithHttpInfoAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -519,14 +515,13 @@ namespace Openfort.Api
         /// <param name="player"></param>
         /// <param name="expand"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
         /// <returns>SessionsResponse</returns>
-        public SessionsResponse GetPlayerSessions(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?))
+        public SessionsResponse GetPlayerSessions(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?))
         {
-            Openfort.Client.ApiResponse<SessionsResponse> localVarResponse = GetPlayerSessionsWithHttpInfo(player, expand, limit, project, filter, order, skip);
+            Openfort.Client.ApiResponse<SessionsResponse> localVarResponse = GetPlayerSessionsWithHttpInfo(player, expand, limit, filter, order, skip);
             return localVarResponse.Data;
         }
 
@@ -537,12 +532,11 @@ namespace Openfort.Api
         /// <param name="player"></param>
         /// <param name="expand"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
         /// <returns>ApiResponse of SessionsResponse</returns>
-        public Openfort.Client.ApiResponse<SessionsResponse> GetPlayerSessionsWithHttpInfo(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?))
+        public Openfort.Client.ApiResponse<SessionsResponse> GetPlayerSessionsWithHttpInfo(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?))
         {
             // verify the required parameter 'player' is set
             if (player == null)
@@ -572,10 +566,6 @@ namespace Openfort.Api
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
             if (filter != null)
             {
@@ -610,15 +600,14 @@ namespace Openfort.Api
         /// <param name="player"></param>
         /// <param name="expand"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SessionsResponse</returns>
-        public async System.Threading.Tasks.Task<SessionsResponse> GetPlayerSessionsAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SessionsResponse> GetPlayerSessionsAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetPlayerSessionsWithHttpInfoAsync(player, expand, limit, project, filter, order, skip, cancellationToken);
+            var task = GetPlayerSessionsWithHttpInfoAsync(player, expand, limit, filter, order, skip, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<SessionsResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -634,13 +623,12 @@ namespace Openfort.Api
         /// <param name="player"></param>
         /// <param name="expand"> (optional)</param>
         /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="project">Specifies the unique project ID. (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SessionsResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<SessionsResponse>> GetPlayerSessionsWithHttpInfoAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string project = default(string), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<SessionsResponse>> GetPlayerSessionsWithHttpInfoAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'player' is set
             if (player == null)
@@ -672,10 +660,6 @@ namespace Openfort.Api
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (project != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "project", project));
             }
             if (filter != null)
             {

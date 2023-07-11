@@ -41,6 +41,7 @@ namespace Openfort.Model
         /// </summary>
         /// <param name="player">player (required).</param>
         /// <param name="policy">policy.</param>
+        /// <param name="optimistic">optimistic.</param>
         /// <param name="externalOwnerAddress">externalOwnerAddress.</param>
         /// <param name="address">address (required).</param>
         /// <param name="chainId">chainId (required).</param>
@@ -48,7 +49,7 @@ namespace Openfort.Model
         /// <param name="validAfter">validAfter (required).</param>
         /// <param name="limit">limit.</param>
         /// <param name="whitelist">whitelist.</param>
-        public CreateSessionRequest(string player = default(string), string policy = default(string), string externalOwnerAddress = default(string), string address = default(string), double chainId = default(double), double validUntil = default(double), double validAfter = default(double), double limit = default(double), List<string> whitelist = default(List<string>))
+        public CreateSessionRequest(string player = default(string), string policy = default(string), bool optimistic = default(bool), string externalOwnerAddress = default(string), string address = default(string), double chainId = default(double), double validUntil = default(double), double validAfter = default(double), double limit = default(double), List<string> whitelist = default(List<string>))
         {
             // to ensure "player" is required (not null)
             if (player == null)
@@ -66,6 +67,7 @@ namespace Openfort.Model
             this.ValidUntil = validUntil;
             this.ValidAfter = validAfter;
             this.Policy = policy;
+            this.Optimistic = optimistic;
             this.ExternalOwnerAddress = externalOwnerAddress;
             this.Limit = limit;
             this.Whitelist = whitelist;
@@ -82,6 +84,12 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "policy", EmitDefaultValue = false)]
         public string Policy { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Optimistic
+        /// </summary>
+        [DataMember(Name = "optimistic", EmitDefaultValue = true)]
+        public bool Optimistic { get; set; }
 
         /// <summary>
         /// Gets or Sets ExternalOwnerAddress
@@ -135,6 +143,7 @@ namespace Openfort.Model
             sb.Append("class CreateSessionRequest {\n");
             sb.Append("  Player: ").Append(Player).Append("\n");
             sb.Append("  Policy: ").Append(Policy).Append("\n");
+            sb.Append("  Optimistic: ").Append(Optimistic).Append("\n");
             sb.Append("  ExternalOwnerAddress: ").Append(ExternalOwnerAddress).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
@@ -188,6 +197,10 @@ namespace Openfort.Model
                     this.Policy.Equals(input.Policy))
                 ) && 
                 (
+                    this.Optimistic == input.Optimistic ||
+                    this.Optimistic.Equals(input.Optimistic)
+                ) && 
+                (
                     this.ExternalOwnerAddress == input.ExternalOwnerAddress ||
                     (this.ExternalOwnerAddress != null &&
                     this.ExternalOwnerAddress.Equals(input.ExternalOwnerAddress))
@@ -238,6 +251,7 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Policy.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Optimistic.GetHashCode();
                 if (this.ExternalOwnerAddress != null)
                 {
                     hashCode = (hashCode * 59) + this.ExternalOwnerAddress.GetHashCode();

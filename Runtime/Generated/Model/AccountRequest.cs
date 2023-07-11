@@ -39,11 +39,10 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountRequest" /> class.
         /// </summary>
-        /// <param name="project">The project ID.</param>
         /// <param name="chainId">The chain_id (required).</param>
         /// <param name="player">The player ID (required).</param>
         /// <param name="externalOwnerAddress">The address of the external owner.</param>
-        public AccountRequest(string project = default(string), double chainId = default(double), string player = default(string), string externalOwnerAddress = default(string))
+        public AccountRequest(double chainId = default(double), string player = default(string), string externalOwnerAddress = default(string))
         {
             this.ChainId = chainId;
             // to ensure "player" is required (not null)
@@ -52,16 +51,8 @@ namespace Openfort.Model
                 throw new ArgumentNullException("player is a required property for AccountRequest and cannot be null");
             }
             this.Player = player;
-            this.Project = project;
             this.ExternalOwnerAddress = externalOwnerAddress;
         }
-
-        /// <summary>
-        /// The project ID
-        /// </summary>
-        /// <value>The project ID</value>
-        [DataMember(Name = "project", EmitDefaultValue = false)]
-        public string Project { get; set; }
 
         /// <summary>
         /// The chain_id
@@ -92,7 +83,6 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AccountRequest {\n");
-            sb.Append("  Project: ").Append(Project).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  Player: ").Append(Player).Append("\n");
             sb.Append("  ExternalOwnerAddress: ").Append(ExternalOwnerAddress).Append("\n");
@@ -132,11 +122,6 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Project == input.Project ||
-                    (this.Project != null &&
-                    this.Project.Equals(input.Project))
-                ) && 
-                (
                     this.ChainId == input.ChainId ||
                     this.ChainId.Equals(input.ChainId)
                 ) && 
@@ -161,10 +146,6 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Project != null)
-                {
-                    hashCode = (hashCode * 59) + this.Project.GetHashCode();
-                }
                 hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
                 if (this.Player != null)
                 {

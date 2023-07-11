@@ -49,7 +49,7 @@ namespace Openfort.Model
         /// <param name="address">address.</param>
         /// <param name="tokenId">tokenId.</param>
         /// <param name="amount">amount in Wei.</param>
-        public AssetInventory(AssetType assetType = default(AssetType), string address = default(string), double tokenId = default(double), double amount = default(double))
+        public AssetInventory(AssetType assetType = default(AssetType), string address = default(string), double tokenId = default(double), string amount = default(string))
         {
             this.AssetType = assetType;
             this.Address = address;
@@ -74,7 +74,7 @@ namespace Openfort.Model
         /// </summary>
         /// <value>amount in Wei</value>
         [DataMember(Name = "amount", EmitDefaultValue = false)]
-        public double Amount { get; set; }
+        public string Amount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -138,7 +138,8 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.Amount == input.Amount ||
-                    this.Amount.Equals(input.Amount)
+                    (this.Amount != null &&
+                    this.Amount.Equals(input.Amount))
                 );
         }
 
@@ -157,7 +158,10 @@ namespace Openfort.Model
                     hashCode = (hashCode * 59) + this.Address.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.TokenId.GetHashCode();
-                hashCode = (hashCode * 59) + this.Amount.GetHashCode();
+                if (this.Amount != null)
+                {
+                    hashCode = (hashCode * 59) + this.Amount.GetHashCode();
+                }
                 return hashCode;
             }
         }

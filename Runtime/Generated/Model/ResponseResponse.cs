@@ -47,7 +47,7 @@ namespace Openfort.Model
         /// <param name="logs">logs.</param>
         /// <param name="to">to.</param>
         /// <param name="error">error.</param>
-        public ResponseResponse(DateTime createdAt = default(DateTime), double? blockNumber = default(double?), string transactionHash = default(string), double? gasUsed = default(double?), double? status = default(double?), PrismaJsonValue logs = default(PrismaJsonValue), string to = default(string), PrismaJsonValue error = default(PrismaJsonValue))
+        public ResponseResponse(DateTime createdAt = default(DateTime), double? blockNumber = default(double?), string transactionHash = default(string), double? gasUsed = default(double?), double? status = default(double?), JsonValue logs = default(JsonValue), string to = default(string), JsonValue error = default(JsonValue))
         {
             this.CreatedAt = createdAt;
             // to ensure "blockNumber" is required (not null)
@@ -103,7 +103,7 @@ namespace Openfort.Model
         /// Gets or Sets Logs
         /// </summary>
         [DataMember(Name = "logs", EmitDefaultValue = true)]
-        public PrismaJsonValue Logs { get; set; }
+        public JsonValue Logs { get; set; }
 
         /// <summary>
         /// Gets or Sets To
@@ -115,7 +115,7 @@ namespace Openfort.Model
         /// Gets or Sets Error
         /// </summary>
         [DataMember(Name = "error", EmitDefaultValue = true)]
-        public PrismaJsonValue Error { get; set; }
+        public JsonValue Error { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
