@@ -87,25 +87,25 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets ExternalOwnerAddress
         /// </summary>
-        [DataMember(Name = "external_owner_address", EmitDefaultValue = false)]
+        [DataMember(Name = "externalOwnerAddress", EmitDefaultValue = false)]
         public string ExternalOwnerAddress { get; set; }
 
         /// <summary>
         /// Gets or Sets ChainId
         /// </summary>
-        [DataMember(Name = "chain_id", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
         public double ChainId { get; set; }
 
         /// <summary>
         /// Gets or Sets ValidUntil
         /// </summary>
-        [DataMember(Name = "valid_until", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "validUntil", IsRequired = true, EmitDefaultValue = true)]
         public double ValidUntil { get; set; }
 
         /// <summary>
         /// Gets or Sets ValidAfter
         /// </summary>
-        [DataMember(Name = "valid_after", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "validAfter", IsRequired = true, EmitDefaultValue = true)]
         public double ValidAfter { get; set; }
 
         /// <summary>

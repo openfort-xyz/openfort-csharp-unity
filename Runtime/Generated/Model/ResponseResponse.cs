@@ -40,27 +40,17 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="ResponseResponse" /> class.
         /// </summary>
         /// <param name="createdAt">createdAt (required).</param>
-        /// <param name="blockNumber">blockNumber (required).</param>
-        /// <param name="transactionHash">transactionHash (required).</param>
+        /// <param name="blockNumber">blockNumber.</param>
+        /// <param name="transactionHash">transactionHash.</param>
         /// <param name="gasUsed">gasUsed.</param>
         /// <param name="status">status.</param>
         /// <param name="logs">logs.</param>
         /// <param name="to">to.</param>
         /// <param name="error">error.</param>
-        public ResponseResponse(DateTime createdAt = default(DateTime), double? blockNumber = default(double?), string transactionHash = default(string), double? gasUsed = default(double?), double? status = default(double?), JsonValue logs = default(JsonValue), string to = default(string), JsonValue error = default(JsonValue))
+        public ResponseResponse(int createdAt = default(int), double blockNumber = default(double), string transactionHash = default(string), double gasUsed = default(double), double status = default(double), List<Log> logs = default(List<Log>), string to = default(string), Object error = default(Object))
         {
             this.CreatedAt = createdAt;
-            // to ensure "blockNumber" is required (not null)
-            if (blockNumber == null)
-            {
-                throw new ArgumentNullException("blockNumber is a required property for ResponseResponse and cannot be null");
-            }
             this.BlockNumber = blockNumber;
-            // to ensure "transactionHash" is required (not null)
-            if (transactionHash == null)
-            {
-                throw new ArgumentNullException("transactionHash is a required property for ResponseResponse and cannot be null");
-            }
             this.TransactionHash = transactionHash;
             this.GasUsed = gasUsed;
             this.Status = status;
@@ -72,50 +62,50 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime CreatedAt { get; set; }
+        [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
+        public int CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets BlockNumber
         /// </summary>
-        [DataMember(Name = "block_number", IsRequired = true, EmitDefaultValue = true)]
-        public double? BlockNumber { get; set; }
+        [DataMember(Name = "blockNumber", EmitDefaultValue = false)]
+        public double BlockNumber { get; set; }
 
         /// <summary>
         /// Gets or Sets TransactionHash
         /// </summary>
-        [DataMember(Name = "transaction_hash", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "transactionHash", EmitDefaultValue = false)]
         public string TransactionHash { get; set; }
 
         /// <summary>
         /// Gets or Sets GasUsed
         /// </summary>
-        [DataMember(Name = "gas_used", EmitDefaultValue = true)]
-        public double? GasUsed { get; set; }
+        [DataMember(Name = "gasUsed", EmitDefaultValue = false)]
+        public double GasUsed { get; set; }
 
         /// <summary>
         /// Gets or Sets Status
         /// </summary>
-        [DataMember(Name = "status", EmitDefaultValue = true)]
-        public double? Status { get; set; }
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public double Status { get; set; }
 
         /// <summary>
         /// Gets or Sets Logs
         /// </summary>
-        [DataMember(Name = "logs", EmitDefaultValue = true)]
-        public JsonValue Logs { get; set; }
+        [DataMember(Name = "logs", EmitDefaultValue = false)]
+        public List<Log> Logs { get; set; }
 
         /// <summary>
         /// Gets or Sets To
         /// </summary>
-        [DataMember(Name = "to", EmitDefaultValue = true)]
+        [DataMember(Name = "to", EmitDefaultValue = false)]
         public string To { get; set; }
 
         /// <summary>
         /// Gets or Sets Error
         /// </summary>
         [DataMember(Name = "error", EmitDefaultValue = true)]
-        public JsonValue Error { get; set; }
+        public Object Error { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -170,13 +160,11 @@ namespace Openfort.Model
             return 
                 (
                     this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    this.CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
                     this.BlockNumber == input.BlockNumber ||
-                    (this.BlockNumber != null &&
-                    this.BlockNumber.Equals(input.BlockNumber))
+                    this.BlockNumber.Equals(input.BlockNumber)
                 ) && 
                 (
                     this.TransactionHash == input.TransactionHash ||
@@ -185,18 +173,17 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.GasUsed == input.GasUsed ||
-                    (this.GasUsed != null &&
-                    this.GasUsed.Equals(input.GasUsed))
+                    this.GasUsed.Equals(input.GasUsed)
                 ) && 
                 (
                     this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
+                    this.Status.Equals(input.Status)
                 ) && 
                 (
                     this.Logs == input.Logs ||
-                    (this.Logs != null &&
-                    this.Logs.Equals(input.Logs))
+                    this.Logs != null &&
+                    input.Logs != null &&
+                    this.Logs.SequenceEqual(input.Logs)
                 ) && 
                 (
                     this.To == input.To ||
@@ -219,26 +206,14 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                }
-                if (this.BlockNumber != null)
-                {
-                    hashCode = (hashCode * 59) + this.BlockNumber.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+                hashCode = (hashCode * 59) + this.BlockNumber.GetHashCode();
                 if (this.TransactionHash != null)
                 {
                     hashCode = (hashCode * 59) + this.TransactionHash.GetHashCode();
                 }
-                if (this.GasUsed != null)
-                {
-                    hashCode = (hashCode * 59) + this.GasUsed.GetHashCode();
-                }
-                if (this.Status != null)
-                {
-                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.GasUsed.GetHashCode();
+                hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 if (this.Logs != null)
                 {
                     hashCode = (hashCode * 59) + this.Logs.GetHashCode();

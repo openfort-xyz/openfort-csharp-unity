@@ -72,7 +72,7 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets ChainId
         /// </summary>
-        [DataMember(Name = "chain_id", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
         public double ChainId { get; set; }
 
         /// <summary>

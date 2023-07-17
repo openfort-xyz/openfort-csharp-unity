@@ -61,7 +61,7 @@ namespace Openfort.Model
         /// The address of the new owner
         /// </summary>
         /// <value>The address of the new owner</value>
-        [DataMember(Name = "new_owner_address", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "newOwnerAddress", IsRequired = true, EmitDefaultValue = true)]
         public string NewOwnerAddress { get; set; }
 
         /// <summary>

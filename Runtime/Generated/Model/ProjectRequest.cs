@@ -35,13 +35,13 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets PkPolicy
         /// </summary>
-        [DataMember(Name = "pk_policy", EmitDefaultValue = false)]
+        [DataMember(Name = "pkPolicy", EmitDefaultValue = false)]
         public PKPolicy? PkPolicy { get; set; }
 
         /// <summary>
         /// Gets or Sets PkLocation
         /// </summary>
-        [DataMember(Name = "pk_location", EmitDefaultValue = false)]
+        [DataMember(Name = "pkLocation", EmitDefaultValue = false)]
         public PKLocation? PkLocation { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectRequest" /> class.

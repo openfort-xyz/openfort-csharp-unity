@@ -39,18 +39,12 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Interaction" /> class.
         /// </summary>
-        /// <param name="contract">contract (required).</param>
+        /// <param name="contract">contract.</param>
         /// <param name="value">value.</param>
         /// <param name="functionName">functionName (required).</param>
         /// <param name="functionArgs">functionArgs (required).</param>
         public Interaction(string contract = default(string), string value = default(string), string functionName = default(string), List<Object> functionArgs = default(List<Object>))
         {
-            // to ensure "contract" is required (not null)
-            if (contract == null)
-            {
-                throw new ArgumentNullException("contract is a required property for Interaction and cannot be null");
-            }
-            this.Contract = contract;
             // to ensure "functionName" is required (not null)
             if (functionName == null)
             {
@@ -63,31 +57,32 @@ namespace Openfort.Model
                 throw new ArgumentNullException("functionArgs is a required property for Interaction and cannot be null");
             }
             this.FunctionArgs = functionArgs;
+            this.Contract = contract;
             this.Value = value;
         }
 
         /// <summary>
         /// Gets or Sets Contract
         /// </summary>
-        [DataMember(Name = "contract", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "contract", EmitDefaultValue = false)]
         public string Contract { get; set; }
 
         /// <summary>
         /// Gets or Sets Value
         /// </summary>
-        [DataMember(Name = "value", EmitDefaultValue = true)]
+        [DataMember(Name = "value", EmitDefaultValue = false)]
         public string Value { get; set; }
 
         /// <summary>
         /// Gets or Sets FunctionName
         /// </summary>
-        [DataMember(Name = "function_name", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "functionName", IsRequired = true, EmitDefaultValue = true)]
         public string FunctionName { get; set; }
 
         /// <summary>
         /// Gets or Sets FunctionArgs
         /// </summary>
-        [DataMember(Name = "function_args", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "functionArgs", IsRequired = true, EmitDefaultValue = true)]
         public List<Object> FunctionArgs { get; set; }
 
         /// <summary>

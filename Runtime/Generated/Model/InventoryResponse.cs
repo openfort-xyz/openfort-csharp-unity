@@ -65,19 +65,19 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets NftAssets
         /// </summary>
-        [DataMember(Name = "nft_assets", EmitDefaultValue = false)]
+        [DataMember(Name = "nftAssets", EmitDefaultValue = false)]
         public List<AssetInventory> NftAssets { get; set; }
 
         /// <summary>
         /// Gets or Sets NativeAsset
         /// </summary>
-        [DataMember(Name = "native_asset", EmitDefaultValue = false)]
+        [DataMember(Name = "nativeAsset", EmitDefaultValue = false)]
         public AssetInventory NativeAsset { get; set; }
 
         /// <summary>
         /// Gets or Sets TokenAssets
         /// </summary>
-        [DataMember(Name = "token_assets", EmitDefaultValue = false)]
+        [DataMember(Name = "tokenAssets", EmitDefaultValue = false)]
         public List<AssetInventory> TokenAssets { get; set; }
 
         /// <summary>

@@ -35,7 +35,7 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets AssetType
         /// </summary>
-        [DataMember(Name = "asset_type", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "assetType", IsRequired = true, EmitDefaultValue = true)]
         public AssetType AssetType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AssetInventory" /> class.
@@ -66,7 +66,7 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets TokenId
         /// </summary>
-        [DataMember(Name = "token_id", EmitDefaultValue = false)]
+        [DataMember(Name = "tokenId", EmitDefaultValue = false)]
         public double TokenId { get; set; }
 
         /// <summary>

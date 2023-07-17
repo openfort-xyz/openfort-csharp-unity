@@ -51,7 +51,7 @@ namespace Openfort.Model
         /// <param name="type">type (required).</param>
         /// <param name="functionName">functionName (required).</param>
         /// <param name="contract">contract (required).</param>
-        public PolicyRuleResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), PolicySchema type = default(PolicySchema), string functionName = default(string), PolicyRuleResponseContract contract = default(PolicyRuleResponseContract))
+        public PolicyRuleResponse(string id = default(string), string _object = default(string), int createdAt = default(int), PolicySchema type = default(PolicySchema), string functionName = default(string), PolicyRuleResponseContract contract = default(PolicyRuleResponseContract))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -96,13 +96,13 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime CreatedAt { get; set; }
+        [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
+        public int CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets FunctionName
         /// </summary>
-        [DataMember(Name = "function_name", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "functionName", IsRequired = true, EmitDefaultValue = true)]
         public string FunctionName { get; set; }
 
         /// <summary>
@@ -172,8 +172,7 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    this.CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -208,10 +207,7 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 }
-                if (this.CreatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 if (this.FunctionName != null)
                 {

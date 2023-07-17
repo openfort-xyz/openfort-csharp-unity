@@ -56,9 +56,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="accountPlayerRequest"></param>
+        /// <param name="createPlayerAccountRequest"></param>
         /// <returns>AccountResponse</returns>
-        AccountResponse CreatePlayerAccount(string id, AccountPlayerRequest accountPlayerRequest);
+        AccountResponse CreatePlayerAccount(string id, CreatePlayerAccountRequest createPlayerAccountRequest);
 
         /// <summary>
         /// 
@@ -68,9 +68,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="accountPlayerRequest"></param>
+        /// <param name="createPlayerAccountRequest"></param>
         /// <returns>ApiResponse of AccountResponse</returns>
-        ApiResponse<AccountResponse> CreatePlayerAccountWithHttpInfo(string id, AccountPlayerRequest accountPlayerRequest);
+        ApiResponse<AccountResponse> CreatePlayerAccountWithHttpInfo(string id, CreatePlayerAccountRequest createPlayerAccountRequest);
         /// <summary>
         /// 
         /// </summary>
@@ -301,10 +301,10 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="accountPlayerRequest"></param>
+        /// <param name="createPlayerAccountRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountResponse</returns>
-        System.Threading.Tasks.Task<AccountResponse> CreatePlayerAccountAsync(string id, AccountPlayerRequest accountPlayerRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<AccountResponse> CreatePlayerAccountAsync(string id, CreatePlayerAccountRequest createPlayerAccountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -314,10 +314,10 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="accountPlayerRequest"></param>
+        /// <param name="createPlayerAccountRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountResponse>> CreatePlayerAccountWithHttpInfoAsync(string id, AccountPlayerRequest accountPlayerRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AccountResponse>> CreatePlayerAccountWithHttpInfoAsync(string id, CreatePlayerAccountRequest createPlayerAccountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -801,11 +801,11 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="accountPlayerRequest"></param>
+        /// <param name="createPlayerAccountRequest"></param>
         /// <returns>AccountResponse</returns>
-        public AccountResponse CreatePlayerAccount(string id, AccountPlayerRequest accountPlayerRequest)
+        public AccountResponse CreatePlayerAccount(string id, CreatePlayerAccountRequest createPlayerAccountRequest)
         {
-            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = CreatePlayerAccountWithHttpInfo(id, accountPlayerRequest);
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = CreatePlayerAccountWithHttpInfo(id, createPlayerAccountRequest);
             return localVarResponse.Data;
         }
 
@@ -814,17 +814,17 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="accountPlayerRequest"></param>
+        /// <param name="createPlayerAccountRequest"></param>
         /// <returns>ApiResponse of AccountResponse</returns>
-        public Openfort.Client.ApiResponse<AccountResponse> CreatePlayerAccountWithHttpInfo(string id, AccountPlayerRequest accountPlayerRequest)
+        public Openfort.Client.ApiResponse<AccountResponse> CreatePlayerAccountWithHttpInfo(string id, CreatePlayerAccountRequest createPlayerAccountRequest)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->CreatePlayerAccount");
 
-            // verify the required parameter 'accountPlayerRequest' is set
-            if (accountPlayerRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'accountPlayerRequest' when calling PlayersApi->CreatePlayerAccount");
+            // verify the required parameter 'createPlayerAccountRequest' is set
+            if (createPlayerAccountRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'createPlayerAccountRequest' when calling PlayersApi->CreatePlayerAccount");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -844,7 +844,7 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.Data = accountPlayerRequest;
+            localVarRequestOptions.Data = createPlayerAccountRequest;
 
 
             // make the HTTP request
@@ -864,12 +864,12 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="accountPlayerRequest"></param>
+        /// <param name="createPlayerAccountRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountResponse</returns>
-        public async System.Threading.Tasks.Task<AccountResponse> CreatePlayerAccountAsync(string id, AccountPlayerRequest accountPlayerRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<AccountResponse> CreatePlayerAccountAsync(string id, CreatePlayerAccountRequest createPlayerAccountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = CreatePlayerAccountWithHttpInfoAsync(id, accountPlayerRequest, cancellationToken);
+            var task = CreatePlayerAccountWithHttpInfoAsync(id, createPlayerAccountRequest, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<AccountResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -883,18 +883,18 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="accountPlayerRequest"></param>
+        /// <param name="createPlayerAccountRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountResponse>> CreatePlayerAccountWithHttpInfoAsync(string id, AccountPlayerRequest accountPlayerRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountResponse>> CreatePlayerAccountWithHttpInfoAsync(string id, CreatePlayerAccountRequest createPlayerAccountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->CreatePlayerAccount");
 
-            // verify the required parameter 'accountPlayerRequest' is set
-            if (accountPlayerRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'accountPlayerRequest' when calling PlayersApi->CreatePlayerAccount");
+            // verify the required parameter 'createPlayerAccountRequest' is set
+            if (createPlayerAccountRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'createPlayerAccountRequest' when calling PlayersApi->CreatePlayerAccount");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -916,7 +916,7 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.Data = accountPlayerRequest;
+            localVarRequestOptions.Data = createPlayerAccountRequest;
 
 
             // make the HTTP request

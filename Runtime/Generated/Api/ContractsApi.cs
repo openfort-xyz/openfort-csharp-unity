@@ -34,9 +34,9 @@ namespace Openfort.Api
         /// Creates a contract object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractRequest"></param>
+        /// <param name="createContractRequest"></param>
         /// <returns>ContractResponse</returns>
-        ContractResponse CreateContract(ContractRequest contractRequest);
+        ContractResponse CreateContract(CreateContractRequest createContractRequest);
 
         /// <summary>
         /// 
@@ -45,9 +45,9 @@ namespace Openfort.Api
         /// Creates a contract object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractRequest"></param>
+        /// <param name="createContractRequest"></param>
         /// <returns>ApiResponse of ContractResponse</returns>
-        ApiResponse<ContractResponse> CreateContractWithHttpInfo(ContractRequest contractRequest);
+        ApiResponse<ContractResponse> CreateContractWithHttpInfo(CreateContractRequest createContractRequest);
         /// <summary>
         /// 
         /// </summary>
@@ -131,10 +131,10 @@ namespace Openfort.Api
         /// Creates a contract object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractRequest"></param>
+        /// <param name="createContractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractResponse</returns>
-        System.Threading.Tasks.Task<ContractResponse> CreateContractAsync(ContractRequest contractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ContractResponse> CreateContractAsync(CreateContractRequest createContractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -143,10 +143,10 @@ namespace Openfort.Api
         /// Creates a contract object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractRequest"></param>
+        /// <param name="createContractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ContractResponse>> CreateContractWithHttpInfoAsync(ContractRequest contractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ContractResponse>> CreateContractWithHttpInfoAsync(CreateContractRequest createContractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -368,11 +368,11 @@ namespace Openfort.Api
         ///  Creates a contract object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractRequest"></param>
+        /// <param name="createContractRequest"></param>
         /// <returns>ContractResponse</returns>
-        public ContractResponse CreateContract(ContractRequest contractRequest)
+        public ContractResponse CreateContract(CreateContractRequest createContractRequest)
         {
-            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = CreateContractWithHttpInfo(contractRequest);
+            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = CreateContractWithHttpInfo(createContractRequest);
             return localVarResponse.Data;
         }
 
@@ -380,13 +380,13 @@ namespace Openfort.Api
         ///  Creates a contract object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractRequest"></param>
+        /// <param name="createContractRequest"></param>
         /// <returns>ApiResponse of ContractResponse</returns>
-        public Openfort.Client.ApiResponse<ContractResponse> CreateContractWithHttpInfo(ContractRequest contractRequest)
+        public Openfort.Client.ApiResponse<ContractResponse> CreateContractWithHttpInfo(CreateContractRequest createContractRequest)
         {
-            // verify the required parameter 'contractRequest' is set
-            if (contractRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'contractRequest' when calling ContractsApi->CreateContract");
+            // verify the required parameter 'createContractRequest' is set
+            if (createContractRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'createContractRequest' when calling ContractsApi->CreateContract");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -405,7 +405,7 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = contractRequest;
+            localVarRequestOptions.Data = createContractRequest;
 
 
             // make the HTTP request
@@ -424,12 +424,12 @@ namespace Openfort.Api
         ///  Creates a contract object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractRequest"></param>
+        /// <param name="createContractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractResponse</returns>
-        public async System.Threading.Tasks.Task<ContractResponse> CreateContractAsync(ContractRequest contractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ContractResponse> CreateContractAsync(CreateContractRequest createContractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = CreateContractWithHttpInfoAsync(contractRequest, cancellationToken);
+            var task = CreateContractWithHttpInfoAsync(createContractRequest, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<ContractResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -442,14 +442,14 @@ namespace Openfort.Api
         ///  Creates a contract object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractRequest"></param>
+        /// <param name="createContractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractResponse>> CreateContractWithHttpInfoAsync(ContractRequest contractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractResponse>> CreateContractWithHttpInfoAsync(CreateContractRequest createContractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'contractRequest' is set
-            if (contractRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'contractRequest' when calling ContractsApi->CreateContract");
+            // verify the required parameter 'createContractRequest' is set
+            if (createContractRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'createContractRequest' when calling ContractsApi->CreateContract");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -470,7 +470,7 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = contractRequest;
+            localVarRequestOptions.Data = createContractRequest;
 
 
             // make the HTTP request

@@ -47,7 +47,7 @@ namespace Openfort.Model
         /// <param name="address">address (required).</param>
         /// <param name="abi">abi (required).</param>
         /// <param name="publicVerification">publicVerification (required).</param>
-        public ContractResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), string name = default(string), double chainId = default(double), string address = default(string), PrismaJsonValue abi = default(PrismaJsonValue), bool publicVerification = default(bool))
+        public ContractResponse(string id = default(string), string _object = default(string), int createdAt = default(int), string name = default(string), double chainId = default(double), string address = default(string), List<JsonFragment> abi = default(List<JsonFragment>), bool publicVerification = default(bool))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -99,8 +99,8 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime CreatedAt { get; set; }
+        [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
+        public int CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
@@ -111,7 +111,7 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets ChainId
         /// </summary>
-        [DataMember(Name = "chain_id", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
         public double ChainId { get; set; }
 
         /// <summary>
@@ -124,12 +124,12 @@ namespace Openfort.Model
         /// Gets or Sets Abi
         /// </summary>
         [DataMember(Name = "abi", IsRequired = true, EmitDefaultValue = true)]
-        public PrismaJsonValue Abi { get; set; }
+        public List<JsonFragment> Abi { get; set; }
 
         /// <summary>
         /// Gets or Sets PublicVerification
         /// </summary>
-        [DataMember(Name = "public_verification", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "publicVerification", IsRequired = true, EmitDefaultValue = true)]
         public bool PublicVerification { get; set; }
 
         /// <summary>
@@ -195,8 +195,7 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    this.CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
                     this.Name == input.Name ||
@@ -214,8 +213,9 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.Abi == input.Abi ||
-                    (this.Abi != null &&
-                    this.Abi.Equals(input.Abi))
+                    this.Abi != null &&
+                    input.Abi != null &&
+                    this.Abi.SequenceEqual(input.Abi)
                 ) && 
                 (
                     this.PublicVerification == input.PublicVerification ||
@@ -240,10 +240,7 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 }
-                if (this.CreatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();

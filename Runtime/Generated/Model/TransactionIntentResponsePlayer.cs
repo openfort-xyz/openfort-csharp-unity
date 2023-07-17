@@ -47,10 +47,10 @@ namespace Openfort.Model
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionIntentResponsePlayer" /> class
-        /// with the <see cref="string" /> class
+        /// with the <see cref="PickPlayerResponseId" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of string.</param>
-        public TransactionIntentResponsePlayer(string actualInstance)
+        /// <param name="actualInstance">An instance of PickPlayerResponseId.</param>
+        public TransactionIntentResponsePlayer(PickPlayerResponseId actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -71,17 +71,17 @@ namespace Openfort.Model
             }
             set
             {
-                if (value.GetType() == typeof(PlayerResponse))
+                if (value.GetType() == typeof(PickPlayerResponseId))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(string))
+                else if (value.GetType() == typeof(PlayerResponse))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: PlayerResponse, string");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: PickPlayerResponseId, PlayerResponse");
                 }
             }
         }
@@ -97,13 +97,13 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Get the actual instance of `string`. If the actual instance is not `string`,
+        /// Get the actual instance of `PickPlayerResponseId`. If the actual instance is not `PickPlayerResponseId`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of string</returns>
-        public string GetString()
+        /// <returns>An instance of PickPlayerResponseId</returns>
+        public PickPlayerResponseId GetPickPlayerResponseId()
         {
-            return (string)this.ActualInstance;
+            return (PickPlayerResponseId)this.ActualInstance;
         }
 
         /// <summary>
@@ -144,6 +144,18 @@ namespace Openfort.Model
 
             try
             {
+                newTransactionIntentResponsePlayer = new TransactionIntentResponsePlayer(JsonConvert.DeserializeObject<PickPlayerResponseId>(jsonString, TransactionIntentResponsePlayer.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newTransactionIntentResponsePlayer;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PickPlayerResponseId: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
                 newTransactionIntentResponsePlayer = new TransactionIntentResponsePlayer(JsonConvert.DeserializeObject<PlayerResponse>(jsonString, TransactionIntentResponsePlayer.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
                 return newTransactionIntentResponsePlayer;
@@ -152,18 +164,6 @@ namespace Openfort.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PlayerResponse: {1}", jsonString, exception.ToString()));
-            }
-
-            try
-            {
-                newTransactionIntentResponsePlayer = new TransactionIntentResponsePlayer(JsonConvert.DeserializeObject<string>(jsonString, TransactionIntentResponsePlayer.SerializerSettings));
-                // deserialization is considered successful at this point if no exception has been thrown.
-                return newTransactionIntentResponsePlayer;
-            }
-            catch (Exception exception)
-            {
-                // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into string: {1}", jsonString, exception.ToString()));
             }
 
             // no match found, throw an exception

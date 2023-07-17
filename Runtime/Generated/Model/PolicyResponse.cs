@@ -47,7 +47,7 @@ namespace Openfort.Model
         /// <param name="strategy">strategy (required).</param>
         /// <param name="transactionIntents">transactionIntents.</param>
         /// <param name="policyRules">policyRules.</param>
-        public PolicyResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), string name = default(string), double chainId = default(double), Object strategy = default(Object), PolicyResponseTransactionIntents transactionIntents = default(PolicyResponseTransactionIntents), PolicyResponsePolicyRules policyRules = default(PolicyResponsePolicyRules))
+        public PolicyResponse(string id = default(string), string _object = default(string), int createdAt = default(int), string name = default(string), double chainId = default(double), PolicyStrategy strategy = default(PolicyStrategy), List<PolicyResponseTransactionIntentsInner> transactionIntents = default(List<PolicyResponseTransactionIntentsInner>), List<PolicyResponsePolicyRulesInner> policyRules = default(List<PolicyResponsePolicyRulesInner>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -94,8 +94,8 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime CreatedAt { get; set; }
+        [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
+        public int CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
@@ -106,26 +106,26 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets ChainId
         /// </summary>
-        [DataMember(Name = "chain_id", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
         public double ChainId { get; set; }
 
         /// <summary>
         /// Gets or Sets Strategy
         /// </summary>
         [DataMember(Name = "strategy", IsRequired = true, EmitDefaultValue = true)]
-        public Object Strategy { get; set; }
+        public PolicyStrategy Strategy { get; set; }
 
         /// <summary>
         /// Gets or Sets TransactionIntents
         /// </summary>
-        [DataMember(Name = "transaction_intents", EmitDefaultValue = false)]
-        public PolicyResponseTransactionIntents TransactionIntents { get; set; }
+        [DataMember(Name = "transactionIntents", EmitDefaultValue = false)]
+        public List<PolicyResponseTransactionIntentsInner> TransactionIntents { get; set; }
 
         /// <summary>
         /// Gets or Sets PolicyRules
         /// </summary>
-        [DataMember(Name = "policy_rules", EmitDefaultValue = false)]
-        public PolicyResponsePolicyRules PolicyRules { get; set; }
+        [DataMember(Name = "policyRules", EmitDefaultValue = false)]
+        public List<PolicyResponsePolicyRulesInner> PolicyRules { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -190,8 +190,7 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    this.CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
                     this.Name == input.Name ||
@@ -209,13 +208,15 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.TransactionIntents == input.TransactionIntents ||
-                    (this.TransactionIntents != null &&
-                    this.TransactionIntents.Equals(input.TransactionIntents))
+                    this.TransactionIntents != null &&
+                    input.TransactionIntents != null &&
+                    this.TransactionIntents.SequenceEqual(input.TransactionIntents)
                 ) && 
                 (
                     this.PolicyRules == input.PolicyRules ||
-                    (this.PolicyRules != null &&
-                    this.PolicyRules.Equals(input.PolicyRules))
+                    this.PolicyRules != null &&
+                    input.PolicyRules != null &&
+                    this.PolicyRules.SequenceEqual(input.PolicyRules)
                 );
         }
 
@@ -236,10 +237,7 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 }
-                if (this.CreatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();

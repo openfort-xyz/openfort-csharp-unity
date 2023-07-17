@@ -46,8 +46,8 @@ namespace Openfort.Model
         /// <param name="deployed">deployed (required).</param>
         /// <param name="custodial">custodial (required).</param>
         /// <param name="chainId">chainId (required).</param>
-        /// <param name="transactionIntents">transactionIntents.</param>
-        public AccountResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), string address = default(string), bool deployed = default(bool), bool custodial = default(bool), double chainId = default(double), PolicyResponseTransactionIntents transactionIntents = default(PolicyResponseTransactionIntents))
+        /// <param name="transactionIntents">transactionIntents (required).</param>
+        public AccountResponse(string id = default(string), string _object = default(string), int createdAt = default(int), string address = default(string), bool deployed = default(bool), bool custodial = default(bool), double chainId = default(double), List<PolicyResponseTransactionIntentsInner> transactionIntents = default(List<PolicyResponseTransactionIntentsInner>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -71,6 +71,11 @@ namespace Openfort.Model
             this.Deployed = deployed;
             this.Custodial = custodial;
             this.ChainId = chainId;
+            // to ensure "transactionIntents" is required (not null)
+            if (transactionIntents == null)
+            {
+                throw new ArgumentNullException("transactionIntents is a required property for AccountResponse and cannot be null");
+            }
             this.TransactionIntents = transactionIntents;
         }
 
@@ -89,8 +94,8 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime CreatedAt { get; set; }
+        [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
+        public int CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets Address
@@ -113,14 +118,14 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets ChainId
         /// </summary>
-        [DataMember(Name = "chain_id", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
         public double ChainId { get; set; }
 
         /// <summary>
         /// Gets or Sets TransactionIntents
         /// </summary>
-        [DataMember(Name = "transaction_intents", EmitDefaultValue = false)]
-        public PolicyResponseTransactionIntents TransactionIntents { get; set; }
+        [DataMember(Name = "transactionIntents", IsRequired = true, EmitDefaultValue = true)]
+        public List<PolicyResponseTransactionIntentsInner> TransactionIntents { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -185,8 +190,7 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    this.CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
                     this.Address == input.Address ||
@@ -207,8 +211,9 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.TransactionIntents == input.TransactionIntents ||
-                    (this.TransactionIntents != null &&
-                    this.TransactionIntents.Equals(input.TransactionIntents))
+                    this.TransactionIntents != null &&
+                    input.TransactionIntents != null &&
+                    this.TransactionIntents.SequenceEqual(input.TransactionIntents)
                 );
         }
 
@@ -229,10 +234,7 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 }
-                if (this.CreatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 if (this.Address != null)
                 {
                     hashCode = (hashCode * 59) + this.Address.GetHashCode();

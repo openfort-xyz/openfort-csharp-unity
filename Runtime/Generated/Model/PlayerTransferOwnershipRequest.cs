@@ -40,7 +40,7 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="PlayerTransferOwnershipRequest" /> class.
         /// </summary>
         /// <param name="policy">The policy ID (required).</param>
-        /// <param name="chainId">The chain_id where the account is. (required).</param>
+        /// <param name="chainId">The chain id where the account is. (required).</param>
         /// <param name="newOwnerAddress">The address of the new owner (required).</param>
         /// <param name="player">The player ID.</param>
         public PlayerTransferOwnershipRequest(string policy = default(string), double chainId = default(double), string newOwnerAddress = default(string), string player = default(string))
@@ -69,17 +69,17 @@ namespace Openfort.Model
         public string Policy { get; set; }
 
         /// <summary>
-        /// The chain_id where the account is.
+        /// The chain id where the account is.
         /// </summary>
-        /// <value>The chain_id where the account is.</value>
-        [DataMember(Name = "chain_id", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>The chain id where the account is.</value>
+        [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
         public double ChainId { get; set; }
 
         /// <summary>
         /// The address of the new owner
         /// </summary>
         /// <value>The address of the new owner</value>
-        [DataMember(Name = "new_owner_address", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "newOwnerAddress", IsRequired = true, EmitDefaultValue = true)]
         public string NewOwnerAddress { get; set; }
 
         /// <summary>

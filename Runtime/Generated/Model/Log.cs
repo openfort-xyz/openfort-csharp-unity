@@ -39,90 +39,106 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Log" /> class.
         /// </summary>
-        /// <param name="id">id (required).</param>
-        /// <param name="timestamp">timestamp (required).</param>
-        /// <param name="_event">_event (required).</param>
-        /// <param name="requestBody">requestBody (required).</param>
-        /// <param name="status">status (required).</param>
-        /// <param name="responseTime">responseTime (required).</param>
-        /// <param name="responseData">responseData (required).</param>
-        public Log(string id = default(string), string timestamp = default(string), string _event = default(string), Object requestBody = default(Object), double status = default(double), double responseTime = default(double), Object responseData = default(Object))
+        /// <param name="blockNumber">blockNumber (required).</param>
+        /// <param name="blockHash">blockHash (required).</param>
+        /// <param name="transactionIndex">transactionIndex (required).</param>
+        /// <param name="removed">removed (required).</param>
+        /// <param name="address">address (required).</param>
+        /// <param name="data">data (required).</param>
+        /// <param name="topics">topics (required).</param>
+        /// <param name="transactionHash">transactionHash (required).</param>
+        /// <param name="logIndex">logIndex (required).</param>
+        public Log(double blockNumber = default(double), string blockHash = default(string), double transactionIndex = default(double), bool removed = default(bool), string address = default(string), string data = default(string), List<string> topics = default(List<string>), string transactionHash = default(string), double logIndex = default(double))
         {
-            // to ensure "id" is required (not null)
-            if (id == null)
+            this.BlockNumber = blockNumber;
+            // to ensure "blockHash" is required (not null)
+            if (blockHash == null)
             {
-                throw new ArgumentNullException("id is a required property for Log and cannot be null");
+                throw new ArgumentNullException("blockHash is a required property for Log and cannot be null");
             }
-            this.Id = id;
-            // to ensure "timestamp" is required (not null)
-            if (timestamp == null)
+            this.BlockHash = blockHash;
+            this.TransactionIndex = transactionIndex;
+            this.Removed = removed;
+            // to ensure "address" is required (not null)
+            if (address == null)
             {
-                throw new ArgumentNullException("timestamp is a required property for Log and cannot be null");
+                throw new ArgumentNullException("address is a required property for Log and cannot be null");
             }
-            this.Timestamp = timestamp;
-            // to ensure "_event" is required (not null)
-            if (_event == null)
+            this.Address = address;
+            // to ensure "data" is required (not null)
+            if (data == null)
             {
-                throw new ArgumentNullException("_event is a required property for Log and cannot be null");
+                throw new ArgumentNullException("data is a required property for Log and cannot be null");
             }
-            this.Event = _event;
-            // to ensure "requestBody" is required (not null)
-            if (requestBody == null)
+            this.Data = data;
+            // to ensure "topics" is required (not null)
+            if (topics == null)
             {
-                throw new ArgumentNullException("requestBody is a required property for Log and cannot be null");
+                throw new ArgumentNullException("topics is a required property for Log and cannot be null");
             }
-            this.RequestBody = requestBody;
-            this.Status = status;
-            this.ResponseTime = responseTime;
-            // to ensure "responseData" is required (not null)
-            if (responseData == null)
+            this.Topics = topics;
+            // to ensure "transactionHash" is required (not null)
+            if (transactionHash == null)
             {
-                throw new ArgumentNullException("responseData is a required property for Log and cannot be null");
+                throw new ArgumentNullException("transactionHash is a required property for Log and cannot be null");
             }
-            this.ResponseData = responseData;
+            this.TransactionHash = transactionHash;
+            this.LogIndex = logIndex;
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Gets or Sets BlockNumber
         /// </summary>
-        [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
-        public string Id { get; set; }
+        [DataMember(Name = "blockNumber", IsRequired = true, EmitDefaultValue = true)]
+        public double BlockNumber { get; set; }
 
         /// <summary>
-        /// Gets or Sets Timestamp
+        /// Gets or Sets BlockHash
         /// </summary>
-        [DataMember(Name = "timestamp", IsRequired = true, EmitDefaultValue = true)]
-        public string Timestamp { get; set; }
+        [DataMember(Name = "blockHash", IsRequired = true, EmitDefaultValue = true)]
+        public string BlockHash { get; set; }
 
         /// <summary>
-        /// Gets or Sets Event
+        /// Gets or Sets TransactionIndex
         /// </summary>
-        [DataMember(Name = "event", IsRequired = true, EmitDefaultValue = true)]
-        public string Event { get; set; }
+        [DataMember(Name = "transactionIndex", IsRequired = true, EmitDefaultValue = true)]
+        public double TransactionIndex { get; set; }
 
         /// <summary>
-        /// Gets or Sets RequestBody
+        /// Gets or Sets Removed
         /// </summary>
-        [DataMember(Name = "request_body", IsRequired = true, EmitDefaultValue = true)]
-        public Object RequestBody { get; set; }
+        [DataMember(Name = "removed", IsRequired = true, EmitDefaultValue = true)]
+        public bool Removed { get; set; }
 
         /// <summary>
-        /// Gets or Sets Status
+        /// Gets or Sets Address
         /// </summary>
-        [DataMember(Name = "status", IsRequired = true, EmitDefaultValue = true)]
-        public double Status { get; set; }
+        [DataMember(Name = "address", IsRequired = true, EmitDefaultValue = true)]
+        public string Address { get; set; }
 
         /// <summary>
-        /// Gets or Sets ResponseTime
+        /// Gets or Sets Data
         /// </summary>
-        [DataMember(Name = "response_time", IsRequired = true, EmitDefaultValue = true)]
-        public double ResponseTime { get; set; }
+        [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
+        public string Data { get; set; }
 
         /// <summary>
-        /// Gets or Sets ResponseData
+        /// Gets or Sets Topics
         /// </summary>
-        [DataMember(Name = "response_data", IsRequired = true, EmitDefaultValue = true)]
-        public Object ResponseData { get; set; }
+        [DataMember(Name = "topics", IsRequired = true, EmitDefaultValue = true)]
+        public List<string> Topics { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TransactionHash
+        /// </summary>
+        [DataMember(Name = "transactionHash", IsRequired = true, EmitDefaultValue = true)]
+        public string TransactionHash { get; set; }
+
+        /// <summary>
+        /// Gets or Sets LogIndex
+        /// </summary>
+        [DataMember(Name = "logIndex", IsRequired = true, EmitDefaultValue = true)]
+        public double LogIndex { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,13 +148,15 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Log {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  Event: ").Append(Event).Append("\n");
-            sb.Append("  RequestBody: ").Append(RequestBody).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  ResponseTime: ").Append(ResponseTime).Append("\n");
-            sb.Append("  ResponseData: ").Append(ResponseData).Append("\n");
+            sb.Append("  BlockNumber: ").Append(BlockNumber).Append("\n");
+            sb.Append("  BlockHash: ").Append(BlockHash).Append("\n");
+            sb.Append("  TransactionIndex: ").Append(TransactionIndex).Append("\n");
+            sb.Append("  Removed: ").Append(Removed).Append("\n");
+            sb.Append("  Address: ").Append(Address).Append("\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  Topics: ").Append(Topics).Append("\n");
+            sb.Append("  TransactionHash: ").Append(TransactionHash).Append("\n");
+            sb.Append("  LogIndex: ").Append(LogIndex).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -175,37 +193,46 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    this.BlockNumber == input.BlockNumber ||
+                    this.BlockNumber.Equals(input.BlockNumber)
                 ) && 
                 (
-                    this.Timestamp == input.Timestamp ||
-                    (this.Timestamp != null &&
-                    this.Timestamp.Equals(input.Timestamp))
+                    this.BlockHash == input.BlockHash ||
+                    (this.BlockHash != null &&
+                    this.BlockHash.Equals(input.BlockHash))
                 ) && 
                 (
-                    this.Event == input.Event ||
-                    (this.Event != null &&
-                    this.Event.Equals(input.Event))
+                    this.TransactionIndex == input.TransactionIndex ||
+                    this.TransactionIndex.Equals(input.TransactionIndex)
                 ) && 
                 (
-                    this.RequestBody == input.RequestBody ||
-                    (this.RequestBody != null &&
-                    this.RequestBody.Equals(input.RequestBody))
+                    this.Removed == input.Removed ||
+                    this.Removed.Equals(input.Removed)
                 ) && 
                 (
-                    this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    this.Address == input.Address ||
+                    (this.Address != null &&
+                    this.Address.Equals(input.Address))
                 ) && 
                 (
-                    this.ResponseTime == input.ResponseTime ||
-                    this.ResponseTime.Equals(input.ResponseTime)
+                    this.Data == input.Data ||
+                    (this.Data != null &&
+                    this.Data.Equals(input.Data))
                 ) && 
                 (
-                    this.ResponseData == input.ResponseData ||
-                    (this.ResponseData != null &&
-                    this.ResponseData.Equals(input.ResponseData))
+                    this.Topics == input.Topics ||
+                    this.Topics != null &&
+                    input.Topics != null &&
+                    this.Topics.SequenceEqual(input.Topics)
+                ) && 
+                (
+                    this.TransactionHash == input.TransactionHash ||
+                    (this.TransactionHash != null &&
+                    this.TransactionHash.Equals(input.TransactionHash))
+                ) && 
+                (
+                    this.LogIndex == input.LogIndex ||
+                    this.LogIndex.Equals(input.LogIndex)
                 );
         }
 
@@ -218,28 +245,30 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
+                hashCode = (hashCode * 59) + this.BlockNumber.GetHashCode();
+                if (this.BlockHash != null)
                 {
-                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                    hashCode = (hashCode * 59) + this.BlockHash.GetHashCode();
                 }
-                if (this.Timestamp != null)
+                hashCode = (hashCode * 59) + this.TransactionIndex.GetHashCode();
+                hashCode = (hashCode * 59) + this.Removed.GetHashCode();
+                if (this.Address != null)
                 {
-                    hashCode = (hashCode * 59) + this.Timestamp.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Address.GetHashCode();
                 }
-                if (this.Event != null)
+                if (this.Data != null)
                 {
-                    hashCode = (hashCode * 59) + this.Event.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Data.GetHashCode();
                 }
-                if (this.RequestBody != null)
+                if (this.Topics != null)
                 {
-                    hashCode = (hashCode * 59) + this.RequestBody.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Topics.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
-                hashCode = (hashCode * 59) + this.ResponseTime.GetHashCode();
-                if (this.ResponseData != null)
+                if (this.TransactionHash != null)
                 {
-                    hashCode = (hashCode * 59) + this.ResponseData.GetHashCode();
+                    hashCode = (hashCode * 59) + this.TransactionHash.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.LogIndex.GetHashCode();
                 return hashCode;
             }
         }

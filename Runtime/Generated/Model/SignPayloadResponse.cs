@@ -42,9 +42,9 @@ namespace Openfort.Model
         /// <param name="_object">_object (required).</param>
         /// <param name="account">account (required).</param>
         /// <param name="address">address (required).</param>
-        /// <param name="payload">payload (required).</param>
+        /// <param name="hash">hash (required).</param>
         /// <param name="signature">signature (required).</param>
-        public SignPayloadResponse(string _object = default(string), string account = default(string), string address = default(string), string payload = default(string), string signature = default(string))
+        public SignPayloadResponse(string _object = default(string), string account = default(string), string address = default(string), string hash = default(string), string signature = default(string))
         {
             // to ensure "_object" is required (not null)
             if (_object == null)
@@ -64,12 +64,12 @@ namespace Openfort.Model
                 throw new ArgumentNullException("address is a required property for SignPayloadResponse and cannot be null");
             }
             this.Address = address;
-            // to ensure "payload" is required (not null)
-            if (payload == null)
+            // to ensure "hash" is required (not null)
+            if (hash == null)
             {
-                throw new ArgumentNullException("payload is a required property for SignPayloadResponse and cannot be null");
+                throw new ArgumentNullException("hash is a required property for SignPayloadResponse and cannot be null");
             }
-            this.Payload = payload;
+            this.Hash = hash;
             // to ensure "signature" is required (not null)
             if (signature == null)
             {
@@ -97,10 +97,10 @@ namespace Openfort.Model
         public string Address { get; set; }
 
         /// <summary>
-        /// Gets or Sets Payload
+        /// Gets or Sets Hash
         /// </summary>
-        [DataMember(Name = "payload", IsRequired = true, EmitDefaultValue = true)]
-        public string Payload { get; set; }
+        [DataMember(Name = "hash", IsRequired = true, EmitDefaultValue = true)]
+        public string Hash { get; set; }
 
         /// <summary>
         /// Gets or Sets Signature
@@ -119,7 +119,7 @@ namespace Openfort.Model
             sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
-            sb.Append("  Payload: ").Append(Payload).Append("\n");
+            sb.Append("  Hash: ").Append(Hash).Append("\n");
             sb.Append("  Signature: ").Append(Signature).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -172,9 +172,9 @@ namespace Openfort.Model
                     this.Address.Equals(input.Address))
                 ) && 
                 (
-                    this.Payload == input.Payload ||
-                    (this.Payload != null &&
-                    this.Payload.Equals(input.Payload))
+                    this.Hash == input.Hash ||
+                    (this.Hash != null &&
+                    this.Hash.Equals(input.Hash))
                 ) && 
                 (
                     this.Signature == input.Signature ||
@@ -204,9 +204,9 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Address.GetHashCode();
                 }
-                if (this.Payload != null)
+                if (this.Hash != null)
                 {
-                    hashCode = (hashCode * 59) + this.Payload.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Hash.GetHashCode();
                 }
                 if (this.Signature != null)
                 {

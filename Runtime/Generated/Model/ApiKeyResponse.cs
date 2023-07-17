@@ -43,7 +43,7 @@ namespace Openfort.Model
         /// <param name="token">token (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="livemode">livemode (required).</param>
-        public ApiKeyResponse(DateTime createdAt = default(DateTime), string token = default(string), string name = default(string), bool livemode = default(bool))
+        public ApiKeyResponse(int createdAt = default(int), string token = default(string), string name = default(string), bool livemode = default(bool))
         {
             this.CreatedAt = createdAt;
             // to ensure "token" is required (not null)
@@ -64,8 +64,8 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime CreatedAt { get; set; }
+        [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
+        public int CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets Token
@@ -134,8 +134,7 @@ namespace Openfort.Model
             return 
                 (
                     this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    this.CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
                     this.Token == input.Token ||
@@ -162,10 +161,7 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 if (this.Token != null)
                 {
                     hashCode = (hashCode * 59) + this.Token.GetHashCode();

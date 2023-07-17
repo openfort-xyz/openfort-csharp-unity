@@ -47,10 +47,10 @@ namespace Openfort.Model
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionIntentResponseAccount" /> class
-        /// with the <see cref="string" /> class
+        /// with the <see cref="PickAccountResponseId" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of string.</param>
-        public TransactionIntentResponseAccount(string actualInstance)
+        /// <param name="actualInstance">An instance of PickAccountResponseId.</param>
+        public TransactionIntentResponseAccount(PickAccountResponseId actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -75,13 +75,13 @@ namespace Openfort.Model
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(string))
+                else if (value.GetType() == typeof(PickAccountResponseId))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AccountResponse, string");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AccountResponse, PickAccountResponseId");
                 }
             }
         }
@@ -97,13 +97,13 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Get the actual instance of `string`. If the actual instance is not `string`,
+        /// Get the actual instance of `PickAccountResponseId`. If the actual instance is not `PickAccountResponseId`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of string</returns>
-        public string GetString()
+        /// <returns>An instance of PickAccountResponseId</returns>
+        public PickAccountResponseId GetPickAccountResponseId()
         {
-            return (string)this.ActualInstance;
+            return (PickAccountResponseId)this.ActualInstance;
         }
 
         /// <summary>
@@ -156,14 +156,14 @@ namespace Openfort.Model
 
             try
             {
-                newTransactionIntentResponseAccount = new TransactionIntentResponseAccount(JsonConvert.DeserializeObject<string>(jsonString, TransactionIntentResponseAccount.SerializerSettings));
+                newTransactionIntentResponseAccount = new TransactionIntentResponseAccount(JsonConvert.DeserializeObject<PickAccountResponseId>(jsonString, TransactionIntentResponseAccount.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
                 return newTransactionIntentResponseAccount;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into string: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PickAccountResponseId: {1}", jsonString, exception.ToString()));
             }
 
             // no match found, throw an exception

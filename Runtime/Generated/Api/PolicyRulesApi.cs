@@ -34,9 +34,9 @@ namespace Openfort.Api
         /// Creates an allow function object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="createPolicyRuleRequest"></param>
         /// <returns>PolicyRuleResponse</returns>
-        PolicyRuleResponse CreatePolicyRules(PolicyRuleRequest policyRuleRequest);
+        PolicyRuleResponse CreatePolicyRules(CreatePolicyRuleRequest createPolicyRuleRequest);
 
         /// <summary>
         /// 
@@ -45,9 +45,9 @@ namespace Openfort.Api
         /// Creates an allow function object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="createPolicyRuleRequest"></param>
         /// <returns>ApiResponse of PolicyRuleResponse</returns>
-        ApiResponse<PolicyRuleResponse> CreatePolicyRulesWithHttpInfo(PolicyRuleRequest policyRuleRequest);
+        ApiResponse<PolicyRuleResponse> CreatePolicyRulesWithHttpInfo(CreatePolicyRuleRequest createPolicyRuleRequest);
         /// <summary>
         /// 
         /// </summary>
@@ -100,9 +100,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="updatePolicyRuleRequest"></param>
         /// <returns>PolicyRuleResponse</returns>
-        PolicyRuleResponse UpdatePolicyRules(string id, PolicyRuleRequest policyRuleRequest);
+        PolicyRuleResponse UpdatePolicyRules(string id, UpdatePolicyRuleRequest updatePolicyRuleRequest);
 
         /// <summary>
         /// 
@@ -112,9 +112,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="updatePolicyRuleRequest"></param>
         /// <returns>ApiResponse of PolicyRuleResponse</returns>
-        ApiResponse<PolicyRuleResponse> UpdatePolicyRulesWithHttpInfo(string id, PolicyRuleRequest policyRuleRequest);
+        ApiResponse<PolicyRuleResponse> UpdatePolicyRulesWithHttpInfo(string id, UpdatePolicyRuleRequest updatePolicyRuleRequest);
         #endregion Synchronous Operations
     }
 
@@ -131,10 +131,10 @@ namespace Openfort.Api
         /// Creates an allow function object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="createPolicyRuleRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PolicyRuleResponse</returns>
-        System.Threading.Tasks.Task<PolicyRuleResponse> CreatePolicyRulesAsync(PolicyRuleRequest policyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PolicyRuleResponse> CreatePolicyRulesAsync(CreatePolicyRuleRequest createPolicyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -143,10 +143,10 @@ namespace Openfort.Api
         /// Creates an allow function object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="createPolicyRuleRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PolicyRuleResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PolicyRuleResponse>> CreatePolicyRulesWithHttpInfoAsync(PolicyRuleRequest policyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PolicyRuleResponse>> CreatePolicyRulesWithHttpInfoAsync(CreatePolicyRuleRequest createPolicyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -203,10 +203,10 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="updatePolicyRuleRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PolicyRuleResponse</returns>
-        System.Threading.Tasks.Task<PolicyRuleResponse> UpdatePolicyRulesAsync(string id, PolicyRuleRequest policyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PolicyRuleResponse> UpdatePolicyRulesAsync(string id, UpdatePolicyRuleRequest updatePolicyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -216,10 +216,10 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="updatePolicyRuleRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PolicyRuleResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PolicyRuleResponse>> UpdatePolicyRulesWithHttpInfoAsync(string id, PolicyRuleRequest policyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PolicyRuleResponse>> UpdatePolicyRulesWithHttpInfoAsync(string id, UpdatePolicyRuleRequest updatePolicyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -368,11 +368,11 @@ namespace Openfort.Api
         ///  Creates an allow function object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="createPolicyRuleRequest"></param>
         /// <returns>PolicyRuleResponse</returns>
-        public PolicyRuleResponse CreatePolicyRules(PolicyRuleRequest policyRuleRequest)
+        public PolicyRuleResponse CreatePolicyRules(CreatePolicyRuleRequest createPolicyRuleRequest)
         {
-            Openfort.Client.ApiResponse<PolicyRuleResponse> localVarResponse = CreatePolicyRulesWithHttpInfo(policyRuleRequest);
+            Openfort.Client.ApiResponse<PolicyRuleResponse> localVarResponse = CreatePolicyRulesWithHttpInfo(createPolicyRuleRequest);
             return localVarResponse.Data;
         }
 
@@ -380,13 +380,13 @@ namespace Openfort.Api
         ///  Creates an allow function object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="createPolicyRuleRequest"></param>
         /// <returns>ApiResponse of PolicyRuleResponse</returns>
-        public Openfort.Client.ApiResponse<PolicyRuleResponse> CreatePolicyRulesWithHttpInfo(PolicyRuleRequest policyRuleRequest)
+        public Openfort.Client.ApiResponse<PolicyRuleResponse> CreatePolicyRulesWithHttpInfo(CreatePolicyRuleRequest createPolicyRuleRequest)
         {
-            // verify the required parameter 'policyRuleRequest' is set
-            if (policyRuleRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'policyRuleRequest' when calling PolicyRulesApi->CreatePolicyRules");
+            // verify the required parameter 'createPolicyRuleRequest' is set
+            if (createPolicyRuleRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'createPolicyRuleRequest' when calling PolicyRulesApi->CreatePolicyRules");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -405,7 +405,7 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = policyRuleRequest;
+            localVarRequestOptions.Data = createPolicyRuleRequest;
 
 
             // make the HTTP request
@@ -424,12 +424,12 @@ namespace Openfort.Api
         ///  Creates an allow function object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="createPolicyRuleRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PolicyRuleResponse</returns>
-        public async System.Threading.Tasks.Task<PolicyRuleResponse> CreatePolicyRulesAsync(PolicyRuleRequest policyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PolicyRuleResponse> CreatePolicyRulesAsync(CreatePolicyRuleRequest createPolicyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = CreatePolicyRulesWithHttpInfoAsync(policyRuleRequest, cancellationToken);
+            var task = CreatePolicyRulesWithHttpInfoAsync(createPolicyRuleRequest, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<PolicyRuleResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -442,14 +442,14 @@ namespace Openfort.Api
         ///  Creates an allow function object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="createPolicyRuleRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PolicyRuleResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PolicyRuleResponse>> CreatePolicyRulesWithHttpInfoAsync(PolicyRuleRequest policyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PolicyRuleResponse>> CreatePolicyRulesWithHttpInfoAsync(CreatePolicyRuleRequest createPolicyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'policyRuleRequest' is set
-            if (policyRuleRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'policyRuleRequest' when calling PolicyRulesApi->CreatePolicyRules");
+            // verify the required parameter 'createPolicyRuleRequest' is set
+            if (createPolicyRuleRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'createPolicyRuleRequest' when calling PolicyRulesApi->CreatePolicyRules");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -470,7 +470,7 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = policyRuleRequest;
+            localVarRequestOptions.Data = createPolicyRuleRequest;
 
 
             // make the HTTP request
@@ -759,11 +759,11 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="updatePolicyRuleRequest"></param>
         /// <returns>PolicyRuleResponse</returns>
-        public PolicyRuleResponse UpdatePolicyRules(string id, PolicyRuleRequest policyRuleRequest)
+        public PolicyRuleResponse UpdatePolicyRules(string id, UpdatePolicyRuleRequest updatePolicyRuleRequest)
         {
-            Openfort.Client.ApiResponse<PolicyRuleResponse> localVarResponse = UpdatePolicyRulesWithHttpInfo(id, policyRuleRequest);
+            Openfort.Client.ApiResponse<PolicyRuleResponse> localVarResponse = UpdatePolicyRulesWithHttpInfo(id, updatePolicyRuleRequest);
             return localVarResponse.Data;
         }
 
@@ -772,17 +772,17 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="updatePolicyRuleRequest"></param>
         /// <returns>ApiResponse of PolicyRuleResponse</returns>
-        public Openfort.Client.ApiResponse<PolicyRuleResponse> UpdatePolicyRulesWithHttpInfo(string id, PolicyRuleRequest policyRuleRequest)
+        public Openfort.Client.ApiResponse<PolicyRuleResponse> UpdatePolicyRulesWithHttpInfo(string id, UpdatePolicyRuleRequest updatePolicyRuleRequest)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PolicyRulesApi->UpdatePolicyRules");
 
-            // verify the required parameter 'policyRuleRequest' is set
-            if (policyRuleRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'policyRuleRequest' when calling PolicyRulesApi->UpdatePolicyRules");
+            // verify the required parameter 'updatePolicyRuleRequest' is set
+            if (updatePolicyRuleRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'updatePolicyRuleRequest' when calling PolicyRulesApi->UpdatePolicyRules");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -802,7 +802,7 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.Data = policyRuleRequest;
+            localVarRequestOptions.Data = updatePolicyRuleRequest;
 
 
             // make the HTTP request
@@ -822,12 +822,12 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="updatePolicyRuleRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PolicyRuleResponse</returns>
-        public async System.Threading.Tasks.Task<PolicyRuleResponse> UpdatePolicyRulesAsync(string id, PolicyRuleRequest policyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PolicyRuleResponse> UpdatePolicyRulesAsync(string id, UpdatePolicyRuleRequest updatePolicyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = UpdatePolicyRulesWithHttpInfoAsync(id, policyRuleRequest, cancellationToken);
+            var task = UpdatePolicyRulesWithHttpInfoAsync(id, updatePolicyRuleRequest, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<PolicyRuleResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -841,18 +841,18 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique allow function ID.</param>
-        /// <param name="policyRuleRequest"></param>
+        /// <param name="updatePolicyRuleRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PolicyRuleResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PolicyRuleResponse>> UpdatePolicyRulesWithHttpInfoAsync(string id, PolicyRuleRequest policyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PolicyRuleResponse>> UpdatePolicyRulesWithHttpInfoAsync(string id, UpdatePolicyRuleRequest updatePolicyRuleRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PolicyRulesApi->UpdatePolicyRules");
 
-            // verify the required parameter 'policyRuleRequest' is set
-            if (policyRuleRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'policyRuleRequest' when calling PolicyRulesApi->UpdatePolicyRules");
+            // verify the required parameter 'updatePolicyRuleRequest' is set
+            if (updatePolicyRuleRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'updatePolicyRuleRequest' when calling PolicyRulesApi->UpdatePolicyRules");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -874,7 +874,7 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.Data = policyRuleRequest;
+            localVarRequestOptions.Data = updatePolicyRuleRequest;
 
 
             // make the HTTP request

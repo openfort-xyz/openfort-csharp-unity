@@ -35,7 +35,7 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets PkPolicy
         /// </summary>
-        [DataMember(Name = "pk_policy", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "pkPolicy", IsRequired = true, EmitDefaultValue = true)]
         public PKPolicy PkPolicy { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectResponse" /> class.
@@ -52,7 +52,7 @@ namespace Openfort.Model
         /// <param name="name">name (required).</param>
         /// <param name="pkPolicy">pkPolicy (required).</param>
         /// <param name="apikeys">apikeys.</param>
-        public ProjectResponse(string id = default(string), string _object = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), string name = default(string), PKPolicy pkPolicy = default(PKPolicy), List<ApiKeyResponse> apikeys = default(List<ApiKeyResponse>))
+        public ProjectResponse(string id = default(string), string _object = default(string), int createdAt = default(int), int updatedAt = default(int), string name = default(string), PKPolicy pkPolicy = default(PKPolicy), List<ApiKeyResponse> apikeys = default(List<ApiKeyResponse>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -93,14 +93,14 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime CreatedAt { get; set; }
+        [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
+        public int CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets UpdatedAt
         /// </summary>
-        [DataMember(Name = "updated_at", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime UpdatedAt { get; set; }
+        [DataMember(Name = "updatedAt", IsRequired = true, EmitDefaultValue = true)]
+        public int UpdatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
@@ -176,13 +176,11 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    this.CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
                     this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    this.UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
                     this.Name == input.Name ||
@@ -218,14 +216,8 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 }
-                if (this.CreatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                }
-                if (this.UpdatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+                hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();

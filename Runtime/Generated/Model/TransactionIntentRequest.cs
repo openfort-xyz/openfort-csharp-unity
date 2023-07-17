@@ -74,7 +74,7 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets ChainId
         /// </summary>
-        [DataMember(Name = "chain_id", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
         public double ChainId { get; set; }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets ExternalOwnerAddress
         /// </summary>
-        [DataMember(Name = "external_owner_address", EmitDefaultValue = false)]
+        [DataMember(Name = "externalOwnerAddress", EmitDefaultValue = false)]
         public string ExternalOwnerAddress { get; set; }
 
         /// <summary>

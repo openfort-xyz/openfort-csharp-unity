@@ -34,9 +34,9 @@ namespace Openfort.Api
         /// Creates an account object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountRequest"></param>
+        /// <param name="createAccountRequest"></param>
         /// <returns>AccountResponse</returns>
-        AccountResponse CreateAccount(AccountRequest accountRequest);
+        AccountResponse CreateAccount(CreateAccountRequest createAccountRequest);
 
         /// <summary>
         /// 
@@ -45,9 +45,9 @@ namespace Openfort.Api
         /// Creates an account object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountRequest"></param>
+        /// <param name="createAccountRequest"></param>
         /// <returns>ApiResponse of AccountResponse</returns>
-        ApiResponse<AccountResponse> CreateAccountWithHttpInfo(AccountRequest accountRequest);
+        ApiResponse<AccountResponse> CreateAccountWithHttpInfo(CreateAccountRequest createAccountRequest);
         /// <summary>
         /// 
         /// </summary>
@@ -179,10 +179,10 @@ namespace Openfort.Api
         /// Creates an account object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountRequest"></param>
+        /// <param name="createAccountRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountResponse</returns>
-        System.Threading.Tasks.Task<AccountResponse> CreateAccountAsync(AccountRequest accountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<AccountResponse> CreateAccountAsync(CreateAccountRequest createAccountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -191,10 +191,10 @@ namespace Openfort.Api
         /// Creates an account object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountRequest"></param>
+        /// <param name="createAccountRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountResponse>> CreateAccountWithHttpInfoAsync(AccountRequest accountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AccountResponse>> CreateAccountWithHttpInfoAsync(CreateAccountRequest createAccountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -468,11 +468,11 @@ namespace Openfort.Api
         ///  Creates an account object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountRequest"></param>
+        /// <param name="createAccountRequest"></param>
         /// <returns>AccountResponse</returns>
-        public AccountResponse CreateAccount(AccountRequest accountRequest)
+        public AccountResponse CreateAccount(CreateAccountRequest createAccountRequest)
         {
-            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = CreateAccountWithHttpInfo(accountRequest);
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = CreateAccountWithHttpInfo(createAccountRequest);
             return localVarResponse.Data;
         }
 
@@ -480,13 +480,13 @@ namespace Openfort.Api
         ///  Creates an account object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountRequest"></param>
+        /// <param name="createAccountRequest"></param>
         /// <returns>ApiResponse of AccountResponse</returns>
-        public Openfort.Client.ApiResponse<AccountResponse> CreateAccountWithHttpInfo(AccountRequest accountRequest)
+        public Openfort.Client.ApiResponse<AccountResponse> CreateAccountWithHttpInfo(CreateAccountRequest createAccountRequest)
         {
-            // verify the required parameter 'accountRequest' is set
-            if (accountRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'accountRequest' when calling AccountsApi->CreateAccount");
+            // verify the required parameter 'createAccountRequest' is set
+            if (createAccountRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'createAccountRequest' when calling AccountsApi->CreateAccount");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -505,7 +505,7 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = accountRequest;
+            localVarRequestOptions.Data = createAccountRequest;
 
 
             // make the HTTP request
@@ -524,12 +524,12 @@ namespace Openfort.Api
         ///  Creates an account object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountRequest"></param>
+        /// <param name="createAccountRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountResponse</returns>
-        public async System.Threading.Tasks.Task<AccountResponse> CreateAccountAsync(AccountRequest accountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<AccountResponse> CreateAccountAsync(CreateAccountRequest createAccountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = CreateAccountWithHttpInfoAsync(accountRequest, cancellationToken);
+            var task = CreateAccountWithHttpInfoAsync(createAccountRequest, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<AccountResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -542,14 +542,14 @@ namespace Openfort.Api
         ///  Creates an account object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountRequest"></param>
+        /// <param name="createAccountRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountResponse>> CreateAccountWithHttpInfoAsync(AccountRequest accountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountResponse>> CreateAccountWithHttpInfoAsync(CreateAccountRequest createAccountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'accountRequest' is set
-            if (accountRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'accountRequest' when calling AccountsApi->CreateAccount");
+            // verify the required parameter 'createAccountRequest' is set
+            if (createAccountRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'createAccountRequest' when calling AccountsApi->CreateAccount");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -570,7 +570,7 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = accountRequest;
+            localVarRequestOptions.Data = createAccountRequest;
 
 
             // make the HTTP request

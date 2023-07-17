@@ -34,36 +34,27 @@ namespace Openfort.Model
     public partial class TransactionIntentResponsePolicy : AbstractOpenAPISchema, IEquatable<TransactionIntentResponsePolicy>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransactionIntentResponsePolicy" /> class.
-        /// </summary>
-        public TransactionIntentResponsePolicy()
-        {
-            this.IsNullable = true;
-            this.SchemaType= "anyOf";
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="TransactionIntentResponsePolicy" /> class
         /// with the <see cref="PolicyResponse" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of PolicyResponse.</param>
         public TransactionIntentResponsePolicy(PolicyResponse actualInstance)
         {
-            this.IsNullable = true;
+            this.IsNullable = false;
             this.SchemaType= "anyOf";
-            this.ActualInstance = actualInstance;
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionIntentResponsePolicy" /> class
-        /// with the <see cref="string" /> class
+        /// with the <see cref="PickPolicyResponseId" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of string.</param>
-        public TransactionIntentResponsePolicy(string actualInstance)
+        /// <param name="actualInstance">An instance of PickPolicyResponseId.</param>
+        public TransactionIntentResponsePolicy(PickPolicyResponseId actualInstance)
         {
-            this.IsNullable = true;
+            this.IsNullable = false;
             this.SchemaType= "anyOf";
-            this.ActualInstance = actualInstance;
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
 
@@ -80,17 +71,17 @@ namespace Openfort.Model
             }
             set
             {
-                if (value.GetType() == typeof(PolicyResponse))
+                if (value.GetType() == typeof(PickPolicyResponseId))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(string))
+                else if (value.GetType() == typeof(PolicyResponse))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: PolicyResponse, string");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: PickPolicyResponseId, PolicyResponse");
                 }
             }
         }
@@ -106,13 +97,13 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Get the actual instance of `string`. If the actual instance is not `string`,
+        /// Get the actual instance of `PickPolicyResponseId`. If the actual instance is not `PickPolicyResponseId`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of string</returns>
-        public string GetString()
+        /// <returns>An instance of PickPolicyResponseId</returns>
+        public PickPolicyResponseId GetPickPolicyResponseId()
         {
-            return (string)this.ActualInstance;
+            return (PickPolicyResponseId)this.ActualInstance;
         }
 
         /// <summary>
@@ -153,6 +144,18 @@ namespace Openfort.Model
 
             try
             {
+                newTransactionIntentResponsePolicy = new TransactionIntentResponsePolicy(JsonConvert.DeserializeObject<PickPolicyResponseId>(jsonString, TransactionIntentResponsePolicy.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newTransactionIntentResponsePolicy;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PickPolicyResponseId: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
                 newTransactionIntentResponsePolicy = new TransactionIntentResponsePolicy(JsonConvert.DeserializeObject<PolicyResponse>(jsonString, TransactionIntentResponsePolicy.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
                 return newTransactionIntentResponsePolicy;
@@ -161,18 +164,6 @@ namespace Openfort.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PolicyResponse: {1}", jsonString, exception.ToString()));
-            }
-
-            try
-            {
-                newTransactionIntentResponsePolicy = new TransactionIntentResponsePolicy(JsonConvert.DeserializeObject<string>(jsonString, TransactionIntentResponsePolicy.SerializerSettings));
-                // deserialization is considered successful at this point if no exception has been thrown.
-                return newTransactionIntentResponsePolicy;
-            }
-            catch (Exception exception)
-            {
-                // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into string: {1}", jsonString, exception.ToString()));
             }
 
             // no match found, throw an exception
