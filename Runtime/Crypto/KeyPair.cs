@@ -15,6 +15,7 @@ using Org.BouncyCastle.Math;
 using Org.BouncyCastle.Security;
 using Org.BouncyCastle.Utilities.Encoders;
 using UnityEngine;
+using Nethereum.Web3.Accounts;
 
 namespace Openfort.Crypto
 {
@@ -26,11 +27,14 @@ namespace Openfort.Crypto
         private readonly ECPublicKeyParameters _public;
         private readonly ECPrivateKeyParameters _private;
         private ECDsaSigner _signer;
+        private readonly Account _account;
+
 
         public KeyPair(AsymmetricCipherKeyPair keyPair)
         {
             _public = keyPair.Public as ECPublicKeyParameters;
             _private = keyPair.Private as ECPrivateKeyParameters;
+            _account = new Account(PrivateHex);
         }
 
         public ECPublicKeyParameters Public
@@ -45,12 +49,17 @@ namespace Openfort.Crypto
 
         public string PublicHex
         {
-            get => Public.Q.GetEncoded().ToHex();
+            get => Public.Q.GetEncoded(true).ToHex();
         }
 
         public string PrivateHex
         {
             get => Private.D.ToHex();
+        }
+
+        public string Address
+        {
+            get => _account?.Address;
         }
 
         private ECDsaSigner Signer
