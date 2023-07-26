@@ -10,12 +10,12 @@ using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Parameters;
-using Org.BouncyCastle.Crypto.Signers;
 using Org.BouncyCastle.Math;
 using Org.BouncyCastle.Security;
 using Org.BouncyCastle.Utilities.Encoders;
 using UnityEngine;
 using Nethereum.Web3.Accounts;
+using Nethereum.Signer;
 
 namespace Openfort.Crypto
 {
@@ -26,7 +26,6 @@ namespace Openfort.Crypto
 
         private readonly ECPublicKeyParameters _public;
         private readonly ECPrivateKeyParameters _private;
-        private ECDsaSigner _signer;
         private readonly Account _account;
 
 
@@ -62,53 +61,11 @@ namespace Openfort.Crypto
             get => _account?.Address;
         }
 
-        private ECDsaSigner Signer
-        {
-            get
-            {
-                if (_signer == null)
-                {
-                    _signer = new ECDsaSigner(new HMacDsaKCalculator(new Sha256Digest()));
-                    _signer.Init(true, Private);
-                }
-                return _signer;
-            }
-        }
-
-        private byte[] HashMessage(byte[] msg)
-        {
-            // "\x19Ethereum Signed Message:\n"
-            byte[] prefixBytes = {25, 69, 116, 104, 101, 114, 101, 117, 109, 32, 83, 105, 103, 110, 101, 100, 32, 77, 101, 115, 115, 97, 103, 101, 58, 10};
-            byte[] lengthBytes = Encoding.UTF8.GetBytes(msg.Length.ToString());
-            byte[] txBytes = prefixBytes.Concat(lengthBytes).Concat(msg).ToArray();
-
-
-            var digest = new KeccakDigest(256);
-            digest.BlockUpdate(txBytes, 0, txBytes.Length);
-            var calculatedHash = new byte[32];
-            digest.DoFinal(calculatedHash, 0);
-            
-            return calculatedHash;
-        }
-
-        private string FormatSignature(BigInteger[] signature) {
-            var r = signature[0];
-            var s = signature[1];
-            var otherS = curve.Curve.Order.Subtract(s);
-
-            if (s.CompareTo(otherS) == 1)
-            {
-                s = otherS;
-            }
-
-            return string.Format("0x{0}{1}1b", r.ToString(16), s.ToString(16));
-        }
-
         public string Sign(byte[] msg)
         {
-            var calculatedHash = HashMessage(msg);
-            var signature = Signer.GenerateSignature(calculatedHash);
-            return FormatSignature(signature);
+            var signer = new EthereumMessageSigner();
+            var ethECKey = new EthECKey(Private.D.ToByteArray(), true);
+            return signer.Sign(msg, ethECKey);
         }
 
         public string Sign(string msg)
