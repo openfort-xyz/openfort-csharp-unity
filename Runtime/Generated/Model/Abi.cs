@@ -26,13 +26,13 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// JsonFragment
+    /// Abi
     /// </summary>
-    [DataContract(Name = "JsonFragment")]
-    public partial class JsonFragment : IEquatable<JsonFragment>
+    [DataContract(Name = "Abi")]
+    public partial class Abi : IEquatable<Abi>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JsonFragment" /> class.
+        /// Initializes a new instance of the <see cref="Abi" /> class.
         /// </summary>
         /// <param name="name">name.</param>
         /// <param name="type">type.</param>
@@ -40,10 +40,10 @@ namespace Openfort.Model
         /// <param name="payable">payable.</param>
         /// <param name="constant">constant.</param>
         /// <param name="stateMutability">stateMutability.</param>
+        /// <param name="gas">gas.</param>
         /// <param name="inputs">inputs.</param>
         /// <param name="outputs">outputs.</param>
-        /// <param name="gas">gas.</param>
-        public JsonFragment(string name = default(string), string type = default(string), bool anonymous = default(bool), bool payable = default(bool), bool constant = default(bool), string stateMutability = default(string), Object inputs = default(Object), Object outputs = default(Object), string gas = default(string))
+        public Abi(string name = default(string), string type = default(string), bool anonymous = default(bool), bool payable = default(bool), bool constant = default(bool), string stateMutability = default(string), string gas = default(string), List<AbiType> inputs = default(List<AbiType>), List<AbiType> outputs = default(List<AbiType>))
         {
             this.Name = name;
             this.Type = type;
@@ -51,9 +51,9 @@ namespace Openfort.Model
             this.Payable = payable;
             this.Constant = constant;
             this.StateMutability = stateMutability;
+            this.Gas = gas;
             this.Inputs = inputs;
             this.Outputs = outputs;
-            this.Gas = gas;
         }
 
         /// <summary>
@@ -93,22 +93,22 @@ namespace Openfort.Model
         public string StateMutability { get; set; }
 
         /// <summary>
+        /// Gets or Sets Gas
+        /// </summary>
+        [DataMember(Name = "gas", EmitDefaultValue = false)]
+        public string Gas { get; set; }
+
+        /// <summary>
         /// Gets or Sets Inputs
         /// </summary>
         [DataMember(Name = "inputs", EmitDefaultValue = false)]
-        public Object Inputs { get; set; }
+        public List<AbiType> Inputs { get; set; }
 
         /// <summary>
         /// Gets or Sets Outputs
         /// </summary>
         [DataMember(Name = "outputs", EmitDefaultValue = false)]
-        public Object Outputs { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Gas
-        /// </summary>
-        [DataMember(Name = "gas", EmitDefaultValue = false)]
-        public string Gas { get; set; }
+        public List<AbiType> Outputs { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,16 +117,16 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class JsonFragment {\n");
+            sb.Append("class Abi {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Anonymous: ").Append(Anonymous).Append("\n");
             sb.Append("  Payable: ").Append(Payable).Append("\n");
             sb.Append("  Constant: ").Append(Constant).Append("\n");
             sb.Append("  StateMutability: ").Append(StateMutability).Append("\n");
+            sb.Append("  Gas: ").Append(Gas).Append("\n");
             sb.Append("  Inputs: ").Append(Inputs).Append("\n");
             sb.Append("  Outputs: ").Append(Outputs).Append("\n");
-            sb.Append("  Gas: ").Append(Gas).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -147,15 +147,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as JsonFragment);
+            return this.Equals(input as Abi);
         }
 
         /// <summary>
-        /// Returns true if JsonFragment instances are equal
+        /// Returns true if Abi instances are equal
         /// </summary>
-        /// <param name="input">Instance of JsonFragment to be compared</param>
+        /// <param name="input">Instance of Abi to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(JsonFragment input)
+        public bool Equals(Abi input)
         {
             if (input == null)
             {
@@ -190,19 +190,21 @@ namespace Openfort.Model
                     this.StateMutability.Equals(input.StateMutability))
                 ) && 
                 (
-                    this.Inputs == input.Inputs ||
-                    (this.Inputs != null &&
-                    this.Inputs.Equals(input.Inputs))
-                ) && 
-                (
-                    this.Outputs == input.Outputs ||
-                    (this.Outputs != null &&
-                    this.Outputs.Equals(input.Outputs))
-                ) && 
-                (
                     this.Gas == input.Gas ||
                     (this.Gas != null &&
                     this.Gas.Equals(input.Gas))
+                ) && 
+                (
+                    this.Inputs == input.Inputs ||
+                    this.Inputs != null &&
+                    input.Inputs != null &&
+                    this.Inputs.SequenceEqual(input.Inputs)
+                ) && 
+                (
+                    this.Outputs == input.Outputs ||
+                    this.Outputs != null &&
+                    input.Outputs != null &&
+                    this.Outputs.SequenceEqual(input.Outputs)
                 );
         }
 
@@ -230,6 +232,10 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.StateMutability.GetHashCode();
                 }
+                if (this.Gas != null)
+                {
+                    hashCode = (hashCode * 59) + this.Gas.GetHashCode();
+                }
                 if (this.Inputs != null)
                 {
                     hashCode = (hashCode * 59) + this.Inputs.GetHashCode();
@@ -237,10 +243,6 @@ namespace Openfort.Model
                 if (this.Outputs != null)
                 {
                     hashCode = (hashCode * 59) + this.Outputs.GetHashCode();
-                }
-                if (this.Gas != null)
-                {
-                    hashCode = (hashCode * 59) + this.Gas.GetHashCode();
                 }
                 return hashCode;
             }

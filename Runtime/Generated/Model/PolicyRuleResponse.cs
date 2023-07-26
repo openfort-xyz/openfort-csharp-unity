@@ -49,8 +49,8 @@ namespace Openfort.Model
         /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="type">type (required).</param>
-        /// <param name="functionName">functionName (required).</param>
-        /// <param name="contract">contract (required).</param>
+        /// <param name="functionName">functionName.</param>
+        /// <param name="contract">contract.</param>
         public PolicyRuleResponse(string id = default(string), string _object = default(string), int createdAt = default(int), PolicySchema type = default(PolicySchema), string functionName = default(string), PolicyRuleResponseContract contract = default(PolicyRuleResponseContract))
         {
             // to ensure "id" is required (not null)
@@ -67,17 +67,7 @@ namespace Openfort.Model
             this.Object = _object;
             this.CreatedAt = createdAt;
             this.Type = type;
-            // to ensure "functionName" is required (not null)
-            if (functionName == null)
-            {
-                throw new ArgumentNullException("functionName is a required property for PolicyRuleResponse and cannot be null");
-            }
             this.FunctionName = functionName;
-            // to ensure "contract" is required (not null)
-            if (contract == null)
-            {
-                throw new ArgumentNullException("contract is a required property for PolicyRuleResponse and cannot be null");
-            }
             this.Contract = contract;
         }
 
@@ -102,13 +92,13 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets FunctionName
         /// </summary>
-        [DataMember(Name = "functionName", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "functionName", EmitDefaultValue = false)]
         public string FunctionName { get; set; }
 
         /// <summary>
         /// Gets or Sets Contract
         /// </summary>
-        [DataMember(Name = "contract", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "contract", EmitDefaultValue = false)]
         public PolicyRuleResponseContract Contract { get; set; }
 
         /// <summary>

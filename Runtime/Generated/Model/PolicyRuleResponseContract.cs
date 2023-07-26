@@ -34,36 +34,27 @@ namespace Openfort.Model
     public partial class PolicyRuleResponseContract : AbstractOpenAPISchema, IEquatable<PolicyRuleResponseContract>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PolicyRuleResponseContract" /> class.
-        /// </summary>
-        public PolicyRuleResponseContract()
-        {
-            this.IsNullable = true;
-            this.SchemaType= "anyOf";
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="PolicyRuleResponseContract" /> class
         /// with the <see cref="ContractResponse" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of ContractResponse.</param>
         public PolicyRuleResponseContract(ContractResponse actualInstance)
         {
-            this.IsNullable = true;
+            this.IsNullable = false;
             this.SchemaType= "anyOf";
-            this.ActualInstance = actualInstance;
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PolicyRuleResponseContract" /> class
-        /// with the <see cref="string" /> class
+        /// with the <see cref="PickContractResponseId" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of string.</param>
-        public PolicyRuleResponseContract(string actualInstance)
+        /// <param name="actualInstance">An instance of PickContractResponseId.</param>
+        public PolicyRuleResponseContract(PickContractResponseId actualInstance)
         {
-            this.IsNullable = true;
+            this.IsNullable = false;
             this.SchemaType= "anyOf";
-            this.ActualInstance = actualInstance;
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
 
@@ -84,13 +75,13 @@ namespace Openfort.Model
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(string))
+                else if (value.GetType() == typeof(PickContractResponseId))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: ContractResponse, string");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: ContractResponse, PickContractResponseId");
                 }
             }
         }
@@ -106,13 +97,13 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Get the actual instance of `string`. If the actual instance is not `string`,
+        /// Get the actual instance of `PickContractResponseId`. If the actual instance is not `PickContractResponseId`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of string</returns>
-        public string GetString()
+        /// <returns>An instance of PickContractResponseId</returns>
+        public PickContractResponseId GetPickContractResponseId()
         {
-            return (string)this.ActualInstance;
+            return (PickContractResponseId)this.ActualInstance;
         }
 
         /// <summary>
@@ -165,14 +156,14 @@ namespace Openfort.Model
 
             try
             {
-                newPolicyRuleResponseContract = new PolicyRuleResponseContract(JsonConvert.DeserializeObject<string>(jsonString, PolicyRuleResponseContract.SerializerSettings));
+                newPolicyRuleResponseContract = new PolicyRuleResponseContract(JsonConvert.DeserializeObject<PickContractResponseId>(jsonString, PolicyRuleResponseContract.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
                 return newPolicyRuleResponseContract;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into string: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PickContractResponseId: {1}", jsonString, exception.ToString()));
             }
 
             // no match found, throw an exception

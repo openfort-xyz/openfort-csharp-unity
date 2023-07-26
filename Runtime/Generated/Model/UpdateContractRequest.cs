@@ -26,38 +26,25 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// ContractRequest
+    /// UpdateContractRequest
     /// </summary>
-    [DataContract(Name = "ContractRequest")]
-    public partial class ContractRequest : IEquatable<ContractRequest>
+    [DataContract(Name = "UpdateContractRequest")]
+    public partial class UpdateContractRequest : IEquatable<UpdateContractRequest>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContractRequest" /> class.
+        /// Initializes a new instance of the <see cref="UpdateContractRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected ContractRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ContractRequest" /> class.
-        /// </summary>
-        /// <param name="name">name (required).</param>
-        /// <param name="chainId">chainId (required).</param>
-        /// <param name="address">address (required).</param>
+        /// <param name="name">name.</param>
+        /// <param name="chainId">chainId.</param>
+        /// <param name="deleted">deleted.</param>
+        /// <param name="address">address.</param>
         /// <param name="abi">abi.</param>
         /// <param name="publicVerification">publicVerification.</param>
-        public ContractRequest(string name = default(string), double chainId = default(double), string address = default(string), PrismaJsonValue abi = default(PrismaJsonValue), bool publicVerification = default(bool))
+        public UpdateContractRequest(string name = default(string), double chainId = default(double), bool deleted = default(bool), string address = default(string), List<Abi> abi = default(List<Abi>), bool publicVerification = default(bool))
         {
-            // to ensure "name" is required (not null)
-            if (name == null)
-            {
-                throw new ArgumentNullException("name is a required property for ContractRequest and cannot be null");
-            }
             this.Name = name;
             this.ChainId = chainId;
-            // to ensure "address" is required (not null)
-            if (address == null)
-            {
-                throw new ArgumentNullException("address is a required property for ContractRequest and cannot be null");
-            }
+            this.Deleted = deleted;
             this.Address = address;
             this.Abi = abi;
             this.PublicVerification = publicVerification;
@@ -66,31 +53,37 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets ChainId
         /// </summary>
-        [DataMember(Name = "chain_id", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "chainId", EmitDefaultValue = false)]
         public double ChainId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Deleted
+        /// </summary>
+        [DataMember(Name = "deleted", EmitDefaultValue = true)]
+        public bool Deleted { get; set; }
 
         /// <summary>
         /// Gets or Sets Address
         /// </summary>
-        [DataMember(Name = "address", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "address", EmitDefaultValue = false)]
         public string Address { get; set; }
 
         /// <summary>
         /// Gets or Sets Abi
         /// </summary>
-        [DataMember(Name = "abi", EmitDefaultValue = true)]
-        public PrismaJsonValue Abi { get; set; }
+        [DataMember(Name = "abi", EmitDefaultValue = false)]
+        public List<Abi> Abi { get; set; }
 
         /// <summary>
         /// Gets or Sets PublicVerification
         /// </summary>
-        [DataMember(Name = "public_verification", EmitDefaultValue = true)]
+        [DataMember(Name = "publicVerification", EmitDefaultValue = true)]
         public bool PublicVerification { get; set; }
 
         /// <summary>
@@ -100,9 +93,10 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ContractRequest {\n");
+            sb.Append("class UpdateContractRequest {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
+            sb.Append("  Deleted: ").Append(Deleted).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  Abi: ").Append(Abi).Append("\n");
             sb.Append("  PublicVerification: ").Append(PublicVerification).Append("\n");
@@ -126,15 +120,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ContractRequest);
+            return this.Equals(input as UpdateContractRequest);
         }
 
         /// <summary>
-        /// Returns true if ContractRequest instances are equal
+        /// Returns true if UpdateContractRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of ContractRequest to be compared</param>
+        /// <param name="input">Instance of UpdateContractRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ContractRequest input)
+        public bool Equals(UpdateContractRequest input)
         {
             if (input == null)
             {
@@ -151,14 +145,19 @@ namespace Openfort.Model
                     this.ChainId.Equals(input.ChainId)
                 ) && 
                 (
+                    this.Deleted == input.Deleted ||
+                    this.Deleted.Equals(input.Deleted)
+                ) && 
+                (
                     this.Address == input.Address ||
                     (this.Address != null &&
                     this.Address.Equals(input.Address))
                 ) && 
                 (
                     this.Abi == input.Abi ||
-                    (this.Abi != null &&
-                    this.Abi.Equals(input.Abi))
+                    this.Abi != null &&
+                    input.Abi != null &&
+                    this.Abi.SequenceEqual(input.Abi)
                 ) && 
                 (
                     this.PublicVerification == input.PublicVerification ||
@@ -180,6 +179,7 @@ namespace Openfort.Model
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
+                hashCode = (hashCode * 59) + this.Deleted.GetHashCode();
                 if (this.Address != null)
                 {
                     hashCode = (hashCode * 59) + this.Address.GetHashCode();

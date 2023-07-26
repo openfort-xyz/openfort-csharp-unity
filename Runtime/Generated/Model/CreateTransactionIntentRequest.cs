@@ -26,18 +26,18 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// TransactionIntentRequest
+    /// CreateTransactionIntentRequest
     /// </summary>
-    [DataContract(Name = "TransactionIntentRequest")]
-    public partial class TransactionIntentRequest : IEquatable<TransactionIntentRequest>
+    [DataContract(Name = "CreateTransactionIntentRequest")]
+    public partial class CreateTransactionIntentRequest : IEquatable<CreateTransactionIntentRequest>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransactionIntentRequest" /> class.
+        /// Initializes a new instance of the <see cref="CreateTransactionIntentRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected TransactionIntentRequest() { }
+        protected CreateTransactionIntentRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransactionIntentRequest" /> class.
+        /// Initializes a new instance of the <see cref="CreateTransactionIntentRequest" /> class.
         /// </summary>
         /// <param name="player">player (required).</param>
         /// <param name="chainId">chainId (required).</param>
@@ -45,12 +45,12 @@ namespace Openfort.Model
         /// <param name="externalOwnerAddress">externalOwnerAddress.</param>
         /// <param name="optimistic">optimistic (required).</param>
         /// <param name="interactions">interactions (required).</param>
-        public TransactionIntentRequest(string player = default(string), double chainId = default(double), string policy = default(string), string externalOwnerAddress = default(string), bool optimistic = default(bool), List<Interaction> interactions = default(List<Interaction>))
+        public CreateTransactionIntentRequest(string player = default(string), double chainId = default(double), string policy = default(string), string externalOwnerAddress = default(string), bool optimistic = default(bool), List<Interaction> interactions = default(List<Interaction>))
         {
             // to ensure "player" is required (not null)
             if (player == null)
             {
-                throw new ArgumentNullException("player is a required property for TransactionIntentRequest and cannot be null");
+                throw new ArgumentNullException("player is a required property for CreateTransactionIntentRequest and cannot be null");
             }
             this.Player = player;
             this.ChainId = chainId;
@@ -58,7 +58,7 @@ namespace Openfort.Model
             // to ensure "interactions" is required (not null)
             if (interactions == null)
             {
-                throw new ArgumentNullException("interactions is a required property for TransactionIntentRequest and cannot be null");
+                throw new ArgumentNullException("interactions is a required property for CreateTransactionIntentRequest and cannot be null");
             }
             this.Interactions = interactions;
             this.Policy = policy;
@@ -108,7 +108,7 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TransactionIntentRequest {\n");
+            sb.Append("class CreateTransactionIntentRequest {\n");
             sb.Append("  Player: ").Append(Player).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  Policy: ").Append(Policy).Append("\n");
@@ -135,15 +135,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TransactionIntentRequest);
+            return this.Equals(input as CreateTransactionIntentRequest);
         }
 
         /// <summary>
-        /// Returns true if TransactionIntentRequest instances are equal
+        /// Returns true if CreateTransactionIntentRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of TransactionIntentRequest to be compared</param>
+        /// <param name="input">Instance of CreateTransactionIntentRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TransactionIntentRequest input)
+        public bool Equals(CreateTransactionIntentRequest input)
         {
             if (input == null)
             {

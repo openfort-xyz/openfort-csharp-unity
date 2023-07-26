@@ -45,9 +45,10 @@ namespace Openfort.Model
         /// <param name="name">name (required).</param>
         /// <param name="chainId">chainId (required).</param>
         /// <param name="address">address (required).</param>
+        /// <param name="deleted">deleted (required).</param>
         /// <param name="abi">abi (required).</param>
         /// <param name="publicVerification">publicVerification (required).</param>
-        public ContractResponse(string id = default(string), string _object = default(string), int createdAt = default(int), string name = default(string), double chainId = default(double), string address = default(string), List<JsonFragment> abi = default(List<JsonFragment>), bool publicVerification = default(bool))
+        public ContractResponse(string id = default(string), string _object = default(string), int createdAt = default(int), string name = default(string), double chainId = default(double), string address = default(string), bool deleted = default(bool), List<Abi> abi = default(List<Abi>), bool publicVerification = default(bool))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -75,6 +76,7 @@ namespace Openfort.Model
                 throw new ArgumentNullException("address is a required property for ContractResponse and cannot be null");
             }
             this.Address = address;
+            this.Deleted = deleted;
             // to ensure "abi" is required (not null)
             if (abi == null)
             {
@@ -121,10 +123,16 @@ namespace Openfort.Model
         public string Address { get; set; }
 
         /// <summary>
+        /// Gets or Sets Deleted
+        /// </summary>
+        [DataMember(Name = "deleted", IsRequired = true, EmitDefaultValue = true)]
+        public bool Deleted { get; set; }
+
+        /// <summary>
         /// Gets or Sets Abi
         /// </summary>
         [DataMember(Name = "abi", IsRequired = true, EmitDefaultValue = true)]
-        public List<JsonFragment> Abi { get; set; }
+        public List<Abi> Abi { get; set; }
 
         /// <summary>
         /// Gets or Sets PublicVerification
@@ -146,6 +154,7 @@ namespace Openfort.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
+            sb.Append("  Deleted: ").Append(Deleted).Append("\n");
             sb.Append("  Abi: ").Append(Abi).Append("\n");
             sb.Append("  PublicVerification: ").Append(PublicVerification).Append("\n");
             sb.Append("}\n");
@@ -212,6 +221,10 @@ namespace Openfort.Model
                     this.Address.Equals(input.Address))
                 ) && 
                 (
+                    this.Deleted == input.Deleted ||
+                    this.Deleted.Equals(input.Deleted)
+                ) && 
+                (
                     this.Abi == input.Abi ||
                     this.Abi != null &&
                     input.Abi != null &&
@@ -250,6 +263,7 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Address.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Deleted.GetHashCode();
                 if (this.Abi != null)
                 {
                     hashCode = (hashCode * 59) + this.Abi.GetHashCode();

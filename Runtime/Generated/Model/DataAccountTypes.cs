@@ -26,28 +26,28 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// Defines PK_Location
+    /// Defines DataAccountTypes
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum PKLocation
+    public enum DataAccountTypes
     {
         /// <summary>
-        /// Enum DB for value: DB
+        /// Enum Upgradeable for value: Upgradeable
         /// </summary>
-        [EnumMember(Value = "DB")]
-        DB = 1,
+        [EnumMember(Value = "Upgradeable")]
+        Upgradeable = 1,
 
         /// <summary>
-        /// Enum GCPKMS for value: GCP_KMS
+        /// Enum Managed for value: Managed
         /// </summary>
-        [EnumMember(Value = "GCP_KMS")]
-        GCPKMS = 2,
+        [EnumMember(Value = "Managed")]
+        Managed = 2,
 
         /// <summary>
-        /// Enum USER for value: USER
+        /// Enum ERC6551 for value: ERC6551
         /// </summary>
-        [EnumMember(Value = "USER")]
-        USER = 3
+        [EnumMember(Value = "ERC6551")]
+        ERC6551 = 3
 
     }
 

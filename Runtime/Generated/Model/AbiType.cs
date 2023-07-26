@@ -26,24 +26,26 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// UpdatePolicyRequest
+    /// AbiType
     /// </summary>
-    [DataContract(Name = "UpdatePolicyRequest")]
-    public partial class UpdatePolicyRequest : IEquatable<UpdatePolicyRequest>
+    [DataContract(Name = "AbiType")]
+    public partial class AbiType : IEquatable<AbiType>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdatePolicyRequest" /> class.
+        /// Initializes a new instance of the <see cref="AbiType" /> class.
         /// </summary>
         /// <param name="name">name.</param>
-        /// <param name="chainId">chainId.</param>
-        /// <param name="deleted">deleted.</param>
-        /// <param name="strategy">strategy.</param>
-        public UpdatePolicyRequest(string name = default(string), double chainId = default(double), bool deleted = default(bool), PolicyStrategy strategy = default(PolicyStrategy))
+        /// <param name="type">type.</param>
+        /// <param name="indexed">indexed.</param>
+        /// <param name="internalType">internalType.</param>
+        /// <param name="components">components.</param>
+        public AbiType(string name = default(string), string type = default(string), bool indexed = default(bool), Object internalType = default(Object), List<AbiType> components = default(List<AbiType>))
         {
             this.Name = name;
-            this.ChainId = chainId;
-            this.Deleted = deleted;
-            this.Strategy = strategy;
+            this.Type = type;
+            this.Indexed = indexed;
+            this.InternalType = internalType;
+            this.Components = components;
         }
 
         /// <summary>
@@ -53,22 +55,28 @@ namespace Openfort.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets ChainId
+        /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "chainId", EmitDefaultValue = false)]
-        public double ChainId { get; set; }
+        [DataMember(Name = "type", EmitDefaultValue = false)]
+        public string Type { get; set; }
 
         /// <summary>
-        /// Gets or Sets Deleted
+        /// Gets or Sets Indexed
         /// </summary>
-        [DataMember(Name = "deleted", EmitDefaultValue = true)]
-        public bool Deleted { get; set; }
+        [DataMember(Name = "indexed", EmitDefaultValue = true)]
+        public bool Indexed { get; set; }
 
         /// <summary>
-        /// Gets or Sets Strategy
+        /// Gets or Sets InternalType
         /// </summary>
-        [DataMember(Name = "strategy", EmitDefaultValue = false)]
-        public PolicyStrategy Strategy { get; set; }
+        [DataMember(Name = "internalType", EmitDefaultValue = true)]
+        public Object InternalType { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Components
+        /// </summary>
+        [DataMember(Name = "components", EmitDefaultValue = false)]
+        public List<AbiType> Components { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -77,11 +85,12 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UpdatePolicyRequest {\n");
+            sb.Append("class AbiType {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  ChainId: ").Append(ChainId).Append("\n");
-            sb.Append("  Deleted: ").Append(Deleted).Append("\n");
-            sb.Append("  Strategy: ").Append(Strategy).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Indexed: ").Append(Indexed).Append("\n");
+            sb.Append("  InternalType: ").Append(InternalType).Append("\n");
+            sb.Append("  Components: ").Append(Components).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -102,15 +111,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as UpdatePolicyRequest);
+            return this.Equals(input as AbiType);
         }
 
         /// <summary>
-        /// Returns true if UpdatePolicyRequest instances are equal
+        /// Returns true if AbiType instances are equal
         /// </summary>
-        /// <param name="input">Instance of UpdatePolicyRequest to be compared</param>
+        /// <param name="input">Instance of AbiType to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UpdatePolicyRequest input)
+        public bool Equals(AbiType input)
         {
             if (input == null)
             {
@@ -123,17 +132,24 @@ namespace Openfort.Model
                     this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.ChainId == input.ChainId ||
-                    this.ChainId.Equals(input.ChainId)
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
-                    this.Deleted == input.Deleted ||
-                    this.Deleted.Equals(input.Deleted)
+                    this.Indexed == input.Indexed ||
+                    this.Indexed.Equals(input.Indexed)
                 ) && 
                 (
-                    this.Strategy == input.Strategy ||
-                    (this.Strategy != null &&
-                    this.Strategy.Equals(input.Strategy))
+                    this.InternalType == input.InternalType ||
+                    (this.InternalType != null &&
+                    this.InternalType.Equals(input.InternalType))
+                ) && 
+                (
+                    this.Components == input.Components ||
+                    this.Components != null &&
+                    input.Components != null &&
+                    this.Components.SequenceEqual(input.Components)
                 );
         }
 
@@ -150,11 +166,18 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
-                hashCode = (hashCode * 59) + this.Deleted.GetHashCode();
-                if (this.Strategy != null)
+                if (this.Type != null)
                 {
-                    hashCode = (hashCode * 59) + this.Strategy.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Indexed.GetHashCode();
+                if (this.InternalType != null)
+                {
+                    hashCode = (hashCode * 59) + this.InternalType.GetHashCode();
+                }
+                if (this.Components != null)
+                {
+                    hashCode = (hashCode * 59) + this.Components.GetHashCode();
                 }
                 return hashCode;
             }

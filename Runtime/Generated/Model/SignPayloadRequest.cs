@@ -41,7 +41,7 @@ namespace Openfort.Model
         /// </summary>
         /// <param name="domain">domain (required).</param>
         /// <param name="types">types (required).</param>
-        /// <param name="primaryType">primaryType.</param>
+        /// <param name="primaryType">primaryType (required).</param>
         /// <param name="value">value (required).</param>
         /// <param name="hash">Hash to verify and that will be signed (required).</param>
         public SignPayloadRequest(DomainData domain = default(DomainData), Dictionary<string, List<TypedDataField>> types = default(Dictionary<string, List<TypedDataField>>), string primaryType = default(string), Dictionary<string, Object> value = default(Dictionary<string, Object>), string hash = default(string))
@@ -58,6 +58,12 @@ namespace Openfort.Model
                 throw new ArgumentNullException("types is a required property for SignPayloadRequest and cannot be null");
             }
             this.Types = types;
+            // to ensure "primaryType" is required (not null)
+            if (primaryType == null)
+            {
+                throw new ArgumentNullException("primaryType is a required property for SignPayloadRequest and cannot be null");
+            }
+            this.PrimaryType = primaryType;
             // to ensure "value" is required (not null)
             if (value == null)
             {
@@ -70,7 +76,6 @@ namespace Openfort.Model
                 throw new ArgumentNullException("hash is a required property for SignPayloadRequest and cannot be null");
             }
             this.Hash = hash;
-            this.PrimaryType = primaryType;
         }
 
         /// <summary>
@@ -88,7 +93,7 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets PrimaryType
         /// </summary>
-        [DataMember(Name = "primaryType", EmitDefaultValue = false)]
+        [DataMember(Name = "primaryType", IsRequired = true, EmitDefaultValue = true)]
         public string PrimaryType { get; set; }
 
         /// <summary>

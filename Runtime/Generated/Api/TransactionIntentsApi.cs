@@ -34,9 +34,9 @@ namespace Openfort.Api
         /// Creates a transaction intent object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="transactionIntentRequest"></param>
+        /// <param name="createTransactionIntentRequest"></param>
         /// <returns>TransactionIntentResponse</returns>
-        TransactionIntentResponse CreateTransactionIntent(TransactionIntentRequest transactionIntentRequest);
+        TransactionIntentResponse CreateTransactionIntent(CreateTransactionIntentRequest createTransactionIntentRequest);
 
         /// <summary>
         /// 
@@ -45,9 +45,9 @@ namespace Openfort.Api
         /// Creates a transaction intent object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="transactionIntentRequest"></param>
+        /// <param name="createTransactionIntentRequest"></param>
         /// <returns>ApiResponse of TransactionIntentResponse</returns>
-        ApiResponse<TransactionIntentResponse> CreateTransactionIntentWithHttpInfo(TransactionIntentRequest transactionIntentRequest);
+        ApiResponse<TransactionIntentResponse> CreateTransactionIntentWithHttpInfo(CreateTransactionIntentRequest createTransactionIntentRequest);
         /// <summary>
         /// 
         /// </summary>
@@ -171,10 +171,10 @@ namespace Openfort.Api
         /// Creates a transaction intent object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="transactionIntentRequest"></param>
+        /// <param name="createTransactionIntentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionIntentResponse</returns>
-        System.Threading.Tasks.Task<TransactionIntentResponse> CreateTransactionIntentAsync(TransactionIntentRequest transactionIntentRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<TransactionIntentResponse> CreateTransactionIntentAsync(CreateTransactionIntentRequest createTransactionIntentRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -183,10 +183,10 @@ namespace Openfort.Api
         /// Creates a transaction intent object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="transactionIntentRequest"></param>
+        /// <param name="createTransactionIntentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> CreateTransactionIntentWithHttpInfoAsync(TransactionIntentRequest transactionIntentRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> CreateTransactionIntentWithHttpInfoAsync(CreateTransactionIntentRequest createTransactionIntentRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -458,11 +458,11 @@ namespace Openfort.Api
         ///  Creates a transaction intent object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="transactionIntentRequest"></param>
+        /// <param name="createTransactionIntentRequest"></param>
         /// <returns>TransactionIntentResponse</returns>
-        public TransactionIntentResponse CreateTransactionIntent(TransactionIntentRequest transactionIntentRequest)
+        public TransactionIntentResponse CreateTransactionIntent(CreateTransactionIntentRequest createTransactionIntentRequest)
         {
-            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = CreateTransactionIntentWithHttpInfo(transactionIntentRequest);
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = CreateTransactionIntentWithHttpInfo(createTransactionIntentRequest);
             return localVarResponse.Data;
         }
 
@@ -470,13 +470,13 @@ namespace Openfort.Api
         ///  Creates a transaction intent object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="transactionIntentRequest"></param>
+        /// <param name="createTransactionIntentRequest"></param>
         /// <returns>ApiResponse of TransactionIntentResponse</returns>
-        public Openfort.Client.ApiResponse<TransactionIntentResponse> CreateTransactionIntentWithHttpInfo(TransactionIntentRequest transactionIntentRequest)
+        public Openfort.Client.ApiResponse<TransactionIntentResponse> CreateTransactionIntentWithHttpInfo(CreateTransactionIntentRequest createTransactionIntentRequest)
         {
-            // verify the required parameter 'transactionIntentRequest' is set
-            if (transactionIntentRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'transactionIntentRequest' when calling TransactionIntentsApi->CreateTransactionIntent");
+            // verify the required parameter 'createTransactionIntentRequest' is set
+            if (createTransactionIntentRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'createTransactionIntentRequest' when calling TransactionIntentsApi->CreateTransactionIntent");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -495,7 +495,7 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = transactionIntentRequest;
+            localVarRequestOptions.Data = createTransactionIntentRequest;
 
 
             // make the HTTP request
@@ -514,12 +514,12 @@ namespace Openfort.Api
         ///  Creates a transaction intent object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="transactionIntentRequest"></param>
+        /// <param name="createTransactionIntentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionIntentResponse</returns>
-        public async System.Threading.Tasks.Task<TransactionIntentResponse> CreateTransactionIntentAsync(TransactionIntentRequest transactionIntentRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<TransactionIntentResponse> CreateTransactionIntentAsync(CreateTransactionIntentRequest createTransactionIntentRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = CreateTransactionIntentWithHttpInfoAsync(transactionIntentRequest, cancellationToken);
+            var task = CreateTransactionIntentWithHttpInfoAsync(createTransactionIntentRequest, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -532,14 +532,14 @@ namespace Openfort.Api
         ///  Creates a transaction intent object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="transactionIntentRequest"></param>
+        /// <param name="createTransactionIntentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> CreateTransactionIntentWithHttpInfoAsync(TransactionIntentRequest transactionIntentRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> CreateTransactionIntentWithHttpInfoAsync(CreateTransactionIntentRequest createTransactionIntentRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'transactionIntentRequest' is set
-            if (transactionIntentRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'transactionIntentRequest' when calling TransactionIntentsApi->CreateTransactionIntent");
+            // verify the required parameter 'createTransactionIntentRequest' is set
+            if (createTransactionIntentRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'createTransactionIntentRequest' when calling TransactionIntentsApi->CreateTransactionIntent");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -560,7 +560,7 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = transactionIntentRequest;
+            localVarRequestOptions.Data = createTransactionIntentRequest;
 
 
             // make the HTTP request

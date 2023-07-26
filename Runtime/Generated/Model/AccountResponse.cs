@@ -43,11 +43,13 @@ namespace Openfort.Model
         /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="address">address (required).</param>
+        /// <param name="ownerAddress">ownerAddress (required).</param>
         /// <param name="deployed">deployed (required).</param>
         /// <param name="custodial">custodial (required).</param>
         /// <param name="chainId">chainId (required).</param>
+        /// <param name="accountType">accountType (required).</param>
         /// <param name="transactionIntents">transactionIntents (required).</param>
-        public AccountResponse(string id = default(string), string _object = default(string), int createdAt = default(int), string address = default(string), bool deployed = default(bool), bool custodial = default(bool), double chainId = default(double), List<PolicyResponseTransactionIntentsInner> transactionIntents = default(List<PolicyResponseTransactionIntentsInner>))
+        public AccountResponse(string id = default(string), string _object = default(string), int createdAt = default(int), string address = default(string), string ownerAddress = default(string), bool deployed = default(bool), bool custodial = default(bool), double chainId = default(double), string accountType = default(string), List<PolicyResponseTransactionIntentsInner> transactionIntents = default(List<PolicyResponseTransactionIntentsInner>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -68,9 +70,21 @@ namespace Openfort.Model
                 throw new ArgumentNullException("address is a required property for AccountResponse and cannot be null");
             }
             this.Address = address;
+            // to ensure "ownerAddress" is required (not null)
+            if (ownerAddress == null)
+            {
+                throw new ArgumentNullException("ownerAddress is a required property for AccountResponse and cannot be null");
+            }
+            this.OwnerAddress = ownerAddress;
             this.Deployed = deployed;
             this.Custodial = custodial;
             this.ChainId = chainId;
+            // to ensure "accountType" is required (not null)
+            if (accountType == null)
+            {
+                throw new ArgumentNullException("accountType is a required property for AccountResponse and cannot be null");
+            }
+            this.AccountType = accountType;
             // to ensure "transactionIntents" is required (not null)
             if (transactionIntents == null)
             {
@@ -104,6 +118,12 @@ namespace Openfort.Model
         public string Address { get; set; }
 
         /// <summary>
+        /// Gets or Sets OwnerAddress
+        /// </summary>
+        [DataMember(Name = "ownerAddress", IsRequired = true, EmitDefaultValue = true)]
+        public string OwnerAddress { get; set; }
+
+        /// <summary>
         /// Gets or Sets Deployed
         /// </summary>
         [DataMember(Name = "deployed", IsRequired = true, EmitDefaultValue = true)]
@@ -120,6 +140,12 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
         public double ChainId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AccountType
+        /// </summary>
+        [DataMember(Name = "accountType", IsRequired = true, EmitDefaultValue = true)]
+        public string AccountType { get; set; }
 
         /// <summary>
         /// Gets or Sets TransactionIntents
@@ -139,9 +165,11 @@ namespace Openfort.Model
             sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
+            sb.Append("  OwnerAddress: ").Append(OwnerAddress).Append("\n");
             sb.Append("  Deployed: ").Append(Deployed).Append("\n");
             sb.Append("  Custodial: ").Append(Custodial).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
+            sb.Append("  AccountType: ").Append(AccountType).Append("\n");
             sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -198,6 +226,11 @@ namespace Openfort.Model
                     this.Address.Equals(input.Address))
                 ) && 
                 (
+                    this.OwnerAddress == input.OwnerAddress ||
+                    (this.OwnerAddress != null &&
+                    this.OwnerAddress.Equals(input.OwnerAddress))
+                ) && 
+                (
                     this.Deployed == input.Deployed ||
                     this.Deployed.Equals(input.Deployed)
                 ) && 
@@ -208,6 +241,11 @@ namespace Openfort.Model
                 (
                     this.ChainId == input.ChainId ||
                     this.ChainId.Equals(input.ChainId)
+                ) && 
+                (
+                    this.AccountType == input.AccountType ||
+                    (this.AccountType != null &&
+                    this.AccountType.Equals(input.AccountType))
                 ) && 
                 (
                     this.TransactionIntents == input.TransactionIntents ||
@@ -239,9 +277,17 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Address.GetHashCode();
                 }
+                if (this.OwnerAddress != null)
+                {
+                    hashCode = (hashCode * 59) + this.OwnerAddress.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Deployed.GetHashCode();
                 hashCode = (hashCode * 59) + this.Custodial.GetHashCode();
                 hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
+                if (this.AccountType != null)
+                {
+                    hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                }
                 if (this.TransactionIntents != null)
                 {
                     hashCode = (hashCode * 59) + this.TransactionIntents.GetHashCode();

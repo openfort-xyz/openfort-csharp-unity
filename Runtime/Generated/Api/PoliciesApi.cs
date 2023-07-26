@@ -99,9 +99,10 @@ namespace Openfort.Api
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <returns>PoliciesResponse</returns>
-        PoliciesResponse GetPolicies(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), SortOrder? order = default(SortOrder?));
+        PoliciesResponse GetPolicies(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?));
 
         /// <summary>
         /// 
@@ -113,9 +114,10 @@ namespace Openfort.Api
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <returns>ApiResponse of PoliciesResponse</returns>
-        ApiResponse<PoliciesResponse> GetPoliciesWithHttpInfo(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), SortOrder? order = default(SortOrder?));
+        ApiResponse<PoliciesResponse> GetPoliciesWithHttpInfo(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?));
         /// <summary>
         /// 
         /// </summary>
@@ -164,10 +166,8 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <returns>Gas</returns>
-        Gas GetPolicyDailyGasUsage(string id, string from = default(string), string to = default(string));
+        /// <returns>GasReport</returns>
+        GasReport GetPolicyTotalGasUsage(string id);
 
         /// <summary>
         /// 
@@ -177,32 +177,8 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <returns>ApiResponse of Gas</returns>
-        ApiResponse<Gas> GetPolicyDailyGasUsageWithHttpInfo(string id, string from = default(string), string to = default(string));
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <returns>SumGas</returns>
-        SumGas GetPolicyTotalGasUsage(string id, string from = default(string), string to = default(string));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <returns>ApiResponse of SumGas</returns>
-        ApiResponse<SumGas> GetPolicyTotalGasUsageWithHttpInfo(string id, string from = default(string), string to = default(string));
+        /// <returns>ApiResponse of GasReport</returns>
+        ApiResponse<GasReport> GetPolicyTotalGasUsageWithHttpInfo(string id);
         /// <summary>
         /// 
         /// </summary>
@@ -338,10 +314,11 @@ namespace Openfort.Api
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PoliciesResponse</returns>
-        System.Threading.Tasks.Task<PoliciesResponse> GetPoliciesAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), SortOrder? order = default(SortOrder?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PoliciesResponse> GetPoliciesAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -353,10 +330,11 @@ namespace Openfort.Api
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PoliciesResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PoliciesResponse>> GetPoliciesWithHttpInfoAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), SortOrder? order = default(SortOrder?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PoliciesResponse>> GetPoliciesWithHttpInfoAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -415,11 +393,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Gas</returns>
-        System.Threading.Tasks.Task<Gas> GetPolicyDailyGasUsageAsync(string id, string from = default(string), string to = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of GasReport</returns>
+        System.Threading.Tasks.Task<GasReport> GetPolicyTotalGasUsageAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -429,38 +405,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Gas)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Gas>> GetPolicyDailyGasUsageWithHttpInfoAsync(string id, string from = default(string), string to = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of SumGas</returns>
-        System.Threading.Tasks.Task<SumGas> GetPolicyTotalGasUsageAsync(string id, string from = default(string), string to = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (SumGas)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SumGas>> GetPolicyTotalGasUsageWithHttpInfoAsync(string id, string from = default(string), string to = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (GasReport)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GasReport>> GetPolicyTotalGasUsageWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -1060,11 +1007,12 @@ namespace Openfort.Api
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <returns>PoliciesResponse</returns>
-        public PoliciesResponse GetPolicies(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), SortOrder? order = default(SortOrder?))
+        public PoliciesResponse GetPolicies(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?))
         {
-            Openfort.Client.ApiResponse<PoliciesResponse> localVarResponse = GetPoliciesWithHttpInfo(limit, expand, skip, order);
+            Openfort.Client.ApiResponse<PoliciesResponse> localVarResponse = GetPoliciesWithHttpInfo(limit, expand, skip, filter, order);
             return localVarResponse.Data;
         }
 
@@ -1075,9 +1023,10 @@ namespace Openfort.Api
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <returns>ApiResponse of PoliciesResponse</returns>
-        public Openfort.Client.ApiResponse<PoliciesResponse> GetPoliciesWithHttpInfo(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), SortOrder? order = default(SortOrder?))
+        public Openfort.Client.ApiResponse<PoliciesResponse> GetPoliciesWithHttpInfo(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?))
         {
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -1106,6 +1055,10 @@ namespace Openfort.Api
             if (skip != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+            }
+            if (filter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
             }
             if (order != null)
             {
@@ -1132,12 +1085,13 @@ namespace Openfort.Api
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PoliciesResponse</returns>
-        public async System.Threading.Tasks.Task<PoliciesResponse> GetPoliciesAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), SortOrder? order = default(SortOrder?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PoliciesResponse> GetPoliciesAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetPoliciesWithHttpInfoAsync(limit, expand, skip, order, cancellationToken);
+            var task = GetPoliciesWithHttpInfoAsync(limit, expand, skip, filter, order, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<PoliciesResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -1153,10 +1107,11 @@ namespace Openfort.Api
         /// <param name="limit"> (optional, default to 10D)</param>
         /// <param name="expand"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PoliciesResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PoliciesResponse>> GetPoliciesWithHttpInfoAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), SortOrder? order = default(SortOrder?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PoliciesResponse>> GetPoliciesWithHttpInfoAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -1187,6 +1142,10 @@ namespace Openfort.Api
             if (skip != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+            }
+            if (filter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
             }
             if (order != null)
             {
@@ -1494,12 +1453,10 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <returns>Gas</returns>
-        public Gas GetPolicyDailyGasUsage(string id, string from = default(string), string to = default(string))
+        /// <returns>GasReport</returns>
+        public GasReport GetPolicyTotalGasUsage(string id)
         {
-            Openfort.Client.ApiResponse<Gas> localVarResponse = GetPolicyDailyGasUsageWithHttpInfo(id, from, to);
+            Openfort.Client.ApiResponse<GasReport> localVarResponse = GetPolicyTotalGasUsageWithHttpInfo(id);
             return localVarResponse.Data;
         }
 
@@ -1508,160 +1465,8 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <returns>ApiResponse of Gas</returns>
-        public Openfort.Client.ApiResponse<Gas> GetPolicyDailyGasUsageWithHttpInfo(string id, string from = default(string), string to = default(string))
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PoliciesApi->GetPolicyDailyGasUsage");
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (from != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "from", from));
-            }
-            if (to != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "to", to));
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Get<Gas>("/v1/policies/{id}/daily_gas_usage", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetPolicyDailyGasUsage", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Gas</returns>
-        public async System.Threading.Tasks.Task<Gas> GetPolicyDailyGasUsageAsync(string id, string from = default(string), string to = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            var task = GetPolicyDailyGasUsageWithHttpInfoAsync(id, from, to, cancellationToken);
-#if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<Gas> localVarResponse = await task.ConfigureAwait(false);
-#else
-            Openfort.Client.ApiResponse<Gas> localVarResponse = await task;
-#endif
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Gas)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<Gas>> GetPolicyDailyGasUsageWithHttpInfoAsync(string id, string from = default(string), string to = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PoliciesApi->GetPolicyDailyGasUsage");
-
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (from != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "from", from));
-            }
-            if (to != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "to", to));
-            }
-
-
-            // make the HTTP request
-
-            var task = this.AsynchronousClient.GetAsync<Gas>("/v1/policies/{id}/daily_gas_usage", localVarRequestOptions, this.Configuration, cancellationToken);
-
-#if UNITY_EDITOR || !UNITY_WEBGL
-            var localVarResponse = await task.ConfigureAwait(false);
-#else
-            var localVarResponse = await task;
-#endif
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetPolicyDailyGasUsage", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <returns>SumGas</returns>
-        public SumGas GetPolicyTotalGasUsage(string id, string from = default(string), string to = default(string))
-        {
-            Openfort.Client.ApiResponse<SumGas> localVarResponse = GetPolicyTotalGasUsageWithHttpInfo(id, from, to);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <returns>ApiResponse of SumGas</returns>
-        public Openfort.Client.ApiResponse<SumGas> GetPolicyTotalGasUsageWithHttpInfo(string id, string from = default(string), string to = default(string))
+        /// <returns>ApiResponse of GasReport</returns>
+        public Openfort.Client.ApiResponse<GasReport> GetPolicyTotalGasUsageWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1684,18 +1489,10 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (from != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "from", from));
-            }
-            if (to != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "to", to));
-            }
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<SumGas>("/v1/policies/{id}/gas_usage", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<GasReport>("/v1/policies/{id}/reports", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1711,17 +1508,15 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of SumGas</returns>
-        public async System.Threading.Tasks.Task<SumGas> GetPolicyTotalGasUsageAsync(string id, string from = default(string), string to = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of GasReport</returns>
+        public async System.Threading.Tasks.Task<GasReport> GetPolicyTotalGasUsageAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetPolicyTotalGasUsageWithHttpInfoAsync(id, from, to, cancellationToken);
+            var task = GetPolicyTotalGasUsageWithHttpInfoAsync(id, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<SumGas> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<GasReport> localVarResponse = await task.ConfigureAwait(false);
 #else
-            Openfort.Client.ApiResponse<SumGas> localVarResponse = await task;
+            Openfort.Client.ApiResponse<GasReport> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -1731,11 +1526,9 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="to"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (SumGas)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<SumGas>> GetPolicyTotalGasUsageWithHttpInfoAsync(string id, string from = default(string), string to = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (GasReport)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<GasReport>> GetPolicyTotalGasUsageWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1760,19 +1553,11 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (from != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "from", from));
-            }
-            if (to != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "to", to));
-            }
 
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.GetAsync<SumGas>("/v1/policies/{id}/gas_usage", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.GetAsync<GasReport>("/v1/policies/{id}/reports", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);

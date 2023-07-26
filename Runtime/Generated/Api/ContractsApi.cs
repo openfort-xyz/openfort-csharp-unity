@@ -100,8 +100,9 @@ namespace Openfort.Api
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <returns>ContractsResponse</returns>
-        ContractsResponse GetContracts(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?));
+        ContractsResponse GetContracts(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string));
 
         /// <summary>
         /// 
@@ -113,8 +114,32 @@ namespace Openfort.Api
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <returns>ApiResponse of ContractsResponse</returns>
-        ApiResponse<ContractsResponse> GetContractsWithHttpInfo(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?));
+        ApiResponse<ContractsResponse> GetContractsWithHttpInfo(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Updates a contract object.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateContractRequest"></param>
+        /// <returns>ContractResponse</returns>
+        ContractResponse UpdateContract(string id, UpdateContractRequest updateContractRequest);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Updates a contract object.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateContractRequest"></param>
+        /// <returns>ApiResponse of ContractResponse</returns>
+        ApiResponse<ContractResponse> UpdateContractWithHttpInfo(string id, UpdateContractRequest updateContractRequest);
         #endregion Synchronous Operations
     }
 
@@ -203,9 +228,10 @@ namespace Openfort.Api
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractsResponse</returns>
-        System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -217,9 +243,35 @@ namespace Openfort.Api
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractsResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Updates a contract object.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateContractRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ContractResponse</returns>
+        System.Threading.Tasks.Task<ContractResponse> UpdateContractAsync(string id, UpdateContractRequest updateContractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Updates a contract object.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateContractRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ContractResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ContractResponse>> UpdateContractWithHttpInfoAsync(string id, UpdateContractRequest updateContractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -751,10 +803,11 @@ namespace Openfort.Api
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <returns>ContractsResponse</returns>
-        public ContractsResponse GetContracts(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?))
+        public ContractsResponse GetContracts(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string))
         {
-            Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = GetContractsWithHttpInfo(limit, order, skip);
+            Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = GetContractsWithHttpInfo(limit, order, skip, filter);
             return localVarResponse.Data;
         }
 
@@ -765,8 +818,9 @@ namespace Openfort.Api
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <returns>ApiResponse of ContractsResponse</returns>
-        public Openfort.Client.ApiResponse<ContractsResponse> GetContractsWithHttpInfo(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?))
+        public Openfort.Client.ApiResponse<ContractsResponse> GetContractsWithHttpInfo(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string))
         {
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -795,6 +849,10 @@ namespace Openfort.Api
             if (skip != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+            }
+            if (filter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
             }
 
 
@@ -817,11 +875,12 @@ namespace Openfort.Api
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractsResponse</returns>
-        public async System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetContractsWithHttpInfoAsync(limit, order, skip, cancellationToken);
+            var task = GetContractsWithHttpInfoAsync(limit, order, skip, filter, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -837,9 +896,10 @@ namespace Openfort.Api
         /// <param name="limit">amount of results per query (optional, default to 10D)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractsResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -871,6 +931,10 @@ namespace Openfort.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
+            if (filter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+            }
 
 
             // make the HTTP request
@@ -886,6 +950,148 @@ namespace Openfort.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetContracts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Updates a contract object.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateContractRequest"></param>
+        /// <returns>ContractResponse</returns>
+        public ContractResponse UpdateContract(string id, UpdateContractRequest updateContractRequest)
+        {
+            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = UpdateContractWithHttpInfo(id, updateContractRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Updates a contract object.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateContractRequest"></param>
+        /// <returns>ApiResponse of ContractResponse</returns>
+        public Openfort.Client.ApiResponse<ContractResponse> UpdateContractWithHttpInfo(string id, UpdateContractRequest updateContractRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling ContractsApi->UpdateContract");
+
+            // verify the required parameter 'updateContractRequest' is set
+            if (updateContractRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'updateContractRequest' when calling ContractsApi->UpdateContract");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = updateContractRequest;
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<ContractResponse>("/v1/contracts/{id}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateContract", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Updates a contract object.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateContractRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ContractResponse</returns>
+        public async System.Threading.Tasks.Task<ContractResponse> UpdateContractAsync(string id, UpdateContractRequest updateContractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = UpdateContractWithHttpInfoAsync(id, updateContractRequest, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<ContractResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Updates a contract object.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateContractRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ContractResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractResponse>> UpdateContractWithHttpInfoAsync(string id, UpdateContractRequest updateContractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling ContractsApi->UpdateContract");
+
+            // verify the required parameter 'updateContractRequest' is set
+            if (updateContractRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'updateContractRequest' when calling ContractsApi->UpdateContract");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = updateContractRequest;
+
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<ContractResponse>("/v1/contracts/{id}", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateContract", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -98,7 +98,7 @@ namespace Openfort.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Returns a list of your players for the query. The players are returned sorted by creation date, with the most recently created players appearing first.
+        /// Retrieves the details of an existing player. Supply the unique player ID from either a player creation request or the player list, and Openfort will return the corresponding player information.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
@@ -110,7 +110,7 @@ namespace Openfort.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Returns a list of your players for the query. The players are returned sorted by creation date, with the most recently created players appearing first.
+        /// Retrieves the details of an existing player. Supply the unique player ID from either a player creation request or the player list, and Openfort will return the corresponding player information.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
@@ -347,7 +347,7 @@ namespace Openfort.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Returns a list of your players for the query. The players are returned sorted by creation date, with the most recently created players appearing first.
+        /// Retrieves the details of an existing player. Supply the unique player ID from either a player creation request or the player list, and Openfort will return the corresponding player information.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
@@ -360,7 +360,7 @@ namespace Openfort.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Returns a list of your players for the query. The players are returned sorted by creation date, with the most recently created players appearing first.
+        /// Retrieves the details of an existing player. Supply the unique player ID from either a player creation request or the player list, and Openfort will return the corresponding player information.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
@@ -1081,7 +1081,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Returns a list of your players for the query. The players are returned sorted by creation date, with the most recently created players appearing first.
+        ///  Retrieves the details of an existing player. Supply the unique player ID from either a player creation request or the player list, and Openfort will return the corresponding player information.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
@@ -1094,7 +1094,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Returns a list of your players for the query. The players are returned sorted by creation date, with the most recently created players appearing first.
+        ///  Retrieves the details of an existing player. Supply the unique player ID from either a player creation request or the player list, and Openfort will return the corresponding player information.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
@@ -1142,7 +1142,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Returns a list of your players for the query. The players are returned sorted by creation date, with the most recently created players appearing first.
+        ///  Retrieves the details of an existing player. Supply the unique player ID from either a player creation request or the player list, and Openfort will return the corresponding player information.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
@@ -1161,7 +1161,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Returns a list of your players for the query. The players are returned sorted by creation date, with the most recently created players appearing first.
+        ///  Retrieves the details of an existing player. Supply the unique player ID from either a player creation request or the player list, and Openfort will return the corresponding player information.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique player ID.</param>
@@ -1399,7 +1399,7 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "chain_id", chainId));
+            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "chainId", chainId));
 
 
             // make the HTTP request
@@ -1466,7 +1466,7 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "chain_id", chainId));
+            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "chainId", chainId));
 
 
             // make the HTTP request

@@ -26,42 +26,35 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// Gas
+    /// GasReport
     /// </summary>
-    [DataContract(Name = "Gas")]
-    public partial class Gas : IEquatable<Gas>
+    [DataContract(Name = "GasReport")]
+    public partial class GasReport : IEquatable<GasReport>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Gas" /> class.
+        /// Initializes a new instance of the <see cref="GasReport" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Gas() { }
+        protected GasReport() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Gas" /> class.
+        /// Initializes a new instance of the <see cref="GasReport" /> class.
         /// </summary>
         /// <param name="_object">_object (required).</param>
-        /// <param name="url">url (required).</param>
-        /// <param name="dailyGasUsage">dailyGasUsage (required).</param>
-        public Gas(string _object = default(string), string url = default(string), Dictionary<string, double> dailyGasUsage = default(Dictionary<string, double>))
+        /// <param name="data">data (required).</param>
+        public GasReport(string _object = default(string), List<Object> data = default(List<Object>))
         {
             // to ensure "_object" is required (not null)
             if (_object == null)
             {
-                throw new ArgumentNullException("_object is a required property for Gas and cannot be null");
+                throw new ArgumentNullException("_object is a required property for GasReport and cannot be null");
             }
             this.Object = _object;
-            // to ensure "url" is required (not null)
-            if (url == null)
+            // to ensure "data" is required (not null)
+            if (data == null)
             {
-                throw new ArgumentNullException("url is a required property for Gas and cannot be null");
+                throw new ArgumentNullException("data is a required property for GasReport and cannot be null");
             }
-            this.Url = url;
-            // to ensure "dailyGasUsage" is required (not null)
-            if (dailyGasUsage == null)
-            {
-                throw new ArgumentNullException("dailyGasUsage is a required property for Gas and cannot be null");
-            }
-            this.DailyGasUsage = dailyGasUsage;
+            this.Data = data;
         }
 
         /// <summary>
@@ -71,16 +64,10 @@ namespace Openfort.Model
         public string Object { get; set; }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// Gets or Sets Data
         /// </summary>
-        [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Gets or Sets DailyGasUsage
-        /// </summary>
-        [DataMember(Name = "dailyGasUsage", IsRequired = true, EmitDefaultValue = true)]
-        public Dictionary<string, double> DailyGasUsage { get; set; }
+        [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
+        public List<Object> Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -89,10 +76,9 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Gas {\n");
+            sb.Append("class GasReport {\n");
             sb.Append("  Object: ").Append(Object).Append("\n");
-            sb.Append("  Url: ").Append(Url).Append("\n");
-            sb.Append("  DailyGasUsage: ").Append(DailyGasUsage).Append("\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -113,15 +99,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Gas);
+            return this.Equals(input as GasReport);
         }
 
         /// <summary>
-        /// Returns true if Gas instances are equal
+        /// Returns true if GasReport instances are equal
         /// </summary>
-        /// <param name="input">Instance of Gas to be compared</param>
+        /// <param name="input">Instance of GasReport to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Gas input)
+        public bool Equals(GasReport input)
         {
             if (input == null)
             {
@@ -134,15 +120,10 @@ namespace Openfort.Model
                     this.Object.Equals(input.Object))
                 ) && 
                 (
-                    this.Url == input.Url ||
-                    (this.Url != null &&
-                    this.Url.Equals(input.Url))
-                ) && 
-                (
-                    this.DailyGasUsage == input.DailyGasUsage ||
-                    this.DailyGasUsage != null &&
-                    input.DailyGasUsage != null &&
-                    this.DailyGasUsage.SequenceEqual(input.DailyGasUsage)
+                    this.Data == input.Data ||
+                    this.Data != null &&
+                    input.Data != null &&
+                    this.Data.SequenceEqual(input.Data)
                 );
         }
 
@@ -159,13 +140,9 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 }
-                if (this.Url != null)
+                if (this.Data != null)
                 {
-                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
-                }
-                if (this.DailyGasUsage != null)
-                {
-                    hashCode = (hashCode * 59) + this.DailyGasUsage.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Data.GetHashCode();
                 }
                 return hashCode;
             }

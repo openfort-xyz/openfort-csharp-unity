@@ -44,7 +44,7 @@ namespace Openfort.Model
         /// <param name="address">address (required).</param>
         /// <param name="abi">abi.</param>
         /// <param name="publicVerification">publicVerification.</param>
-        public CreateContractRequest(string name = default(string), double chainId = default(double), string address = default(string), Object abi = default(Object), bool publicVerification = default(bool))
+        public CreateContractRequest(string name = default(string), double chainId = default(double), string address = default(string), List<Abi> abi = default(List<Abi>), bool publicVerification = default(bool))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -84,8 +84,8 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets Abi
         /// </summary>
-        [DataMember(Name = "abi", EmitDefaultValue = true)]
-        public Object Abi { get; set; }
+        [DataMember(Name = "abi", EmitDefaultValue = false)]
+        public List<Abi> Abi { get; set; }
 
         /// <summary>
         /// Gets or Sets PublicVerification
@@ -157,8 +157,9 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.Abi == input.Abi ||
-                    (this.Abi != null &&
-                    this.Abi.Equals(input.Abi))
+                    this.Abi != null &&
+                    input.Abi != null &&
+                    this.Abi.SequenceEqual(input.Abi)
                 ) && 
                 (
                     this.PublicVerification == input.PublicVerification ||

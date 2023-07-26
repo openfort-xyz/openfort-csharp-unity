@@ -26,40 +26,35 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// AccountPlayerRequest
+    /// From T, pick a set of properties whose keys are in the union K
     /// </summary>
-    [DataContract(Name = "AccountPlayerRequest")]
-    public partial class AccountPlayerRequest : IEquatable<AccountPlayerRequest>
+    [DataContract(Name = "Pick_ContractResponse.id_")]
+    public partial class PickContractResponseId : IEquatable<PickContractResponseId>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountPlayerRequest" /> class.
+        /// Initializes a new instance of the <see cref="PickContractResponseId" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected AccountPlayerRequest() { }
+        protected PickContractResponseId() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountPlayerRequest" /> class.
+        /// Initializes a new instance of the <see cref="PickContractResponseId" /> class.
         /// </summary>
-        /// <param name="chainId">The chain_id (required).</param>
-        /// <param name="externalOwnerAddress">The address of the external owner.</param>
-        public AccountPlayerRequest(double chainId = default(double), string externalOwnerAddress = default(string))
+        /// <param name="id">id (required).</param>
+        public PickContractResponseId(string id = default(string))
         {
-            this.ChainId = chainId;
-            this.ExternalOwnerAddress = externalOwnerAddress;
+            // to ensure "id" is required (not null)
+            if (id == null)
+            {
+                throw new ArgumentNullException("id is a required property for PickContractResponseId and cannot be null");
+            }
+            this.Id = id;
         }
 
         /// <summary>
-        /// The chain_id
+        /// Gets or Sets Id
         /// </summary>
-        /// <value>The chain_id</value>
-        [DataMember(Name = "chain_id", IsRequired = true, EmitDefaultValue = true)]
-        public double ChainId { get; set; }
-
-        /// <summary>
-        /// The address of the external owner
-        /// </summary>
-        /// <value>The address of the external owner</value>
-        [DataMember(Name = "external_owner_address", EmitDefaultValue = false)]
-        public string ExternalOwnerAddress { get; set; }
+        [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+        public string Id { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -68,9 +63,8 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AccountPlayerRequest {\n");
-            sb.Append("  ChainId: ").Append(ChainId).Append("\n");
-            sb.Append("  ExternalOwnerAddress: ").Append(ExternalOwnerAddress).Append("\n");
+            sb.Append("class PickContractResponseId {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -91,15 +85,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AccountPlayerRequest);
+            return this.Equals(input as PickContractResponseId);
         }
 
         /// <summary>
-        /// Returns true if AccountPlayerRequest instances are equal
+        /// Returns true if PickContractResponseId instances are equal
         /// </summary>
-        /// <param name="input">Instance of AccountPlayerRequest to be compared</param>
+        /// <param name="input">Instance of PickContractResponseId to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AccountPlayerRequest input)
+        public bool Equals(PickContractResponseId input)
         {
             if (input == null)
             {
@@ -107,13 +101,9 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.ChainId == input.ChainId ||
-                    this.ChainId.Equals(input.ChainId)
-                ) && 
-                (
-                    this.ExternalOwnerAddress == input.ExternalOwnerAddress ||
-                    (this.ExternalOwnerAddress != null &&
-                    this.ExternalOwnerAddress.Equals(input.ExternalOwnerAddress))
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 );
         }
 
@@ -126,10 +116,9 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
-                if (this.ExternalOwnerAddress != null)
+                if (this.Id != null)
                 {
-                    hashCode = (hashCode * 59) + this.ExternalOwnerAddress.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
                 return hashCode;
             }

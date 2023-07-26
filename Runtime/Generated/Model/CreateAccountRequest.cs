@@ -31,6 +31,12 @@ namespace Openfort.Model
     [DataContract(Name = "CreateAccountRequest")]
     public partial class CreateAccountRequest : IEquatable<CreateAccountRequest>
     {
+
+        /// <summary>
+        /// Gets or Sets AccountType
+        /// </summary>
+        [DataMember(Name = "accountType", EmitDefaultValue = false)]
+        public DataAccountTypes? AccountType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateAccountRequest" /> class.
         /// </summary>
@@ -40,9 +46,12 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="CreateAccountRequest" /> class.
         /// </summary>
         /// <param name="chainId">The chain id (required).</param>
-        /// <param name="player">The player ID (required).</param>
         /// <param name="externalOwnerAddress">The address of the external owner.</param>
-        public CreateAccountRequest(double chainId = default(double), string player = default(string), string externalOwnerAddress = default(string))
+        /// <param name="accountType">accountType.</param>
+        /// <param name="tokenContract">If ERC6551, the NFT contract to use.</param>
+        /// <param name="tokenId">If ERC6551, the tokenID to serve as owner.</param>
+        /// <param name="player">The player ID (required).</param>
+        public CreateAccountRequest(double chainId = default(double), string externalOwnerAddress = default(string), DataAccountTypes? accountType = default(DataAccountTypes?), string tokenContract = default(string), double tokenId = default(double), string player = default(string))
         {
             this.ChainId = chainId;
             // to ensure "player" is required (not null)
@@ -52,6 +61,9 @@ namespace Openfort.Model
             }
             this.Player = player;
             this.ExternalOwnerAddress = externalOwnerAddress;
+            this.AccountType = accountType;
+            this.TokenContract = tokenContract;
+            this.TokenId = tokenId;
         }
 
         /// <summary>
@@ -62,18 +74,32 @@ namespace Openfort.Model
         public double ChainId { get; set; }
 
         /// <summary>
-        /// The player ID
-        /// </summary>
-        /// <value>The player ID</value>
-        [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
-        public string Player { get; set; }
-
-        /// <summary>
         /// The address of the external owner
         /// </summary>
         /// <value>The address of the external owner</value>
         [DataMember(Name = "externalOwnerAddress", EmitDefaultValue = false)]
         public string ExternalOwnerAddress { get; set; }
+
+        /// <summary>
+        /// If ERC6551, the NFT contract to use
+        /// </summary>
+        /// <value>If ERC6551, the NFT contract to use</value>
+        [DataMember(Name = "tokenContract", EmitDefaultValue = false)]
+        public string TokenContract { get; set; }
+
+        /// <summary>
+        /// If ERC6551, the tokenID to serve as owner
+        /// </summary>
+        /// <value>If ERC6551, the tokenID to serve as owner</value>
+        [DataMember(Name = "tokenId", EmitDefaultValue = false)]
+        public double TokenId { get; set; }
+
+        /// <summary>
+        /// The player ID
+        /// </summary>
+        /// <value>The player ID</value>
+        [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
+        public string Player { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +110,11 @@ namespace Openfort.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateAccountRequest {\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
-            sb.Append("  Player: ").Append(Player).Append("\n");
             sb.Append("  ExternalOwnerAddress: ").Append(ExternalOwnerAddress).Append("\n");
+            sb.Append("  AccountType: ").Append(AccountType).Append("\n");
+            sb.Append("  TokenContract: ").Append(TokenContract).Append("\n");
+            sb.Append("  TokenId: ").Append(TokenId).Append("\n");
+            sb.Append("  Player: ").Append(Player).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -126,14 +155,27 @@ namespace Openfort.Model
                     this.ChainId.Equals(input.ChainId)
                 ) && 
                 (
-                    this.Player == input.Player ||
-                    (this.Player != null &&
-                    this.Player.Equals(input.Player))
-                ) && 
-                (
                     this.ExternalOwnerAddress == input.ExternalOwnerAddress ||
                     (this.ExternalOwnerAddress != null &&
                     this.ExternalOwnerAddress.Equals(input.ExternalOwnerAddress))
+                ) && 
+                (
+                    this.AccountType == input.AccountType ||
+                    this.AccountType.Equals(input.AccountType)
+                ) && 
+                (
+                    this.TokenContract == input.TokenContract ||
+                    (this.TokenContract != null &&
+                    this.TokenContract.Equals(input.TokenContract))
+                ) && 
+                (
+                    this.TokenId == input.TokenId ||
+                    this.TokenId.Equals(input.TokenId)
+                ) && 
+                (
+                    this.Player == input.Player ||
+                    (this.Player != null &&
+                    this.Player.Equals(input.Player))
                 );
         }
 
@@ -147,13 +189,19 @@ namespace Openfort.Model
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
-                if (this.Player != null)
-                {
-                    hashCode = (hashCode * 59) + this.Player.GetHashCode();
-                }
                 if (this.ExternalOwnerAddress != null)
                 {
                     hashCode = (hashCode * 59) + this.ExternalOwnerAddress.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                if (this.TokenContract != null)
+                {
+                    hashCode = (hashCode * 59) + this.TokenContract.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.TokenId.GetHashCode();
+                if (this.Player != null)
+                {
+                    hashCode = (hashCode * 59) + this.Player.GetHashCode();
                 }
                 return hashCode;
             }
