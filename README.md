@@ -1,4 +1,4 @@
-# Openfort SDK For Unity
+# Openfort Unity SDK
 
 ## Installation (Unity Package Manager)
 
