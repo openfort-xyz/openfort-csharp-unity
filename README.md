@@ -20,7 +20,7 @@
   </h4>
 </div>
 
-[banner-image]: .github/img/OpenfortRed.png
+[banner-image]: https://strapi-oube.onrender.com/uploads/2_42c1d6f4d9.png
 
 # Openfort Unity SDK
 
