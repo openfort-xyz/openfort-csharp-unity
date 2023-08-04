@@ -40,7 +40,8 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="GetSigninUrlResponse" /> class.
         /// </summary>
         /// <param name="url">url (required).</param>
-        public GetSigninUrlResponse(string url = default(string))
+        /// <param name="key">key (required).</param>
+        public GetSigninUrlResponse(string url = default(string), string key = default(string))
         {
             // to ensure "url" is required (not null)
             if (url == null)
@@ -48,6 +49,12 @@ namespace Openfort.Model
                 throw new ArgumentNullException("url is a required property for GetSigninUrlResponse and cannot be null");
             }
             this.Url = url;
+            // to ensure "key" is required (not null)
+            if (key == null)
+            {
+                throw new ArgumentNullException("key is a required property for GetSigninUrlResponse and cannot be null");
+            }
+            this.Key = key;
         }
 
         /// <summary>
@@ -55,6 +62,12 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
         public string Url { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Key
+        /// </summary>
+        [DataMember(Name = "key", IsRequired = true, EmitDefaultValue = true)]
+        public string Key { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -65,6 +78,7 @@ namespace Openfort.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class GetSigninUrlResponse {\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("  Key: ").Append(Key).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -104,6 +118,11 @@ namespace Openfort.Model
                     this.Url == input.Url ||
                     (this.Url != null &&
                     this.Url.Equals(input.Url))
+                ) && 
+                (
+                    this.Key == input.Key ||
+                    (this.Key != null &&
+                    this.Key.Equals(input.Key))
                 );
         }
 
@@ -119,6 +138,10 @@ namespace Openfort.Model
                 if (this.Url != null)
                 {
                     hashCode = (hashCode * 59) + this.Url.GetHashCode();
+                }
+                if (this.Key != null)
+                {
+                    hashCode = (hashCode * 59) + this.Key.GetHashCode();
                 }
                 return hashCode;
             }

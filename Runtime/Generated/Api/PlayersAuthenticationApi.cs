@@ -66,8 +66,8 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="key"></param>
-        /// <returns>GetTokenResponse</returns>
-        GetTokenResponse GetToken(string key);
+        /// <returns>AuthResponse</returns>
+        AuthResponse GetToken(string key);
 
         /// <summary>
         /// 
@@ -77,8 +77,8 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="key"></param>
-        /// <returns>ApiResponse of GetTokenResponse</returns>
-        ApiResponse<GetTokenResponse> GetTokenWithHttpInfo(string key);
+        /// <returns>ApiResponse of AuthResponse</returns>
+        ApiResponse<AuthResponse> GetTokenWithHttpInfo(string key);
         /// <summary>
         /// 
         /// </summary>
@@ -177,8 +177,8 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="key"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetTokenResponse</returns>
-        System.Threading.Tasks.Task<GetTokenResponse> GetTokenAsync(string key, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of AuthResponse</returns>
+        System.Threading.Tasks.Task<AuthResponse> GetTokenAsync(string key, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -189,8 +189,8 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="key"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetTokenResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetTokenResponse>> GetTokenWithHttpInfoAsync(string key, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AuthResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthResponse>> GetTokenWithHttpInfoAsync(string key, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -638,10 +638,10 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="key"></param>
-        /// <returns>GetTokenResponse</returns>
-        public GetTokenResponse GetToken(string key)
+        /// <returns>AuthResponse</returns>
+        public AuthResponse GetToken(string key)
         {
-            Openfort.Client.ApiResponse<GetTokenResponse> localVarResponse = GetTokenWithHttpInfo(key);
+            Openfort.Client.ApiResponse<AuthResponse> localVarResponse = GetTokenWithHttpInfo(key);
             return localVarResponse.Data;
         }
 
@@ -650,8 +650,8 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="key"></param>
-        /// <returns>ApiResponse of GetTokenResponse</returns>
-        public Openfort.Client.ApiResponse<GetTokenResponse> GetTokenWithHttpInfo(string key)
+        /// <returns>ApiResponse of AuthResponse</returns>
+        public Openfort.Client.ApiResponse<AuthResponse> GetTokenWithHttpInfo(string key)
         {
             // verify the required parameter 'key' is set
             if (key == null)
@@ -683,7 +683,7 @@ namespace Openfort.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetTokenResponse>("/auth/v1/google/token", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AuthResponse>("/auth/v1/google/token", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -700,14 +700,14 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="key"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetTokenResponse</returns>
-        public async System.Threading.Tasks.Task<GetTokenResponse> GetTokenAsync(string key, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of AuthResponse</returns>
+        public async System.Threading.Tasks.Task<AuthResponse> GetTokenAsync(string key, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetTokenWithHttpInfoAsync(key, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<GetTokenResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<AuthResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            Openfort.Client.ApiResponse<GetTokenResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<AuthResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -718,8 +718,8 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="key"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetTokenResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<GetTokenResponse>> GetTokenWithHttpInfoAsync(string key, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AuthResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AuthResponse>> GetTokenWithHttpInfoAsync(string key, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'key' is set
             if (key == null)
@@ -754,7 +754,7 @@ namespace Openfort.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.GetAsync<GetTokenResponse>("/auth/v1/google/token", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.GetAsync<AuthResponse>("/auth/v1/google/token", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
