@@ -39,6 +39,7 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountResponse" /> class.
         /// </summary>
+        /// <param name="transactionIntents">transactionIntents.</param>
         /// <param name="id">id (required).</param>
         /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
@@ -48,8 +49,8 @@ namespace Openfort.Model
         /// <param name="custodial">custodial (required).</param>
         /// <param name="chainId">chainId (required).</param>
         /// <param name="accountType">accountType (required).</param>
-        /// <param name="transactionIntents">transactionIntents (required).</param>
-        public AccountResponse(string id = default(string), string _object = default(string), int createdAt = default(int), string address = default(string), string ownerAddress = default(string), bool deployed = default(bool), bool custodial = default(bool), double chainId = default(double), string accountType = default(string), List<PolicyResponseTransactionIntentsInner> transactionIntents = default(List<PolicyResponseTransactionIntentsInner>))
+        /// <param name="pendingOwnerAddress">pendingOwnerAddress.</param>
+        public AccountResponse(List<PolicyResponseTransactionIntentsInner> transactionIntents = default(List<PolicyResponseTransactionIntentsInner>), string id = default(string), string _object = default(string), int createdAt = default(int), string address = default(string), string ownerAddress = default(string), bool deployed = default(bool), bool custodial = default(bool), double chainId = default(double), string accountType = default(string), string pendingOwnerAddress = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -85,13 +86,15 @@ namespace Openfort.Model
                 throw new ArgumentNullException("accountType is a required property for AccountResponse and cannot be null");
             }
             this.AccountType = accountType;
-            // to ensure "transactionIntents" is required (not null)
-            if (transactionIntents == null)
-            {
-                throw new ArgumentNullException("transactionIntents is a required property for AccountResponse and cannot be null");
-            }
             this.TransactionIntents = transactionIntents;
+            this.PendingOwnerAddress = pendingOwnerAddress;
         }
+
+        /// <summary>
+        /// Gets or Sets TransactionIntents
+        /// </summary>
+        [DataMember(Name = "transactionIntents", EmitDefaultValue = false)]
+        public List<PolicyResponseTransactionIntentsInner> TransactionIntents { get; set; }
 
         /// <summary>
         /// Gets or Sets Id
@@ -148,10 +151,10 @@ namespace Openfort.Model
         public string AccountType { get; set; }
 
         /// <summary>
-        /// Gets or Sets TransactionIntents
+        /// Gets or Sets PendingOwnerAddress
         /// </summary>
-        [DataMember(Name = "transactionIntents", IsRequired = true, EmitDefaultValue = true)]
-        public List<PolicyResponseTransactionIntentsInner> TransactionIntents { get; set; }
+        [DataMember(Name = "pendingOwnerAddress", EmitDefaultValue = false)]
+        public string PendingOwnerAddress { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -161,6 +164,7 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AccountResponse {\n");
+            sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
@@ -170,7 +174,7 @@ namespace Openfort.Model
             sb.Append("  Custodial: ").Append(Custodial).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");
-            sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
+            sb.Append("  PendingOwnerAddress: ").Append(PendingOwnerAddress).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -206,6 +210,12 @@ namespace Openfort.Model
                 return false;
             }
             return 
+                (
+                    this.TransactionIntents == input.TransactionIntents ||
+                    this.TransactionIntents != null &&
+                    input.TransactionIntents != null &&
+                    this.TransactionIntents.SequenceEqual(input.TransactionIntents)
+                ) && 
                 (
                     this.Id == input.Id ||
                     (this.Id != null &&
@@ -248,10 +258,9 @@ namespace Openfort.Model
                     this.AccountType.Equals(input.AccountType))
                 ) && 
                 (
-                    this.TransactionIntents == input.TransactionIntents ||
-                    this.TransactionIntents != null &&
-                    input.TransactionIntents != null &&
-                    this.TransactionIntents.SequenceEqual(input.TransactionIntents)
+                    this.PendingOwnerAddress == input.PendingOwnerAddress ||
+                    (this.PendingOwnerAddress != null &&
+                    this.PendingOwnerAddress.Equals(input.PendingOwnerAddress))
                 );
         }
 
@@ -264,6 +273,10 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.TransactionIntents != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransactionIntents.GetHashCode();
+                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
@@ -288,9 +301,9 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
                 }
-                if (this.TransactionIntents != null)
+                if (this.PendingOwnerAddress != null)
                 {
-                    hashCode = (hashCode * 59) + this.TransactionIntents.GetHashCode();
+                    hashCode = (hashCode * 59) + this.PendingOwnerAddress.GetHashCode();
                 }
                 return hashCode;
             }

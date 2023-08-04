@@ -31,6 +31,29 @@ namespace Openfort.Api
         /// 
         /// </summary>
         /// <remarks>
+        /// Request the ownership transfer of an account to a given address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="cancelTransferOwnershipRequest"></param>
+        /// <returns>TransactionIntentResponse</returns>
+        TransactionIntentResponse CancelTransferOwnership(string id, CancelTransferOwnershipRequest cancelTransferOwnershipRequest);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Request the ownership transfer of an account to a given address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="cancelTransferOwnershipRequest"></param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        ApiResponse<TransactionIntentResponse> CancelTransferOwnershipWithHttpInfo(string id, CancelTransferOwnershipRequest cancelTransferOwnershipRequest);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
         /// Creates an account object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
@@ -121,6 +144,29 @@ namespace Openfort.Api
         /// 
         /// </summary>
         /// <remarks>
+        /// Request the ownership transfer of an account to a given address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="transferOwnershipRequest"></param>
+        /// <returns>TransactionIntentResponse</returns>
+        TransactionIntentResponse RequestTransferOwnership(string id, TransferOwnershipRequest transferOwnershipRequest);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Request the ownership transfer of an account to a given address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="transferOwnershipRequest"></param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        ApiResponse<TransactionIntentResponse> RequestTransferOwnershipWithHttpInfo(string id, TransferOwnershipRequest transferOwnershipRequest);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
         /// Sign a given payload
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
@@ -144,25 +190,23 @@ namespace Openfort.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Request the ownership transfer of an account to a given address.
+        /// Sync account state with the blockchain
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="transferOwnershipRequest"></param>
-        /// <returns>TransactionIntentResponse</returns>
-        TransactionIntentResponse TransferOwnership(string id, TransferOwnershipRequest transferOwnershipRequest);
+        /// <returns>AccountResponse</returns>
+        AccountResponse SyncAccount(string id);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Request the ownership transfer of an account to a given address.
+        /// Sync account state with the blockchain
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="transferOwnershipRequest"></param>
-        /// <returns>ApiResponse of TransactionIntentResponse</returns>
-        ApiResponse<TransactionIntentResponse> TransferOwnershipWithHttpInfo(string id, TransferOwnershipRequest transferOwnershipRequest);
+        /// <returns>ApiResponse of AccountResponse</returns>
+        ApiResponse<AccountResponse> SyncAccountWithHttpInfo(string id);
         #endregion Synchronous Operations
     }
 
@@ -172,6 +216,31 @@ namespace Openfort.Api
     public interface IAccountsApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Request the ownership transfer of an account to a given address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="cancelTransferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        System.Threading.Tasks.Task<TransactionIntentResponse> CancelTransferOwnershipAsync(string id, CancelTransferOwnershipRequest cancelTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Request the ownership transfer of an account to a given address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="cancelTransferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> CancelTransferOwnershipWithHttpInfoAsync(string id, CancelTransferOwnershipRequest cancelTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -274,6 +343,31 @@ namespace Openfort.Api
         /// 
         /// </summary>
         /// <remarks>
+        /// Request the ownership transfer of an account to a given address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="transferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        System.Threading.Tasks.Task<TransactionIntentResponse> RequestTransferOwnershipAsync(string id, TransferOwnershipRequest transferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Request the ownership transfer of an account to a given address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="transferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> RequestTransferOwnershipWithHttpInfoAsync(string id, TransferOwnershipRequest transferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
         /// Sign a given payload
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
@@ -299,27 +393,25 @@ namespace Openfort.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Request the ownership transfer of an account to a given address.
+        /// Sync account state with the blockchain
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="transferOwnershipRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of TransactionIntentResponse</returns>
-        System.Threading.Tasks.Task<TransactionIntentResponse> TransferOwnershipAsync(string id, TransferOwnershipRequest transferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of AccountResponse</returns>
+        System.Threading.Tasks.Task<AccountResponse> SyncAccountAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Request the ownership transfer of an account to a given address.
+        /// Sync account state with the blockchain
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="transferOwnershipRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> TransferOwnershipWithHttpInfoAsync(string id, TransferOwnershipRequest transferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AccountResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountResponse>> SyncAccountWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -462,6 +554,148 @@ namespace Openfort.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        ///  Request the ownership transfer of an account to a given address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="cancelTransferOwnershipRequest"></param>
+        /// <returns>TransactionIntentResponse</returns>
+        public TransactionIntentResponse CancelTransferOwnership(string id, CancelTransferOwnershipRequest cancelTransferOwnershipRequest)
+        {
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = CancelTransferOwnershipWithHttpInfo(id, cancelTransferOwnershipRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Request the ownership transfer of an account to a given address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="cancelTransferOwnershipRequest"></param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        public Openfort.Client.ApiResponse<TransactionIntentResponse> CancelTransferOwnershipWithHttpInfo(string id, CancelTransferOwnershipRequest cancelTransferOwnershipRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->CancelTransferOwnership");
+
+            // verify the required parameter 'cancelTransferOwnershipRequest' is set
+            if (cancelTransferOwnershipRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'cancelTransferOwnershipRequest' when calling AccountsApi->CancelTransferOwnership");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = cancelTransferOwnershipRequest;
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<TransactionIntentResponse>("/v1/accounts/{id}/cancel-transfer-ownership", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CancelTransferOwnership", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Request the ownership transfer of an account to a given address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="cancelTransferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        public async System.Threading.Tasks.Task<TransactionIntentResponse> CancelTransferOwnershipAsync(string id, CancelTransferOwnershipRequest cancelTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = CancelTransferOwnershipWithHttpInfoAsync(id, cancelTransferOwnershipRequest, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Request the ownership transfer of an account to a given address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="cancelTransferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> CancelTransferOwnershipWithHttpInfoAsync(string id, CancelTransferOwnershipRequest cancelTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->CancelTransferOwnership");
+
+            // verify the required parameter 'cancelTransferOwnershipRequest' is set
+            if (cancelTransferOwnershipRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'cancelTransferOwnershipRequest' when calling AccountsApi->CancelTransferOwnership");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = cancelTransferOwnershipRequest;
+
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<TransactionIntentResponse>("/v1/accounts/{id}/cancel-transfer-ownership", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CancelTransferOwnership", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>
@@ -1007,6 +1241,148 @@ namespace Openfort.Api
         }
 
         /// <summary>
+        ///  Request the ownership transfer of an account to a given address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="transferOwnershipRequest"></param>
+        /// <returns>TransactionIntentResponse</returns>
+        public TransactionIntentResponse RequestTransferOwnership(string id, TransferOwnershipRequest transferOwnershipRequest)
+        {
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = RequestTransferOwnershipWithHttpInfo(id, transferOwnershipRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Request the ownership transfer of an account to a given address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="transferOwnershipRequest"></param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        public Openfort.Client.ApiResponse<TransactionIntentResponse> RequestTransferOwnershipWithHttpInfo(string id, TransferOwnershipRequest transferOwnershipRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->RequestTransferOwnership");
+
+            // verify the required parameter 'transferOwnershipRequest' is set
+            if (transferOwnershipRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'transferOwnershipRequest' when calling AccountsApi->RequestTransferOwnership");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = transferOwnershipRequest;
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<TransactionIntentResponse>("/v1/accounts/{id}/request-transfer-ownership", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RequestTransferOwnership", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Request the ownership transfer of an account to a given address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="transferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        public async System.Threading.Tasks.Task<TransactionIntentResponse> RequestTransferOwnershipAsync(string id, TransferOwnershipRequest transferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = RequestTransferOwnershipWithHttpInfoAsync(id, transferOwnershipRequest, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Request the ownership transfer of an account to a given address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="transferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> RequestTransferOwnershipWithHttpInfoAsync(string id, TransferOwnershipRequest transferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->RequestTransferOwnership");
+
+            // verify the required parameter 'transferOwnershipRequest' is set
+            if (transferOwnershipRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'transferOwnershipRequest' when calling AccountsApi->RequestTransferOwnership");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = transferOwnershipRequest;
+
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<TransactionIntentResponse>("/v1/accounts/{id}/request-transfer-ownership", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RequestTransferOwnership", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         ///  Sign a given payload
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1149,39 +1525,32 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Request the ownership transfer of an account to a given address.
+        ///  Sync account state with the blockchain
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="transferOwnershipRequest"></param>
-        /// <returns>TransactionIntentResponse</returns>
-        public TransactionIntentResponse TransferOwnership(string id, TransferOwnershipRequest transferOwnershipRequest)
+        /// <returns>AccountResponse</returns>
+        public AccountResponse SyncAccount(string id)
         {
-            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = TransferOwnershipWithHttpInfo(id, transferOwnershipRequest);
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = SyncAccountWithHttpInfo(id);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Request the ownership transfer of an account to a given address.
+        ///  Sync account state with the blockchain
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="transferOwnershipRequest"></param>
-        /// <returns>ApiResponse of TransactionIntentResponse</returns>
-        public Openfort.Client.ApiResponse<TransactionIntentResponse> TransferOwnershipWithHttpInfo(string id, TransferOwnershipRequest transferOwnershipRequest)
+        /// <returns>ApiResponse of AccountResponse</returns>
+        public Openfort.Client.ApiResponse<AccountResponse> SyncAccountWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->TransferOwnership");
-
-            // verify the required parameter 'transferOwnershipRequest' is set
-            if (transferOwnershipRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'transferOwnershipRequest' when calling AccountsApi->TransferOwnership");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->SyncAccount");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
-                "application/json"
             };
 
             // to determine the Accept header
@@ -1196,15 +1565,14 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.Data = transferOwnershipRequest;
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<TransactionIntentResponse>("/v1/accounts/{id}/transfer-ownership", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AccountResponse>("/v1/accounts/{id}/sync", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("TransferOwnership", localVarResponse);
+                Exception _exception = this.ExceptionFactory("SyncAccount", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1212,47 +1580,40 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Request the ownership transfer of an account to a given address.
+        ///  Sync account state with the blockchain
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="transferOwnershipRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of TransactionIntentResponse</returns>
-        public async System.Threading.Tasks.Task<TransactionIntentResponse> TransferOwnershipAsync(string id, TransferOwnershipRequest transferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of AccountResponse</returns>
+        public async System.Threading.Tasks.Task<AccountResponse> SyncAccountAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = TransferOwnershipWithHttpInfoAsync(id, transferOwnershipRequest, cancellationToken);
+            var task = SyncAccountWithHttpInfoAsync(id, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Request the ownership transfer of an account to a given address.
+        ///  Sync account state with the blockchain
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="transferOwnershipRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> TransferOwnershipWithHttpInfoAsync(string id, TransferOwnershipRequest transferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AccountResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountResponse>> SyncAccountWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->TransferOwnership");
-
-            // verify the required parameter 'transferOwnershipRequest' is set
-            if (transferOwnershipRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'transferOwnershipRequest' when calling AccountsApi->TransferOwnership");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->SyncAccount");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
-                "application/json"
             };
 
             // to determine the Accept header
@@ -1268,12 +1629,11 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.Data = transferOwnershipRequest;
 
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<TransactionIntentResponse>("/v1/accounts/{id}/transfer-ownership", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<AccountResponse>("/v1/accounts/{id}/sync", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -1283,7 +1643,7 @@ namespace Openfort.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("TransferOwnership", localVarResponse);
+                Exception _exception = this.ExceptionFactory("SyncAccount", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

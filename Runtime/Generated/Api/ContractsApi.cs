@@ -97,12 +97,15 @@ namespace Openfort.Api
         /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <returns>ContractsResponse</returns>
-        ContractsResponse GetContracts(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string));
+        ContractsResponse GetContracts(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string));
 
         /// <summary>
         /// 
@@ -111,12 +114,15 @@ namespace Openfort.Api
         /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <returns>ApiResponse of ContractsResponse</returns>
-        ApiResponse<ContractsResponse> GetContractsWithHttpInfo(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string));
+        ApiResponse<ContractsResponse> GetContractsWithHttpInfo(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string));
         /// <summary>
         /// 
         /// </summary>
@@ -225,13 +231,16 @@ namespace Openfort.Api
         /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractsResponse</returns>
-        System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -240,13 +249,16 @@ namespace Openfort.Api
         /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractsResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -800,14 +812,17 @@ namespace Openfort.Api
         ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <returns>ContractsResponse</returns>
-        public ContractsResponse GetContracts(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string))
+        public ContractsResponse GetContracts(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string))
         {
-            Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = GetContractsWithHttpInfo(limit, order, skip, filter);
+            Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = GetContractsWithHttpInfo(limit, skip, order, name, deleted, chainId, address);
             return localVarResponse.Data;
         }
 
@@ -815,12 +830,15 @@ namespace Openfort.Api
         ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <returns>ApiResponse of ContractsResponse</returns>
-        public Openfort.Client.ApiResponse<ContractsResponse> GetContractsWithHttpInfo(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string))
+        public Openfort.Client.ApiResponse<ContractsResponse> GetContractsWithHttpInfo(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string))
         {
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -842,17 +860,29 @@ namespace Openfort.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
-            if (order != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
-            }
             if (skip != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
-            if (filter != null)
+            if (order != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
+            }
+            if (name != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+            }
+            if (deleted != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "deleted", deleted));
+            }
+            if (chainId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "chainId", chainId));
+            }
+            if (address != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "address", address));
             }
 
 
@@ -872,15 +902,18 @@ namespace Openfort.Api
         ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractsResponse</returns>
-        public async System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetContractsWithHttpInfoAsync(limit, order, skip, filter, cancellationToken);
+            var task = GetContractsWithHttpInfoAsync(limit, skip, order, name, deleted, chainId, address, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -893,13 +926,16 @@ namespace Openfort.Api
         ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractsResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(double? limit = default(double?), SortOrder? order = default(SortOrder?), double? skip = default(double?), string filter = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -923,17 +959,29 @@ namespace Openfort.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
-            if (order != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
-            }
             if (skip != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
-            if (filter != null)
+            if (order != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
+            }
+            if (name != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+            }
+            if (deleted != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "deleted", deleted));
+            }
+            if (chainId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "chainId", chainId));
+            }
+            if (address != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "address", address));
             }
 
 

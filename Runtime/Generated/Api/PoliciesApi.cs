@@ -96,13 +96,15 @@ namespace Openfort.Api
         /// Gets all policy objects for a given project.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
         /// <returns>PoliciesResponse</returns>
-        PoliciesResponse GetPolicies(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?));
+        PoliciesResponse GetPolicies(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?));
 
         /// <summary>
         /// 
@@ -111,13 +113,15 @@ namespace Openfort.Api
         /// Gets all policy objects for a given project.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
         /// <returns>ApiResponse of PoliciesResponse</returns>
-        ApiResponse<PoliciesResponse> GetPoliciesWithHttpInfo(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?));
+        ApiResponse<PoliciesResponse> GetPoliciesWithHttpInfo(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?));
         /// <summary>
         /// 
         /// </summary>
@@ -311,14 +315,16 @@ namespace Openfort.Api
         /// Gets all policy objects for a given project.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PoliciesResponse</returns>
-        System.Threading.Tasks.Task<PoliciesResponse> GetPoliciesAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PoliciesResponse> GetPoliciesAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -327,14 +333,16 @@ namespace Openfort.Api
         /// Gets all policy objects for a given project.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PoliciesResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PoliciesResponse>> GetPoliciesWithHttpInfoAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PoliciesResponse>> GetPoliciesWithHttpInfoAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -1004,15 +1012,17 @@ namespace Openfort.Api
         ///  Gets all policy objects for a given project.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
         /// <returns>PoliciesResponse</returns>
-        public PoliciesResponse GetPolicies(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?))
+        public PoliciesResponse GetPolicies(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?))
         {
-            Openfort.Client.ApiResponse<PoliciesResponse> localVarResponse = GetPoliciesWithHttpInfo(limit, expand, skip, filter, order);
+            Openfort.Client.ApiResponse<PoliciesResponse> localVarResponse = GetPoliciesWithHttpInfo(limit, skip, order, expand, name, deleted, chainId);
             return localVarResponse.Data;
         }
 
@@ -1020,13 +1030,15 @@ namespace Openfort.Api
         ///  Gets all policy objects for a given project.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
         /// <returns>ApiResponse of PoliciesResponse</returns>
-        public Openfort.Client.ApiResponse<PoliciesResponse> GetPoliciesWithHttpInfo(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?))
+        public Openfort.Client.ApiResponse<PoliciesResponse> GetPoliciesWithHttpInfo(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?))
         {
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -1048,21 +1060,29 @@ namespace Openfort.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
-            if (expand != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
-            }
             if (skip != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
-            if (filter != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
-            }
             if (order != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
+            }
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            if (name != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+            }
+            if (deleted != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "deleted", deleted));
+            }
+            if (chainId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "chainId", chainId));
             }
 
 
@@ -1082,16 +1102,18 @@ namespace Openfort.Api
         ///  Gets all policy objects for a given project.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PoliciesResponse</returns>
-        public async System.Threading.Tasks.Task<PoliciesResponse> GetPoliciesAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PoliciesResponse> GetPoliciesAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetPoliciesWithHttpInfoAsync(limit, expand, skip, filter, order, cancellationToken);
+            var task = GetPoliciesWithHttpInfoAsync(limit, skip, order, expand, name, deleted, chainId, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<PoliciesResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -1104,14 +1126,16 @@ namespace Openfort.Api
         ///  Gets all policy objects for a given project.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="expand"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
-        /// <param name="filter"> (optional)</param>
         /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="deleted"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PoliciesResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PoliciesResponse>> GetPoliciesWithHttpInfoAsync(double? limit = default(double?), List<string> expand = default(List<string>), double? skip = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PoliciesResponse>> GetPoliciesWithHttpInfoAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -1135,21 +1159,29 @@ namespace Openfort.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
-            if (expand != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
-            }
             if (skip != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
-            if (filter != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
-            }
             if (order != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
+            }
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            if (name != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+            }
+            if (deleted != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "deleted", deleted));
+            }
+            if (chainId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "chainId", chainId));
             }
 
 

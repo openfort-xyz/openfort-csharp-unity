@@ -56,8 +56,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
         /// <returns>TransactionIntentResponse</returns>
-        TransactionIntentResponse GetTransactionIntent(string id);
+        TransactionIntentResponse GetTransactionIntent(string id, List<string> expand = default(List<string>));
 
         /// <summary>
         /// 
@@ -67,8 +68,9 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
         /// <returns>ApiResponse of TransactionIntentResponse</returns>
-        ApiResponse<TransactionIntentResponse> GetTransactionIntentWithHttpInfo(string id);
+        ApiResponse<TransactionIntentResponse> GetTransactionIntentWithHttpInfo(string id, List<string> expand = default(List<string>));
         /// <summary>
         /// 
         /// </summary>
@@ -76,13 +78,16 @@ namespace Openfort.Api
         /// Returns a list of transaction intents for the given project. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="playerId"> (optional)</param>
+        /// <param name="policyId"> (optional)</param>
         /// <returns>TransactionIntentsResponse</returns>
-        TransactionIntentsResponse GetTransactionIntents(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?));
+        TransactionIntentsResponse GetTransactionIntents(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string accountId = default(string), double? chainId = default(double?), string playerId = default(string), string policyId = default(string));
 
         /// <summary>
         /// 
@@ -91,13 +96,16 @@ namespace Openfort.Api
         /// Returns a list of transaction intents for the given project. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="playerId"> (optional)</param>
+        /// <param name="policyId"> (optional)</param>
         /// <returns>ApiResponse of TransactionIntentsResponse</returns>
-        ApiResponse<TransactionIntentsResponse> GetTransactionIntentsWithHttpInfo(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?));
+        ApiResponse<TransactionIntentsResponse> GetTransactionIntentsWithHttpInfo(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string accountId = default(string), double? chainId = default(double?), string playerId = default(string), string policyId = default(string));
         /// <summary>
         /// 
         /// </summary>
@@ -195,9 +203,10 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionIntentResponse</returns>
-        System.Threading.Tasks.Task<TransactionIntentResponse> GetTransactionIntentAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<TransactionIntentResponse> GetTransactionIntentAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -207,9 +216,10 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> GetTransactionIntentWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> GetTransactionIntentWithHttpInfoAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -217,14 +227,17 @@ namespace Openfort.Api
         /// Returns a list of transaction intents for the given project. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="playerId"> (optional)</param>
+        /// <param name="policyId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionIntentsResponse</returns>
-        System.Threading.Tasks.Task<TransactionIntentsResponse> GetTransactionIntentsAsync(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<TransactionIntentsResponse> GetTransactionIntentsAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string accountId = default(string), double? chainId = default(double?), string playerId = default(string), string policyId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -233,14 +246,17 @@ namespace Openfort.Api
         /// Returns a list of transaction intents for the given project. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="playerId"> (optional)</param>
+        /// <param name="policyId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionIntentsResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionIntentsResponse>> GetTransactionIntentsWithHttpInfoAsync(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<TransactionIntentsResponse>> GetTransactionIntentsWithHttpInfoAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string accountId = default(string), double? chainId = default(double?), string playerId = default(string), string policyId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -587,10 +603,11 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
         /// <returns>TransactionIntentResponse</returns>
-        public TransactionIntentResponse GetTransactionIntent(string id)
+        public TransactionIntentResponse GetTransactionIntent(string id, List<string> expand = default(List<string>))
         {
-            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = GetTransactionIntentWithHttpInfo(id);
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = GetTransactionIntentWithHttpInfo(id, expand);
             return localVarResponse.Data;
         }
 
@@ -599,8 +616,9 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
         /// <returns>ApiResponse of TransactionIntentResponse</returns>
-        public Openfort.Client.ApiResponse<TransactionIntentResponse> GetTransactionIntentWithHttpInfo(string id)
+        public Openfort.Client.ApiResponse<TransactionIntentResponse> GetTransactionIntentWithHttpInfo(string id, List<string> expand = default(List<string>))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -623,6 +641,10 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
 
 
             // make the HTTP request
@@ -642,11 +664,12 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionIntentResponse</returns>
-        public async System.Threading.Tasks.Task<TransactionIntentResponse> GetTransactionIntentAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<TransactionIntentResponse> GetTransactionIntentAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetTransactionIntentWithHttpInfoAsync(id, cancellationToken);
+            var task = GetTransactionIntentWithHttpInfoAsync(id, expand, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -660,9 +683,10 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> GetTransactionIntentWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> GetTransactionIntentWithHttpInfoAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -687,6 +711,10 @@ namespace Openfort.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
 
 
             // make the HTTP request
@@ -712,15 +740,18 @@ namespace Openfort.Api
         ///  Returns a list of transaction intents for the given project. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="playerId"> (optional)</param>
+        /// <param name="policyId"> (optional)</param>
         /// <returns>TransactionIntentsResponse</returns>
-        public TransactionIntentsResponse GetTransactionIntents(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?))
+        public TransactionIntentsResponse GetTransactionIntents(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string accountId = default(string), double? chainId = default(double?), string playerId = default(string), string policyId = default(string))
         {
-            Openfort.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = GetTransactionIntentsWithHttpInfo(expand, limit, filter, order, skip);
+            Openfort.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = GetTransactionIntentsWithHttpInfo(limit, skip, order, expand, accountId, chainId, playerId, policyId);
             return localVarResponse.Data;
         }
 
@@ -728,13 +759,16 @@ namespace Openfort.Api
         ///  Returns a list of transaction intents for the given project. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="playerId"> (optional)</param>
+        /// <param name="policyId"> (optional)</param>
         /// <returns>ApiResponse of TransactionIntentsResponse</returns>
-        public Openfort.Client.ApiResponse<TransactionIntentsResponse> GetTransactionIntentsWithHttpInfo(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?))
+        public Openfort.Client.ApiResponse<TransactionIntentsResponse> GetTransactionIntentsWithHttpInfo(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string accountId = default(string), double? chainId = default(double?), string playerId = default(string), string policyId = default(string))
         {
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -752,25 +786,37 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            if (expand != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
-            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
-            if (filter != null)
+            if (skip != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
             if (order != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
             }
-            if (skip != null)
+            if (expand != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
+            if (chainId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "chainId", chainId));
+            }
+            if (playerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "playerId", playerId));
+            }
+            if (policyId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "policyId", policyId));
             }
 
 
@@ -790,16 +836,19 @@ namespace Openfort.Api
         ///  Returns a list of transaction intents for the given project. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="playerId"> (optional)</param>
+        /// <param name="policyId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionIntentsResponse</returns>
-        public async System.Threading.Tasks.Task<TransactionIntentsResponse> GetTransactionIntentsAsync(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<TransactionIntentsResponse> GetTransactionIntentsAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string accountId = default(string), double? chainId = default(double?), string playerId = default(string), string policyId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetTransactionIntentsWithHttpInfoAsync(expand, limit, filter, order, skip, cancellationToken);
+            var task = GetTransactionIntentsWithHttpInfoAsync(limit, skip, order, expand, accountId, chainId, playerId, policyId, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<TransactionIntentsResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -812,14 +861,17 @@ namespace Openfort.Api
         ///  Returns a list of transaction intents for the given project. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="playerId"> (optional)</param>
+        /// <param name="policyId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionIntentsResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentsResponse>> GetTransactionIntentsWithHttpInfoAsync(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentsResponse>> GetTransactionIntentsWithHttpInfoAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string accountId = default(string), double? chainId = default(double?), string playerId = default(string), string policyId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -839,25 +891,37 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            if (expand != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
-            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
-            if (filter != null)
+            if (skip != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
             if (order != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
             }
-            if (skip != null)
+            if (expand != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
+            if (chainId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "chainId", chainId));
+            }
+            if (playerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "playerId", playerId));
+            }
+            if (policyId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "policyId", policyId));
             }
 
 

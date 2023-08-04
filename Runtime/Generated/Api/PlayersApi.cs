@@ -31,6 +31,29 @@ namespace Openfort.Api
         /// 
         /// </summary>
         /// <remarks>
+        /// Request the ownership transfer of an account to a given address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="playerCancelTransferOwnershipRequest"></param>
+        /// <returns>TransactionIntentResponse</returns>
+        TransactionIntentResponse CancelTransferAccountOwnership(string id, PlayerCancelTransferOwnershipRequest playerCancelTransferOwnershipRequest);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Request the ownership transfer of an account to a given address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="playerCancelTransferOwnershipRequest"></param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        ApiResponse<TransactionIntentResponse> CancelTransferAccountOwnershipWithHttpInfo(string id, PlayerCancelTransferOwnershipRequest playerCancelTransferOwnershipRequest);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
         /// Creates a player object.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
@@ -170,13 +193,13 @@ namespace Openfort.Api
         /// Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
         /// <returns>PlayersResponse</returns>
-        PlayersResponse GetPlayers(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?));
+        PlayersResponse GetPlayers(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string));
 
         /// <summary>
         /// 
@@ -185,13 +208,36 @@ namespace Openfort.Api
         /// Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
         /// <returns>ApiResponse of PlayersResponse</returns>
-        ApiResponse<PlayersResponse> GetPlayersWithHttpInfo(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?));
+        ApiResponse<PlayersResponse> GetPlayersWithHttpInfo(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Transfer ownership of an account to an address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="playerTransferOwnershipRequest"></param>
+        /// <returns>TransactionIntentResponse</returns>
+        TransactionIntentResponse RequestTransferAccountOwnership(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Transfer ownership of an account to an address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="playerTransferOwnershipRequest"></param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        ApiResponse<TransactionIntentResponse> RequestTransferAccountOwnershipWithHttpInfo(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest);
         /// <summary>
         /// 
         /// </summary>
@@ -215,29 +261,6 @@ namespace Openfort.Api
         /// <param name="revokeSessionPlayerRequest"></param>
         /// <returns>ApiResponse of SessionResponse</returns>
         ApiResponse<SessionResponse> RevokePlayerSessionWithHttpInfo(string id, RevokeSessionPlayerRequest revokeSessionPlayerRequest);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Transfer ownership of an account to an address.
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="playerTransferOwnershipRequest"></param>
-        /// <returns>TransactionIntentResponse</returns>
-        TransactionIntentResponse TransferAccountOwnership(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Transfer ownership of an account to an address.
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="playerTransferOwnershipRequest"></param>
-        /// <returns>ApiResponse of TransactionIntentResponse</returns>
-        ApiResponse<TransactionIntentResponse> TransferAccountOwnershipWithHttpInfo(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest);
         /// <summary>
         /// 
         /// </summary>
@@ -270,6 +293,31 @@ namespace Openfort.Api
     public interface IPlayersApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Request the ownership transfer of an account to a given address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="playerCancelTransferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        System.Threading.Tasks.Task<TransactionIntentResponse> CancelTransferAccountOwnershipAsync(string id, PlayerCancelTransferOwnershipRequest playerCancelTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Request the ownership transfer of an account to a given address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="playerCancelTransferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> CancelTransferAccountOwnershipWithHttpInfoAsync(string id, PlayerCancelTransferOwnershipRequest playerCancelTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -425,14 +473,14 @@ namespace Openfort.Api
         /// Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlayersResponse</returns>
-        System.Threading.Tasks.Task<PlayersResponse> GetPlayersAsync(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PlayersResponse> GetPlayersAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -441,14 +489,39 @@ namespace Openfort.Api
         /// Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlayersResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PlayersResponse>> GetPlayersWithHttpInfoAsync(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PlayersResponse>> GetPlayersWithHttpInfoAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Transfer ownership of an account to an address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="playerTransferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        System.Threading.Tasks.Task<TransactionIntentResponse> RequestTransferAccountOwnershipAsync(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Transfer ownership of an account to an address.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="playerTransferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> RequestTransferAccountOwnershipWithHttpInfoAsync(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -474,31 +547,6 @@ namespace Openfort.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SessionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<SessionResponse>> RevokePlayerSessionWithHttpInfoAsync(string id, RevokeSessionPlayerRequest revokeSessionPlayerRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Transfer ownership of an account to an address.
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="playerTransferOwnershipRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of TransactionIntentResponse</returns>
-        System.Threading.Tasks.Task<TransactionIntentResponse> TransferAccountOwnershipAsync(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Transfer ownership of an account to an address.
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="playerTransferOwnershipRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> TransferAccountOwnershipWithHttpInfoAsync(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -666,6 +714,148 @@ namespace Openfort.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        ///  Request the ownership transfer of an account to a given address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="playerCancelTransferOwnershipRequest"></param>
+        /// <returns>TransactionIntentResponse</returns>
+        public TransactionIntentResponse CancelTransferAccountOwnership(string id, PlayerCancelTransferOwnershipRequest playerCancelTransferOwnershipRequest)
+        {
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = CancelTransferAccountOwnershipWithHttpInfo(id, playerCancelTransferOwnershipRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Request the ownership transfer of an account to a given address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="playerCancelTransferOwnershipRequest"></param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        public Openfort.Client.ApiResponse<TransactionIntentResponse> CancelTransferAccountOwnershipWithHttpInfo(string id, PlayerCancelTransferOwnershipRequest playerCancelTransferOwnershipRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->CancelTransferAccountOwnership");
+
+            // verify the required parameter 'playerCancelTransferOwnershipRequest' is set
+            if (playerCancelTransferOwnershipRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'playerCancelTransferOwnershipRequest' when calling PlayersApi->CancelTransferAccountOwnership");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = playerCancelTransferOwnershipRequest;
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<TransactionIntentResponse>("/v1/players/{id}/cancel-transfer-ownership", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CancelTransferAccountOwnership", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Request the ownership transfer of an account to a given address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="playerCancelTransferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        public async System.Threading.Tasks.Task<TransactionIntentResponse> CancelTransferAccountOwnershipAsync(string id, PlayerCancelTransferOwnershipRequest playerCancelTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = CancelTransferAccountOwnershipWithHttpInfoAsync(id, playerCancelTransferOwnershipRequest, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Request the ownership transfer of an account to a given address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="playerCancelTransferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> CancelTransferAccountOwnershipWithHttpInfoAsync(string id, PlayerCancelTransferOwnershipRequest playerCancelTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->CancelTransferAccountOwnership");
+
+            // verify the required parameter 'playerCancelTransferOwnershipRequest' is set
+            if (playerCancelTransferOwnershipRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'playerCancelTransferOwnershipRequest' when calling PlayersApi->CancelTransferAccountOwnership");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = playerCancelTransferOwnershipRequest;
+
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<TransactionIntentResponse>("/v1/players/{id}/cancel-transfer-ownership", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CancelTransferAccountOwnership", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>
@@ -1492,15 +1682,15 @@ namespace Openfort.Api
         ///  Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
         /// <returns>PlayersResponse</returns>
-        public PlayersResponse GetPlayers(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?))
+        public PlayersResponse GetPlayers(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string))
         {
-            Openfort.Client.ApiResponse<PlayersResponse> localVarResponse = GetPlayersWithHttpInfo(expand, limit, filter, order, skip);
+            Openfort.Client.ApiResponse<PlayersResponse> localVarResponse = GetPlayersWithHttpInfo(limit, skip, order, expand, name);
             return localVarResponse.Data;
         }
 
@@ -1508,13 +1698,13 @@ namespace Openfort.Api
         ///  Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
         /// <returns>ApiResponse of PlayersResponse</returns>
-        public Openfort.Client.ApiResponse<PlayersResponse> GetPlayersWithHttpInfo(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?))
+        public Openfort.Client.ApiResponse<PlayersResponse> GetPlayersWithHttpInfo(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string))
         {
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -1532,25 +1722,25 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            if (expand != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
-            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
-            if (filter != null)
+            if (skip != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
             if (order != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
             }
-            if (skip != null)
+            if (expand != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            if (name != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "name", name));
             }
 
 
@@ -1570,16 +1760,16 @@ namespace Openfort.Api
         ///  Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlayersResponse</returns>
-        public async System.Threading.Tasks.Task<PlayersResponse> GetPlayersAsync(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PlayersResponse> GetPlayersAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetPlayersWithHttpInfoAsync(expand, limit, filter, order, skip, cancellationToken);
+            var task = GetPlayersWithHttpInfoAsync(limit, skip, order, expand, name, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<PlayersResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -1592,14 +1782,14 @@ namespace Openfort.Api
         ///  Returns a list of your players. The players are returned sorted by creation date, with the most recently created players appearing first.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="name"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlayersResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PlayersResponse>> GetPlayersWithHttpInfoAsync(List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), SortOrder? order = default(SortOrder?), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PlayersResponse>> GetPlayersWithHttpInfoAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string name = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -1619,25 +1809,25 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            if (expand != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
-            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
-            if (filter != null)
+            if (skip != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
             if (order != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
             }
-            if (skip != null)
+            if (expand != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            if (name != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "name", name));
             }
 
 
@@ -1654,6 +1844,148 @@ namespace Openfort.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetPlayers", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Transfer ownership of an account to an address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="playerTransferOwnershipRequest"></param>
+        /// <returns>TransactionIntentResponse</returns>
+        public TransactionIntentResponse RequestTransferAccountOwnership(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest)
+        {
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = RequestTransferAccountOwnershipWithHttpInfo(id, playerTransferOwnershipRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Transfer ownership of an account to an address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="playerTransferOwnershipRequest"></param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        public Openfort.Client.ApiResponse<TransactionIntentResponse> RequestTransferAccountOwnershipWithHttpInfo(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->RequestTransferAccountOwnership");
+
+            // verify the required parameter 'playerTransferOwnershipRequest' is set
+            if (playerTransferOwnershipRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'playerTransferOwnershipRequest' when calling PlayersApi->RequestTransferAccountOwnership");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = playerTransferOwnershipRequest;
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<TransactionIntentResponse>("/v1/players/{id}/request-transfer-ownership", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RequestTransferAccountOwnership", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Transfer ownership of an account to an address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="playerTransferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        public async System.Threading.Tasks.Task<TransactionIntentResponse> RequestTransferAccountOwnershipAsync(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = RequestTransferAccountOwnershipWithHttpInfoAsync(id, playerTransferOwnershipRequest, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Transfer ownership of an account to an address.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="playerTransferOwnershipRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> RequestTransferAccountOwnershipWithHttpInfoAsync(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->RequestTransferAccountOwnership");
+
+            // verify the required parameter 'playerTransferOwnershipRequest' is set
+            if (playerTransferOwnershipRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'playerTransferOwnershipRequest' when calling PlayersApi->RequestTransferAccountOwnership");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = playerTransferOwnershipRequest;
+
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<TransactionIntentResponse>("/v1/players/{id}/request-transfer-ownership", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RequestTransferAccountOwnership", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1796,148 +2128,6 @@ namespace Openfort.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("RevokePlayerSession", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  Transfer ownership of an account to an address.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="playerTransferOwnershipRequest"></param>
-        /// <returns>TransactionIntentResponse</returns>
-        public TransactionIntentResponse TransferAccountOwnership(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest)
-        {
-            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = TransferAccountOwnershipWithHttpInfo(id, playerTransferOwnershipRequest);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Transfer ownership of an account to an address.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="playerTransferOwnershipRequest"></param>
-        /// <returns>ApiResponse of TransactionIntentResponse</returns>
-        public Openfort.Client.ApiResponse<TransactionIntentResponse> TransferAccountOwnershipWithHttpInfo(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->TransferAccountOwnership");
-
-            // verify the required parameter 'playerTransferOwnershipRequest' is set
-            if (playerTransferOwnershipRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'playerTransferOwnershipRequest' when calling PlayersApi->TransferAccountOwnership");
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.Data = playerTransferOwnershipRequest;
-
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<TransactionIntentResponse>("/v1/players/{id}/transfer-ownership", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("TransferAccountOwnership", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  Transfer ownership of an account to an address.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="playerTransferOwnershipRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of TransactionIntentResponse</returns>
-        public async System.Threading.Tasks.Task<TransactionIntentResponse> TransferAccountOwnershipAsync(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            var task = TransferAccountOwnershipWithHttpInfoAsync(id, playerTransferOwnershipRequest, cancellationToken);
-#if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
-#else
-            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
-#endif
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Transfer ownership of an account to an address.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
-        /// <param name="playerTransferOwnershipRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> TransferAccountOwnershipWithHttpInfoAsync(string id, PlayerTransferOwnershipRequest playerTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling PlayersApi->TransferAccountOwnership");
-
-            // verify the required parameter 'playerTransferOwnershipRequest' is set
-            if (playerTransferOwnershipRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'playerTransferOwnershipRequest' when calling PlayersApi->TransferAccountOwnership");
-
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.Data = playerTransferOwnershipRequest;
-
-
-            // make the HTTP request
-
-            var task = this.AsynchronousClient.PostAsync<TransactionIntentResponse>("/v1/players/{id}/transfer-ownership", localVarRequestOptions, this.Configuration, cancellationToken);
-
-#if UNITY_EDITOR || !UNITY_WEBGL
-            var localVarResponse = await task.ConfigureAwait(false);
-#else
-            var localVarResponse = await task;
-#endif
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("TransferAccountOwnership", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

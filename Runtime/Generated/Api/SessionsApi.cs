@@ -56,13 +56,13 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <returns>SessionsResponse</returns>
-        SessionsResponse GetPlayerSessions(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?));
+        SessionsResponse GetPlayerSessions(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string address = default(string));
 
         /// <summary>
         /// 
@@ -72,13 +72,36 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <returns>ApiResponse of SessionsResponse</returns>
-        ApiResponse<SessionsResponse> GetPlayerSessionsWithHttpInfo(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?));
+        ApiResponse<SessionsResponse> GetPlayerSessionsWithHttpInfo(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string address = default(string));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns a player session by session id
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
+        /// <returns>SessionResponse</returns>
+        SessionResponse GetSession(string id, List<string> expand = default(List<string>));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns a player session by session id
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
+        /// <returns>ApiResponse of SessionResponse</returns>
+        ApiResponse<SessionResponse> GetSessionWithHttpInfo(string id, List<string> expand = default(List<string>));
         /// <summary>
         /// 
         /// </summary>
@@ -163,14 +186,14 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SessionsResponse</returns>
-        System.Threading.Tasks.Task<SessionsResponse> GetPlayerSessionsAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SessionsResponse> GetPlayerSessionsAsync(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -180,14 +203,39 @@ namespace Openfort.Api
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SessionsResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SessionsResponse>> GetPlayerSessionsWithHttpInfoAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SessionsResponse>> GetPlayerSessionsWithHttpInfoAsync(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns a player session by session id
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SessionResponse</returns>
+        System.Threading.Tasks.Task<SessionResponse> GetSessionAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns a player session by session id
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SessionResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SessionResponse>> GetSessionWithHttpInfoAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -513,15 +561,15 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <returns>SessionsResponse</returns>
-        public SessionsResponse GetPlayerSessions(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?))
+        public SessionsResponse GetPlayerSessions(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string address = default(string))
         {
-            Openfort.Client.ApiResponse<SessionsResponse> localVarResponse = GetPlayerSessionsWithHttpInfo(player, expand, limit, filter, order, skip);
+            Openfort.Client.ApiResponse<SessionsResponse> localVarResponse = GetPlayerSessionsWithHttpInfo(player, limit, skip, order, expand, address);
             return localVarResponse.Data;
         }
 
@@ -530,13 +578,13 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <returns>ApiResponse of SessionsResponse</returns>
-        public Openfort.Client.ApiResponse<SessionsResponse> GetPlayerSessionsWithHttpInfo(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?))
+        public Openfort.Client.ApiResponse<SessionsResponse> GetPlayerSessionsWithHttpInfo(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string address = default(string))
         {
             // verify the required parameter 'player' is set
             if (player == null)
@@ -558,26 +606,26 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "player", player));
-            if (expand != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
-            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
-            if (filter != null)
+            if (skip != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
             if (order != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
             }
-            if (skip != null)
+            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "player", player));
+            if (expand != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            if (address != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "address", address));
             }
 
 
@@ -598,16 +646,16 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SessionsResponse</returns>
-        public async System.Threading.Tasks.Task<SessionsResponse> GetPlayerSessionsAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SessionsResponse> GetPlayerSessionsAsync(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetPlayerSessionsWithHttpInfoAsync(player, expand, limit, filter, order, skip, cancellationToken);
+            var task = GetPlayerSessionsWithHttpInfoAsync(player, limit, skip, order, expand, address, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             Openfort.Client.ApiResponse<SessionsResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -621,14 +669,14 @@ namespace Openfort.Api
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player"></param>
-        /// <param name="expand"> (optional)</param>
-        /// <param name="limit"> (optional, default to 10D)</param>
-        /// <param name="filter"> (optional)</param>
-        /// <param name="order"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
         /// <param name="skip"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="address"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SessionsResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<SessionsResponse>> GetPlayerSessionsWithHttpInfoAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), string filter = default(string), string order = default(string), double? skip = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<SessionsResponse>> GetPlayerSessionsWithHttpInfoAsync(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'player' is set
             if (player == null)
@@ -652,26 +700,26 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "player", player));
-            if (expand != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
-            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
-            if (filter != null)
+            if (skip != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
             if (order != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
             }
-            if (skip != null)
+            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "player", player));
+            if (expand != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            if (address != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "address", address));
             }
 
 
@@ -688,6 +736,144 @@ namespace Openfort.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetPlayerSessions", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Returns a player session by session id
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
+        /// <returns>SessionResponse</returns>
+        public SessionResponse GetSession(string id, List<string> expand = default(List<string>))
+        {
+            Openfort.Client.ApiResponse<SessionResponse> localVarResponse = GetSessionWithHttpInfo(id, expand);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Returns a player session by session id
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
+        /// <returns>ApiResponse of SessionResponse</returns>
+        public Openfort.Client.ApiResponse<SessionResponse> GetSessionWithHttpInfo(string id, List<string> expand = default(List<string>))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling SessionsApi->GetSession");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<SessionResponse>("/v1/sessions/{id}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetSession", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Returns a player session by session id
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SessionResponse</returns>
+        public async System.Threading.Tasks.Task<SessionResponse> GetSessionAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = GetSessionWithHttpInfoAsync(id, expand, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<SessionResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<SessionResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Returns a player session by session id
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SessionResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<SessionResponse>> GetSessionWithHttpInfoAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling SessionsApi->GetSession");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<SessionResponse>("/v1/sessions/{id}", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetSession", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

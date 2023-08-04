@@ -47,7 +47,13 @@ namespace Openfort.Model
         /// Enum ERC6551 for value: ERC6551
         /// </summary>
         [EnumMember(Value = "ERC6551")]
-        ERC6551 = 3
+        ERC6551 = 3,
+
+        /// <summary>
+        /// Enum Recoverable for value: Recoverable
+        /// </summary>
+        [EnumMember(Value = "Recoverable")]
+        Recoverable = 4
 
     }
 
