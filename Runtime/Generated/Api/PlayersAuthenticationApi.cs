@@ -31,24 +31,6 @@ namespace Openfort.Api
         /// 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="getPlayerByTokenRequest"></param>
-        /// <returns>PlayerResponse</returns>
-        PlayerResponse GetPlayerByToken(GetPlayerByTokenRequest getPlayerByTokenRequest);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="getPlayerByTokenRequest"></param>
-        /// <returns>ApiResponse of PlayerResponse</returns>
-        ApiResponse<PlayerResponse> GetPlayerByTokenWithHttpInfo(GetPlayerByTokenRequest getPlayerByTokenRequest);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>GetSigninUrlResponse</returns>
         GetSigninUrlResponse GetSigninUrl();
 
@@ -115,6 +97,24 @@ namespace Openfort.Api
         /// <param name="signupRequest"></param>
         /// <returns>ApiResponse of AuthResponse</returns>
         ApiResponse<AuthResponse> SignupWithHttpInfo(SignupRequest signupRequest);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="token"></param>
+        /// <returns>PlayerResponse</returns>
+        PlayerResponse VerifyAuthToken(string token);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="token"></param>
+        /// <returns>ApiResponse of PlayerResponse</returns>
+        ApiResponse<PlayerResponse> VerifyAuthTokenWithHttpInfo(string token);
         #endregion Synchronous Operations
     }
 
@@ -124,29 +124,6 @@ namespace Openfort.Api
     public interface IPlayersAuthenticationApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="getPlayerByTokenRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PlayerResponse</returns>
-        System.Threading.Tasks.Task<PlayerResponse> GetPlayerByTokenAsync(GetPlayerByTokenRequest getPlayerByTokenRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="getPlayerByTokenRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PlayerResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PlayerResponse>> GetPlayerByTokenWithHttpInfoAsync(GetPlayerByTokenRequest getPlayerByTokenRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -237,6 +214,29 @@ namespace Openfort.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AuthResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<AuthResponse>> SignupWithHttpInfoAsync(SignupRequest signupRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="token"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PlayerResponse</returns>
+        System.Threading.Tasks.Task<PlayerResponse> VerifyAuthTokenAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="token"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PlayerResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PlayerResponse>> VerifyAuthTokenWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -385,134 +385,6 @@ namespace Openfort.Api
         ///  
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="getPlayerByTokenRequest"></param>
-        /// <returns>PlayerResponse</returns>
-        public PlayerResponse GetPlayerByToken(GetPlayerByTokenRequest getPlayerByTokenRequest)
-        {
-            Openfort.Client.ApiResponse<PlayerResponse> localVarResponse = GetPlayerByTokenWithHttpInfo(getPlayerByTokenRequest);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="getPlayerByTokenRequest"></param>
-        /// <returns>ApiResponse of PlayerResponse</returns>
-        public Openfort.Client.ApiResponse<PlayerResponse> GetPlayerByTokenWithHttpInfo(GetPlayerByTokenRequest getPlayerByTokenRequest)
-        {
-            // verify the required parameter 'getPlayerByTokenRequest' is set
-            if (getPlayerByTokenRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'getPlayerByTokenRequest' when calling PlayersAuthenticationApi->GetPlayerByToken");
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.Data = getPlayerByTokenRequest;
-
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<PlayerResponse>("/auth/v1/getPlayer", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetPlayerByToken", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="getPlayerByTokenRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PlayerResponse</returns>
-        public async System.Threading.Tasks.Task<PlayerResponse> GetPlayerByTokenAsync(GetPlayerByTokenRequest getPlayerByTokenRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            var task = GetPlayerByTokenWithHttpInfoAsync(getPlayerByTokenRequest, cancellationToken);
-#if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<PlayerResponse> localVarResponse = await task.ConfigureAwait(false);
-#else
-            Openfort.Client.ApiResponse<PlayerResponse> localVarResponse = await task;
-#endif
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="getPlayerByTokenRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PlayerResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PlayerResponse>> GetPlayerByTokenWithHttpInfoAsync(GetPlayerByTokenRequest getPlayerByTokenRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'getPlayerByTokenRequest' is set
-            if (getPlayerByTokenRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'getPlayerByTokenRequest' when calling PlayersAuthenticationApi->GetPlayerByToken");
-
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.Data = getPlayerByTokenRequest;
-
-
-            // make the HTTP request
-
-            var task = this.AsynchronousClient.PostAsync<PlayerResponse>("/auth/v1/getPlayer", localVarRequestOptions, this.Configuration, cancellationToken);
-
-#if UNITY_EDITOR || !UNITY_WEBGL
-            var localVarResponse = await task.ConfigureAwait(false);
-#else
-            var localVarResponse = await task;
-#endif
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetPlayerByToken", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>GetSigninUrlResponse</returns>
         public GetSigninUrlResponse GetSigninUrl()
         {
@@ -552,7 +424,7 @@ namespace Openfort.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetSigninUrlResponse>("/auth/v1/google/signinUrl", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<GetSigninUrlResponse>("/auth/v1/google/signin_url", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -616,7 +488,7 @@ namespace Openfort.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.GetAsync<GetSigninUrlResponse>("/auth/v1/google/signinUrl", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.GetAsync<GetSigninUrlResponse>("/auth/v1/google/signin_url", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -1045,6 +917,132 @@ namespace Openfort.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Signup", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="token"></param>
+        /// <returns>PlayerResponse</returns>
+        public PlayerResponse VerifyAuthToken(string token)
+        {
+            Openfort.Client.ApiResponse<PlayerResponse> localVarResponse = VerifyAuthTokenWithHttpInfo(token);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="token"></param>
+        /// <returns>ApiResponse of PlayerResponse</returns>
+        public Openfort.Client.ApiResponse<PlayerResponse> VerifyAuthTokenWithHttpInfo(string token)
+        {
+            // verify the required parameter 'token' is set
+            if (token == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'token' when calling PlayersAuthenticationApi->VerifyAuthToken");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "token", token));
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<PlayerResponse>("/auth/v1/verify", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("VerifyAuthToken", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="token"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PlayerResponse</returns>
+        public async System.Threading.Tasks.Task<PlayerResponse> VerifyAuthTokenAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = VerifyAuthTokenWithHttpInfoAsync(token, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<PlayerResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<PlayerResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="token"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PlayerResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PlayerResponse>> VerifyAuthTokenWithHttpInfoAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'token' is set
+            if (token == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'token' when calling PlayersAuthenticationApi->VerifyAuthToken");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "token", token));
+
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<PlayerResponse>("/auth/v1/verify", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("VerifyAuthToken", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
