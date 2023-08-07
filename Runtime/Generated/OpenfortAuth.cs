@@ -16,7 +16,7 @@ namespace Openfort
         private readonly ApiClient _apiClient;
         private string _key;
 
-        public OpenfortAuth(string token, string? basePath)
+        public OpenfortAuth(string token, string basePath = default(string))
         {
             _configuration = new Configuration(
                 new Dictionary<string, string> { { "Authorization", "Bearer " + token } },
