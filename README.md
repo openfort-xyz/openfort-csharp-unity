@@ -20,7 +20,7 @@
   </h4>
 </div>
 
-[banner-image]: https://strapi-oube.onrender.com/uploads/1_38e40747b6.png 
+[banner-image]: https://blog-cms.openfort.xyz/uploads/1_38e40747b6.png
 
 # Openfort Unity SDK
 
@@ -53,7 +53,7 @@ And add these urls:
 
 ## Getting Started
 
-1. Retrieve your openfort credentials: https://docs.openfort.xyz/docs/keys
+1. Retrieve your openfort credentials: [https://docs.openfort.xyz/docs/keys](https://www.openfort.xyz/docs/guides/platform/keys)
 
 2. Set credentials in `Edit > Project Settings > Openfort`
 
@@ -72,11 +72,11 @@ public class OpenfortHelloWorld : MonoBehaviour
     {
         var openfort = new OpenfortClient("pk_test_XXXXXXX");
         if (openfort.LoadSessionKey() == null) { // Load player key from Player prefs
-            openfort.GenerateSessionKey();
-            // TODO: call the games server endpoint to authenticate user and create session in openfort with keyPair.PublicBase64
-            // To get public key use keyPair.PublicBase64 property
-            openfort.SaveToPlayerPrefs(); // In case of the previous step success save the key
+            openfort.CreateSessionKey();
+            // To get session address use sessionKey.Address property
+            openfort.SaveSessionKey();
 
+            // After registering the session key, you can then use it like:
             var signature = openfort.SignMessage(message);
             openfort.SendSignatureSessionRequest(sessionId, signature);
         }
@@ -87,9 +87,6 @@ public class OpenfortHelloWorld : MonoBehaviour
 
 The Unity SDK is a work in progress. For support, [open an issue](https://github.com/openfort-xyz/openfort-csharp-unity/issues).
 
+## Example
 
-## Logging
-
-Log levels in editor are controlled by settings in `Edit > Project Settings > Openfort`.
-
-In builds all logging is disabled unless `OPENFORT_LOGGING` is defined in Unity's `Scripting Define Symbols`
+For a working example using the Openfort Unity SDK, please refer to [Lost Dungeon repository](https://github.com/openfort-xyz/lost-dungeon)
