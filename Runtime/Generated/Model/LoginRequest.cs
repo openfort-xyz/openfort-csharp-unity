@@ -39,8 +39,8 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginRequest" /> class.
         /// </summary>
-        /// <param name="email">email (required).</param>
-        /// <param name="password">password (required).</param>
+        /// <param name="email">The email address of the user. (required).</param>
+        /// <param name="password">The password of the user. (required).</param>
         public LoginRequest(string email = default(string), string password = default(string))
         {
             // to ensure "email" is required (not null)
@@ -58,14 +58,16 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets Email
+        /// The email address of the user.
         /// </summary>
+        /// <value>The email address of the user.</value>
         [DataMember(Name = "email", IsRequired = true, EmitDefaultValue = true)]
         public string Email { get; set; }
 
         /// <summary>
-        /// Gets or Sets Password
+        /// The password of the user.
         /// </summary>
+        /// <value>The password of the user.</value>
         [DataMember(Name = "password", IsRequired = true, EmitDefaultValue = true)]
         public string Password { get; set; }
 

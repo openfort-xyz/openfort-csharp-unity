@@ -22,84 +22,167 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace Openfort.Model
 {
     /// <summary>
     /// PolicyRuleResponse
     /// </summary>
+    [JsonConverter(typeof(PolicyRuleResponseJsonConverter))]
     [DataContract(Name = "PolicyRuleResponse")]
-    public partial class PolicyRuleResponse : IEquatable<PolicyRuleResponse>
+    public partial class PolicyRuleResponse : AbstractOpenAPISchema, IEquatable<PolicyRuleResponse>
     {
-
         /// <summary>
-        /// Gets or Sets Type
+        /// Initializes a new instance of the <see cref="PolicyRuleResponse" /> class
+        /// with the <see cref="ContractPolicyRuleResponse" /> class
         /// </summary>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
-        public PolicySchema Type { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PolicyRuleResponse" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected PolicyRuleResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PolicyRuleResponse" /> class.
-        /// </summary>
-        /// <param name="id">id (required).</param>
-        /// <param name="_object">_object (required).</param>
-        /// <param name="createdAt">createdAt (required).</param>
-        /// <param name="type">type (required).</param>
-        /// <param name="functionName">functionName.</param>
-        /// <param name="contract">contract.</param>
-        public PolicyRuleResponse(string id = default(string), string _object = default(string), int createdAt = default(int), PolicySchema type = default(PolicySchema), string functionName = default(string), PolicyRuleResponseContract contract = default(PolicyRuleResponseContract))
+        /// <param name="actualInstance">An instance of ContractPolicyRuleResponse.</param>
+        public PolicyRuleResponse(ContractPolicyRuleResponse actualInstance)
         {
-            // to ensure "id" is required (not null)
-            if (id == null)
-            {
-                throw new ArgumentNullException("id is a required property for PolicyRuleResponse and cannot be null");
-            }
-            this.Id = id;
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for PolicyRuleResponse and cannot be null");
-            }
-            this.Object = _object;
-            this.CreatedAt = createdAt;
-            this.Type = type;
-            this.FunctionName = functionName;
-            this.Contract = contract;
+            this.IsNullable = false;
+            this.SchemaType= "anyOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Initializes a new instance of the <see cref="PolicyRuleResponse" /> class
+        /// with the <see cref="AccountPolicyRuleResponse" /> class
         /// </summary>
-        [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
-        public string Id { get; set; }
+        /// <param name="actualInstance">An instance of AccountPolicyRuleResponse.</param>
+        public PolicyRuleResponse(AccountPolicyRuleResponse actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "anyOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
 
         /// <summary>
-        /// Gets or Sets Object
+        /// Initializes a new instance of the <see cref="PolicyRuleResponse" /> class
+        /// with the <see cref="GasPerTransactionLimitPolicyRuleResponse" /> class
         /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
+        /// <param name="actualInstance">An instance of GasPerTransactionLimitPolicyRuleResponse.</param>
+        public PolicyRuleResponse(GasPerTransactionLimitPolicyRuleResponse actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "anyOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
 
         /// <summary>
-        /// Gets or Sets CreatedAt
+        /// Initializes a new instance of the <see cref="PolicyRuleResponse" /> class
+        /// with the <see cref="GasPerIntervalLimitPolicyRuleResponse" /> class
         /// </summary>
-        [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
-        public int CreatedAt { get; set; }
+        /// <param name="actualInstance">An instance of GasPerIntervalLimitPolicyRuleResponse.</param>
+        public PolicyRuleResponse(GasPerIntervalLimitPolicyRuleResponse actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "anyOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
 
         /// <summary>
-        /// Gets or Sets FunctionName
+        /// Initializes a new instance of the <see cref="PolicyRuleResponse" /> class
+        /// with the <see cref="CountPerIntervalLimitPolicyRuleResponse" /> class
         /// </summary>
-        [DataMember(Name = "functionName", EmitDefaultValue = false)]
-        public string FunctionName { get; set; }
+        /// <param name="actualInstance">An instance of CountPerIntervalLimitPolicyRuleResponse.</param>
+        public PolicyRuleResponse(CountPerIntervalLimitPolicyRuleResponse actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "anyOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
 
         /// <summary>
-        /// Gets or Sets Contract
+        /// Gets or Sets ActualInstance
         /// </summary>
-        [DataMember(Name = "contract", EmitDefaultValue = false)]
-        public PolicyRuleResponseContract Contract { get; set; }
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(AccountPolicyRuleResponse))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(ContractPolicyRuleResponse))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(CountPerIntervalLimitPolicyRuleResponse))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(GasPerIntervalLimitPolicyRuleResponse))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(GasPerTransactionLimitPolicyRuleResponse))
+                {
+                    this._actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AccountPolicyRuleResponse, ContractPolicyRuleResponse, CountPerIntervalLimitPolicyRuleResponse, GasPerIntervalLimitPolicyRuleResponse, GasPerTransactionLimitPolicyRuleResponse");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the actual instance of `ContractPolicyRuleResponse`. If the actual instance is not `ContractPolicyRuleResponse`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of ContractPolicyRuleResponse</returns>
+        public ContractPolicyRuleResponse GetContractPolicyRuleResponse()
+        {
+            return (ContractPolicyRuleResponse)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `AccountPolicyRuleResponse`. If the actual instance is not `AccountPolicyRuleResponse`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of AccountPolicyRuleResponse</returns>
+        public AccountPolicyRuleResponse GetAccountPolicyRuleResponse()
+        {
+            return (AccountPolicyRuleResponse)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `GasPerTransactionLimitPolicyRuleResponse`. If the actual instance is not `GasPerTransactionLimitPolicyRuleResponse`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of GasPerTransactionLimitPolicyRuleResponse</returns>
+        public GasPerTransactionLimitPolicyRuleResponse GetGasPerTransactionLimitPolicyRuleResponse()
+        {
+            return (GasPerTransactionLimitPolicyRuleResponse)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `GasPerIntervalLimitPolicyRuleResponse`. If the actual instance is not `GasPerIntervalLimitPolicyRuleResponse`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of GasPerIntervalLimitPolicyRuleResponse</returns>
+        public GasPerIntervalLimitPolicyRuleResponse GetGasPerIntervalLimitPolicyRuleResponse()
+        {
+            return (GasPerIntervalLimitPolicyRuleResponse)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `CountPerIntervalLimitPolicyRuleResponse`. If the actual instance is not `CountPerIntervalLimitPolicyRuleResponse`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of CountPerIntervalLimitPolicyRuleResponse</returns>
+        public CountPerIntervalLimitPolicyRuleResponse GetCountPerIntervalLimitPolicyRuleResponse()
+        {
+            return (CountPerIntervalLimitPolicyRuleResponse)this.ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -107,14 +190,9 @@ namespace Openfort.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class PolicyRuleResponse {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Object: ").Append(Object).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  FunctionName: ").Append(FunctionName).Append("\n");
-            sb.Append("  Contract: ").Append(Contract).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -123,9 +201,87 @@ namespace Openfort.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this.ActualInstance, PolicyRuleResponse.SerializerSettings);
+        }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of PolicyRuleResponse
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of PolicyRuleResponse</returns>
+        public static PolicyRuleResponse FromJson(string jsonString)
+        {
+            PolicyRuleResponse newPolicyRuleResponse = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newPolicyRuleResponse;
+            }
+
+            try
+            {
+                newPolicyRuleResponse = new PolicyRuleResponse(JsonConvert.DeserializeObject<AccountPolicyRuleResponse>(jsonString, PolicyRuleResponse.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newPolicyRuleResponse;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into AccountPolicyRuleResponse: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                newPolicyRuleResponse = new PolicyRuleResponse(JsonConvert.DeserializeObject<ContractPolicyRuleResponse>(jsonString, PolicyRuleResponse.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newPolicyRuleResponse;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into ContractPolicyRuleResponse: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                newPolicyRuleResponse = new PolicyRuleResponse(JsonConvert.DeserializeObject<CountPerIntervalLimitPolicyRuleResponse>(jsonString, PolicyRuleResponse.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newPolicyRuleResponse;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into CountPerIntervalLimitPolicyRuleResponse: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                newPolicyRuleResponse = new PolicyRuleResponse(JsonConvert.DeserializeObject<GasPerIntervalLimitPolicyRuleResponse>(jsonString, PolicyRuleResponse.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newPolicyRuleResponse;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into GasPerIntervalLimitPolicyRuleResponse: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                newPolicyRuleResponse = new PolicyRuleResponse(JsonConvert.DeserializeObject<GasPerTransactionLimitPolicyRuleResponse>(jsonString, PolicyRuleResponse.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newPolicyRuleResponse;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into GasPerTransactionLimitPolicyRuleResponse: {1}", jsonString, exception.ToString()));
+            }
+
+            // no match found, throw an exception
+            throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
         }
 
         /// <summary>
@@ -146,38 +302,9 @@ namespace Openfort.Model
         public bool Equals(PolicyRuleResponse input)
         {
             if (input == null)
-            {
                 return false;
-            }
-            return 
-                (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
-                ) && 
-                (
-                    this.CreatedAt == input.CreatedAt ||
-                    this.CreatedAt.Equals(input.CreatedAt)
-                ) && 
-                (
-                    this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
-                ) && 
-                (
-                    this.FunctionName == input.FunctionName ||
-                    (this.FunctionName != null &&
-                    this.FunctionName.Equals(input.FunctionName))
-                ) && 
-                (
-                    this.Contract == input.Contract ||
-                    (this.Contract != null &&
-                    this.Contract.Equals(input.Contract))
-                );
+
+            return this.ActualInstance.Equals(input.ActualInstance);
         }
 
         /// <summary>
@@ -189,28 +316,56 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                {
-                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
-                }
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                if (this.FunctionName != null)
-                {
-                    hashCode = (hashCode * 59) + this.FunctionName.GetHashCode();
-                }
-                if (this.Contract != null)
-                {
-                    hashCode = (hashCode * 59) + this.Contract.GetHashCode();
-                }
+                if (this.ActualInstance != null)
+                    hashCode = hashCode * 59 + this.ActualInstance.GetHashCode();
                 return hashCode;
             }
         }
 
+    }
+
+    /// <summary>
+    /// Custom JSON converter for PolicyRuleResponse
+    /// </summary>
+    public class PolicyRuleResponseJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(PolicyRuleResponse).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            if(reader.TokenType != JsonToken.Null)
+            {
+                return PolicyRuleResponse.FromJson(JObject.Load(reader).ToString(Formatting.None));
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
+        }
     }
 
 }

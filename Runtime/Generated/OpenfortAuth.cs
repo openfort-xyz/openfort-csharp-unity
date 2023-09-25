@@ -25,43 +25,56 @@ namespace Openfort
             _apiClient = new ApiClient(basePath ?? _configuration.BasePath);
         }
 
-        private PlayersAuthenticationApi _playersAuthenticationApi;
-        public PlayersAuthenticationApi PlayersAuthenticationApi
+        private AuthenticationApi _authenticationApi;
+        public AuthenticationApi AuthenticationApi
         {
             get
             {
-                if (_playersAuthenticationApi == null)
+                if (_authenticationApi == null)
                 {
-                    _playersAuthenticationApi = new PlayersAuthenticationApi(_apiClient, _apiClient, _configuration);
+                    _authenticationApi = new AuthenticationApi(_apiClient, _apiClient, _configuration);
                 }
-                return _playersAuthenticationApi;
+                return _authenticationApi;
+            }
+        }
+
+        private GoogleAuthenticationApi _googleAuthenticationApi;
+        public GoogleAuthenticationApi GoogleAuthenticationApi
+        {
+            get
+            {
+                if (_googleAuthenticationApi == null)
+                {
+                    _googleAuthenticationApi = new GoogleAuthenticationApi(_apiClient, _apiClient, _configuration);
+                }
+                return _googleAuthenticationApi;
             }
         }
 
         public async Task<AuthResponse> Signup(string email, string password, string name, string description = default(string))
         {
             var request = new SignupRequest(email, password, name, description);
-            var result = await PlayersAuthenticationApi.SignupAsync(request);
+            var result = await AuthenticationApi.SignupAsync(request);
             return result;
         }
 
         public async Task<AuthResponse> Login(string email, string password)
         {
             var request = new LoginRequest(email, password);
-            var result = await PlayersAuthenticationApi.LoginAsync(request);
+            var result = await AuthenticationApi.LoginAsync(request);
             return result;
         }
 
         public async Task<string> GetGoogleSigninUrl()
         {
-            var result = await PlayersAuthenticationApi.GetSigninUrlAsync();
+            var result = await GoogleAuthenticationApi.GetSigninUrlAsync();
             _key = result.Key;
             return result.Url;
         }
 
         public async Task<AuthResponse> GetTokenAfterGoogleSignin()
         {
-            var result = await PlayersAuthenticationApi.GetTokenAsync(_key);
+            var result = await GoogleAuthenticationApi.GetTokenAsync(_key);
             return result;
         }
 

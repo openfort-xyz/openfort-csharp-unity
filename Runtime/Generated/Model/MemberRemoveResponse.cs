@@ -31,6 +31,12 @@ namespace Openfort.Model
     [DataContract(Name = "MemberRemoveResponse")]
     public partial class MemberRemoveResponse : IEquatable<MemberRemoveResponse>
     {
+
+        /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public EntityTypeUSER Object { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="MemberRemoveResponse" /> class.
         /// </summary>
@@ -42,7 +48,7 @@ namespace Openfort.Model
         /// <param name="id">id (required).</param>
         /// <param name="_object">_object (required).</param>
         /// <param name="deleted">deleted (required).</param>
-        public MemberRemoveResponse(string id = default(string), string _object = default(string), bool deleted = default(bool))
+        public MemberRemoveResponse(string id = default(string), EntityTypeUSER _object = default(EntityTypeUSER), bool deleted = default(bool))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -50,11 +56,6 @@ namespace Openfort.Model
                 throw new ArgumentNullException("id is a required property for MemberRemoveResponse and cannot be null");
             }
             this.Id = id;
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for MemberRemoveResponse and cannot be null");
-            }
             this.Object = _object;
             this.Deleted = deleted;
         }
@@ -64,12 +65,6 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Object
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
 
         /// <summary>
         /// Gets or Sets Deleted
@@ -130,8 +125,7 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
+                    this.Object.Equals(input.Object)
                 ) && 
                 (
                     this.Deleted == input.Deleted ||
@@ -152,10 +146,7 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 hashCode = (hashCode * 59) + this.Deleted.GetHashCode();
                 return hashCode;
             }

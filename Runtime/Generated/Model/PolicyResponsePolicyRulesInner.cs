@@ -47,10 +47,10 @@ namespace Openfort.Model
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PolicyResponsePolicyRulesInner" /> class
-        /// with the <see cref="PickPolicyRuleResponseId" /> class
+        /// with the <see cref="EntityIdResponse" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of PickPolicyRuleResponseId.</param>
-        public PolicyResponsePolicyRulesInner(PickPolicyRuleResponseId actualInstance)
+        /// <param name="actualInstance">An instance of EntityIdResponse.</param>
+        public PolicyResponsePolicyRulesInner(EntityIdResponse actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -71,7 +71,7 @@ namespace Openfort.Model
             }
             set
             {
-                if (value.GetType() == typeof(PickPolicyRuleResponseId))
+                if (value.GetType() == typeof(EntityIdResponse))
                 {
                     this._actualInstance = value;
                 }
@@ -81,7 +81,7 @@ namespace Openfort.Model
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: PickPolicyRuleResponseId, PolicyRuleResponse");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: EntityIdResponse, PolicyRuleResponse");
                 }
             }
         }
@@ -97,13 +97,13 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Get the actual instance of `PickPolicyRuleResponseId`. If the actual instance is not `PickPolicyRuleResponseId`,
+        /// Get the actual instance of `EntityIdResponse`. If the actual instance is not `EntityIdResponse`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of PickPolicyRuleResponseId</returns>
-        public PickPolicyRuleResponseId GetPickPolicyRuleResponseId()
+        /// <returns>An instance of EntityIdResponse</returns>
+        public EntityIdResponse GetEntityIdResponse()
         {
-            return (PickPolicyRuleResponseId)this.ActualInstance;
+            return (EntityIdResponse)this.ActualInstance;
         }
 
         /// <summary>
@@ -144,14 +144,14 @@ namespace Openfort.Model
 
             try
             {
-                newPolicyResponsePolicyRulesInner = new PolicyResponsePolicyRulesInner(JsonConvert.DeserializeObject<PickPolicyRuleResponseId>(jsonString, PolicyResponsePolicyRulesInner.SerializerSettings));
+                newPolicyResponsePolicyRulesInner = new PolicyResponsePolicyRulesInner(JsonConvert.DeserializeObject<EntityIdResponse>(jsonString, PolicyResponsePolicyRulesInner.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
                 return newPolicyResponsePolicyRulesInner;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PickPolicyRuleResponseId: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into EntityIdResponse: {1}", jsonString, exception.ToString()));
             }
 
             try

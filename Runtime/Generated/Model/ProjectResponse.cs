@@ -33,10 +33,10 @@ namespace Openfort.Model
     {
 
         /// <summary>
-        /// Gets or Sets PkPolicy
+        /// Gets or Sets Object
         /// </summary>
-        [DataMember(Name = "pkPolicy", IsRequired = true, EmitDefaultValue = true)]
-        public PKPolicy PkPolicy { get; set; }
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public EntityTypePROJECT Object { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectResponse" /> class.
         /// </summary>
@@ -50,9 +50,10 @@ namespace Openfort.Model
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="updatedAt">updatedAt (required).</param>
         /// <param name="name">name (required).</param>
-        /// <param name="pkPolicy">pkPolicy (required).</param>
         /// <param name="apikeys">apikeys.</param>
-        public ProjectResponse(string id = default(string), string _object = default(string), int createdAt = default(int), int updatedAt = default(int), string name = default(string), PKPolicy pkPolicy = default(PKPolicy), List<ApiKeyResponse> apikeys = default(List<ApiKeyResponse>))
+        /// <param name="providers">providers.</param>
+        /// <param name="webhook">webhook.</param>
+        public ProjectResponse(string id = default(string), EntityTypePROJECT _object = default(EntityTypePROJECT), int createdAt = default(int), int updatedAt = default(int), string name = default(string), List<ApiKeyResponse> apikeys = default(List<ApiKeyResponse>), List<ProviderResponse> providers = default(List<ProviderResponse>), List<ProviderResponse> webhook = default(List<ProviderResponse>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -60,11 +61,6 @@ namespace Openfort.Model
                 throw new ArgumentNullException("id is a required property for ProjectResponse and cannot be null");
             }
             this.Id = id;
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for ProjectResponse and cannot be null");
-            }
             this.Object = _object;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
@@ -74,8 +70,9 @@ namespace Openfort.Model
                 throw new ArgumentNullException("name is a required property for ProjectResponse and cannot be null");
             }
             this.Name = name;
-            this.PkPolicy = pkPolicy;
             this.Apikeys = apikeys;
+            this.Providers = providers;
+            this.Webhook = webhook;
         }
 
         /// <summary>
@@ -83,12 +80,6 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Object
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt
@@ -115,6 +106,18 @@ namespace Openfort.Model
         public List<ApiKeyResponse> Apikeys { get; set; }
 
         /// <summary>
+        /// Gets or Sets Providers
+        /// </summary>
+        [DataMember(Name = "providers", EmitDefaultValue = false)]
+        public List<ProviderResponse> Providers { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Webhook
+        /// </summary>
+        [DataMember(Name = "webhook", EmitDefaultValue = false)]
+        public List<ProviderResponse> Webhook { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -127,8 +130,9 @@ namespace Openfort.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  PkPolicy: ").Append(PkPolicy).Append("\n");
             sb.Append("  Apikeys: ").Append(Apikeys).Append("\n");
+            sb.Append("  Providers: ").Append(Providers).Append("\n");
+            sb.Append("  Webhook: ").Append(Webhook).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -171,8 +175,7 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
+                    this.Object.Equals(input.Object)
                 ) && 
                 (
                     this.CreatedAt == input.CreatedAt ||
@@ -188,14 +191,22 @@ namespace Openfort.Model
                     this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.PkPolicy == input.PkPolicy ||
-                    this.PkPolicy.Equals(input.PkPolicy)
-                ) && 
-                (
                     this.Apikeys == input.Apikeys ||
                     this.Apikeys != null &&
                     input.Apikeys != null &&
                     this.Apikeys.SequenceEqual(input.Apikeys)
+                ) && 
+                (
+                    this.Providers == input.Providers ||
+                    this.Providers != null &&
+                    input.Providers != null &&
+                    this.Providers.SequenceEqual(input.Providers)
+                ) && 
+                (
+                    this.Webhook == input.Webhook ||
+                    this.Webhook != null &&
+                    input.Webhook != null &&
+                    this.Webhook.SequenceEqual(input.Webhook)
                 );
         }
 
@@ -212,20 +223,24 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PkPolicy.GetHashCode();
                 if (this.Apikeys != null)
                 {
                     hashCode = (hashCode * 59) + this.Apikeys.GetHashCode();
+                }
+                if (this.Providers != null)
+                {
+                    hashCode = (hashCode * 59) + this.Providers.GetHashCode();
+                }
+                if (this.Webhook != null)
+                {
+                    hashCode = (hashCode * 59) + this.Webhook.GetHashCode();
                 }
                 return hashCode;
             }

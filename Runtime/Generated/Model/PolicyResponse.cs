@@ -31,6 +31,12 @@ namespace Openfort.Model
     [DataContract(Name = "PolicyResponse")]
     public partial class PolicyResponse : IEquatable<PolicyResponse>
     {
+
+        /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public EntityTypePOLICY Object { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PolicyResponse" /> class.
         /// </summary>
@@ -39,16 +45,16 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PolicyResponse" /> class.
         /// </summary>
-        /// <param name="transactionIntents">transactionIntents.</param>
-        /// <param name="policyRules">policyRules.</param>
         /// <param name="id">id (required).</param>
         /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="deleted">deleted (required).</param>
-        /// <param name="chainId">chainId (required).</param>
+        /// <param name="chainId">The chain ID. (required).</param>
         /// <param name="strategy">strategy (required).</param>
-        public PolicyResponse(List<PolicyResponseTransactionIntentsInner> transactionIntents = default(List<PolicyResponseTransactionIntentsInner>), List<PolicyResponsePolicyRulesInner> policyRules = default(List<PolicyResponsePolicyRulesInner>), string id = default(string), string _object = default(string), int createdAt = default(int), string name = default(string), bool deleted = default(bool), double chainId = default(double), PolicyStrategy strategy = default(PolicyStrategy))
+        /// <param name="transactionIntents">transactionIntents (required).</param>
+        /// <param name="policyRules">policyRules (required).</param>
+        public PolicyResponse(string id = default(string), EntityTypePOLICY _object = default(EntityTypePOLICY), int createdAt = default(int), string name = default(string), bool deleted = default(bool), int chainId = default(int), PolicyStrategy strategy = default(PolicyStrategy), List<PlayerResponseTransactionIntentsInner> transactionIntents = default(List<PlayerResponseTransactionIntentsInner>), List<PolicyResponsePolicyRulesInner> policyRules = default(List<PolicyResponsePolicyRulesInner>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -56,11 +62,6 @@ namespace Openfort.Model
                 throw new ArgumentNullException("id is a required property for PolicyResponse and cannot be null");
             }
             this.Id = id;
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for PolicyResponse and cannot be null");
-            }
             this.Object = _object;
             this.CreatedAt = createdAt;
             // to ensure "name" is required (not null)
@@ -77,33 +78,25 @@ namespace Openfort.Model
                 throw new ArgumentNullException("strategy is a required property for PolicyResponse and cannot be null");
             }
             this.Strategy = strategy;
+            // to ensure "transactionIntents" is required (not null)
+            if (transactionIntents == null)
+            {
+                throw new ArgumentNullException("transactionIntents is a required property for PolicyResponse and cannot be null");
+            }
             this.TransactionIntents = transactionIntents;
+            // to ensure "policyRules" is required (not null)
+            if (policyRules == null)
+            {
+                throw new ArgumentNullException("policyRules is a required property for PolicyResponse and cannot be null");
+            }
             this.PolicyRules = policyRules;
         }
-
-        /// <summary>
-        /// Gets or Sets TransactionIntents
-        /// </summary>
-        [DataMember(Name = "transactionIntents", EmitDefaultValue = false)]
-        public List<PolicyResponseTransactionIntentsInner> TransactionIntents { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PolicyRules
-        /// </summary>
-        [DataMember(Name = "policyRules", EmitDefaultValue = false)]
-        public List<PolicyResponsePolicyRulesInner> PolicyRules { get; set; }
 
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Object
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt
@@ -124,16 +117,29 @@ namespace Openfort.Model
         public bool Deleted { get; set; }
 
         /// <summary>
-        /// Gets or Sets ChainId
+        /// The chain ID.
         /// </summary>
+        /// <value>The chain ID.</value>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
-        public double ChainId { get; set; }
+        public int ChainId { get; set; }
 
         /// <summary>
         /// Gets or Sets Strategy
         /// </summary>
         [DataMember(Name = "strategy", IsRequired = true, EmitDefaultValue = true)]
         public PolicyStrategy Strategy { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TransactionIntents
+        /// </summary>
+        [DataMember(Name = "transactionIntents", IsRequired = true, EmitDefaultValue = true)]
+        public List<PlayerResponseTransactionIntentsInner> TransactionIntents { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PolicyRules
+        /// </summary>
+        [DataMember(Name = "policyRules", IsRequired = true, EmitDefaultValue = true)]
+        public List<PolicyResponsePolicyRulesInner> PolicyRules { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -143,8 +149,6 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class PolicyResponse {\n");
-            sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
-            sb.Append("  PolicyRules: ").Append(PolicyRules).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
@@ -152,6 +156,8 @@ namespace Openfort.Model
             sb.Append("  Deleted: ").Append(Deleted).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  Strategy: ").Append(Strategy).Append("\n");
+            sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
+            sb.Append("  PolicyRules: ").Append(PolicyRules).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -188,26 +194,13 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.TransactionIntents == input.TransactionIntents ||
-                    this.TransactionIntents != null &&
-                    input.TransactionIntents != null &&
-                    this.TransactionIntents.SequenceEqual(input.TransactionIntents)
-                ) && 
-                (
-                    this.PolicyRules == input.PolicyRules ||
-                    this.PolicyRules != null &&
-                    input.PolicyRules != null &&
-                    this.PolicyRules.SequenceEqual(input.PolicyRules)
-                ) && 
-                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
                 ) && 
                 (
                     this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
+                    this.Object.Equals(input.Object)
                 ) && 
                 (
                     this.CreatedAt == input.CreatedAt ||
@@ -230,6 +223,18 @@ namespace Openfort.Model
                     this.Strategy == input.Strategy ||
                     (this.Strategy != null &&
                     this.Strategy.Equals(input.Strategy))
+                ) && 
+                (
+                    this.TransactionIntents == input.TransactionIntents ||
+                    this.TransactionIntents != null &&
+                    input.TransactionIntents != null &&
+                    this.TransactionIntents.SequenceEqual(input.TransactionIntents)
+                ) && 
+                (
+                    this.PolicyRules == input.PolicyRules ||
+                    this.PolicyRules != null &&
+                    input.PolicyRules != null &&
+                    this.PolicyRules.SequenceEqual(input.PolicyRules)
                 );
         }
 
@@ -242,22 +247,11 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.TransactionIntents != null)
-                {
-                    hashCode = (hashCode * 59) + this.TransactionIntents.GetHashCode();
-                }
-                if (this.PolicyRules != null)
-                {
-                    hashCode = (hashCode * 59) + this.PolicyRules.GetHashCode();
-                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 if (this.Name != null)
                 {
@@ -268,6 +262,14 @@ namespace Openfort.Model
                 if (this.Strategy != null)
                 {
                     hashCode = (hashCode * 59) + this.Strategy.GetHashCode();
+                }
+                if (this.TransactionIntents != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransactionIntents.GetHashCode();
+                }
+                if (this.PolicyRules != null)
+                {
+                    hashCode = (hashCode * 59) + this.PolicyRules.GetHashCode();
                 }
                 return hashCode;
             }

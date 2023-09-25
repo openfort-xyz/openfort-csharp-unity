@@ -22,50 +22,89 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace Openfort.Model
 {
     /// <summary>
     /// PolicyStrategy
     /// </summary>
+    [JsonConverter(typeof(PolicyStrategyJsonConverter))]
     [DataContract(Name = "PolicyStrategy")]
-    public partial class PolicyStrategy : IEquatable<PolicyStrategy>
+    public partial class PolicyStrategy : AbstractOpenAPISchema, IEquatable<PolicyStrategy>
     {
-
         /// <summary>
-        /// Gets or Sets SponsorSchema
+        /// Initializes a new instance of the <see cref="PolicyStrategy" /> class
+        /// with the <see cref="PayForUserPolicyStrategy" /> class
         /// </summary>
-        [DataMember(Name = "sponsorSchema", IsRequired = true, EmitDefaultValue = true)]
-        public SponsorSchema SponsorSchema { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PolicyStrategy" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected PolicyStrategy() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PolicyStrategy" /> class.
-        /// </summary>
-        /// <param name="sponsorSchema">sponsorSchema (required).</param>
-        /// <param name="tokenContract">tokenContract.</param>
-        /// <param name="tokenContractAmount">tokenContractAmount.</param>
-        public PolicyStrategy(SponsorSchema sponsorSchema = default(SponsorSchema), string tokenContract = default(string), string tokenContractAmount = default(string))
+        /// <param name="actualInstance">An instance of PayForUserPolicyStrategy.</param>
+        public PolicyStrategy(PayForUserPolicyStrategy actualInstance)
         {
-            this.SponsorSchema = sponsorSchema;
-            this.TokenContract = tokenContract;
-            this.TokenContractAmount = tokenContractAmount;
+            this.IsNullable = false;
+            this.SchemaType= "anyOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// Gets or Sets TokenContract
+        /// Initializes a new instance of the <see cref="PolicyStrategy" /> class
+        /// with the <see cref="ChargeCustomTokenPolicyStrategy" /> class
         /// </summary>
-        [DataMember(Name = "tokenContract", EmitDefaultValue = false)]
-        public string TokenContract { get; set; }
+        /// <param name="actualInstance">An instance of ChargeCustomTokenPolicyStrategy.</param>
+        public PolicyStrategy(ChargeCustomTokenPolicyStrategy actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "anyOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
 
         /// <summary>
-        /// Gets or Sets TokenContractAmount
+        /// Gets or Sets ActualInstance
         /// </summary>
-        [DataMember(Name = "tokenContractAmount", EmitDefaultValue = false)]
-        public string TokenContractAmount { get; set; }
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(ChargeCustomTokenPolicyStrategy))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(PayForUserPolicyStrategy))
+                {
+                    this._actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: ChargeCustomTokenPolicyStrategy, PayForUserPolicyStrategy");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the actual instance of `PayForUserPolicyStrategy`. If the actual instance is not `PayForUserPolicyStrategy`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of PayForUserPolicyStrategy</returns>
+        public PayForUserPolicyStrategy GetPayForUserPolicyStrategy()
+        {
+            return (PayForUserPolicyStrategy)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `ChargeCustomTokenPolicyStrategy`. If the actual instance is not `ChargeCustomTokenPolicyStrategy`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of ChargeCustomTokenPolicyStrategy</returns>
+        public ChargeCustomTokenPolicyStrategy GetChargeCustomTokenPolicyStrategy()
+        {
+            return (ChargeCustomTokenPolicyStrategy)this.ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -73,11 +112,9 @@ namespace Openfort.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class PolicyStrategy {\n");
-            sb.Append("  SponsorSchema: ").Append(SponsorSchema).Append("\n");
-            sb.Append("  TokenContract: ").Append(TokenContract).Append("\n");
-            sb.Append("  TokenContractAmount: ").Append(TokenContractAmount).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -86,9 +123,51 @@ namespace Openfort.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this.ActualInstance, PolicyStrategy.SerializerSettings);
+        }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of PolicyStrategy
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of PolicyStrategy</returns>
+        public static PolicyStrategy FromJson(string jsonString)
+        {
+            PolicyStrategy newPolicyStrategy = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newPolicyStrategy;
+            }
+
+            try
+            {
+                newPolicyStrategy = new PolicyStrategy(JsonConvert.DeserializeObject<ChargeCustomTokenPolicyStrategy>(jsonString, PolicyStrategy.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newPolicyStrategy;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into ChargeCustomTokenPolicyStrategy: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                newPolicyStrategy = new PolicyStrategy(JsonConvert.DeserializeObject<PayForUserPolicyStrategy>(jsonString, PolicyStrategy.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newPolicyStrategy;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PayForUserPolicyStrategy: {1}", jsonString, exception.ToString()));
+            }
+
+            // no match found, throw an exception
+            throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
         }
 
         /// <summary>
@@ -109,24 +188,9 @@ namespace Openfort.Model
         public bool Equals(PolicyStrategy input)
         {
             if (input == null)
-            {
                 return false;
-            }
-            return 
-                (
-                    this.SponsorSchema == input.SponsorSchema ||
-                    this.SponsorSchema.Equals(input.SponsorSchema)
-                ) && 
-                (
-                    this.TokenContract == input.TokenContract ||
-                    (this.TokenContract != null &&
-                    this.TokenContract.Equals(input.TokenContract))
-                ) && 
-                (
-                    this.TokenContractAmount == input.TokenContractAmount ||
-                    (this.TokenContractAmount != null &&
-                    this.TokenContractAmount.Equals(input.TokenContractAmount))
-                );
+
+            return this.ActualInstance.Equals(input.ActualInstance);
         }
 
         /// <summary>
@@ -138,19 +202,56 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.SponsorSchema.GetHashCode();
-                if (this.TokenContract != null)
-                {
-                    hashCode = (hashCode * 59) + this.TokenContract.GetHashCode();
-                }
-                if (this.TokenContractAmount != null)
-                {
-                    hashCode = (hashCode * 59) + this.TokenContractAmount.GetHashCode();
-                }
+                if (this.ActualInstance != null)
+                    hashCode = hashCode * 59 + this.ActualInstance.GetHashCode();
                 return hashCode;
             }
         }
 
+    }
+
+    /// <summary>
+    /// Custom JSON converter for PolicyStrategy
+    /// </summary>
+    public class PolicyStrategyJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(PolicyStrategy).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            if(reader.TokenType != JsonToken.Null)
+            {
+                return PolicyStrategy.FromJson(JObject.Load(reader).ToString(Formatting.None));
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
+        }
     }
 
 }

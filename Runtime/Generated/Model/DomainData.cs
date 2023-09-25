@@ -39,11 +39,11 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DomainData" /> class.
         /// </summary>
-        /// <param name="chainId">chainId (required).</param>
+        /// <param name="chainId">The chain ID. (required).</param>
         /// <param name="name">name.</param>
         /// <param name="version">version.</param>
         /// <param name="verifyingContract">verifyingContract.</param>
-        public DomainData(double chainId = default(double), string name = default(string), string version = default(string), string verifyingContract = default(string))
+        public DomainData(int chainId = default(int), string name = default(string), string version = default(string), string verifyingContract = default(string))
         {
             this.ChainId = chainId;
             this.Name = name;
@@ -52,10 +52,11 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets ChainId
+        /// The chain ID.
         /// </summary>
+        /// <value>The chain ID.</value>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
-        public double ChainId { get; set; }
+        public int ChainId { get; set; }
 
         /// <summary>
         /// Gets or Sets Name

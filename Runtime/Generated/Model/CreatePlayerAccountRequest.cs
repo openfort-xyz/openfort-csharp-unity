@@ -50,7 +50,7 @@ namespace Openfort.Model
         /// <param name="accountType">accountType.</param>
         /// <param name="tokenContract">If ERC6551, the NFT contract to use.</param>
         /// <param name="tokenId">If ERC6551, the tokenID to serve as owner.</param>
-        public CreatePlayerAccountRequest(double chainId = default(double), string externalOwnerAddress = default(string), DataAccountTypes? accountType = default(DataAccountTypes?), string tokenContract = default(string), double tokenId = default(double))
+        public CreatePlayerAccountRequest(int chainId = default(int), string externalOwnerAddress = default(string), DataAccountTypes? accountType = default(DataAccountTypes?), string tokenContract = default(string), double tokenId = default(double))
         {
             this.ChainId = chainId;
             this.ExternalOwnerAddress = externalOwnerAddress;
@@ -64,7 +64,7 @@ namespace Openfort.Model
         /// </summary>
         /// <value>The chain id</value>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
-        public double ChainId { get; set; }
+        public int ChainId { get; set; }
 
         /// <summary>
         /// The address of the external owner

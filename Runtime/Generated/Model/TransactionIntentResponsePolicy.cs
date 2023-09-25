@@ -27,7 +27,7 @@ using System.Reflection;
 namespace Openfort.Model
 {
     /// <summary>
-    /// TransactionIntentResponsePolicy
+    /// The policy ID.
     /// </summary>
     [JsonConverter(typeof(TransactionIntentResponsePolicyJsonConverter))]
     [DataContract(Name = "TransactionIntentResponse_policy")]
@@ -35,10 +35,10 @@ namespace Openfort.Model
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionIntentResponsePolicy" /> class
-        /// with the <see cref="PolicyResponse" /> class
+        /// with the <see cref="Policy" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of PolicyResponse.</param>
-        public TransactionIntentResponsePolicy(PolicyResponse actualInstance)
+        /// <param name="actualInstance">An instance of Policy.</param>
+        public TransactionIntentResponsePolicy(Policy actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -47,10 +47,10 @@ namespace Openfort.Model
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionIntentResponsePolicy" /> class
-        /// with the <see cref="PickPolicyResponseId" /> class
+        /// with the <see cref="EntityIdResponse" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of PickPolicyResponseId.</param>
-        public TransactionIntentResponsePolicy(PickPolicyResponseId actualInstance)
+        /// <param name="actualInstance">An instance of EntityIdResponse.</param>
+        public TransactionIntentResponsePolicy(EntityIdResponse actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -71,39 +71,39 @@ namespace Openfort.Model
             }
             set
             {
-                if (value.GetType() == typeof(PickPolicyResponseId))
+                if (value.GetType() == typeof(EntityIdResponse))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(PolicyResponse))
+                else if (value.GetType() == typeof(Policy))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: PickPolicyResponseId, PolicyResponse");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: EntityIdResponse, Policy");
                 }
             }
         }
 
         /// <summary>
-        /// Get the actual instance of `PolicyResponse`. If the actual instance is not `PolicyResponse`,
+        /// Get the actual instance of `Policy`. If the actual instance is not `Policy`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of PolicyResponse</returns>
-        public PolicyResponse GetPolicyResponse()
+        /// <returns>An instance of Policy</returns>
+        public Policy GetPolicy()
         {
-            return (PolicyResponse)this.ActualInstance;
+            return (Policy)this.ActualInstance;
         }
 
         /// <summary>
-        /// Get the actual instance of `PickPolicyResponseId`. If the actual instance is not `PickPolicyResponseId`,
+        /// Get the actual instance of `EntityIdResponse`. If the actual instance is not `EntityIdResponse`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of PickPolicyResponseId</returns>
-        public PickPolicyResponseId GetPickPolicyResponseId()
+        /// <returns>An instance of EntityIdResponse</returns>
+        public EntityIdResponse GetEntityIdResponse()
         {
-            return (PickPolicyResponseId)this.ActualInstance;
+            return (EntityIdResponse)this.ActualInstance;
         }
 
         /// <summary>
@@ -144,26 +144,26 @@ namespace Openfort.Model
 
             try
             {
-                newTransactionIntentResponsePolicy = new TransactionIntentResponsePolicy(JsonConvert.DeserializeObject<PickPolicyResponseId>(jsonString, TransactionIntentResponsePolicy.SerializerSettings));
+                newTransactionIntentResponsePolicy = new TransactionIntentResponsePolicy(JsonConvert.DeserializeObject<EntityIdResponse>(jsonString, TransactionIntentResponsePolicy.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
                 return newTransactionIntentResponsePolicy;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PickPolicyResponseId: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into EntityIdResponse: {1}", jsonString, exception.ToString()));
             }
 
             try
             {
-                newTransactionIntentResponsePolicy = new TransactionIntentResponsePolicy(JsonConvert.DeserializeObject<PolicyResponse>(jsonString, TransactionIntentResponsePolicy.SerializerSettings));
+                newTransactionIntentResponsePolicy = new TransactionIntentResponsePolicy(JsonConvert.DeserializeObject<Policy>(jsonString, TransactionIntentResponsePolicy.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
                 return newTransactionIntentResponsePolicy;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PolicyResponse: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into Policy: {1}", jsonString, exception.ToString()));
             }
 
             // no match found, throw an exception

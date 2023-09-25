@@ -39,24 +39,18 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateSessionRequest" /> class.
         /// </summary>
-        /// <param name="player">player (required).</param>
-        /// <param name="policy">policy.</param>
-        /// <param name="optimistic">optimistic.</param>
-        /// <param name="externalOwnerAddress">externalOwnerAddress.</param>
-        /// <param name="address">address (required).</param>
-        /// <param name="chainId">chainId (required).</param>
-        /// <param name="validUntil">validUntil (required).</param>
-        /// <param name="validAfter">validAfter (required).</param>
-        /// <param name="limit">limit.</param>
-        /// <param name="whitelist">whitelist.</param>
-        public CreateSessionRequest(string player = default(string), string policy = default(string), bool optimistic = default(bool), string externalOwnerAddress = default(string), string address = default(string), double chainId = default(double), double validUntil = default(double), double validAfter = default(double), double limit = default(double), List<string> whitelist = default(List<string>))
+        /// <param name="address">The address of the session key. (required).</param>
+        /// <param name="chainId">The chain ID. (required).</param>
+        /// <param name="externalOwnerAddress">If no account exists for a given player, create one with this address..</param>
+        /// <param name="limit">Maximum number of times the session key can be used..</param>
+        /// <param name="optimistic">Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not..</param>
+        /// <param name="policy">The policy ID..</param>
+        /// <param name="validAfter">The unix timestamp in seconds when the session key becomes valid. (required).</param>
+        /// <param name="validUntil">The unix timestamp in seconds when the session key expires. (required).</param>
+        /// <param name="whitelist">The list of whitelisted addresses (contracts the session key can interact with)..</param>
+        /// <param name="player">The player ID. (required).</param>
+        public CreateSessionRequest(string address = default(string), int chainId = default(int), string externalOwnerAddress = default(string), int limit = default(int), bool optimistic = default(bool), string policy = default(string), int validAfter = default(int), int validUntil = default(int), List<string> whitelist = default(List<string>), string player = default(string))
         {
-            // to ensure "player" is required (not null)
-            if (player == null)
-            {
-                throw new ArgumentNullException("player is a required property for CreateSessionRequest and cannot be null");
-            }
-            this.Player = player;
             // to ensure "address" is required (not null)
             if (address == null)
             {
@@ -64,74 +58,92 @@ namespace Openfort.Model
             }
             this.Address = address;
             this.ChainId = chainId;
-            this.ValidUntil = validUntil;
             this.ValidAfter = validAfter;
-            this.Policy = policy;
-            this.Optimistic = optimistic;
+            this.ValidUntil = validUntil;
+            // to ensure "player" is required (not null)
+            if (player == null)
+            {
+                throw new ArgumentNullException("player is a required property for CreateSessionRequest and cannot be null");
+            }
+            this.Player = player;
             this.ExternalOwnerAddress = externalOwnerAddress;
             this.Limit = limit;
+            this.Optimistic = optimistic;
+            this.Policy = policy;
             this.Whitelist = whitelist;
         }
 
         /// <summary>
-        /// Gets or Sets Player
+        /// The address of the session key.
         /// </summary>
-        [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
-        public string Player { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Policy
-        /// </summary>
-        [DataMember(Name = "policy", EmitDefaultValue = false)]
-        public string Policy { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Optimistic
-        /// </summary>
-        [DataMember(Name = "optimistic", EmitDefaultValue = true)]
-        public bool Optimistic { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ExternalOwnerAddress
-        /// </summary>
-        [DataMember(Name = "externalOwnerAddress", EmitDefaultValue = false)]
-        public string ExternalOwnerAddress { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Address
-        /// </summary>
+        /// <value>The address of the session key.</value>
         [DataMember(Name = "address", IsRequired = true, EmitDefaultValue = true)]
         public string Address { get; set; }
 
         /// <summary>
-        /// Gets or Sets ChainId
+        /// The chain ID.
         /// </summary>
+        /// <value>The chain ID.</value>
+        /// <example>5</example>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
-        public double ChainId { get; set; }
+        public int ChainId { get; set; }
 
         /// <summary>
-        /// Gets or Sets ValidUntil
+        /// If no account exists for a given player, create one with this address.
         /// </summary>
-        [DataMember(Name = "validUntil", IsRequired = true, EmitDefaultValue = true)]
-        public double ValidUntil { get; set; }
+        /// <value>If no account exists for a given player, create one with this address.</value>
+        [DataMember(Name = "externalOwnerAddress", EmitDefaultValue = false)]
+        public string ExternalOwnerAddress { get; set; }
 
         /// <summary>
-        /// Gets or Sets ValidAfter
+        /// Maximum number of times the session key can be used.
         /// </summary>
-        [DataMember(Name = "validAfter", IsRequired = true, EmitDefaultValue = true)]
-        public double ValidAfter { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Limit
-        /// </summary>
+        /// <value>Maximum number of times the session key can be used.</value>
         [DataMember(Name = "limit", EmitDefaultValue = false)]
-        public double Limit { get; set; }
+        public int Limit { get; set; }
 
         /// <summary>
-        /// Gets or Sets Whitelist
+        /// Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not.
         /// </summary>
+        /// <value>Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not.</value>
+        /// <example>true</example>
+        [DataMember(Name = "optimistic", EmitDefaultValue = true)]
+        public bool Optimistic { get; set; }
+
+        /// <summary>
+        /// The policy ID.
+        /// </summary>
+        /// <value>The policy ID.</value>
+        [DataMember(Name = "policy", EmitDefaultValue = false)]
+        public string Policy { get; set; }
+
+        /// <summary>
+        /// The unix timestamp in seconds when the session key becomes valid.
+        /// </summary>
+        /// <value>The unix timestamp in seconds when the session key becomes valid.</value>
+        [DataMember(Name = "validAfter", IsRequired = true, EmitDefaultValue = true)]
+        public int ValidAfter { get; set; }
+
+        /// <summary>
+        /// The unix timestamp in seconds when the session key expires.
+        /// </summary>
+        /// <value>The unix timestamp in seconds when the session key expires.</value>
+        [DataMember(Name = "validUntil", IsRequired = true, EmitDefaultValue = true)]
+        public int ValidUntil { get; set; }
+
+        /// <summary>
+        /// The list of whitelisted addresses (contracts the session key can interact with).
+        /// </summary>
+        /// <value>The list of whitelisted addresses (contracts the session key can interact with).</value>
         [DataMember(Name = "whitelist", EmitDefaultValue = false)]
         public List<string> Whitelist { get; set; }
+
+        /// <summary>
+        /// The player ID.
+        /// </summary>
+        /// <value>The player ID.</value>
+        [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
+        public string Player { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -141,16 +153,16 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateSessionRequest {\n");
-            sb.Append("  Player: ").Append(Player).Append("\n");
-            sb.Append("  Policy: ").Append(Policy).Append("\n");
-            sb.Append("  Optimistic: ").Append(Optimistic).Append("\n");
-            sb.Append("  ExternalOwnerAddress: ").Append(ExternalOwnerAddress).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
-            sb.Append("  ValidUntil: ").Append(ValidUntil).Append("\n");
-            sb.Append("  ValidAfter: ").Append(ValidAfter).Append("\n");
+            sb.Append("  ExternalOwnerAddress: ").Append(ExternalOwnerAddress).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
+            sb.Append("  Optimistic: ").Append(Optimistic).Append("\n");
+            sb.Append("  Policy: ").Append(Policy).Append("\n");
+            sb.Append("  ValidAfter: ").Append(ValidAfter).Append("\n");
+            sb.Append("  ValidUntil: ").Append(ValidUntil).Append("\n");
             sb.Append("  Whitelist: ").Append(Whitelist).Append("\n");
+            sb.Append("  Player: ").Append(Player).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -187,25 +199,6 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Player == input.Player ||
-                    (this.Player != null &&
-                    this.Player.Equals(input.Player))
-                ) && 
-                (
-                    this.Policy == input.Policy ||
-                    (this.Policy != null &&
-                    this.Policy.Equals(input.Policy))
-                ) && 
-                (
-                    this.Optimistic == input.Optimistic ||
-                    this.Optimistic.Equals(input.Optimistic)
-                ) && 
-                (
-                    this.ExternalOwnerAddress == input.ExternalOwnerAddress ||
-                    (this.ExternalOwnerAddress != null &&
-                    this.ExternalOwnerAddress.Equals(input.ExternalOwnerAddress))
-                ) && 
-                (
                     this.Address == input.Address ||
                     (this.Address != null &&
                     this.Address.Equals(input.Address))
@@ -215,22 +208,41 @@ namespace Openfort.Model
                     this.ChainId.Equals(input.ChainId)
                 ) && 
                 (
-                    this.ValidUntil == input.ValidUntil ||
-                    this.ValidUntil.Equals(input.ValidUntil)
-                ) && 
-                (
-                    this.ValidAfter == input.ValidAfter ||
-                    this.ValidAfter.Equals(input.ValidAfter)
+                    this.ExternalOwnerAddress == input.ExternalOwnerAddress ||
+                    (this.ExternalOwnerAddress != null &&
+                    this.ExternalOwnerAddress.Equals(input.ExternalOwnerAddress))
                 ) && 
                 (
                     this.Limit == input.Limit ||
                     this.Limit.Equals(input.Limit)
                 ) && 
                 (
+                    this.Optimistic == input.Optimistic ||
+                    this.Optimistic.Equals(input.Optimistic)
+                ) && 
+                (
+                    this.Policy == input.Policy ||
+                    (this.Policy != null &&
+                    this.Policy.Equals(input.Policy))
+                ) && 
+                (
+                    this.ValidAfter == input.ValidAfter ||
+                    this.ValidAfter.Equals(input.ValidAfter)
+                ) && 
+                (
+                    this.ValidUntil == input.ValidUntil ||
+                    this.ValidUntil.Equals(input.ValidUntil)
+                ) && 
+                (
                     this.Whitelist == input.Whitelist ||
                     this.Whitelist != null &&
                     input.Whitelist != null &&
                     this.Whitelist.SequenceEqual(input.Whitelist)
+                ) && 
+                (
+                    this.Player == input.Player ||
+                    (this.Player != null &&
+                    this.Player.Equals(input.Player))
                 );
         }
 
@@ -243,30 +255,30 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Player != null)
-                {
-                    hashCode = (hashCode * 59) + this.Player.GetHashCode();
-                }
-                if (this.Policy != null)
-                {
-                    hashCode = (hashCode * 59) + this.Policy.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Optimistic.GetHashCode();
-                if (this.ExternalOwnerAddress != null)
-                {
-                    hashCode = (hashCode * 59) + this.ExternalOwnerAddress.GetHashCode();
-                }
                 if (this.Address != null)
                 {
                     hashCode = (hashCode * 59) + this.Address.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
-                hashCode = (hashCode * 59) + this.ValidUntil.GetHashCode();
-                hashCode = (hashCode * 59) + this.ValidAfter.GetHashCode();
+                if (this.ExternalOwnerAddress != null)
+                {
+                    hashCode = (hashCode * 59) + this.ExternalOwnerAddress.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Limit.GetHashCode();
+                hashCode = (hashCode * 59) + this.Optimistic.GetHashCode();
+                if (this.Policy != null)
+                {
+                    hashCode = (hashCode * 59) + this.Policy.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ValidAfter.GetHashCode();
+                hashCode = (hashCode * 59) + this.ValidUntil.GetHashCode();
                 if (this.Whitelist != null)
                 {
                     hashCode = (hashCode * 59) + this.Whitelist.GetHashCode();
+                }
+                if (this.Player != null)
+                {
+                    hashCode = (hashCode * 59) + this.Player.GetHashCode();
                 }
                 return hashCode;
             }

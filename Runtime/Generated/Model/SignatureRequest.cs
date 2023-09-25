@@ -39,8 +39,8 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureRequest" /> class.
         /// </summary>
-        /// <param name="signature">signature (required).</param>
-        /// <param name="optimistic">optimistic.</param>
+        /// <param name="signature">signed userOperationHash by the owner or valid session key (required).</param>
+        /// <param name="optimistic">Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not..</param>
         public SignatureRequest(string signature = default(string), bool optimistic = default(bool))
         {
             // to ensure "signature" is required (not null)
@@ -53,14 +53,17 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets Signature
+        /// signed userOperationHash by the owner or valid session key
         /// </summary>
+        /// <value>signed userOperationHash by the owner or valid session key</value>
         [DataMember(Name = "signature", IsRequired = true, EmitDefaultValue = true)]
         public string Signature { get; set; }
 
         /// <summary>
-        /// Gets or Sets Optimistic
+        /// Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not.
         /// </summary>
+        /// <value>Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not.</value>
+        /// <example>true</example>
         [DataMember(Name = "optimistic", EmitDefaultValue = true)]
         public bool Optimistic { get; set; }
 

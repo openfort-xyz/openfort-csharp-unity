@@ -31,6 +31,12 @@ namespace Openfort.Model
     [DataContract(Name = "SessionResponse")]
     public partial class SessionResponse : IEquatable<SessionResponse>
     {
+
+        /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public EntityTypeSESSION Object { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SessionResponse" /> class.
         /// </summary>
@@ -39,7 +45,6 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SessionResponse" /> class.
         /// </summary>
-        /// <param name="transactionIntents">transactionIntents.</param>
         /// <param name="id">id (required).</param>
         /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
@@ -51,7 +56,8 @@ namespace Openfort.Model
         /// <param name="whitelist">whitelist.</param>
         /// <param name="limit">limit.</param>
         /// <param name="nextAction">nextAction.</param>
-        public SessionResponse(List<PolicyResponseTransactionIntentsInner> transactionIntents = default(List<PolicyResponseTransactionIntentsInner>), string id = default(string), string _object = default(string), int createdAt = default(int), int updatedAt = default(int), bool isActive = default(bool), string address = default(string), string validAfter = default(string), string validUntil = default(string), List<string> whitelist = default(List<string>), double limit = default(double), NextActionResponse nextAction = default(NextActionResponse))
+        /// <param name="transactionIntents">transactionIntents.</param>
+        public SessionResponse(string id = default(string), EntityTypeSESSION _object = default(EntityTypeSESSION), int createdAt = default(int), int updatedAt = default(int), bool isActive = default(bool), string address = default(string), string validAfter = default(string), string validUntil = default(string), List<string> whitelist = default(List<string>), double limit = default(double), NextActionResponse nextAction = default(NextActionResponse), List<PlayerResponseTransactionIntentsInner> transactionIntents = default(List<PlayerResponseTransactionIntentsInner>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -59,11 +65,6 @@ namespace Openfort.Model
                 throw new ArgumentNullException("id is a required property for SessionResponse and cannot be null");
             }
             this.Id = id;
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for SessionResponse and cannot be null");
-            }
             this.Object = _object;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
@@ -73,32 +74,20 @@ namespace Openfort.Model
                 throw new ArgumentNullException("address is a required property for SessionResponse and cannot be null");
             }
             this.Address = address;
-            this.TransactionIntents = transactionIntents;
             this.IsActive = isActive;
             this.ValidAfter = validAfter;
             this.ValidUntil = validUntil;
             this.Whitelist = whitelist;
             this.Limit = limit;
             this.NextAction = nextAction;
+            this.TransactionIntents = transactionIntents;
         }
-
-        /// <summary>
-        /// Gets or Sets TransactionIntents
-        /// </summary>
-        [DataMember(Name = "transactionIntents", EmitDefaultValue = false)]
-        public List<PolicyResponseTransactionIntentsInner> TransactionIntents { get; set; }
 
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Object
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt
@@ -155,6 +144,12 @@ namespace Openfort.Model
         public NextActionResponse NextAction { get; set; }
 
         /// <summary>
+        /// Gets or Sets TransactionIntents
+        /// </summary>
+        [DataMember(Name = "transactionIntents", EmitDefaultValue = false)]
+        public List<PlayerResponseTransactionIntentsInner> TransactionIntents { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -162,7 +157,6 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class SessionResponse {\n");
-            sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
@@ -174,6 +168,7 @@ namespace Openfort.Model
             sb.Append("  Whitelist: ").Append(Whitelist).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("  NextAction: ").Append(NextAction).Append("\n");
+            sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -210,20 +205,13 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.TransactionIntents == input.TransactionIntents ||
-                    this.TransactionIntents != null &&
-                    input.TransactionIntents != null &&
-                    this.TransactionIntents.SequenceEqual(input.TransactionIntents)
-                ) && 
-                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
                 ) && 
                 (
                     this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
+                    this.Object.Equals(input.Object)
                 ) && 
                 (
                     this.CreatedAt == input.CreatedAt ||
@@ -266,6 +254,12 @@ namespace Openfort.Model
                     this.NextAction == input.NextAction ||
                     (this.NextAction != null &&
                     this.NextAction.Equals(input.NextAction))
+                ) && 
+                (
+                    this.TransactionIntents == input.TransactionIntents ||
+                    this.TransactionIntents != null &&
+                    input.TransactionIntents != null &&
+                    this.TransactionIntents.SequenceEqual(input.TransactionIntents)
                 );
         }
 
@@ -278,18 +272,11 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.TransactionIntents != null)
-                {
-                    hashCode = (hashCode * 59) + this.TransactionIntents.GetHashCode();
-                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
                 hashCode = (hashCode * 59) + this.IsActive.GetHashCode();
@@ -313,6 +300,10 @@ namespace Openfort.Model
                 if (this.NextAction != null)
                 {
                     hashCode = (hashCode * 59) + this.NextAction.GetHashCode();
+                }
+                if (this.TransactionIntents != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransactionIntents.GetHashCode();
                 }
                 return hashCode;
             }

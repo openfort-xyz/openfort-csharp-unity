@@ -39,10 +39,10 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SignupRequest" /> class.
         /// </summary>
-        /// <param name="email">email (required).</param>
-        /// <param name="password">password (required).</param>
-        /// <param name="name">name (required).</param>
-        /// <param name="description">description.</param>
+        /// <param name="email">The email address of the user. (required).</param>
+        /// <param name="password">The password of the user. (required).</param>
+        /// <param name="name">The name of the user. (required).</param>
+        /// <param name="description">The description of the user..</param>
         public SignupRequest(string email = default(string), string password = default(string), string name = default(string), string description = default(string))
         {
             // to ensure "email" is required (not null)
@@ -67,26 +67,30 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets Email
+        /// The email address of the user.
         /// </summary>
+        /// <value>The email address of the user.</value>
         [DataMember(Name = "email", IsRequired = true, EmitDefaultValue = true)]
         public string Email { get; set; }
 
         /// <summary>
-        /// Gets or Sets Password
+        /// The password of the user.
         /// </summary>
+        /// <value>The password of the user.</value>
         [DataMember(Name = "password", IsRequired = true, EmitDefaultValue = true)]
         public string Password { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// The name of the user.
         /// </summary>
+        /// <value>The name of the user.</value>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Description
+        /// The description of the user.
         /// </summary>
+        /// <value>The description of the user.</value>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 

@@ -28,10 +28,10 @@ namespace Openfort.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
+        /// Create contract object.
         /// </summary>
         /// <remarks>
-        /// Creates a contract object.
+        /// Add a new contract to your project in Openfort
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createContractRequest"></param>
@@ -39,41 +39,41 @@ namespace Openfort.Api
         ContractResponse CreateContract(CreateContractRequest createContractRequest);
 
         /// <summary>
-        /// 
+        /// Create contract object.
         /// </summary>
         /// <remarks>
-        /// Creates a contract object.
+        /// Add a new contract to your project in Openfort
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createContractRequest"></param>
         /// <returns>ApiResponse of ContractResponse</returns>
         ApiResponse<ContractResponse> CreateContractWithHttpInfo(CreateContractRequest createContractRequest);
         /// <summary>
-        /// 
+        /// Deletes a contract object.
         /// </summary>
         /// <remarks>
-        /// Deletes a contract object.
+        /// Delete a contract from the project by providing its contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <returns>ContractDeleteResponse</returns>
         ContractDeleteResponse DeleteContract(string id);
 
         /// <summary>
-        /// 
+        /// Deletes a contract object.
         /// </summary>
         /// <remarks>
-        /// Deletes a contract object.
+        /// Delete a contract from the project by providing its contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <returns>ApiResponse of ContractDeleteResponse</returns>
         ApiResponse<ContractDeleteResponse> DeleteContractWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Get a contract.
         /// </summary>
         /// <remarks>
-        /// Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
+        /// Retrieve a contract by providing their contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
@@ -81,68 +81,65 @@ namespace Openfort.Api
         ContractResponse GetContract(string id);
 
         /// <summary>
-        /// 
+        /// Get a contract.
         /// </summary>
         /// <remarks>
-        /// Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
+        /// Retrieve a contract by providing their contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
         /// <returns>ApiResponse of ContractResponse</returns>
         ApiResponse<ContractResponse> GetContractWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// List contracts.
         /// </summary>
         /// <remarks>
-        /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
+        /// List of all contracts per project. By default, a maximum of ten contracts are shown.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="deleted"> (optional)</param>
-        /// <param name="chainId"> (optional)</param>
-        /// <param name="address"> (optional)</param>
-        /// <returns>ContractsResponse</returns>
-        ContractsResponse GetContracts(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string));
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="name">Specifies the name of the contract. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted contracts. (optional)</param>
+        /// <param name="chainId">The chain ID of the contract. (optional)</param>
+        /// <param name="address">Specifies the address of the contract. (optional)</param>
+        /// <returns>ContractListResponse</returns>
+        ContractListResponse GetContracts(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), int? chainId = default(int?), string address = default(string));
 
         /// <summary>
-        /// 
+        /// List contracts.
         /// </summary>
         /// <remarks>
-        /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
+        /// List of all contracts per project. By default, a maximum of ten contracts are shown.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="deleted"> (optional)</param>
-        /// <param name="chainId"> (optional)</param>
-        /// <param name="address"> (optional)</param>
-        /// <returns>ApiResponse of ContractsResponse</returns>
-        ApiResponse<ContractsResponse> GetContractsWithHttpInfo(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string));
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="name">Specifies the name of the contract. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted contracts. (optional)</param>
+        /// <param name="chainId">The chain ID of the contract. (optional)</param>
+        /// <param name="address">Specifies the address of the contract. (optional)</param>
+        /// <returns>ApiResponse of ContractListResponse</returns>
+        ApiResponse<ContractListResponse> GetContractsWithHttpInfo(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), int? chainId = default(int?), string address = default(string));
         /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
         /// Updates a contract object.
-        /// </remarks>
+        /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="updateContractRequest"></param>
         /// <returns>ContractResponse</returns>
         ContractResponse UpdateContract(string id, UpdateContractRequest updateContractRequest);
 
         /// <summary>
-        /// 
+        /// Updates a contract object.
         /// </summary>
         /// <remarks>
-        /// Updates a contract object.
+        /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="updateContractRequest"></param>
         /// <returns>ApiResponse of ContractResponse</returns>
         ApiResponse<ContractResponse> UpdateContractWithHttpInfo(string id, UpdateContractRequest updateContractRequest);
@@ -156,10 +153,10 @@ namespace Openfort.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Create contract object.
         /// </summary>
         /// <remarks>
-        /// Creates a contract object.
+        /// Add a new contract to your project in Openfort
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createContractRequest"></param>
@@ -168,10 +165,10 @@ namespace Openfort.Api
         System.Threading.Tasks.Task<ContractResponse> CreateContractAsync(CreateContractRequest createContractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create contract object.
         /// </summary>
         /// <remarks>
-        /// Creates a contract object.
+        /// Add a new contract to your project in Openfort
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createContractRequest"></param>
@@ -179,33 +176,33 @@ namespace Openfort.Api
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ContractResponse>> CreateContractWithHttpInfoAsync(CreateContractRequest createContractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Deletes a contract object.
         /// </summary>
         /// <remarks>
-        /// Deletes a contract object.
+        /// Delete a contract from the project by providing its contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractDeleteResponse</returns>
         System.Threading.Tasks.Task<ContractDeleteResponse> DeleteContractAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Deletes a contract object.
         /// </summary>
         /// <remarks>
-        /// Deletes a contract object.
+        /// Delete a contract from the project by providing its contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractDeleteResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ContractDeleteResponse>> DeleteContractWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get a contract.
         /// </summary>
         /// <remarks>
-        /// Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
+        /// Retrieve a contract by providing their contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
@@ -214,10 +211,10 @@ namespace Openfort.Api
         System.Threading.Tasks.Task<ContractResponse> GetContractAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get a contract.
         /// </summary>
         /// <remarks>
-        /// Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
+        /// Retrieve a contract by providing their contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
@@ -225,61 +222,61 @@ namespace Openfort.Api
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ContractResponse>> GetContractWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List contracts.
         /// </summary>
         /// <remarks>
-        /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
+        /// List of all contracts per project. By default, a maximum of ten contracts are shown.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="deleted"> (optional)</param>
-        /// <param name="chainId"> (optional)</param>
-        /// <param name="address"> (optional)</param>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="name">Specifies the name of the contract. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted contracts. (optional)</param>
+        /// <param name="chainId">The chain ID of the contract. (optional)</param>
+        /// <param name="address">Specifies the address of the contract. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ContractsResponse</returns>
-        System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ContractListResponse</returns>
+        System.Threading.Tasks.Task<ContractListResponse> GetContractsAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), int? chainId = default(int?), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List contracts.
         /// </summary>
         /// <remarks>
-        /// Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
+        /// List of all contracts per project. By default, a maximum of ten contracts are shown.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="deleted"> (optional)</param>
-        /// <param name="chainId"> (optional)</param>
-        /// <param name="address"> (optional)</param>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="name">Specifies the name of the contract. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted contracts. (optional)</param>
+        /// <param name="chainId">The chain ID of the contract. (optional)</param>
+        /// <param name="address">Specifies the address of the contract. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ContractsResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ContractListResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ContractListResponse>> GetContractsWithHttpInfoAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), int? chainId = default(int?), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Updates a contract object.
         /// </summary>
         /// <remarks>
-        /// Updates a contract object.
+        /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="updateContractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractResponse</returns>
         System.Threading.Tasks.Task<ContractResponse> UpdateContractAsync(string id, UpdateContractRequest updateContractRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Updates a contract object.
         /// </summary>
         /// <remarks>
-        /// Updates a contract object.
+        /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="updateContractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
@@ -429,7 +426,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Creates a contract object.
+        /// Create contract object. Add a new contract to your project in Openfort
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createContractRequest"></param>
@@ -441,7 +438,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Creates a contract object.
+        /// Create contract object. Add a new contract to your project in Openfort
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createContractRequest"></param>
@@ -471,6 +468,12 @@ namespace Openfort.Api
 
             localVarRequestOptions.Data = createContractRequest;
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<ContractResponse>("/v1/contracts", localVarRequestOptions, this.Configuration);
@@ -485,7 +488,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Creates a contract object.
+        /// Create contract object. Add a new contract to your project in Openfort
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createContractRequest"></param>
@@ -503,7 +506,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Creates a contract object.
+        /// Create contract object. Add a new contract to your project in Openfort
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createContractRequest"></param>
@@ -536,6 +539,12 @@ namespace Openfort.Api
 
             localVarRequestOptions.Data = createContractRequest;
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -557,10 +566,10 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Deletes a contract object.
+        /// Deletes a contract object. Delete a contract from the project by providing its contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <returns>ContractDeleteResponse</returns>
         public ContractDeleteResponse DeleteContract(string id)
         {
@@ -569,10 +578,10 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Deletes a contract object.
+        /// Deletes a contract object. Delete a contract from the project by providing its contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <returns>ApiResponse of ContractDeleteResponse</returns>
         public Openfort.Client.ApiResponse<ContractDeleteResponse> DeleteContractWithHttpInfo(string id)
         {
@@ -598,6 +607,12 @@ namespace Openfort.Api
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Delete<ContractDeleteResponse>("/v1/contracts/{id}", localVarRequestOptions, this.Configuration);
@@ -612,10 +627,10 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Deletes a contract object.
+        /// Deletes a contract object. Delete a contract from the project by providing its contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractDeleteResponse</returns>
         public async System.Threading.Tasks.Task<ContractDeleteResponse> DeleteContractAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -630,10 +645,10 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Deletes a contract object.
+        /// Deletes a contract object. Delete a contract from the project by providing its contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractDeleteResponse)</returns>
         public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractDeleteResponse>> DeleteContractWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -662,6 +677,12 @@ namespace Openfort.Api
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -683,7 +704,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
+        /// Get a contract. Retrieve a contract by providing their contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
@@ -695,7 +716,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
+        /// Get a contract. Retrieve a contract by providing their contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
@@ -724,6 +745,12 @@ namespace Openfort.Api
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<ContractResponse>("/v1/contracts/{id}", localVarRequestOptions, this.Configuration);
@@ -738,7 +765,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
+        /// Get a contract. Retrieve a contract by providing their contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
@@ -756,7 +783,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Retrieves the details of an existing contract. Supply the unique contract ID from either a contract creation request or the contract list, and Openfort will return the corresponding contract information.
+        /// Get a contract. Retrieve a contract by providing their contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID.</param>
@@ -788,6 +815,12 @@ namespace Openfort.Api
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -809,36 +842,36 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
+        /// List contracts. List of all contracts per project. By default, a maximum of ten contracts are shown.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="deleted"> (optional)</param>
-        /// <param name="chainId"> (optional)</param>
-        /// <param name="address"> (optional)</param>
-        /// <returns>ContractsResponse</returns>
-        public ContractsResponse GetContracts(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string))
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="name">Specifies the name of the contract. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted contracts. (optional)</param>
+        /// <param name="chainId">The chain ID of the contract. (optional)</param>
+        /// <param name="address">Specifies the address of the contract. (optional)</param>
+        /// <returns>ContractListResponse</returns>
+        public ContractListResponse GetContracts(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), int? chainId = default(int?), string address = default(string))
         {
-            Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = GetContractsWithHttpInfo(limit, skip, order, name, deleted, chainId, address);
+            Openfort.Client.ApiResponse<ContractListResponse> localVarResponse = GetContractsWithHttpInfo(limit, skip, order, name, deleted, chainId, address);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
+        /// List contracts. List of all contracts per project. By default, a maximum of ten contracts are shown.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="deleted"> (optional)</param>
-        /// <param name="chainId"> (optional)</param>
-        /// <param name="address"> (optional)</param>
-        /// <returns>ApiResponse of ContractsResponse</returns>
-        public Openfort.Client.ApiResponse<ContractsResponse> GetContractsWithHttpInfo(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string))
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="name">Specifies the name of the contract. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted contracts. (optional)</param>
+        /// <param name="chainId">The chain ID of the contract. (optional)</param>
+        /// <param name="address">Specifies the address of the contract. (optional)</param>
+        /// <returns>ApiResponse of ContractListResponse</returns>
+        public Openfort.Client.ApiResponse<ContractListResponse> GetContractsWithHttpInfo(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), int? chainId = default(int?), string address = default(string))
         {
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -885,9 +918,15 @@ namespace Openfort.Api
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "address", address));
             }
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<ContractsResponse>("/v1/contracts", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ContractListResponse>("/v1/contracts", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -899,43 +938,43 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
+        /// List contracts. List of all contracts per project. By default, a maximum of ten contracts are shown.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="deleted"> (optional)</param>
-        /// <param name="chainId"> (optional)</param>
-        /// <param name="address"> (optional)</param>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="name">Specifies the name of the contract. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted contracts. (optional)</param>
+        /// <param name="chainId">The chain ID of the contract. (optional)</param>
+        /// <param name="address">Specifies the address of the contract. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ContractsResponse</returns>
-        public async System.Threading.Tasks.Task<ContractsResponse> GetContractsAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ContractListResponse</returns>
+        public async System.Threading.Tasks.Task<ContractListResponse> GetContractsAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), int? chainId = default(int?), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetContractsWithHttpInfoAsync(limit, skip, order, name, deleted, chainId, address, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<ContractListResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            Openfort.Client.ApiResponse<ContractsResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<ContractListResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Returns a list of your contracts. The contracts are returned sorted by creation date, with the most recently created contracts appearing first.
+        /// List contracts. List of all contracts per project. By default, a maximum of ten contracts are shown.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="deleted"> (optional)</param>
-        /// <param name="chainId"> (optional)</param>
-        /// <param name="address"> (optional)</param>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="name">Specifies the name of the contract. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted contracts. (optional)</param>
+        /// <param name="chainId">The chain ID of the contract. (optional)</param>
+        /// <param name="address">Specifies the address of the contract. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ContractsResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractsResponse>> GetContractsWithHttpInfoAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), double? chainId = default(double?), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ContractListResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractListResponse>> GetContractsWithHttpInfoAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), int? chainId = default(int?), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -984,10 +1023,16 @@ namespace Openfort.Api
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "address", address));
             }
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.GetAsync<ContractsResponse>("/v1/contracts", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.GetAsync<ContractListResponse>("/v1/contracts", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -1005,10 +1050,10 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Updates a contract object.
+        /// Updates a contract object. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="updateContractRequest"></param>
         /// <returns>ContractResponse</returns>
         public ContractResponse UpdateContract(string id, UpdateContractRequest updateContractRequest)
@@ -1018,10 +1063,10 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Updates a contract object.
+        /// Updates a contract object. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="updateContractRequest"></param>
         /// <returns>ApiResponse of ContractResponse</returns>
         public Openfort.Client.ApiResponse<ContractResponse> UpdateContractWithHttpInfo(string id, UpdateContractRequest updateContractRequest)
@@ -1054,6 +1099,12 @@ namespace Openfort.Api
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateContractRequest;
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<ContractResponse>("/v1/contracts/{id}", localVarRequestOptions, this.Configuration);
@@ -1068,10 +1119,10 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Updates a contract object.
+        /// Updates a contract object. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="updateContractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractResponse</returns>
@@ -1087,10 +1138,10 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Updates a contract object.
+        /// Updates a contract object. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">Specifies the unique contract ID.</param>
         /// <param name="updateContractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
@@ -1126,6 +1177,12 @@ namespace Openfort.Api
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateContractRequest;
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 

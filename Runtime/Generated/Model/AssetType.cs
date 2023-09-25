@@ -32,28 +32,28 @@ namespace Openfort.Model
     public enum AssetType
     {
         /// <summary>
-        /// Enum _1 for value: 1
+        /// Enum ETH for value: ETH
         /// </summary>
-        [EnumMember(Value = "1")]
-        _1 = 1,
+        [EnumMember(Value = "ETH")]
+        ETH = 1,
 
         /// <summary>
-        /// Enum _2 for value: 2
+        /// Enum ERC20 for value: ERC20
         /// </summary>
-        [EnumMember(Value = "2")]
-        _2 = 2,
+        [EnumMember(Value = "ERC20")]
+        ERC20 = 2,
 
         /// <summary>
-        /// Enum _3 for value: 3
+        /// Enum ERC721 for value: ERC721
         /// </summary>
-        [EnumMember(Value = "3")]
-        _3 = 3,
+        [EnumMember(Value = "ERC721")]
+        ERC721 = 3,
 
         /// <summary>
-        /// Enum _4 for value: 4
+        /// Enum ERC1155 for value: ERC1155
         /// </summary>
-        [EnumMember(Value = "4")]
-        _4 = 4
+        [EnumMember(Value = "ERC1155")]
+        ERC1155 = 4
 
     }
 

@@ -27,7 +27,7 @@ using System.Reflection;
 namespace Openfort.Model
 {
     /// <summary>
-    /// TransactionIntentResponseAccount
+    /// The account ID.
     /// </summary>
     [JsonConverter(typeof(TransactionIntentResponseAccountJsonConverter))]
     [DataContract(Name = "TransactionIntentResponse_account")]
@@ -35,10 +35,10 @@ namespace Openfort.Model
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionIntentResponseAccount" /> class
-        /// with the <see cref="AccountResponse" /> class
+        /// with the <see cref="Account" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of AccountResponse.</param>
-        public TransactionIntentResponseAccount(AccountResponse actualInstance)
+        /// <param name="actualInstance">An instance of Account.</param>
+        public TransactionIntentResponseAccount(Account actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -47,10 +47,10 @@ namespace Openfort.Model
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionIntentResponseAccount" /> class
-        /// with the <see cref="PickAccountResponseId" /> class
+        /// with the <see cref="EntityIdResponse" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of PickAccountResponseId.</param>
-        public TransactionIntentResponseAccount(PickAccountResponseId actualInstance)
+        /// <param name="actualInstance">An instance of EntityIdResponse.</param>
+        public TransactionIntentResponseAccount(EntityIdResponse actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -71,39 +71,39 @@ namespace Openfort.Model
             }
             set
             {
-                if (value.GetType() == typeof(AccountResponse))
+                if (value.GetType() == typeof(Account))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(PickAccountResponseId))
+                else if (value.GetType() == typeof(EntityIdResponse))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AccountResponse, PickAccountResponseId");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: Account, EntityIdResponse");
                 }
             }
         }
 
         /// <summary>
-        /// Get the actual instance of `AccountResponse`. If the actual instance is not `AccountResponse`,
+        /// Get the actual instance of `Account`. If the actual instance is not `Account`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of AccountResponse</returns>
-        public AccountResponse GetAccountResponse()
+        /// <returns>An instance of Account</returns>
+        public Account GetAccount()
         {
-            return (AccountResponse)this.ActualInstance;
+            return (Account)this.ActualInstance;
         }
 
         /// <summary>
-        /// Get the actual instance of `PickAccountResponseId`. If the actual instance is not `PickAccountResponseId`,
+        /// Get the actual instance of `EntityIdResponse`. If the actual instance is not `EntityIdResponse`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of PickAccountResponseId</returns>
-        public PickAccountResponseId GetPickAccountResponseId()
+        /// <returns>An instance of EntityIdResponse</returns>
+        public EntityIdResponse GetEntityIdResponse()
         {
-            return (PickAccountResponseId)this.ActualInstance;
+            return (EntityIdResponse)this.ActualInstance;
         }
 
         /// <summary>
@@ -144,26 +144,26 @@ namespace Openfort.Model
 
             try
             {
-                newTransactionIntentResponseAccount = new TransactionIntentResponseAccount(JsonConvert.DeserializeObject<AccountResponse>(jsonString, TransactionIntentResponseAccount.SerializerSettings));
+                newTransactionIntentResponseAccount = new TransactionIntentResponseAccount(JsonConvert.DeserializeObject<Account>(jsonString, TransactionIntentResponseAccount.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
                 return newTransactionIntentResponseAccount;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into AccountResponse: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into Account: {1}", jsonString, exception.ToString()));
             }
 
             try
             {
-                newTransactionIntentResponseAccount = new TransactionIntentResponseAccount(JsonConvert.DeserializeObject<PickAccountResponseId>(jsonString, TransactionIntentResponseAccount.SerializerSettings));
+                newTransactionIntentResponseAccount = new TransactionIntentResponseAccount(JsonConvert.DeserializeObject<EntityIdResponse>(jsonString, TransactionIntentResponseAccount.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
                 return newTransactionIntentResponseAccount;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PickAccountResponseId: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into EntityIdResponse: {1}", jsonString, exception.ToString()));
             }
 
             // no match found, throw an exception

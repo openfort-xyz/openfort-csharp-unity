@@ -31,6 +31,12 @@ namespace Openfort.Model
     [DataContract(Name = "InventoryResponse")]
     public partial class InventoryResponse : IEquatable<InventoryResponse>
     {
+
+        /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public EntityTypeINVENTORY Object { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="InventoryResponse" /> class.
         /// </summary>
@@ -40,45 +46,36 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="InventoryResponse" /> class.
         /// </summary>
         /// <param name="_object">_object (required).</param>
-        /// <param name="nftAssets">nftAssets.</param>
-        /// <param name="nativeAsset">nativeAsset.</param>
-        /// <param name="tokenAssets">tokenAssets.</param>
-        public InventoryResponse(string _object = default(string), List<AssetInventory> nftAssets = default(List<AssetInventory>), AssetInventory nativeAsset = default(AssetInventory), List<AssetInventory> tokenAssets = default(List<AssetInventory>))
+        /// <param name="url">url (required).</param>
+        /// <param name="data">data (required).</param>
+        public InventoryResponse(EntityTypeINVENTORY _object = default(EntityTypeINVENTORY), string url = default(string), AssetInventory data = default(AssetInventory))
         {
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for InventoryResponse and cannot be null");
-            }
             this.Object = _object;
-            this.NftAssets = nftAssets;
-            this.NativeAsset = nativeAsset;
-            this.TokenAssets = tokenAssets;
+            // to ensure "url" is required (not null)
+            if (url == null)
+            {
+                throw new ArgumentNullException("url is a required property for InventoryResponse and cannot be null");
+            }
+            this.Url = url;
+            // to ensure "data" is required (not null)
+            if (data == null)
+            {
+                throw new ArgumentNullException("data is a required property for InventoryResponse and cannot be null");
+            }
+            this.Data = data;
         }
 
         /// <summary>
-        /// Gets or Sets Object
+        /// Gets or Sets Url
         /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
+        [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
+        public string Url { get; set; }
 
         /// <summary>
-        /// Gets or Sets NftAssets
+        /// Gets or Sets Data
         /// </summary>
-        [DataMember(Name = "nftAssets", EmitDefaultValue = false)]
-        public List<AssetInventory> NftAssets { get; set; }
-
-        /// <summary>
-        /// Gets or Sets NativeAsset
-        /// </summary>
-        [DataMember(Name = "nativeAsset", EmitDefaultValue = false)]
-        public AssetInventory NativeAsset { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TokenAssets
-        /// </summary>
-        [DataMember(Name = "tokenAssets", EmitDefaultValue = false)]
-        public List<AssetInventory> TokenAssets { get; set; }
+        [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
+        public AssetInventory Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -89,9 +86,8 @@ namespace Openfort.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class InventoryResponse {\n");
             sb.Append("  Object: ").Append(Object).Append("\n");
-            sb.Append("  NftAssets: ").Append(NftAssets).Append("\n");
-            sb.Append("  NativeAsset: ").Append(NativeAsset).Append("\n");
-            sb.Append("  TokenAssets: ").Append(TokenAssets).Append("\n");
+            sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -129,25 +125,17 @@ namespace Openfort.Model
             return 
                 (
                     this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
+                    this.Object.Equals(input.Object)
                 ) && 
                 (
-                    this.NftAssets == input.NftAssets ||
-                    this.NftAssets != null &&
-                    input.NftAssets != null &&
-                    this.NftAssets.SequenceEqual(input.NftAssets)
+                    this.Url == input.Url ||
+                    (this.Url != null &&
+                    this.Url.Equals(input.Url))
                 ) && 
                 (
-                    this.NativeAsset == input.NativeAsset ||
-                    (this.NativeAsset != null &&
-                    this.NativeAsset.Equals(input.NativeAsset))
-                ) && 
-                (
-                    this.TokenAssets == input.TokenAssets ||
-                    this.TokenAssets != null &&
-                    input.TokenAssets != null &&
-                    this.TokenAssets.SequenceEqual(input.TokenAssets)
+                    this.Data == input.Data ||
+                    (this.Data != null &&
+                    this.Data.Equals(input.Data))
                 );
         }
 
@@ -160,21 +148,14 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Object != null)
+                hashCode = (hashCode * 59) + this.Object.GetHashCode();
+                if (this.Url != null)
                 {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
                 }
-                if (this.NftAssets != null)
+                if (this.Data != null)
                 {
-                    hashCode = (hashCode * 59) + this.NftAssets.GetHashCode();
-                }
-                if (this.NativeAsset != null)
-                {
-                    hashCode = (hashCode * 59) + this.NativeAsset.GetHashCode();
-                }
-                if (this.TokenAssets != null)
-                {
-                    hashCode = (hashCode * 59) + this.TokenAssets.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Data.GetHashCode();
                 }
                 return hashCode;
             }

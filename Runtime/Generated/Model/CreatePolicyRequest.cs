@@ -39,10 +39,10 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreatePolicyRequest" /> class.
         /// </summary>
-        /// <param name="name">name (required).</param>
-        /// <param name="chainId">chainId (required).</param>
+        /// <param name="name">Specifies the name of the policy. (required).</param>
+        /// <param name="chainId">The chain ID of the policy. (required).</param>
         /// <param name="strategy">strategy (required).</param>
-        public CreatePolicyRequest(string name = default(string), double chainId = default(double), PolicyStrategy strategy = default(PolicyStrategy))
+        public CreatePolicyRequest(string name = default(string), int chainId = default(int), PolicyStrategyRequest strategy = default(PolicyStrategyRequest))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -60,22 +60,24 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Specifies the name of the policy.
         /// </summary>
+        /// <value>Specifies the name of the policy.</value>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets ChainId
+        /// The chain ID of the policy.
         /// </summary>
+        /// <value>The chain ID of the policy.</value>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
-        public double ChainId { get; set; }
+        public int ChainId { get; set; }
 
         /// <summary>
         /// Gets or Sets Strategy
         /// </summary>
         [DataMember(Name = "strategy", IsRequired = true, EmitDefaultValue = true)]
-        public PolicyStrategy Strategy { get; set; }
+        public PolicyStrategyRequest Strategy { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

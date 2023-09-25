@@ -36,7 +36,13 @@ namespace Openfort.Model
         /// Gets or Sets Type
         /// </summary>
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
-        public PolicySchema Type { get; set; }
+        public PolicyRuleType Type { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TimeIntervalType
+        /// </summary>
+        [DataMember(Name = "timeIntervalType", EmitDefaultValue = false)]
+        public TimeIntervalType? TimeIntervalType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreatePolicyAllowFunctionRequest" /> class.
         /// </summary>
@@ -46,36 +52,57 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="CreatePolicyAllowFunctionRequest" /> class.
         /// </summary>
         /// <param name="type">type (required).</param>
-        /// <param name="functionName">functionName (required).</param>
-        /// <param name="contract">contract (required).</param>
-        public CreatePolicyAllowFunctionRequest(PolicySchema type = default(PolicySchema), string functionName = default(string), string contract = default(string))
+        /// <param name="functionName">Name of the function in the contract to allow..</param>
+        /// <param name="contract">Contract ID to allow..</param>
+        /// <param name="gasLimit">Gas limit in WEI..</param>
+        /// <param name="countLimit">Number of times the function will be sponsored..</param>
+        /// <param name="timeIntervalType">timeIntervalType.</param>
+        /// <param name="timeIntervalValue">Time interval value..</param>
+        public CreatePolicyAllowFunctionRequest(PolicyRuleType type = default(PolicyRuleType), string functionName = default(string), string contract = default(string), string gasLimit = default(string), int countLimit = default(int), TimeIntervalType? timeIntervalType = default(TimeIntervalType?), int timeIntervalValue = default(int))
         {
             this.Type = type;
-            // to ensure "functionName" is required (not null)
-            if (functionName == null)
-            {
-                throw new ArgumentNullException("functionName is a required property for CreatePolicyAllowFunctionRequest and cannot be null");
-            }
             this.FunctionName = functionName;
-            // to ensure "contract" is required (not null)
-            if (contract == null)
-            {
-                throw new ArgumentNullException("contract is a required property for CreatePolicyAllowFunctionRequest and cannot be null");
-            }
             this.Contract = contract;
+            this.GasLimit = gasLimit;
+            this.CountLimit = countLimit;
+            this.TimeIntervalType = timeIntervalType;
+            this.TimeIntervalValue = timeIntervalValue;
         }
 
         /// <summary>
-        /// Gets or Sets FunctionName
+        /// Name of the function in the contract to allow.
         /// </summary>
-        [DataMember(Name = "functionName", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Name of the function in the contract to allow.</value>
+        [DataMember(Name = "functionName", EmitDefaultValue = true)]
         public string FunctionName { get; set; }
 
         /// <summary>
-        /// Gets or Sets Contract
+        /// Contract ID to allow.
         /// </summary>
-        [DataMember(Name = "contract", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Contract ID to allow.</value>
+        [DataMember(Name = "contract", EmitDefaultValue = true)]
         public string Contract { get; set; }
+
+        /// <summary>
+        /// Gas limit in WEI.
+        /// </summary>
+        /// <value>Gas limit in WEI.</value>
+        [DataMember(Name = "gasLimit", EmitDefaultValue = false)]
+        public string GasLimit { get; set; }
+
+        /// <summary>
+        /// Number of times the function will be sponsored.
+        /// </summary>
+        /// <value>Number of times the function will be sponsored.</value>
+        [DataMember(Name = "countLimit", EmitDefaultValue = false)]
+        public int CountLimit { get; set; }
+
+        /// <summary>
+        /// Time interval value.
+        /// </summary>
+        /// <value>Time interval value.</value>
+        [DataMember(Name = "timeIntervalValue", EmitDefaultValue = false)]
+        public int TimeIntervalValue { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -88,6 +115,10 @@ namespace Openfort.Model
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  FunctionName: ").Append(FunctionName).Append("\n");
             sb.Append("  Contract: ").Append(Contract).Append("\n");
+            sb.Append("  GasLimit: ").Append(GasLimit).Append("\n");
+            sb.Append("  CountLimit: ").Append(CountLimit).Append("\n");
+            sb.Append("  TimeIntervalType: ").Append(TimeIntervalType).Append("\n");
+            sb.Append("  TimeIntervalValue: ").Append(TimeIntervalValue).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -136,6 +167,23 @@ namespace Openfort.Model
                     this.Contract == input.Contract ||
                     (this.Contract != null &&
                     this.Contract.Equals(input.Contract))
+                ) && 
+                (
+                    this.GasLimit == input.GasLimit ||
+                    (this.GasLimit != null &&
+                    this.GasLimit.Equals(input.GasLimit))
+                ) && 
+                (
+                    this.CountLimit == input.CountLimit ||
+                    this.CountLimit.Equals(input.CountLimit)
+                ) && 
+                (
+                    this.TimeIntervalType == input.TimeIntervalType ||
+                    this.TimeIntervalType.Equals(input.TimeIntervalType)
+                ) && 
+                (
+                    this.TimeIntervalValue == input.TimeIntervalValue ||
+                    this.TimeIntervalValue.Equals(input.TimeIntervalValue)
                 );
         }
 
@@ -157,6 +205,13 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Contract.GetHashCode();
                 }
+                if (this.GasLimit != null)
+                {
+                    hashCode = (hashCode * 59) + this.GasLimit.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.CountLimit.GetHashCode();
+                hashCode = (hashCode * 59) + this.TimeIntervalType.GetHashCode();
+                hashCode = (hashCode * 59) + this.TimeIntervalValue.GetHashCode();
                 return hashCode;
             }
         }

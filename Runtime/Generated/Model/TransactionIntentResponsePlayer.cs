@@ -27,7 +27,7 @@ using System.Reflection;
 namespace Openfort.Model
 {
     /// <summary>
-    /// TransactionIntentResponsePlayer
+    /// The player ID.
     /// </summary>
     [JsonConverter(typeof(TransactionIntentResponsePlayerJsonConverter))]
     [DataContract(Name = "TransactionIntentResponse_player")]
@@ -35,10 +35,10 @@ namespace Openfort.Model
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionIntentResponsePlayer" /> class
-        /// with the <see cref="PlayerResponse" /> class
+        /// with the <see cref="Player" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of PlayerResponse.</param>
-        public TransactionIntentResponsePlayer(PlayerResponse actualInstance)
+        /// <param name="actualInstance">An instance of Player.</param>
+        public TransactionIntentResponsePlayer(Player actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -47,10 +47,10 @@ namespace Openfort.Model
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionIntentResponsePlayer" /> class
-        /// with the <see cref="PickPlayerResponseId" /> class
+        /// with the <see cref="EntityIdResponse" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of PickPlayerResponseId.</param>
-        public TransactionIntentResponsePlayer(PickPlayerResponseId actualInstance)
+        /// <param name="actualInstance">An instance of EntityIdResponse.</param>
+        public TransactionIntentResponsePlayer(EntityIdResponse actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -71,39 +71,39 @@ namespace Openfort.Model
             }
             set
             {
-                if (value.GetType() == typeof(PickPlayerResponseId))
+                if (value.GetType() == typeof(EntityIdResponse))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(PlayerResponse))
+                else if (value.GetType() == typeof(Player))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: PickPlayerResponseId, PlayerResponse");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: EntityIdResponse, Player");
                 }
             }
         }
 
         /// <summary>
-        /// Get the actual instance of `PlayerResponse`. If the actual instance is not `PlayerResponse`,
+        /// Get the actual instance of `Player`. If the actual instance is not `Player`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of PlayerResponse</returns>
-        public PlayerResponse GetPlayerResponse()
+        /// <returns>An instance of Player</returns>
+        public Player GetPlayer()
         {
-            return (PlayerResponse)this.ActualInstance;
+            return (Player)this.ActualInstance;
         }
 
         /// <summary>
-        /// Get the actual instance of `PickPlayerResponseId`. If the actual instance is not `PickPlayerResponseId`,
+        /// Get the actual instance of `EntityIdResponse`. If the actual instance is not `EntityIdResponse`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of PickPlayerResponseId</returns>
-        public PickPlayerResponseId GetPickPlayerResponseId()
+        /// <returns>An instance of EntityIdResponse</returns>
+        public EntityIdResponse GetEntityIdResponse()
         {
-            return (PickPlayerResponseId)this.ActualInstance;
+            return (EntityIdResponse)this.ActualInstance;
         }
 
         /// <summary>
@@ -144,26 +144,26 @@ namespace Openfort.Model
 
             try
             {
-                newTransactionIntentResponsePlayer = new TransactionIntentResponsePlayer(JsonConvert.DeserializeObject<PickPlayerResponseId>(jsonString, TransactionIntentResponsePlayer.SerializerSettings));
+                newTransactionIntentResponsePlayer = new TransactionIntentResponsePlayer(JsonConvert.DeserializeObject<EntityIdResponse>(jsonString, TransactionIntentResponsePlayer.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
                 return newTransactionIntentResponsePlayer;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PickPlayerResponseId: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into EntityIdResponse: {1}", jsonString, exception.ToString()));
             }
 
             try
             {
-                newTransactionIntentResponsePlayer = new TransactionIntentResponsePlayer(JsonConvert.DeserializeObject<PlayerResponse>(jsonString, TransactionIntentResponsePlayer.SerializerSettings));
+                newTransactionIntentResponsePlayer = new TransactionIntentResponsePlayer(JsonConvert.DeserializeObject<Player>(jsonString, TransactionIntentResponsePlayer.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
                 return newTransactionIntentResponsePlayer;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PlayerResponse: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into Player: {1}", jsonString, exception.ToString()));
             }
 
             // no match found, throw an exception

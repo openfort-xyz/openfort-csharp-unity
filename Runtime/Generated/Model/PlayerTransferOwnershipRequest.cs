@@ -43,7 +43,7 @@ namespace Openfort.Model
         /// <param name="chainId">The chain id where the account is. (required).</param>
         /// <param name="newOwnerAddress">The address of the new owner (required).</param>
         /// <param name="player">The player ID.</param>
-        public PlayerTransferOwnershipRequest(string policy = default(string), double chainId = default(double), string newOwnerAddress = default(string), string player = default(string))
+        public PlayerTransferOwnershipRequest(string policy = default(string), int chainId = default(int), string newOwnerAddress = default(string), string player = default(string))
         {
             // to ensure "policy" is required (not null)
             if (policy == null)
@@ -73,7 +73,7 @@ namespace Openfort.Model
         /// </summary>
         /// <value>The chain id where the account is.</value>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
-        public double ChainId { get; set; }
+        public int ChainId { get; set; }
 
         /// <summary>
         /// The address of the new owner

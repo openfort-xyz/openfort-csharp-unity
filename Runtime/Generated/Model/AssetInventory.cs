@@ -49,12 +49,14 @@ namespace Openfort.Model
         /// <param name="address">address.</param>
         /// <param name="tokenId">tokenId.</param>
         /// <param name="amount">amount in Wei.</param>
-        public AssetInventory(AssetType assetType = default(AssetType), string address = default(string), double tokenId = default(double), string amount = default(string))
+        /// <param name="lastTransferredAt">lastTransferredAt.</param>
+        public AssetInventory(AssetType assetType = default(AssetType), string address = default(string), double tokenId = default(double), string amount = default(string), int lastTransferredAt = default(int))
         {
             this.AssetType = assetType;
             this.Address = address;
             this.TokenId = tokenId;
             this.Amount = amount;
+            this.LastTransferredAt = lastTransferredAt;
         }
 
         /// <summary>
@@ -77,6 +79,12 @@ namespace Openfort.Model
         public string Amount { get; set; }
 
         /// <summary>
+        /// Gets or Sets LastTransferredAt
+        /// </summary>
+        [DataMember(Name = "lastTransferredAt", EmitDefaultValue = false)]
+        public int LastTransferredAt { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -88,6 +96,7 @@ namespace Openfort.Model
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  TokenId: ").Append(TokenId).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
+            sb.Append("  LastTransferredAt: ").Append(LastTransferredAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -140,6 +149,10 @@ namespace Openfort.Model
                     this.Amount == input.Amount ||
                     (this.Amount != null &&
                     this.Amount.Equals(input.Amount))
+                ) && 
+                (
+                    this.LastTransferredAt == input.LastTransferredAt ||
+                    this.LastTransferredAt.Equals(input.LastTransferredAt)
                 );
         }
 
@@ -162,6 +175,7 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Amount.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.LastTransferredAt.GetHashCode();
                 return hashCode;
             }
         }

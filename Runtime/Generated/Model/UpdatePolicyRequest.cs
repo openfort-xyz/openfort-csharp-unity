@@ -34,41 +34,44 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdatePolicyRequest" /> class.
         /// </summary>
-        /// <param name="name">name.</param>
-        /// <param name="chainId">chainId.</param>
-        /// <param name="deleted">deleted.</param>
+        /// <param name="name">Specifies the name of the policy..</param>
+        /// <param name="chainId">The chain ID of the policy..</param>
         /// <param name="strategy">strategy.</param>
-        public UpdatePolicyRequest(string name = default(string), double chainId = default(double), bool deleted = default(bool), PolicyStrategy strategy = default(PolicyStrategy))
+        /// <param name="deleted">Specifies whether to delete the policy..</param>
+        public UpdatePolicyRequest(string name = default(string), int chainId = default(int), PolicyStrategyRequest strategy = default(PolicyStrategyRequest), bool deleted = default(bool))
         {
             this.Name = name;
             this.ChainId = chainId;
-            this.Deleted = deleted;
             this.Strategy = strategy;
+            this.Deleted = deleted;
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Specifies the name of the policy.
         /// </summary>
+        /// <value>Specifies the name of the policy.</value>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets ChainId
+        /// The chain ID of the policy.
         /// </summary>
+        /// <value>The chain ID of the policy.</value>
         [DataMember(Name = "chainId", EmitDefaultValue = false)]
-        public double ChainId { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Deleted
-        /// </summary>
-        [DataMember(Name = "deleted", EmitDefaultValue = true)]
-        public bool Deleted { get; set; }
+        public int ChainId { get; set; }
 
         /// <summary>
         /// Gets or Sets Strategy
         /// </summary>
         [DataMember(Name = "strategy", EmitDefaultValue = false)]
-        public PolicyStrategy Strategy { get; set; }
+        public PolicyStrategyRequest Strategy { get; set; }
+
+        /// <summary>
+        /// Specifies whether to delete the policy.
+        /// </summary>
+        /// <value>Specifies whether to delete the policy.</value>
+        [DataMember(Name = "deleted", EmitDefaultValue = true)]
+        public bool Deleted { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -80,8 +83,8 @@ namespace Openfort.Model
             sb.Append("class UpdatePolicyRequest {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
-            sb.Append("  Deleted: ").Append(Deleted).Append("\n");
             sb.Append("  Strategy: ").Append(Strategy).Append("\n");
+            sb.Append("  Deleted: ").Append(Deleted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -127,13 +130,13 @@ namespace Openfort.Model
                     this.ChainId.Equals(input.ChainId)
                 ) && 
                 (
-                    this.Deleted == input.Deleted ||
-                    this.Deleted.Equals(input.Deleted)
-                ) && 
-                (
                     this.Strategy == input.Strategy ||
                     (this.Strategy != null &&
                     this.Strategy.Equals(input.Strategy))
+                ) && 
+                (
+                    this.Deleted == input.Deleted ||
+                    this.Deleted.Equals(input.Deleted)
                 );
         }
 
@@ -151,11 +154,11 @@ namespace Openfort.Model
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
-                hashCode = (hashCode * 59) + this.Deleted.GetHashCode();
                 if (this.Strategy != null)
                 {
                     hashCode = (hashCode * 59) + this.Strategy.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Deleted.GetHashCode();
                 return hashCode;
             }
         }

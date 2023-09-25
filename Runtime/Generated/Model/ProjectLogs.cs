@@ -31,6 +31,12 @@ namespace Openfort.Model
     [DataContract(Name = "ProjectLogs")]
     public partial class ProjectLogs : IEquatable<ProjectLogs>
     {
+
+        /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public ResponseTypeLIST Object { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectLogs" /> class.
         /// </summary>
@@ -42,13 +48,11 @@ namespace Openfort.Model
         /// <param name="_object">_object (required).</param>
         /// <param name="url">url (required).</param>
         /// <param name="data">data (required).</param>
-        public ProjectLogs(string _object = default(string), string url = default(string), List<Log> data = default(List<Log>))
+        /// <param name="start">start (required).</param>
+        /// <param name="end">end (required).</param>
+        /// <param name="total">total (required).</param>
+        public ProjectLogs(ResponseTypeLIST _object = default(ResponseTypeLIST), string url = default(string), List<Log> data = default(List<Log>), double start = default(double), double end = default(double), double total = default(double))
         {
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for ProjectLogs and cannot be null");
-            }
             this.Object = _object;
             // to ensure "url" is required (not null)
             if (url == null)
@@ -62,13 +66,10 @@ namespace Openfort.Model
                 throw new ArgumentNullException("data is a required property for ProjectLogs and cannot be null");
             }
             this.Data = data;
+            this.Start = start;
+            this.End = end;
+            this.Total = total;
         }
-
-        /// <summary>
-        /// Gets or Sets Object
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
 
         /// <summary>
         /// Gets or Sets Url
@@ -83,6 +84,24 @@ namespace Openfort.Model
         public List<Log> Data { get; set; }
 
         /// <summary>
+        /// Gets or Sets Start
+        /// </summary>
+        [DataMember(Name = "start", IsRequired = true, EmitDefaultValue = true)]
+        public double Start { get; set; }
+
+        /// <summary>
+        /// Gets or Sets End
+        /// </summary>
+        [DataMember(Name = "end", IsRequired = true, EmitDefaultValue = true)]
+        public double End { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Total
+        /// </summary>
+        [DataMember(Name = "total", IsRequired = true, EmitDefaultValue = true)]
+        public double Total { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -93,6 +112,9 @@ namespace Openfort.Model
             sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  Start: ").Append(Start).Append("\n");
+            sb.Append("  End: ").Append(End).Append("\n");
+            sb.Append("  Total: ").Append(Total).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -130,8 +152,7 @@ namespace Openfort.Model
             return 
                 (
                     this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
+                    this.Object.Equals(input.Object)
                 ) && 
                 (
                     this.Url == input.Url ||
@@ -143,6 +164,18 @@ namespace Openfort.Model
                     this.Data != null &&
                     input.Data != null &&
                     this.Data.SequenceEqual(input.Data)
+                ) && 
+                (
+                    this.Start == input.Start ||
+                    this.Start.Equals(input.Start)
+                ) && 
+                (
+                    this.End == input.End ||
+                    this.End.Equals(input.End)
+                ) && 
+                (
+                    this.Total == input.Total ||
+                    this.Total.Equals(input.Total)
                 );
         }
 
@@ -155,10 +188,7 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 if (this.Url != null)
                 {
                     hashCode = (hashCode * 59) + this.Url.GetHashCode();
@@ -167,6 +197,9 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Data.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Start.GetHashCode();
+                hashCode = (hashCode * 59) + this.End.GetHashCode();
+                hashCode = (hashCode * 59) + this.Total.GetHashCode();
                 return hashCode;
             }
         }

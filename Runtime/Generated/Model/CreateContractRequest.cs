@@ -39,12 +39,12 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateContractRequest" /> class.
         /// </summary>
-        /// <param name="name">name (required).</param>
-        /// <param name="chainId">chainId (required).</param>
-        /// <param name="address">address (required).</param>
-        /// <param name="abi">abi.</param>
-        /// <param name="publicVerification">publicVerification.</param>
-        public CreateContractRequest(string name = default(string), double chainId = default(double), string address = default(string), List<Abi> abi = default(List<Abi>), bool publicVerification = default(bool))
+        /// <param name="name">Specifies the name of the contract (Only for display purposes). (required).</param>
+        /// <param name="chainId">Specifies the chain ID of the contract. (required).</param>
+        /// <param name="address">Specifies the address of the contract. (required).</param>
+        /// <param name="abi">Specifies the ABI of the contract..</param>
+        /// <param name="publicVerification">Specifies whether to verify the contract publicly..</param>
+        public CreateContractRequest(string name = default(string), int chainId = default(int), string address = default(string), List<Abi> abi = default(List<Abi>), bool publicVerification = default(bool))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -64,32 +64,38 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Specifies the name of the contract (Only for display purposes).
         /// </summary>
+        /// <value>Specifies the name of the contract (Only for display purposes).</value>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets ChainId
+        /// Specifies the chain ID of the contract.
         /// </summary>
+        /// <value>Specifies the chain ID of the contract.</value>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
-        public double ChainId { get; set; }
+        public int ChainId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Address
+        /// Specifies the address of the contract.
         /// </summary>
+        /// <value>Specifies the address of the contract.</value>
         [DataMember(Name = "address", IsRequired = true, EmitDefaultValue = true)]
         public string Address { get; set; }
 
         /// <summary>
-        /// Gets or Sets Abi
+        /// Specifies the ABI of the contract.
         /// </summary>
+        /// <value>Specifies the ABI of the contract.</value>
         [DataMember(Name = "abi", EmitDefaultValue = false)]
         public List<Abi> Abi { get; set; }
 
         /// <summary>
-        /// Gets or Sets PublicVerification
+        /// Specifies whether to verify the contract publicly.
         /// </summary>
+        /// <value>Specifies whether to verify the contract publicly.</value>
+        /// <example>false</example>
         [DataMember(Name = "publicVerification", EmitDefaultValue = true)]
         public bool PublicVerification { get; set; }
 

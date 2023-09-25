@@ -31,6 +31,12 @@ namespace Openfort.Model
     [DataContract(Name = "ContractResponse")]
     public partial class ContractResponse : IEquatable<ContractResponse>
     {
+
+        /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public EntityTypeCONTRACT Object { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ContractResponse" /> class.
         /// </summary>
@@ -43,12 +49,12 @@ namespace Openfort.Model
         /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="name">name (required).</param>
-        /// <param name="chainId">chainId (required).</param>
+        /// <param name="chainId">The chain ID. (required).</param>
         /// <param name="address">address (required).</param>
         /// <param name="deleted">deleted (required).</param>
         /// <param name="abi">abi (required).</param>
         /// <param name="publicVerification">publicVerification (required).</param>
-        public ContractResponse(string id = default(string), string _object = default(string), int createdAt = default(int), string name = default(string), double chainId = default(double), string address = default(string), bool deleted = default(bool), List<Abi> abi = default(List<Abi>), bool publicVerification = default(bool))
+        public ContractResponse(string id = default(string), EntityTypeCONTRACT _object = default(EntityTypeCONTRACT), int createdAt = default(int), string name = default(string), int chainId = default(int), string address = default(string), bool deleted = default(bool), List<Abi> abi = default(List<Abi>), bool publicVerification = default(bool))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -56,11 +62,6 @@ namespace Openfort.Model
                 throw new ArgumentNullException("id is a required property for ContractResponse and cannot be null");
             }
             this.Id = id;
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for ContractResponse and cannot be null");
-            }
             this.Object = _object;
             this.CreatedAt = createdAt;
             // to ensure "name" is required (not null)
@@ -93,12 +94,6 @@ namespace Openfort.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Object
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
-
-        /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
@@ -111,10 +106,11 @@ namespace Openfort.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets ChainId
+        /// The chain ID.
         /// </summary>
+        /// <value>The chain ID.</value>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
-        public double ChainId { get; set; }
+        public int ChainId { get; set; }
 
         /// <summary>
         /// Gets or Sets Address
@@ -199,8 +195,7 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
+                    this.Object.Equals(input.Object)
                 ) && 
                 (
                     this.CreatedAt == input.CreatedAt ||
@@ -249,10 +244,7 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 if (this.Name != null)
                 {

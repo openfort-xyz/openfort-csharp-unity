@@ -39,8 +39,8 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreatePlayerRequest" /> class.
         /// </summary>
-        /// <param name="name">name (required).</param>
-        /// <param name="description">description.</param>
+        /// <param name="name">Specifies the player name. (required).</param>
+        /// <param name="description">Specifies the player description..</param>
         public CreatePlayerRequest(string name = default(string), string description = default(string))
         {
             // to ensure "name" is required (not null)
@@ -53,14 +53,16 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Specifies the player name.
         /// </summary>
+        /// <value>Specifies the player name.</value>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Description
+        /// Specifies the player description.
         /// </summary>
+        /// <value>Specifies the player description.</value>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 

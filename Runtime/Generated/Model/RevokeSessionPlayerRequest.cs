@@ -39,11 +39,11 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RevokeSessionPlayerRequest" /> class.
         /// </summary>
-        /// <param name="address">address (required).</param>
-        /// <param name="policy">policy.</param>
-        /// <param name="optimistic">optimistic.</param>
-        /// <param name="chainId">chainId (required).</param>
-        public RevokeSessionPlayerRequest(string address = default(string), string policy = default(string), bool optimistic = default(bool), double chainId = default(double))
+        /// <param name="address">The address of the session key to revoke. (required).</param>
+        /// <param name="policy">The policy ID.</param>
+        /// <param name="optimistic">Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not..</param>
+        /// <param name="chainId">The chain ID. (required).</param>
+        public RevokeSessionPlayerRequest(string address = default(string), string policy = default(string), bool optimistic = default(bool), int chainId = default(int))
         {
             // to ensure "address" is required (not null)
             if (address == null)
@@ -57,28 +57,33 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets Address
+        /// The address of the session key to revoke.
         /// </summary>
+        /// <value>The address of the session key to revoke.</value>
         [DataMember(Name = "address", IsRequired = true, EmitDefaultValue = true)]
         public string Address { get; set; }
 
         /// <summary>
-        /// Gets or Sets Policy
+        /// The policy ID
         /// </summary>
+        /// <value>The policy ID</value>
         [DataMember(Name = "policy", EmitDefaultValue = false)]
         public string Policy { get; set; }
 
         /// <summary>
-        /// Gets or Sets Optimistic
+        /// Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not.
         /// </summary>
+        /// <value>Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not.</value>
+        /// <example>true</example>
         [DataMember(Name = "optimistic", EmitDefaultValue = true)]
         public bool Optimistic { get; set; }
 
         /// <summary>
-        /// Gets or Sets ChainId
+        /// The chain ID.
         /// </summary>
+        /// <value>The chain ID.</value>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
-        public double ChainId { get; set; }
+        public int ChainId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -31,6 +31,12 @@ namespace Openfort.Model
     [DataContract(Name = "SignPayloadResponse")]
     public partial class SignPayloadResponse : IEquatable<SignPayloadResponse>
     {
+
+        /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public EntityTypeSIGNATURE Object { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SignPayloadResponse" /> class.
         /// </summary>
@@ -44,13 +50,8 @@ namespace Openfort.Model
         /// <param name="address">address (required).</param>
         /// <param name="hash">hash (required).</param>
         /// <param name="signature">signature (required).</param>
-        public SignPayloadResponse(string _object = default(string), string account = default(string), string address = default(string), string hash = default(string), string signature = default(string))
+        public SignPayloadResponse(EntityTypeSIGNATURE _object = default(EntityTypeSIGNATURE), string account = default(string), string address = default(string), string hash = default(string), string signature = default(string))
         {
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for SignPayloadResponse and cannot be null");
-            }
             this.Object = _object;
             // to ensure "account" is required (not null)
             if (account == null)
@@ -77,12 +78,6 @@ namespace Openfort.Model
             }
             this.Signature = signature;
         }
-
-        /// <summary>
-        /// Gets or Sets Object
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
 
         /// <summary>
         /// Gets or Sets Account
@@ -158,8 +153,7 @@ namespace Openfort.Model
             return 
                 (
                     this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
+                    this.Object.Equals(input.Object)
                 ) && 
                 (
                     this.Account == input.Account ||
@@ -192,10 +186,7 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 if (this.Account != null)
                 {
                     hashCode = (hashCode * 59) + this.Account.GetHashCode();

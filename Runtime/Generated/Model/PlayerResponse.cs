@@ -31,6 +31,12 @@ namespace Openfort.Model
     [DataContract(Name = "PlayerResponse")]
     public partial class PlayerResponse : IEquatable<PlayerResponse>
     {
+
+        /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public EntityTypePLAYER Object { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PlayerResponse" /> class.
         /// </summary>
@@ -39,15 +45,15 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PlayerResponse" /> class.
         /// </summary>
-        /// <param name="transactionIntents">transactionIntents.</param>
-        /// <param name="accounts">accounts.</param>
         /// <param name="id">id (required).</param>
         /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="description">description (required).</param>
         /// <param name="metadata">metadata (required).</param>
-        public PlayerResponse(List<PolicyResponseTransactionIntentsInner> transactionIntents = default(List<PolicyResponseTransactionIntentsInner>), List<TransactionIntentResponseAccount> accounts = default(List<TransactionIntentResponseAccount>), string id = default(string), string _object = default(string), int createdAt = default(int), string name = default(string), string description = default(string), string metadata = default(string))
+        /// <param name="transactionIntents">transactionIntents.</param>
+        /// <param name="accounts">accounts.</param>
+        public PlayerResponse(string id = default(string), EntityTypePLAYER _object = default(EntityTypePLAYER), int createdAt = default(int), string name = default(string), string description = default(string), string metadata = default(string), List<PlayerResponseTransactionIntentsInner> transactionIntents = default(List<PlayerResponseTransactionIntentsInner>), List<PlayerResponseAccountsInner> accounts = default(List<PlayerResponseAccountsInner>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -55,11 +61,6 @@ namespace Openfort.Model
                 throw new ArgumentNullException("id is a required property for PlayerResponse and cannot be null");
             }
             this.Id = id;
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for PlayerResponse and cannot be null");
-            }
             this.Object = _object;
             this.CreatedAt = createdAt;
             // to ensure "name" is required (not null)
@@ -85,28 +86,10 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets TransactionIntents
-        /// </summary>
-        [DataMember(Name = "transactionIntents", EmitDefaultValue = false)]
-        public List<PolicyResponseTransactionIntentsInner> TransactionIntents { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Accounts
-        /// </summary>
-        [DataMember(Name = "accounts", EmitDefaultValue = false)]
-        public List<TransactionIntentResponseAccount> Accounts { get; set; }
-
-        /// <summary>
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Object
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt
@@ -133,6 +116,18 @@ namespace Openfort.Model
         public string Metadata { get; set; }
 
         /// <summary>
+        /// Gets or Sets TransactionIntents
+        /// </summary>
+        [DataMember(Name = "transactionIntents", EmitDefaultValue = false)]
+        public List<PlayerResponseTransactionIntentsInner> TransactionIntents { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Accounts
+        /// </summary>
+        [DataMember(Name = "accounts", EmitDefaultValue = false)]
+        public List<PlayerResponseAccountsInner> Accounts { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -140,14 +135,14 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class PlayerResponse {\n");
-            sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
-            sb.Append("  Accounts: ").Append(Accounts).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
+            sb.Append("  Accounts: ").Append(Accounts).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -184,26 +179,13 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.TransactionIntents == input.TransactionIntents ||
-                    this.TransactionIntents != null &&
-                    input.TransactionIntents != null &&
-                    this.TransactionIntents.SequenceEqual(input.TransactionIntents)
-                ) && 
-                (
-                    this.Accounts == input.Accounts ||
-                    this.Accounts != null &&
-                    input.Accounts != null &&
-                    this.Accounts.SequenceEqual(input.Accounts)
-                ) && 
-                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
                 ) && 
                 (
                     this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
+                    this.Object.Equals(input.Object)
                 ) && 
                 (
                     this.CreatedAt == input.CreatedAt ||
@@ -223,6 +205,18 @@ namespace Openfort.Model
                     this.Metadata == input.Metadata ||
                     (this.Metadata != null &&
                     this.Metadata.Equals(input.Metadata))
+                ) && 
+                (
+                    this.TransactionIntents == input.TransactionIntents ||
+                    this.TransactionIntents != null &&
+                    input.TransactionIntents != null &&
+                    this.TransactionIntents.SequenceEqual(input.TransactionIntents)
+                ) && 
+                (
+                    this.Accounts == input.Accounts ||
+                    this.Accounts != null &&
+                    input.Accounts != null &&
+                    this.Accounts.SequenceEqual(input.Accounts)
                 );
         }
 
@@ -235,22 +229,11 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.TransactionIntents != null)
-                {
-                    hashCode = (hashCode * 59) + this.TransactionIntents.GetHashCode();
-                }
-                if (this.Accounts != null)
-                {
-                    hashCode = (hashCode * 59) + this.Accounts.GetHashCode();
-                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 if (this.Name != null)
                 {
@@ -263,6 +246,14 @@ namespace Openfort.Model
                 if (this.Metadata != null)
                 {
                     hashCode = (hashCode * 59) + this.Metadata.GetHashCode();
+                }
+                if (this.TransactionIntents != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransactionIntents.GetHashCode();
+                }
+                if (this.Accounts != null)
+                {
+                    hashCode = (hashCode * 59) + this.Accounts.GetHashCode();
                 }
                 return hashCode;
             }

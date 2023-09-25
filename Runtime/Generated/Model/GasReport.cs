@@ -31,6 +31,12 @@ namespace Openfort.Model
     [DataContract(Name = "GasReport")]
     public partial class GasReport : IEquatable<GasReport>
     {
+
+        /// <summary>
+        /// Gets or Sets Object
+        /// </summary>
+        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
+        public ResponseTypeLIST Object { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="GasReport" /> class.
         /// </summary>
@@ -41,13 +47,8 @@ namespace Openfort.Model
         /// </summary>
         /// <param name="_object">_object (required).</param>
         /// <param name="data">data (required).</param>
-        public GasReport(string _object = default(string), List<Object> data = default(List<Object>))
+        public GasReport(ResponseTypeLIST _object = default(ResponseTypeLIST), List<GasReportDataInner> data = default(List<GasReportDataInner>))
         {
-            // to ensure "_object" is required (not null)
-            if (_object == null)
-            {
-                throw new ArgumentNullException("_object is a required property for GasReport and cannot be null");
-            }
             this.Object = _object;
             // to ensure "data" is required (not null)
             if (data == null)
@@ -58,16 +59,10 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets Object
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public string Object { get; set; }
-
-        /// <summary>
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
-        public List<Object> Data { get; set; }
+        public List<GasReportDataInner> Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +111,7 @@ namespace Openfort.Model
             return 
                 (
                     this.Object == input.Object ||
-                    (this.Object != null &&
-                    this.Object.Equals(input.Object))
+                    this.Object.Equals(input.Object)
                 ) && 
                 (
                     this.Data == input.Data ||
@@ -136,10 +130,7 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Object != null)
-                {
-                    hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 if (this.Data != null)
                 {
                     hashCode = (hashCode * 59) + this.Data.GetHashCode();

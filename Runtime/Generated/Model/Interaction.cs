@@ -34,55 +34,56 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Interaction" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Interaction() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Interaction" /> class.
-        /// </summary>
-        /// <param name="contract">contract.</param>
-        /// <param name="value">value.</param>
-        /// <param name="functionName">functionName (required).</param>
-        /// <param name="functionArgs">functionArgs (required).</param>
-        public Interaction(string contract = default(string), string value = default(string), string functionName = default(string), List<Object> functionArgs = default(List<Object>))
+        /// <param name="to">The address of the contract..</param>
+        /// <param name="contract">The contract interacting with.</param>
+        /// <param name="value">The value of the transaction..</param>
+        /// <param name="functionName">The function name of the contract..</param>
+        /// <param name="functionArgs">The function arguments of the contract..</param>
+        public Interaction(string to = default(string), string contract = default(string), string value = default(string), string functionName = default(string), List<Object> functionArgs = default(List<Object>))
         {
-            // to ensure "functionName" is required (not null)
-            if (functionName == null)
-            {
-                throw new ArgumentNullException("functionName is a required property for Interaction and cannot be null");
-            }
-            this.FunctionName = functionName;
-            // to ensure "functionArgs" is required (not null)
-            if (functionArgs == null)
-            {
-                throw new ArgumentNullException("functionArgs is a required property for Interaction and cannot be null");
-            }
-            this.FunctionArgs = functionArgs;
+            this.To = to;
             this.Contract = contract;
             this.Value = value;
+            this.FunctionName = functionName;
+            this.FunctionArgs = functionArgs;
         }
 
         /// <summary>
-        /// Gets or Sets Contract
+        /// The address of the contract.
         /// </summary>
+        /// <value>The address of the contract.</value>
+        [DataMember(Name = "to", EmitDefaultValue = false)]
+        public string To { get; set; }
+
+        /// <summary>
+        /// The contract interacting with
+        /// </summary>
+        /// <value>The contract interacting with</value>
+        /// <example>&quot;con_...&quot;</example>
         [DataMember(Name = "contract", EmitDefaultValue = false)]
         public string Contract { get; set; }
 
         /// <summary>
-        /// Gets or Sets Value
+        /// The value of the transaction.
         /// </summary>
+        /// <value>The value of the transaction.</value>
+        /// <example>&quot;100000000000000&quot;</example>
         [DataMember(Name = "value", EmitDefaultValue = false)]
         public string Value { get; set; }
 
         /// <summary>
-        /// Gets or Sets FunctionName
+        /// The function name of the contract.
         /// </summary>
-        [DataMember(Name = "functionName", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>The function name of the contract.</value>
+        /// <example>&quot;mint&quot;</example>
+        [DataMember(Name = "functionName", EmitDefaultValue = false)]
         public string FunctionName { get; set; }
 
         /// <summary>
-        /// Gets or Sets FunctionArgs
+        /// The function arguments of the contract.
         /// </summary>
-        [DataMember(Name = "functionArgs", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>The function arguments of the contract.</value>
+        [DataMember(Name = "functionArgs", EmitDefaultValue = false)]
         public List<Object> FunctionArgs { get; set; }
 
         /// <summary>
@@ -93,6 +94,7 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Interaction {\n");
+            sb.Append("  To: ").Append(To).Append("\n");
             sb.Append("  Contract: ").Append(Contract).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("  FunctionName: ").Append(FunctionName).Append("\n");
@@ -133,6 +135,11 @@ namespace Openfort.Model
             }
             return 
                 (
+                    this.To == input.To ||
+                    (this.To != null &&
+                    this.To.Equals(input.To))
+                ) && 
+                (
                     this.Contract == input.Contract ||
                     (this.Contract != null &&
                     this.Contract.Equals(input.Contract))
@@ -164,6 +171,10 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.To != null)
+                {
+                    hashCode = (hashCode * 59) + this.To.GetHashCode();
+                }
                 if (this.Contract != null)
                 {
                     hashCode = (hashCode * 59) + this.Contract.GetHashCode();

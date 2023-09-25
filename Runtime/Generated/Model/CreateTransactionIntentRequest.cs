@@ -39,13 +39,14 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateTransactionIntentRequest" /> class.
         /// </summary>
-        /// <param name="player">player (required).</param>
-        /// <param name="chainId">chainId (required).</param>
-        /// <param name="policy">policy.</param>
-        /// <param name="externalOwnerAddress">externalOwnerAddress.</param>
-        /// <param name="optimistic">optimistic (required).</param>
+        /// <param name="player">The player ID. (required).</param>
+        /// <param name="chainId">The chain ID. (required).</param>
+        /// <param name="policy">The policy ID..</param>
+        /// <param name="externalOwnerAddress">If no account exists for a given player, create one with this address..</param>
+        /// <param name="optimistic">Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not. (required).</param>
+        /// <param name="confirmationBlocks">Specify the number of blocks after the block with transaction to be assured that transaction is in block. It is possible to use only with optimistic&#x3D;true.</param>
         /// <param name="interactions">interactions (required).</param>
-        public CreateTransactionIntentRequest(string player = default(string), double chainId = default(double), string policy = default(string), string externalOwnerAddress = default(string), bool optimistic = default(bool), List<Interaction> interactions = default(List<Interaction>))
+        public CreateTransactionIntentRequest(string player = default(string), int chainId = default(int), string policy = default(string), string externalOwnerAddress = default(string), bool optimistic = default(bool), int confirmationBlocks = default(int), List<Interaction> interactions = default(List<Interaction>))
         {
             // to ensure "player" is required (not null)
             if (player == null)
@@ -63,37 +64,53 @@ namespace Openfort.Model
             this.Interactions = interactions;
             this.Policy = policy;
             this.ExternalOwnerAddress = externalOwnerAddress;
+            this.ConfirmationBlocks = confirmationBlocks;
         }
 
         /// <summary>
-        /// Gets or Sets Player
+        /// The player ID.
         /// </summary>
+        /// <value>The player ID.</value>
         [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
         public string Player { get; set; }
 
         /// <summary>
-        /// Gets or Sets ChainId
+        /// The chain ID.
         /// </summary>
+        /// <value>The chain ID.</value>
+        /// <example>5</example>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
-        public double ChainId { get; set; }
+        public int ChainId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Policy
+        /// The policy ID.
         /// </summary>
+        /// <value>The policy ID.</value>
         [DataMember(Name = "policy", EmitDefaultValue = false)]
         public string Policy { get; set; }
 
         /// <summary>
-        /// Gets or Sets ExternalOwnerAddress
+        /// If no account exists for a given player, create one with this address.
         /// </summary>
+        /// <value>If no account exists for a given player, create one with this address.</value>
         [DataMember(Name = "externalOwnerAddress", EmitDefaultValue = false)]
         public string ExternalOwnerAddress { get; set; }
 
         /// <summary>
-        /// Gets or Sets Optimistic
+        /// Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not.
         /// </summary>
+        /// <value>Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not.</value>
+        /// <example>true</example>
         [DataMember(Name = "optimistic", IsRequired = true, EmitDefaultValue = true)]
         public bool Optimistic { get; set; }
+
+        /// <summary>
+        /// Specify the number of blocks after the block with transaction to be assured that transaction is in block. It is possible to use only with optimistic&#x3D;true
+        /// </summary>
+        /// <value>Specify the number of blocks after the block with transaction to be assured that transaction is in block. It is possible to use only with optimistic&#x3D;true</value>
+        /// <example>5</example>
+        [DataMember(Name = "confirmationBlocks", EmitDefaultValue = false)]
+        public int ConfirmationBlocks { get; set; }
 
         /// <summary>
         /// Gets or Sets Interactions
@@ -114,6 +131,7 @@ namespace Openfort.Model
             sb.Append("  Policy: ").Append(Policy).Append("\n");
             sb.Append("  ExternalOwnerAddress: ").Append(ExternalOwnerAddress).Append("\n");
             sb.Append("  Optimistic: ").Append(Optimistic).Append("\n");
+            sb.Append("  ConfirmationBlocks: ").Append(ConfirmationBlocks).Append("\n");
             sb.Append("  Interactions: ").Append(Interactions).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -174,6 +192,10 @@ namespace Openfort.Model
                     this.Optimistic.Equals(input.Optimistic)
                 ) && 
                 (
+                    this.ConfirmationBlocks == input.ConfirmationBlocks ||
+                    this.ConfirmationBlocks.Equals(input.ConfirmationBlocks)
+                ) && 
+                (
                     this.Interactions == input.Interactions ||
                     this.Interactions != null &&
                     input.Interactions != null &&
@@ -204,6 +226,7 @@ namespace Openfort.Model
                     hashCode = (hashCode * 59) + this.ExternalOwnerAddress.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Optimistic.GetHashCode();
+                hashCode = (hashCode * 59) + this.ConfirmationBlocks.GetHashCode();
                 if (this.Interactions != null)
                 {
                     hashCode = (hashCode * 59) + this.Interactions.GetHashCode();

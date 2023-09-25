@@ -48,7 +48,8 @@ namespace Openfort.Model
         /// <param name="topics">topics (required).</param>
         /// <param name="transactionHash">transactionHash (required).</param>
         /// <param name="logIndex">logIndex (required).</param>
-        public Log(double blockNumber = default(double), string blockHash = default(string), double transactionIndex = default(double), bool removed = default(bool), string address = default(string), string data = default(string), List<string> topics = default(List<string>), string transactionHash = default(string), double logIndex = default(double))
+        /// <param name="orphaned">orphaned.</param>
+        public Log(double blockNumber = default(double), string blockHash = default(string), double transactionIndex = default(double), bool removed = default(bool), string address = default(string), string data = default(string), List<string> topics = default(List<string>), string transactionHash = default(string), double logIndex = default(double), bool orphaned = default(bool))
         {
             this.BlockNumber = blockNumber;
             // to ensure "blockHash" is required (not null)
@@ -84,6 +85,7 @@ namespace Openfort.Model
             }
             this.TransactionHash = transactionHash;
             this.LogIndex = logIndex;
+            this.Orphaned = orphaned;
         }
 
         /// <summary>
@@ -141,6 +143,12 @@ namespace Openfort.Model
         public double LogIndex { get; set; }
 
         /// <summary>
+        /// Gets or Sets Orphaned
+        /// </summary>
+        [DataMember(Name = "orphaned", EmitDefaultValue = true)]
+        public bool Orphaned { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -157,6 +165,7 @@ namespace Openfort.Model
             sb.Append("  Topics: ").Append(Topics).Append("\n");
             sb.Append("  TransactionHash: ").Append(TransactionHash).Append("\n");
             sb.Append("  LogIndex: ").Append(LogIndex).Append("\n");
+            sb.Append("  Orphaned: ").Append(Orphaned).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -233,6 +242,10 @@ namespace Openfort.Model
                 (
                     this.LogIndex == input.LogIndex ||
                     this.LogIndex.Equals(input.LogIndex)
+                ) && 
+                (
+                    this.Orphaned == input.Orphaned ||
+                    this.Orphaned.Equals(input.Orphaned)
                 );
         }
 
@@ -269,6 +282,7 @@ namespace Openfort.Model
                     hashCode = (hashCode * 59) + this.TransactionHash.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.LogIndex.GetHashCode();
+                hashCode = (hashCode * 59) + this.Orphaned.GetHashCode();
                 return hashCode;
             }
         }

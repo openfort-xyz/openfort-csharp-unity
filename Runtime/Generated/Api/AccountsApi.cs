@@ -28,10 +28,10 @@ namespace Openfort.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
+        /// Cancel request of ownership transfer of an account.
         /// </summary>
         /// <remarks>
-        /// Request the ownership transfer of an account to a given address.
+        /// This endpoint allows you to cancel a pending transfer of ownership.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -40,10 +40,10 @@ namespace Openfort.Api
         TransactionIntentResponse CancelTransferOwnership(string id, CancelTransferOwnershipRequest cancelTransferOwnershipRequest);
 
         /// <summary>
-        /// 
+        /// Cancel request of ownership transfer of an account.
         /// </summary>
         /// <remarks>
-        /// Request the ownership transfer of an account to a given address.
+        /// This endpoint allows you to cancel a pending transfer of ownership.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -51,10 +51,30 @@ namespace Openfort.Api
         /// <returns>ApiResponse of TransactionIntentResponse</returns>
         ApiResponse<TransactionIntentResponse> CancelTransferOwnershipWithHttpInfo(string id, CancelTransferOwnershipRequest cancelTransferOwnershipRequest);
         /// <summary>
-        /// 
+        /// Complete a recovery process of a recoverable account.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="completeRecoveryRequest"></param>
+        /// <returns>TransactionIntentResponse</returns>
+        TransactionIntentResponse CompleteRecovery(string id, CompleteRecoveryRequest completeRecoveryRequest);
+
+        /// <summary>
+        /// Complete a recovery process of a recoverable account.
         /// </summary>
         /// <remarks>
-        /// Creates an account object.
+        /// 
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="completeRecoveryRequest"></param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        ApiResponse<TransactionIntentResponse> CompleteRecoveryWithHttpInfo(string id, CompleteRecoveryRequest completeRecoveryRequest);
+        /// <summary>
+        /// Create an account object.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint allows you to add a new account to your Openfort player. Only one account can be active per chain per player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountRequest"></param>
@@ -62,89 +82,72 @@ namespace Openfort.Api
         AccountResponse CreateAccount(CreateAccountRequest createAccountRequest);
 
         /// <summary>
-        /// 
+        /// Create an account object.
         /// </summary>
         /// <remarks>
-        /// Creates an account object.
+        /// This endpoint allows you to add a new account to your Openfort player. Only one account can be active per chain per player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountRequest"></param>
         /// <returns>ApiResponse of AccountResponse</returns>
         ApiResponse<AccountResponse> CreateAccountWithHttpInfo(CreateAccountRequest createAccountRequest);
         /// <summary>
-        /// 
+        /// Get existing account.
         /// </summary>
         /// <remarks>
         /// Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <returns>AccountResponse</returns>
-        AccountResponse GetAccount(string id, List<string> expand = default(List<string>));
+        AccountResponse GetAccount(string id, List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>));
 
         /// <summary>
-        /// 
+        /// Get existing account.
         /// </summary>
         /// <remarks>
         /// Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <returns>ApiResponse of AccountResponse</returns>
-        ApiResponse<AccountResponse> GetAccountWithHttpInfo(string id, List<string> expand = default(List<string>));
+        ApiResponse<AccountResponse> GetAccountWithHttpInfo(string id, List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>));
         /// <summary>
-        /// 
+        /// List accounts of a player.
         /// </summary>
         /// <remarks>
-        /// Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
+        /// Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first. By default, a maximum of ten accounts are shown per page.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique account ID.</param>
-        /// <returns>InventoryResponse</returns>
-        InventoryResponse GetAccountInventory(string id);
+        /// <param name="player">Specifies the unique player ID</param>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
+        /// <returns>AccountListResponse</returns>
+        AccountListResponse GetAccounts(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>));
 
         /// <summary>
-        /// 
+        /// List accounts of a player.
         /// </summary>
         /// <remarks>
-        /// Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
+        /// Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first. By default, a maximum of ten accounts are shown per page.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique account ID.</param>
-        /// <returns>ApiResponse of InventoryResponse</returns>
-        ApiResponse<InventoryResponse> GetAccountInventoryWithHttpInfo(string id);
+        /// <param name="player">Specifies the unique player ID</param>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
+        /// <returns>ApiResponse of AccountListResponse</returns>
+        ApiResponse<AccountListResponse> GetAccountsWithHttpInfo(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>));
         /// <summary>
-        /// 
+        /// Request ownership transfer of an account.
         /// </summary>
         /// <remarks>
-        /// Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <returns>AccountsResponse</returns>
-        AccountsResponse GetAccounts(string player, List<string> expand = default(List<string>), double? limit = default(double?));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <returns>ApiResponse of AccountsResponse</returns>
-        ApiResponse<AccountsResponse> GetAccountsWithHttpInfo(string player, List<string> expand = default(List<string>), double? limit = default(double?));
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Request the ownership transfer of an account to a given address.
+        /// This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -153,10 +156,10 @@ namespace Openfort.Api
         TransactionIntentResponse RequestTransferOwnership(string id, TransferOwnershipRequest transferOwnershipRequest);
 
         /// <summary>
-        /// 
+        /// Request ownership transfer of an account.
         /// </summary>
         /// <remarks>
-        /// Request the ownership transfer of an account to a given address.
+        /// This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -164,11 +167,8 @@ namespace Openfort.Api
         /// <returns>ApiResponse of TransactionIntentResponse</returns>
         ApiResponse<TransactionIntentResponse> RequestTransferOwnershipWithHttpInfo(string id, TransferOwnershipRequest transferOwnershipRequest);
         /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
         /// Sign a given payload
-        /// </remarks>
+        /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="signPayloadRequest"></param>
@@ -176,10 +176,10 @@ namespace Openfort.Api
         SignPayloadResponse SignPayload(string id, SignPayloadRequest signPayloadRequest);
 
         /// <summary>
-        /// 
+        /// Sign a given payload
         /// </summary>
         /// <remarks>
-        /// Sign a given payload
+        /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -187,21 +187,38 @@ namespace Openfort.Api
         /// <returns>ApiResponse of SignPayloadResponse</returns>
         ApiResponse<SignPayloadResponse> SignPayloadWithHttpInfo(string id, SignPayloadRequest signPayloadRequest);
         /// <summary>
-        /// 
+        /// Start a recovery process of a recoverable account.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="startRecoveryRequest"></param>
+        /// <returns>TransactionIntentResponse</returns>
+        TransactionIntentResponse StartRecovery(string id, StartRecoveryRequest startRecoveryRequest);
+
+        /// <summary>
+        /// Start a recovery process of a recoverable account.
         /// </summary>
         /// <remarks>
-        /// Sync account state with the blockchain
+        /// 
         /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="startRecoveryRequest"></param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        ApiResponse<TransactionIntentResponse> StartRecoveryWithHttpInfo(string id, StartRecoveryRequest startRecoveryRequest);
+        /// <summary>
+        /// Sync account state with the blockchain
+        /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <returns>AccountResponse</returns>
         AccountResponse SyncAccount(string id);
 
         /// <summary>
-        /// 
+        /// Sync account state with the blockchain
         /// </summary>
         /// <remarks>
-        /// Sync account state with the blockchain
+        /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -217,10 +234,10 @@ namespace Openfort.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Cancel request of ownership transfer of an account.
         /// </summary>
         /// <remarks>
-        /// Request the ownership transfer of an account to a given address.
+        /// This endpoint allows you to cancel a pending transfer of ownership.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -230,10 +247,10 @@ namespace Openfort.Api
         System.Threading.Tasks.Task<TransactionIntentResponse> CancelTransferOwnershipAsync(string id, CancelTransferOwnershipRequest cancelTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Cancel request of ownership transfer of an account.
         /// </summary>
         /// <remarks>
-        /// Request the ownership transfer of an account to a given address.
+        /// This endpoint allows you to cancel a pending transfer of ownership.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -242,10 +259,35 @@ namespace Openfort.Api
         /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> CancelTransferOwnershipWithHttpInfoAsync(string id, CancelTransferOwnershipRequest cancelTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Complete a recovery process of a recoverable account.
         /// </summary>
         /// <remarks>
-        /// Creates an account object.
+        /// 
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="completeRecoveryRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        System.Threading.Tasks.Task<TransactionIntentResponse> CompleteRecoveryAsync(string id, CompleteRecoveryRequest completeRecoveryRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Complete a recovery process of a recoverable account.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="completeRecoveryRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> CompleteRecoveryWithHttpInfoAsync(string id, CompleteRecoveryRequest completeRecoveryRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Create an account object.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint allows you to add a new account to your Openfort player. Only one account can be active per chain per player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountRequest"></param>
@@ -254,10 +296,10 @@ namespace Openfort.Api
         System.Threading.Tasks.Task<AccountResponse> CreateAccountAsync(CreateAccountRequest createAccountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Create an account object.
         /// </summary>
         /// <remarks>
-        /// Creates an account object.
+        /// This endpoint allows you to add a new account to your Openfort player. Only one account can be active per chain per player.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountRequest"></param>
@@ -265,85 +307,66 @@ namespace Openfort.Api
         /// <returns>Task of ApiResponse (AccountResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<AccountResponse>> CreateAccountWithHttpInfoAsync(CreateAccountRequest createAccountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Get existing account.
         /// </summary>
         /// <remarks>
         /// Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountResponse</returns>
-        System.Threading.Tasks.Task<AccountResponse> GetAccountAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<AccountResponse> GetAccountAsync(string id, List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Get existing account.
         /// </summary>
         /// <remarks>
         /// Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountResponse>> GetAccountWithHttpInfoAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AccountResponse>> GetAccountWithHttpInfoAsync(string id, List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// List accounts of a player.
         /// </summary>
         /// <remarks>
-        /// Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
+        /// Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first. By default, a maximum of ten accounts are shown per page.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="player">Specifies the unique player ID</param>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of InventoryResponse</returns>
-        System.Threading.Tasks.Task<InventoryResponse> GetAccountInventoryAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of AccountListResponse</returns>
+        System.Threading.Tasks.Task<AccountListResponse> GetAccountsAsync(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// List accounts of a player.
         /// </summary>
         /// <remarks>
-        /// Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
+        /// Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first. By default, a maximum of ten accounts are shown per page.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="player">Specifies the unique player ID</param>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (InventoryResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InventoryResponse>> GetAccountInventoryWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (AccountListResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountListResponse>> GetAccountsWithHttpInfoAsync(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Request ownership transfer of an account.
         /// </summary>
         /// <remarks>
-        /// Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of AccountsResponse</returns>
-        System.Threading.Tasks.Task<AccountsResponse> GetAccountsAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (AccountsResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountsResponse>> GetAccountsWithHttpInfoAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Request the ownership transfer of an account to a given address.
+        /// This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -353,10 +376,10 @@ namespace Openfort.Api
         System.Threading.Tasks.Task<TransactionIntentResponse> RequestTransferOwnershipAsync(string id, TransferOwnershipRequest transferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Request ownership transfer of an account.
         /// </summary>
         /// <remarks>
-        /// Request the ownership transfer of an account to a given address.
+        /// This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -365,10 +388,10 @@ namespace Openfort.Api
         /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> RequestTransferOwnershipWithHttpInfoAsync(string id, TransferOwnershipRequest transferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Sign a given payload
         /// </summary>
         /// <remarks>
-        /// Sign a given payload
+        /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -378,10 +401,10 @@ namespace Openfort.Api
         System.Threading.Tasks.Task<SignPayloadResponse> SignPayloadAsync(string id, SignPayloadRequest signPayloadRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Sign a given payload
         /// </summary>
         /// <remarks>
-        /// Sign a given payload
+        /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -390,10 +413,35 @@ namespace Openfort.Api
         /// <returns>Task of ApiResponse (SignPayloadResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<SignPayloadResponse>> SignPayloadWithHttpInfoAsync(string id, SignPayloadRequest signPayloadRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Start a recovery process of a recoverable account.
         /// </summary>
         /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="startRecoveryRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        System.Threading.Tasks.Task<TransactionIntentResponse> StartRecoveryAsync(string id, StartRecoveryRequest startRecoveryRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Start a recovery process of a recoverable account.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="startRecoveryRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TransactionIntentResponse>> StartRecoveryWithHttpInfoAsync(string id, StartRecoveryRequest startRecoveryRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
         /// Sync account state with the blockchain
+        /// </summary>
+        /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -402,10 +450,10 @@ namespace Openfort.Api
         System.Threading.Tasks.Task<AccountResponse> SyncAccountAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Sync account state with the blockchain
         /// </summary>
         /// <remarks>
-        /// Sync account state with the blockchain
+        /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -557,7 +605,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Request the ownership transfer of an account to a given address.
+        /// Cancel request of ownership transfer of an account. This endpoint allows you to cancel a pending transfer of ownership.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -570,7 +618,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Request the ownership transfer of an account to a given address.
+        /// Cancel request of ownership transfer of an account. This endpoint allows you to cancel a pending transfer of ownership.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -606,9 +654,15 @@ namespace Openfort.Api
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = cancelTransferOwnershipRequest;
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<TransactionIntentResponse>("/v1/accounts/{id}/cancel-transfer-ownership", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<TransactionIntentResponse>("/v1/accounts/{id}/cancel_transfer_ownership", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -620,7 +674,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Request the ownership transfer of an account to a given address.
+        /// Cancel request of ownership transfer of an account. This endpoint allows you to cancel a pending transfer of ownership.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -639,7 +693,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Request the ownership transfer of an account to a given address.
+        /// Cancel request of ownership transfer of an account. This endpoint allows you to cancel a pending transfer of ownership.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -678,10 +732,16 @@ namespace Openfort.Api
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = cancelTransferOwnershipRequest;
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<TransactionIntentResponse>("/v1/accounts/{id}/cancel-transfer-ownership", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<TransactionIntentResponse>("/v1/accounts/{id}/cancel_transfer_ownership", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -699,7 +759,161 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Creates an account object.
+        /// Complete a recovery process of a recoverable account. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="completeRecoveryRequest"></param>
+        /// <returns>TransactionIntentResponse</returns>
+        public TransactionIntentResponse CompleteRecovery(string id, CompleteRecoveryRequest completeRecoveryRequest)
+        {
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = CompleteRecoveryWithHttpInfo(id, completeRecoveryRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Complete a recovery process of a recoverable account. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="completeRecoveryRequest"></param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        public Openfort.Client.ApiResponse<TransactionIntentResponse> CompleteRecoveryWithHttpInfo(string id, CompleteRecoveryRequest completeRecoveryRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->CompleteRecovery");
+
+            // verify the required parameter 'completeRecoveryRequest' is set
+            if (completeRecoveryRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'completeRecoveryRequest' when calling AccountsApi->CompleteRecovery");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = completeRecoveryRequest;
+
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<TransactionIntentResponse>("/v1/accounts/{id}/complete_recovery", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CompleteRecovery", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Complete a recovery process of a recoverable account. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="completeRecoveryRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        public async System.Threading.Tasks.Task<TransactionIntentResponse> CompleteRecoveryAsync(string id, CompleteRecoveryRequest completeRecoveryRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = CompleteRecoveryWithHttpInfoAsync(id, completeRecoveryRequest, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Complete a recovery process of a recoverable account. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="completeRecoveryRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> CompleteRecoveryWithHttpInfoAsync(string id, CompleteRecoveryRequest completeRecoveryRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->CompleteRecovery");
+
+            // verify the required parameter 'completeRecoveryRequest' is set
+            if (completeRecoveryRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'completeRecoveryRequest' when calling AccountsApi->CompleteRecovery");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = completeRecoveryRequest;
+
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<TransactionIntentResponse>("/v1/accounts/{id}/complete_recovery", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CompleteRecovery", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create an account object. This endpoint allows you to add a new account to your Openfort player. Only one account can be active per chain per player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountRequest"></param>
@@ -711,7 +925,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Creates an account object.
+        /// Create an account object. This endpoint allows you to add a new account to your Openfort player. Only one account can be active per chain per player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountRequest"></param>
@@ -741,6 +955,12 @@ namespace Openfort.Api
 
             localVarRequestOptions.Data = createAccountRequest;
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<AccountResponse>("/v1/accounts", localVarRequestOptions, this.Configuration);
@@ -755,7 +975,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Creates an account object.
+        /// Create an account object. This endpoint allows you to add a new account to your Openfort player. Only one account can be active per chain per player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountRequest"></param>
@@ -773,7 +993,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Creates an account object.
+        /// Create an account object. This endpoint allows you to add a new account to your Openfort player. Only one account can be active per chain per player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountRequest"></param>
@@ -806,6 +1026,12 @@ namespace Openfort.Api
 
             localVarRequestOptions.Data = createAccountRequest;
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -827,26 +1053,26 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
+        /// Get existing account. Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <returns>AccountResponse</returns>
-        public AccountResponse GetAccount(string id, List<string> expand = default(List<string>))
+        public AccountResponse GetAccount(string id, List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>))
         {
             Openfort.Client.ApiResponse<AccountResponse> localVarResponse = GetAccountWithHttpInfo(id, expand);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
+        /// Get existing account. Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <returns>ApiResponse of AccountResponse</returns>
-        public Openfort.Client.ApiResponse<AccountResponse> GetAccountWithHttpInfo(string id, List<string> expand = default(List<string>))
+        public Openfort.Client.ApiResponse<AccountResponse> GetAccountWithHttpInfo(string id, List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -874,6 +1100,12 @@ namespace Openfort.Api
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
             }
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<AccountResponse>("/v1/accounts/{id}", localVarRequestOptions, this.Configuration);
@@ -888,14 +1120,14 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
+        /// Get existing account. Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountResponse</returns>
-        public async System.Threading.Tasks.Task<AccountResponse> GetAccountAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<AccountResponse> GetAccountAsync(string id, List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetAccountWithHttpInfoAsync(id, expand, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -907,14 +1139,14 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
+        /// Get existing account. Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
+        /// <param name="expand"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountResponse>> GetAccountWithHttpInfoAsync(string id, List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountResponse>> GetAccountWithHttpInfoAsync(string id, List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -944,6 +1176,12 @@ namespace Openfort.Api
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
             }
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -965,154 +1203,32 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
+        /// List accounts of a player. Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first. By default, a maximum of ten accounts are shown per page.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique account ID.</param>
-        /// <returns>InventoryResponse</returns>
-        public InventoryResponse GetAccountInventory(string id)
+        /// <param name="player">Specifies the unique player ID</param>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
+        /// <returns>AccountListResponse</returns>
+        public AccountListResponse GetAccounts(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>))
         {
-            Openfort.Client.ApiResponse<InventoryResponse> localVarResponse = GetAccountInventoryWithHttpInfo(id);
+            Openfort.Client.ApiResponse<AccountListResponse> localVarResponse = GetAccountsWithHttpInfo(player, limit, skip, order, expand);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
+        /// List accounts of a player. Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first. By default, a maximum of ten accounts are shown per page.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique account ID.</param>
-        /// <returns>ApiResponse of InventoryResponse</returns>
-        public Openfort.Client.ApiResponse<InventoryResponse> GetAccountInventoryWithHttpInfo(string id)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->GetAccountInventory");
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Get<InventoryResponse>("/v1/accounts/{id}/inventory", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetAccountInventory", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of InventoryResponse</returns>
-        public async System.Threading.Tasks.Task<InventoryResponse> GetAccountInventoryAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            var task = GetAccountInventoryWithHttpInfoAsync(id, cancellationToken);
-#if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<InventoryResponse> localVarResponse = await task.ConfigureAwait(false);
-#else
-            Openfort.Client.ApiResponse<InventoryResponse> localVarResponse = await task;
-#endif
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Retrieves the inventory of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique account ID.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (InventoryResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<InventoryResponse>> GetAccountInventoryWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->GetAccountInventory");
-
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
-
-
-            // make the HTTP request
-
-            var task = this.AsynchronousClient.GetAsync<InventoryResponse>("/v1/accounts/{id}/inventory", localVarRequestOptions, this.Configuration, cancellationToken);
-
-#if UNITY_EDITOR || !UNITY_WEBGL
-            var localVarResponse = await task.ConfigureAwait(false);
-#else
-            var localVarResponse = await task;
-#endif
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetAccountInventory", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <returns>AccountsResponse</returns>
-        public AccountsResponse GetAccounts(string player, List<string> expand = default(List<string>), double? limit = default(double?))
-        {
-            Openfort.Client.ApiResponse<AccountsResponse> localVarResponse = GetAccountsWithHttpInfo(player, expand, limit);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
-        /// <returns>ApiResponse of AccountsResponse</returns>
-        public Openfort.Client.ApiResponse<AccountsResponse> GetAccountsWithHttpInfo(string player, List<string> expand = default(List<string>), double? limit = default(double?))
+        /// <param name="player">Specifies the unique player ID</param>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
+        /// <returns>ApiResponse of AccountListResponse</returns>
+        public Openfort.Client.ApiResponse<AccountListResponse> GetAccountsWithHttpInfo(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>))
         {
             // verify the required parameter 'player' is set
             if (player == null)
@@ -1134,19 +1250,33 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "player", player));
-            if (expand != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
-            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+            }
+            if (order != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
+            }
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "player", player));
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<AccountsResponse>("/v1/accounts", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AccountListResponse>("/v1/accounts", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1158,35 +1288,39 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
+        /// List accounts of a player. Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first. By default, a maximum of ten accounts are shown per page.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
+        /// <param name="player">Specifies the unique player ID</param>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of AccountsResponse</returns>
-        public async System.Threading.Tasks.Task<AccountsResponse> GetAccountsAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of AccountListResponse</returns>
+        public async System.Threading.Tasks.Task<AccountListResponse> GetAccountsAsync(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetAccountsWithHttpInfoAsync(player, expand, limit, cancellationToken);
+            var task = GetAccountsWithHttpInfoAsync(player, limit, skip, order, expand, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<AccountsResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<AccountListResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            Openfort.Client.ApiResponse<AccountsResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<AccountListResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first.
+        /// List accounts of a player. Returns a list of accounts for the given player. The accounts are returned sorted by creation date, with the most recently created accounts appearing first. By default, a maximum of ten accounts are shown per page.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">Specifies the unique player ID.</param>
-        /// <param name="expand">whether to expand the response or not (optional)</param>
-        /// <param name="limit">amount of results per query (optional, default to 10D)</param>
+        /// <param name="player">Specifies the unique player ID</param>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (AccountsResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountsResponse>> GetAccountsWithHttpInfoAsync(string player, List<string> expand = default(List<string>), double? limit = default(double?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (AccountListResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountListResponse>> GetAccountsWithHttpInfoAsync(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'player' is set
             if (player == null)
@@ -1210,20 +1344,34 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "player", player));
-            if (expand != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
-            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+            }
+            if (order != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
+            }
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "player", player));
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.GetAsync<AccountsResponse>("/v1/accounts", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.GetAsync<AccountListResponse>("/v1/accounts", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -1241,7 +1389,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Request the ownership transfer of an account to a given address.
+        /// Request ownership transfer of an account. This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1254,7 +1402,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Request the ownership transfer of an account to a given address.
+        /// Request ownership transfer of an account. This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1290,9 +1438,15 @@ namespace Openfort.Api
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = transferOwnershipRequest;
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<TransactionIntentResponse>("/v1/accounts/{id}/request-transfer-ownership", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<TransactionIntentResponse>("/v1/accounts/{id}/request_transfer_ownership", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1304,7 +1458,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Request the ownership transfer of an account to a given address.
+        /// Request ownership transfer of an account. This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1323,7 +1477,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Request the ownership transfer of an account to a given address.
+        /// Request ownership transfer of an account. This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1362,10 +1516,16 @@ namespace Openfort.Api
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = transferOwnershipRequest;
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<TransactionIntentResponse>("/v1/accounts/{id}/request-transfer-ownership", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<TransactionIntentResponse>("/v1/accounts/{id}/request_transfer_ownership", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -1383,7 +1543,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Sign a given payload
+        /// Sign a given payload 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1396,7 +1556,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Sign a given payload
+        /// Sign a given payload 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1432,9 +1592,15 @@ namespace Openfort.Api
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = signPayloadRequest;
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<SignPayloadResponse>("/v1/accounts/{id}/sign-payload", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<SignPayloadResponse>("/v1/accounts/{id}/sign_payload", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1446,7 +1612,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Sign a given payload
+        /// Sign a given payload 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1465,7 +1631,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Sign a given payload
+        /// Sign a given payload 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1504,10 +1670,16 @@ namespace Openfort.Api
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = signPayloadRequest;
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<SignPayloadResponse>("/v1/accounts/{id}/sign-payload", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<SignPayloadResponse>("/v1/accounts/{id}/sign_payload", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -1525,7 +1697,161 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Sync account state with the blockchain
+        /// Start a recovery process of a recoverable account. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="startRecoveryRequest"></param>
+        /// <returns>TransactionIntentResponse</returns>
+        public TransactionIntentResponse StartRecovery(string id, StartRecoveryRequest startRecoveryRequest)
+        {
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = StartRecoveryWithHttpInfo(id, startRecoveryRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Start a recovery process of a recoverable account. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="startRecoveryRequest"></param>
+        /// <returns>ApiResponse of TransactionIntentResponse</returns>
+        public Openfort.Client.ApiResponse<TransactionIntentResponse> StartRecoveryWithHttpInfo(string id, StartRecoveryRequest startRecoveryRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->StartRecovery");
+
+            // verify the required parameter 'startRecoveryRequest' is set
+            if (startRecoveryRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'startRecoveryRequest' when calling AccountsApi->StartRecovery");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = startRecoveryRequest;
+
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<TransactionIntentResponse>("/v1/accounts/{id}/start_recovery", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("StartRecovery", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Start a recovery process of a recoverable account. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="startRecoveryRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionIntentResponse</returns>
+        public async System.Threading.Tasks.Task<TransactionIntentResponse> StartRecoveryAsync(string id, StartRecoveryRequest startRecoveryRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = StartRecoveryWithHttpInfoAsync(id, startRecoveryRequest, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<TransactionIntentResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Start a recovery process of a recoverable account. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="startRecoveryRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionIntentResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<TransactionIntentResponse>> StartRecoveryWithHttpInfoAsync(string id, StartRecoveryRequest startRecoveryRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->StartRecovery");
+
+            // verify the required parameter 'startRecoveryRequest' is set
+            if (startRecoveryRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'startRecoveryRequest' when calling AccountsApi->StartRecovery");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = startRecoveryRequest;
+
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<TransactionIntentResponse>("/v1/accounts/{id}/start_recovery", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("StartRecovery", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Sync account state with the blockchain 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1537,7 +1863,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Sync account state with the blockchain
+        /// Sync account state with the blockchain 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1566,6 +1892,12 @@ namespace Openfort.Api
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<AccountResponse>("/v1/accounts/{id}/sync", localVarRequestOptions, this.Configuration);
@@ -1580,7 +1912,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Sync account state with the blockchain
+        /// Sync account state with the blockchain 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1598,7 +1930,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        ///  Sync account state with the blockchain
+        /// Sync account state with the blockchain 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1630,6 +1962,12 @@ namespace Openfort.Api
 
             localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
 
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
