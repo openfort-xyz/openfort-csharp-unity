@@ -12,12 +12,9 @@ namespace Openfort
     {
         [Tooltip("Published Key of your game https://docs.openfort.xyz/docs/first-steps-start-here")]
         public string PublishedKey;
-        [Tooltip("Secret Key")]
-        public string SecretKey;
 
         [Tooltip("Log Level")]
         public LogLevel LogLevel;
-
 
         #region static
         private static OpenfortSettings _instance;
@@ -28,9 +25,6 @@ namespace Openfort
             {
                 _instance = FindOrCreateInstance();
                 Config.LogLevel = _instance.LogLevel;
-
-                Config.SecretKey = _instance.SecretKey;
-
                 Config.PublishedKey = _instance.PublishedKey;
             }
         }
