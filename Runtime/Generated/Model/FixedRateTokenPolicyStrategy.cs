@@ -26,57 +26,64 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// PolicyStrategyRequest
+    /// FixedRateTokenPolicyStrategy
     /// </summary>
-    [DataContract(Name = "PolicyStrategyRequest")]
-    public partial class PolicyStrategyRequest : IEquatable<PolicyStrategyRequest>
+    [DataContract(Name = "FixedRateTokenPolicyStrategy")]
+    public partial class FixedRateTokenPolicyStrategy : IEquatable<FixedRateTokenPolicyStrategy>
     {
 
         /// <summary>
         /// Gets or Sets SponsorSchema
         /// </summary>
         [DataMember(Name = "sponsorSchema", IsRequired = true, EmitDefaultValue = true)]
-        public SponsorSchema SponsorSchema { get; set; }
+        public SponsorSchemaFIXEDRATE SponsorSchema { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PolicyStrategyRequest" /> class.
+        /// Initializes a new instance of the <see cref="FixedRateTokenPolicyStrategy" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected PolicyStrategyRequest() { }
+        protected FixedRateTokenPolicyStrategy() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PolicyStrategyRequest" /> class.
+        /// Initializes a new instance of the <see cref="FixedRateTokenPolicyStrategy" /> class.
         /// </summary>
         /// <param name="sponsorSchema">sponsorSchema (required).</param>
-        /// <param name="tokenContract">If the user pays in custom tokens, the contract ID of the token contract..</param>
-        /// <param name="tokenContractAmount">If the user pays in custom tokens, the amount of tokens to pay in WEI per native token..</param>
-        /// <param name="depositor">If the game wants to use their deposited tokens instead of Openfort&#39;s..</param>
-        public PolicyStrategyRequest(SponsorSchema sponsorSchema = default(SponsorSchema), string tokenContract = default(string), string tokenContractAmount = default(string), string depositor = default(string))
+        /// <param name="depositor">depositor.</param>
+        /// <param name="tokenContract">tokenContract (required).</param>
+        /// <param name="tokenContractAmount">tokenContractAmount (required).</param>
+        public FixedRateTokenPolicyStrategy(SponsorSchemaFIXEDRATE sponsorSchema = default(SponsorSchemaFIXEDRATE), string depositor = default(string), string tokenContract = default(string), string tokenContractAmount = default(string))
         {
             this.SponsorSchema = sponsorSchema;
+            // to ensure "tokenContract" is required (not null)
+            if (tokenContract == null)
+            {
+                throw new ArgumentNullException("tokenContract is a required property for FixedRateTokenPolicyStrategy and cannot be null");
+            }
             this.TokenContract = tokenContract;
+            // to ensure "tokenContractAmount" is required (not null)
+            if (tokenContractAmount == null)
+            {
+                throw new ArgumentNullException("tokenContractAmount is a required property for FixedRateTokenPolicyStrategy and cannot be null");
+            }
             this.TokenContractAmount = tokenContractAmount;
             this.Depositor = depositor;
         }
 
         /// <summary>
-        /// If the user pays in custom tokens, the contract ID of the token contract.
+        /// Gets or Sets Depositor
         /// </summary>
-        /// <value>If the user pays in custom tokens, the contract ID of the token contract.</value>
-        [DataMember(Name = "tokenContract", EmitDefaultValue = false)]
+        [DataMember(Name = "depositor", EmitDefaultValue = true)]
+        public string Depositor { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TokenContract
+        /// </summary>
+        [DataMember(Name = "tokenContract", IsRequired = true, EmitDefaultValue = true)]
         public string TokenContract { get; set; }
 
         /// <summary>
-        /// If the user pays in custom tokens, the amount of tokens to pay in WEI per native token.
+        /// Gets or Sets TokenContractAmount
         /// </summary>
-        /// <value>If the user pays in custom tokens, the amount of tokens to pay in WEI per native token.</value>
-        [DataMember(Name = "tokenContractAmount", EmitDefaultValue = false)]
+        [DataMember(Name = "tokenContractAmount", IsRequired = true, EmitDefaultValue = true)]
         public string TokenContractAmount { get; set; }
-
-        /// <summary>
-        /// If the game wants to use their deposited tokens instead of Openfort&#39;s.
-        /// </summary>
-        /// <value>If the game wants to use their deposited tokens instead of Openfort&#39;s.</value>
-        [DataMember(Name = "depositor", EmitDefaultValue = false)]
-        public string Depositor { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,11 +92,11 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PolicyStrategyRequest {\n");
+            sb.Append("class FixedRateTokenPolicyStrategy {\n");
             sb.Append("  SponsorSchema: ").Append(SponsorSchema).Append("\n");
+            sb.Append("  Depositor: ").Append(Depositor).Append("\n");
             sb.Append("  TokenContract: ").Append(TokenContract).Append("\n");
             sb.Append("  TokenContractAmount: ").Append(TokenContractAmount).Append("\n");
-            sb.Append("  Depositor: ").Append(Depositor).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -110,15 +117,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PolicyStrategyRequest);
+            return this.Equals(input as FixedRateTokenPolicyStrategy);
         }
 
         /// <summary>
-        /// Returns true if PolicyStrategyRequest instances are equal
+        /// Returns true if FixedRateTokenPolicyStrategy instances are equal
         /// </summary>
-        /// <param name="input">Instance of PolicyStrategyRequest to be compared</param>
+        /// <param name="input">Instance of FixedRateTokenPolicyStrategy to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PolicyStrategyRequest input)
+        public bool Equals(FixedRateTokenPolicyStrategy input)
         {
             if (input == null)
             {
@@ -130,6 +137,11 @@ namespace Openfort.Model
                     this.SponsorSchema.Equals(input.SponsorSchema)
                 ) && 
                 (
+                    this.Depositor == input.Depositor ||
+                    (this.Depositor != null &&
+                    this.Depositor.Equals(input.Depositor))
+                ) && 
+                (
                     this.TokenContract == input.TokenContract ||
                     (this.TokenContract != null &&
                     this.TokenContract.Equals(input.TokenContract))
@@ -138,11 +150,6 @@ namespace Openfort.Model
                     this.TokenContractAmount == input.TokenContractAmount ||
                     (this.TokenContractAmount != null &&
                     this.TokenContractAmount.Equals(input.TokenContractAmount))
-                ) && 
-                (
-                    this.Depositor == input.Depositor ||
-                    (this.Depositor != null &&
-                    this.Depositor.Equals(input.Depositor))
                 );
         }
 
@@ -156,6 +163,10 @@ namespace Openfort.Model
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.SponsorSchema.GetHashCode();
+                if (this.Depositor != null)
+                {
+                    hashCode = (hashCode * 59) + this.Depositor.GetHashCode();
+                }
                 if (this.TokenContract != null)
                 {
                     hashCode = (hashCode * 59) + this.TokenContract.GetHashCode();
@@ -163,10 +174,6 @@ namespace Openfort.Model
                 if (this.TokenContractAmount != null)
                 {
                     hashCode = (hashCode * 59) + this.TokenContractAmount.GetHashCode();
-                }
-                if (this.Depositor != null)
-                {
-                    hashCode = (hashCode * 59) + this.Depositor.GetHashCode();
                 }
                 return hashCode;
             }

@@ -52,7 +52,7 @@ namespace Openfort.Api
         /// Estimate gas cost of creating a transaction
         /// </summary>
         /// <remarks>
-        /// Estimate the gas cost of creating a transaction intent and putting it onchain.
+        /// Estimate the gas cost of creating a transaction intent and putting it on chain. If a policy that includes payment of gas in ERC-20 tokens is provided, an extra field &#x60;estimatedTXGasFeeToken&#x60; is returned with the estimated amount of tokens.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTransactionIntentRequest"></param>
@@ -63,7 +63,7 @@ namespace Openfort.Api
         /// Estimate gas cost of creating a transaction
         /// </summary>
         /// <remarks>
-        /// Estimate the gas cost of creating a transaction intent and putting it onchain.
+        /// Estimate the gas cost of creating a transaction intent and putting it on chain. If a policy that includes payment of gas in ERC-20 tokens is provided, an extra field &#x60;estimatedTXGasFeeToken&#x60; is returned with the estimated amount of tokens.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTransactionIntentRequest"></param>
@@ -125,7 +125,7 @@ namespace Openfort.Api
         /// Confirms the creation of a transaction intent with an external owner.
         /// </summary>
         /// <remarks>
-        /// This endpoint is used to put a userOperationHash signature on-chain. This means players that have informed (and use) an [externally-owned account (EOA)](https://ethereum.org/en/developers/docs/accounts/) to authorize operations, such as registering a session key, for their gaming accounts.  Given that players with non-custodial accounts are the only ones in possession of the private key, they must sign the information inside the &#x60;nextAction&#x60; value received from the &#x60;POST&#x60; API endpoint that creates a transaction_intent, even with their session-keys. Once signed, the client needs to send the signed message using the &#x60;/signature&#x60; endpoint or use one of the available client-side libraries to do so.
+        /// This endpoint is used to send the signed userOperationHash.  For non-custodial smart accounts, each on chain action using their wallet, they must sign the userOperationHash received from the &#x60;POST&#x60; API endpoint that creates a transactionIntent.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique transaction intent ID.</param>
@@ -137,7 +137,7 @@ namespace Openfort.Api
         /// Confirms the creation of a transaction intent with an external owner.
         /// </summary>
         /// <remarks>
-        /// This endpoint is used to put a userOperationHash signature on-chain. This means players that have informed (and use) an [externally-owned account (EOA)](https://ethereum.org/en/developers/docs/accounts/) to authorize operations, such as registering a session key, for their gaming accounts.  Given that players with non-custodial accounts are the only ones in possession of the private key, they must sign the information inside the &#x60;nextAction&#x60; value received from the &#x60;POST&#x60; API endpoint that creates a transaction_intent, even with their session-keys. Once signed, the client needs to send the signed message using the &#x60;/signature&#x60; endpoint or use one of the available client-side libraries to do so.
+        /// This endpoint is used to send the signed userOperationHash.  For non-custodial smart accounts, each on chain action using their wallet, they must sign the userOperationHash received from the &#x60;POST&#x60; API endpoint that creates a transactionIntent.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique transaction intent ID.</param>
@@ -180,7 +180,7 @@ namespace Openfort.Api
         /// Estimate gas cost of creating a transaction
         /// </summary>
         /// <remarks>
-        /// Estimate the gas cost of creating a transaction intent and putting it onchain.
+        /// Estimate the gas cost of creating a transaction intent and putting it on chain. If a policy that includes payment of gas in ERC-20 tokens is provided, an extra field &#x60;estimatedTXGasFeeToken&#x60; is returned with the estimated amount of tokens.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTransactionIntentRequest"></param>
@@ -192,7 +192,7 @@ namespace Openfort.Api
         /// Estimate gas cost of creating a transaction
         /// </summary>
         /// <remarks>
-        /// Estimate the gas cost of creating a transaction intent and putting it onchain.
+        /// Estimate the gas cost of creating a transaction intent and putting it on chain. If a policy that includes payment of gas in ERC-20 tokens is provided, an extra field &#x60;estimatedTXGasFeeToken&#x60; is returned with the estimated amount of tokens.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTransactionIntentRequest"></param>
@@ -265,7 +265,7 @@ namespace Openfort.Api
         /// Confirms the creation of a transaction intent with an external owner.
         /// </summary>
         /// <remarks>
-        /// This endpoint is used to put a userOperationHash signature on-chain. This means players that have informed (and use) an [externally-owned account (EOA)](https://ethereum.org/en/developers/docs/accounts/) to authorize operations, such as registering a session key, for their gaming accounts.  Given that players with non-custodial accounts are the only ones in possession of the private key, they must sign the information inside the &#x60;nextAction&#x60; value received from the &#x60;POST&#x60; API endpoint that creates a transaction_intent, even with their session-keys. Once signed, the client needs to send the signed message using the &#x60;/signature&#x60; endpoint or use one of the available client-side libraries to do so.
+        /// This endpoint is used to send the signed userOperationHash.  For non-custodial smart accounts, each on chain action using their wallet, they must sign the userOperationHash received from the &#x60;POST&#x60; API endpoint that creates a transactionIntent.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique transaction intent ID.</param>
@@ -278,7 +278,7 @@ namespace Openfort.Api
         /// Confirms the creation of a transaction intent with an external owner.
         /// </summary>
         /// <remarks>
-        /// This endpoint is used to put a userOperationHash signature on-chain. This means players that have informed (and use) an [externally-owned account (EOA)](https://ethereum.org/en/developers/docs/accounts/) to authorize operations, such as registering a session key, for their gaming accounts.  Given that players with non-custodial accounts are the only ones in possession of the private key, they must sign the information inside the &#x60;nextAction&#x60; value received from the &#x60;POST&#x60; API endpoint that creates a transaction_intent, even with their session-keys. Once signed, the client needs to send the signed message using the &#x60;/signature&#x60; endpoint or use one of the available client-side libraries to do so.
+        /// This endpoint is used to send the signed userOperationHash.  For non-custodial smart accounts, each on chain action using their wallet, they must sign the userOperationHash received from the &#x60;POST&#x60; API endpoint that creates a transactionIntent.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique transaction intent ID.</param>
@@ -571,7 +571,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Estimate gas cost of creating a transaction Estimate the gas cost of creating a transaction intent and putting it onchain.
+        /// Estimate gas cost of creating a transaction Estimate the gas cost of creating a transaction intent and putting it on chain. If a policy that includes payment of gas in ERC-20 tokens is provided, an extra field &#x60;estimatedTXGasFeeToken&#x60; is returned with the estimated amount of tokens.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTransactionIntentRequest"></param>
@@ -583,7 +583,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Estimate gas cost of creating a transaction Estimate the gas cost of creating a transaction intent and putting it onchain.
+        /// Estimate gas cost of creating a transaction Estimate the gas cost of creating a transaction intent and putting it on chain. If a policy that includes payment of gas in ERC-20 tokens is provided, an extra field &#x60;estimatedTXGasFeeToken&#x60; is returned with the estimated amount of tokens.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTransactionIntentRequest"></param>
@@ -633,7 +633,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Estimate gas cost of creating a transaction Estimate the gas cost of creating a transaction intent and putting it onchain.
+        /// Estimate gas cost of creating a transaction Estimate the gas cost of creating a transaction intent and putting it on chain. If a policy that includes payment of gas in ERC-20 tokens is provided, an extra field &#x60;estimatedTXGasFeeToken&#x60; is returned with the estimated amount of tokens.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTransactionIntentRequest"></param>
@@ -651,7 +651,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Estimate gas cost of creating a transaction Estimate the gas cost of creating a transaction intent and putting it onchain.
+        /// Estimate gas cost of creating a transaction Estimate the gas cost of creating a transaction intent and putting it on chain. If a policy that includes payment of gas in ERC-20 tokens is provided, an extra field &#x60;estimatedTXGasFeeToken&#x60; is returned with the estimated amount of tokens.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTransactionIntentRequest"></param>
@@ -1081,7 +1081,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Confirms the creation of a transaction intent with an external owner. This endpoint is used to put a userOperationHash signature on-chain. This means players that have informed (and use) an [externally-owned account (EOA)](https://ethereum.org/en/developers/docs/accounts/) to authorize operations, such as registering a session key, for their gaming accounts.  Given that players with non-custodial accounts are the only ones in possession of the private key, they must sign the information inside the &#x60;nextAction&#x60; value received from the &#x60;POST&#x60; API endpoint that creates a transaction_intent, even with their session-keys. Once signed, the client needs to send the signed message using the &#x60;/signature&#x60; endpoint or use one of the available client-side libraries to do so.
+        /// Confirms the creation of a transaction intent with an external owner. This endpoint is used to send the signed userOperationHash.  For non-custodial smart accounts, each on chain action using their wallet, they must sign the userOperationHash received from the &#x60;POST&#x60; API endpoint that creates a transactionIntent.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique transaction intent ID.</param>
@@ -1094,7 +1094,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Confirms the creation of a transaction intent with an external owner. This endpoint is used to put a userOperationHash signature on-chain. This means players that have informed (and use) an [externally-owned account (EOA)](https://ethereum.org/en/developers/docs/accounts/) to authorize operations, such as registering a session key, for their gaming accounts.  Given that players with non-custodial accounts are the only ones in possession of the private key, they must sign the information inside the &#x60;nextAction&#x60; value received from the &#x60;POST&#x60; API endpoint that creates a transaction_intent, even with their session-keys. Once signed, the client needs to send the signed message using the &#x60;/signature&#x60; endpoint or use one of the available client-side libraries to do so.
+        /// Confirms the creation of a transaction intent with an external owner. This endpoint is used to send the signed userOperationHash.  For non-custodial smart accounts, each on chain action using their wallet, they must sign the userOperationHash received from the &#x60;POST&#x60; API endpoint that creates a transactionIntent.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique transaction intent ID.</param>
@@ -1156,7 +1156,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Confirms the creation of a transaction intent with an external owner. This endpoint is used to put a userOperationHash signature on-chain. This means players that have informed (and use) an [externally-owned account (EOA)](https://ethereum.org/en/developers/docs/accounts/) to authorize operations, such as registering a session key, for their gaming accounts.  Given that players with non-custodial accounts are the only ones in possession of the private key, they must sign the information inside the &#x60;nextAction&#x60; value received from the &#x60;POST&#x60; API endpoint that creates a transaction_intent, even with their session-keys. Once signed, the client needs to send the signed message using the &#x60;/signature&#x60; endpoint or use one of the available client-side libraries to do so.
+        /// Confirms the creation of a transaction intent with an external owner. This endpoint is used to send the signed userOperationHash.  For non-custodial smart accounts, each on chain action using their wallet, they must sign the userOperationHash received from the &#x60;POST&#x60; API endpoint that creates a transactionIntent.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique transaction intent ID.</param>
@@ -1175,7 +1175,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Confirms the creation of a transaction intent with an external owner. This endpoint is used to put a userOperationHash signature on-chain. This means players that have informed (and use) an [externally-owned account (EOA)](https://ethereum.org/en/developers/docs/accounts/) to authorize operations, such as registering a session key, for their gaming accounts.  Given that players with non-custodial accounts are the only ones in possession of the private key, they must sign the information inside the &#x60;nextAction&#x60; value received from the &#x60;POST&#x60; API endpoint that creates a transaction_intent, even with their session-keys. Once signed, the client needs to send the signed message using the &#x60;/signature&#x60; endpoint or use one of the available client-side libraries to do so.
+        /// Confirms the creation of a transaction intent with an external owner. This endpoint is used to send the signed userOperationHash.  For non-custodial smart accounts, each on chain action using their wallet, they must sign the userOperationHash received from the &#x60;POST&#x60; API endpoint that creates a transactionIntent.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique transaction intent ID.</param>

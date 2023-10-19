@@ -51,10 +51,24 @@ namespace Openfort
             }
         }
 
+        private OAuthApi _oauthApi;
+        public OAuthApi OAuthApi
+        {
+            get
+            {
+                if (_oauthApi == null)
+                {
+                    _oauthApi = new OAuthApi(_apiClient, _apiClient, _configuration);
+                }
+                return _oauthApi;
+            }
+        }
+
         public async Task<AuthResponse> Signup(string email, string password, string name, string description = default(string))
         {
             var request = new SignupRequest(email, password, name, description);
             var result = await AuthenticationApi.SignupAsync(request);
+            this.SaveToken(result);
             return result;
         }
 
@@ -62,6 +76,15 @@ namespace Openfort
         {
             var request = new LoginRequest(email, password);
             var result = await AuthenticationApi.LoginAsync(request);
+            this.SaveToken(result);
+            return result;
+        }
+
+        public async Task<AuthResponse> AuthWithToken(OAuthProvider provider, string token)
+        {
+            var request = new OAuthRequest(token);
+            var result = await OAuthApi.AuthAsync(provider, request);
+            this.SaveToken(result);
             return result;
         }
 

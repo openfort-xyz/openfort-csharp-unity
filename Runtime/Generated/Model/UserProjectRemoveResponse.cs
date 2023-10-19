@@ -26,10 +26,10 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// MemberRemoveResponse
+    /// UserProjectRemoveResponse
     /// </summary>
-    [DataContract(Name = "MemberRemoveResponse")]
-    public partial class MemberRemoveResponse : IEquatable<MemberRemoveResponse>
+    [DataContract(Name = "UserProjectRemoveResponse")]
+    public partial class UserProjectRemoveResponse : IEquatable<UserProjectRemoveResponse>
     {
 
         /// <summary>
@@ -38,22 +38,22 @@ namespace Openfort.Model
         [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
         public EntityTypeUSER Object { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="MemberRemoveResponse" /> class.
+        /// Initializes a new instance of the <see cref="UserProjectRemoveResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected MemberRemoveResponse() { }
+        protected UserProjectRemoveResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="MemberRemoveResponse" /> class.
+        /// Initializes a new instance of the <see cref="UserProjectRemoveResponse" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
         /// <param name="_object">_object (required).</param>
         /// <param name="deleted">deleted (required).</param>
-        public MemberRemoveResponse(string id = default(string), EntityTypeUSER _object = default(EntityTypeUSER), bool deleted = default(bool))
+        public UserProjectRemoveResponse(string id = default(string), EntityTypeUSER _object = default(EntityTypeUSER), bool deleted = default(bool))
         {
             // to ensure "id" is required (not null)
             if (id == null)
             {
-                throw new ArgumentNullException("id is a required property for MemberRemoveResponse and cannot be null");
+                throw new ArgumentNullException("id is a required property for UserProjectRemoveResponse and cannot be null");
             }
             this.Id = id;
             this.Object = _object;
@@ -79,7 +79,7 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class MemberRemoveResponse {\n");
+            sb.Append("class UserProjectRemoveResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  Deleted: ").Append(Deleted).Append("\n");
@@ -103,15 +103,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as MemberRemoveResponse);
+            return this.Equals(input as UserProjectRemoveResponse);
         }
 
         /// <summary>
-        /// Returns true if MemberRemoveResponse instances are equal
+        /// Returns true if UserProjectRemoveResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of MemberRemoveResponse to be compared</param>
+        /// <param name="input">Instance of UserProjectRemoveResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(MemberRemoveResponse input)
+        public bool Equals(UserProjectRemoveResponse input)
         {
             if (input == null)
             {

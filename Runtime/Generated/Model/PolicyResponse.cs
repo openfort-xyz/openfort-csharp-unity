@@ -50,11 +50,12 @@ namespace Openfort.Model
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="deleted">deleted (required).</param>
+        /// <param name="enabled">enabled (required).</param>
         /// <param name="chainId">The chain ID. (required).</param>
         /// <param name="strategy">strategy (required).</param>
         /// <param name="transactionIntents">transactionIntents (required).</param>
         /// <param name="policyRules">policyRules (required).</param>
-        public PolicyResponse(string id = default(string), EntityTypePOLICY _object = default(EntityTypePOLICY), int createdAt = default(int), string name = default(string), bool deleted = default(bool), int chainId = default(int), PolicyStrategy strategy = default(PolicyStrategy), List<PlayerResponseTransactionIntentsInner> transactionIntents = default(List<PlayerResponseTransactionIntentsInner>), List<PolicyResponsePolicyRulesInner> policyRules = default(List<PolicyResponsePolicyRulesInner>))
+        public PolicyResponse(string id = default(string), EntityTypePOLICY _object = default(EntityTypePOLICY), int createdAt = default(int), string name = default(string), bool deleted = default(bool), bool enabled = default(bool), int chainId = default(int), PolicyStrategy strategy = default(PolicyStrategy), List<PlayerResponseTransactionIntentsInner> transactionIntents = default(List<PlayerResponseTransactionIntentsInner>), List<PolicyResponsePolicyRulesInner> policyRules = default(List<PolicyResponsePolicyRulesInner>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -71,6 +72,7 @@ namespace Openfort.Model
             }
             this.Name = name;
             this.Deleted = deleted;
+            this.Enabled = enabled;
             this.ChainId = chainId;
             // to ensure "strategy" is required (not null)
             if (strategy == null)
@@ -117,6 +119,12 @@ namespace Openfort.Model
         public bool Deleted { get; set; }
 
         /// <summary>
+        /// Gets or Sets Enabled
+        /// </summary>
+        [DataMember(Name = "enabled", IsRequired = true, EmitDefaultValue = true)]
+        public bool Enabled { get; set; }
+
+        /// <summary>
         /// The chain ID.
         /// </summary>
         /// <value>The chain ID.</value>
@@ -154,6 +162,7 @@ namespace Openfort.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Deleted: ").Append(Deleted).Append("\n");
+            sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  Strategy: ").Append(Strategy).Append("\n");
             sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
@@ -216,6 +225,10 @@ namespace Openfort.Model
                     this.Deleted.Equals(input.Deleted)
                 ) && 
                 (
+                    this.Enabled == input.Enabled ||
+                    this.Enabled.Equals(input.Enabled)
+                ) && 
+                (
                     this.ChainId == input.ChainId ||
                     this.ChainId.Equals(input.ChainId)
                 ) && 
@@ -258,6 +271,7 @@ namespace Openfort.Model
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Deleted.GetHashCode();
+                hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
                 hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
                 if (this.Strategy != null)
                 {

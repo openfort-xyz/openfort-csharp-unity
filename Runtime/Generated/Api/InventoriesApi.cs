@@ -24,7 +24,7 @@ namespace Openfort.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IInventoryApiSync : IApiAccessor
+    public interface IInventoriesApiSync : IApiAccessor
     {
         #region Synchronous Operations
         /// <summary>
@@ -59,6 +59,7 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <returns>ObsoleteInventoryResponse</returns>
+        [Obsolete]
         ObsoleteInventoryResponse GetAccountInventory(string id);
 
         /// <summary>
@@ -70,6 +71,7 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <returns>ApiResponse of ObsoleteInventoryResponse</returns>
+        [Obsolete]
         ApiResponse<ObsoleteInventoryResponse> GetAccountInventoryWithHttpInfo(string id);
         /// <summary>
         /// Retrieves the native asset of an existing account.
@@ -150,6 +152,7 @@ namespace Openfort.Api
         /// <param name="id">Specifies the unique player ID.</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <returns>ObsoleteInventoryResponse</returns>
+        [Obsolete]
         ObsoleteInventoryResponse GetPlayerInventory(string id, int chainId);
 
         /// <summary>
@@ -162,6 +165,7 @@ namespace Openfort.Api
         /// <param name="id">Specifies the unique player ID.</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <returns>ApiResponse of ObsoleteInventoryResponse</returns>
+        [Obsolete]
         ApiResponse<ObsoleteInventoryResponse> GetPlayerInventoryWithHttpInfo(string id, int chainId);
         /// <summary>
         /// Get native token list of player.
@@ -217,7 +221,7 @@ namespace Openfort.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IInventoryApiAsync : IApiAccessor
+    public interface IInventoriesApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
         /// <summary>
@@ -261,6 +265,7 @@ namespace Openfort.Api
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ObsoleteInventoryResponse</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ObsoleteInventoryResponse> GetAccountInventoryAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
@@ -273,6 +278,7 @@ namespace Openfort.Api
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ObsoleteInventoryResponse)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<ObsoleteInventoryResponse>> GetAccountInventoryWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Retrieves the native asset of an existing account.
@@ -372,6 +378,7 @@ namespace Openfort.Api
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ObsoleteInventoryResponse</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ObsoleteInventoryResponse> GetPlayerInventoryAsync(string id, int chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
@@ -385,6 +392,7 @@ namespace Openfort.Api
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ObsoleteInventoryResponse)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<ObsoleteInventoryResponse>> GetPlayerInventoryWithHttpInfoAsync(string id, int chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get native token list of player.
@@ -450,7 +458,7 @@ namespace Openfort.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IInventoryApi : IInventoryApiSync, IInventoryApiAsync
+    public interface IInventoriesApi : IInventoriesApiSync, IInventoriesApiAsync
     {
 
     }
@@ -458,29 +466,29 @@ namespace Openfort.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class InventoryApi : IDisposable, IInventoryApi
+    public partial class InventoriesApi : IDisposable, IInventoriesApi
     {
         private Openfort.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InventoryApi"/> class.
+        /// Initializes a new instance of the <see cref="InventoriesApi"/> class.
         /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
         /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <returns></returns>
-        public InventoryApi() : this((string)null)
+        public InventoriesApi() : this((string)null)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InventoryApi"/> class.
+        /// Initializes a new instance of the <see cref="InventoriesApi"/> class.
         /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
         /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <param name="basePath">The target service's base path in URL format.</param>
         /// <exception cref="ArgumentException"></exception>
         /// <returns></returns>
-        public InventoryApi(string basePath)
+        public InventoriesApi(string basePath)
         {
             this.Configuration = Openfort.Client.Configuration.MergeConfigurations(
                 Openfort.Client.GlobalConfiguration.Instance,
@@ -493,14 +501,14 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InventoryApi"/> class using Configuration object.
+        /// Initializes a new instance of the <see cref="InventoriesApi"/> class using Configuration object.
         /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
         /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public InventoryApi(Openfort.Client.Configuration configuration)
+        public InventoriesApi(Openfort.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
@@ -515,14 +523,14 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InventoryApi"/> class
+        /// Initializes a new instance of the <see cref="InventoriesApi"/> class
         /// using a Configuration object and client instance.
         /// </summary>
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public InventoryApi(Openfort.Client.ISynchronousClient client, Openfort.Client.IAsynchronousClient asyncClient, Openfort.Client.IReadableConfiguration configuration)
+        public InventoriesApi(Openfort.Client.ISynchronousClient client, Openfort.Client.IAsynchronousClient asyncClient, Openfort.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -618,7 +626,7 @@ namespace Openfort.Api
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetAccountCryptoCurrencyInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetAccountCryptoCurrencyInventory");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -710,7 +718,7 @@ namespace Openfort.Api
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetAccountCryptoCurrencyInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetAccountCryptoCurrencyInventory");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -780,6 +788,7 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <returns>ObsoleteInventoryResponse</returns>
+        [Obsolete]
         public ObsoleteInventoryResponse GetAccountInventory(string id)
         {
             Openfort.Client.ApiResponse<ObsoleteInventoryResponse> localVarResponse = GetAccountInventoryWithHttpInfo(id);
@@ -792,11 +801,12 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <returns>ApiResponse of ObsoleteInventoryResponse</returns>
+        [Obsolete]
         public Openfort.Client.ApiResponse<ObsoleteInventoryResponse> GetAccountInventoryWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetAccountInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetAccountInventory");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -842,6 +852,7 @@ namespace Openfort.Api
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ObsoleteInventoryResponse</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<ObsoleteInventoryResponse> GetAccountInventoryAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetAccountInventoryWithHttpInfoAsync(id, cancellationToken);
@@ -860,11 +871,12 @@ namespace Openfort.Api
         /// <param name="id">Specifies the unique account ID.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ObsoleteInventoryResponse)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ObsoleteInventoryResponse>> GetAccountInventoryWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetAccountInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetAccountInventory");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -934,7 +946,7 @@ namespace Openfort.Api
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetAccountNativeInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetAccountNativeInventory");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -1002,7 +1014,7 @@ namespace Openfort.Api
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetAccountNativeInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetAccountNativeInventory");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -1080,7 +1092,7 @@ namespace Openfort.Api
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetAccountNftInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetAccountNftInventory");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -1172,7 +1184,7 @@ namespace Openfort.Api
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetAccountNftInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetAccountNftInventory");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -1268,7 +1280,7 @@ namespace Openfort.Api
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetPlayerCryptoCurrencyInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetPlayerCryptoCurrencyInventory");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -1363,7 +1375,7 @@ namespace Openfort.Api
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetPlayerCryptoCurrencyInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetPlayerCryptoCurrencyInventory");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -1435,6 +1447,7 @@ namespace Openfort.Api
         /// <param name="id">Specifies the unique player ID.</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <returns>ObsoleteInventoryResponse</returns>
+        [Obsolete]
         public ObsoleteInventoryResponse GetPlayerInventory(string id, int chainId)
         {
             Openfort.Client.ApiResponse<ObsoleteInventoryResponse> localVarResponse = GetPlayerInventoryWithHttpInfo(id, chainId);
@@ -1448,11 +1461,12 @@ namespace Openfort.Api
         /// <param name="id">Specifies the unique player ID.</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <returns>ApiResponse of ObsoleteInventoryResponse</returns>
+        [Obsolete]
         public Openfort.Client.ApiResponse<ObsoleteInventoryResponse> GetPlayerInventoryWithHttpInfo(string id, int chainId)
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetPlayerInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetPlayerInventory");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -1500,6 +1514,7 @@ namespace Openfort.Api
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ObsoleteInventoryResponse</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<ObsoleteInventoryResponse> GetPlayerInventoryAsync(string id, int chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetPlayerInventoryWithHttpInfoAsync(id, chainId, cancellationToken);
@@ -1519,11 +1534,12 @@ namespace Openfort.Api
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ObsoleteInventoryResponse)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ObsoleteInventoryResponse>> GetPlayerInventoryWithHttpInfoAsync(string id, int chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetPlayerInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetPlayerInventory");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -1596,7 +1612,7 @@ namespace Openfort.Api
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetPlayerNativeInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetPlayerNativeInventory");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -1667,7 +1683,7 @@ namespace Openfort.Api
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetPlayerNativeInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetPlayerNativeInventory");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -1748,7 +1764,7 @@ namespace Openfort.Api
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetPlayerNftInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetPlayerNftInventory");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -1843,7 +1859,7 @@ namespace Openfort.Api
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoryApi->GetPlayerNftInventory");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling InventoriesApi->GetPlayerNftInventory");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();

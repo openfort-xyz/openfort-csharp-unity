@@ -26,33 +26,43 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// ProjectWebhookRequest
+    /// UpdateProjectApiKeyRequest
     /// </summary>
-    [DataContract(Name = "ProjectWebhookRequest")]
-    public partial class ProjectWebhookRequest : IEquatable<ProjectWebhookRequest>
+    [DataContract(Name = "UpdateProjectApiKeyRequest")]
+    public partial class UpdateProjectApiKeyRequest : IEquatable<UpdateProjectApiKeyRequest>
     {
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectWebhookRequest" /> class.
+        /// Gets or Sets Type
         /// </summary>
-        /// <param name="url">url.</param>
-        /// <param name="apiKey">apiKey.</param>
-        public ProjectWebhookRequest(string url = default(string), string apiKey = default(string))
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        public ApiKeyType Type { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateProjectApiKeyRequest" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected UpdateProjectApiKeyRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateProjectApiKeyRequest" /> class.
+        /// </summary>
+        /// <param name="type">type (required).</param>
+        /// <param name="uuid">uuid (required).</param>
+        public UpdateProjectApiKeyRequest(ApiKeyType type = default(ApiKeyType), string uuid = default(string))
         {
-            this.Url = url;
-            this.ApiKey = apiKey;
+            this.Type = type;
+            // to ensure "uuid" is required (not null)
+            if (uuid == null)
+            {
+                throw new ArgumentNullException("uuid is a required property for UpdateProjectApiKeyRequest and cannot be null");
+            }
+            this.Uuid = uuid;
         }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// Gets or Sets Uuid
         /// </summary>
-        [DataMember(Name = "url", EmitDefaultValue = false)]
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ApiKey
-        /// </summary>
-        [DataMember(Name = "apiKey", EmitDefaultValue = false)]
-        public string ApiKey { get; set; }
+        [DataMember(Name = "uuid", IsRequired = true, EmitDefaultValue = true)]
+        public string Uuid { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,9 +71,9 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ProjectWebhookRequest {\n");
-            sb.Append("  Url: ").Append(Url).Append("\n");
-            sb.Append("  ApiKey: ").Append(ApiKey).Append("\n");
+            sb.Append("class UpdateProjectApiKeyRequest {\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Uuid: ").Append(Uuid).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -84,15 +94,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ProjectWebhookRequest);
+            return this.Equals(input as UpdateProjectApiKeyRequest);
         }
 
         /// <summary>
-        /// Returns true if ProjectWebhookRequest instances are equal
+        /// Returns true if UpdateProjectApiKeyRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of ProjectWebhookRequest to be compared</param>
+        /// <param name="input">Instance of UpdateProjectApiKeyRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ProjectWebhookRequest input)
+        public bool Equals(UpdateProjectApiKeyRequest input)
         {
             if (input == null)
             {
@@ -100,14 +110,13 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Url == input.Url ||
-                    (this.Url != null &&
-                    this.Url.Equals(input.Url))
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
                 ) && 
                 (
-                    this.ApiKey == input.ApiKey ||
-                    (this.ApiKey != null &&
-                    this.ApiKey.Equals(input.ApiKey))
+                    this.Uuid == input.Uuid ||
+                    (this.Uuid != null &&
+                    this.Uuid.Equals(input.Uuid))
                 );
         }
 
@@ -120,13 +129,10 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Url != null)
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Uuid != null)
                 {
-                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
-                }
-                if (this.ApiKey != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApiKey.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Uuid.GetHashCode();
                 }
                 return hashCode;
             }

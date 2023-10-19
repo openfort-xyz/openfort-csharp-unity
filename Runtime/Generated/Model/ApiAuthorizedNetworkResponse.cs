@@ -26,41 +26,39 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// ApiKeyResponse
+    /// ApiAuthorizedNetworkResponse
     /// </summary>
-    [DataContract(Name = "ApiKeyResponse")]
-    public partial class ApiKeyResponse : IEquatable<ApiKeyResponse>
+    [DataContract(Name = "ApiAuthorizedNetworkResponse")]
+    public partial class ApiAuthorizedNetworkResponse : IEquatable<ApiAuthorizedNetworkResponse>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiKeyResponse" /> class.
+        /// Initializes a new instance of the <see cref="ApiAuthorizedNetworkResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected ApiKeyResponse() { }
+        protected ApiAuthorizedNetworkResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiKeyResponse" /> class.
+        /// Initializes a new instance of the <see cref="ApiAuthorizedNetworkResponse" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
-        /// <param name="token">token (required).</param>
         /// <param name="name">name (required).</param>
-        /// <param name="livemode">livemode (required).</param>
-        public ApiKeyResponse(int id = default(int), int createdAt = default(int), string token = default(string), string name = default(string), bool livemode = default(bool))
+        /// <param name="network">network (required).</param>
+        public ApiAuthorizedNetworkResponse(int id = default(int), int createdAt = default(int), string name = default(string), string network = default(string))
         {
             this.Id = id;
             this.CreatedAt = createdAt;
-            // to ensure "token" is required (not null)
-            if (token == null)
-            {
-                throw new ArgumentNullException("token is a required property for ApiKeyResponse and cannot be null");
-            }
-            this.Token = token;
             // to ensure "name" is required (not null)
             if (name == null)
             {
-                throw new ArgumentNullException("name is a required property for ApiKeyResponse and cannot be null");
+                throw new ArgumentNullException("name is a required property for ApiAuthorizedNetworkResponse and cannot be null");
             }
             this.Name = name;
-            this.Livemode = livemode;
+            // to ensure "network" is required (not null)
+            if (network == null)
+            {
+                throw new ArgumentNullException("network is a required property for ApiAuthorizedNetworkResponse and cannot be null");
+            }
+            this.Network = network;
         }
 
         /// <summary>
@@ -76,22 +74,16 @@ namespace Openfort.Model
         public int CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets Token
-        /// </summary>
-        [DataMember(Name = "token", IsRequired = true, EmitDefaultValue = true)]
-        public string Token { get; set; }
-
-        /// <summary>
         /// Gets or Sets Name
         /// </summary>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Livemode
+        /// Gets or Sets Network
         /// </summary>
-        [DataMember(Name = "livemode", IsRequired = true, EmitDefaultValue = true)]
-        public bool Livemode { get; set; }
+        [DataMember(Name = "network", IsRequired = true, EmitDefaultValue = true)]
+        public string Network { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,12 +92,11 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ApiKeyResponse {\n");
+            sb.Append("class ApiAuthorizedNetworkResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Token: ").Append(Token).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Livemode: ").Append(Livemode).Append("\n");
+            sb.Append("  Network: ").Append(Network).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -126,15 +117,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ApiKeyResponse);
+            return this.Equals(input as ApiAuthorizedNetworkResponse);
         }
 
         /// <summary>
-        /// Returns true if ApiKeyResponse instances are equal
+        /// Returns true if ApiAuthorizedNetworkResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of ApiKeyResponse to be compared</param>
+        /// <param name="input">Instance of ApiAuthorizedNetworkResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ApiKeyResponse input)
+        public bool Equals(ApiAuthorizedNetworkResponse input)
         {
             if (input == null)
             {
@@ -150,18 +141,14 @@ namespace Openfort.Model
                     this.CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.Token == input.Token ||
-                    (this.Token != null &&
-                    this.Token.Equals(input.Token))
-                ) && 
-                (
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.Livemode == input.Livemode ||
-                    this.Livemode.Equals(input.Livemode)
+                    this.Network == input.Network ||
+                    (this.Network != null &&
+                    this.Network.Equals(input.Network))
                 );
         }
 
@@ -176,15 +163,14 @@ namespace Openfort.Model
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                if (this.Token != null)
-                {
-                    hashCode = (hashCode * 59) + this.Token.GetHashCode();
-                }
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Livemode.GetHashCode();
+                if (this.Network != null)
+                {
+                    hashCode = (hashCode * 59) + this.Network.GetHashCode();
+                }
                 return hashCode;
             }
         }

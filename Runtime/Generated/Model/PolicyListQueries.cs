@@ -47,7 +47,8 @@ namespace Openfort.Model
         /// <param name="name">Specifies the name of the policy..</param>
         /// <param name="deleted">Specifies whether to include deleted contracts..</param>
         /// <param name="chainId">The chain ID of the policy..</param>
-        public PolicyListQueries(double limit = default(double), double skip = default(double), SortOrder? order = default(SortOrder?), List<PolicyResponseExpandable> expand = default(List<PolicyResponseExpandable>), string name = default(string), bool deleted = default(bool), int chainId = default(int))
+        /// <param name="enabled">Specifies whether to include enabled contracts..</param>
+        public PolicyListQueries(double limit = default(double), double skip = default(double), SortOrder? order = default(SortOrder?), List<PolicyResponseExpandable> expand = default(List<PolicyResponseExpandable>), string name = default(string), bool deleted = default(bool), int chainId = default(int), bool enabled = default(bool))
         {
             this.Limit = limit;
             this.Skip = skip;
@@ -56,6 +57,7 @@ namespace Openfort.Model
             this.Name = name;
             this.Deleted = deleted;
             this.ChainId = chainId;
+            this.Enabled = enabled;
         }
 
         /// <summary>
@@ -101,6 +103,13 @@ namespace Openfort.Model
         public int ChainId { get; set; }
 
         /// <summary>
+        /// Specifies whether to include enabled contracts.
+        /// </summary>
+        /// <value>Specifies whether to include enabled contracts.</value>
+        [DataMember(Name = "enabled", EmitDefaultValue = true)]
+        public bool Enabled { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -115,6 +124,7 @@ namespace Openfort.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Deleted: ").Append(Deleted).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
+            sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -180,6 +190,10 @@ namespace Openfort.Model
                 (
                     this.ChainId == input.ChainId ||
                     this.ChainId.Equals(input.ChainId)
+                ) && 
+                (
+                    this.Enabled == input.Enabled ||
+                    this.Enabled.Equals(input.Enabled)
                 );
         }
 
@@ -205,6 +219,7 @@ namespace Openfort.Model
                 }
                 hashCode = (hashCode * 59) + this.Deleted.GetHashCode();
                 hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
+                hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
                 return hashCode;
             }
         }

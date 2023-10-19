@@ -26,48 +26,35 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// EditRoleRequest
+    /// OAuthConfigListResponse
     /// </summary>
-    [DataContract(Name = "EditRoleRequest")]
-    public partial class EditRoleRequest : IEquatable<EditRoleRequest>
+    [DataContract(Name = "OAuthConfigListResponse")]
+    public partial class OAuthConfigListResponse : IEquatable<OAuthConfigListResponse>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EditRoleRequest" /> class.
+        /// Initializes a new instance of the <see cref="OAuthConfigListResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected EditRoleRequest() { }
+        protected OAuthConfigListResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="EditRoleRequest" /> class.
+        /// Initializes a new instance of the <see cref="OAuthConfigListResponse" /> class.
         /// </summary>
-        /// <param name="userId">userId (required).</param>
-        /// <param name="role">role (required).</param>
-        public EditRoleRequest(string userId = default(string), string role = default(string))
+        /// <param name="data">data (required).</param>
+        public OAuthConfigListResponse(List<OAuthConfigListItemResponse> data = default(List<OAuthConfigListItemResponse>))
         {
-            // to ensure "userId" is required (not null)
-            if (userId == null)
+            // to ensure "data" is required (not null)
+            if (data == null)
             {
-                throw new ArgumentNullException("userId is a required property for EditRoleRequest and cannot be null");
+                throw new ArgumentNullException("data is a required property for OAuthConfigListResponse and cannot be null");
             }
-            this.UserId = userId;
-            // to ensure "role" is required (not null)
-            if (role == null)
-            {
-                throw new ArgumentNullException("role is a required property for EditRoleRequest and cannot be null");
-            }
-            this.Role = role;
+            this.Data = data;
         }
 
         /// <summary>
-        /// Gets or Sets UserId
+        /// Gets or Sets Data
         /// </summary>
-        [DataMember(Name = "userId", IsRequired = true, EmitDefaultValue = true)]
-        public string UserId { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Role
-        /// </summary>
-        [DataMember(Name = "role", IsRequired = true, EmitDefaultValue = true)]
-        public string Role { get; set; }
+        [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
+        public List<OAuthConfigListItemResponse> Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -76,9 +63,8 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class EditRoleRequest {\n");
-            sb.Append("  UserId: ").Append(UserId).Append("\n");
-            sb.Append("  Role: ").Append(Role).Append("\n");
+            sb.Append("class OAuthConfigListResponse {\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -99,15 +85,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as EditRoleRequest);
+            return this.Equals(input as OAuthConfigListResponse);
         }
 
         /// <summary>
-        /// Returns true if EditRoleRequest instances are equal
+        /// Returns true if OAuthConfigListResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of EditRoleRequest to be compared</param>
+        /// <param name="input">Instance of OAuthConfigListResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(EditRoleRequest input)
+        public bool Equals(OAuthConfigListResponse input)
         {
             if (input == null)
             {
@@ -115,14 +101,10 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.UserId == input.UserId ||
-                    (this.UserId != null &&
-                    this.UserId.Equals(input.UserId))
-                ) && 
-                (
-                    this.Role == input.Role ||
-                    (this.Role != null &&
-                    this.Role.Equals(input.Role))
+                    this.Data == input.Data ||
+                    this.Data != null &&
+                    input.Data != null &&
+                    this.Data.SequenceEqual(input.Data)
                 );
         }
 
@@ -135,13 +117,9 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.UserId != null)
+                if (this.Data != null)
                 {
-                    hashCode = (hashCode * 59) + this.UserId.GetHashCode();
-                }
-                if (this.Role != null)
-                {
-                    hashCode = (hashCode * 59) + this.Role.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Data.GetHashCode();
                 }
                 return hashCode;
             }

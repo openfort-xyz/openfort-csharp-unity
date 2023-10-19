@@ -26,33 +26,43 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// ProjectWebhookRequest
+    /// OAuthConfigListItemResponse
     /// </summary>
-    [DataContract(Name = "ProjectWebhookRequest")]
-    public partial class ProjectWebhookRequest : IEquatable<ProjectWebhookRequest>
+    [DataContract(Name = "OAuthConfigListItemResponse")]
+    public partial class OAuthConfigListItemResponse : IEquatable<OAuthConfigListItemResponse>
     {
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectWebhookRequest" /> class.
+        /// Gets or Sets Provider
         /// </summary>
-        /// <param name="url">url.</param>
-        /// <param name="apiKey">apiKey.</param>
-        public ProjectWebhookRequest(string url = default(string), string apiKey = default(string))
+        [DataMember(Name = "provider", IsRequired = true, EmitDefaultValue = true)]
+        public OAuthProvider Provider { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OAuthConfigListItemResponse" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected OAuthConfigListItemResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OAuthConfigListItemResponse" /> class.
+        /// </summary>
+        /// <param name="config">config (required).</param>
+        /// <param name="provider">provider (required).</param>
+        public OAuthConfigListItemResponse(AccelbyteOauthConfig config = default(AccelbyteOauthConfig), OAuthProvider provider = default(OAuthProvider))
         {
-            this.Url = url;
-            this.ApiKey = apiKey;
+            // to ensure "config" is required (not null)
+            if (config == null)
+            {
+                throw new ArgumentNullException("config is a required property for OAuthConfigListItemResponse and cannot be null");
+            }
+            this.Config = config;
+            this.Provider = provider;
         }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// Gets or Sets Config
         /// </summary>
-        [DataMember(Name = "url", EmitDefaultValue = false)]
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ApiKey
-        /// </summary>
-        [DataMember(Name = "apiKey", EmitDefaultValue = false)]
-        public string ApiKey { get; set; }
+        [DataMember(Name = "config", IsRequired = true, EmitDefaultValue = true)]
+        public AccelbyteOauthConfig Config { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,9 +71,9 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ProjectWebhookRequest {\n");
-            sb.Append("  Url: ").Append(Url).Append("\n");
-            sb.Append("  ApiKey: ").Append(ApiKey).Append("\n");
+            sb.Append("class OAuthConfigListItemResponse {\n");
+            sb.Append("  Config: ").Append(Config).Append("\n");
+            sb.Append("  Provider: ").Append(Provider).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -84,15 +94,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ProjectWebhookRequest);
+            return this.Equals(input as OAuthConfigListItemResponse);
         }
 
         /// <summary>
-        /// Returns true if ProjectWebhookRequest instances are equal
+        /// Returns true if OAuthConfigListItemResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of ProjectWebhookRequest to be compared</param>
+        /// <param name="input">Instance of OAuthConfigListItemResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ProjectWebhookRequest input)
+        public bool Equals(OAuthConfigListItemResponse input)
         {
             if (input == null)
             {
@@ -100,14 +110,13 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Url == input.Url ||
-                    (this.Url != null &&
-                    this.Url.Equals(input.Url))
+                    this.Config == input.Config ||
+                    (this.Config != null &&
+                    this.Config.Equals(input.Config))
                 ) && 
                 (
-                    this.ApiKey == input.ApiKey ||
-                    (this.ApiKey != null &&
-                    this.ApiKey.Equals(input.ApiKey))
+                    this.Provider == input.Provider ||
+                    this.Provider.Equals(input.Provider)
                 );
         }
 
@@ -120,14 +129,11 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Url != null)
+                if (this.Config != null)
                 {
-                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Config.GetHashCode();
                 }
-                if (this.ApiKey != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApiKey.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Provider.GetHashCode();
                 return hashCode;
             }
         }

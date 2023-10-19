@@ -57,6 +57,18 @@ namespace Openfort.Model
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PolicyStrategy" /> class
+        /// with the <see cref="FixedRateTokenPolicyStrategy" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of FixedRateTokenPolicyStrategy.</param>
+        public PolicyStrategy(FixedRateTokenPolicyStrategy actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "anyOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
 
         private Object _actualInstance;
 
@@ -75,13 +87,17 @@ namespace Openfort.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(FixedRateTokenPolicyStrategy))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(PayForUserPolicyStrategy))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: ChargeCustomTokenPolicyStrategy, PayForUserPolicyStrategy");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: ChargeCustomTokenPolicyStrategy, FixedRateTokenPolicyStrategy, PayForUserPolicyStrategy");
                 }
             }
         }
@@ -104,6 +120,16 @@ namespace Openfort.Model
         public ChargeCustomTokenPolicyStrategy GetChargeCustomTokenPolicyStrategy()
         {
             return (ChargeCustomTokenPolicyStrategy)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `FixedRateTokenPolicyStrategy`. If the actual instance is not `FixedRateTokenPolicyStrategy`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of FixedRateTokenPolicyStrategy</returns>
+        public FixedRateTokenPolicyStrategy GetFixedRateTokenPolicyStrategy()
+        {
+            return (FixedRateTokenPolicyStrategy)this.ActualInstance;
         }
 
         /// <summary>
@@ -152,6 +178,18 @@ namespace Openfort.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into ChargeCustomTokenPolicyStrategy: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                newPolicyStrategy = new PolicyStrategy(JsonConvert.DeserializeObject<FixedRateTokenPolicyStrategy>(jsonString, PolicyStrategy.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newPolicyStrategy;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into FixedRateTokenPolicyStrategy: {1}", jsonString, exception.ToString()));
             }
 
             try

@@ -26,33 +26,30 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// ProjectWebhookRequest
+    /// CreateProjectApiKeyRequest
     /// </summary>
-    [DataContract(Name = "ProjectWebhookRequest")]
-    public partial class ProjectWebhookRequest : IEquatable<ProjectWebhookRequest>
+    [DataContract(Name = "CreateProjectApiKeyRequest")]
+    public partial class CreateProjectApiKeyRequest : IEquatable<CreateProjectApiKeyRequest>
     {
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectWebhookRequest" /> class.
+        /// Gets or Sets Type
         /// </summary>
-        /// <param name="url">url.</param>
-        /// <param name="apiKey">apiKey.</param>
-        public ProjectWebhookRequest(string url = default(string), string apiKey = default(string))
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        public ApiKeyType Type { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateProjectApiKeyRequest" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected CreateProjectApiKeyRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateProjectApiKeyRequest" /> class.
+        /// </summary>
+        /// <param name="type">type (required).</param>
+        public CreateProjectApiKeyRequest(ApiKeyType type = default(ApiKeyType))
         {
-            this.Url = url;
-            this.ApiKey = apiKey;
+            this.Type = type;
         }
-
-        /// <summary>
-        /// Gets or Sets Url
-        /// </summary>
-        [DataMember(Name = "url", EmitDefaultValue = false)]
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ApiKey
-        /// </summary>
-        [DataMember(Name = "apiKey", EmitDefaultValue = false)]
-        public string ApiKey { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,9 +58,8 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ProjectWebhookRequest {\n");
-            sb.Append("  Url: ").Append(Url).Append("\n");
-            sb.Append("  ApiKey: ").Append(ApiKey).Append("\n");
+            sb.Append("class CreateProjectApiKeyRequest {\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -84,15 +80,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ProjectWebhookRequest);
+            return this.Equals(input as CreateProjectApiKeyRequest);
         }
 
         /// <summary>
-        /// Returns true if ProjectWebhookRequest instances are equal
+        /// Returns true if CreateProjectApiKeyRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of ProjectWebhookRequest to be compared</param>
+        /// <param name="input">Instance of CreateProjectApiKeyRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ProjectWebhookRequest input)
+        public bool Equals(CreateProjectApiKeyRequest input)
         {
             if (input == null)
             {
@@ -100,14 +96,8 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Url == input.Url ||
-                    (this.Url != null &&
-                    this.Url.Equals(input.Url))
-                ) && 
-                (
-                    this.ApiKey == input.ApiKey ||
-                    (this.ApiKey != null &&
-                    this.ApiKey.Equals(input.ApiKey))
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -120,14 +110,7 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Url != null)
-                {
-                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
-                }
-                if (this.ApiKey != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApiKey.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }

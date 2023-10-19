@@ -26,33 +26,35 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// ProjectWebhookRequest
+    /// OAuthConfigResponse
     /// </summary>
-    [DataContract(Name = "ProjectWebhookRequest")]
-    public partial class ProjectWebhookRequest : IEquatable<ProjectWebhookRequest>
+    [DataContract(Name = "OAuthConfigResponse")]
+    public partial class OAuthConfigResponse : IEquatable<OAuthConfigResponse>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectWebhookRequest" /> class.
+        /// Initializes a new instance of the <see cref="OAuthConfigResponse" /> class.
         /// </summary>
-        /// <param name="url">url.</param>
-        /// <param name="apiKey">apiKey.</param>
-        public ProjectWebhookRequest(string url = default(string), string apiKey = default(string))
+        [JsonConstructorAttribute]
+        protected OAuthConfigResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OAuthConfigResponse" /> class.
+        /// </summary>
+        /// <param name="config">config (required).</param>
+        public OAuthConfigResponse(AccelbyteOauthConfig config = default(AccelbyteOauthConfig))
         {
-            this.Url = url;
-            this.ApiKey = apiKey;
+            // to ensure "config" is required (not null)
+            if (config == null)
+            {
+                throw new ArgumentNullException("config is a required property for OAuthConfigResponse and cannot be null");
+            }
+            this.Config = config;
         }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// Gets or Sets Config
         /// </summary>
-        [DataMember(Name = "url", EmitDefaultValue = false)]
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ApiKey
-        /// </summary>
-        [DataMember(Name = "apiKey", EmitDefaultValue = false)]
-        public string ApiKey { get; set; }
+        [DataMember(Name = "config", IsRequired = true, EmitDefaultValue = true)]
+        public AccelbyteOauthConfig Config { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,9 +63,8 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ProjectWebhookRequest {\n");
-            sb.Append("  Url: ").Append(Url).Append("\n");
-            sb.Append("  ApiKey: ").Append(ApiKey).Append("\n");
+            sb.Append("class OAuthConfigResponse {\n");
+            sb.Append("  Config: ").Append(Config).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -84,15 +85,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ProjectWebhookRequest);
+            return this.Equals(input as OAuthConfigResponse);
         }
 
         /// <summary>
-        /// Returns true if ProjectWebhookRequest instances are equal
+        /// Returns true if OAuthConfigResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of ProjectWebhookRequest to be compared</param>
+        /// <param name="input">Instance of OAuthConfigResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ProjectWebhookRequest input)
+        public bool Equals(OAuthConfigResponse input)
         {
             if (input == null)
             {
@@ -100,14 +101,9 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Url == input.Url ||
-                    (this.Url != null &&
-                    this.Url.Equals(input.Url))
-                ) && 
-                (
-                    this.ApiKey == input.ApiKey ||
-                    (this.ApiKey != null &&
-                    this.ApiKey.Equals(input.ApiKey))
+                    this.Config == input.Config ||
+                    (this.Config != null &&
+                    this.Config.Equals(input.Config))
                 );
         }
 
@@ -120,13 +116,9 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Url != null)
+                if (this.Config != null)
                 {
-                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
-                }
-                if (this.ApiKey != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApiKey.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Config.GetHashCode();
                 }
                 return hashCode;
             }

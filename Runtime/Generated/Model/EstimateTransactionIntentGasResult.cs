@@ -46,7 +46,11 @@ namespace Openfort.Model
         /// <param name="callGasLimit">estimated cost of calling the account with the given callData (required).</param>
         /// <param name="verificationGasLimit">returned by some bundlers (e.g. Biconomy&#39;s).</param>
         /// <param name="estimatedTXGas">estimated TX gas cost (required).</param>
-        public EstimateTransactionIntentGasResult(string preVerificationGas = default(string), string verificationGas = default(string), string validUntil = default(string), string validAfter = default(string), string callGasLimit = default(string), string verificationGasLimit = default(string), string estimatedTXGas = default(string))
+        /// <param name="estimatedTXGasFee">estimated TX gas cost in the chain native token (WEI) (required).</param>
+        /// <param name="estimatedTXGasFeeUSD">estimated TX gas cost in USD (required).</param>
+        /// <param name="estimatedTXGasFeeToken">when using a policy, the estimated TX gas cost in the ERC-20 token defined in the strategy (WEI).</param>
+        /// <param name="gasPrice">gas price used for the estimation (required).</param>
+        public EstimateTransactionIntentGasResult(string preVerificationGas = default(string), string verificationGas = default(string), string validUntil = default(string), string validAfter = default(string), string callGasLimit = default(string), string verificationGasLimit = default(string), string estimatedTXGas = default(string), string estimatedTXGasFee = default(string), string estimatedTXGasFeeUSD = default(string), string estimatedTXGasFeeToken = default(string), string gasPrice = default(string))
         {
             // to ensure "preVerificationGas" is required (not null)
             if (preVerificationGas == null)
@@ -72,9 +76,28 @@ namespace Openfort.Model
                 throw new ArgumentNullException("estimatedTXGas is a required property for EstimateTransactionIntentGasResult and cannot be null");
             }
             this.EstimatedTXGas = estimatedTXGas;
+            // to ensure "estimatedTXGasFee" is required (not null)
+            if (estimatedTXGasFee == null)
+            {
+                throw new ArgumentNullException("estimatedTXGasFee is a required property for EstimateTransactionIntentGasResult and cannot be null");
+            }
+            this.EstimatedTXGasFee = estimatedTXGasFee;
+            // to ensure "estimatedTXGasFeeUSD" is required (not null)
+            if (estimatedTXGasFeeUSD == null)
+            {
+                throw new ArgumentNullException("estimatedTXGasFeeUSD is a required property for EstimateTransactionIntentGasResult and cannot be null");
+            }
+            this.EstimatedTXGasFeeUSD = estimatedTXGasFeeUSD;
+            // to ensure "gasPrice" is required (not null)
+            if (gasPrice == null)
+            {
+                throw new ArgumentNullException("gasPrice is a required property for EstimateTransactionIntentGasResult and cannot be null");
+            }
+            this.GasPrice = gasPrice;
             this.ValidUntil = validUntil;
             this.ValidAfter = validAfter;
             this.VerificationGasLimit = verificationGasLimit;
+            this.EstimatedTXGasFeeToken = estimatedTXGasFeeToken;
         }
 
         /// <summary>
@@ -127,6 +150,34 @@ namespace Openfort.Model
         public string EstimatedTXGas { get; set; }
 
         /// <summary>
+        /// estimated TX gas cost in the chain native token (WEI)
+        /// </summary>
+        /// <value>estimated TX gas cost in the chain native token (WEI)</value>
+        [DataMember(Name = "estimatedTXGasFee", IsRequired = true, EmitDefaultValue = true)]
+        public string EstimatedTXGasFee { get; set; }
+
+        /// <summary>
+        /// estimated TX gas cost in USD
+        /// </summary>
+        /// <value>estimated TX gas cost in USD</value>
+        [DataMember(Name = "estimatedTXGasFeeUSD", IsRequired = true, EmitDefaultValue = true)]
+        public string EstimatedTXGasFeeUSD { get; set; }
+
+        /// <summary>
+        /// when using a policy, the estimated TX gas cost in the ERC-20 token defined in the strategy (WEI)
+        /// </summary>
+        /// <value>when using a policy, the estimated TX gas cost in the ERC-20 token defined in the strategy (WEI)</value>
+        [DataMember(Name = "estimatedTXGasFeeToken", EmitDefaultValue = false)]
+        public string EstimatedTXGasFeeToken { get; set; }
+
+        /// <summary>
+        /// gas price used for the estimation
+        /// </summary>
+        /// <value>gas price used for the estimation</value>
+        [DataMember(Name = "gasPrice", IsRequired = true, EmitDefaultValue = true)]
+        public string GasPrice { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -141,6 +192,10 @@ namespace Openfort.Model
             sb.Append("  CallGasLimit: ").Append(CallGasLimit).Append("\n");
             sb.Append("  VerificationGasLimit: ").Append(VerificationGasLimit).Append("\n");
             sb.Append("  EstimatedTXGas: ").Append(EstimatedTXGas).Append("\n");
+            sb.Append("  EstimatedTXGasFee: ").Append(EstimatedTXGasFee).Append("\n");
+            sb.Append("  EstimatedTXGasFeeUSD: ").Append(EstimatedTXGasFeeUSD).Append("\n");
+            sb.Append("  EstimatedTXGasFeeToken: ").Append(EstimatedTXGasFeeToken).Append("\n");
+            sb.Append("  GasPrice: ").Append(GasPrice).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -210,6 +265,26 @@ namespace Openfort.Model
                     this.EstimatedTXGas == input.EstimatedTXGas ||
                     (this.EstimatedTXGas != null &&
                     this.EstimatedTXGas.Equals(input.EstimatedTXGas))
+                ) && 
+                (
+                    this.EstimatedTXGasFee == input.EstimatedTXGasFee ||
+                    (this.EstimatedTXGasFee != null &&
+                    this.EstimatedTXGasFee.Equals(input.EstimatedTXGasFee))
+                ) && 
+                (
+                    this.EstimatedTXGasFeeUSD == input.EstimatedTXGasFeeUSD ||
+                    (this.EstimatedTXGasFeeUSD != null &&
+                    this.EstimatedTXGasFeeUSD.Equals(input.EstimatedTXGasFeeUSD))
+                ) && 
+                (
+                    this.EstimatedTXGasFeeToken == input.EstimatedTXGasFeeToken ||
+                    (this.EstimatedTXGasFeeToken != null &&
+                    this.EstimatedTXGasFeeToken.Equals(input.EstimatedTXGasFeeToken))
+                ) && 
+                (
+                    this.GasPrice == input.GasPrice ||
+                    (this.GasPrice != null &&
+                    this.GasPrice.Equals(input.GasPrice))
                 );
         }
 
@@ -249,6 +324,22 @@ namespace Openfort.Model
                 if (this.EstimatedTXGas != null)
                 {
                     hashCode = (hashCode * 59) + this.EstimatedTXGas.GetHashCode();
+                }
+                if (this.EstimatedTXGasFee != null)
+                {
+                    hashCode = (hashCode * 59) + this.EstimatedTXGasFee.GetHashCode();
+                }
+                if (this.EstimatedTXGasFeeUSD != null)
+                {
+                    hashCode = (hashCode * 59) + this.EstimatedTXGasFeeUSD.GetHashCode();
+                }
+                if (this.EstimatedTXGasFeeToken != null)
+                {
+                    hashCode = (hashCode * 59) + this.EstimatedTXGasFeeToken.GetHashCode();
+                }
+                if (this.GasPrice != null)
+                {
+                    hashCode = (hashCode * 59) + this.GasPrice.GetHashCode();
                 }
                 return hashCode;
             }

@@ -26,28 +26,16 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// Defines SponsorSchema
+    /// Defines SponsorSchema.FIXED_RATE
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum SponsorSchema
+    public enum SponsorSchemaFIXEDRATE
     {
-        /// <summary>
-        /// Enum PayForUser for value: pay_for_user
-        /// </summary>
-        [EnumMember(Value = "pay_for_user")]
-        PayForUser = 1,
-
-        /// <summary>
-        /// Enum ChargeCustomTokens for value: charge_custom_tokens
-        /// </summary>
-        [EnumMember(Value = "charge_custom_tokens")]
-        ChargeCustomTokens = 2,
-
         /// <summary>
         /// Enum FixedRate for value: fixed_rate
         /// </summary>
         [EnumMember(Value = "fixed_rate")]
-        FixedRate = 3
+        FixedRate = 1
 
     }
 

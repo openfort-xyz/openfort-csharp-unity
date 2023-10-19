@@ -46,10 +46,18 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="PayForUserPolicyStrategy" /> class.
         /// </summary>
         /// <param name="sponsorSchema">sponsorSchema (required).</param>
-        public PayForUserPolicyStrategy(SponsorSchemaPAYFORUSER sponsorSchema = default(SponsorSchemaPAYFORUSER))
+        /// <param name="depositor">depositor.</param>
+        public PayForUserPolicyStrategy(SponsorSchemaPAYFORUSER sponsorSchema = default(SponsorSchemaPAYFORUSER), string depositor = default(string))
         {
             this.SponsorSchema = sponsorSchema;
+            this.Depositor = depositor;
         }
+
+        /// <summary>
+        /// Gets or Sets Depositor
+        /// </summary>
+        [DataMember(Name = "depositor", EmitDefaultValue = true)]
+        public string Depositor { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -60,6 +68,7 @@ namespace Openfort.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class PayForUserPolicyStrategy {\n");
             sb.Append("  SponsorSchema: ").Append(SponsorSchema).Append("\n");
+            sb.Append("  Depositor: ").Append(Depositor).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -98,6 +107,11 @@ namespace Openfort.Model
                 (
                     this.SponsorSchema == input.SponsorSchema ||
                     this.SponsorSchema.Equals(input.SponsorSchema)
+                ) && 
+                (
+                    this.Depositor == input.Depositor ||
+                    (this.Depositor != null &&
+                    this.Depositor.Equals(input.Depositor))
                 );
         }
 
@@ -111,6 +125,10 @@ namespace Openfort.Model
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.SponsorSchema.GetHashCode();
+                if (this.Depositor != null)
+                {
+                    hashCode = (hashCode * 59) + this.Depositor.GetHashCode();
+                }
                 return hashCode;
             }
         }
