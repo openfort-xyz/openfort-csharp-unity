@@ -26,7 +26,7 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// OAuthConfigRequest
+    /// Request for the configuration endpoints for the OAuth providers
     /// </summary>
     [DataContract(Name = "OAuthConfigRequest")]
     public partial class OAuthConfigRequest : IEquatable<OAuthConfigRequest>
@@ -40,7 +40,7 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="OAuthConfigRequest" /> class.
         /// </summary>
         /// <param name="config">config (required).</param>
-        public OAuthConfigRequest(AccelbyteOauthConfig config = default(AccelbyteOauthConfig))
+        public OAuthConfigRequest(OAuthConfig config = default(OAuthConfig))
         {
             // to ensure "config" is required (not null)
             if (config == null)
@@ -54,7 +54,7 @@ namespace Openfort.Model
         /// Gets or Sets Config
         /// </summary>
         [DataMember(Name = "config", IsRequired = true, EmitDefaultValue = true)]
-        public AccelbyteOauthConfig Config { get; set; }
+        public OAuthConfig Config { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

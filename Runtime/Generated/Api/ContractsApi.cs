@@ -55,7 +55,7 @@ namespace Openfort.Api
         /// Delete a contract from the project by providing its contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <returns>ContractDeleteResponse</returns>
         ContractDeleteResponse DeleteContract(string id);
 
@@ -66,7 +66,7 @@ namespace Openfort.Api
         /// Delete a contract from the project by providing its contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <returns>ApiResponse of ContractDeleteResponse</returns>
         ApiResponse<ContractDeleteResponse> DeleteContractWithHttpInfo(string id);
         /// <summary>
@@ -76,7 +76,7 @@ namespace Openfort.Api
         /// Retrieve a contract by providing their contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <returns>ContractResponse</returns>
         ContractResponse GetContract(string id);
 
@@ -87,7 +87,7 @@ namespace Openfort.Api
         /// Retrieve a contract by providing their contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <returns>ApiResponse of ContractResponse</returns>
         ApiResponse<ContractResponse> GetContractWithHttpInfo(string id);
         /// <summary>
@@ -127,7 +127,7 @@ namespace Openfort.Api
         /// Updates a contract object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="updateContractRequest"></param>
         /// <returns>ContractResponse</returns>
         ContractResponse UpdateContract(string id, UpdateContractRequest updateContractRequest);
@@ -139,7 +139,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="updateContractRequest"></param>
         /// <returns>ApiResponse of ContractResponse</returns>
         ApiResponse<ContractResponse> UpdateContractWithHttpInfo(string id, UpdateContractRequest updateContractRequest);
@@ -182,7 +182,7 @@ namespace Openfort.Api
         /// Delete a contract from the project by providing its contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractDeleteResponse</returns>
         System.Threading.Tasks.Task<ContractDeleteResponse> DeleteContractAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -194,7 +194,7 @@ namespace Openfort.Api
         /// Delete a contract from the project by providing its contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractDeleteResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ContractDeleteResponse>> DeleteContractWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -205,7 +205,7 @@ namespace Openfort.Api
         /// Retrieve a contract by providing their contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractResponse</returns>
         System.Threading.Tasks.Task<ContractResponse> GetContractAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -217,7 +217,7 @@ namespace Openfort.Api
         /// Retrieve a contract by providing their contract id.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ContractResponse>> GetContractWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -263,7 +263,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="updateContractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractResponse</returns>
@@ -276,7 +276,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="updateContractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
@@ -569,7 +569,7 @@ namespace Openfort.Api
         /// Deletes a contract object. Delete a contract from the project by providing its contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <returns>ContractDeleteResponse</returns>
         public ContractDeleteResponse DeleteContract(string id)
         {
@@ -581,7 +581,7 @@ namespace Openfort.Api
         /// Deletes a contract object. Delete a contract from the project by providing its contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <returns>ApiResponse of ContractDeleteResponse</returns>
         public Openfort.Client.ApiResponse<ContractDeleteResponse> DeleteContractWithHttpInfo(string id)
         {
@@ -630,7 +630,7 @@ namespace Openfort.Api
         /// Deletes a contract object. Delete a contract from the project by providing its contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractDeleteResponse</returns>
         public async System.Threading.Tasks.Task<ContractDeleteResponse> DeleteContractAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -648,7 +648,7 @@ namespace Openfort.Api
         /// Deletes a contract object. Delete a contract from the project by providing its contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractDeleteResponse)</returns>
         public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractDeleteResponse>> DeleteContractWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -707,7 +707,7 @@ namespace Openfort.Api
         /// Get a contract. Retrieve a contract by providing their contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <returns>ContractResponse</returns>
         public ContractResponse GetContract(string id)
         {
@@ -719,7 +719,7 @@ namespace Openfort.Api
         /// Get a contract. Retrieve a contract by providing their contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <returns>ApiResponse of ContractResponse</returns>
         public Openfort.Client.ApiResponse<ContractResponse> GetContractWithHttpInfo(string id)
         {
@@ -768,7 +768,7 @@ namespace Openfort.Api
         /// Get a contract. Retrieve a contract by providing their contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractResponse</returns>
         public async System.Threading.Tasks.Task<ContractResponse> GetContractAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -786,7 +786,7 @@ namespace Openfort.Api
         /// Get a contract. Retrieve a contract by providing their contract id.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractResponse)</returns>
         public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractResponse>> GetContractWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1053,7 +1053,7 @@ namespace Openfort.Api
         /// Updates a contract object. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="updateContractRequest"></param>
         /// <returns>ContractResponse</returns>
         public ContractResponse UpdateContract(string id, UpdateContractRequest updateContractRequest)
@@ -1066,7 +1066,7 @@ namespace Openfort.Api
         /// Updates a contract object. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="updateContractRequest"></param>
         /// <returns>ApiResponse of ContractResponse</returns>
         public Openfort.Client.ApiResponse<ContractResponse> UpdateContractWithHttpInfo(string id, UpdateContractRequest updateContractRequest)
@@ -1122,7 +1122,7 @@ namespace Openfort.Api
         /// Updates a contract object. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="updateContractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractResponse</returns>
@@ -1141,7 +1141,7 @@ namespace Openfort.Api
         /// Updates a contract object. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique contract ID.</param>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="updateContractRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractResponse)</returns>

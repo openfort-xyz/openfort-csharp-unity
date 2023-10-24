@@ -26,7 +26,7 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// OAuthRequest
+    /// The request to verify access token
     /// </summary>
     [DataContract(Name = "OAuthRequest")]
     public partial class OAuthRequest : IEquatable<OAuthRequest>
@@ -39,7 +39,7 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="OAuthRequest" /> class.
         /// </summary>
-        /// <param name="token">token (required).</param>
+        /// <param name="token">Access token to be verified (required).</param>
         public OAuthRequest(string token = default(string))
         {
             // to ensure "token" is required (not null)
@@ -51,8 +51,9 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets Token
+        /// Access token to be verified
         /// </summary>
+        /// <value>Access token to be verified</value>
         [DataMember(Name = "token", IsRequired = true, EmitDefaultValue = true)]
         public string Token { get; set; }
 

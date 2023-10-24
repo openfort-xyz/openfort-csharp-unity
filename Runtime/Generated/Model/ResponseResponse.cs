@@ -41,8 +41,8 @@ namespace Openfort.Model
         /// </summary>
         /// <param name="createdAt">The unix timestamp in seconds when the transactionIntent was created. (required).</param>
         /// <param name="blockNumber">The block height (number) of the block including the transaction of this log..</param>
-        /// <param name="transactionHash">transactionHash.</param>
-        /// <param name="userOpHash">The user operation hash of the transaction of this log..</param>
+        /// <param name="transactionHash">The transaction hash of the transaction of this log..</param>
+        /// <param name="userOpHash">userOpHash.</param>
         /// <param name="l1GasUsed">The gas used by the transaction of this log..</param>
         /// <param name="gasUsed">The gas used by the transaction of this log..</param>
         /// <param name="status">The status of the transaction of this log..</param>
@@ -78,17 +78,17 @@ namespace Openfort.Model
         public int BlockNumber { get; set; }
 
         /// <summary>
-        /// Gets or Sets TransactionHash
+        /// The transaction hash of the transaction of this log.
         /// </summary>
+        /// <value>The transaction hash of the transaction of this log.</value>
         [DataMember(Name = "transactionHash", EmitDefaultValue = false)]
-        [Obsolete]
         public string TransactionHash { get; set; }
 
         /// <summary>
-        /// The user operation hash of the transaction of this log.
+        /// Gets or Sets UserOpHash
         /// </summary>
-        /// <value>The user operation hash of the transaction of this log.</value>
         [DataMember(Name = "userOpHash", EmitDefaultValue = false)]
+        [Obsolete]
         public string UserOpHash { get; set; }
 
         /// <summary>

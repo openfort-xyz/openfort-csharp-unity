@@ -26,23 +26,16 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// Enum of the supporting OAuth providers.
+    /// Defines OAuthProvider.PLAYFAB
     /// </summary>
-    /// <value>Enum of the supporting OAuth providers.</value>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum OAuthProvider
+    public enum OAuthProviderPLAYFAB
     {
-        /// <summary>
-        /// Enum Accelbyte for value: accelbyte
-        /// </summary>
-        [EnumMember(Value = "accelbyte")]
-        Accelbyte = 1,
-
         /// <summary>
         /// Enum Playfab for value: playfab
         /// </summary>
         [EnumMember(Value = "playfab")]
-        Playfab = 2
+        Playfab = 1
 
     }
 

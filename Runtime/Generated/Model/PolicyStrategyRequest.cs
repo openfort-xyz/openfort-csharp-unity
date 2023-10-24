@@ -46,9 +46,9 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="PolicyStrategyRequest" /> class.
         /// </summary>
         /// <param name="sponsorSchema">sponsorSchema (required).</param>
-        /// <param name="tokenContract">If the user pays in custom tokens, the contract ID of the token contract..</param>
-        /// <param name="tokenContractAmount">If the user pays in custom tokens, the amount of tokens to pay in WEI per native token..</param>
-        /// <param name="depositor">If the game wants to use their deposited tokens instead of Openfort&#39;s..</param>
+        /// <param name="tokenContract">If the user pays in custom tokens, the contract ID (starts with con_) of the token contract..</param>
+        /// <param name="tokenContractAmount">If the user pays in ERC20 tokens, this reflects either the exchange rate or the amount in WEI..</param>
+        /// <param name="depositor">If the you want to use your own native tokens to pay for gas, specify the depositor ID (starts with dep_).</param>
         public PolicyStrategyRequest(SponsorSchema sponsorSchema = default(SponsorSchema), string tokenContract = default(string), string tokenContractAmount = default(string), string depositor = default(string))
         {
             this.SponsorSchema = sponsorSchema;
@@ -58,23 +58,23 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// If the user pays in custom tokens, the contract ID of the token contract.
+        /// If the user pays in custom tokens, the contract ID (starts with con_) of the token contract.
         /// </summary>
-        /// <value>If the user pays in custom tokens, the contract ID of the token contract.</value>
+        /// <value>If the user pays in custom tokens, the contract ID (starts with con_) of the token contract.</value>
         [DataMember(Name = "tokenContract", EmitDefaultValue = false)]
         public string TokenContract { get; set; }
 
         /// <summary>
-        /// If the user pays in custom tokens, the amount of tokens to pay in WEI per native token.
+        /// If the user pays in ERC20 tokens, this reflects either the exchange rate or the amount in WEI.
         /// </summary>
-        /// <value>If the user pays in custom tokens, the amount of tokens to pay in WEI per native token.</value>
+        /// <value>If the user pays in ERC20 tokens, this reflects either the exchange rate or the amount in WEI.</value>
         [DataMember(Name = "tokenContractAmount", EmitDefaultValue = false)]
         public string TokenContractAmount { get; set; }
 
         /// <summary>
-        /// If the game wants to use their deposited tokens instead of Openfort&#39;s.
+        /// If the you want to use your own native tokens to pay for gas, specify the depositor ID (starts with dep_)
         /// </summary>
-        /// <value>If the game wants to use their deposited tokens instead of Openfort&#39;s.</value>
+        /// <value>If the you want to use your own native tokens to pay for gas, specify the depositor ID (starts with dep_)</value>
         [DataMember(Name = "depositor", EmitDefaultValue = false)]
         public string Depositor { get; set; }
 

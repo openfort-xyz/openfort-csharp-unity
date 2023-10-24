@@ -27,18 +27,18 @@ using System.Reflection;
 namespace Openfort.Model
 {
     /// <summary>
-    /// The player ID (starts with pla_).
+    /// AuthorizeWithOAuthToken200Response
     /// </summary>
-    [JsonConverter(typeof(TransactionIntentResponsePlayerJsonConverter))]
-    [DataContract(Name = "TransactionIntentResponse_player")]
-    public partial class TransactionIntentResponsePlayer : AbstractOpenAPISchema, IEquatable<TransactionIntentResponsePlayer>
+    [JsonConverter(typeof(AuthorizeWithOAuthToken200ResponseJsonConverter))]
+    [DataContract(Name = "AuthorizeWithOAuthToken_200_response")]
+    public partial class AuthorizeWithOAuthToken200Response : AbstractOpenAPISchema, IEquatable<AuthorizeWithOAuthToken200Response>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransactionIntentResponsePlayer" /> class
-        /// with the <see cref="Player" /> class
+        /// Initializes a new instance of the <see cref="AuthorizeWithOAuthToken200Response" /> class
+        /// with the <see cref="AuthResponse" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of Player.</param>
-        public TransactionIntentResponsePlayer(Player actualInstance)
+        /// <param name="actualInstance">An instance of AuthResponse.</param>
+        public AuthorizeWithOAuthToken200Response(AuthResponse actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -46,11 +46,11 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransactionIntentResponsePlayer" /> class
-        /// with the <see cref="EntityIdResponse" /> class
+        /// Initializes a new instance of the <see cref="AuthorizeWithOAuthToken200Response" /> class
+        /// with the <see cref="AuthenticatedPlayerResponse" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of EntityIdResponse.</param>
-        public TransactionIntentResponsePlayer(EntityIdResponse actualInstance)
+        /// <param name="actualInstance">An instance of AuthenticatedPlayerResponse.</param>
+        public AuthorizeWithOAuthToken200Response(AuthenticatedPlayerResponse actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -71,39 +71,39 @@ namespace Openfort.Model
             }
             set
             {
-                if (value.GetType() == typeof(EntityIdResponse))
+                if (value.GetType() == typeof(AuthResponse))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(Player))
+                else if (value.GetType() == typeof(AuthenticatedPlayerResponse))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: EntityIdResponse, Player");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AuthResponse, AuthenticatedPlayerResponse");
                 }
             }
         }
 
         /// <summary>
-        /// Get the actual instance of `Player`. If the actual instance is not `Player`,
+        /// Get the actual instance of `AuthResponse`. If the actual instance is not `AuthResponse`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of Player</returns>
-        public Player GetPlayer()
+        /// <returns>An instance of AuthResponse</returns>
+        public AuthResponse GetAuthResponse()
         {
-            return (Player)this.ActualInstance;
+            return (AuthResponse)this.ActualInstance;
         }
 
         /// <summary>
-        /// Get the actual instance of `EntityIdResponse`. If the actual instance is not `EntityIdResponse`,
+        /// Get the actual instance of `AuthenticatedPlayerResponse`. If the actual instance is not `AuthenticatedPlayerResponse`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of EntityIdResponse</returns>
-        public EntityIdResponse GetEntityIdResponse()
+        /// <returns>An instance of AuthenticatedPlayerResponse</returns>
+        public AuthenticatedPlayerResponse GetAuthenticatedPlayerResponse()
         {
-            return (EntityIdResponse)this.ActualInstance;
+            return (AuthenticatedPlayerResponse)this.ActualInstance;
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Openfort.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class TransactionIntentResponsePlayer {\n");
+            sb.Append("class AuthorizeWithOAuthToken200Response {\n");
             sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -125,45 +125,45 @@ namespace Openfort.Model
         /// <returns>JSON string presentation of the object</returns>
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(this.ActualInstance, TransactionIntentResponsePlayer.SerializerSettings);
+            return JsonConvert.SerializeObject(this.ActualInstance, AuthorizeWithOAuthToken200Response.SerializerSettings);
         }
 
         /// <summary>
-        /// Converts the JSON string into an instance of TransactionIntentResponsePlayer
+        /// Converts the JSON string into an instance of AuthorizeWithOAuthToken200Response
         /// </summary>
         /// <param name="jsonString">JSON string</param>
-        /// <returns>An instance of TransactionIntentResponsePlayer</returns>
-        public static TransactionIntentResponsePlayer FromJson(string jsonString)
+        /// <returns>An instance of AuthorizeWithOAuthToken200Response</returns>
+        public static AuthorizeWithOAuthToken200Response FromJson(string jsonString)
         {
-            TransactionIntentResponsePlayer newTransactionIntentResponsePlayer = null;
+            AuthorizeWithOAuthToken200Response newAuthorizeWithOAuthToken200Response = null;
 
             if (string.IsNullOrEmpty(jsonString))
             {
-                return newTransactionIntentResponsePlayer;
+                return newAuthorizeWithOAuthToken200Response;
             }
 
             try
             {
-                newTransactionIntentResponsePlayer = new TransactionIntentResponsePlayer(JsonConvert.DeserializeObject<EntityIdResponse>(jsonString, TransactionIntentResponsePlayer.SerializerSettings));
+                newAuthorizeWithOAuthToken200Response = new AuthorizeWithOAuthToken200Response(JsonConvert.DeserializeObject<AuthResponse>(jsonString, AuthorizeWithOAuthToken200Response.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
-                return newTransactionIntentResponsePlayer;
+                return newAuthorizeWithOAuthToken200Response;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into EntityIdResponse: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into AuthResponse: {1}", jsonString, exception.ToString()));
             }
 
             try
             {
-                newTransactionIntentResponsePlayer = new TransactionIntentResponsePlayer(JsonConvert.DeserializeObject<Player>(jsonString, TransactionIntentResponsePlayer.SerializerSettings));
+                newAuthorizeWithOAuthToken200Response = new AuthorizeWithOAuthToken200Response(JsonConvert.DeserializeObject<AuthenticatedPlayerResponse>(jsonString, AuthorizeWithOAuthToken200Response.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
-                return newTransactionIntentResponsePlayer;
+                return newAuthorizeWithOAuthToken200Response;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into Player: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into AuthenticatedPlayerResponse: {1}", jsonString, exception.ToString()));
             }
 
             // no match found, throw an exception
@@ -177,15 +177,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TransactionIntentResponsePlayer);
+            return this.Equals(input as AuthorizeWithOAuthToken200Response);
         }
 
         /// <summary>
-        /// Returns true if TransactionIntentResponsePlayer instances are equal
+        /// Returns true if AuthorizeWithOAuthToken200Response instances are equal
         /// </summary>
-        /// <param name="input">Instance of TransactionIntentResponsePlayer to be compared</param>
+        /// <param name="input">Instance of AuthorizeWithOAuthToken200Response to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TransactionIntentResponsePlayer input)
+        public bool Equals(AuthorizeWithOAuthToken200Response input)
         {
             if (input == null)
                 return false;
@@ -211,9 +211,9 @@ namespace Openfort.Model
     }
 
     /// <summary>
-    /// Custom JSON converter for TransactionIntentResponsePlayer
+    /// Custom JSON converter for AuthorizeWithOAuthToken200Response
     /// </summary>
-    public class TransactionIntentResponsePlayerJsonConverter : JsonConverter
+    public class AuthorizeWithOAuthToken200ResponseJsonConverter : JsonConverter
     {
         /// <summary>
         /// To write the JSON string
@@ -223,7 +223,7 @@ namespace Openfort.Model
         /// <param name="serializer">JSON Serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue((string)(typeof(TransactionIntentResponsePlayer).GetMethod("ToJson").Invoke(value, null)));
+            writer.WriteRawValue((string)(typeof(AuthorizeWithOAuthToken200Response).GetMethod("ToJson").Invoke(value, null)));
         }
 
         /// <summary>
@@ -238,7 +238,7 @@ namespace Openfort.Model
         {
             if(reader.TokenType != JsonToken.Null)
             {
-                return TransactionIntentResponsePlayer.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                return AuthorizeWithOAuthToken200Response.FromJson(JObject.Load(reader).ToString(Formatting.None));
             }
             return null;
         }

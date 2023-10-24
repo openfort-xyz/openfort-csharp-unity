@@ -40,10 +40,10 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="RevokeSessionRequest" /> class.
         /// </summary>
         /// <param name="address">The address of the session key to revoke. (required).</param>
-        /// <param name="policy">The policy ID.</param>
+        /// <param name="policy">The policy ID (starts with pol_).</param>
         /// <param name="optimistic">Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not..</param>
         /// <param name="chainId">The chain ID. (required).</param>
-        /// <param name="player">The player ID. (required).</param>
+        /// <param name="player">The player ID (starts with pla_). (required).</param>
         public RevokeSessionRequest(string address = default(string), string policy = default(string), bool optimistic = default(bool), int chainId = default(int), string player = default(string))
         {
             // to ensure "address" is required (not null)
@@ -71,9 +71,9 @@ namespace Openfort.Model
         public string Address { get; set; }
 
         /// <summary>
-        /// The policy ID
+        /// The policy ID (starts with pol_)
         /// </summary>
-        /// <value>The policy ID</value>
+        /// <value>The policy ID (starts with pol_)</value>
         [DataMember(Name = "policy", EmitDefaultValue = false)]
         public string Policy { get; set; }
 
@@ -93,9 +93,9 @@ namespace Openfort.Model
         public int ChainId { get; set; }
 
         /// <summary>
-        /// The player ID.
+        /// The player ID (starts with pla_).
         /// </summary>
-        /// <value>The player ID.</value>
+        /// <value>The player ID (starts with pla_).</value>
         [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
         public string Player { get; set; }
 

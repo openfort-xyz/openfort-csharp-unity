@@ -67,7 +67,7 @@ namespace Openfort.Api
         /// List policy rules of a policy.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy">Specifies the unique policy ID.</param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -82,7 +82,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy">Specifies the unique policy ID.</param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -171,7 +171,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy">Specifies the unique policy ID.</param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -187,7 +187,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy">Specifies the unique policy ID.</param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -646,7 +646,7 @@ namespace Openfort.Api
         /// List policy rules of a policy. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy">Specifies the unique policy ID.</param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -662,7 +662,7 @@ namespace Openfort.Api
         /// List policy rules of a policy. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy">Specifies the unique policy ID.</param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -731,7 +731,7 @@ namespace Openfort.Api
         /// List policy rules of a policy. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy">Specifies the unique policy ID.</param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -753,7 +753,7 @@ namespace Openfort.Api
         /// List policy rules of a policy. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy">Specifies the unique policy ID.</param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>

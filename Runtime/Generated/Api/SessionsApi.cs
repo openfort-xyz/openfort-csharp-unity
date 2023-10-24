@@ -49,7 +49,7 @@ namespace Openfort.Api
         /// List session keys of a player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">The player ID</param>
+        /// <param name="player">The player ID (starts with pla_)</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -64,7 +64,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">The player ID</param>
+        /// <param name="player">The player ID (starts with pla_)</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -75,7 +75,7 @@ namespace Openfort.Api
         /// Returns a player session by session id
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="expand">Specifies the fields to expand. (optional)</param>
         /// <returns>SessionResponse</returns>
         SessionResponse GetSession(string id, List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>));
@@ -87,7 +87,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="expand">Specifies the fields to expand. (optional)</param>
         /// <returns>ApiResponse of SessionResponse</returns>
         ApiResponse<SessionResponse> GetSessionWithHttpInfo(string id, List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>));
@@ -113,7 +113,7 @@ namespace Openfort.Api
         /// Confirms the creation of a session with an external owner.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="signatureRequest"></param>
         /// <returns>SessionResponse</returns>
         SessionResponse SignatureSession(string id, SignatureRequest signatureRequest);
@@ -125,7 +125,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="signatureRequest"></param>
         /// <returns>ApiResponse of SessionResponse</returns>
         ApiResponse<SessionResponse> SignatureSessionWithHttpInfo(string id, SignatureRequest signatureRequest);
@@ -168,7 +168,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">The player ID</param>
+        /// <param name="player">The player ID (starts with pla_)</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -184,7 +184,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">The player ID</param>
+        /// <param name="player">The player ID (starts with pla_)</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -199,7 +199,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="expand">Specifies the fields to expand. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SessionResponse</returns>
@@ -212,7 +212,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="expand">Specifies the fields to expand. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SessionResponse)</returns>
@@ -247,7 +247,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="signatureRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SessionResponse</returns>
@@ -260,7 +260,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="signatureRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SessionResponse)</returns>
@@ -553,7 +553,7 @@ namespace Openfort.Api
         /// List session keys of a player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">The player ID</param>
+        /// <param name="player">The player ID (starts with pla_)</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -569,7 +569,7 @@ namespace Openfort.Api
         /// List session keys of a player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">The player ID</param>
+        /// <param name="player">The player ID (starts with pla_)</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -638,7 +638,7 @@ namespace Openfort.Api
         /// List session keys of a player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">The player ID</param>
+        /// <param name="player">The player ID (starts with pla_)</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -660,7 +660,7 @@ namespace Openfort.Api
         /// List session keys of a player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="player">The player ID</param>
+        /// <param name="player">The player ID (starts with pla_)</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
@@ -739,7 +739,7 @@ namespace Openfort.Api
         /// Returns a player session by session id 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="expand">Specifies the fields to expand. (optional)</param>
         /// <returns>SessionResponse</returns>
         public SessionResponse GetSession(string id, List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>))
@@ -752,7 +752,7 @@ namespace Openfort.Api
         /// Returns a player session by session id 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="expand">Specifies the fields to expand. (optional)</param>
         /// <returns>ApiResponse of SessionResponse</returns>
         public Openfort.Client.ApiResponse<SessionResponse> GetSessionWithHttpInfo(string id, List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>))
@@ -806,7 +806,7 @@ namespace Openfort.Api
         /// Returns a player session by session id 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="expand">Specifies the fields to expand. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SessionResponse</returns>
@@ -825,7 +825,7 @@ namespace Openfort.Api
         /// Returns a player session by session id 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="expand">Specifies the fields to expand. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SessionResponse)</returns>
@@ -1029,7 +1029,7 @@ namespace Openfort.Api
         /// Confirms the creation of a session with an external owner. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="signatureRequest"></param>
         /// <returns>SessionResponse</returns>
         public SessionResponse SignatureSession(string id, SignatureRequest signatureRequest)
@@ -1042,7 +1042,7 @@ namespace Openfort.Api
         /// Confirms the creation of a session with an external owner. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="signatureRequest"></param>
         /// <returns>ApiResponse of SessionResponse</returns>
         public Openfort.Client.ApiResponse<SessionResponse> SignatureSessionWithHttpInfo(string id, SignatureRequest signatureRequest)
@@ -1104,7 +1104,7 @@ namespace Openfort.Api
         /// Confirms the creation of a session with an external owner. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="signatureRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SessionResponse</returns>
@@ -1123,7 +1123,7 @@ namespace Openfort.Api
         /// Confirms the creation of a session with an external owner. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique session ID.</param>
+        /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="signatureRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SessionResponse)</returns>

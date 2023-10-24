@@ -44,7 +44,7 @@ namespace Openfort.Model
         /// <param name="externalOwnerAddress">If no account exists for a given player, create one with this address..</param>
         /// <param name="limit">Maximum number of times the session key can be used..</param>
         /// <param name="optimistic">Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not..</param>
-        /// <param name="policy">The policy ID..</param>
+        /// <param name="policy">The policy ID (starts with pol_)..</param>
         /// <param name="validAfter">The unix timestamp in seconds when the session key becomes valid. (required).</param>
         /// <param name="validUntil">The unix timestamp in seconds when the session key expires. (required).</param>
         /// <param name="whitelist">The list of whitelisted addresses (contracts the session key can interact with)..</param>
@@ -104,9 +104,9 @@ namespace Openfort.Model
         public bool Optimistic { get; set; }
 
         /// <summary>
-        /// The policy ID.
+        /// The policy ID (starts with pol_).
         /// </summary>
-        /// <value>The policy ID.</value>
+        /// <value>The policy ID (starts with pol_).</value>
         [DataMember(Name = "policy", EmitDefaultValue = false)]
         public string Policy { get; set; }
 

@@ -121,12 +121,12 @@ namespace Openfort.Api
         /// Get cryptocurrency list of player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>InventoryListResponse</returns>
         InventoryListResponse GetPlayerCryptoCurrencyInventory(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
 
@@ -137,19 +137,19 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>ApiResponse of InventoryListResponse</returns>
         ApiResponse<InventoryListResponse> GetPlayerCryptoCurrencyInventoryWithHttpInfo(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
         /// <summary>
         /// Get inventory of player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <returns>ObsoleteInventoryResponse</returns>
         [Obsolete]
@@ -162,7 +162,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <returns>ApiResponse of ObsoleteInventoryResponse</returns>
         [Obsolete]
@@ -171,7 +171,7 @@ namespace Openfort.Api
         /// Get native token list of player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <returns>InventoryResponse</returns>
         InventoryResponse GetPlayerNativeInventory(string id, int chainId);
@@ -183,7 +183,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <returns>ApiResponse of InventoryResponse</returns>
         ApiResponse<InventoryResponse> GetPlayerNativeInventoryWithHttpInfo(string id, int chainId);
@@ -191,12 +191,12 @@ namespace Openfort.Api
         /// Get NFTs list of player.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>InventoryListResponse</returns>
         InventoryListResponse GetPlayerNftInventory(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
 
@@ -207,12 +207,12 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>ApiResponse of InventoryListResponse</returns>
         ApiResponse<InventoryListResponse> GetPlayerNftInventoryWithHttpInfo(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
         #endregion Synchronous Operations
@@ -341,12 +341,12 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryListResponse</returns>
         System.Threading.Tasks.Task<InventoryListResponse> GetPlayerCryptoCurrencyInventoryAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -358,12 +358,12 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryListResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<InventoryListResponse>> GetPlayerCryptoCurrencyInventoryWithHttpInfoAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -374,7 +374,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ObsoleteInventoryResponse</returns>
@@ -388,7 +388,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ObsoleteInventoryResponse)</returns>
@@ -401,7 +401,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryResponse</returns>
@@ -414,7 +414,7 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryResponse)</returns>
@@ -426,12 +426,12 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryListResponse</returns>
         System.Threading.Tasks.Task<InventoryListResponse> GetPlayerNftInventoryAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -443,12 +443,12 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryListResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<InventoryListResponse>> GetPlayerNftInventoryWithHttpInfoAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1252,12 +1252,12 @@ namespace Openfort.Api
         /// Get cryptocurrency list of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>InventoryListResponse</returns>
         public InventoryListResponse GetPlayerCryptoCurrencyInventory(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
         {
@@ -1269,12 +1269,12 @@ namespace Openfort.Api
         /// Get cryptocurrency list of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>ApiResponse of InventoryListResponse</returns>
         public Openfort.Client.ApiResponse<InventoryListResponse> GetPlayerCryptoCurrencyInventoryWithHttpInfo(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
         {
@@ -1340,12 +1340,12 @@ namespace Openfort.Api
         /// Get cryptocurrency list of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryListResponse</returns>
         public async System.Threading.Tasks.Task<InventoryListResponse> GetPlayerCryptoCurrencyInventoryAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1363,12 +1363,12 @@ namespace Openfort.Api
         /// Get cryptocurrency list of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryListResponse)</returns>
         public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<InventoryListResponse>> GetPlayerCryptoCurrencyInventoryWithHttpInfoAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1444,7 +1444,7 @@ namespace Openfort.Api
         /// Get inventory of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <returns>ObsoleteInventoryResponse</returns>
         [Obsolete]
@@ -1458,7 +1458,7 @@ namespace Openfort.Api
         /// Get inventory of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <returns>ApiResponse of ObsoleteInventoryResponse</returns>
         [Obsolete]
@@ -1510,7 +1510,7 @@ namespace Openfort.Api
         /// Get inventory of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ObsoleteInventoryResponse</returns>
@@ -1530,7 +1530,7 @@ namespace Openfort.Api
         /// Get inventory of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ObsoleteInventoryResponse)</returns>
@@ -1592,7 +1592,7 @@ namespace Openfort.Api
         /// Get native token list of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <returns>InventoryResponse</returns>
         public InventoryResponse GetPlayerNativeInventory(string id, int chainId)
@@ -1605,7 +1605,7 @@ namespace Openfort.Api
         /// Get native token list of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <returns>ApiResponse of InventoryResponse</returns>
         public Openfort.Client.ApiResponse<InventoryResponse> GetPlayerNativeInventoryWithHttpInfo(string id, int chainId)
@@ -1656,7 +1656,7 @@ namespace Openfort.Api
         /// Get native token list of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryResponse</returns>
@@ -1675,7 +1675,7 @@ namespace Openfort.Api
         /// Get native token list of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryResponse)</returns>
@@ -1736,12 +1736,12 @@ namespace Openfort.Api
         /// Get NFTs list of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>InventoryListResponse</returns>
         public InventoryListResponse GetPlayerNftInventory(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
         {
@@ -1753,12 +1753,12 @@ namespace Openfort.Api
         /// Get NFTs list of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>ApiResponse of InventoryListResponse</returns>
         public Openfort.Client.ApiResponse<InventoryListResponse> GetPlayerNftInventoryWithHttpInfo(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
         {
@@ -1824,12 +1824,12 @@ namespace Openfort.Api
         /// Get NFTs list of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryListResponse</returns>
         public async System.Threading.Tasks.Task<InventoryListResponse> GetPlayerNftInventoryAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1847,12 +1847,12 @@ namespace Openfort.Api
         /// Get NFTs list of player. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies the unique player ID.</param>
+        /// <param name="id">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="chainId">Filter by chain id.</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
         /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
-        /// <param name="contractId">Filter by contract ID. (optional)</param>
+        /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryListResponse)</returns>
         public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<InventoryListResponse>> GetPlayerNftInventoryWithHttpInfoAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))

@@ -27,18 +27,18 @@ using System.Reflection;
 namespace Openfort.Model
 {
     /// <summary>
-    /// The player ID (starts with pla_).
+    /// UpdateUserProjectRequestRole
     /// </summary>
-    [JsonConverter(typeof(TransactionIntentResponsePlayerJsonConverter))]
-    [DataContract(Name = "TransactionIntentResponse_player")]
-    public partial class TransactionIntentResponsePlayer : AbstractOpenAPISchema, IEquatable<TransactionIntentResponsePlayer>
+    [JsonConverter(typeof(UpdateUserProjectRequestRoleJsonConverter))]
+    [DataContract(Name = "UpdateUserProjectRequest_role")]
+    public partial class UpdateUserProjectRequestRole : AbstractOpenAPISchema, IEquatable<UpdateUserProjectRequestRole>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransactionIntentResponsePlayer" /> class
-        /// with the <see cref="Player" /> class
+        /// Initializes a new instance of the <see cref="UpdateUserProjectRequestRole" /> class
+        /// with the <see cref="UserProjectRoleMEMBER" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of Player.</param>
-        public TransactionIntentResponsePlayer(Player actualInstance)
+        /// <param name="actualInstance">An instance of UserProjectRoleMEMBER.</param>
+        public UpdateUserProjectRequestRole(UserProjectRoleMEMBER actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -46,11 +46,11 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransactionIntentResponsePlayer" /> class
-        /// with the <see cref="EntityIdResponse" /> class
+        /// Initializes a new instance of the <see cref="UpdateUserProjectRequestRole" /> class
+        /// with the <see cref="UserProjectRoleADMIN" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of EntityIdResponse.</param>
-        public TransactionIntentResponsePlayer(EntityIdResponse actualInstance)
+        /// <param name="actualInstance">An instance of UserProjectRoleADMIN.</param>
+        public UpdateUserProjectRequestRole(UserProjectRoleADMIN actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "anyOf";
@@ -71,39 +71,39 @@ namespace Openfort.Model
             }
             set
             {
-                if (value.GetType() == typeof(EntityIdResponse))
+                if (value.GetType() == typeof(UserProjectRoleADMIN))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(Player))
+                else if (value.GetType() == typeof(UserProjectRoleMEMBER))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: EntityIdResponse, Player");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: UserProjectRoleADMIN, UserProjectRoleMEMBER");
                 }
             }
         }
 
         /// <summary>
-        /// Get the actual instance of `Player`. If the actual instance is not `Player`,
+        /// Get the actual instance of `UserProjectRoleMEMBER`. If the actual instance is not `UserProjectRoleMEMBER`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of Player</returns>
-        public Player GetPlayer()
+        /// <returns>An instance of UserProjectRoleMEMBER</returns>
+        public UserProjectRoleMEMBER GetUserProjectRoleMEMBER()
         {
-            return (Player)this.ActualInstance;
+            return (UserProjectRoleMEMBER)this.ActualInstance;
         }
 
         /// <summary>
-        /// Get the actual instance of `EntityIdResponse`. If the actual instance is not `EntityIdResponse`,
+        /// Get the actual instance of `UserProjectRoleADMIN`. If the actual instance is not `UserProjectRoleADMIN`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of EntityIdResponse</returns>
-        public EntityIdResponse GetEntityIdResponse()
+        /// <returns>An instance of UserProjectRoleADMIN</returns>
+        public UserProjectRoleADMIN GetUserProjectRoleADMIN()
         {
-            return (EntityIdResponse)this.ActualInstance;
+            return (UserProjectRoleADMIN)this.ActualInstance;
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Openfort.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class TransactionIntentResponsePlayer {\n");
+            sb.Append("class UpdateUserProjectRequestRole {\n");
             sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -125,45 +125,45 @@ namespace Openfort.Model
         /// <returns>JSON string presentation of the object</returns>
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(this.ActualInstance, TransactionIntentResponsePlayer.SerializerSettings);
+            return JsonConvert.SerializeObject(this.ActualInstance, UpdateUserProjectRequestRole.SerializerSettings);
         }
 
         /// <summary>
-        /// Converts the JSON string into an instance of TransactionIntentResponsePlayer
+        /// Converts the JSON string into an instance of UpdateUserProjectRequestRole
         /// </summary>
         /// <param name="jsonString">JSON string</param>
-        /// <returns>An instance of TransactionIntentResponsePlayer</returns>
-        public static TransactionIntentResponsePlayer FromJson(string jsonString)
+        /// <returns>An instance of UpdateUserProjectRequestRole</returns>
+        public static UpdateUserProjectRequestRole FromJson(string jsonString)
         {
-            TransactionIntentResponsePlayer newTransactionIntentResponsePlayer = null;
+            UpdateUserProjectRequestRole newUpdateUserProjectRequestRole = null;
 
             if (string.IsNullOrEmpty(jsonString))
             {
-                return newTransactionIntentResponsePlayer;
+                return newUpdateUserProjectRequestRole;
             }
 
             try
             {
-                newTransactionIntentResponsePlayer = new TransactionIntentResponsePlayer(JsonConvert.DeserializeObject<EntityIdResponse>(jsonString, TransactionIntentResponsePlayer.SerializerSettings));
+                newUpdateUserProjectRequestRole = new UpdateUserProjectRequestRole(JsonConvert.DeserializeObject<UserProjectRoleADMIN>(jsonString, UpdateUserProjectRequestRole.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
-                return newTransactionIntentResponsePlayer;
+                return newUpdateUserProjectRequestRole;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into EntityIdResponse: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into UserProjectRoleADMIN: {1}", jsonString, exception.ToString()));
             }
 
             try
             {
-                newTransactionIntentResponsePlayer = new TransactionIntentResponsePlayer(JsonConvert.DeserializeObject<Player>(jsonString, TransactionIntentResponsePlayer.SerializerSettings));
+                newUpdateUserProjectRequestRole = new UpdateUserProjectRequestRole(JsonConvert.DeserializeObject<UserProjectRoleMEMBER>(jsonString, UpdateUserProjectRequestRole.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
-                return newTransactionIntentResponsePlayer;
+                return newUpdateUserProjectRequestRole;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into Player: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into UserProjectRoleMEMBER: {1}", jsonString, exception.ToString()));
             }
 
             // no match found, throw an exception
@@ -177,15 +177,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TransactionIntentResponsePlayer);
+            return this.Equals(input as UpdateUserProjectRequestRole);
         }
 
         /// <summary>
-        /// Returns true if TransactionIntentResponsePlayer instances are equal
+        /// Returns true if UpdateUserProjectRequestRole instances are equal
         /// </summary>
-        /// <param name="input">Instance of TransactionIntentResponsePlayer to be compared</param>
+        /// <param name="input">Instance of UpdateUserProjectRequestRole to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TransactionIntentResponsePlayer input)
+        public bool Equals(UpdateUserProjectRequestRole input)
         {
             if (input == null)
                 return false;
@@ -211,9 +211,9 @@ namespace Openfort.Model
     }
 
     /// <summary>
-    /// Custom JSON converter for TransactionIntentResponsePlayer
+    /// Custom JSON converter for UpdateUserProjectRequestRole
     /// </summary>
-    public class TransactionIntentResponsePlayerJsonConverter : JsonConverter
+    public class UpdateUserProjectRequestRoleJsonConverter : JsonConverter
     {
         /// <summary>
         /// To write the JSON string
@@ -223,7 +223,7 @@ namespace Openfort.Model
         /// <param name="serializer">JSON Serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue((string)(typeof(TransactionIntentResponsePlayer).GetMethod("ToJson").Invoke(value, null)));
+            writer.WriteRawValue((string)(typeof(UpdateUserProjectRequestRole).GetMethod("ToJson").Invoke(value, null)));
         }
 
         /// <summary>
@@ -238,7 +238,7 @@ namespace Openfort.Model
         {
             if(reader.TokenType != JsonToken.Null)
             {
-                return TransactionIntentResponsePlayer.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                return UpdateUserProjectRequestRole.FromJson(JObject.Load(reader).ToString(Formatting.None));
             }
             return null;
         }

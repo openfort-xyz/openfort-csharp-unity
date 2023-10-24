@@ -26,43 +26,44 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// OAuthConfigListItemResponse
+    /// PlayFab oauth configuration
     /// </summary>
-    [DataContract(Name = "OAuthConfigListItemResponse")]
-    public partial class OAuthConfigListItemResponse : IEquatable<OAuthConfigListItemResponse>
+    [DataContract(Name = "PlayFabOAuthConfig")]
+    public partial class PlayFabOAuthConfig : IEquatable<PlayFabOAuthConfig>
     {
 
         /// <summary>
         /// Gets or Sets Provider
         /// </summary>
         [DataMember(Name = "provider", IsRequired = true, EmitDefaultValue = true)]
-        public OAuthProvider Provider { get; set; }
+        public OAuthProviderPLAYFAB Provider { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="OAuthConfigListItemResponse" /> class.
+        /// Initializes a new instance of the <see cref="PlayFabOAuthConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected OAuthConfigListItemResponse() { }
+        protected PlayFabOAuthConfig() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="OAuthConfigListItemResponse" /> class.
+        /// Initializes a new instance of the <see cref="PlayFabOAuthConfig" /> class.
         /// </summary>
-        /// <param name="config">config (required).</param>
+        /// <param name="titleId">Title ID of your Play Fab gaming service environment. (required).</param>
         /// <param name="provider">provider (required).</param>
-        public OAuthConfigListItemResponse(AccelbyteOauthConfig config = default(AccelbyteOauthConfig), OAuthProvider provider = default(OAuthProvider))
+        public PlayFabOAuthConfig(string titleId = default(string), OAuthProviderPLAYFAB provider = default(OAuthProviderPLAYFAB))
         {
-            // to ensure "config" is required (not null)
-            if (config == null)
+            // to ensure "titleId" is required (not null)
+            if (titleId == null)
             {
-                throw new ArgumentNullException("config is a required property for OAuthConfigListItemResponse and cannot be null");
+                throw new ArgumentNullException("titleId is a required property for PlayFabOAuthConfig and cannot be null");
             }
-            this.Config = config;
+            this.TitleId = titleId;
             this.Provider = provider;
         }
 
         /// <summary>
-        /// Gets or Sets Config
+        /// Title ID of your Play Fab gaming service environment.
         /// </summary>
-        [DataMember(Name = "config", IsRequired = true, EmitDefaultValue = true)]
-        public AccelbyteOauthConfig Config { get; set; }
+        /// <value>Title ID of your Play Fab gaming service environment.</value>
+        [DataMember(Name = "titleId", IsRequired = true, EmitDefaultValue = true)]
+        public string TitleId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,8 +72,8 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class OAuthConfigListItemResponse {\n");
-            sb.Append("  Config: ").Append(Config).Append("\n");
+            sb.Append("class PlayFabOAuthConfig {\n");
+            sb.Append("  TitleId: ").Append(TitleId).Append("\n");
             sb.Append("  Provider: ").Append(Provider).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -94,15 +95,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as OAuthConfigListItemResponse);
+            return this.Equals(input as PlayFabOAuthConfig);
         }
 
         /// <summary>
-        /// Returns true if OAuthConfigListItemResponse instances are equal
+        /// Returns true if PlayFabOAuthConfig instances are equal
         /// </summary>
-        /// <param name="input">Instance of OAuthConfigListItemResponse to be compared</param>
+        /// <param name="input">Instance of PlayFabOAuthConfig to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(OAuthConfigListItemResponse input)
+        public bool Equals(PlayFabOAuthConfig input)
         {
             if (input == null)
             {
@@ -110,9 +111,9 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Config == input.Config ||
-                    (this.Config != null &&
-                    this.Config.Equals(input.Config))
+                    this.TitleId == input.TitleId ||
+                    (this.TitleId != null &&
+                    this.TitleId.Equals(input.TitleId))
                 ) && 
                 (
                     this.Provider == input.Provider ||
@@ -129,9 +130,9 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Config != null)
+                if (this.TitleId != null)
                 {
-                    hashCode = (hashCode * 59) + this.Config.GetHashCode();
+                    hashCode = (hashCode * 59) + this.TitleId.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Provider.GetHashCode();
                 return hashCode;

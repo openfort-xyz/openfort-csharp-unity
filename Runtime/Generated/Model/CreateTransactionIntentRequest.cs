@@ -39,9 +39,9 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateTransactionIntentRequest" /> class.
         /// </summary>
-        /// <param name="player">The player ID. (required).</param>
+        /// <param name="player">The player ID (starts with pla_). (required).</param>
         /// <param name="chainId">The chain ID. (required).</param>
-        /// <param name="policy">The policy ID..</param>
+        /// <param name="policy">The policy ID (starts with pol_)..</param>
         /// <param name="externalOwnerAddress">If no account exists for a given player, create one with this address..</param>
         /// <param name="optimistic">Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not. (required).</param>
         /// <param name="confirmationBlocks">Specify the number of blocks after the block with transaction to be assured that transaction is in block. It is possible to use only with optimistic&#x3D;true.</param>
@@ -68,9 +68,9 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// The player ID.
+        /// The player ID (starts with pla_).
         /// </summary>
-        /// <value>The player ID.</value>
+        /// <value>The player ID (starts with pla_).</value>
         [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
         public string Player { get; set; }
 
@@ -83,9 +83,9 @@ namespace Openfort.Model
         public int ChainId { get; set; }
 
         /// <summary>
-        /// The policy ID.
+        /// The policy ID (starts with pol_).
         /// </summary>
-        /// <value>The policy ID.</value>
+        /// <value>The policy ID (starts with pol_).</value>
         [DataMember(Name = "policy", EmitDefaultValue = false)]
         public string Policy { get; set; }
 

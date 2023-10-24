@@ -26,50 +26,48 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// AuthResponse
+    /// UpdateUserProjectRequest
     /// </summary>
-    [DataContract(Name = "AuthResponse")]
-    public partial class AuthResponse : IEquatable<AuthResponse>
+    [DataContract(Name = "UpdateUserProjectRequest")]
+    public partial class UpdateUserProjectRequest : IEquatable<UpdateUserProjectRequest>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AuthResponse" /> class.
+        /// Initializes a new instance of the <see cref="UpdateUserProjectRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected AuthResponse() { }
+        protected UpdateUserProjectRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="AuthResponse" /> class.
+        /// Initializes a new instance of the <see cref="UpdateUserProjectRequest" /> class.
         /// </summary>
-        /// <param name="playerId">Player&#39;s identifier. (required).</param>
-        /// <param name="token">JWT token. (required).</param>
-        public AuthResponse(string playerId = default(string), string token = default(string))
+        /// <param name="userId">userId (required).</param>
+        /// <param name="role">role (required).</param>
+        public UpdateUserProjectRequest(string userId = default(string), UpdateUserProjectRequestRole role = default(UpdateUserProjectRequestRole))
         {
-            // to ensure "playerId" is required (not null)
-            if (playerId == null)
+            // to ensure "userId" is required (not null)
+            if (userId == null)
             {
-                throw new ArgumentNullException("playerId is a required property for AuthResponse and cannot be null");
+                throw new ArgumentNullException("userId is a required property for UpdateUserProjectRequest and cannot be null");
             }
-            this.PlayerId = playerId;
-            // to ensure "token" is required (not null)
-            if (token == null)
+            this.UserId = userId;
+            // to ensure "role" is required (not null)
+            if (role == null)
             {
-                throw new ArgumentNullException("token is a required property for AuthResponse and cannot be null");
+                throw new ArgumentNullException("role is a required property for UpdateUserProjectRequest and cannot be null");
             }
-            this.Token = token;
+            this.Role = role;
         }
 
         /// <summary>
-        /// Player&#39;s identifier.
+        /// Gets or Sets UserId
         /// </summary>
-        /// <value>Player&#39;s identifier.</value>
-        [DataMember(Name = "playerId", IsRequired = true, EmitDefaultValue = true)]
-        public string PlayerId { get; set; }
+        [DataMember(Name = "userId", IsRequired = true, EmitDefaultValue = true)]
+        public string UserId { get; set; }
 
         /// <summary>
-        /// JWT token.
+        /// Gets or Sets Role
         /// </summary>
-        /// <value>JWT token.</value>
-        [DataMember(Name = "token", IsRequired = true, EmitDefaultValue = true)]
-        public string Token { get; set; }
+        [DataMember(Name = "role", IsRequired = true, EmitDefaultValue = true)]
+        public UpdateUserProjectRequestRole Role { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -78,9 +76,9 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AuthResponse {\n");
-            sb.Append("  PlayerId: ").Append(PlayerId).Append("\n");
-            sb.Append("  Token: ").Append(Token).Append("\n");
+            sb.Append("class UpdateUserProjectRequest {\n");
+            sb.Append("  UserId: ").Append(UserId).Append("\n");
+            sb.Append("  Role: ").Append(Role).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -101,15 +99,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AuthResponse);
+            return this.Equals(input as UpdateUserProjectRequest);
         }
 
         /// <summary>
-        /// Returns true if AuthResponse instances are equal
+        /// Returns true if UpdateUserProjectRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of AuthResponse to be compared</param>
+        /// <param name="input">Instance of UpdateUserProjectRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AuthResponse input)
+        public bool Equals(UpdateUserProjectRequest input)
         {
             if (input == null)
             {
@@ -117,14 +115,14 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.PlayerId == input.PlayerId ||
-                    (this.PlayerId != null &&
-                    this.PlayerId.Equals(input.PlayerId))
+                    this.UserId == input.UserId ||
+                    (this.UserId != null &&
+                    this.UserId.Equals(input.UserId))
                 ) && 
                 (
-                    this.Token == input.Token ||
-                    (this.Token != null &&
-                    this.Token.Equals(input.Token))
+                    this.Role == input.Role ||
+                    (this.Role != null &&
+                    this.Role.Equals(input.Role))
                 );
         }
 
@@ -137,13 +135,13 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.PlayerId != null)
+                if (this.UserId != null)
                 {
-                    hashCode = (hashCode * 59) + this.PlayerId.GetHashCode();
+                    hashCode = (hashCode * 59) + this.UserId.GetHashCode();
                 }
-                if (this.Token != null)
+                if (this.Role != null)
                 {
-                    hashCode = (hashCode * 59) + this.Token.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Role.GetHashCode();
                 }
                 return hashCode;
             }

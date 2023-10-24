@@ -39,7 +39,7 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CancelTransferOwnershipRequest" /> class.
         /// </summary>
-        /// <param name="policy">The policy ID (required).</param>
+        /// <param name="policy">The policy ID (starts with pol_) (required).</param>
         public CancelTransferOwnershipRequest(string policy = default(string))
         {
             // to ensure "policy" is required (not null)
@@ -51,9 +51,9 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// The policy ID
+        /// The policy ID (starts with pol_)
         /// </summary>
-        /// <value>The policy ID</value>
+        /// <value>The policy ID (starts with pol_)</value>
         [DataMember(Name = "policy", IsRequired = true, EmitDefaultValue = true)]
         public string Policy { get; set; }
 

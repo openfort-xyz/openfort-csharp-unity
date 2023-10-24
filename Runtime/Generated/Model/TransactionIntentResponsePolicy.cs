@@ -27,7 +27,7 @@ using System.Reflection;
 namespace Openfort.Model
 {
     /// <summary>
-    /// The policy ID.
+    /// The policy ID (starts with pol_).
     /// </summary>
     [JsonConverter(typeof(TransactionIntentResponsePolicyJsonConverter))]
     [DataContract(Name = "TransactionIntentResponse_policy")]

@@ -41,7 +41,7 @@ namespace Openfort.Model
         /// </summary>
         /// <param name="newOwnerAddress">Address of the new owner (required).</param>
         /// <param name="signatures">Signatures.</param>
-        /// <param name="policy">The policy ID (required).</param>
+        /// <param name="policy">The policy ID (starts with pol_) (required).</param>
         public CompleteRecoveryRequest(string newOwnerAddress = default(string), List<string> signatures = default(List<string>), string policy = default(string))
         {
             // to ensure "newOwnerAddress" is required (not null)
@@ -74,9 +74,9 @@ namespace Openfort.Model
         public List<string> Signatures { get; set; }
 
         /// <summary>
-        /// The policy ID
+        /// The policy ID (starts with pol_)
         /// </summary>
-        /// <value>The policy ID</value>
+        /// <value>The policy ID (starts with pol_)</value>
         [DataMember(Name = "policy", IsRequired = true, EmitDefaultValue = true)]
         public string Policy { get; set; }
 

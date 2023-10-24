@@ -63,7 +63,7 @@ namespace Openfort.Model
         /// <param name="skip">Specifies the offset for the first records to return..</param>
         /// <param name="order">order.</param>
         /// <param name="expand">Specifies the fields to expand in the response..</param>
-        /// <param name="policy">Specifies the unique policy ID. (required).</param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_). (required).</param>
         public PolicyRuleListQueries(double limit = default(double), double skip = default(double), SortOrder? order = default(SortOrder?), List<ExpandEnum> expand = default(List<ExpandEnum>), string policy = default(string))
         {
             // to ensure "policy" is required (not null)
@@ -100,9 +100,9 @@ namespace Openfort.Model
         public List<PolicyRuleListQueries.ExpandEnum> Expand { get; set; }
 
         /// <summary>
-        /// Specifies the unique policy ID.
+        /// Specifies the unique policy ID (starts with pol_).
         /// </summary>
-        /// <value>Specifies the unique policy ID.</value>
+        /// <value>Specifies the unique policy ID (starts with pol_).</value>
         [DataMember(Name = "policy", IsRequired = true, EmitDefaultValue = true)]
         public string Policy { get; set; }
 
