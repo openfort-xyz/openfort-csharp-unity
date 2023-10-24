@@ -83,7 +83,8 @@ namespace Openfort
         public async Task<AuthResponse> AuthWithToken(OAuthProvider provider, string token)
         {
             var request = new OAuthRequest(token);
-            var result = await OAuthApi.AuthAsync(provider, request);
+            var response = await OAuthApi.AuthorizeWithOAuthTokenAsync(provider, request);
+            var result = response.GetAuthResponse();
             this.SaveToken(result);
             return result;
         }

@@ -47,6 +47,18 @@ namespace Openfort.Model
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OAuthConfig" /> class
+        /// with the <see cref="GoogleOAuthConfig" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of GoogleOAuthConfig.</param>
+        public OAuthConfig(GoogleOAuthConfig actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "anyOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OAuthConfig" /> class
         /// with the <see cref="PlayFabOAuthConfig" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of PlayFabOAuthConfig.</param>
@@ -75,13 +87,17 @@ namespace Openfort.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(GoogleOAuthConfig))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(PlayFabOAuthConfig))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AccelbyteOAuthConfig, PlayFabOAuthConfig");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AccelbyteOAuthConfig, GoogleOAuthConfig, PlayFabOAuthConfig");
                 }
             }
         }
@@ -94,6 +110,16 @@ namespace Openfort.Model
         public AccelbyteOAuthConfig GetAccelbyteOAuthConfig()
         {
             return (AccelbyteOAuthConfig)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `GoogleOAuthConfig`. If the actual instance is not `GoogleOAuthConfig`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of GoogleOAuthConfig</returns>
+        public GoogleOAuthConfig GetGoogleOAuthConfig()
+        {
+            return (GoogleOAuthConfig)this.ActualInstance;
         }
 
         /// <summary>
@@ -152,6 +178,18 @@ namespace Openfort.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into AccelbyteOAuthConfig: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                newOAuthConfig = new OAuthConfig(JsonConvert.DeserializeObject<GoogleOAuthConfig>(jsonString, OAuthConfig.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newOAuthConfig;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into GoogleOAuthConfig: {1}", jsonString, exception.ToString()));
             }
 
             try
