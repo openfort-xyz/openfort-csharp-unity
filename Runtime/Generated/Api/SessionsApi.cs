@@ -55,7 +55,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <returns>SessionListResponse</returns>
-        SessionListResponse GetPlayerSessions(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>));
+        SessionListResponse GetPlayerSessions(string player, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>));
 
         /// <summary>
         /// List session keys of a player.
@@ -70,7 +70,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <returns>ApiResponse of SessionListResponse</returns>
-        ApiResponse<SessionListResponse> GetPlayerSessionsWithHttpInfo(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>));
+        ApiResponse<SessionListResponse> GetPlayerSessionsWithHttpInfo(string player, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>));
         /// <summary>
         /// Returns a player session by session id
         /// </summary>
@@ -175,7 +175,7 @@ namespace Openfort.Api
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SessionListResponse</returns>
-        System.Threading.Tasks.Task<SessionListResponse> GetPlayerSessionsAsync(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SessionListResponse> GetPlayerSessionsAsync(string player, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List session keys of a player.
@@ -191,7 +191,7 @@ namespace Openfort.Api
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SessionListResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SessionListResponse>> GetPlayerSessionsWithHttpInfoAsync(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SessionListResponse>> GetPlayerSessionsWithHttpInfoAsync(string player, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Returns a player session by session id
         /// </summary>
@@ -559,7 +559,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <returns>SessionListResponse</returns>
-        public SessionListResponse GetPlayerSessions(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>))
+        public SessionListResponse GetPlayerSessions(string player, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>))
         {
             Openfort.Client.ApiResponse<SessionListResponse> localVarResponse = GetPlayerSessionsWithHttpInfo(player, limit, skip, order, expand);
             return localVarResponse.Data;
@@ -575,7 +575,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <returns>ApiResponse of SessionListResponse</returns>
-        public Openfort.Client.ApiResponse<SessionListResponse> GetPlayerSessionsWithHttpInfo(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>))
+        public Openfort.Client.ApiResponse<SessionListResponse> GetPlayerSessionsWithHttpInfo(string player, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>))
         {
             // verify the required parameter 'player' is set
             if (player == null)
@@ -645,7 +645,7 @@ namespace Openfort.Api
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SessionListResponse</returns>
-        public async System.Threading.Tasks.Task<SessionListResponse> GetPlayerSessionsAsync(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SessionListResponse> GetPlayerSessionsAsync(string player, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetPlayerSessionsWithHttpInfoAsync(player, limit, skip, order, expand, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -667,7 +667,7 @@ namespace Openfort.Api
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SessionListResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<SessionListResponse>> GetPlayerSessionsWithHttpInfoAsync(string player, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<SessionListResponse>> GetPlayerSessionsWithHttpInfoAsync(string player, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'player' is set
             if (player == null)

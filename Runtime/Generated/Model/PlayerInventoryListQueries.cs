@@ -50,7 +50,7 @@ namespace Openfort.Model
         /// <param name="order">order.</param>
         /// <param name="contractId">Filter by contract ID (starts with con_)..</param>
         /// <param name="chainId">Filter by chain id. (required).</param>
-        public PlayerInventoryListQueries(double limit = default(double), double skip = default(double), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), int chainId = default(int))
+        public PlayerInventoryListQueries(int limit = default(int), int skip = default(int), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), int chainId = default(int))
         {
             this.ChainId = chainId;
             this.Limit = limit;
@@ -64,14 +64,14 @@ namespace Openfort.Model
         /// </summary>
         /// <value>Specifies the maximum number of records to return.</value>
         [DataMember(Name = "limit", EmitDefaultValue = false)]
-        public double Limit { get; set; }
+        public int Limit { get; set; }
 
         /// <summary>
         /// Specifies the offset for the first records to return.
         /// </summary>
         /// <value>Specifies the offset for the first records to return.</value>
         [DataMember(Name = "skip", EmitDefaultValue = false)]
-        public double Skip { get; set; }
+        public int Skip { get; set; }
 
         /// <summary>
         /// Filter by contract ID (starts with con_).

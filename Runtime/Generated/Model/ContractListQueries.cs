@@ -47,7 +47,7 @@ namespace Openfort.Model
         /// <param name="deleted">Specifies whether to include deleted contracts..</param>
         /// <param name="chainId">The chain ID of the contract..</param>
         /// <param name="address">Specifies the address of the contract..</param>
-        public ContractListQueries(double limit = default(double), double skip = default(double), SortOrder? order = default(SortOrder?), string name = default(string), bool deleted = default(bool), int chainId = default(int), string address = default(string))
+        public ContractListQueries(int limit = default(int), int skip = default(int), SortOrder? order = default(SortOrder?), string name = default(string), bool deleted = default(bool), int chainId = default(int), string address = default(string))
         {
             this.Limit = limit;
             this.Skip = skip;
@@ -63,14 +63,14 @@ namespace Openfort.Model
         /// </summary>
         /// <value>Specifies the maximum number of records to return.</value>
         [DataMember(Name = "limit", EmitDefaultValue = false)]
-        public double Limit { get; set; }
+        public int Limit { get; set; }
 
         /// <summary>
         /// Specifies the offset for the first records to return.
         /// </summary>
         /// <value>Specifies the offset for the first records to return.</value>
         [DataMember(Name = "skip", EmitDefaultValue = false)]
-        public double Skip { get; set; }
+        public int Skip { get; set; }
 
         /// <summary>
         /// Specifies the name of the contract.

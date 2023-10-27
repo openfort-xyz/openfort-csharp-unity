@@ -49,7 +49,7 @@ namespace Openfort.Model
         /// <param name="logs">The logs of the transaction of this log..</param>
         /// <param name="to">The address of the contract of this log..</param>
         /// <param name="error">The error of the transaction of this log..</param>
-        public ResponseResponse(int createdAt = default(int), int blockNumber = default(int), string transactionHash = default(string), string userOpHash = default(string), string l1GasUsed = default(string), double gasUsed = default(double), double status = default(double), List<Log> logs = default(List<Log>), string to = default(string), Object error = default(Object))
+        public ResponseResponse(int createdAt = default(int), int blockNumber = default(int), string transactionHash = default(string), string userOpHash = default(string), string l1GasUsed = default(string), long gasUsed = default(long), int status = default(int), List<Log> logs = default(List<Log>), string to = default(string), Object error = default(Object))
         {
             this.CreatedAt = createdAt;
             this.BlockNumber = blockNumber;
@@ -103,14 +103,14 @@ namespace Openfort.Model
         /// </summary>
         /// <value>The gas used by the transaction of this log.</value>
         [DataMember(Name = "gasUsed", EmitDefaultValue = false)]
-        public double GasUsed { get; set; }
+        public long GasUsed { get; set; }
 
         /// <summary>
         /// The status of the transaction of this log.
         /// </summary>
         /// <value>The status of the transaction of this log.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
-        public double Status { get; set; }
+        public int Status { get; set; }
 
         /// <summary>
         /// The logs of the transaction of this log.

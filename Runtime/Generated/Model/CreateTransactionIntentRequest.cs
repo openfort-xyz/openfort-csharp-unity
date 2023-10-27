@@ -44,7 +44,7 @@ namespace Openfort.Model
         /// <param name="policy">The policy ID (starts with pol_)..</param>
         /// <param name="externalOwnerAddress">If no account exists for a given player, create one with this address..</param>
         /// <param name="optimistic">Whether the transactionIntent is optimistic (resolve before it arrives on chain) or not. (required).</param>
-        /// <param name="confirmationBlocks">Specify the number of blocks after the block with transaction to be assured that transaction is in block. It is possible to use only with optimistic&#x3D;true.</param>
+        /// <param name="confirmationBlocks">Specify the number of blocks after the block with transaction to be assured that transaction is in block.</param>
         /// <param name="interactions">interactions (required).</param>
         public CreateTransactionIntentRequest(string player = default(string), int chainId = default(int), string policy = default(string), string externalOwnerAddress = default(string), bool optimistic = default(bool), int confirmationBlocks = default(int), List<Interaction> interactions = default(List<Interaction>))
         {
@@ -105,9 +105,9 @@ namespace Openfort.Model
         public bool Optimistic { get; set; }
 
         /// <summary>
-        /// Specify the number of blocks after the block with transaction to be assured that transaction is in block. It is possible to use only with optimistic&#x3D;true
+        /// Specify the number of blocks after the block with transaction to be assured that transaction is in block
         /// </summary>
-        /// <value>Specify the number of blocks after the block with transaction to be assured that transaction is in block. It is possible to use only with optimistic&#x3D;true</value>
+        /// <value>Specify the number of blocks after the block with transaction to be assured that transaction is in block</value>
         /// <example>5</example>
         [DataMember(Name = "confirmationBlocks", EmitDefaultValue = false)]
         public int ConfirmationBlocks { get; set; }

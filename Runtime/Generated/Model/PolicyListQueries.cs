@@ -48,7 +48,7 @@ namespace Openfort.Model
         /// <param name="deleted">Specifies whether to include deleted contracts..</param>
         /// <param name="chainId">The chain ID of the policy..</param>
         /// <param name="enabled">Specifies whether to include enabled contracts..</param>
-        public PolicyListQueries(double limit = default(double), double skip = default(double), SortOrder? order = default(SortOrder?), List<PolicyResponseExpandable> expand = default(List<PolicyResponseExpandable>), string name = default(string), bool deleted = default(bool), int chainId = default(int), bool enabled = default(bool))
+        public PolicyListQueries(int limit = default(int), int skip = default(int), SortOrder? order = default(SortOrder?), List<PolicyResponseExpandable> expand = default(List<PolicyResponseExpandable>), string name = default(string), bool deleted = default(bool), int chainId = default(int), bool enabled = default(bool))
         {
             this.Limit = limit;
             this.Skip = skip;
@@ -65,14 +65,14 @@ namespace Openfort.Model
         /// </summary>
         /// <value>Specifies the maximum number of records to return.</value>
         [DataMember(Name = "limit", EmitDefaultValue = false)]
-        public double Limit { get; set; }
+        public int Limit { get; set; }
 
         /// <summary>
         /// Specifies the offset for the first records to return.
         /// </summary>
         /// <value>Specifies the offset for the first records to return.</value>
         [DataMember(Name = "skip", EmitDefaultValue = false)]
-        public double Skip { get; set; }
+        public int Skip { get; set; }
 
         /// <summary>
         /// Specifies the fields to expand in the response.

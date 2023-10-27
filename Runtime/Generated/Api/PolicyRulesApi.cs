@@ -73,7 +73,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <returns>PolicyRuleListResponse</returns>
-        PolicyRuleListResponse GetPolicyRules(string policy, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>));
+        PolicyRuleListResponse GetPolicyRules(string policy, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>));
 
         /// <summary>
         /// List policy rules of a policy.
@@ -88,7 +88,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <returns>ApiResponse of PolicyRuleListResponse</returns>
-        ApiResponse<PolicyRuleListResponse> GetPolicyRulesWithHttpInfo(string policy, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>));
+        ApiResponse<PolicyRuleListResponse> GetPolicyRulesWithHttpInfo(string policy, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>));
         /// <summary>
         /// Update a policy rule object.
         /// </summary>
@@ -178,7 +178,7 @@ namespace Openfort.Api
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PolicyRuleListResponse</returns>
-        System.Threading.Tasks.Task<PolicyRuleListResponse> GetPolicyRulesAsync(string policy, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PolicyRuleListResponse> GetPolicyRulesAsync(string policy, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List policy rules of a policy.
@@ -194,7 +194,7 @@ namespace Openfort.Api
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PolicyRuleListResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PolicyRuleListResponse>> GetPolicyRulesWithHttpInfoAsync(string policy, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PolicyRuleListResponse>> GetPolicyRulesWithHttpInfoAsync(string policy, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Update a policy rule object.
         /// </summary>
@@ -652,7 +652,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <returns>PolicyRuleListResponse</returns>
-        public PolicyRuleListResponse GetPolicyRules(string policy, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>))
+        public PolicyRuleListResponse GetPolicyRules(string policy, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>))
         {
             Openfort.Client.ApiResponse<PolicyRuleListResponse> localVarResponse = GetPolicyRulesWithHttpInfo(policy, limit, skip, order, expand);
             return localVarResponse.Data;
@@ -668,7 +668,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <returns>ApiResponse of PolicyRuleListResponse</returns>
-        public Openfort.Client.ApiResponse<PolicyRuleListResponse> GetPolicyRulesWithHttpInfo(string policy, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>))
+        public Openfort.Client.ApiResponse<PolicyRuleListResponse> GetPolicyRulesWithHttpInfo(string policy, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>))
         {
             // verify the required parameter 'policy' is set
             if (policy == null)
@@ -738,7 +738,7 @@ namespace Openfort.Api
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PolicyRuleListResponse</returns>
-        public async System.Threading.Tasks.Task<PolicyRuleListResponse> GetPolicyRulesAsync(string policy, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PolicyRuleListResponse> GetPolicyRulesAsync(string policy, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetPolicyRulesWithHttpInfoAsync(policy, limit, skip, order, expand, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -760,7 +760,7 @@ namespace Openfort.Api
         /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PolicyRuleListResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PolicyRuleListResponse>> GetPolicyRulesWithHttpInfoAsync(string policy, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PolicyRuleListResponse>> GetPolicyRulesWithHttpInfoAsync(string policy, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> expand = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'policy' is set
             if (policy == null)

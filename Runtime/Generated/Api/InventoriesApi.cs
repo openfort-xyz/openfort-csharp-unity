@@ -37,7 +37,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId"> (optional)</param>
         /// <returns>InventoryListResponse</returns>
-        InventoryListResponse GetAccountCryptoCurrencyInventory(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
+        InventoryListResponse GetAccountCryptoCurrencyInventory(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
 
         /// <summary>
         /// Retrieves the cryptocurrency assets of an existing account.
@@ -52,7 +52,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId"> (optional)</param>
         /// <returns>ApiResponse of InventoryListResponse</returns>
-        ApiResponse<InventoryListResponse> GetAccountCryptoCurrencyInventoryWithHttpInfo(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
+        ApiResponse<InventoryListResponse> GetAccountCryptoCurrencyInventoryWithHttpInfo(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
         /// <summary>
         /// Get inventory of account.
         /// </summary>
@@ -101,7 +101,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId"> (optional)</param>
         /// <returns>InventoryListResponse</returns>
-        InventoryListResponse GetAccountNftInventory(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
+        InventoryListResponse GetAccountNftInventory(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
 
         /// <summary>
         /// Retrieves the NFT assets of an existing account.
@@ -116,7 +116,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId"> (optional)</param>
         /// <returns>ApiResponse of InventoryListResponse</returns>
-        ApiResponse<InventoryListResponse> GetAccountNftInventoryWithHttpInfo(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
+        ApiResponse<InventoryListResponse> GetAccountNftInventoryWithHttpInfo(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
         /// <summary>
         /// Get cryptocurrency list of player.
         /// </summary>
@@ -128,7 +128,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>InventoryListResponse</returns>
-        InventoryListResponse GetPlayerCryptoCurrencyInventory(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
+        InventoryListResponse GetPlayerCryptoCurrencyInventory(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
 
         /// <summary>
         /// Get cryptocurrency list of player.
@@ -144,7 +144,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>ApiResponse of InventoryListResponse</returns>
-        ApiResponse<InventoryListResponse> GetPlayerCryptoCurrencyInventoryWithHttpInfo(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
+        ApiResponse<InventoryListResponse> GetPlayerCryptoCurrencyInventoryWithHttpInfo(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
         /// <summary>
         /// Get inventory of player.
         /// </summary>
@@ -198,7 +198,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>InventoryListResponse</returns>
-        InventoryListResponse GetPlayerNftInventory(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
+        InventoryListResponse GetPlayerNftInventory(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
 
         /// <summary>
         /// Get NFTs list of player.
@@ -214,7 +214,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>ApiResponse of InventoryListResponse</returns>
-        ApiResponse<InventoryListResponse> GetPlayerNftInventoryWithHttpInfo(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
+        ApiResponse<InventoryListResponse> GetPlayerNftInventoryWithHttpInfo(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>));
         #endregion Synchronous Operations
     }
 
@@ -238,7 +238,7 @@ namespace Openfort.Api
         /// <param name="contractId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryListResponse</returns>
-        System.Threading.Tasks.Task<InventoryListResponse> GetAccountCryptoCurrencyInventoryAsync(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<InventoryListResponse> GetAccountCryptoCurrencyInventoryAsync(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Retrieves the cryptocurrency assets of an existing account.
@@ -254,7 +254,7 @@ namespace Openfort.Api
         /// <param name="contractId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryListResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InventoryListResponse>> GetAccountCryptoCurrencyInventoryWithHttpInfoAsync(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<InventoryListResponse>> GetAccountCryptoCurrencyInventoryWithHttpInfoAsync(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get inventory of account.
         /// </summary>
@@ -317,7 +317,7 @@ namespace Openfort.Api
         /// <param name="contractId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryListResponse</returns>
-        System.Threading.Tasks.Task<InventoryListResponse> GetAccountNftInventoryAsync(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<InventoryListResponse> GetAccountNftInventoryAsync(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Retrieves the NFT assets of an existing account.
@@ -333,7 +333,7 @@ namespace Openfort.Api
         /// <param name="contractId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryListResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InventoryListResponse>> GetAccountNftInventoryWithHttpInfoAsync(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<InventoryListResponse>> GetAccountNftInventoryWithHttpInfoAsync(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get cryptocurrency list of player.
         /// </summary>
@@ -349,7 +349,7 @@ namespace Openfort.Api
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryListResponse</returns>
-        System.Threading.Tasks.Task<InventoryListResponse> GetPlayerCryptoCurrencyInventoryAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<InventoryListResponse> GetPlayerCryptoCurrencyInventoryAsync(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Get cryptocurrency list of player.
@@ -366,7 +366,7 @@ namespace Openfort.Api
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryListResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InventoryListResponse>> GetPlayerCryptoCurrencyInventoryWithHttpInfoAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<InventoryListResponse>> GetPlayerCryptoCurrencyInventoryWithHttpInfoAsync(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get inventory of player.
         /// </summary>
@@ -434,7 +434,7 @@ namespace Openfort.Api
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryListResponse</returns>
-        System.Threading.Tasks.Task<InventoryListResponse> GetPlayerNftInventoryAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<InventoryListResponse> GetPlayerNftInventoryAsync(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Get NFTs list of player.
@@ -451,7 +451,7 @@ namespace Openfort.Api
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryListResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InventoryListResponse>> GetPlayerNftInventoryWithHttpInfoAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<InventoryListResponse>> GetPlayerNftInventoryWithHttpInfoAsync(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -606,7 +606,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId"> (optional)</param>
         /// <returns>InventoryListResponse</returns>
-        public InventoryListResponse GetAccountCryptoCurrencyInventory(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
+        public InventoryListResponse GetAccountCryptoCurrencyInventory(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
         {
             Openfort.Client.ApiResponse<InventoryListResponse> localVarResponse = GetAccountCryptoCurrencyInventoryWithHttpInfo(id, limit, skip, order, contractId);
             return localVarResponse.Data;
@@ -622,7 +622,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId"> (optional)</param>
         /// <returns>ApiResponse of InventoryListResponse</returns>
-        public Openfort.Client.ApiResponse<InventoryListResponse> GetAccountCryptoCurrencyInventoryWithHttpInfo(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
+        public Openfort.Client.ApiResponse<InventoryListResponse> GetAccountCryptoCurrencyInventoryWithHttpInfo(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -692,7 +692,7 @@ namespace Openfort.Api
         /// <param name="contractId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryListResponse</returns>
-        public async System.Threading.Tasks.Task<InventoryListResponse> GetAccountCryptoCurrencyInventoryAsync(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<InventoryListResponse> GetAccountCryptoCurrencyInventoryAsync(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetAccountCryptoCurrencyInventoryWithHttpInfoAsync(id, limit, skip, order, contractId, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -714,7 +714,7 @@ namespace Openfort.Api
         /// <param name="contractId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryListResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<InventoryListResponse>> GetAccountCryptoCurrencyInventoryWithHttpInfoAsync(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<InventoryListResponse>> GetAccountCryptoCurrencyInventoryWithHttpInfoAsync(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1072,7 +1072,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId"> (optional)</param>
         /// <returns>InventoryListResponse</returns>
-        public InventoryListResponse GetAccountNftInventory(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
+        public InventoryListResponse GetAccountNftInventory(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
         {
             Openfort.Client.ApiResponse<InventoryListResponse> localVarResponse = GetAccountNftInventoryWithHttpInfo(id, limit, skip, order, contractId);
             return localVarResponse.Data;
@@ -1088,7 +1088,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId"> (optional)</param>
         /// <returns>ApiResponse of InventoryListResponse</returns>
-        public Openfort.Client.ApiResponse<InventoryListResponse> GetAccountNftInventoryWithHttpInfo(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
+        public Openfort.Client.ApiResponse<InventoryListResponse> GetAccountNftInventoryWithHttpInfo(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1158,7 +1158,7 @@ namespace Openfort.Api
         /// <param name="contractId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryListResponse</returns>
-        public async System.Threading.Tasks.Task<InventoryListResponse> GetAccountNftInventoryAsync(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<InventoryListResponse> GetAccountNftInventoryAsync(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetAccountNftInventoryWithHttpInfoAsync(id, limit, skip, order, contractId, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -1180,7 +1180,7 @@ namespace Openfort.Api
         /// <param name="contractId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryListResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<InventoryListResponse>> GetAccountNftInventoryWithHttpInfoAsync(string id, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<InventoryListResponse>> GetAccountNftInventoryWithHttpInfoAsync(string id, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1259,7 +1259,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>InventoryListResponse</returns>
-        public InventoryListResponse GetPlayerCryptoCurrencyInventory(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
+        public InventoryListResponse GetPlayerCryptoCurrencyInventory(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
         {
             Openfort.Client.ApiResponse<InventoryListResponse> localVarResponse = GetPlayerCryptoCurrencyInventoryWithHttpInfo(id, chainId, limit, skip, order, contractId);
             return localVarResponse.Data;
@@ -1276,7 +1276,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>ApiResponse of InventoryListResponse</returns>
-        public Openfort.Client.ApiResponse<InventoryListResponse> GetPlayerCryptoCurrencyInventoryWithHttpInfo(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
+        public Openfort.Client.ApiResponse<InventoryListResponse> GetPlayerCryptoCurrencyInventoryWithHttpInfo(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1348,7 +1348,7 @@ namespace Openfort.Api
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryListResponse</returns>
-        public async System.Threading.Tasks.Task<InventoryListResponse> GetPlayerCryptoCurrencyInventoryAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<InventoryListResponse> GetPlayerCryptoCurrencyInventoryAsync(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetPlayerCryptoCurrencyInventoryWithHttpInfoAsync(id, chainId, limit, skip, order, contractId, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -1371,7 +1371,7 @@ namespace Openfort.Api
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryListResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<InventoryListResponse>> GetPlayerCryptoCurrencyInventoryWithHttpInfoAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<InventoryListResponse>> GetPlayerCryptoCurrencyInventoryWithHttpInfoAsync(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1743,7 +1743,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>InventoryListResponse</returns>
-        public InventoryListResponse GetPlayerNftInventory(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
+        public InventoryListResponse GetPlayerNftInventory(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
         {
             Openfort.Client.ApiResponse<InventoryListResponse> localVarResponse = GetPlayerNftInventoryWithHttpInfo(id, chainId, limit, skip, order, contractId);
             return localVarResponse.Data;
@@ -1760,7 +1760,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <returns>ApiResponse of InventoryListResponse</returns>
-        public Openfort.Client.ApiResponse<InventoryListResponse> GetPlayerNftInventoryWithHttpInfo(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
+        public Openfort.Client.ApiResponse<InventoryListResponse> GetPlayerNftInventoryWithHttpInfo(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1832,7 +1832,7 @@ namespace Openfort.Api
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InventoryListResponse</returns>
-        public async System.Threading.Tasks.Task<InventoryListResponse> GetPlayerNftInventoryAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<InventoryListResponse> GetPlayerNftInventoryAsync(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetPlayerNftInventoryWithHttpInfoAsync(id, chainId, limit, skip, order, contractId, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -1855,7 +1855,7 @@ namespace Openfort.Api
         /// <param name="contractId">Filter by contract ID (starts with con_). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InventoryListResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<InventoryListResponse>> GetPlayerNftInventoryWithHttpInfoAsync(string id, int chainId, double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<InventoryListResponse>> GetPlayerNftInventoryWithHttpInfoAsync(string id, int chainId, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<string> contractId = default(List<string>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)

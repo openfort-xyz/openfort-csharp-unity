@@ -50,7 +50,7 @@ namespace Openfort.Model
         /// <param name="tokenId">tokenId.</param>
         /// <param name="amount">amount in Wei.</param>
         /// <param name="lastTransferredAt">lastTransferredAt.</param>
-        public AssetInventory(AssetType assetType = default(AssetType), string address = default(string), double tokenId = default(double), string amount = default(string), int lastTransferredAt = default(int))
+        public AssetInventory(AssetType assetType = default(AssetType), string address = default(string), long tokenId = default(long), string amount = default(string), int lastTransferredAt = default(int))
         {
             this.AssetType = assetType;
             this.Address = address;
@@ -69,7 +69,7 @@ namespace Openfort.Model
         /// Gets or Sets TokenId
         /// </summary>
         [DataMember(Name = "tokenId", EmitDefaultValue = false)]
-        public double TokenId { get; set; }
+        public long TokenId { get; set; }
 
         /// <summary>
         /// amount in Wei

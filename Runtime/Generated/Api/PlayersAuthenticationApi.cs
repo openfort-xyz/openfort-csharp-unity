@@ -36,7 +36,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="email">Specifies the email address of the user. (optional)</param>
         /// <returns>AuthPlayerListResponse</returns>
-        AuthPlayerListResponse GetAuthenticatedPlayers(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string email = default(string));
+        AuthPlayerListResponse GetAuthenticatedPlayers(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), string email = default(string));
 
         /// <summary>
         /// List authenticated players.
@@ -50,7 +50,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="email">Specifies the email address of the user. (optional)</param>
         /// <returns>ApiResponse of AuthPlayerListResponse</returns>
-        ApiResponse<AuthPlayerListResponse> GetAuthenticatedPlayersWithHttpInfo(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string email = default(string));
+        ApiResponse<AuthPlayerListResponse> GetAuthenticatedPlayersWithHttpInfo(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), string email = default(string));
         #endregion Synchronous Operations
     }
 
@@ -73,7 +73,7 @@ namespace Openfort.Api
         /// <param name="email">Specifies the email address of the user. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AuthPlayerListResponse</returns>
-        System.Threading.Tasks.Task<AuthPlayerListResponse> GetAuthenticatedPlayersAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string email = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<AuthPlayerListResponse> GetAuthenticatedPlayersAsync(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), string email = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List authenticated players.
@@ -88,7 +88,7 @@ namespace Openfort.Api
         /// <param name="email">Specifies the email address of the user. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AuthPlayerListResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AuthPlayerListResponse>> GetAuthenticatedPlayersWithHttpInfoAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string email = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AuthPlayerListResponse>> GetAuthenticatedPlayersWithHttpInfoAsync(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), string email = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -242,7 +242,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="email">Specifies the email address of the user. (optional)</param>
         /// <returns>AuthPlayerListResponse</returns>
-        public AuthPlayerListResponse GetAuthenticatedPlayers(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string email = default(string))
+        public AuthPlayerListResponse GetAuthenticatedPlayers(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), string email = default(string))
         {
             Openfort.Client.ApiResponse<AuthPlayerListResponse> localVarResponse = GetAuthenticatedPlayersWithHttpInfo(limit, skip, order, email);
             return localVarResponse.Data;
@@ -257,7 +257,7 @@ namespace Openfort.Api
         /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
         /// <param name="email">Specifies the email address of the user. (optional)</param>
         /// <returns>ApiResponse of AuthPlayerListResponse</returns>
-        public Openfort.Client.ApiResponse<AuthPlayerListResponse> GetAuthenticatedPlayersWithHttpInfo(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string email = default(string))
+        public Openfort.Client.ApiResponse<AuthPlayerListResponse> GetAuthenticatedPlayersWithHttpInfo(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), string email = default(string))
         {
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -300,7 +300,7 @@ namespace Openfort.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<AuthPlayerListResponse>("/auth/v1/players", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AuthPlayerListResponse>("/iam/v1/players", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -321,7 +321,7 @@ namespace Openfort.Api
         /// <param name="email">Specifies the email address of the user. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AuthPlayerListResponse</returns>
-        public async System.Threading.Tasks.Task<AuthPlayerListResponse> GetAuthenticatedPlayersAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string email = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<AuthPlayerListResponse> GetAuthenticatedPlayersAsync(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), string email = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetAuthenticatedPlayersWithHttpInfoAsync(limit, skip, order, email, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -342,7 +342,7 @@ namespace Openfort.Api
         /// <param name="email">Specifies the email address of the user. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AuthPlayerListResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AuthPlayerListResponse>> GetAuthenticatedPlayersWithHttpInfoAsync(double? limit = default(double?), double? skip = default(double?), SortOrder? order = default(SortOrder?), string email = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AuthPlayerListResponse>> GetAuthenticatedPlayersWithHttpInfoAsync(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), string email = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -388,7 +388,7 @@ namespace Openfort.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.GetAsync<AuthPlayerListResponse>("/auth/v1/players", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.GetAsync<AuthPlayerListResponse>("/iam/v1/players", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);

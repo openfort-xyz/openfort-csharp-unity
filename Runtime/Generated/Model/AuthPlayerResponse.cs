@@ -53,7 +53,7 @@ namespace Openfort.Model
         /// <param name="updatedAt">updatedAt (required).</param>
         /// <param name="lastSignInAt">lastSignInAt.</param>
         /// <param name="rawAppMetaData">rawAppMetaData.</param>
-        public AuthPlayerResponse(AuthPlayerResponsePlayer player = default(AuthPlayerResponsePlayer), string id = default(string), EntityTypePLAYER _object = default(EntityTypePLAYER), int createdAt = default(int), string email = default(string), double updatedAt = default(double), double lastSignInAt = default(double), PrismaInputJsonValue rawAppMetaData = default(PrismaInputJsonValue))
+        public AuthPlayerResponse(AuthPlayerResponsePlayer player = default(AuthPlayerResponsePlayer), string id = default(string), EntityTypePLAYER _object = default(EntityTypePLAYER), int createdAt = default(int), string email = default(string), int updatedAt = default(int), int lastSignInAt = default(int), PrismaInputJsonValue rawAppMetaData = default(PrismaInputJsonValue))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -98,13 +98,13 @@ namespace Openfort.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         [DataMember(Name = "updatedAt", IsRequired = true, EmitDefaultValue = true)]
-        public double UpdatedAt { get; set; }
+        public int UpdatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets LastSignInAt
         /// </summary>
         [DataMember(Name = "lastSignInAt", EmitDefaultValue = false)]
-        public double LastSignInAt { get; set; }
+        public int LastSignInAt { get; set; }
 
         /// <summary>
         /// Gets or Sets RawAppMetaData

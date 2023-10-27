@@ -50,7 +50,7 @@ namespace Openfort.Model
         /// <param name="order">order.</param>
         /// <param name="player">The player ID (starts with pla_) (required).</param>
         /// <param name="expand">Specifies the fields to expand in the response..</param>
-        public SessionListQueries(double limit = default(double), double skip = default(double), SortOrder? order = default(SortOrder?), string player = default(string), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>))
+        public SessionListQueries(int limit = default(int), int skip = default(int), SortOrder? order = default(SortOrder?), string player = default(string), List<SessionResponseExpandable> expand = default(List<SessionResponseExpandable>))
         {
             // to ensure "player" is required (not null)
             if (player == null)
@@ -69,14 +69,14 @@ namespace Openfort.Model
         /// </summary>
         /// <value>Specifies the maximum number of records to return.</value>
         [DataMember(Name = "limit", EmitDefaultValue = false)]
-        public double Limit { get; set; }
+        public int Limit { get; set; }
 
         /// <summary>
         /// Specifies the offset for the first records to return.
         /// </summary>
         /// <value>Specifies the offset for the first records to return.</value>
         [DataMember(Name = "skip", EmitDefaultValue = false)]
-        public double Skip { get; set; }
+        public int Skip { get; set; }
 
         /// <summary>
         /// The player ID (starts with pla_)

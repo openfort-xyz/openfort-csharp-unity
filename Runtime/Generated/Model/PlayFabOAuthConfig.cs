@@ -45,10 +45,12 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PlayFabOAuthConfig" /> class.
         /// </summary>
+        /// <param name="enabled">Enable PlayFab Auth. (required).</param>
         /// <param name="titleId">Title ID of your Play Fab gaming service environment. (required).</param>
         /// <param name="provider">provider (required).</param>
-        public PlayFabOAuthConfig(string titleId = default(string), OAuthProviderPLAYFAB provider = default(OAuthProviderPLAYFAB))
+        public PlayFabOAuthConfig(bool enabled = default(bool), string titleId = default(string), OAuthProviderPLAYFAB provider = default(OAuthProviderPLAYFAB))
         {
+            this.Enabled = enabled;
             // to ensure "titleId" is required (not null)
             if (titleId == null)
             {
@@ -57,6 +59,13 @@ namespace Openfort.Model
             this.TitleId = titleId;
             this.Provider = provider;
         }
+
+        /// <summary>
+        /// Enable PlayFab Auth.
+        /// </summary>
+        /// <value>Enable PlayFab Auth.</value>
+        [DataMember(Name = "enabled", IsRequired = true, EmitDefaultValue = true)]
+        public bool Enabled { get; set; }
 
         /// <summary>
         /// Title ID of your Play Fab gaming service environment.
@@ -73,6 +82,7 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class PlayFabOAuthConfig {\n");
+            sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("  TitleId: ").Append(TitleId).Append("\n");
             sb.Append("  Provider: ").Append(Provider).Append("\n");
             sb.Append("}\n");
@@ -111,6 +121,10 @@ namespace Openfort.Model
             }
             return 
                 (
+                    this.Enabled == input.Enabled ||
+                    this.Enabled.Equals(input.Enabled)
+                ) && 
+                (
                     this.TitleId == input.TitleId ||
                     (this.TitleId != null &&
                     this.TitleId.Equals(input.TitleId))
@@ -130,6 +144,7 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
                 if (this.TitleId != null)
                 {
                     hashCode = (hashCode * 59) + this.TitleId.GetHashCode();

@@ -45,12 +45,14 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccelbyteOAuthConfig" /> class.
         /// </summary>
+        /// <param name="enabled">Enable Accelbyte Auth. (required).</param>
         /// <param name="baseUrl">Base URI of your accelbyte gaming service environment. E.g. https://mygame.dev.gamingservices.accelbyte.io/ (required).</param>
         /// <param name="clientId">Client ID of your accelbyte gaming service environment. (required).</param>
         /// <param name="clientSecret">Secret of your confidential IAM client. (required).</param>
         /// <param name="provider">provider (required).</param>
-        public AccelbyteOAuthConfig(string baseUrl = default(string), string clientId = default(string), string clientSecret = default(string), OAuthProviderACCELBYTE provider = default(OAuthProviderACCELBYTE))
+        public AccelbyteOAuthConfig(bool enabled = default(bool), string baseUrl = default(string), string clientId = default(string), string clientSecret = default(string), OAuthProviderACCELBYTE provider = default(OAuthProviderACCELBYTE))
         {
+            this.Enabled = enabled;
             // to ensure "baseUrl" is required (not null)
             if (baseUrl == null)
             {
@@ -71,6 +73,13 @@ namespace Openfort.Model
             this.ClientSecret = clientSecret;
             this.Provider = provider;
         }
+
+        /// <summary>
+        /// Enable Accelbyte Auth.
+        /// </summary>
+        /// <value>Enable Accelbyte Auth.</value>
+        [DataMember(Name = "enabled", IsRequired = true, EmitDefaultValue = true)]
+        public bool Enabled { get; set; }
 
         /// <summary>
         /// Base URI of your accelbyte gaming service environment. E.g. https://mygame.dev.gamingservices.accelbyte.io/
@@ -101,6 +110,7 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AccelbyteOAuthConfig {\n");
+            sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("  BaseUrl: ").Append(BaseUrl).Append("\n");
             sb.Append("  ClientId: ").Append(ClientId).Append("\n");
             sb.Append("  ClientSecret: ").Append(ClientSecret).Append("\n");
@@ -141,6 +151,10 @@ namespace Openfort.Model
             }
             return 
                 (
+                    this.Enabled == input.Enabled ||
+                    this.Enabled.Equals(input.Enabled)
+                ) && 
+                (
                     this.BaseUrl == input.BaseUrl ||
                     (this.BaseUrl != null &&
                     this.BaseUrl.Equals(input.BaseUrl))
@@ -170,6 +184,7 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
                 if (this.BaseUrl != null)
                 {
                     hashCode = (hashCode * 59) + this.BaseUrl.GetHashCode();

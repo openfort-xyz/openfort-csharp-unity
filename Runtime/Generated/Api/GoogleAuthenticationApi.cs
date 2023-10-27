@@ -301,7 +301,7 @@ namespace Openfort.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetSigninUrlResponse>("/auth/v1/google/signin_url", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<GetSigninUrlResponse>("/iam/v1/oauth/google/signin_url", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -365,7 +365,7 @@ namespace Openfort.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.GetAsync<GetSigninUrlResponse>("/auth/v1/google/signin_url", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.GetAsync<GetSigninUrlResponse>("/iam/v1/oauth/google/signin_url", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -432,7 +432,7 @@ namespace Openfort.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<AuthResponse>("/auth/v1/google/token", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AuthResponse>("/iam/v1/oauth/google/token", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -503,7 +503,7 @@ namespace Openfort.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.GetAsync<AuthResponse>("/auth/v1/google/token", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.GetAsync<AuthResponse>("/iam/v1/oauth/google/token", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);

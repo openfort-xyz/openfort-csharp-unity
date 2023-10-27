@@ -51,7 +51,7 @@ namespace Openfort.Model
         /// <param name="start">start (required).</param>
         /// <param name="end">end (required).</param>
         /// <param name="total">total (required).</param>
-        public PolicyListResponse(ResponseTypeLIST _object = default(ResponseTypeLIST), string url = default(string), List<PolicyResponse> data = default(List<PolicyResponse>), double start = default(double), double end = default(double), double total = default(double))
+        public PolicyListResponse(ResponseTypeLIST _object = default(ResponseTypeLIST), string url = default(string), List<PolicyResponse> data = default(List<PolicyResponse>), int start = default(int), int end = default(int), int total = default(int))
         {
             this.Object = _object;
             // to ensure "url" is required (not null)
@@ -87,19 +87,19 @@ namespace Openfort.Model
         /// Gets or Sets Start
         /// </summary>
         [DataMember(Name = "start", IsRequired = true, EmitDefaultValue = true)]
-        public double Start { get; set; }
+        public int Start { get; set; }
 
         /// <summary>
         /// Gets or Sets End
         /// </summary>
         [DataMember(Name = "end", IsRequired = true, EmitDefaultValue = true)]
-        public double End { get; set; }
+        public int End { get; set; }
 
         /// <summary>
         /// Gets or Sets Total
         /// </summary>
         [DataMember(Name = "total", IsRequired = true, EmitDefaultValue = true)]
-        public double Total { get; set; }
+        public int Total { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

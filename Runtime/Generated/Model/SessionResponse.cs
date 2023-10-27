@@ -57,7 +57,7 @@ namespace Openfort.Model
         /// <param name="limit">limit.</param>
         /// <param name="nextAction">nextAction.</param>
         /// <param name="transactionIntents">transactionIntents.</param>
-        public SessionResponse(string id = default(string), EntityTypeSESSION _object = default(EntityTypeSESSION), int createdAt = default(int), int updatedAt = default(int), bool isActive = default(bool), string address = default(string), string validAfter = default(string), string validUntil = default(string), List<string> whitelist = default(List<string>), double limit = default(double), NextActionResponse nextAction = default(NextActionResponse), List<PlayerResponseTransactionIntentsInner> transactionIntents = default(List<PlayerResponseTransactionIntentsInner>))
+        public SessionResponse(string id = default(string), EntityTypeSESSION _object = default(EntityTypeSESSION), int createdAt = default(int), int updatedAt = default(int), bool isActive = default(bool), string address = default(string), string validAfter = default(string), string validUntil = default(string), List<string> whitelist = default(List<string>), int limit = default(int), NextActionResponse nextAction = default(NextActionResponse), List<PlayerResponseTransactionIntentsInner> transactionIntents = default(List<PlayerResponseTransactionIntentsInner>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -135,7 +135,7 @@ namespace Openfort.Model
         /// Gets or Sets Limit
         /// </summary>
         [DataMember(Name = "limit", EmitDefaultValue = false)]
-        public double Limit { get; set; }
+        public int Limit { get; set; }
 
         /// <summary>
         /// Gets or Sets NextAction

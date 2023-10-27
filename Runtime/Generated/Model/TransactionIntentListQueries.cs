@@ -48,7 +48,7 @@ namespace Openfort.Model
         /// <param name="accountId">Filter by account ID..</param>
         /// <param name="playerId">Filter by player ID (starts with pla_)..</param>
         /// <param name="policyId">Filter by policy ID (starts with pol_)..</param>
-        public TransactionIntentListQueries(double limit = default(double), double skip = default(double), SortOrder? order = default(SortOrder?), List<TransactionIntentResponseExpandable> expand = default(List<TransactionIntentResponseExpandable>), int chainId = default(int), List<string> accountId = default(List<string>), List<string> playerId = default(List<string>), List<string> policyId = default(List<string>))
+        public TransactionIntentListQueries(int limit = default(int), int skip = default(int), SortOrder? order = default(SortOrder?), List<TransactionIntentResponseExpandable> expand = default(List<TransactionIntentResponseExpandable>), int chainId = default(int), List<string> accountId = default(List<string>), List<string> playerId = default(List<string>), List<string> policyId = default(List<string>))
         {
             this.Limit = limit;
             this.Skip = skip;
@@ -65,14 +65,14 @@ namespace Openfort.Model
         /// </summary>
         /// <value>Specifies the maximum number of records to return.</value>
         [DataMember(Name = "limit", EmitDefaultValue = false)]
-        public double Limit { get; set; }
+        public int Limit { get; set; }
 
         /// <summary>
         /// Specifies the offset for the first records to return.
         /// </summary>
         /// <value>Specifies the offset for the first records to return.</value>
         [DataMember(Name = "skip", EmitDefaultValue = false)]
-        public double Skip { get; set; }
+        public int Skip { get; set; }
 
         /// <summary>
         /// Specifies the fields to expand in the response.

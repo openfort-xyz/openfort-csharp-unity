@@ -50,7 +50,7 @@ namespace Openfort.Model
         /// <param name="order">order.</param>
         /// <param name="expand">Specifies the fields to expand in the response..</param>
         /// <param name="player">Specifies the unique player ID (starts with pla_) (required).</param>
-        public AccountListQueries(double limit = default(double), double skip = default(double), SortOrder? order = default(SortOrder?), List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>), string player = default(string))
+        public AccountListQueries(int limit = default(int), int skip = default(int), SortOrder? order = default(SortOrder?), List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>), string player = default(string))
         {
             // to ensure "player" is required (not null)
             if (player == null)
@@ -69,14 +69,14 @@ namespace Openfort.Model
         /// </summary>
         /// <value>Specifies the maximum number of records to return.</value>
         [DataMember(Name = "limit", EmitDefaultValue = false)]
-        public double Limit { get; set; }
+        public int Limit { get; set; }
 
         /// <summary>
         /// Specifies the offset for the first records to return.
         /// </summary>
         /// <value>Specifies the offset for the first records to return.</value>
         [DataMember(Name = "skip", EmitDefaultValue = false)]
-        public double Skip { get; set; }
+        public int Skip { get; set; }
 
         /// <summary>
         /// Specifies the fields to expand in the response.

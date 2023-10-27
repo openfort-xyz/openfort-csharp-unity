@@ -45,7 +45,7 @@ namespace Openfort.Model
         /// <param name="order">order.</param>
         /// <param name="expand">Specifies the fields to expand in the response..</param>
         /// <param name="name">Filter by player name..</param>
-        public PlayerListQueries(double limit = default(double), double skip = default(double), SortOrder? order = default(SortOrder?), List<PlayerResponseExpandable> expand = default(List<PlayerResponseExpandable>), string name = default(string))
+        public PlayerListQueries(int limit = default(int), int skip = default(int), SortOrder? order = default(SortOrder?), List<PlayerResponseExpandable> expand = default(List<PlayerResponseExpandable>), string name = default(string))
         {
             this.Limit = limit;
             this.Skip = skip;
@@ -59,14 +59,14 @@ namespace Openfort.Model
         /// </summary>
         /// <value>Specifies the maximum number of records to return.</value>
         [DataMember(Name = "limit", EmitDefaultValue = false)]
-        public double Limit { get; set; }
+        public int Limit { get; set; }
 
         /// <summary>
         /// Specifies the offset for the first records to return.
         /// </summary>
         /// <value>Specifies the offset for the first records to return.</value>
         [DataMember(Name = "skip", EmitDefaultValue = false)]
-        public double Skip { get; set; }
+        public int Skip { get; set; }
 
         /// <summary>
         /// Specifies the fields to expand in the response.

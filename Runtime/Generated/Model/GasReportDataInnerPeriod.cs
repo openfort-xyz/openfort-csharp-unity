@@ -41,7 +41,7 @@ namespace Openfort.Model
         /// </summary>
         /// <param name="end">end (required).</param>
         /// <param name="start">start (required).</param>
-        public GasReportDataInnerPeriod(double end = default(double), double start = default(double))
+        public GasReportDataInnerPeriod(int end = default(int), int start = default(int))
         {
             this.End = end;
             this.Start = start;
@@ -51,13 +51,13 @@ namespace Openfort.Model
         /// Gets or Sets End
         /// </summary>
         [DataMember(Name = "end", IsRequired = true, EmitDefaultValue = true)]
-        public double End { get; set; }
+        public int End { get; set; }
 
         /// <summary>
         /// Gets or Sets Start
         /// </summary>
         [DataMember(Name = "start", IsRequired = true, EmitDefaultValue = true)]
-        public double Start { get; set; }
+        public int Start { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

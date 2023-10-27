@@ -354,7 +354,7 @@ namespace Openfort.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<AuthResponse>("/auth/v1/login", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthResponse>("/iam/v1/auth/login", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -426,7 +426,7 @@ namespace Openfort.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<AuthResponse>("/auth/v1/login", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<AuthResponse>("/iam/v1/auth/login", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -494,7 +494,7 @@ namespace Openfort.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<AuthResponse>("/auth/v1/signup", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AuthResponse>("/iam/v1/auth/signup", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -566,7 +566,7 @@ namespace Openfort.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<AuthResponse>("/auth/v1/signup", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<AuthResponse>("/iam/v1/auth/signup", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -633,7 +633,7 @@ namespace Openfort.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<PlayerResponse>("/auth/v1/verify", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PlayerResponse>("/iam/v1/auth/verify", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -704,7 +704,7 @@ namespace Openfort.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.GetAsync<PlayerResponse>("/auth/v1/verify", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.GetAsync<PlayerResponse>("/iam/v1/auth/verify", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);

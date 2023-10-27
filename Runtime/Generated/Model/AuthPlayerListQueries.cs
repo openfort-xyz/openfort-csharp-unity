@@ -44,7 +44,7 @@ namespace Openfort.Model
         /// <param name="skip">Specifies the offset for the first records to return..</param>
         /// <param name="order">order.</param>
         /// <param name="email">Specifies the email address of the user..</param>
-        public AuthPlayerListQueries(double limit = default(double), double skip = default(double), SortOrder? order = default(SortOrder?), string email = default(string))
+        public AuthPlayerListQueries(int limit = default(int), int skip = default(int), SortOrder? order = default(SortOrder?), string email = default(string))
         {
             this.Limit = limit;
             this.Skip = skip;
@@ -57,14 +57,14 @@ namespace Openfort.Model
         /// </summary>
         /// <value>Specifies the maximum number of records to return.</value>
         [DataMember(Name = "limit", EmitDefaultValue = false)]
-        public double Limit { get; set; }
+        public int Limit { get; set; }
 
         /// <summary>
         /// Specifies the offset for the first records to return.
         /// </summary>
         /// <value>Specifies the offset for the first records to return.</value>
         [DataMember(Name = "skip", EmitDefaultValue = false)]
-        public double Skip { get; set; }
+        public int Skip { get; set; }
 
         /// <summary>
         /// Specifies the email address of the user.
