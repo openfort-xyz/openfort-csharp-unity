@@ -69,6 +69,18 @@ namespace Openfort.Model
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OAuthConfig" /> class
+        /// with the <see cref="FirebaseOAuthConfig" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of FirebaseOAuthConfig.</param>
+        public OAuthConfig(FirebaseOAuthConfig actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "anyOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
 
         private Object _actualInstance;
 
@@ -87,6 +99,10 @@ namespace Openfort.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(FirebaseOAuthConfig))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(GoogleOAuthConfig))
                 {
                     this._actualInstance = value;
@@ -97,7 +113,7 @@ namespace Openfort.Model
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AccelbyteOAuthConfig, GoogleOAuthConfig, PlayFabOAuthConfig");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AccelbyteOAuthConfig, FirebaseOAuthConfig, GoogleOAuthConfig, PlayFabOAuthConfig");
                 }
             }
         }
@@ -130,6 +146,16 @@ namespace Openfort.Model
         public PlayFabOAuthConfig GetPlayFabOAuthConfig()
         {
             return (PlayFabOAuthConfig)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `FirebaseOAuthConfig`. If the actual instance is not `FirebaseOAuthConfig`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of FirebaseOAuthConfig</returns>
+        public FirebaseOAuthConfig GetFirebaseOAuthConfig()
+        {
+            return (FirebaseOAuthConfig)this.ActualInstance;
         }
 
         /// <summary>
@@ -178,6 +204,18 @@ namespace Openfort.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into AccelbyteOAuthConfig: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                newOAuthConfig = new OAuthConfig(JsonConvert.DeserializeObject<FirebaseOAuthConfig>(jsonString, OAuthConfig.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newOAuthConfig;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into FirebaseOAuthConfig: {1}", jsonString, exception.ToString()));
             }
 
             try

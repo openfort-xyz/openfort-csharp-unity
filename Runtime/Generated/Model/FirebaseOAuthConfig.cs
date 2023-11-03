@@ -26,38 +26,38 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// PlayFab oauth configuration
+    /// Firebase configuration
     /// </summary>
-    [DataContract(Name = "PlayFabOAuthConfig")]
-    public partial class PlayFabOAuthConfig : IEquatable<PlayFabOAuthConfig>
+    [DataContract(Name = "FirebaseOAuthConfig")]
+    public partial class FirebaseOAuthConfig : IEquatable<FirebaseOAuthConfig>
     {
 
         /// <summary>
         /// Gets or Sets Provider
         /// </summary>
         [DataMember(Name = "provider", IsRequired = true, EmitDefaultValue = true)]
-        public OAuthProviderPLAYFAB Provider { get; set; }
+        public OAuthProviderFIREBASE Provider { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlayFabOAuthConfig" /> class.
+        /// Initializes a new instance of the <see cref="FirebaseOAuthConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected PlayFabOAuthConfig() { }
+        protected FirebaseOAuthConfig() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlayFabOAuthConfig" /> class.
+        /// Initializes a new instance of the <see cref="FirebaseOAuthConfig" /> class.
         /// </summary>
         /// <param name="enabled">Enable OAuth provider. (required).</param>
         /// <param name="provider">provider (required).</param>
-        /// <param name="titleId">Title ID of your Play Fab gaming service environment. (required).</param>
-        public PlayFabOAuthConfig(bool enabled = default(bool), OAuthProviderPLAYFAB provider = default(OAuthProviderPLAYFAB), string titleId = default(string))
+        /// <param name="projectId">Project ID of your Firebase service environment. (required).</param>
+        public FirebaseOAuthConfig(bool enabled = default(bool), OAuthProviderFIREBASE provider = default(OAuthProviderFIREBASE), string projectId = default(string))
         {
             this.Enabled = enabled;
             this.Provider = provider;
-            // to ensure "titleId" is required (not null)
-            if (titleId == null)
+            // to ensure "projectId" is required (not null)
+            if (projectId == null)
             {
-                throw new ArgumentNullException("titleId is a required property for PlayFabOAuthConfig and cannot be null");
+                throw new ArgumentNullException("projectId is a required property for FirebaseOAuthConfig and cannot be null");
             }
-            this.TitleId = titleId;
+            this.ProjectId = projectId;
         }
 
         /// <summary>
@@ -68,11 +68,11 @@ namespace Openfort.Model
         public bool Enabled { get; set; }
 
         /// <summary>
-        /// Title ID of your Play Fab gaming service environment.
+        /// Project ID of your Firebase service environment.
         /// </summary>
-        /// <value>Title ID of your Play Fab gaming service environment.</value>
-        [DataMember(Name = "titleId", IsRequired = true, EmitDefaultValue = true)]
-        public string TitleId { get; set; }
+        /// <value>Project ID of your Firebase service environment.</value>
+        [DataMember(Name = "projectId", IsRequired = true, EmitDefaultValue = true)]
+        public string ProjectId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -81,10 +81,10 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PlayFabOAuthConfig {\n");
+            sb.Append("class FirebaseOAuthConfig {\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("  Provider: ").Append(Provider).Append("\n");
-            sb.Append("  TitleId: ").Append(TitleId).Append("\n");
+            sb.Append("  ProjectId: ").Append(ProjectId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -105,15 +105,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PlayFabOAuthConfig);
+            return this.Equals(input as FirebaseOAuthConfig);
         }
 
         /// <summary>
-        /// Returns true if PlayFabOAuthConfig instances are equal
+        /// Returns true if FirebaseOAuthConfig instances are equal
         /// </summary>
-        /// <param name="input">Instance of PlayFabOAuthConfig to be compared</param>
+        /// <param name="input">Instance of FirebaseOAuthConfig to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PlayFabOAuthConfig input)
+        public bool Equals(FirebaseOAuthConfig input)
         {
             if (input == null)
             {
@@ -129,9 +129,9 @@ namespace Openfort.Model
                     this.Provider.Equals(input.Provider)
                 ) && 
                 (
-                    this.TitleId == input.TitleId ||
-                    (this.TitleId != null &&
-                    this.TitleId.Equals(input.TitleId))
+                    this.ProjectId == input.ProjectId ||
+                    (this.ProjectId != null &&
+                    this.ProjectId.Equals(input.ProjectId))
                 );
         }
 
@@ -146,9 +146,9 @@ namespace Openfort.Model
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
                 hashCode = (hashCode * 59) + this.Provider.GetHashCode();
-                if (this.TitleId != null)
+                if (this.ProjectId != null)
                 {
-                    hashCode = (hashCode * 59) + this.TitleId.GetHashCode();
+                    hashCode = (hashCode * 59) + this.ProjectId.GetHashCode();
                 }
                 return hashCode;
             }

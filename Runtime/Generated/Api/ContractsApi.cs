@@ -124,6 +124,31 @@ namespace Openfort.Api
         /// <returns>ApiResponse of ContractListResponse</returns>
         ApiResponse<ContractListResponse> GetContractsWithHttpInfo(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), int? chainId = default(int?), string address = default(string));
         /// <summary>
+        /// Read on chain contract data.
+        /// </summary>
+        /// <remarks>
+        /// Using this endpoint, you can get the data returned by any readable function listed in a contracts ABI. This could be things like querying the totalSupply of a currency contract, the number of owners of an items contract, and more.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
+        /// <param name="functionName">The function name of the contract.</param>
+        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <returns>ContractReadResponse</returns>
+        ContractReadResponse ReadContract(string id, string functionName, List<Object> functionArgs = default(List<Object>));
+
+        /// <summary>
+        /// Read on chain contract data.
+        /// </summary>
+        /// <remarks>
+        /// Using this endpoint, you can get the data returned by any readable function listed in a contracts ABI. This could be things like querying the totalSupply of a currency contract, the number of owners of an items contract, and more.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
+        /// <param name="functionName">The function name of the contract.</param>
+        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <returns>ApiResponse of ContractReadResponse</returns>
+        ApiResponse<ContractReadResponse> ReadContractWithHttpInfo(string id, string functionName, List<Object> functionArgs = default(List<Object>));
+        /// <summary>
         /// Updates a contract object.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
@@ -256,6 +281,33 @@ namespace Openfort.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractListResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ContractListResponse>> GetContractsWithHttpInfoAsync(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), string name = default(string), bool? deleted = default(bool?), int? chainId = default(int?), string address = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Read on chain contract data.
+        /// </summary>
+        /// <remarks>
+        /// Using this endpoint, you can get the data returned by any readable function listed in a contracts ABI. This could be things like querying the totalSupply of a currency contract, the number of owners of an items contract, and more.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
+        /// <param name="functionName">The function name of the contract.</param>
+        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ContractReadResponse</returns>
+        System.Threading.Tasks.Task<ContractReadResponse> ReadContractAsync(string id, string functionName, List<Object> functionArgs = default(List<Object>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Read on chain contract data.
+        /// </summary>
+        /// <remarks>
+        /// Using this endpoint, you can get the data returned by any readable function listed in a contracts ABI. This could be things like querying the totalSupply of a currency contract, the number of owners of an items contract, and more.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
+        /// <param name="functionName">The function name of the contract.</param>
+        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ContractReadResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ContractReadResponse>> ReadContractWithHttpInfoAsync(string id, string functionName, List<Object> functionArgs = default(List<Object>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Updates a contract object.
         /// </summary>
@@ -1043,6 +1095,170 @@ namespace Openfort.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetContracts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Read on chain contract data. Using this endpoint, you can get the data returned by any readable function listed in a contracts ABI. This could be things like querying the totalSupply of a currency contract, the number of owners of an items contract, and more.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
+        /// <param name="functionName">The function name of the contract.</param>
+        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <returns>ContractReadResponse</returns>
+        public ContractReadResponse ReadContract(string id, string functionName, List<Object> functionArgs = default(List<Object>))
+        {
+            Openfort.Client.ApiResponse<ContractReadResponse> localVarResponse = ReadContractWithHttpInfo(id, functionName, functionArgs);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Read on chain contract data. Using this endpoint, you can get the data returned by any readable function listed in a contracts ABI. This could be things like querying the totalSupply of a currency contract, the number of owners of an items contract, and more.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
+        /// <param name="functionName">The function name of the contract.</param>
+        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <returns>ApiResponse of ContractReadResponse</returns>
+        public Openfort.Client.ApiResponse<ContractReadResponse> ReadContractWithHttpInfo(string id, string functionName, List<Object> functionArgs = default(List<Object>))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling ContractsApi->ReadContract");
+
+            // verify the required parameter 'functionName' is set
+            if (functionName == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'functionName' when calling ContractsApi->ReadContract");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "functionName", functionName));
+            if (functionArgs != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "functionArgs", functionArgs));
+            }
+
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ContractReadResponse>("/v1/contracts/{id}/read", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReadContract", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Read on chain contract data. Using this endpoint, you can get the data returned by any readable function listed in a contracts ABI. This could be things like querying the totalSupply of a currency contract, the number of owners of an items contract, and more.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
+        /// <param name="functionName">The function name of the contract.</param>
+        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ContractReadResponse</returns>
+        public async System.Threading.Tasks.Task<ContractReadResponse> ReadContractAsync(string id, string functionName, List<Object> functionArgs = default(List<Object>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = ReadContractWithHttpInfoAsync(id, functionName, functionArgs, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<ContractReadResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<ContractReadResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Read on chain contract data. Using this endpoint, you can get the data returned by any readable function listed in a contracts ABI. This could be things like querying the totalSupply of a currency contract, the number of owners of an items contract, and more.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
+        /// <param name="functionName">The function name of the contract.</param>
+        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ContractReadResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractReadResponse>> ReadContractWithHttpInfoAsync(string id, string functionName, List<Object> functionArgs = default(List<Object>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling ContractsApi->ReadContract");
+
+            // verify the required parameter 'functionName' is set
+            if (functionName == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'functionName' when calling ContractsApi->ReadContract");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "functionName", functionName));
+            if (functionArgs != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "functionArgs", functionArgs));
+            }
+
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<ContractReadResponse>("/v1/contracts/{id}/read", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReadContract", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

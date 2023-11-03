@@ -26,35 +26,40 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// Enum of the supporting OAuth providers.
+    /// Defines Web3ActionStatusEnum
     /// </summary>
-    /// <value>Enum of the supporting OAuth providers.</value>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum OAuthProvider
+    public enum Web3ActionStatusEnum
     {
         /// <summary>
-        /// Enum Accelbyte for value: accelbyte
+        /// Enum Pending for value: Pending
         /// </summary>
-        [EnumMember(Value = "accelbyte")]
-        Accelbyte = 1,
+        [EnumMember(Value = "Pending")]
+        Pending = 1,
 
         /// <summary>
-        /// Enum Firebase for value: firebase
+        /// Enum Approved for value: Approved
         /// </summary>
-        [EnumMember(Value = "firebase")]
-        Firebase = 2,
+        [EnumMember(Value = "Approved")]
+        Approved = 2,
 
         /// <summary>
-        /// Enum Google for value: google
+        /// Enum Rejected for value: Rejected
         /// </summary>
-        [EnumMember(Value = "google")]
-        Google = 3,
+        [EnumMember(Value = "Rejected")]
+        Rejected = 3,
 
         /// <summary>
-        /// Enum Playfab for value: playfab
+        /// Enum Expired for value: Expired
         /// </summary>
-        [EnumMember(Value = "playfab")]
-        Playfab = 4
+        [EnumMember(Value = "Expired")]
+        Expired = 4,
+
+        /// <summary>
+        /// Enum Failed for value: Failed
+        /// </summary>
+        [EnumMember(Value = "Failed")]
+        Failed = 5
 
     }
 

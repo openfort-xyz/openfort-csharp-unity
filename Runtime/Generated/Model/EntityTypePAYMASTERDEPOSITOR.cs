@@ -26,35 +26,16 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// Enum of the supporting OAuth providers.
+    /// Defines EntityType.PAYMASTER_DEPOSITOR
     /// </summary>
-    /// <value>Enum of the supporting OAuth providers.</value>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum OAuthProvider
+    public enum EntityTypePAYMASTERDEPOSITOR
     {
         /// <summary>
-        /// Enum Accelbyte for value: accelbyte
+        /// Enum PaymasterDepositor for value: paymasterDepositor
         /// </summary>
-        [EnumMember(Value = "accelbyte")]
-        Accelbyte = 1,
-
-        /// <summary>
-        /// Enum Firebase for value: firebase
-        /// </summary>
-        [EnumMember(Value = "firebase")]
-        Firebase = 2,
-
-        /// <summary>
-        /// Enum Google for value: google
-        /// </summary>
-        [EnumMember(Value = "google")]
-        Google = 3,
-
-        /// <summary>
-        /// Enum Playfab for value: playfab
-        /// </summary>
-        [EnumMember(Value = "playfab")]
-        Playfab = 4
+        [EnumMember(Value = "paymasterDepositor")]
+        PaymasterDepositor = 1
 
     }
 

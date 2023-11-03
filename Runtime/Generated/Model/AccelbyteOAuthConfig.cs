@@ -45,14 +45,15 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccelbyteOAuthConfig" /> class.
         /// </summary>
-        /// <param name="enabled">Enable Accelbyte Auth. (required).</param>
+        /// <param name="enabled">Enable OAuth provider. (required).</param>
+        /// <param name="provider">provider (required).</param>
         /// <param name="baseUrl">Base URI of your accelbyte gaming service environment. E.g. https://mygame.dev.gamingservices.accelbyte.io/ (required).</param>
         /// <param name="clientId">Client ID of your accelbyte gaming service environment. (required).</param>
         /// <param name="clientSecret">Secret of your confidential IAM client. (required).</param>
-        /// <param name="provider">provider (required).</param>
-        public AccelbyteOAuthConfig(bool enabled = default(bool), string baseUrl = default(string), string clientId = default(string), string clientSecret = default(string), OAuthProviderACCELBYTE provider = default(OAuthProviderACCELBYTE))
+        public AccelbyteOAuthConfig(bool enabled = default(bool), OAuthProviderACCELBYTE provider = default(OAuthProviderACCELBYTE), string baseUrl = default(string), string clientId = default(string), string clientSecret = default(string))
         {
             this.Enabled = enabled;
+            this.Provider = provider;
             // to ensure "baseUrl" is required (not null)
             if (baseUrl == null)
             {
@@ -71,13 +72,12 @@ namespace Openfort.Model
                 throw new ArgumentNullException("clientSecret is a required property for AccelbyteOAuthConfig and cannot be null");
             }
             this.ClientSecret = clientSecret;
-            this.Provider = provider;
         }
 
         /// <summary>
-        /// Enable Accelbyte Auth.
+        /// Enable OAuth provider.
         /// </summary>
-        /// <value>Enable Accelbyte Auth.</value>
+        /// <value>Enable OAuth provider.</value>
         [DataMember(Name = "enabled", IsRequired = true, EmitDefaultValue = true)]
         public bool Enabled { get; set; }
 
@@ -111,10 +111,10 @@ namespace Openfort.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class AccelbyteOAuthConfig {\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
+            sb.Append("  Provider: ").Append(Provider).Append("\n");
             sb.Append("  BaseUrl: ").Append(BaseUrl).Append("\n");
             sb.Append("  ClientId: ").Append(ClientId).Append("\n");
             sb.Append("  ClientSecret: ").Append(ClientSecret).Append("\n");
-            sb.Append("  Provider: ").Append(Provider).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -155,6 +155,10 @@ namespace Openfort.Model
                     this.Enabled.Equals(input.Enabled)
                 ) && 
                 (
+                    this.Provider == input.Provider ||
+                    this.Provider.Equals(input.Provider)
+                ) && 
+                (
                     this.BaseUrl == input.BaseUrl ||
                     (this.BaseUrl != null &&
                     this.BaseUrl.Equals(input.BaseUrl))
@@ -168,10 +172,6 @@ namespace Openfort.Model
                     this.ClientSecret == input.ClientSecret ||
                     (this.ClientSecret != null &&
                     this.ClientSecret.Equals(input.ClientSecret))
-                ) && 
-                (
-                    this.Provider == input.Provider ||
-                    this.Provider.Equals(input.Provider)
                 );
         }
 
@@ -185,6 +185,7 @@ namespace Openfort.Model
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
+                hashCode = (hashCode * 59) + this.Provider.GetHashCode();
                 if (this.BaseUrl != null)
                 {
                     hashCode = (hashCode * 59) + this.BaseUrl.GetHashCode();
@@ -197,7 +198,6 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.ClientSecret.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Provider.GetHashCode();
                 return hashCode;
             }
         }

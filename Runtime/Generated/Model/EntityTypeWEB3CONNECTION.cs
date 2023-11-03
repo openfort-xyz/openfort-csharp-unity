@@ -26,35 +26,16 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// Enum of the supporting OAuth providers.
+    /// Defines EntityType.WEB3_CONNECTION
     /// </summary>
-    /// <value>Enum of the supporting OAuth providers.</value>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum OAuthProvider
+    public enum EntityTypeWEB3CONNECTION
     {
         /// <summary>
-        /// Enum Accelbyte for value: accelbyte
+        /// Enum Web3Connection for value: web3Connection
         /// </summary>
-        [EnumMember(Value = "accelbyte")]
-        Accelbyte = 1,
-
-        /// <summary>
-        /// Enum Firebase for value: firebase
-        /// </summary>
-        [EnumMember(Value = "firebase")]
-        Firebase = 2,
-
-        /// <summary>
-        /// Enum Google for value: google
-        /// </summary>
-        [EnumMember(Value = "google")]
-        Google = 3,
-
-        /// <summary>
-        /// Enum Playfab for value: playfab
-        /// </summary>
-        [EnumMember(Value = "playfab")]
-        Playfab = 4
+        [EnumMember(Value = "web3Connection")]
+        Web3Connection = 1
 
     }
 

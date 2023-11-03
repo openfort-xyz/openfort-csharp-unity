@@ -26,53 +26,69 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// Player
+    /// UserProjectResponse
     /// </summary>
-    [DataContract(Name = "Player")]
-    public partial class Player : IEquatable<Player>
+    [DataContract(Name = "UserProjectResponse")]
+    public partial class UserProjectResponse : IEquatable<UserProjectResponse>
     {
 
         /// <summary>
         /// Gets or Sets Object
         /// </summary>
         [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public EntityTypePLAYER Object { get; set; }
+        public EntityTypeUSER Object { get; set; }
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Player" /> class.
+        /// Gets or Sets Role
+        /// </summary>
+        [DataMember(Name = "role", IsRequired = true, EmitDefaultValue = true)]
+        public UserProjectRole Role { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserProjectResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Player() { }
+        protected UserProjectResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Player" /> class.
+        /// Initializes a new instance of the <see cref="UserProjectResponse" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
         /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
-        /// <param name="name">name (required).</param>
-        /// <param name="description">description.</param>
-        /// <param name="metadata">metadata.</param>
-        /// <param name="transactionIntents">transactionIntents.</param>
-        /// <param name="accounts">accounts.</param>
-        public Player(string id = default(string), EntityTypePLAYER _object = default(EntityTypePLAYER), int createdAt = default(int), string name = default(string), string description = default(string), Dictionary<string, PlayerMetadataValue> metadata = default(Dictionary<string, PlayerMetadataValue>), List<EntityIdResponse> transactionIntents = default(List<EntityIdResponse>), List<EntityIdResponse> accounts = default(List<EntityIdResponse>))
+        /// <param name="updatedAt">updatedAt (required).</param>
+        /// <param name="firstName">firstName (required).</param>
+        /// <param name="lastName">lastName (required).</param>
+        /// <param name="role">role (required).</param>
+        /// <param name="email">email (required).</param>
+        public UserProjectResponse(string id = default(string), EntityTypeUSER _object = default(EntityTypeUSER), int createdAt = default(int), int updatedAt = default(int), string firstName = default(string), string lastName = default(string), UserProjectRole role = default(UserProjectRole), string email = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
             {
-                throw new ArgumentNullException("id is a required property for Player and cannot be null");
+                throw new ArgumentNullException("id is a required property for UserProjectResponse and cannot be null");
             }
             this.Id = id;
             this.Object = _object;
             this.CreatedAt = createdAt;
-            // to ensure "name" is required (not null)
-            if (name == null)
+            this.UpdatedAt = updatedAt;
+            // to ensure "firstName" is required (not null)
+            if (firstName == null)
             {
-                throw new ArgumentNullException("name is a required property for Player and cannot be null");
+                throw new ArgumentNullException("firstName is a required property for UserProjectResponse and cannot be null");
             }
-            this.Name = name;
-            this.Description = description;
-            this.Metadata = metadata;
-            this.TransactionIntents = transactionIntents;
-            this.Accounts = accounts;
+            this.FirstName = firstName;
+            // to ensure "lastName" is required (not null)
+            if (lastName == null)
+            {
+                throw new ArgumentNullException("lastName is a required property for UserProjectResponse and cannot be null");
+            }
+            this.LastName = lastName;
+            this.Role = role;
+            // to ensure "email" is required (not null)
+            if (email == null)
+            {
+                throw new ArgumentNullException("email is a required property for UserProjectResponse and cannot be null");
+            }
+            this.Email = email;
         }
 
         /// <summary>
@@ -88,34 +104,28 @@ namespace Openfort.Model
         public int CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Gets or Sets UpdatedAt
         /// </summary>
-        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
-        public string Name { get; set; }
+        [DataMember(Name = "updatedAt", IsRequired = true, EmitDefaultValue = true)]
+        public int UpdatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets Description
+        /// Gets or Sets FirstName
         /// </summary>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
-        public string Description { get; set; }
+        [DataMember(Name = "firstName", IsRequired = true, EmitDefaultValue = true)]
+        public string FirstName { get; set; }
 
         /// <summary>
-        /// Gets or Sets Metadata
+        /// Gets or Sets LastName
         /// </summary>
-        [DataMember(Name = "metadata", EmitDefaultValue = false)]
-        public Dictionary<string, PlayerMetadataValue> Metadata { get; set; }
+        [DataMember(Name = "lastName", IsRequired = true, EmitDefaultValue = true)]
+        public string LastName { get; set; }
 
         /// <summary>
-        /// Gets or Sets TransactionIntents
+        /// Gets or Sets Email
         /// </summary>
-        [DataMember(Name = "transactionIntents", EmitDefaultValue = false)]
-        public List<EntityIdResponse> TransactionIntents { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Accounts
-        /// </summary>
-        [DataMember(Name = "accounts", EmitDefaultValue = false)]
-        public List<EntityIdResponse> Accounts { get; set; }
+        [DataMember(Name = "email", IsRequired = true, EmitDefaultValue = true)]
+        public string Email { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -124,15 +134,15 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Player {\n");
+            sb.Append("class UserProjectResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
-            sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
-            sb.Append("  Accounts: ").Append(Accounts).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+            sb.Append("  FirstName: ").Append(FirstName).Append("\n");
+            sb.Append("  LastName: ").Append(LastName).Append("\n");
+            sb.Append("  Role: ").Append(Role).Append("\n");
+            sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -153,15 +163,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Player);
+            return this.Equals(input as UserProjectResponse);
         }
 
         /// <summary>
-        /// Returns true if Player instances are equal
+        /// Returns true if UserProjectResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of Player to be compared</param>
+        /// <param name="input">Instance of UserProjectResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Player input)
+        public bool Equals(UserProjectResponse input)
         {
             if (input == null)
             {
@@ -182,32 +192,27 @@ namespace Openfort.Model
                     this.CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    this.UpdatedAt == input.UpdatedAt ||
+                    this.UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
+                    this.FirstName == input.FirstName ||
+                    (this.FirstName != null &&
+                    this.FirstName.Equals(input.FirstName))
                 ) && 
                 (
-                    this.Metadata == input.Metadata ||
-                    this.Metadata != null &&
-                    input.Metadata != null &&
-                    this.Metadata.SequenceEqual(input.Metadata)
+                    this.LastName == input.LastName ||
+                    (this.LastName != null &&
+                    this.LastName.Equals(input.LastName))
                 ) && 
                 (
-                    this.TransactionIntents == input.TransactionIntents ||
-                    this.TransactionIntents != null &&
-                    input.TransactionIntents != null &&
-                    this.TransactionIntents.SequenceEqual(input.TransactionIntents)
+                    this.Role == input.Role ||
+                    this.Role.Equals(input.Role)
                 ) && 
                 (
-                    this.Accounts == input.Accounts ||
-                    this.Accounts != null &&
-                    input.Accounts != null &&
-                    this.Accounts.SequenceEqual(input.Accounts)
+                    this.Email == input.Email ||
+                    (this.Email != null &&
+                    this.Email.Equals(input.Email))
                 );
         }
 
@@ -226,25 +231,19 @@ namespace Openfort.Model
                 }
                 hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                if (this.Name != null)
+                hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+                if (this.FirstName != null)
                 {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                    hashCode = (hashCode * 59) + this.FirstName.GetHashCode();
                 }
-                if (this.Description != null)
+                if (this.LastName != null)
                 {
-                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                    hashCode = (hashCode * 59) + this.LastName.GetHashCode();
                 }
-                if (this.Metadata != null)
+                hashCode = (hashCode * 59) + this.Role.GetHashCode();
+                if (this.Email != null)
                 {
-                    hashCode = (hashCode * 59) + this.Metadata.GetHashCode();
-                }
-                if (this.TransactionIntents != null)
-                {
-                    hashCode = (hashCode * 59) + this.TransactionIntents.GetHashCode();
-                }
-                if (this.Accounts != null)
-                {
-                    hashCode = (hashCode * 59) + this.Accounts.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Email.GetHashCode();
                 }
                 return hashCode;
             }
