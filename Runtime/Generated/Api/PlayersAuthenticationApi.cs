@@ -51,6 +51,40 @@ namespace Openfort.Api
         /// <param name="email">Specifies the email address of the user. (optional)</param>
         /// <returns>ApiResponse of AuthPlayerListResponse</returns>
         ApiResponse<AuthPlayerListResponse> GetAuthenticatedPlayersWithHttpInfo(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), string email = default(string));
+        /// <summary>
+        /// Register a key for the authenticated player.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="registerPlayerEncryptedKeyRequest"></param>
+        /// <returns>RegisterPlayerEncryptedKeyResponse</returns>
+        RegisterPlayerEncryptedKeyResponse RegisterKey(RegisterPlayerEncryptedKeyRequest registerPlayerEncryptedKeyRequest);
+
+        /// <summary>
+        /// Register a key for the authenticated player.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="registerPlayerEncryptedKeyRequest"></param>
+        /// <returns>ApiResponse of RegisterPlayerEncryptedKeyResponse</returns>
+        ApiResponse<RegisterPlayerEncryptedKeyResponse> RegisterKeyWithHttpInfo(RegisterPlayerEncryptedKeyRequest registerPlayerEncryptedKeyRequest);
+        /// <summary>
+        /// Retrieve the key for the authenticated player.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>RetrievePlayerEncryptedKeyResponse</returns>
+        RetrievePlayerEncryptedKeyResponse RetrieveKey();
+
+        /// <summary>
+        /// Retrieve the key for the authenticated player.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of RetrievePlayerEncryptedKeyResponse</returns>
+        ApiResponse<RetrievePlayerEncryptedKeyResponse> RetrieveKeyWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -89,6 +123,50 @@ namespace Openfort.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AuthPlayerListResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<AuthPlayerListResponse>> GetAuthenticatedPlayersWithHttpInfoAsync(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), string email = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Register a key for the authenticated player.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="registerPlayerEncryptedKeyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RegisterPlayerEncryptedKeyResponse</returns>
+        System.Threading.Tasks.Task<RegisterPlayerEncryptedKeyResponse> RegisterKeyAsync(RegisterPlayerEncryptedKeyRequest registerPlayerEncryptedKeyRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Register a key for the authenticated player.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="registerPlayerEncryptedKeyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RegisterPlayerEncryptedKeyResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RegisterPlayerEncryptedKeyResponse>> RegisterKeyWithHttpInfoAsync(RegisterPlayerEncryptedKeyRequest registerPlayerEncryptedKeyRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Retrieve the key for the authenticated player.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RetrievePlayerEncryptedKeyResponse</returns>
+        System.Threading.Tasks.Task<RetrievePlayerEncryptedKeyResponse> RetrieveKeyAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Retrieve the key for the authenticated player.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RetrievePlayerEncryptedKeyResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RetrievePlayerEncryptedKeyResponse>> RetrieveKeyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -399,6 +477,246 @@ namespace Openfort.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAuthenticatedPlayers", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Register a key for the authenticated player. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="registerPlayerEncryptedKeyRequest"></param>
+        /// <returns>RegisterPlayerEncryptedKeyResponse</returns>
+        public RegisterPlayerEncryptedKeyResponse RegisterKey(RegisterPlayerEncryptedKeyRequest registerPlayerEncryptedKeyRequest)
+        {
+            Openfort.Client.ApiResponse<RegisterPlayerEncryptedKeyResponse> localVarResponse = RegisterKeyWithHttpInfo(registerPlayerEncryptedKeyRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Register a key for the authenticated player. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="registerPlayerEncryptedKeyRequest"></param>
+        /// <returns>ApiResponse of RegisterPlayerEncryptedKeyResponse</returns>
+        public Openfort.Client.ApiResponse<RegisterPlayerEncryptedKeyResponse> RegisterKeyWithHttpInfo(RegisterPlayerEncryptedKeyRequest registerPlayerEncryptedKeyRequest)
+        {
+            // verify the required parameter 'registerPlayerEncryptedKeyRequest' is set
+            if (registerPlayerEncryptedKeyRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'registerPlayerEncryptedKeyRequest' when calling PlayersAuthenticationApi->RegisterKey");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = registerPlayerEncryptedKeyRequest;
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<RegisterPlayerEncryptedKeyResponse>("/iam/v1/players/register_key", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RegisterKey", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Register a key for the authenticated player. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="registerPlayerEncryptedKeyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RegisterPlayerEncryptedKeyResponse</returns>
+        public async System.Threading.Tasks.Task<RegisterPlayerEncryptedKeyResponse> RegisterKeyAsync(RegisterPlayerEncryptedKeyRequest registerPlayerEncryptedKeyRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = RegisterKeyWithHttpInfoAsync(registerPlayerEncryptedKeyRequest, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<RegisterPlayerEncryptedKeyResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<RegisterPlayerEncryptedKeyResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Register a key for the authenticated player. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="registerPlayerEncryptedKeyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RegisterPlayerEncryptedKeyResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<RegisterPlayerEncryptedKeyResponse>> RegisterKeyWithHttpInfoAsync(RegisterPlayerEncryptedKeyRequest registerPlayerEncryptedKeyRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'registerPlayerEncryptedKeyRequest' is set
+            if (registerPlayerEncryptedKeyRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'registerPlayerEncryptedKeyRequest' when calling PlayersAuthenticationApi->RegisterKey");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = registerPlayerEncryptedKeyRequest;
+
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<RegisterPlayerEncryptedKeyResponse>("/iam/v1/players/register_key", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RegisterKey", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Retrieve the key for the authenticated player. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>RetrievePlayerEncryptedKeyResponse</returns>
+        public RetrievePlayerEncryptedKeyResponse RetrieveKey()
+        {
+            Openfort.Client.ApiResponse<RetrievePlayerEncryptedKeyResponse> localVarResponse = RetrieveKeyWithHttpInfo();
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Retrieve the key for the authenticated player. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of RetrievePlayerEncryptedKeyResponse</returns>
+        public Openfort.Client.ApiResponse<RetrievePlayerEncryptedKeyResponse> RetrieveKeyWithHttpInfo()
+        {
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<RetrievePlayerEncryptedKeyResponse>("/iam/v1/players/retrieve_key", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RetrieveKey", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Retrieve the key for the authenticated player. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RetrievePlayerEncryptedKeyResponse</returns>
+        public async System.Threading.Tasks.Task<RetrievePlayerEncryptedKeyResponse> RetrieveKeyAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = RetrieveKeyWithHttpInfoAsync(cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<RetrievePlayerEncryptedKeyResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<RetrievePlayerEncryptedKeyResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Retrieve the key for the authenticated player. 
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RetrievePlayerEncryptedKeyResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<RetrievePlayerEncryptedKeyResponse>> RetrieveKeyWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<RetrievePlayerEncryptedKeyResponse>("/iam/v1/players/retrieve_key", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RetrieveKey", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

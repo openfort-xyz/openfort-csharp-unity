@@ -10,7 +10,7 @@
       Documentation
     </a>
     <span> | </span>
-    <a href="https://www.openfort.xyz/docs/api">
+    <a href="https://www.openfort.xyz/docs/reference/api/authentication">
       API Docs
     </a>
     <span> | </span>
@@ -38,7 +38,7 @@ Open `Packages/manifest.json` and add these lines:
 
 **Option 2 - Editor UI**
 
-Follow these instructions:
+Follow this instructions:
 
 https://docs.unity3d.com/Manual/upm-ui-giturl.html
 
@@ -46,14 +46,14 @@ And add these urls:
 
 `https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.3.3`
 
-`https://github.com/needle-mirror/com.unity.nuget.newtonsoft-json`
+`https://github.com/needle-mirror/com.unity.nuget.newtonsoft-json.git`
 
 `https://github.com/openfort-xyz/openfort-csharp-unity.git`
 
 
 ## Getting Started
 
-1. Retrieve your openfort credentials: [https://docs.openfort.xyz/docs/keys](https://www.openfort.xyz/docs/guides/platform/keys)
+1. Retrieve your openfort credentials at the [dashboard](https://www.openfort.xyz/docs/guides/platform/keys)
 
 2. Set credentials in `Edit > Project Settings > Openfort`
 

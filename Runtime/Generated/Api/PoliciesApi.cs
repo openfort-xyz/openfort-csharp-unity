@@ -233,8 +233,8 @@ namespace Openfort.Api
         /// Update a policy rule object of a policy.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy"></param>
-        /// <param name="policyRule"></param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
+        /// <param name="policyRule">Specifies the unique policy rule ID (starts with afu_).</param>
         /// <param name="updatePolicyRuleRequest"></param>
         /// <returns>PolicyRuleResponse</returns>
         PolicyRuleResponse UpdatePolicyAllowFunction(string policy, string policyRule, UpdatePolicyRuleRequest updatePolicyRuleRequest);
@@ -246,8 +246,8 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy"></param>
-        /// <param name="policyRule"></param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
+        /// <param name="policyRule">Specifies the unique policy rule ID (starts with afu_).</param>
         /// <param name="updatePolicyRuleRequest"></param>
         /// <returns>ApiResponse of PolicyRuleResponse</returns>
         ApiResponse<PolicyRuleResponse> UpdatePolicyAllowFunctionWithHttpInfo(string policy, string policyRule, UpdatePolicyRuleRequest updatePolicyRuleRequest);
@@ -519,8 +519,8 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy"></param>
-        /// <param name="policyRule"></param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
+        /// <param name="policyRule">Specifies the unique policy rule ID (starts with afu_).</param>
         /// <param name="updatePolicyRuleRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PolicyRuleResponse</returns>
@@ -533,8 +533,8 @@ namespace Openfort.Api
         /// 
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy"></param>
-        /// <param name="policyRule"></param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
+        /// <param name="policyRule">Specifies the unique policy rule ID (starts with afu_).</param>
         /// <param name="updatePolicyRuleRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PolicyRuleResponse)</returns>
@@ -2207,8 +2207,8 @@ namespace Openfort.Api
         /// Update a policy rule object of a policy. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy"></param>
-        /// <param name="policyRule"></param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
+        /// <param name="policyRule">Specifies the unique policy rule ID (starts with afu_).</param>
         /// <param name="updatePolicyRuleRequest"></param>
         /// <returns>PolicyRuleResponse</returns>
         public PolicyRuleResponse UpdatePolicyAllowFunction(string policy, string policyRule, UpdatePolicyRuleRequest updatePolicyRuleRequest)
@@ -2221,8 +2221,8 @@ namespace Openfort.Api
         /// Update a policy rule object of a policy. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy"></param>
-        /// <param name="policyRule"></param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
+        /// <param name="policyRule">Specifies the unique policy rule ID (starts with afu_).</param>
         /// <param name="updatePolicyRuleRequest"></param>
         /// <returns>ApiResponse of PolicyRuleResponse</returns>
         public Openfort.Client.ApiResponse<PolicyRuleResponse> UpdatePolicyAllowFunctionWithHttpInfo(string policy, string policyRule, UpdatePolicyRuleRequest updatePolicyRuleRequest)
@@ -2283,8 +2283,8 @@ namespace Openfort.Api
         /// Update a policy rule object of a policy. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy"></param>
-        /// <param name="policyRule"></param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
+        /// <param name="policyRule">Specifies the unique policy rule ID (starts with afu_).</param>
         /// <param name="updatePolicyRuleRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PolicyRuleResponse</returns>
@@ -2303,8 +2303,8 @@ namespace Openfort.Api
         /// Update a policy rule object of a policy. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="policy"></param>
-        /// <param name="policyRule"></param>
+        /// <param name="policy">Specifies the unique policy ID (starts with pol_).</param>
+        /// <param name="policyRule">Specifies the unique policy rule ID (starts with afu_).</param>
         /// <param name="updatePolicyRuleRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PolicyRuleResponse)</returns>

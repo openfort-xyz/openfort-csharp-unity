@@ -838,7 +838,7 @@ namespace Openfort.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/iam/v1/oauth/{provider}/config", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<Object>("/iam/v1/oauth/{provider}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -903,7 +903,7 @@ namespace Openfort.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.DeleteAsync<Object>("/iam/v1/oauth/{provider}/config", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.DeleteAsync<Object>("/iam/v1/oauth/{provider}", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);

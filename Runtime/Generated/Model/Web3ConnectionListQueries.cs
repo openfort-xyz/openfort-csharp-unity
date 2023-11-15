@@ -40,27 +40,17 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Web3ConnectionListQueries" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Web3ConnectionListQueries() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Web3ConnectionListQueries" /> class.
-        /// </summary>
         /// <param name="limit">Specifies the maximum number of records to return..</param>
         /// <param name="skip">Specifies the offset for the first records to return..</param>
         /// <param name="order">order.</param>
-        /// <param name="player">Specifies the unique player ID (starts with pla_) (required).</param>
+        /// <param name="player">Specifies the unique player ID (starts with pla_).</param>
         /// <param name="disconnected">Specifies connection status.</param>
         public Web3ConnectionListQueries(int limit = default(int), int skip = default(int), SortOrder? order = default(SortOrder?), string player = default(string), bool disconnected = default(bool))
         {
-            // to ensure "player" is required (not null)
-            if (player == null)
-            {
-                throw new ArgumentNullException("player is a required property for Web3ConnectionListQueries and cannot be null");
-            }
-            this.Player = player;
             this.Limit = limit;
             this.Skip = skip;
             this.Order = order;
+            this.Player = player;
             this.Disconnected = disconnected;
         }
 
@@ -82,7 +72,7 @@ namespace Openfort.Model
         /// Specifies the unique player ID (starts with pla_)
         /// </summary>
         /// <value>Specifies the unique player ID (starts with pla_)</value>
-        [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "player", EmitDefaultValue = false)]
         public string Player { get; set; }
 
         /// <summary>

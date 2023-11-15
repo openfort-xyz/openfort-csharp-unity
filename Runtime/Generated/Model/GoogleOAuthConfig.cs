@@ -49,7 +49,7 @@ namespace Openfort.Model
         /// <param name="provider">provider (required).</param>
         /// <param name="clientId">Google API client ID. (required).</param>
         /// <param name="clientSecret">Google API client secret. (required).</param>
-        /// <param name="redirectUri">The URI to redirect to after completing the auth request. You can use Openfort redirect URL: https://openfort.xyz/auth/v1/google/callback (required).</param>
+        /// <param name="redirectUri">The URI to redirect to after completing the auth request. You can use Openfort redirect URL: https://openfort.xyz/iam/v1/oauth/google/callback (required).</param>
         public GoogleOAuthConfig(bool enabled = default(bool), OAuthProviderGOOGLE provider = default(OAuthProviderGOOGLE), string clientId = default(string), string clientSecret = default(string), string redirectUri = default(string))
         {
             this.Enabled = enabled;
@@ -96,9 +96,9 @@ namespace Openfort.Model
         public string ClientSecret { get; set; }
 
         /// <summary>
-        /// The URI to redirect to after completing the auth request. You can use Openfort redirect URL: https://openfort.xyz/auth/v1/google/callback
+        /// The URI to redirect to after completing the auth request. You can use Openfort redirect URL: https://openfort.xyz/iam/v1/oauth/google/callback
         /// </summary>
-        /// <value>The URI to redirect to after completing the auth request. You can use Openfort redirect URL: https://openfort.xyz/auth/v1/google/callback</value>
+        /// <value>The URI to redirect to after completing the auth request. You can use Openfort redirect URL: https://openfort.xyz/iam/v1/oauth/google/callback</value>
         [DataMember(Name = "redirectUri", IsRequired = true, EmitDefaultValue = true)]
         public string RedirectUri { get; set; }
 

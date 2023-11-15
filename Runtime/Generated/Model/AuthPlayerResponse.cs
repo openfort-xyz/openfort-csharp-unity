@@ -51,9 +51,10 @@ namespace Openfort.Model
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="email">email.</param>
         /// <param name="updatedAt">updatedAt (required).</param>
-        /// <param name="lastSignInAt">lastSignInAt.</param>
-        /// <param name="rawAppMetaData">rawAppMetaData.</param>
-        public AuthPlayerResponse(AuthPlayerResponsePlayer player = default(AuthPlayerResponsePlayer), string id = default(string), EntityTypePLAYER _object = default(EntityTypePLAYER), int createdAt = default(int), string email = default(string), int updatedAt = default(int), int lastSignInAt = default(int), PrismaInputJsonValue rawAppMetaData = default(PrismaInputJsonValue))
+        /// <param name="externalUserId">externalUserId.</param>
+        /// <param name="provider">provider (required).</param>
+        /// <param name="metadata">metadata.</param>
+        public AuthPlayerResponse(AuthPlayerResponsePlayer player = default(AuthPlayerResponsePlayer), string id = default(string), EntityTypePLAYER _object = default(EntityTypePLAYER), int createdAt = default(int), string email = default(string), int updatedAt = default(int), string externalUserId = default(string), string provider = default(string), PrismaInputJsonValue metadata = default(PrismaInputJsonValue))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -64,10 +65,16 @@ namespace Openfort.Model
             this.Object = _object;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
+            // to ensure "provider" is required (not null)
+            if (provider == null)
+            {
+                throw new ArgumentNullException("provider is a required property for AuthPlayerResponse and cannot be null");
+            }
+            this.Provider = provider;
             this.Player = player;
             this.Email = email;
-            this.LastSignInAt = lastSignInAt;
-            this.RawAppMetaData = rawAppMetaData;
+            this.ExternalUserId = externalUserId;
+            this.Metadata = metadata;
         }
 
         /// <summary>
@@ -101,16 +108,22 @@ namespace Openfort.Model
         public int UpdatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets LastSignInAt
+        /// Gets or Sets ExternalUserId
         /// </summary>
-        [DataMember(Name = "lastSignInAt", EmitDefaultValue = false)]
-        public int LastSignInAt { get; set; }
+        [DataMember(Name = "externalUserId", EmitDefaultValue = false)]
+        public string ExternalUserId { get; set; }
 
         /// <summary>
-        /// Gets or Sets RawAppMetaData
+        /// Gets or Sets Provider
         /// </summary>
-        [DataMember(Name = "rawAppMetaData", EmitDefaultValue = false)]
-        public PrismaInputJsonValue RawAppMetaData { get; set; }
+        [DataMember(Name = "provider", IsRequired = true, EmitDefaultValue = true)]
+        public string Provider { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Metadata
+        /// </summary>
+        [DataMember(Name = "metadata", EmitDefaultValue = false)]
+        public PrismaInputJsonValue Metadata { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -126,8 +139,9 @@ namespace Openfort.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  LastSignInAt: ").Append(LastSignInAt).Append("\n");
-            sb.Append("  RawAppMetaData: ").Append(RawAppMetaData).Append("\n");
+            sb.Append("  ExternalUserId: ").Append(ExternalUserId).Append("\n");
+            sb.Append("  Provider: ").Append(Provider).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -191,13 +205,19 @@ namespace Openfort.Model
                     this.UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.LastSignInAt == input.LastSignInAt ||
-                    this.LastSignInAt.Equals(input.LastSignInAt)
+                    this.ExternalUserId == input.ExternalUserId ||
+                    (this.ExternalUserId != null &&
+                    this.ExternalUserId.Equals(input.ExternalUserId))
                 ) && 
                 (
-                    this.RawAppMetaData == input.RawAppMetaData ||
-                    (this.RawAppMetaData != null &&
-                    this.RawAppMetaData.Equals(input.RawAppMetaData))
+                    this.Provider == input.Provider ||
+                    (this.Provider != null &&
+                    this.Provider.Equals(input.Provider))
+                ) && 
+                (
+                    this.Metadata == input.Metadata ||
+                    (this.Metadata != null &&
+                    this.Metadata.Equals(input.Metadata))
                 );
         }
 
@@ -225,10 +245,17 @@ namespace Openfort.Model
                     hashCode = (hashCode * 59) + this.Email.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
-                hashCode = (hashCode * 59) + this.LastSignInAt.GetHashCode();
-                if (this.RawAppMetaData != null)
+                if (this.ExternalUserId != null)
                 {
-                    hashCode = (hashCode * 59) + this.RawAppMetaData.GetHashCode();
+                    hashCode = (hashCode * 59) + this.ExternalUserId.GetHashCode();
+                }
+                if (this.Provider != null)
+                {
+                    hashCode = (hashCode * 59) + this.Provider.GetHashCode();
+                }
+                if (this.Metadata != null)
+                {
+                    hashCode = (hashCode * 59) + this.Metadata.GetHashCode();
                 }
                 return hashCode;
             }

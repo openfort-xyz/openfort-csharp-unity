@@ -10,7 +10,7 @@ namespace Openfort
 {
     public class OpenfortSettings : ScriptableObject
     {
-        [Tooltip("Published Key of your game https://docs.openfort.xyz/docs/first-steps-start-here")]
+        [Tooltip("Published Key of your game https://www.openfort.xyz/docs/guides/platform/keys")]
         public string PublishedKey;
 
         [Tooltip("Log Level")]

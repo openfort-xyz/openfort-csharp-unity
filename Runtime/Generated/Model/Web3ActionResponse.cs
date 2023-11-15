@@ -56,7 +56,16 @@ namespace Openfort.Model
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="web3Connection">The web3_connection ID (starts with web3_). (required).</param>
         /// <param name="status">status (required).</param>
-        public Web3ActionResponse(string id = default(string), EntityTypeWEB3ACTION _object = default(EntityTypeWEB3ACTION), int createdAt = default(int), string web3Connection = default(string), Web3ActionStatusEnum status = default(Web3ActionStatusEnum))
+        /// <param name="chaindId">chaindId (required).</param>
+        /// <param name="method">method (required).</param>
+        /// <param name="from">from (required).</param>
+        /// <param name="to">to.</param>
+        /// <param name="data">data (required).</param>
+        /// <param name="decodedData">decodedData (required).</param>
+        /// <param name="hashedData">hashedData (required).</param>
+        /// <param name="value">value.</param>
+        /// <param name="gas">gas.</param>
+        public Web3ActionResponse(string id = default(string), EntityTypeWEB3ACTION _object = default(EntityTypeWEB3ACTION), int createdAt = default(int), string web3Connection = default(string), Web3ActionStatusEnum status = default(Web3ActionStatusEnum), string chaindId = default(string), string method = default(string), string from = default(string), string to = default(string), string data = default(string), string decodedData = default(string), string hashedData = default(string), string value = default(string), string gas = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -73,6 +82,45 @@ namespace Openfort.Model
             }
             this.Web3Connection = web3Connection;
             this.Status = status;
+            // to ensure "chaindId" is required (not null)
+            if (chaindId == null)
+            {
+                throw new ArgumentNullException("chaindId is a required property for Web3ActionResponse and cannot be null");
+            }
+            this.ChaindId = chaindId;
+            // to ensure "method" is required (not null)
+            if (method == null)
+            {
+                throw new ArgumentNullException("method is a required property for Web3ActionResponse and cannot be null");
+            }
+            this.Method = method;
+            // to ensure "from" is required (not null)
+            if (from == null)
+            {
+                throw new ArgumentNullException("from is a required property for Web3ActionResponse and cannot be null");
+            }
+            this.From = from;
+            // to ensure "data" is required (not null)
+            if (data == null)
+            {
+                throw new ArgumentNullException("data is a required property for Web3ActionResponse and cannot be null");
+            }
+            this.Data = data;
+            // to ensure "decodedData" is required (not null)
+            if (decodedData == null)
+            {
+                throw new ArgumentNullException("decodedData is a required property for Web3ActionResponse and cannot be null");
+            }
+            this.DecodedData = decodedData;
+            // to ensure "hashedData" is required (not null)
+            if (hashedData == null)
+            {
+                throw new ArgumentNullException("hashedData is a required property for Web3ActionResponse and cannot be null");
+            }
+            this.HashedData = hashedData;
+            this.To = to;
+            this.Value = value;
+            this.Gas = gas;
         }
 
         /// <summary>
@@ -92,8 +140,62 @@ namespace Openfort.Model
         /// </summary>
         /// <value>The web3_connection ID (starts with web3_).</value>
         /// <example>&quot;web3_...&quot;</example>
-        [DataMember(Name = "web3_connection", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "web3Connection", IsRequired = true, EmitDefaultValue = true)]
         public string Web3Connection { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ChaindId
+        /// </summary>
+        [DataMember(Name = "chaindId", IsRequired = true, EmitDefaultValue = true)]
+        public string ChaindId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Method
+        /// </summary>
+        [DataMember(Name = "method", IsRequired = true, EmitDefaultValue = true)]
+        public string Method { get; set; }
+
+        /// <summary>
+        /// Gets or Sets From
+        /// </summary>
+        [DataMember(Name = "from", IsRequired = true, EmitDefaultValue = true)]
+        public string From { get; set; }
+
+        /// <summary>
+        /// Gets or Sets To
+        /// </summary>
+        [DataMember(Name = "to", EmitDefaultValue = false)]
+        public string To { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Data
+        /// </summary>
+        [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
+        public string Data { get; set; }
+
+        /// <summary>
+        /// Gets or Sets DecodedData
+        /// </summary>
+        [DataMember(Name = "decodedData", IsRequired = true, EmitDefaultValue = true)]
+        public string DecodedData { get; set; }
+
+        /// <summary>
+        /// Gets or Sets HashedData
+        /// </summary>
+        [DataMember(Name = "hashedData", IsRequired = true, EmitDefaultValue = true)]
+        public string HashedData { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Value
+        /// </summary>
+        [DataMember(Name = "value", EmitDefaultValue = false)]
+        public string Value { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Gas
+        /// </summary>
+        [DataMember(Name = "gas", EmitDefaultValue = false)]
+        public string Gas { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -108,6 +210,15 @@ namespace Openfort.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Web3Connection: ").Append(Web3Connection).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  ChaindId: ").Append(ChaindId).Append("\n");
+            sb.Append("  Method: ").Append(Method).Append("\n");
+            sb.Append("  From: ").Append(From).Append("\n");
+            sb.Append("  To: ").Append(To).Append("\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  DecodedData: ").Append(DecodedData).Append("\n");
+            sb.Append("  HashedData: ").Append(HashedData).Append("\n");
+            sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("  Gas: ").Append(Gas).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -164,6 +275,51 @@ namespace Openfort.Model
                 (
                     this.Status == input.Status ||
                     this.Status.Equals(input.Status)
+                ) && 
+                (
+                    this.ChaindId == input.ChaindId ||
+                    (this.ChaindId != null &&
+                    this.ChaindId.Equals(input.ChaindId))
+                ) && 
+                (
+                    this.Method == input.Method ||
+                    (this.Method != null &&
+                    this.Method.Equals(input.Method))
+                ) && 
+                (
+                    this.From == input.From ||
+                    (this.From != null &&
+                    this.From.Equals(input.From))
+                ) && 
+                (
+                    this.To == input.To ||
+                    (this.To != null &&
+                    this.To.Equals(input.To))
+                ) && 
+                (
+                    this.Data == input.Data ||
+                    (this.Data != null &&
+                    this.Data.Equals(input.Data))
+                ) && 
+                (
+                    this.DecodedData == input.DecodedData ||
+                    (this.DecodedData != null &&
+                    this.DecodedData.Equals(input.DecodedData))
+                ) && 
+                (
+                    this.HashedData == input.HashedData ||
+                    (this.HashedData != null &&
+                    this.HashedData.Equals(input.HashedData))
+                ) && 
+                (
+                    this.Value == input.Value ||
+                    (this.Value != null &&
+                    this.Value.Equals(input.Value))
+                ) && 
+                (
+                    this.Gas == input.Gas ||
+                    (this.Gas != null &&
+                    this.Gas.Equals(input.Gas))
                 );
         }
 
@@ -187,6 +343,42 @@ namespace Openfort.Model
                     hashCode = (hashCode * 59) + this.Web3Connection.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.ChaindId != null)
+                {
+                    hashCode = (hashCode * 59) + this.ChaindId.GetHashCode();
+                }
+                if (this.Method != null)
+                {
+                    hashCode = (hashCode * 59) + this.Method.GetHashCode();
+                }
+                if (this.From != null)
+                {
+                    hashCode = (hashCode * 59) + this.From.GetHashCode();
+                }
+                if (this.To != null)
+                {
+                    hashCode = (hashCode * 59) + this.To.GetHashCode();
+                }
+                if (this.Data != null)
+                {
+                    hashCode = (hashCode * 59) + this.Data.GetHashCode();
+                }
+                if (this.DecodedData != null)
+                {
+                    hashCode = (hashCode * 59) + this.DecodedData.GetHashCode();
+                }
+                if (this.HashedData != null)
+                {
+                    hashCode = (hashCode * 59) + this.HashedData.GetHashCode();
+                }
+                if (this.Value != null)
+                {
+                    hashCode = (hashCode * 59) + this.Value.GetHashCode();
+                }
+                if (this.Gas != null)
+                {
+                    hashCode = (hashCode * 59) + this.Gas.GetHashCode();
+                }
                 return hashCode;
             }
         }
