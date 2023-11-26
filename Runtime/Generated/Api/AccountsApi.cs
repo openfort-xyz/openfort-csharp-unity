@@ -28,7 +28,7 @@ namespace Openfort.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Cancel request of ownership transfer of an account.
+        /// Cancel request to transfer ownership of an account.
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to cancel a pending transfer of ownership.
@@ -40,7 +40,7 @@ namespace Openfort.Api
         TransactionIntentResponse CancelTransferOwnership(string id, CancelTransferOwnershipRequest cancelTransferOwnershipRequest);
 
         /// <summary>
-        /// Cancel request of ownership transfer of an account.
+        /// Cancel request to transfer ownership of an account.
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to cancel a pending transfer of ownership.
@@ -91,6 +91,29 @@ namespace Openfort.Api
         /// <param name="createAccountRequest"></param>
         /// <returns>ApiResponse of AccountResponse</returns>
         ApiResponse<AccountResponse> CreateAccountWithHttpInfo(CreateAccountRequest createAccountRequest);
+        /// <summary>
+        /// Deploy an account.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint can be used to deploy an account that was counterfactually generated.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="deployRequest"></param>
+        /// <returns>AccountResponse</returns>
+        AccountResponse DeployAccount(string id, DeployRequest deployRequest);
+
+        /// <summary>
+        /// Deploy an account.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint can be used to deploy an account that was counterfactually generated.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="deployRequest"></param>
+        /// <returns>ApiResponse of AccountResponse</returns>
+        ApiResponse<AccountResponse> DeployAccountWithHttpInfo(string id, DeployRequest deployRequest);
         /// <summary>
         /// Get existing account.
         /// </summary>
@@ -144,7 +167,7 @@ namespace Openfort.Api
         /// <returns>ApiResponse of AccountListResponse</returns>
         ApiResponse<AccountListResponse> GetAccountsWithHttpInfo(string player, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>));
         /// <summary>
-        /// Request ownership transfer of an account.
+        /// Request transfer ownership of account.
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
@@ -156,7 +179,7 @@ namespace Openfort.Api
         TransactionIntentResponse RequestTransferOwnership(string id, TransferOwnershipRequest transferOwnershipRequest);
 
         /// <summary>
-        /// Request ownership transfer of an account.
+        /// Request transfer ownership of account.
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
@@ -212,6 +235,9 @@ namespace Openfort.Api
         /// <summary>
         /// Sync account state with the blockchain
         /// </summary>
+        /// <remarks>
+        /// This endpoint updates the account state with the blockchain. Specifically, it updates the account owner and whether its deployed or not.
+        /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
         /// <returns>AccountResponse</returns>
@@ -221,7 +247,7 @@ namespace Openfort.Api
         /// Sync account state with the blockchain
         /// </summary>
         /// <remarks>
-        /// 
+        /// This endpoint updates the account state with the blockchain. Specifically, it updates the account owner and whether its deployed or not.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -237,7 +263,7 @@ namespace Openfort.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Cancel request of ownership transfer of an account.
+        /// Cancel request to transfer ownership of an account.
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to cancel a pending transfer of ownership.
@@ -250,7 +276,7 @@ namespace Openfort.Api
         System.Threading.Tasks.Task<TransactionIntentResponse> CancelTransferOwnershipAsync(string id, CancelTransferOwnershipRequest cancelTransferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Cancel request of ownership transfer of an account.
+        /// Cancel request to transfer ownership of an account.
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to cancel a pending transfer of ownership.
@@ -310,6 +336,31 @@ namespace Openfort.Api
         /// <returns>Task of ApiResponse (AccountResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<AccountResponse>> CreateAccountWithHttpInfoAsync(CreateAccountRequest createAccountRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
+        /// Deploy an account.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint can be used to deploy an account that was counterfactually generated.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="deployRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AccountResponse</returns>
+        System.Threading.Tasks.Task<AccountResponse> DeployAccountAsync(string id, DeployRequest deployRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Deploy an account.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint can be used to deploy an account that was counterfactually generated.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="deployRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AccountResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountResponse>> DeployAccountWithHttpInfoAsync(string id, DeployRequest deployRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
         /// Get existing account.
         /// </summary>
         /// <remarks>
@@ -366,7 +417,7 @@ namespace Openfort.Api
         /// <returns>Task of ApiResponse (AccountListResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<AccountListResponse>> GetAccountsWithHttpInfoAsync(string player, int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<AccountResponseExpandable> expand = default(List<AccountResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Request ownership transfer of an account.
+        /// Request transfer ownership of account.
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
@@ -379,7 +430,7 @@ namespace Openfort.Api
         System.Threading.Tasks.Task<TransactionIntentResponse> RequestTransferOwnershipAsync(string id, TransferOwnershipRequest transferOwnershipRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Request ownership transfer of an account.
+        /// Request transfer ownership of account.
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
@@ -444,7 +495,7 @@ namespace Openfort.Api
         /// Sync account state with the blockchain
         /// </summary>
         /// <remarks>
-        /// 
+        /// This endpoint updates the account state with the blockchain. Specifically, it updates the account owner and whether its deployed or not.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -456,7 +507,7 @@ namespace Openfort.Api
         /// Sync account state with the blockchain
         /// </summary>
         /// <remarks>
-        /// 
+        /// This endpoint updates the account state with the blockchain. Specifically, it updates the account owner and whether its deployed or not.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -608,7 +659,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Cancel request of ownership transfer of an account. This endpoint allows you to cancel a pending transfer of ownership.
+        /// Cancel request to transfer ownership of an account. This endpoint allows you to cancel a pending transfer of ownership.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -621,7 +672,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Cancel request of ownership transfer of an account. This endpoint allows you to cancel a pending transfer of ownership.
+        /// Cancel request to transfer ownership of an account. This endpoint allows you to cancel a pending transfer of ownership.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -677,7 +728,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Cancel request of ownership transfer of an account. This endpoint allows you to cancel a pending transfer of ownership.
+        /// Cancel request to transfer ownership of an account. This endpoint allows you to cancel a pending transfer of ownership.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -696,7 +747,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Cancel request of ownership transfer of an account. This endpoint allows you to cancel a pending transfer of ownership.
+        /// Cancel request to transfer ownership of an account. This endpoint allows you to cancel a pending transfer of ownership.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1056,6 +1107,160 @@ namespace Openfort.Api
         }
 
         /// <summary>
+        /// Deploy an account. This endpoint can be used to deploy an account that was counterfactually generated.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="deployRequest"></param>
+        /// <returns>AccountResponse</returns>
+        public AccountResponse DeployAccount(string id, DeployRequest deployRequest)
+        {
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = DeployAccountWithHttpInfo(id, deployRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Deploy an account. This endpoint can be used to deploy an account that was counterfactually generated.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="deployRequest"></param>
+        /// <returns>ApiResponse of AccountResponse</returns>
+        public Openfort.Client.ApiResponse<AccountResponse> DeployAccountWithHttpInfo(string id, DeployRequest deployRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->DeployAccount");
+
+            // verify the required parameter 'deployRequest' is set
+            if (deployRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'deployRequest' when calling AccountsApi->DeployAccount");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = deployRequest;
+
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<AccountResponse>("/v1/accounts/{id}/deploy", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeployAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Deploy an account. This endpoint can be used to deploy an account that was counterfactually generated.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="deployRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AccountResponse</returns>
+        public async System.Threading.Tasks.Task<AccountResponse> DeployAccountAsync(string id, DeployRequest deployRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = DeployAccountWithHttpInfoAsync(id, deployRequest, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<AccountResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Deploy an account. This endpoint can be used to deploy an account that was counterfactually generated.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique account ID.</param>
+        /// <param name="deployRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AccountResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<AccountResponse>> DeployAccountWithHttpInfoAsync(string id, DeployRequest deployRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->DeployAccount");
+
+            // verify the required parameter 'deployRequest' is set
+            if (deployRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'deployRequest' when calling AccountsApi->DeployAccount");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = deployRequest;
+
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<AccountResponse>("/v1/accounts/{id}/deploy", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeployAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Get existing account. Retrieves the details of an existing account. Supply the unique account ID from either a account creation request or the account list, and Openfort will return the corresponding account information.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1392,7 +1597,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Request ownership transfer of an account. This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
+        /// Request transfer ownership of account. This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1405,7 +1610,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Request ownership transfer of an account. This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
+        /// Request transfer ownership of account. This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1461,7 +1666,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Request ownership transfer of an account. This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
+        /// Request transfer ownership of account. This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1480,7 +1685,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Request ownership transfer of an account. This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
+        /// Request transfer ownership of account. This endpoint allows you to perform a request to change the owner of an account. To perform an update on the owner of an account, first you must provide a new owner address. Once requested, the owner must accept to take ownership by calling &#x60;acceptOwnership()&#x60; in the smart contract account.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1854,7 +2059,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Sync account state with the blockchain 
+        /// Sync account state with the blockchain This endpoint updates the account state with the blockchain. Specifically, it updates the account owner and whether its deployed or not.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1866,7 +2071,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Sync account state with the blockchain 
+        /// Sync account state with the blockchain This endpoint updates the account state with the blockchain. Specifically, it updates the account owner and whether its deployed or not.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1915,7 +2120,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Sync account state with the blockchain 
+        /// Sync account state with the blockchain This endpoint updates the account state with the blockchain. Specifically, it updates the account owner and whether its deployed or not.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>
@@ -1933,7 +2138,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Sync account state with the blockchain 
+        /// Sync account state with the blockchain This endpoint updates the account state with the blockchain. Specifically, it updates the account owner and whether its deployed or not.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique account ID.</param>

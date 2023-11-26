@@ -81,6 +81,18 @@ namespace Openfort.Model
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OAuthConfig" /> class
+        /// with the <see cref="LootLockerOAuthConfig" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of LootLockerOAuthConfig.</param>
+        public OAuthConfig(LootLockerOAuthConfig actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "anyOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
 
         private Object _actualInstance;
 
@@ -107,13 +119,17 @@ namespace Openfort.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(LootLockerOAuthConfig))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(PlayFabOAuthConfig))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AccelbyteOAuthConfig, FirebaseOAuthConfig, GoogleOAuthConfig, PlayFabOAuthConfig");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AccelbyteOAuthConfig, FirebaseOAuthConfig, GoogleOAuthConfig, LootLockerOAuthConfig, PlayFabOAuthConfig");
                 }
             }
         }
@@ -156,6 +172,16 @@ namespace Openfort.Model
         public FirebaseOAuthConfig GetFirebaseOAuthConfig()
         {
             return (FirebaseOAuthConfig)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `LootLockerOAuthConfig`. If the actual instance is not `LootLockerOAuthConfig`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of LootLockerOAuthConfig</returns>
+        public LootLockerOAuthConfig GetLootLockerOAuthConfig()
+        {
+            return (LootLockerOAuthConfig)this.ActualInstance;
         }
 
         /// <summary>
@@ -228,6 +254,18 @@ namespace Openfort.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into GoogleOAuthConfig: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                newOAuthConfig = new OAuthConfig(JsonConvert.DeserializeObject<LootLockerOAuthConfig>(jsonString, OAuthConfig.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newOAuthConfig;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into LootLockerOAuthConfig: {1}", jsonString, exception.ToString()));
             }
 
             try
