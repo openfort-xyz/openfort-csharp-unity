@@ -49,12 +49,8 @@ namespace Openfort.Model
         /// <param name="id">id (required).</param>
         /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
-        /// <param name="email">email.</param>
-        /// <param name="updatedAt">updatedAt (required).</param>
-        /// <param name="externalUserId">externalUserId.</param>
-        /// <param name="provider">provider (required).</param>
-        /// <param name="metadata">metadata.</param>
-        public AuthPlayerResponse(AuthPlayerResponsePlayer player = default(AuthPlayerResponsePlayer), string id = default(string), EntityTypePLAYER _object = default(EntityTypePLAYER), int createdAt = default(int), string email = default(string), int updatedAt = default(int), string externalUserId = default(string), string provider = default(string), PrismaInputJsonValue metadata = default(PrismaInputJsonValue))
+        /// <param name="linkedAccounts">linkedAccounts (required).</param>
+        public AuthPlayerResponse(AuthPlayerResponsePlayer player = default(AuthPlayerResponsePlayer), string id = default(string), EntityTypePLAYER _object = default(EntityTypePLAYER), int createdAt = default(int), List<LinkedAccountResponse> linkedAccounts = default(List<LinkedAccountResponse>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -64,17 +60,13 @@ namespace Openfort.Model
             this.Id = id;
             this.Object = _object;
             this.CreatedAt = createdAt;
-            this.UpdatedAt = updatedAt;
-            // to ensure "provider" is required (not null)
-            if (provider == null)
+            // to ensure "linkedAccounts" is required (not null)
+            if (linkedAccounts == null)
             {
-                throw new ArgumentNullException("provider is a required property for AuthPlayerResponse and cannot be null");
+                throw new ArgumentNullException("linkedAccounts is a required property for AuthPlayerResponse and cannot be null");
             }
-            this.Provider = provider;
+            this.LinkedAccounts = linkedAccounts;
             this.Player = player;
-            this.Email = email;
-            this.ExternalUserId = externalUserId;
-            this.Metadata = metadata;
         }
 
         /// <summary>
@@ -96,34 +88,10 @@ namespace Openfort.Model
         public int CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets Email
+        /// Gets or Sets LinkedAccounts
         /// </summary>
-        [DataMember(Name = "email", EmitDefaultValue = false)]
-        public string Email { get; set; }
-
-        /// <summary>
-        /// Gets or Sets UpdatedAt
-        /// </summary>
-        [DataMember(Name = "updatedAt", IsRequired = true, EmitDefaultValue = true)]
-        public int UpdatedAt { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ExternalUserId
-        /// </summary>
-        [DataMember(Name = "externalUserId", EmitDefaultValue = false)]
-        public string ExternalUserId { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Provider
-        /// </summary>
-        [DataMember(Name = "provider", IsRequired = true, EmitDefaultValue = true)]
-        public string Provider { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Metadata
-        /// </summary>
-        [DataMember(Name = "metadata", EmitDefaultValue = false)]
-        public PrismaInputJsonValue Metadata { get; set; }
+        [DataMember(Name = "linkedAccounts", IsRequired = true, EmitDefaultValue = true)]
+        public List<LinkedAccountResponse> LinkedAccounts { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -137,11 +105,7 @@ namespace Openfort.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Email: ").Append(Email).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  ExternalUserId: ").Append(ExternalUserId).Append("\n");
-            sb.Append("  Provider: ").Append(Provider).Append("\n");
-            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  LinkedAccounts: ").Append(LinkedAccounts).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -196,28 +160,10 @@ namespace Openfort.Model
                     this.CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.Email == input.Email ||
-                    (this.Email != null &&
-                    this.Email.Equals(input.Email))
-                ) && 
-                (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    this.UpdatedAt.Equals(input.UpdatedAt)
-                ) && 
-                (
-                    this.ExternalUserId == input.ExternalUserId ||
-                    (this.ExternalUserId != null &&
-                    this.ExternalUserId.Equals(input.ExternalUserId))
-                ) && 
-                (
-                    this.Provider == input.Provider ||
-                    (this.Provider != null &&
-                    this.Provider.Equals(input.Provider))
-                ) && 
-                (
-                    this.Metadata == input.Metadata ||
-                    (this.Metadata != null &&
-                    this.Metadata.Equals(input.Metadata))
+                    this.LinkedAccounts == input.LinkedAccounts ||
+                    this.LinkedAccounts != null &&
+                    input.LinkedAccounts != null &&
+                    this.LinkedAccounts.SequenceEqual(input.LinkedAccounts)
                 );
         }
 
@@ -240,22 +186,9 @@ namespace Openfort.Model
                 }
                 hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                if (this.Email != null)
+                if (this.LinkedAccounts != null)
                 {
-                    hashCode = (hashCode * 59) + this.Email.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
-                if (this.ExternalUserId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ExternalUserId.GetHashCode();
-                }
-                if (this.Provider != null)
-                {
-                    hashCode = (hashCode * 59) + this.Provider.GetHashCode();
-                }
-                if (this.Metadata != null)
-                {
-                    hashCode = (hashCode * 59) + this.Metadata.GetHashCode();
+                    hashCode = (hashCode * 59) + this.LinkedAccounts.GetHashCode();
                 }
                 return hashCode;
             }

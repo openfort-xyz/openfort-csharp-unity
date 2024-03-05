@@ -72,7 +72,7 @@ namespace Openfort.Signer
             var playerId = await _authenticationApi.VerifyAuthTokenAsync(_accessToken);
             if (playerId == null) throw new System.Exception("Invalid player token");
             
-            var accounts = await _accountsApi.GetAccountsAsync(playerId.Id);
+            var accounts = await _accountsApi.GetAccountsAsync(playerId.PlayerId);
             foreach (var account in accounts.Data.Where(account => account.ChainId == _chainId))
             {
                 await RecoverAccount(account.Id);

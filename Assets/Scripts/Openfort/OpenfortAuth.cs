@@ -35,36 +35,11 @@ namespace Openfort
             }
         }
 
-        private GoogleAuthenticationApi _googleAuthenticationApi;
-        public GoogleAuthenticationApi GoogleAuthenticationApi
-        {
-            get
-            {
-                if (_googleAuthenticationApi == null)
-                {
-                    _googleAuthenticationApi = new GoogleAuthenticationApi(_apiClient, _apiClient, _configuration);
-                }
-                return _googleAuthenticationApi;
-            }
-        }
-
-        private OAuthApi _oauthApi;
-        public OAuthApi OAuthApi
-        {
-            get
-            {
-                if (_oauthApi == null)
-                {
-                    _oauthApi = new OAuthApi(_apiClient, _apiClient, _configuration);
-                }
-                return _oauthApi;
-            }
-        }
 
         public async Task<AuthResponse> Signup(string email, string password, string name, string description = default(string))
         {
             var request = new SignupRequest(email, password, name, description);
-            var result = await AuthenticationApi.SignupAsync(request);
+            var result = await AuthenticationApi.SignupEmailPasswordAsync(request);
             this.SaveToken(result);
             return result;
         }
@@ -72,30 +47,17 @@ namespace Openfort
         public async Task<AuthResponse> Login(string email, string password)
         {
             var request = new LoginRequest(email, password);
-            var result = await AuthenticationApi.LoginAsync(request);
+            var result = await AuthenticationApi.LoginEmailPasswordAsync(request);
             SaveToken(result);
             return result;
         }
 
         public async Task<AuthResponse> AuthWithToken(OAuthProvider provider, string token)
         {
-            var request = new OAuthRequest(token);
-            var response = await OAuthApi.AuthorizeWithOAuthTokenAsync(provider, request);
+            var request = new AuthenticateOAuthRequest(provider, token);
+            var response = await AuthenticationApi.AuthenticateOAuthAsync(request);
             SaveToken(response);
             return response;
-        }
-
-        public async Task<string> GetGoogleSigninUrl()
-        {
-            var result = await GoogleAuthenticationApi.GetSigninUrlAsync();
-            _key = result.Key;
-            return result.Url;
-        }
-
-        public async Task<AuthResponse> GetTokenAfterGoogleSignin()
-        {
-            var result = await GoogleAuthenticationApi.GetTokenAsync(_key);
-            return result;
         }
 
         public void Logout()
@@ -106,7 +68,7 @@ namespace Openfort
 
         private void SaveToken(AuthResponse response) {
             PlayerPrefs.SetString("openfort-auth-token", response.Token);
-            PlayerPrefs.SetString("openfort-auth-player", response.PlayerId);
+            PlayerPrefs.SetString("openfort-auth-player", response.Player.Id);
         }
 
         public string Token

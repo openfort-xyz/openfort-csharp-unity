@@ -39,15 +39,15 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="LogoutRequest" /> class.
         /// </summary>
-        /// <param name="session">Specifies the refresh token. (required).</param>
-        public LogoutRequest(string session = default(string))
+        /// <param name="refreshToken">Specifies the refresh token. (required).</param>
+        public LogoutRequest(string refreshToken = default(string))
         {
-            // to ensure "session" is required (not null)
-            if (session == null)
+            // to ensure "refreshToken" is required (not null)
+            if (refreshToken == null)
             {
-                throw new ArgumentNullException("session is a required property for LogoutRequest and cannot be null");
+                throw new ArgumentNullException("refreshToken is a required property for LogoutRequest and cannot be null");
             }
-            this.Session = session;
+            this.RefreshToken = refreshToken;
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace Openfort.Model
         /// </summary>
         /// <value>Specifies the refresh token.</value>
         /// <example>&quot;60b329f3-8e8d-49db-bf21-50c251269db2&quot;</example>
-        [DataMember(Name = "session", IsRequired = true, EmitDefaultValue = true)]
-        public string Session { get; set; }
+        [DataMember(Name = "refreshToken", IsRequired = true, EmitDefaultValue = true)]
+        public string RefreshToken { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,7 +66,7 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class LogoutRequest {\n");
-            sb.Append("  Session: ").Append(Session).Append("\n");
+            sb.Append("  RefreshToken: ").Append(RefreshToken).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -103,9 +103,9 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Session == input.Session ||
-                    (this.Session != null &&
-                    this.Session.Equals(input.Session))
+                    this.RefreshToken == input.RefreshToken ||
+                    (this.RefreshToken != null &&
+                    this.RefreshToken.Equals(input.RefreshToken))
                 );
         }
 
@@ -118,9 +118,9 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Session != null)
+                if (this.RefreshToken != null)
                 {
-                    hashCode = (hashCode * 59) + this.Session.GetHashCode();
+                    hashCode = (hashCode * 59) + this.RefreshToken.GetHashCode();
                 }
                 return hashCode;
             }
