@@ -43,6 +43,12 @@ namespace Openfort
             SaveToken(authentication);
             return authentication;
         }
+
+
+        public async Task<Authentication> ValidateAndRefreshToken()
+        {
+            return await ValidateAndRefreshToken(Token, RefreshToken);
+        }
         
         public async Task<Authentication> ValidateAndRefreshToken(string accessToken, string refreshToken)
         {
