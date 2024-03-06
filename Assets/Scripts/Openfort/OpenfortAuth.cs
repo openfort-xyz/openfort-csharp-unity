@@ -1,9 +1,18 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using JWT;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 using Openfort.Api;
 using Openfort.Client;
 using Openfort.Model;
+
+public struct Authentication {
+    public string Token;
+    public string RefreshToken;
+    public string PlayerId;
+}
 
 namespace Openfort
 {
@@ -12,52 +21,57 @@ namespace Openfort
         private readonly Configuration _configuration;
         private readonly ApiClient _apiClient;
         private string _key;
+        private readonly string _publishableKey;
+        public readonly AuthenticationApi AuthenticationApi;
 
-        public OpenfortAuth(string token, string basePath = default(string))
+        public OpenfortAuth(string publishableKey, string basePath = default(string))
         {
             _configuration = new Configuration(
-                new Dictionary<string, string> { { "Authorization", "Bearer " + token } },
-                new Dictionary<string, string> { { "Authorization", token } },
+                new Dictionary<string, string> { { "Authorization", "Bearer " + publishableKey } },
+                new Dictionary<string, string> { { "Authorization", publishableKey } },
                 new Dictionary<string, string> { { "Authorization", "Bearer" } });
             _apiClient = new ApiClient(basePath ?? _configuration.BasePath);
+            _publishableKey = publishableKey;
+            AuthenticationApi = new AuthenticationApi(_apiClient, _apiClient, _configuration);
         }
 
-        private AuthenticationApi _authenticationApi;
-        public AuthenticationApi AuthenticationApi
-        {
-            get
-            {
-                if (_authenticationApi == null)
-                {
-                    _authenticationApi = new AuthenticationApi(_apiClient, _apiClient, _configuration);
-                }
-                return _authenticationApi;
-            }
-        }
-
-
-        public async Task<AuthResponse> Signup(string email, string password, string name, string description = default(string))
-        {
-            var request = new SignupRequest(email, password, name, description);
-            var result = await AuthenticationApi.SignupEmailPasswordAsync(request);
-            this.SaveToken(result);
-            return result;
-        }
-
-        public async Task<AuthResponse> Login(string email, string password)
-        {
-            var request = new LoginRequest(email, password);
-            var result = await AuthenticationApi.LoginEmailPasswordAsync(request);
-            SaveToken(result);
-            return result;
-        }
-
-        public async Task<AuthResponse> AuthWithToken(OAuthProvider provider, string token)
+        public async Task<Authentication> AuthWithToken(OAuthProvider provider, string token)
         {
             var request = new AuthenticateOAuthRequest(provider, token);
             var response = await AuthenticationApi.AuthenticateOAuthAsync(request);
-            SaveToken(response);
-            return response;
+            var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
+            SaveToken(authentication);
+            return authentication;
+        }
+        
+        public async Task<Authentication> ValidateAndRefreshToken(string accessToken, string refreshToken)
+        {
+            var jwtks = await AuthenticationApi.GetJwksAsync(_publishableKey);
+            if (jwtks.Keys.Count == 0)
+            {
+                throw new System.Exception("No keys found");
+            }
+            
+            var jwtk = jwtks.Keys[0];
+            
+            var publicKey = new Jose.Jwk( jwtk.Crv, jwtk.X, jwtk.Y, null);
+            var payload = Jose.JWT.Decode(accessToken, publicKey);
+            var payloadData = JObject.Parse(payload);
+            var exp = payloadData.Value<long>("exp");
+            var expDate = DateTimeOffset.FromUnixTimeSeconds(exp).DateTime;
+            Authentication authentication; 
+            if (expDate < DateTime.Now)
+            {
+                var response = await AuthenticationApi.RefreshAsync(new RefreshTokenRequest());
+                authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
+            }
+            else
+            {
+                authentication = new Authentication { Token = accessToken, RefreshToken = refreshToken, PlayerId = payloadData.Value<string>("sub") };
+            }
+
+            SaveToken(authentication);
+            return authentication;
         }
 
         public void Logout()
@@ -66,9 +80,10 @@ namespace Openfort
             PlayerPrefs.DeleteKey("openfort-auth-player");
         }
 
-        private void SaveToken(AuthResponse response) {
-            PlayerPrefs.SetString("openfort-auth-token", response.Token);
-            PlayerPrefs.SetString("openfort-auth-player", response.Player.Id);
+        private void SaveToken(Authentication authentication) {
+            PlayerPrefs.SetString("openfort-auth-token", authentication.Token);
+            PlayerPrefs.SetString("openfort-auth-refresh-token", authentication.RefreshToken);
+            PlayerPrefs.SetString("openfort-auth-player", authentication.PlayerId);
         }
 
         public string Token
@@ -76,6 +91,14 @@ namespace Openfort
             get
             {
                 return PlayerPrefs.GetString("openfort-auth-token");
+            }
+        }
+        
+        public string RefreshToken
+        {
+            get
+            {
+                return PlayerPrefs.GetString("openfort-auth-refresh-token");
             }
         }
     
