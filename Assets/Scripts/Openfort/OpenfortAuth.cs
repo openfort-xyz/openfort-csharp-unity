@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using JWT;
-using Newtonsoft.Json.Linq;
 using UnityEngine;
 using Openfort.Api;
 using Openfort.Client;
+using Openfort.Crypto;
 using Openfort.Model;
 
 public struct Authentication {
@@ -55,30 +54,30 @@ namespace Openfort
             var jwtks = await AuthenticationApi.GetJwksAsync(_publishableKey);
             if (jwtks.Keys.Count == 0)
             {
-                throw new System.Exception("No keys found");
+                throw new Exception("No keys found");
             }
             
             var jwtk = jwtks.Keys[0];
-            
-            var publicKey = new Jose.Jwk( jwtk.Crv, jwtk.X, jwtk.Y, null);
-            var payload = Jose.JWT.Decode(accessToken, publicKey);
-            var payloadData = JObject.Parse(payload);
-            var exp = payloadData.Value<long>("exp");
-            var expDate = DateTimeOffset.FromUnixTimeSeconds(exp).DateTime;
-            Authentication authentication; 
-            if (expDate < DateTime.Now)
+            Authentication authentication;
+            try
             {
-                var response = await AuthenticationApi.RefreshAsync(new RefreshTokenRequest());
+                var playerId = Jwt.Validate(accessToken, jwtk.X, jwtk.Y, jwtk.Crv);
+                authentication = new Authentication { Token = accessToken, RefreshToken = refreshToken, PlayerId = playerId };
+            } catch (TokenExpiredException e) {
+                var request = new RefreshTokenRequest { RefreshToken = refreshToken };
+                var response = await AuthenticationApi.RefreshAsync(request);
                 authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
-            }
-            else
+            } catch (Exception e)
             {
-                authentication = new Authentication { Token = accessToken, RefreshToken = refreshToken, PlayerId = payloadData.Value<string>("sub") };
+                Debug.Log("Error validating token: " + e.Message);
+                throw;
             }
-
+            
             SaveToken(authentication);
             return authentication;
         }
+        
+        
 
         public void Logout()
         {
