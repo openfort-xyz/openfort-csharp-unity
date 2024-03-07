@@ -17,7 +17,7 @@ namespace Openfort
         private readonly SessionsApi _sessionApi;
         private readonly TransactionIntentsApi _transactionIntentsApi;
 
-        public OpenfortClient(string token, ISigner signer, [CanBeNull] string baseURL)
+        public OpenfortClient(string token, ISigner signer)
         {
             _signer = signer;
             var configuration = new Configuration(
@@ -25,10 +25,6 @@ namespace Openfort
                 new Dictionary<string, string> { { "Authorization", token } },
                 new Dictionary<string, string> { { "Authorization", "Bearer" } });
             
-            if (baseURL != null)
-            {
-                configuration.BasePath = baseURL;
-            }
             _sessionApi = new SessionsApi(configuration);
             _transactionIntentsApi = new TransactionIntentsApi(configuration);
         }

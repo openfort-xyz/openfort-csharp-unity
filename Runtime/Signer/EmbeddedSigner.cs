@@ -28,7 +28,7 @@ namespace Openfort.Signer
         private const int AuthShareIndex = 1;
         private const int RecoveryShareIndex = 2;
         
-        public EmbeddedSigner(int chainId, string publishableKey, string accessToken, string recoveryPassword, [CanBeNull] string baseURL)
+        public EmbeddedSigner(int chainId, string publishableKey, string accessToken, string recoveryPassword)
         {
             _chainId = chainId;
             _accessToken = accessToken;
@@ -46,12 +46,7 @@ namespace Openfort.Signer
                 new Dictionary<string, string> { { "Authorization", "Bearer" } }
             );
             
-            if (baseURL != null)
-            {
-                apiConfiguration.BasePath = baseURL;
-            }
-
-            var api = new ApiClient(baseURL);
+            var api = new ApiClient(apiConfiguration.BasePath);
             
             _accountsApi = new AccountsApi(api, api, apiConfiguration);
             _embeddedApi = new EmbeddedApi(api, api, apiConfiguration);
