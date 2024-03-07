@@ -23,13 +23,13 @@ namespace Openfort
         private readonly string _publishableKey;
         public readonly AuthenticationApi AuthenticationApi;
 
-        public OpenfortAuth(string publishableKey, string basePath = default(string))
+        public OpenfortAuth(string publishableKey)
         {
             _configuration = new Configuration(
                 new Dictionary<string, string> { { "Authorization", "Bearer " + publishableKey } },
                 new Dictionary<string, string> { { "Authorization", publishableKey } },
                 new Dictionary<string, string> { { "Authorization", "Bearer" } });
-            _apiClient = new ApiClient(basePath ?? _configuration.BasePath);
+            _apiClient = new ApiClient(_configuration.BasePath);
             _publishableKey = publishableKey;
             AuthenticationApi = new AuthenticationApi(_apiClient, _apiClient, _configuration);
         }
@@ -82,6 +82,7 @@ namespace Openfort
         public void Logout()
         {
             PlayerPrefs.DeleteKey("openfort-auth-token");
+            PlayerPrefs.DeleteKey("openfort-auth-refresh-token");
             PlayerPrefs.DeleteKey("openfort-auth-player");
         }
 
