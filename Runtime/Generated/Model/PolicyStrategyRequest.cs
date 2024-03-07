@@ -48,7 +48,7 @@ namespace Openfort.Model
         /// <param name="sponsorSchema">sponsorSchema (required).</param>
         /// <param name="tokenContract">If the user pays in custom tokens, the contract ID (starts with con_) of the token contract..</param>
         /// <param name="tokenContractAmount">If the user pays in ERC20 tokens, this reflects either the exchange rate or the amount in WEI..</param>
-        /// <param name="depositor">If the you want to use your own native tokens to pay for gas, specify the depositor ID (starts with dep_).</param>
+        /// <param name="depositor">If the you want to use your own native tokens to pay for gas, specify the developer account ID (starts with dac_).</param>
         public PolicyStrategyRequest(SponsorSchema sponsorSchema = default(SponsorSchema), string tokenContract = default(string), string tokenContractAmount = default(string), string depositor = default(string))
         {
             this.SponsorSchema = sponsorSchema;
@@ -61,6 +61,7 @@ namespace Openfort.Model
         /// If the user pays in custom tokens, the contract ID (starts with con_) of the token contract.
         /// </summary>
         /// <value>If the user pays in custom tokens, the contract ID (starts with con_) of the token contract.</value>
+        /// <example>&quot;con_0cddb398-1dc6-4e6f-8726-9ec7cea85f35&quot;</example>
         [DataMember(Name = "tokenContract", EmitDefaultValue = false)]
         public string TokenContract { get; set; }
 
@@ -68,13 +69,14 @@ namespace Openfort.Model
         /// If the user pays in ERC20 tokens, this reflects either the exchange rate or the amount in WEI.
         /// </summary>
         /// <value>If the user pays in ERC20 tokens, this reflects either the exchange rate or the amount in WEI.</value>
+        /// <example>&quot;1000000000000000000&quot;</example>
         [DataMember(Name = "tokenContractAmount", EmitDefaultValue = false)]
         public string TokenContractAmount { get; set; }
 
         /// <summary>
-        /// If the you want to use your own native tokens to pay for gas, specify the depositor ID (starts with dep_)
+        /// If the you want to use your own native tokens to pay for gas, specify the developer account ID (starts with dac_)
         /// </summary>
-        /// <value>If the you want to use your own native tokens to pay for gas, specify the depositor ID (starts with dep_)</value>
+        /// <value>If the you want to use your own native tokens to pay for gas, specify the developer account ID (starts with dac_)</value>
         [DataMember(Name = "depositor", EmitDefaultValue = false)]
         public string Depositor { get; set; }
 

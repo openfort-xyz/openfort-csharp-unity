@@ -56,7 +56,8 @@ namespace Openfort.Model
         /// <param name="accountType">accountType (required).</param>
         /// <param name="pendingOwnerAddress">pendingOwnerAddress.</param>
         /// <param name="transactionIntents">transactionIntents.</param>
-        public AccountResponse(string id = default(string), EntityTypeACCOUNT _object = default(EntityTypeACCOUNT), int createdAt = default(int), string address = default(string), string ownerAddress = default(string), bool deployed = default(bool), bool custodial = default(bool), int chainId = default(int), string accountType = default(string), string pendingOwnerAddress = default(string), List<PlayerResponseTransactionIntentsInner> transactionIntents = default(List<PlayerResponseTransactionIntentsInner>))
+        /// <param name="player">player (required).</param>
+        public AccountResponse(string id = default(string), EntityTypeACCOUNT _object = default(EntityTypeACCOUNT), int createdAt = default(int), string address = default(string), string ownerAddress = default(string), bool deployed = default(bool), bool custodial = default(bool), int chainId = default(int), string accountType = default(string), string pendingOwnerAddress = default(string), List<PlayerResponseTransactionIntentsInner> transactionIntents = default(List<PlayerResponseTransactionIntentsInner>), EntityIdResponse player = default(EntityIdResponse))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -87,6 +88,12 @@ namespace Openfort.Model
                 throw new ArgumentNullException("accountType is a required property for AccountResponse and cannot be null");
             }
             this.AccountType = accountType;
+            // to ensure "player" is required (not null)
+            if (player == null)
+            {
+                throw new ArgumentNullException("player is a required property for AccountResponse and cannot be null");
+            }
+            this.Player = player;
             this.PendingOwnerAddress = pendingOwnerAddress;
             this.TransactionIntents = transactionIntents;
         }
@@ -153,6 +160,12 @@ namespace Openfort.Model
         public List<PlayerResponseTransactionIntentsInner> TransactionIntents { get; set; }
 
         /// <summary>
+        /// Gets or Sets Player
+        /// </summary>
+        [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
+        public EntityIdResponse Player { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -171,6 +184,7 @@ namespace Openfort.Model
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");
             sb.Append("  PendingOwnerAddress: ").Append(PendingOwnerAddress).Append("\n");
             sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
+            sb.Append("  Player: ").Append(Player).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -256,6 +270,11 @@ namespace Openfort.Model
                     this.TransactionIntents != null &&
                     input.TransactionIntents != null &&
                     this.TransactionIntents.SequenceEqual(input.TransactionIntents)
+                ) && 
+                (
+                    this.Player == input.Player ||
+                    (this.Player != null &&
+                    this.Player.Equals(input.Player))
                 );
         }
 
@@ -296,6 +315,10 @@ namespace Openfort.Model
                 if (this.TransactionIntents != null)
                 {
                     hashCode = (hashCode * 59) + this.TransactionIntents.GetHashCode();
+                }
+                if (this.Player != null)
+                {
+                    hashCode = (hashCode * 59) + this.Player.GetHashCode();
                 }
                 return hashCode;
             }

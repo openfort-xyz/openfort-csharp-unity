@@ -30,6 +30,9 @@ namespace Openfort.Api
         /// <summary>
         /// Create a session key.
         /// </summary>
+        /// <remarks>
+        /// Creates a Session.
+        /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSessionRequest"></param>
         /// <returns>SessionResponse</returns>
@@ -39,7 +42,7 @@ namespace Openfort.Api
         /// Create a session key.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a Session.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSessionRequest"></param>
@@ -48,6 +51,9 @@ namespace Openfort.Api
         /// <summary>
         /// List session keys of a player.
         /// </summary>
+        /// <remarks>
+        /// Returns a list of Sessions.
+        /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID (starts with pla_)</param>
         /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
@@ -61,7 +67,7 @@ namespace Openfort.Api
         /// List session keys of a player.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a list of Sessions.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID (starts with pla_)</param>
@@ -74,6 +80,9 @@ namespace Openfort.Api
         /// <summary>
         /// Returns a player session by session id
         /// </summary>
+        /// <remarks>
+        /// Retrieves the details of a Session that has previously been created.
+        /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
         /// <param name="expand">Specifies the fields to expand. (optional)</param>
@@ -84,7 +93,7 @@ namespace Openfort.Api
         /// Returns a player session by session id
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retrieves the details of a Session that has previously been created.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
@@ -110,7 +119,7 @@ namespace Openfort.Api
         /// <returns>ApiResponse of SessionResponse</returns>
         ApiResponse<SessionResponse> RevokeSessionWithHttpInfo(RevokeSessionRequest revokeSessionRequest);
         /// <summary>
-        /// Confirms the creation of a session with an external owner.
+        /// Send signed userOperationHash to create session.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
@@ -119,7 +128,7 @@ namespace Openfort.Api
         SessionResponse SignatureSession(string id, SignatureRequest signatureRequest);
 
         /// <summary>
-        /// Confirms the creation of a session with an external owner.
+        /// Send signed userOperationHash to create session.
         /// </summary>
         /// <remarks>
         /// 
@@ -142,7 +151,7 @@ namespace Openfort.Api
         /// Create a session key.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a Session.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSessionRequest"></param>
@@ -154,7 +163,7 @@ namespace Openfort.Api
         /// Create a session key.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a Session.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSessionRequest"></param>
@@ -165,7 +174,7 @@ namespace Openfort.Api
         /// List session keys of a player.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a list of Sessions.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID (starts with pla_)</param>
@@ -181,7 +190,7 @@ namespace Openfort.Api
         /// List session keys of a player.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a list of Sessions.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID (starts with pla_)</param>
@@ -196,7 +205,7 @@ namespace Openfort.Api
         /// Returns a player session by session id
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retrieves the details of a Session that has previously been created.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
@@ -209,7 +218,7 @@ namespace Openfort.Api
         /// Returns a player session by session id
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retrieves the details of a Session that has previously been created.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
@@ -241,7 +250,7 @@ namespace Openfort.Api
         /// <returns>Task of ApiResponse (SessionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<SessionResponse>> RevokeSessionWithHttpInfoAsync(RevokeSessionRequest revokeSessionRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Confirms the creation of a session with an external owner.
+        /// Send signed userOperationHash to create session.
         /// </summary>
         /// <remarks>
         /// 
@@ -254,7 +263,7 @@ namespace Openfort.Api
         System.Threading.Tasks.Task<SessionResponse> SignatureSessionAsync(string id, SignatureRequest signatureRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Confirms the creation of a session with an external owner.
+        /// Send signed userOperationHash to create session.
         /// </summary>
         /// <remarks>
         /// 
@@ -410,7 +419,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Create a session key. 
+        /// Create a session key. Creates a Session.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSessionRequest"></param>
@@ -422,7 +431,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Create a session key. 
+        /// Create a session key. Creates a Session.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSessionRequest"></param>
@@ -472,7 +481,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Create a session key. 
+        /// Create a session key. Creates a Session.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSessionRequest"></param>
@@ -490,7 +499,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Create a session key. 
+        /// Create a session key. Creates a Session.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSessionRequest"></param>
@@ -550,7 +559,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// List session keys of a player. 
+        /// List session keys of a player. Returns a list of Sessions.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID (starts with pla_)</param>
@@ -566,7 +575,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// List session keys of a player. 
+        /// List session keys of a player. Returns a list of Sessions.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID (starts with pla_)</param>
@@ -635,7 +644,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// List session keys of a player. 
+        /// List session keys of a player. Returns a list of Sessions.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID (starts with pla_)</param>
@@ -657,7 +666,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// List session keys of a player. 
+        /// List session keys of a player. Returns a list of Sessions.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="player">The player ID (starts with pla_)</param>
@@ -736,7 +745,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Returns a player session by session id 
+        /// Returns a player session by session id Retrieves the details of a Session that has previously been created.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
@@ -749,7 +758,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Returns a player session by session id 
+        /// Returns a player session by session id Retrieves the details of a Session that has previously been created.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
@@ -803,7 +812,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Returns a player session by session id 
+        /// Returns a player session by session id Retrieves the details of a Session that has previously been created.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
@@ -822,7 +831,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Returns a player session by session id 
+        /// Returns a player session by session id Retrieves the details of a Session that has previously been created.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
@@ -1026,7 +1035,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Confirms the creation of a session with an external owner. 
+        /// Send signed userOperationHash to create session. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
@@ -1039,7 +1048,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Confirms the creation of a session with an external owner. 
+        /// Send signed userOperationHash to create session. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
@@ -1101,7 +1110,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Confirms the creation of a session with an external owner. 
+        /// Send signed userOperationHash to create session. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique session ID (starts with ses_).</param>
@@ -1120,7 +1129,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Confirms the creation of a session with an external owner. 
+        /// Send signed userOperationHash to create session. 
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique session ID (starts with ses_).</param>

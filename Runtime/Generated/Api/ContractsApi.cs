@@ -132,7 +132,7 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="functionName">The function name of the contract.</param>
-        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <param name="functionArgs">The function arguments of the contract, in string format. Accepts pla_, con_ and acc_ IDs. (optional)</param>
         /// <returns>ContractReadResponse</returns>
         ContractReadResponse ReadContract(string id, string functionName, List<Object> functionArgs = default(List<Object>));
 
@@ -145,7 +145,7 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="functionName">The function name of the contract.</param>
-        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <param name="functionArgs">The function arguments of the contract, in string format. Accepts pla_, con_ and acc_ IDs. (optional)</param>
         /// <returns>ApiResponse of ContractReadResponse</returns>
         ApiResponse<ContractReadResponse> ReadContractWithHttpInfo(string id, string functionName, List<Object> functionArgs = default(List<Object>));
         /// <summary>
@@ -290,7 +290,7 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="functionName">The function name of the contract.</param>
-        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <param name="functionArgs">The function arguments of the contract, in string format. Accepts pla_, con_ and acc_ IDs. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractReadResponse</returns>
         System.Threading.Tasks.Task<ContractReadResponse> ReadContractAsync(string id, string functionName, List<Object> functionArgs = default(List<Object>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -304,7 +304,7 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="functionName">The function name of the contract.</param>
-        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <param name="functionArgs">The function arguments of the contract, in string format. Accepts pla_, con_ and acc_ IDs. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractReadResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ContractReadResponse>> ReadContractWithHttpInfoAsync(string id, string functionName, List<Object> functionArgs = default(List<Object>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1107,7 +1107,7 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="functionName">The function name of the contract.</param>
-        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <param name="functionArgs">The function arguments of the contract, in string format. Accepts pla_, con_ and acc_ IDs. (optional)</param>
         /// <returns>ContractReadResponse</returns>
         public ContractReadResponse ReadContract(string id, string functionName, List<Object> functionArgs = default(List<Object>))
         {
@@ -1121,7 +1121,7 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="functionName">The function name of the contract.</param>
-        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <param name="functionArgs">The function arguments of the contract, in string format. Accepts pla_, con_ and acc_ IDs. (optional)</param>
         /// <returns>ApiResponse of ContractReadResponse</returns>
         public Openfort.Client.ApiResponse<ContractReadResponse> ReadContractWithHttpInfo(string id, string functionName, List<Object> functionArgs = default(List<Object>))
         {
@@ -1181,7 +1181,7 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="functionName">The function name of the contract.</param>
-        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <param name="functionArgs">The function arguments of the contract, in string format. Accepts pla_, con_ and acc_ IDs. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ContractReadResponse</returns>
         public async System.Threading.Tasks.Task<ContractReadResponse> ReadContractAsync(string id, string functionName, List<Object> functionArgs = default(List<Object>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1201,7 +1201,7 @@ namespace Openfort.Api
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Specifies the unique contract ID (starts with con_).</param>
         /// <param name="functionName">The function name of the contract.</param>
-        /// <param name="functionArgs">The function arguments of the contract. (optional)</param>
+        /// <param name="functionArgs">The function arguments of the contract, in string format. Accepts pla_, con_ and acc_ IDs. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ContractReadResponse)</returns>
         public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<ContractReadResponse>> ReadContractWithHttpInfoAsync(string id, string functionName, List<Object> functionArgs = default(List<Object>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))

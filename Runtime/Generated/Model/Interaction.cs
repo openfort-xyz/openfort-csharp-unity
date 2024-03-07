@@ -34,55 +34,54 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Interaction" /> class.
         /// </summary>
-        /// <param name="to">The address of the contract..</param>
-        /// <param name="contract">The contract interacting with.</param>
-        /// <param name="value">The value of the transaction..</param>
-        /// <param name="functionName">The function name of the contract..</param>
-        /// <param name="functionArgs">The function arguments of the contract..</param>
-        public Interaction(string to = default(string), string contract = default(string), string value = default(string), string functionName = default(string), List<Object> functionArgs = default(List<Object>))
+        /// <param name="to">The address of the recipient of native tokens. Use *only* to transfer native tokens. If you provide one of a &#x60;pla_...&#x60;,  or &#x60;acc_...&#x60; it will be converted to the corresponding address..</param>
+        /// <param name="value">The value intended to be sent with the transaction. Should be a stringified number in WEI (i.e. factor 10^18). * @example \&quot;1000000000000000000\&quot;.</param>
+        /// <param name="contract">The contract ID you want to interact with. Must have been added to Openfort first, starts with &#x60;con_&#x60;..</param>
+        /// <param name="functionName">The function name of the contract. Accepts a a function signature as well (e.g. mint(address))..</param>
+        /// <param name="functionArgs">The function arguments of the contract, in string format. If you provide one of a &#x60;pla_...&#x60;, &#x60;con_...&#x60; or &#x60;acc_...&#x60; it will be converted to the corresponding address..</param>
+        public Interaction(string to = default(string), string value = default(string), string contract = default(string), string functionName = default(string), List<Object> functionArgs = default(List<Object>))
         {
             this.To = to;
-            this.Contract = contract;
             this.Value = value;
+            this.Contract = contract;
             this.FunctionName = functionName;
             this.FunctionArgs = functionArgs;
         }
 
         /// <summary>
-        /// The address of the contract.
+        /// The address of the recipient of native tokens. Use *only* to transfer native tokens. If you provide one of a &#x60;pla_...&#x60;,  or &#x60;acc_...&#x60; it will be converted to the corresponding address.
         /// </summary>
-        /// <value>The address of the contract.</value>
+        /// <value>The address of the recipient of native tokens. Use *only* to transfer native tokens. If you provide one of a &#x60;pla_...&#x60;,  or &#x60;acc_...&#x60; it will be converted to the corresponding address.</value>
         [DataMember(Name = "to", EmitDefaultValue = false)]
         public string To { get; set; }
 
         /// <summary>
-        /// The contract interacting with
+        /// The value intended to be sent with the transaction. Should be a stringified number in WEI (i.e. factor 10^18). * @example \&quot;1000000000000000000\&quot;
         /// </summary>
-        /// <value>The contract interacting with</value>
-        /// <example>&quot;con_...&quot;</example>
-        [DataMember(Name = "contract", EmitDefaultValue = false)]
-        public string Contract { get; set; }
-
-        /// <summary>
-        /// The value of the transaction.
-        /// </summary>
-        /// <value>The value of the transaction.</value>
-        /// <example>&quot;100000000000000&quot;</example>
+        /// <value>The value intended to be sent with the transaction. Should be a stringified number in WEI (i.e. factor 10^18). * @example \&quot;1000000000000000000\&quot;</value>
         [DataMember(Name = "value", EmitDefaultValue = false)]
         public string Value { get; set; }
 
         /// <summary>
-        /// The function name of the contract.
+        /// The contract ID you want to interact with. Must have been added to Openfort first, starts with &#x60;con_&#x60;.
         /// </summary>
-        /// <value>The function name of the contract.</value>
+        /// <value>The contract ID you want to interact with. Must have been added to Openfort first, starts with &#x60;con_&#x60;.</value>
+        /// <example>&quot;con_0cddb398-1dc6-4e6f-8726-9ec7cea85f35&quot;</example>
+        [DataMember(Name = "contract", EmitDefaultValue = false)]
+        public string Contract { get; set; }
+
+        /// <summary>
+        /// The function name of the contract. Accepts a a function signature as well (e.g. mint(address)).
+        /// </summary>
+        /// <value>The function name of the contract. Accepts a a function signature as well (e.g. mint(address)).</value>
         /// <example>&quot;mint&quot;</example>
         [DataMember(Name = "functionName", EmitDefaultValue = false)]
         public string FunctionName { get; set; }
 
         /// <summary>
-        /// The function arguments of the contract.
+        /// The function arguments of the contract, in string format. If you provide one of a &#x60;pla_...&#x60;, &#x60;con_...&#x60; or &#x60;acc_...&#x60; it will be converted to the corresponding address.
         /// </summary>
-        /// <value>The function arguments of the contract.</value>
+        /// <value>The function arguments of the contract, in string format. If you provide one of a &#x60;pla_...&#x60;, &#x60;con_...&#x60; or &#x60;acc_...&#x60; it will be converted to the corresponding address.</value>
         [DataMember(Name = "functionArgs", EmitDefaultValue = false)]
         public List<Object> FunctionArgs { get; set; }
 
@@ -95,8 +94,8 @@ namespace Openfort.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class Interaction {\n");
             sb.Append("  To: ").Append(To).Append("\n");
-            sb.Append("  Contract: ").Append(Contract).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("  Contract: ").Append(Contract).Append("\n");
             sb.Append("  FunctionName: ").Append(FunctionName).Append("\n");
             sb.Append("  FunctionArgs: ").Append(FunctionArgs).Append("\n");
             sb.Append("}\n");
@@ -140,14 +139,14 @@ namespace Openfort.Model
                     this.To.Equals(input.To))
                 ) && 
                 (
-                    this.Contract == input.Contract ||
-                    (this.Contract != null &&
-                    this.Contract.Equals(input.Contract))
-                ) && 
-                (
                     this.Value == input.Value ||
                     (this.Value != null &&
                     this.Value.Equals(input.Value))
+                ) && 
+                (
+                    this.Contract == input.Contract ||
+                    (this.Contract != null &&
+                    this.Contract.Equals(input.Contract))
                 ) && 
                 (
                     this.FunctionName == input.FunctionName ||
@@ -175,13 +174,13 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.To.GetHashCode();
                 }
-                if (this.Contract != null)
-                {
-                    hashCode = (hashCode * 59) + this.Contract.GetHashCode();
-                }
                 if (this.Value != null)
                 {
                     hashCode = (hashCode * 59) + this.Value.GetHashCode();
+                }
+                if (this.Contract != null)
+                {
+                    hashCode = (hashCode * 59) + this.Contract.GetHashCode();
                 }
                 if (this.FunctionName != null)
                 {

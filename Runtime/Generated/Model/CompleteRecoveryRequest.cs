@@ -40,7 +40,7 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="CompleteRecoveryRequest" /> class.
         /// </summary>
         /// <param name="newOwnerAddress">Address of the new owner (required).</param>
-        /// <param name="signatures">Signatures.</param>
+        /// <param name="signatures">Signatures by the guardians.</param>
         /// <param name="policy">The policy ID (starts with pol_) (required).</param>
         public CompleteRecoveryRequest(string newOwnerAddress = default(string), List<string> signatures = default(List<string>), string policy = default(string))
         {
@@ -63,13 +63,14 @@ namespace Openfort.Model
         /// Address of the new owner
         /// </summary>
         /// <value>Address of the new owner</value>
+        /// <example>&quot;0x662D24Bf7Ea2dD6a7D0935F680a6056b94fE934d&quot;</example>
         [DataMember(Name = "newOwnerAddress", IsRequired = true, EmitDefaultValue = true)]
         public string NewOwnerAddress { get; set; }
 
         /// <summary>
-        /// Signatures
+        /// Signatures by the guardians
         /// </summary>
-        /// <value>Signatures</value>
+        /// <value>Signatures by the guardians</value>
         [DataMember(Name = "signatures", EmitDefaultValue = false)]
         public List<string> Signatures { get; set; }
 
@@ -77,6 +78,7 @@ namespace Openfort.Model
         /// The policy ID (starts with pol_)
         /// </summary>
         /// <value>The policy ID (starts with pol_)</value>
+        /// <example>&quot;pol_7e07ae30-2a4d-48fa-803f-361da94905dd&quot;</example>
         [DataMember(Name = "policy", IsRequired = true, EmitDefaultValue = true)]
         public string Policy { get; set; }
 

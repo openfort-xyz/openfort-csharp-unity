@@ -70,6 +70,7 @@ namespace Openfort.Model
         /// Specifies the email address of the user.
         /// </summary>
         /// <value>Specifies the email address of the user.</value>
+        /// <example>&quot;user@email.com&quot;</example>
         [DataMember(Name = "email", EmitDefaultValue = false)]
         public string Email { get; set; }
 

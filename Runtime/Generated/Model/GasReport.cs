@@ -31,12 +31,6 @@ namespace Openfort.Model
     [DataContract(Name = "GasReport")]
     public partial class GasReport : IEquatable<GasReport>
     {
-
-        /// <summary>
-        /// Gets or Sets Object
-        /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public ResponseTypeLIST Object { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="GasReport" /> class.
         /// </summary>
@@ -45,24 +39,87 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GasReport" /> class.
         /// </summary>
-        /// <param name="_object">_object (required).</param>
-        /// <param name="data">data (required).</param>
-        public GasReport(ResponseTypeLIST _object = default(ResponseTypeLIST), List<GasReportDataInner> data = default(List<GasReportDataInner>))
+        /// <param name="period">period (required).</param>
+        /// <param name="averageTransactionFee">averageTransactionFee (required).</param>
+        /// <param name="totalTransactionFeeInCustomTokens">totalTransactionFeeInCustomTokens (required).</param>
+        /// <param name="totalTransactionFee">totalTransactionFee (required).</param>
+        /// <param name="totalTransactionFeeInUSD">totalTransactionFeeInUSD (required).</param>
+        /// <param name="transactionIntents">transactionIntents (required).</param>
+        public GasReport(MonthRange period = default(MonthRange), string averageTransactionFee = default(string), string totalTransactionFeeInCustomTokens = default(string), string totalTransactionFee = default(string), string totalTransactionFeeInUSD = default(string), List<GasReportTransactionIntentsInner> transactionIntents = default(List<GasReportTransactionIntentsInner>))
         {
-            this.Object = _object;
-            // to ensure "data" is required (not null)
-            if (data == null)
+            // to ensure "period" is required (not null)
+            if (period == null)
             {
-                throw new ArgumentNullException("data is a required property for GasReport and cannot be null");
+                throw new ArgumentNullException("period is a required property for GasReport and cannot be null");
             }
-            this.Data = data;
+            this.Period = period;
+            // to ensure "averageTransactionFee" is required (not null)
+            if (averageTransactionFee == null)
+            {
+                throw new ArgumentNullException("averageTransactionFee is a required property for GasReport and cannot be null");
+            }
+            this.AverageTransactionFee = averageTransactionFee;
+            // to ensure "totalTransactionFeeInCustomTokens" is required (not null)
+            if (totalTransactionFeeInCustomTokens == null)
+            {
+                throw new ArgumentNullException("totalTransactionFeeInCustomTokens is a required property for GasReport and cannot be null");
+            }
+            this.TotalTransactionFeeInCustomTokens = totalTransactionFeeInCustomTokens;
+            // to ensure "totalTransactionFee" is required (not null)
+            if (totalTransactionFee == null)
+            {
+                throw new ArgumentNullException("totalTransactionFee is a required property for GasReport and cannot be null");
+            }
+            this.TotalTransactionFee = totalTransactionFee;
+            // to ensure "totalTransactionFeeInUSD" is required (not null)
+            if (totalTransactionFeeInUSD == null)
+            {
+                throw new ArgumentNullException("totalTransactionFeeInUSD is a required property for GasReport and cannot be null");
+            }
+            this.TotalTransactionFeeInUSD = totalTransactionFeeInUSD;
+            // to ensure "transactionIntents" is required (not null)
+            if (transactionIntents == null)
+            {
+                throw new ArgumentNullException("transactionIntents is a required property for GasReport and cannot be null");
+            }
+            this.TransactionIntents = transactionIntents;
         }
 
         /// <summary>
-        /// Gets or Sets Data
+        /// Gets or Sets Period
         /// </summary>
-        [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
-        public List<GasReportDataInner> Data { get; set; }
+        [DataMember(Name = "period", IsRequired = true, EmitDefaultValue = true)]
+        public MonthRange Period { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AverageTransactionFee
+        /// </summary>
+        [DataMember(Name = "averageTransactionFee", IsRequired = true, EmitDefaultValue = true)]
+        public string AverageTransactionFee { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TotalTransactionFeeInCustomTokens
+        /// </summary>
+        [DataMember(Name = "totalTransactionFeeInCustomTokens", IsRequired = true, EmitDefaultValue = true)]
+        public string TotalTransactionFeeInCustomTokens { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TotalTransactionFee
+        /// </summary>
+        [DataMember(Name = "totalTransactionFee", IsRequired = true, EmitDefaultValue = true)]
+        public string TotalTransactionFee { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TotalTransactionFeeInUSD
+        /// </summary>
+        [DataMember(Name = "totalTransactionFeeInUSD", IsRequired = true, EmitDefaultValue = true)]
+        public string TotalTransactionFeeInUSD { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TransactionIntents
+        /// </summary>
+        [DataMember(Name = "transactionIntents", IsRequired = true, EmitDefaultValue = true)]
+        public List<GasReportTransactionIntentsInner> TransactionIntents { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -72,8 +129,12 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class GasReport {\n");
-            sb.Append("  Object: ").Append(Object).Append("\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  Period: ").Append(Period).Append("\n");
+            sb.Append("  AverageTransactionFee: ").Append(AverageTransactionFee).Append("\n");
+            sb.Append("  TotalTransactionFeeInCustomTokens: ").Append(TotalTransactionFeeInCustomTokens).Append("\n");
+            sb.Append("  TotalTransactionFee: ").Append(TotalTransactionFee).Append("\n");
+            sb.Append("  TotalTransactionFeeInUSD: ").Append(TotalTransactionFeeInUSD).Append("\n");
+            sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -110,14 +171,35 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Object == input.Object ||
-                    this.Object.Equals(input.Object)
+                    this.Period == input.Period ||
+                    (this.Period != null &&
+                    this.Period.Equals(input.Period))
                 ) && 
                 (
-                    this.Data == input.Data ||
-                    this.Data != null &&
-                    input.Data != null &&
-                    this.Data.SequenceEqual(input.Data)
+                    this.AverageTransactionFee == input.AverageTransactionFee ||
+                    (this.AverageTransactionFee != null &&
+                    this.AverageTransactionFee.Equals(input.AverageTransactionFee))
+                ) && 
+                (
+                    this.TotalTransactionFeeInCustomTokens == input.TotalTransactionFeeInCustomTokens ||
+                    (this.TotalTransactionFeeInCustomTokens != null &&
+                    this.TotalTransactionFeeInCustomTokens.Equals(input.TotalTransactionFeeInCustomTokens))
+                ) && 
+                (
+                    this.TotalTransactionFee == input.TotalTransactionFee ||
+                    (this.TotalTransactionFee != null &&
+                    this.TotalTransactionFee.Equals(input.TotalTransactionFee))
+                ) && 
+                (
+                    this.TotalTransactionFeeInUSD == input.TotalTransactionFeeInUSD ||
+                    (this.TotalTransactionFeeInUSD != null &&
+                    this.TotalTransactionFeeInUSD.Equals(input.TotalTransactionFeeInUSD))
+                ) && 
+                (
+                    this.TransactionIntents == input.TransactionIntents ||
+                    this.TransactionIntents != null &&
+                    input.TransactionIntents != null &&
+                    this.TransactionIntents.SequenceEqual(input.TransactionIntents)
                 );
         }
 
@@ -130,10 +212,29 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                if (this.Data != null)
+                if (this.Period != null)
                 {
-                    hashCode = (hashCode * 59) + this.Data.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Period.GetHashCode();
+                }
+                if (this.AverageTransactionFee != null)
+                {
+                    hashCode = (hashCode * 59) + this.AverageTransactionFee.GetHashCode();
+                }
+                if (this.TotalTransactionFeeInCustomTokens != null)
+                {
+                    hashCode = (hashCode * 59) + this.TotalTransactionFeeInCustomTokens.GetHashCode();
+                }
+                if (this.TotalTransactionFee != null)
+                {
+                    hashCode = (hashCode * 59) + this.TotalTransactionFee.GetHashCode();
+                }
+                if (this.TotalTransactionFeeInUSD != null)
+                {
+                    hashCode = (hashCode * 59) + this.TotalTransactionFeeInUSD.GetHashCode();
+                }
+                if (this.TransactionIntents != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransactionIntents.GetHashCode();
                 }
                 return hashCode;
             }

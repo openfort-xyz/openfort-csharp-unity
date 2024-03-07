@@ -55,6 +55,7 @@ namespace Openfort.Model
         /// The chain ID.
         /// </summary>
         /// <value>The chain ID.</value>
+        /// <example>80001</example>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
         public int ChainId { get; set; }
 

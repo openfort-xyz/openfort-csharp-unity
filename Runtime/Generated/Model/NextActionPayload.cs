@@ -36,23 +36,43 @@ namespace Openfort.Model
         /// </summary>
         /// <param name="userOp">userOp.</param>
         /// <param name="userOpHash">userOpHash.</param>
-        public NextActionPayload(Object userOp = default(Object), string userOpHash = default(string))
+        /// <param name="userOperation">The userOperation..</param>
+        /// <param name="userOperationHash">The hashed userOperation..</param>
+        public NextActionPayload(Object userOp = default(Object), string userOpHash = default(string), Object userOperation = default(Object), string userOperationHash = default(string))
         {
             this.UserOp = userOp;
             this.UserOpHash = userOpHash;
+            this.UserOperation = userOperation;
+            this.UserOperationHash = userOperationHash;
         }
 
         /// <summary>
         /// Gets or Sets UserOp
         /// </summary>
         [DataMember(Name = "userOp", EmitDefaultValue = true)]
+        [Obsolete]
         public Object UserOp { get; set; }
 
         /// <summary>
         /// Gets or Sets UserOpHash
         /// </summary>
         [DataMember(Name = "userOpHash", EmitDefaultValue = false)]
+        [Obsolete]
         public string UserOpHash { get; set; }
+
+        /// <summary>
+        /// The userOperation.
+        /// </summary>
+        /// <value>The userOperation.</value>
+        [DataMember(Name = "userOperation", EmitDefaultValue = true)]
+        public Object UserOperation { get; set; }
+
+        /// <summary>
+        /// The hashed userOperation.
+        /// </summary>
+        /// <value>The hashed userOperation.</value>
+        [DataMember(Name = "userOperationHash", EmitDefaultValue = false)]
+        public string UserOperationHash { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -64,6 +84,8 @@ namespace Openfort.Model
             sb.Append("class NextActionPayload {\n");
             sb.Append("  UserOp: ").Append(UserOp).Append("\n");
             sb.Append("  UserOpHash: ").Append(UserOpHash).Append("\n");
+            sb.Append("  UserOperation: ").Append(UserOperation).Append("\n");
+            sb.Append("  UserOperationHash: ").Append(UserOperationHash).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -108,6 +130,16 @@ namespace Openfort.Model
                     this.UserOpHash == input.UserOpHash ||
                     (this.UserOpHash != null &&
                     this.UserOpHash.Equals(input.UserOpHash))
+                ) && 
+                (
+                    this.UserOperation == input.UserOperation ||
+                    (this.UserOperation != null &&
+                    this.UserOperation.Equals(input.UserOperation))
+                ) && 
+                (
+                    this.UserOperationHash == input.UserOperationHash ||
+                    (this.UserOperationHash != null &&
+                    this.UserOperationHash.Equals(input.UserOperationHash))
                 );
         }
 
@@ -127,6 +159,14 @@ namespace Openfort.Model
                 if (this.UserOpHash != null)
                 {
                     hashCode = (hashCode * 59) + this.UserOpHash.GetHashCode();
+                }
+                if (this.UserOperation != null)
+                {
+                    hashCode = (hashCode * 59) + this.UserOperation.GetHashCode();
+                }
+                if (this.UserOperationHash != null)
+                {
+                    hashCode = (hashCode * 59) + this.UserOperationHash.GetHashCode();
                 }
                 return hashCode;
             }

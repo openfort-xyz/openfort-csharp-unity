@@ -27,7 +27,7 @@ using System.Reflection;
 namespace Openfort.Model
 {
     /// <summary>
-    /// UserProjectCreateRequestRole
+    /// The role of the user.
     /// </summary>
     [JsonConverter(typeof(UserProjectCreateRequestRoleJsonConverter))]
     [DataContract(Name = "UserProjectCreateRequest_role")]
@@ -41,11 +41,7 @@ namespace Openfort.Model
         public UserProjectCreateRequestRole(UserProjectRoleMEMBER actualInstance)
         {
             this.IsNullable = false;
-            this.SchemaType = "anyOf";
-            if (actualInstance == null)
-            {
-                throw new ArgumentException("Invalid instance found. Must not be null.");
-            }
+            this.SchemaType= "anyOf";
             this.ActualInstance = actualInstance;
         }
 
@@ -57,11 +53,7 @@ namespace Openfort.Model
         public UserProjectCreateRequestRole(UserProjectRoleADMIN actualInstance)
         {
             this.IsNullable = false;
-            this.SchemaType = "anyOf";
-            if (actualInstance == null)
-            {
-                throw new ArgumentException("Invalid instance found. Must not be null.");
-            }
+            this.SchemaType= "anyOf";
             this.ActualInstance = actualInstance;
         }
 
@@ -244,7 +236,7 @@ namespace Openfort.Model
         /// <returns>The object converted from the JSON string</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if (reader.TokenType != JsonToken.Null)
+            if(reader.TokenType != JsonToken.Null)
             {
                 return UserProjectCreateRequestRole.FromJson(JObject.Load(reader).ToString(Formatting.None));
             }

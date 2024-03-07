@@ -54,6 +54,7 @@ namespace Openfort.Model
         /// The webhook url.
         /// </summary>
         /// <value>The webhook url.</value>
+        /// <example>&quot;https://example.com&quot;</example>
         [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
         public string Url { get; set; }
 

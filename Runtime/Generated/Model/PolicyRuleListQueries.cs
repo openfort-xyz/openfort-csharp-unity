@@ -103,6 +103,7 @@ namespace Openfort.Model
         /// Specifies the unique policy ID (starts with pol_).
         /// </summary>
         /// <value>Specifies the unique policy ID (starts with pol_).</value>
+        /// <example>&quot;pol_48eeba57-2cd5-4159-a2cb-057a23a35e65&quot;</example>
         [DataMember(Name = "policy", IsRequired = true, EmitDefaultValue = true)]
         public string Policy { get; set; }
 

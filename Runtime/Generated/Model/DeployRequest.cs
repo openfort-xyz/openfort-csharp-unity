@@ -54,6 +54,7 @@ namespace Openfort.Model
         /// The policy ID (starts with pol_)
         /// </summary>
         /// <value>The policy ID (starts with pol_)</value>
+        /// <example>&quot;pol_7e07ae30-2a4d-48fa-803f-361da94905dd&quot;</example>
         [DataMember(Name = "policy", IsRequired = true, EmitDefaultValue = true)]
         public string Policy { get; set; }
 

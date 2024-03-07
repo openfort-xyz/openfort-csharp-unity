@@ -35,7 +35,7 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="UpdateContractRequest" /> class.
         /// </summary>
         /// <param name="name">Specifies the name of the contract (Only for display purposes)..</param>
-        /// <param name="chainId">Specifies the chain ID of the contract..</param>
+        /// <param name="chainId">Specifies the chain ID of the contract. Must be a [supported chain](/chains)..</param>
         /// <param name="deleted">Specifies whether to delete the contract..</param>
         /// <param name="address">Specifies the address of the contract..</param>
         /// <param name="abi">Specifies the ABI of the contract..</param>
@@ -54,13 +54,15 @@ namespace Openfort.Model
         /// Specifies the name of the contract (Only for display purposes).
         /// </summary>
         /// <value>Specifies the name of the contract (Only for display purposes).</value>
+        /// <example>&quot;NFT Contract&quot;</example>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Specifies the chain ID of the contract.
+        /// Specifies the chain ID of the contract. Must be a [supported chain](/chains).
         /// </summary>
-        /// <value>Specifies the chain ID of the contract.</value>
+        /// <value>Specifies the chain ID of the contract. Must be a [supported chain](/chains).</value>
+        /// <example>80001</example>
         [DataMember(Name = "chainId", EmitDefaultValue = false)]
         public int ChainId { get; set; }
 
@@ -68,6 +70,7 @@ namespace Openfort.Model
         /// Specifies whether to delete the contract.
         /// </summary>
         /// <value>Specifies whether to delete the contract.</value>
+        /// <example>false</example>
         [DataMember(Name = "deleted", EmitDefaultValue = true)]
         public bool Deleted { get; set; }
 
@@ -75,6 +78,7 @@ namespace Openfort.Model
         /// Specifies the address of the contract.
         /// </summary>
         /// <value>Specifies the address of the contract.</value>
+        /// <example>&quot;0x1234567890abcdef1234567890abcdef12345678&quot;</example>
         [DataMember(Name = "address", EmitDefaultValue = false)]
         public string Address { get; set; }
 

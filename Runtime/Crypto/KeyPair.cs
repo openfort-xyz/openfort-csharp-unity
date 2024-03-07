@@ -1,13 +1,6 @@
-using System;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Openfort.Extensions;
 using Org.BouncyCastle.Asn1.Sec;
 using Org.BouncyCastle.Asn1.X9;
 using Org.BouncyCastle.Crypto;
-using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Math;
@@ -27,13 +20,21 @@ namespace Openfort.Crypto
         private readonly ECPublicKeyParameters _public;
         private readonly ECPrivateKeyParameters _private;
         private readonly Account _account;
-
-
+        
         public KeyPair(AsymmetricCipherKeyPair keyPair)
         {
             _public = keyPair.Public as ECPublicKeyParameters;
             _private = keyPair.Private as ECPrivateKeyParameters;
             _account = new Account(PrivateHex);
+        }
+        
+        public KeyPair(string privateKey)
+        {
+            var privateKeyValue = new BigInteger(privateKey.TrimHexPrefix(), 16);
+            _private = new ECPrivateKeyParameters(privateKeyValue, domainParams);
+            var q = _private.Parameters.G.Multiply(_private.D);
+            _public = new ECPublicKeyParameters(_private.AlgorithmName, q, SecObjectIdentifiers.SecP256k1);
+            _account = new Account(privateKey);
         }
 
         public ECPublicKeyParameters Public

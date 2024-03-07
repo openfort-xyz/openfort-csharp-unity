@@ -31,7 +31,7 @@ namespace Openfort.Api
         /// Create a Web3 Connection object.
         /// </summary>
         /// <remarks>
-        /// This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a WalletConnect pairing URI (see: https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri)
+        /// This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a [WalletConnect pairing URI](https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri).
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWeb3ConnectionRequest"></param>
@@ -42,7 +42,7 @@ namespace Openfort.Api
         /// Create a Web3 Connection object.
         /// </summary>
         /// <remarks>
-        /// This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a WalletConnect pairing URI (see: https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri)
+        /// This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a [WalletConnect pairing URI](https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri).
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWeb3ConnectionRequest"></param>
@@ -159,7 +159,7 @@ namespace Openfort.Api
         /// Create a Web3 Connection object.
         /// </summary>
         /// <remarks>
-        /// This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a WalletConnect pairing URI (see: https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri)
+        /// This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a [WalletConnect pairing URI](https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri).
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWeb3ConnectionRequest"></param>
@@ -171,7 +171,7 @@ namespace Openfort.Api
         /// Create a Web3 Connection object.
         /// </summary>
         /// <remarks>
-        /// This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a WalletConnect pairing URI (see: https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri)
+        /// This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a [WalletConnect pairing URI](https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri).
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWeb3ConnectionRequest"></param>
@@ -429,7 +429,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Create a Web3 Connection object. This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a WalletConnect pairing URI (see: https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri)
+        /// Create a Web3 Connection object. This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a [WalletConnect pairing URI](https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri).
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWeb3ConnectionRequest"></param>
@@ -441,7 +441,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Create a Web3 Connection object. This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a WalletConnect pairing URI (see: https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri)
+        /// Create a Web3 Connection object. This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a [WalletConnect pairing URI](https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri).
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWeb3ConnectionRequest"></param>
@@ -491,7 +491,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Create a Web3 Connection object. This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a WalletConnect pairing URI (see: https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri)
+        /// Create a Web3 Connection object. This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a [WalletConnect pairing URI](https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri).
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWeb3ConnectionRequest"></param>
@@ -509,7 +509,7 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Create a Web3 Connection object. This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a WalletConnect pairing URI (see: https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri)
+        /// Create a Web3 Connection object. This endpoint allows you to create a new web3 connection to your Openfort player. Together with the player ID (pla_), you need to provide a chain ID. The chain to use is required because Openfort needs to make sure the account is deployed, as counterfactual addresses cannot use web3 connections. The &#x60;uri&#x60; body parameter must contain a [WalletConnect pairing URI](https://specs.walletconnect.com/2.0/specs/clients/core/pairing/pairing-uri).
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWeb3ConnectionRequest"></param>

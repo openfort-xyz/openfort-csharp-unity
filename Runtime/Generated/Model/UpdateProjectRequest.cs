@@ -39,7 +39,7 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateProjectRequest" /> class.
         /// </summary>
-        /// <param name="name">name (required).</param>
+        /// <param name="name">Name of the project. (required).</param>
         public UpdateProjectRequest(string name = default(string))
         {
             // to ensure "name" is required (not null)
@@ -51,8 +51,10 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Name of the project.
         /// </summary>
+        /// <value>Name of the project.</value>
+        /// <example>&quot;My Project&quot;</example>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 

@@ -57,7 +57,7 @@ namespace Openfort.Model
         /// <param name="type">type (required).</param>
         /// <param name="contract">contract (required).</param>
         /// <param name="functionName">functionName (required).</param>
-        public ContractPolicyRuleResponse(string id = default(string), EntityTypePOLICYRULE _object = default(EntityTypePOLICYRULE), int createdAt = default(int), PolicyRuleTypeCONTRACT type = default(PolicyRuleTypeCONTRACT), ContractPolicyRuleResponseContract contract = default(ContractPolicyRuleResponseContract), string functionName = default(string))
+        public ContractPolicyRuleResponse(string id = default(string), EntityTypePOLICYRULE _object = default(EntityTypePOLICYRULE), int createdAt = default(int), PolicyRuleTypeCONTRACT type = default(PolicyRuleTypeCONTRACT), ContractNotificationTriggerResponseContract contract = default(ContractNotificationTriggerResponseContract), string functionName = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -98,7 +98,7 @@ namespace Openfort.Model
         /// Gets or Sets Contract
         /// </summary>
         [DataMember(Name = "contract", IsRequired = true, EmitDefaultValue = true)]
-        public ContractPolicyRuleResponseContract Contract { get; set; }
+        public ContractNotificationTriggerResponseContract Contract { get; set; }
 
         /// <summary>
         /// Gets or Sets FunctionName

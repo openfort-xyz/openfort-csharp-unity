@@ -42,21 +42,23 @@ namespace Openfort.Model
         /// <param name="createdAt">The unix timestamp in seconds when the transactionIntent was created. (required).</param>
         /// <param name="blockNumber">The block height (number) of the block including the transaction of this log..</param>
         /// <param name="transactionHash">The transaction hash of the transaction of this log..</param>
-        /// <param name="userOpHash">userOpHash.</param>
-        /// <param name="l1GasUsed">The gas used by the transaction of this log..</param>
+        /// <param name="l1GasUsed">The l1 gas used by the transaction of this log..</param>
         /// <param name="gasUsed">The gas used by the transaction of this log..</param>
+        /// <param name="gasFee">The gas fee by the transaction of this log..</param>
+        /// <param name="l1GasFee">The l1 gas fee by the transaction of this log..</param>
         /// <param name="status">The status of the transaction of this log..</param>
         /// <param name="logs">The logs of the transaction of this log..</param>
         /// <param name="to">The address of the contract of this log..</param>
         /// <param name="error">The error of the transaction of this log..</param>
-        public ResponseResponse(int createdAt = default(int), int blockNumber = default(int), string transactionHash = default(string), string userOpHash = default(string), string l1GasUsed = default(string), long gasUsed = default(long), int status = default(int), List<Log> logs = default(List<Log>), string to = default(string), Object error = default(Object))
+        public ResponseResponse(int createdAt = default(int), int blockNumber = default(int), string transactionHash = default(string), string l1GasUsed = default(string), string gasUsed = default(string), string gasFee = default(string), string l1GasFee = default(string), int status = default(int), List<Log> logs = default(List<Log>), string to = default(string), Object error = default(Object))
         {
             this.CreatedAt = createdAt;
             this.BlockNumber = blockNumber;
             this.TransactionHash = transactionHash;
-            this.UserOpHash = userOpHash;
             this.L1GasUsed = l1GasUsed;
             this.GasUsed = gasUsed;
+            this.GasFee = gasFee;
+            this.L1GasFee = l1GasFee;
             this.Status = status;
             this.Logs = logs;
             this.To = to;
@@ -85,16 +87,9 @@ namespace Openfort.Model
         public string TransactionHash { get; set; }
 
         /// <summary>
-        /// Gets or Sets UserOpHash
+        /// The l1 gas used by the transaction of this log.
         /// </summary>
-        [DataMember(Name = "userOpHash", EmitDefaultValue = false)]
-        [Obsolete]
-        public string UserOpHash { get; set; }
-
-        /// <summary>
-        /// The gas used by the transaction of this log.
-        /// </summary>
-        /// <value>The gas used by the transaction of this log.</value>
+        /// <value>The l1 gas used by the transaction of this log.</value>
         [DataMember(Name = "l1GasUsed", EmitDefaultValue = false)]
         public string L1GasUsed { get; set; }
 
@@ -103,7 +98,21 @@ namespace Openfort.Model
         /// </summary>
         /// <value>The gas used by the transaction of this log.</value>
         [DataMember(Name = "gasUsed", EmitDefaultValue = false)]
-        public long GasUsed { get; set; }
+        public string GasUsed { get; set; }
+
+        /// <summary>
+        /// The gas fee by the transaction of this log.
+        /// </summary>
+        /// <value>The gas fee by the transaction of this log.</value>
+        [DataMember(Name = "gasFee", EmitDefaultValue = false)]
+        public string GasFee { get; set; }
+
+        /// <summary>
+        /// The l1 gas fee by the transaction of this log.
+        /// </summary>
+        /// <value>The l1 gas fee by the transaction of this log.</value>
+        [DataMember(Name = "l1GasFee", EmitDefaultValue = false)]
+        public string L1GasFee { get; set; }
 
         /// <summary>
         /// The status of the transaction of this log.
@@ -144,9 +153,10 @@ namespace Openfort.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  BlockNumber: ").Append(BlockNumber).Append("\n");
             sb.Append("  TransactionHash: ").Append(TransactionHash).Append("\n");
-            sb.Append("  UserOpHash: ").Append(UserOpHash).Append("\n");
             sb.Append("  L1GasUsed: ").Append(L1GasUsed).Append("\n");
             sb.Append("  GasUsed: ").Append(GasUsed).Append("\n");
+            sb.Append("  GasFee: ").Append(GasFee).Append("\n");
+            sb.Append("  L1GasFee: ").Append(L1GasFee).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Logs: ").Append(Logs).Append("\n");
             sb.Append("  To: ").Append(To).Append("\n");
@@ -200,18 +210,24 @@ namespace Openfort.Model
                     this.TransactionHash.Equals(input.TransactionHash))
                 ) && 
                 (
-                    this.UserOpHash == input.UserOpHash ||
-                    (this.UserOpHash != null &&
-                    this.UserOpHash.Equals(input.UserOpHash))
-                ) && 
-                (
                     this.L1GasUsed == input.L1GasUsed ||
                     (this.L1GasUsed != null &&
                     this.L1GasUsed.Equals(input.L1GasUsed))
                 ) && 
                 (
                     this.GasUsed == input.GasUsed ||
-                    this.GasUsed.Equals(input.GasUsed)
+                    (this.GasUsed != null &&
+                    this.GasUsed.Equals(input.GasUsed))
+                ) && 
+                (
+                    this.GasFee == input.GasFee ||
+                    (this.GasFee != null &&
+                    this.GasFee.Equals(input.GasFee))
+                ) && 
+                (
+                    this.L1GasFee == input.L1GasFee ||
+                    (this.L1GasFee != null &&
+                    this.L1GasFee.Equals(input.L1GasFee))
                 ) && 
                 (
                     this.Status == input.Status ||
@@ -250,15 +266,22 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.TransactionHash.GetHashCode();
                 }
-                if (this.UserOpHash != null)
-                {
-                    hashCode = (hashCode * 59) + this.UserOpHash.GetHashCode();
-                }
                 if (this.L1GasUsed != null)
                 {
                     hashCode = (hashCode * 59) + this.L1GasUsed.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.GasUsed.GetHashCode();
+                if (this.GasUsed != null)
+                {
+                    hashCode = (hashCode * 59) + this.GasUsed.GetHashCode();
+                }
+                if (this.GasFee != null)
+                {
+                    hashCode = (hashCode * 59) + this.GasFee.GetHashCode();
+                }
+                if (this.L1GasFee != null)
+                {
+                    hashCode = (hashCode * 59) + this.L1GasFee.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 if (this.Logs != null)
                 {

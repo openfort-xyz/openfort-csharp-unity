@@ -45,9 +45,9 @@ namespace Openfort.Model
         /// <param name="order">order.</param>
         /// <param name="expand">Specifies the fields to expand in the response..</param>
         /// <param name="name">Specifies the name of the policy..</param>
-        /// <param name="deleted">Specifies whether to include deleted contracts..</param>
+        /// <param name="deleted">Specifies whether to include deleted policies..</param>
         /// <param name="chainId">The chain ID of the policy..</param>
-        /// <param name="enabled">Specifies whether to include enabled contracts..</param>
+        /// <param name="enabled">Specifies whether to include enabled policies..</param>
         public PolicyListQueries(int limit = default(int), int skip = default(int), SortOrder? order = default(SortOrder?), List<PolicyResponseExpandable> expand = default(List<PolicyResponseExpandable>), string name = default(string), bool deleted = default(bool), int chainId = default(int), bool enabled = default(bool))
         {
             this.Limit = limit;
@@ -85,13 +85,15 @@ namespace Openfort.Model
         /// Specifies the name of the policy.
         /// </summary>
         /// <value>Specifies the name of the policy.</value>
+        /// <example>&quot;MyPolicy&quot;</example>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Specifies whether to include deleted contracts.
+        /// Specifies whether to include deleted policies.
         /// </summary>
-        /// <value>Specifies whether to include deleted contracts.</value>
+        /// <value>Specifies whether to include deleted policies.</value>
+        /// <example>true</example>
         [DataMember(Name = "deleted", EmitDefaultValue = true)]
         public bool Deleted { get; set; }
 
@@ -99,13 +101,15 @@ namespace Openfort.Model
         /// The chain ID of the policy.
         /// </summary>
         /// <value>The chain ID of the policy.</value>
+        /// <example>80001</example>
         [DataMember(Name = "chainId", EmitDefaultValue = false)]
         public int ChainId { get; set; }
 
         /// <summary>
-        /// Specifies whether to include enabled contracts.
+        /// Specifies whether to include enabled policies.
         /// </summary>
-        /// <value>Specifies whether to include enabled contracts.</value>
+        /// <value>Specifies whether to include enabled policies.</value>
+        /// <example>true</example>
         [DataMember(Name = "enabled", EmitDefaultValue = true)]
         public bool Enabled { get; set; }
 
