@@ -92,7 +92,7 @@ namespace Openfort.Signer
                 recoveryShare = Cypher.Encrypt(_recoveryPassword,recoveryShare);
             }
 
-            var account = await _accountsApi.CreateAccountAsync(new CreateAccountRequest(_chainId, key.GetPublicAddress()));
+            var account = await _accountsApi.CreateAccountAsync(new CreateAccountRequest(_chainId, externalOwnerAddress: key.GetPublicAddress()));
 
             var device = await _embeddedApi.CreateDeviceAsync(new CreateDeviceRequest(account.Id));
             _deviceId = device.Id;
