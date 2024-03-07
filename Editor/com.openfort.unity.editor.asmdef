@@ -1,0 +1,18 @@
+{
+    "name": "com.openfort.unity.editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:68380e8d92e6c4f19bc1702bca57225f"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
