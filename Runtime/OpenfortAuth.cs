@@ -7,7 +7,8 @@ using Openfort.Client;
 using Openfort.Crypto;
 using Openfort.Model;
 
-public struct Authentication {
+
+internal struct Authentication {
     public string Token;
     public string RefreshToken;
     public string PlayerId;
@@ -17,41 +18,52 @@ namespace Openfort
 {
     public class OpenfortAuth
     {
-        private readonly Configuration _configuration;
-        private readonly ApiClient _apiClient;
-        private string _key;
         private readonly string _publishableKey;
-        public readonly AuthenticationApi AuthenticationApi;
+        private readonly AuthenticationApi _authenticationApi;
 
-        public OpenfortAuth(string publishableKey)
+        internal OpenfortAuth(string publishableKey, string basePath = null)
         {
-            _configuration = new Configuration(
+            var configuration = new Configuration(
                 new Dictionary<string, string> { { "Authorization", "Bearer " + publishableKey } },
                 new Dictionary<string, string> { { "Authorization", publishableKey } },
                 new Dictionary<string, string> { { "Authorization", "Bearer" } });
-            _apiClient = new ApiClient(_configuration.BasePath);
+            if (basePath != null)
+            {
+                configuration.BasePath = basePath;
+            }
+            var apiClient = new ApiClient(configuration.BasePath);
             _publishableKey = publishableKey;
-            AuthenticationApi = new AuthenticationApi(_apiClient, _apiClient, _configuration);
+            _authenticationApi = new AuthenticationApi(apiClient, apiClient, configuration);
         }
 
-        public async Task<Authentication> AuthWithToken(OAuthProvider provider, string token)
+        internal async Task<Authentication> Login(string username, string password)
+        {
+            var request = new LoginRequest(username, password);
+            var response = await _authenticationApi.LoginEmailPasswordAsync(request);
+            var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
+            return authentication;
+        }
+        
+        internal async Task<Authentication> SignUp(string username, string password)
+        {
+            var request = new SignupRequest(username, password);
+            var response = await _authenticationApi.SignupEmailPasswordAsync(request);
+            var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
+            return authentication;
+        }
+        
+        internal async Task<Authentication> Login(OAuthProvider provider, string token)
         {
             var request = new AuthenticateOAuthRequest(provider, token);
-            var response = await AuthenticationApi.AuthenticateOAuthAsync(request);
+            var response = await _authenticationApi.AuthenticateOAuthAsync(request);
             var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
-            SaveToken(authentication);
             return authentication;
         }
 
 
-        public async Task<Authentication> ValidateAndRefreshToken()
+        internal async Task<Authentication> ValidateAndRefreshToken(string accessToken, string refreshToken)
         {
-            return await ValidateAndRefreshToken(Token, RefreshToken);
-        }
-        
-        public async Task<Authentication> ValidateAndRefreshToken(string accessToken, string refreshToken)
-        {
-            var jwtks = await AuthenticationApi.GetJwksAsync(_publishableKey);
+            var jwtks = await _authenticationApi.GetJwksAsync(_publishableKey);
             if (jwtks.Keys.Count == 0)
             {
                 throw new Exception("No keys found");
@@ -63,9 +75,9 @@ namespace Openfort
             {
                 var playerId = Jwt.Validate(accessToken, jwtk.X, jwtk.Y, jwtk.Crv);
                 authentication = new Authentication { Token = accessToken, RefreshToken = refreshToken, PlayerId = playerId };
-            } catch (TokenExpiredException e) {
+            } catch (TokenExpiredException) {
                 var request = new RefreshTokenRequest { RefreshToken = refreshToken };
-                var response = await AuthenticationApi.RefreshAsync(request);
+                var response = await _authenticationApi.RefreshAsync(request);
                 authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
             } catch (Exception e)
             {
@@ -73,46 +85,7 @@ namespace Openfort
                 throw;
             }
             
-            SaveToken(authentication);
             return authentication;
-        }
-        
-        
-
-        public void Logout()
-        {
-            PlayerPrefs.DeleteKey("openfort-auth-token");
-            PlayerPrefs.DeleteKey("openfort-auth-player");
-        }
-
-        private void SaveToken(Authentication authentication) {
-            PlayerPrefs.SetString("openfort-auth-token", authentication.Token);
-            PlayerPrefs.SetString("openfort-auth-refresh-token", authentication.RefreshToken);
-            PlayerPrefs.SetString("openfort-auth-player", authentication.PlayerId);
-        }
-
-        public string Token
-        {
-            get
-            {
-                return PlayerPrefs.GetString("openfort-auth-token");
-            }
-        }
-        
-        public string RefreshToken
-        {
-            get
-            {
-                return PlayerPrefs.GetString("openfort-auth-refresh-token");
-            }
-        }
-    
-        public string PlayerId
-        {
-            get
-            {
-                return PlayerPrefs.GetString("openfort-auth-player");
-            }
         }
     }
 }

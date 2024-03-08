@@ -1,73 +1,83 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using Nethereum.Signer;
 using Openfort.Api;
 using Openfort.Client;
 using Openfort.Crypto;
 using Openfort.Model;
+using Openfort.Recovery;
 using Openfort.Storage;
 using Org.BouncyCastle.Utilities.Encoders;
 
 namespace Openfort.Signer
 {
-    public class EmbeddedSigner : ISigner
+    internal class EmbeddedSigner : ISigner
     {
         private readonly int _chainId;
         private readonly string _accessToken;
-        private readonly string _recoveryPassword;
+        private IRecovery _recovery;
         private string _deviceId;
+        private readonly string _publishableKey;
+        private readonly string _basePath;
         private readonly IStorage _storage;
-        private readonly AccountsApi _accountsApi;
-        private readonly EmbeddedApi _embeddedApi;
-        private readonly AuthenticationApi _authenticationApi;
+        private AccountsApi _accountsApi;
+        private EmbeddedApi _embeddedApi;
         private const int Threshold = 2;
         private const int Shares = 3;
         private const int DeviceShareIndex = 0;
         private const int AuthShareIndex = 1;
         private const int RecoveryShareIndex = 2;
         
-        public EmbeddedSigner(int chainId, string publishableKey, string accessToken, string recoveryPassword)
+        public EmbeddedSigner(int chainId, string publishableKey, IStorage storage, string basePath = null)
         {
             _chainId = chainId;
-            _accessToken = accessToken;
-            _recoveryPassword = recoveryPassword;
             _deviceId = string.Empty;
-            _storage = new PlayerPreferencesStorage();
-            
+            _storage = storage;
+            _publishableKey = publishableKey;
+            _basePath = basePath; 
+            ConfigureAPIs();
+        }
+
+        private void ConfigureAPIs()
+        {
             var apiConfiguration = new Configuration(
                 new Dictionary<string, string>
                 {
-                    { "Authorization", "Bearer " + publishableKey },
-                    { "player-token" , accessToken }
+                    { "Authorization", "Bearer " + _publishableKey },
+                    { "player-token" , _storage.Get(Keys.AuthToken) }
                 },
-                new Dictionary<string, string> { { "Authorization", publishableKey } },
+                new Dictionary<string, string> { { "Authorization", _publishableKey } },
                 new Dictionary<string, string> { { "Authorization", "Bearer" } }
             );
             
-            var api = new ApiClient(apiConfiguration.BasePath);
+            
+            var api = new ApiClient(_basePath ?? apiConfiguration.BasePath);
             
             _accountsApi = new AccountsApi(api, api, apiConfiguration);
-            _embeddedApi = new EmbeddedApi(api, api, apiConfiguration);
-            _authenticationApi = new AuthenticationApi(api, api, new Configuration(
-                new Dictionary<string, string> {{ "Authorization", "Bearer " + publishableKey }},
-                new Dictionary<string, string> { { "Authorization", publishableKey } },
-                new Dictionary<string, string> { { "Authorization", "Bearer" } }
-            ));
+            _embeddedApi = new EmbeddedApi(api, api, apiConfiguration); 
+        }
+        
+        public void Logout()
+        {
+            _storage.Delete(Keys.DeviceId);
+            _storage.Delete(Keys.Share);
+        }
+        
+        public bool IsLoaded()
+        {
+            return !string.IsNullOrEmpty(_deviceId) || !string.IsNullOrEmpty(_storage.Get(Keys.DeviceId));
         }
 
         public async Task<string> EnsureEmbeddedAccount()
         {
             if (!string.IsNullOrEmpty(_deviceId)) return _deviceId;
             
-            _deviceId = _storage.Get("deviceId");
+            _deviceId = _storage.Get(Keys.DeviceId);
             if (!string.IsNullOrEmpty(_deviceId)) return _deviceId;
             
-            var playerId = await _authenticationApi.VerifyAuthTokenAsync(_accessToken);
-            if (playerId == null) throw new System.Exception("Invalid player token");
-            
-            var accounts = await _accountsApi.GetAccountsAsync(playerId.PlayerId);
+            var playerId = _storage.Get(Keys.PlayerId);
+            var accounts = await _accountsApi.GetAccountsAsync(playerId);
             foreach (var account in accounts.Data.Where(account => account.ChainId == _chainId))
             {
                 await RecoverAccount(account.Id);
@@ -80,16 +90,16 @@ namespace Openfort.Signer
 
         private async Task CreateAccount()
         {
-            var key = Nethereum.Signer.EthECKey.GenerateKey();
+            var key = EthECKey.GenerateKey();
             var shares = ShamirSecretSharing.SplitPrivateKey(key.GetPrivateKey(), Shares, Threshold);
             
             var deviceShare = shares[DeviceShareIndex];
             var authShare = shares[AuthShareIndex];
             var recoveryShare = shares[RecoveryShareIndex];
             
-            if (!string.IsNullOrEmpty(_recoveryPassword))
+            if (!string.IsNullOrEmpty(_recovery.GetRecoveryPassword()))
             {
-                recoveryShare = Cypher.Encrypt(_recoveryPassword,recoveryShare);
+                recoveryShare = Cypher.Encrypt(_recovery.GetRecoveryPassword(),recoveryShare);
             }
 
             var account = await _accountsApi.CreateAccountAsync(new CreateAccountRequest(_chainId, externalOwnerAddress: key.GetPublicAddress()));
@@ -97,7 +107,7 @@ namespace Openfort.Signer
             var device = await _embeddedApi.CreateDeviceAsync(new CreateDeviceRequest(account.Id));
             _deviceId = device.Id;
 
-            await _embeddedApi.CreateDeviceShareAsync(_deviceId, new CreateShareRequest(recoveryShare, ShareType.Recovery, !string.IsNullOrEmpty(_recoveryPassword)));
+            await _embeddedApi.CreateDeviceShareAsync(_deviceId, new CreateShareRequest(recoveryShare, ShareType.Recovery, !string.IsNullOrEmpty(_recovery.GetRecoveryPassword())));
             await _embeddedApi.CreateDeviceShareAsync(_deviceId, new CreateShareRequest(authShare, ShareType.Auth));
             _storage.Set("deviceId", _deviceId);
             _storage.Set("share", deviceShare);
@@ -115,11 +125,11 @@ namespace Openfort.Signer
             var recoveryShare = recoveryShares.Data.First(share => share.Type == ShareType.Recovery);
             var authShare = recoveryShares.Data.First(share => share.Type == ShareType.Auth);
             
-            if (recoveryShare.UserEntropy && string.IsNullOrEmpty(_recoveryPassword)) throw new System.Exception("Recovery password required");
+            if (recoveryShare.UserEntropy && string.IsNullOrEmpty(_recovery.GetRecoveryPassword())) throw new System.Exception("Recovery password required");
             
             if (recoveryShare.UserEntropy)
             {
-                recoveryShare.Share = Cypher.Decrypt(_recoveryPassword,recoveryShare.Share);
+                recoveryShare.Share = Cypher.Decrypt(_recovery.GetRecoveryPassword(),recoveryShare.Share);
             }
 
             var privateKey = ShamirSecretSharing.CombinePrivateKey(new[] { recoveryShare.Share, authShare.Share });
@@ -129,15 +139,15 @@ namespace Openfort.Signer
             var newAuthShare = newShares[AuthShareIndex];
             var newRecoveryShare = newShares[RecoveryShareIndex];
             
-            if (!string.IsNullOrEmpty(_recoveryPassword))
+            if (!string.IsNullOrEmpty(_recovery.GetRecoveryPassword()))
             {
-                newRecoveryShare = Cypher.Encrypt(_recoveryPassword,newRecoveryShare);
+                newRecoveryShare = Cypher.Encrypt(_recovery.GetRecoveryPassword(),newRecoveryShare);
             }
             
             var newDevice = await _embeddedApi.CreateDeviceAsync(new CreateDeviceRequest(accountId));
             _deviceId = newDevice.Id;
             
-            await _embeddedApi.CreateDeviceShareAsync(_deviceId, new CreateShareRequest(newRecoveryShare, ShareType.Recovery, !string.IsNullOrEmpty(_recoveryPassword)));
+            await _embeddedApi.CreateDeviceShareAsync(_deviceId, new CreateShareRequest(newRecoveryShare, ShareType.Recovery, !string.IsNullOrEmpty(_recovery.GetRecoveryPassword())));
             await _embeddedApi.CreateDeviceShareAsync(_deviceId, new CreateShareRequest(newAuthShare, ShareType.Auth));
             
             _storage.Set("deviceId", _deviceId);
@@ -161,10 +171,30 @@ namespace Openfort.Signer
 
             var bytes = Hex.Decode(message.TrimHexPrefix());
             
-            var keyPair = new Nethereum.Signer.EthECKey(privateKey);
+            var keyPair = new EthECKey(privateKey);
             
             var signer = new EthereumMessageSigner();
             return signer.Sign(bytes, keyPair);
+        }
+        
+        public Signer GetSignerType()
+        {
+            return Signer.Embedded;
+        }
+
+        public bool UseCredentials()
+        {
+            return true;
+        }
+
+        public void UpdateAuthentication(Authentication auth)
+        {
+            ConfigureAPIs();
+        }
+
+        public void SetRecovery(IRecovery recovery)
+        {
+            _recovery = recovery;
         }
     }
 }

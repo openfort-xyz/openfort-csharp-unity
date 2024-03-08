@@ -39,8 +39,6 @@ namespace Openfort.Crypto
                 throw new TokenInvalidException("Invalid format");
             }
             
-            var header = parts[0];
-            var payload = parts[1];
             var signature = parts[2];
 
             var headerJson = Encoding.UTF8.GetString(Base64UrlDecode(parts[0]));
