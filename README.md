@@ -58,42 +58,40 @@ var sdk = new Openfort("pk_test_XXXXXXX");
 ```
 
 ### 1. Session Signer
-The Session Signer allows you to use an external signing keys, without needing to provide it every time. Here's how to use it:
+The Session Signer allows you to use external signing keys, without needing to provide it every time. Here's how to use it:
 
-- **Configure the Session Key**: Call `ConfigureSessionKey()`. This method returns a public key and a boolean indicating whether you need to register the key from the backend.
+- **Configure the Session Key**: Call `ConfigureSessionKey()`. This method returns an Ethereum address and a boolean indicating whether you need to register the key from the backend.
 ```csharp
 var sessionKey = sdk.ConfigureSessionKey();
 ```
-- **Register Key and Send Signature Session Request**: If the `sessionKey.IsRegistered` boolean is true, register the key from the backend. Refer to the documentation for session management [here](https://www.openfort.xyz/docs/guides/accounts/sessions).
-- **Send Signature Transaction Intent Request**: When calling SendSignatureTransactionIntentRequest, pass the transaction intent ID and the user operation. The session signer will handle the signing.
+- **Register Key and Send Signature Session Request**: If `sessionKey.IsRegistered` boolean is false, register the key from the backend. Refer to the documentation for [session management](https://www.openfort.xyz/docs/guides/accounts/sessions).
+- **Send Signature Transaction Intent Request**: When calling SendSignatureTransactionIntentRequest, pass the transaction intent ID and the user operation hash. The session signer will handle the signing.
 
 ### 2. External Sign
 
-This method allows you to externally sign transactions without logging in or additional configurations:
+This method allows you to externally sign transaction intents without logging in or additional configurations:
 
-- **Call SendSignatureTransactionIntentRequest**: Simply pass the transaction intent ID and the pre-generated signature.
+- **Call SendSignatureTransactionIntentRequest**: Simply pass the transaction intent ID and the signature.
 ```csharp
 var response = await sdk.SendSignatureTransactionIntentRequest("transaction_intent_id", signature: "your_signature");
 ```
 
-### 3. Custodial Sign
-In this method, Openfort takes responsibility for handling signatures, and when you start the transaction intent from the backend, Openfort will handle the signing and you dont need to cal the `SendSignatureTransactionIntentRequest` method.
-
-### 4. Embedded Signer
-The Embedded Signer uses key splitting methods to manage the private key on the client side:
-- **Login and Configure the Embedded Signer**: First, ensure the user is logged in, using `LoginWithEmailPassword`, `LoginWithOAuth` or if not registred `SignUp`. Then call `ConfigureEmbeddedSigner`. If a `MissingRecoveryMethod` exception is thrown, it indicates there's no share on the device and you have to call `ConfigureEmbeddedRecovery` to provide a recovery method.
+### 3. Embedded Signer
+The Embedded Signer uses SSS to manage the private key on the client side. To learn more, visit our [security documentation](https://www.openfort.xyz/docs/security).
+- **Login and Configure the Embedded Signer**: First, ensure the user is logged in, using `LoginWithEmailPassword`, `LoginWithOAuth` or if not registred `SignUpWithEmailPassword`. Then call `ConfigureEmbeddedSigner`. If a `MissingRecoveryMethod` exception is thrown, it indicates there's no share on the device and you have to call `ConfigureEmbeddedRecovery` to provide a recovery method.
 ```csharp
 try
 {
-    mOpenfort.ConfigureEmbeddedSigner(chainId);
+    sdk.LoginWithEmailPassword("user_email", "user_password");
+    sdk.ConfigureEmbeddedSigner(chainId);
 }
 catch (MissingRecoveryMethod)
 {
-    await mOpenfort.ConfigureEmbeddedRecovery(new PasswordRecovery("user_password"));
+    await sdk.ConfigureEmbeddedRecovery(new PasswordRecovery("user_password"));
 }
 ```
 For now the only recovery method available is the `PasswordRecovery` method.
-- **Send Signature Transaction Intent Request**: Similar to the session signer, pass the transaction intent ID and the user operation. The embedded signer reconstructs the key and signs the transaction.
+- **Send Signature Transaction Intent Request**: Similar to the session signer, pass the transaction intent ID and the user operation hash. The embedded signer reconstructs the key and signs the transaction.
 ```csharp
 var response = await sdk.SendSignatureTransactionIntentRequest("transaction_intent_id", "user_op");
 ```
