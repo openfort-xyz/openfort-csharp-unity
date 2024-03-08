@@ -108,22 +108,25 @@ namespace Openfort
             await embeddedSigner.EnsureEmbeddedAccount();
         }
         
-        public async Task LoginWithEmailPassword(string username, string password)
+        public async Task<string> LoginWithEmailPassword(string username, string password)
         {
             var auth = await _openfortAuth.Login(username, password);
             StoreCredentials(auth);
+            return auth.Token;
         }
         
-        public async Task LoginWithOAuth(OAuthProvider provider, string token)
+        public async Task <string> LoginWithOAuth(OAuthProvider provider, string token)
         {
             var auth = await _openfortAuth.Login(provider, token);
             StoreCredentials(auth);
+            return auth.Token;
         }
         
-        public async Task SignUp(string username, string password)
+        public async Task<string> SignUp(string username, string password)
         {
             var auth = await _openfortAuth.SignUp(username, password);
             StoreCredentials(auth);
+            return auth.Token;
         }
         
         private void StoreCredentials(Authentication authentication)
