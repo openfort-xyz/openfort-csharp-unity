@@ -1,6 +1,6 @@
 namespace Openfort.Storage
 {
-    public static class Keys
+    internal static class Keys
     {
         internal const string DeviceId = "openfort.deviceId";
         internal const string Share = "openfort.share";
@@ -10,7 +10,7 @@ namespace Openfort.Storage
         internal const string SessionKey = "openfort.session_key";
     }
     
-    public interface IStorage
+    internal interface IStorage
     {
         string Get(string key);
         void Set(string key, string value);

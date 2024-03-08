@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Openfort.Storage
 {
-    public class PlayerPreferencesStorage : IStorage
+    internal class PlayerPreferencesStorage : IStorage
     {
         public string Get(string key)
         {

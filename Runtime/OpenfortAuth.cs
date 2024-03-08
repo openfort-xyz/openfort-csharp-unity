@@ -16,7 +16,7 @@ internal struct Authentication {
 
 namespace Openfort
 {
-    public class OpenfortAuth
+    internal class OpenfortAuth
     {
         private readonly string _publishableKey;
         private readonly AuthenticationApi _authenticationApi;
