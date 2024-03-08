@@ -19,7 +19,6 @@ namespace Openfort.Signer
         private IRecovery _recovery;
         private string _deviceId;
         private readonly string _publishableKey;
-        private readonly string _basePath;
         private readonly IStorage _storage;
         private AccountsApi _accountsApi;
         private EmbeddedApi _embeddedApi;
@@ -35,7 +34,6 @@ namespace Openfort.Signer
             _deviceId = string.Empty;
             _storage = storage;
             _publishableKey = publishableKey;
-            _basePath = basePath; 
             ConfigureAPIs();
         }
 
@@ -52,7 +50,7 @@ namespace Openfort.Signer
             );
             
             
-            var api = new ApiClient(_basePath ?? apiConfiguration.BasePath);
+            var api = new ApiClient(apiConfiguration.BasePath);
             
             _accountsApi = new AccountsApi(api, api, apiConfiguration);
             _embeddedApi = new EmbeddedApi(api, api, apiConfiguration); 

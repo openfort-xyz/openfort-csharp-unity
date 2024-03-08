@@ -23,7 +23,6 @@ namespace Openfort
     public class NothingToSign : Exception {public NothingToSign(string message) : base(message) {}}
     public class OpenfortSDK
     {
-        private readonly string _basePath;
         private ISigner _signer;
         private readonly string _publishableKey;
         private readonly OpenfortAuth _openfortAuth;
@@ -32,21 +31,16 @@ namespace Openfort
         private readonly TransactionIntentsApi _transactionIntentsApi;
 
         
-        public OpenfortSDK(string publishableKey, string basePath = null)
+        public OpenfortSDK(string publishableKey)
         {
             _publishableKey = publishableKey;
-            _basePath = basePath;
-           _openfortAuth = new OpenfortAuth(publishableKey, basePath);
+           _openfortAuth = new OpenfortAuth(publishableKey);
            _storage = new PlayerPreferencesStorage();
            var configuration = new Configuration(
                new Dictionary<string, string> { { "Authorization", "Bearer " + _publishableKey } },
                new Dictionary<string, string> { { "Authorization", _publishableKey } },
                new Dictionary<string, string> { { "Authorization", "Bearer" } });
 
-           if (basePath is not null)
-           {
-               configuration.BasePath = basePath;
-           }
            _sessionApi = new SessionsApi(configuration);
            _transactionIntentsApi = new TransactionIntentsApi(configuration);
         }
@@ -81,7 +75,7 @@ namespace Openfort
                 throw new NotLoggedIn("Must be logged in to configure embedded signer");
             }
 
-            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage, _basePath);
+            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage);
             _signer = signer;
             
             if (!signer.IsLoaded())

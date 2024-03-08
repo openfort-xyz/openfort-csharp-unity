@@ -21,16 +21,12 @@ namespace Openfort
         private readonly string _publishableKey;
         private readonly AuthenticationApi _authenticationApi;
 
-        internal OpenfortAuth(string publishableKey, string basePath = null)
+        internal OpenfortAuth(string publishableKey)
         {
             var configuration = new Configuration(
                 new Dictionary<string, string> { { "Authorization", "Bearer " + publishableKey } },
                 new Dictionary<string, string> { { "Authorization", publishableKey } },
                 new Dictionary<string, string> { { "Authorization", "Bearer" } });
-            if (basePath != null)
-            {
-                configuration.BasePath = basePath;
-            }
             var apiClient = new ApiClient(configuration.BasePath);
             _publishableKey = publishableKey;
             _authenticationApi = new AuthenticationApi(apiClient, apiClient, configuration);
