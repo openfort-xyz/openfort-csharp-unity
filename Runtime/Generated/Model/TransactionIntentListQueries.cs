@@ -44,20 +44,22 @@ namespace Openfort.Model
         /// <param name="skip">Specifies the offset for the first records to return..</param>
         /// <param name="order">order.</param>
         /// <param name="expand">Specifies the fields to expand in the response..</param>
-        /// <param name="chainId">The chain ID..</param>
-        /// <param name="accountId">Filter by account ID..</param>
-        /// <param name="playerId">Filter by player ID (starts with pla_)..</param>
-        /// <param name="policyId">Filter by policy ID (starts with pol_)..</param>
-        public TransactionIntentListQueries(int limit = default(int), int skip = default(int), SortOrder? order = default(SortOrder?), List<TransactionIntentResponseExpandable> expand = default(List<TransactionIntentResponseExpandable>), int chainId = default(int), List<string> accountId = default(List<string>), List<string> playerId = default(List<string>), List<string> policyId = default(List<string>))
+        /// <param name="chainId">The chain ID. Must be a [supported chain](/chains)..</param>
+        /// <param name="account">Filter by account ID or developer account (starts with acc_ or dac_ respectively)..</param>
+        /// <param name="player">Filter by player ID (starts with pla_)..</param>
+        /// <param name="status">Filter by successful (1) or failed (0) transaction intents..</param>
+        /// <param name="policy">Filter by policy ID (starts with pol_)..</param>
+        public TransactionIntentListQueries(int limit = default(int), int skip = default(int), SortOrder? order = default(SortOrder?), List<TransactionIntentResponseExpandable> expand = default(List<TransactionIntentResponseExpandable>), int chainId = default(int), List<string> account = default(List<string>), List<string> player = default(List<string>), double status = default(double), List<string> policy = default(List<string>))
         {
             this.Limit = limit;
             this.Skip = skip;
             this.Order = order;
             this.Expand = expand;
             this.ChainId = chainId;
-            this.AccountId = accountId;
-            this.PlayerId = playerId;
-            this.PolicyId = policyId;
+            this.Account = account;
+            this.Player = player;
+            this.Status = status;
+            this.Policy = policy;
         }
 
         /// <summary>
@@ -82,32 +84,41 @@ namespace Openfort.Model
         public List<TransactionIntentResponseExpandable> Expand { get; set; }
 
         /// <summary>
-        /// The chain ID.
+        /// The chain ID. Must be a [supported chain](/chains).
         /// </summary>
-        /// <value>The chain ID.</value>
+        /// <value>The chain ID. Must be a [supported chain](/chains).</value>
+        /// <example>80001</example>
         [DataMember(Name = "chainId", EmitDefaultValue = false)]
         public int ChainId { get; set; }
 
         /// <summary>
-        /// Filter by account ID.
+        /// Filter by account ID or developer account (starts with acc_ or dac_ respectively).
         /// </summary>
-        /// <value>Filter by account ID.</value>
-        [DataMember(Name = "accountId", EmitDefaultValue = false)]
-        public List<string> AccountId { get; set; }
+        /// <value>Filter by account ID or developer account (starts with acc_ or dac_ respectively).</value>
+        [DataMember(Name = "account", EmitDefaultValue = false)]
+        public List<string> Account { get; set; }
 
         /// <summary>
         /// Filter by player ID (starts with pla_).
         /// </summary>
         /// <value>Filter by player ID (starts with pla_).</value>
-        [DataMember(Name = "playerId", EmitDefaultValue = false)]
-        public List<string> PlayerId { get; set; }
+        [DataMember(Name = "player", EmitDefaultValue = false)]
+        public List<string> Player { get; set; }
+
+        /// <summary>
+        /// Filter by successful (1) or failed (0) transaction intents.
+        /// </summary>
+        /// <value>Filter by successful (1) or failed (0) transaction intents.</value>
+        /// <example>1</example>
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public double Status { get; set; }
 
         /// <summary>
         /// Filter by policy ID (starts with pol_).
         /// </summary>
         /// <value>Filter by policy ID (starts with pol_).</value>
-        [DataMember(Name = "policyId", EmitDefaultValue = false)]
-        public List<string> PolicyId { get; set; }
+        [DataMember(Name = "policy", EmitDefaultValue = false)]
+        public List<string> Policy { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -122,9 +133,10 @@ namespace Openfort.Model
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  Expand: ").Append(Expand).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
-            sb.Append("  PlayerId: ").Append(PlayerId).Append("\n");
-            sb.Append("  PolicyId: ").Append(PolicyId).Append("\n");
+            sb.Append("  Account: ").Append(Account).Append("\n");
+            sb.Append("  Player: ").Append(Player).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Policy: ").Append(Policy).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -183,22 +195,26 @@ namespace Openfort.Model
                     this.ChainId.Equals(input.ChainId)
                 ) && 
                 (
-                    this.AccountId == input.AccountId ||
-                    this.AccountId != null &&
-                    input.AccountId != null &&
-                    this.AccountId.SequenceEqual(input.AccountId)
+                    this.Account == input.Account ||
+                    this.Account != null &&
+                    input.Account != null &&
+                    this.Account.SequenceEqual(input.Account)
                 ) && 
                 (
-                    this.PlayerId == input.PlayerId ||
-                    this.PlayerId != null &&
-                    input.PlayerId != null &&
-                    this.PlayerId.SequenceEqual(input.PlayerId)
+                    this.Player == input.Player ||
+                    this.Player != null &&
+                    input.Player != null &&
+                    this.Player.SequenceEqual(input.Player)
                 ) && 
                 (
-                    this.PolicyId == input.PolicyId ||
-                    this.PolicyId != null &&
-                    input.PolicyId != null &&
-                    this.PolicyId.SequenceEqual(input.PolicyId)
+                    this.Status == input.Status ||
+                    this.Status.Equals(input.Status)
+                ) && 
+                (
+                    this.Policy == input.Policy ||
+                    this.Policy != null &&
+                    input.Policy != null &&
+                    this.Policy.SequenceEqual(input.Policy)
                 );
         }
 
@@ -219,17 +235,18 @@ namespace Openfort.Model
                     hashCode = (hashCode * 59) + this.Expand.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
-                if (this.AccountId != null)
+                if (this.Account != null)
                 {
-                    hashCode = (hashCode * 59) + this.AccountId.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Account.GetHashCode();
                 }
-                if (this.PlayerId != null)
+                if (this.Player != null)
                 {
-                    hashCode = (hashCode * 59) + this.PlayerId.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Player.GetHashCode();
                 }
-                if (this.PolicyId != null)
+                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Policy != null)
                 {
-                    hashCode = (hashCode * 59) + this.PolicyId.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Policy.GetHashCode();
                 }
                 return hashCode;
             }

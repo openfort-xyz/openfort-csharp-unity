@@ -52,9 +52,9 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="UpdatePolicyRuleRequest" /> class.
         /// </summary>
         /// <param name="type">type (required).</param>
-        /// <param name="functionName">Name of the function in the contract to allow..</param>
-        /// <param name="contract">Contract ID to allow..</param>
-        /// <param name="gasLimit">Gas limit in WEI..</param>
+        /// <param name="functionName">Name of the function in the contract to allow. If you want to allow all functions, use the wildcard &#39;All functions&#39;..</param>
+        /// <param name="contract">The contract ID you want to interact with. Must have been added to Openfort first, starts with &#x60;con_&#x60;..</param>
+        /// <param name="gasLimit">Gas limit in WEI (i.e. factor 10^18)..</param>
         /// <param name="countLimit">Number of times the function will be sponsored..</param>
         /// <param name="timeIntervalType">timeIntervalType.</param>
         /// <param name="timeIntervalValue">Time interval value..</param>
@@ -70,23 +70,26 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Name of the function in the contract to allow.
+        /// Name of the function in the contract to allow. If you want to allow all functions, use the wildcard &#39;All functions&#39;.
         /// </summary>
-        /// <value>Name of the function in the contract to allow.</value>
-        [DataMember(Name = "functionName", EmitDefaultValue = true)]
+        /// <value>Name of the function in the contract to allow. If you want to allow all functions, use the wildcard &#39;All functions&#39;.</value>
+        /// <example>&quot;All functions&quot;</example>
+        [DataMember(Name = "functionName", EmitDefaultValue = false)]
         public string FunctionName { get; set; }
 
         /// <summary>
-        /// Contract ID to allow.
+        /// The contract ID you want to interact with. Must have been added to Openfort first, starts with &#x60;con_&#x60;.
         /// </summary>
-        /// <value>Contract ID to allow.</value>
-        [DataMember(Name = "contract", EmitDefaultValue = true)]
+        /// <value>The contract ID you want to interact with. Must have been added to Openfort first, starts with &#x60;con_&#x60;.</value>
+        /// <example>&quot;con_0cddb398-1dc6-4e6f-8726-9ec7cea85f35&quot;</example>
+        [DataMember(Name = "contract", EmitDefaultValue = false)]
         public string Contract { get; set; }
 
         /// <summary>
-        /// Gas limit in WEI.
+        /// Gas limit in WEI (i.e. factor 10^18).
         /// </summary>
-        /// <value>Gas limit in WEI.</value>
+        /// <value>Gas limit in WEI (i.e. factor 10^18).</value>
+        /// <example>&quot;1000000000000000000&quot;</example>
         [DataMember(Name = "gasLimit", EmitDefaultValue = false)]
         public string GasLimit { get; set; }
 
@@ -94,6 +97,7 @@ namespace Openfort.Model
         /// Number of times the function will be sponsored.
         /// </summary>
         /// <value>Number of times the function will be sponsored.</value>
+        /// <example>1</example>
         [DataMember(Name = "countLimit", EmitDefaultValue = false)]
         public int CountLimit { get; set; }
 
@@ -101,6 +105,7 @@ namespace Openfort.Model
         /// Time interval value.
         /// </summary>
         /// <value>Time interval value.</value>
+        /// <example>1</example>
         [DataMember(Name = "timeIntervalValue", EmitDefaultValue = false)]
         public int TimeIntervalValue { get; set; }
 

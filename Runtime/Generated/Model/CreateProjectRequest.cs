@@ -45,7 +45,7 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateProjectRequest" /> class.
         /// </summary>
-        /// <param name="name">name (required).</param>
+        /// <param name="name">Name of the project. (required).</param>
         /// <param name="pkPolicy">pkPolicy.</param>
         public CreateProjectRequest(string name = default(string), PrivateKeyPolicy? pkPolicy = default(PrivateKeyPolicy?))
         {
@@ -59,8 +59,10 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Name of the project.
         /// </summary>
+        /// <value>Name of the project.</value>
+        /// <example>&quot;My Project&quot;</example>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 

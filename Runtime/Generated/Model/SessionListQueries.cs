@@ -82,6 +82,7 @@ namespace Openfort.Model
         /// The player ID (starts with pla_)
         /// </summary>
         /// <value>The player ID (starts with pla_)</value>
+        /// <example>&quot;pla_48eeba57-2cd5-4159-a2cb-057a23a35e65&quot;</example>
         [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
         public string Player { get; set; }
 

@@ -31,12 +31,6 @@ namespace Openfort.Model
     [DataContract(Name = "CreateAccountRequest")]
     public partial class CreateAccountRequest : IEquatable<CreateAccountRequest>
     {
-
-        /// <summary>
-        /// Gets or Sets AccountType
-        /// </summary>
-        [DataMember(Name = "accountType", EmitDefaultValue = false)]
-        public DataAccountTypes? AccountType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateAccountRequest" /> class.
         /// </summary>
@@ -45,60 +39,78 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateAccountRequest" /> class.
         /// </summary>
-        /// <param name="chainId">The chain id (required).</param>
-        /// <param name="externalOwnerAddress">The address of the external owner.</param>
-        /// <param name="accountType">accountType.</param>
-        /// <param name="tokenContract">If ERC6551, the NFT contract to use.</param>
-        /// <param name="tokenId">If ERC6551, the tokenID to serve as owner.</param>
-        /// <param name="player">The player ID (starts with pla_) (required).</param>
-        public CreateAccountRequest(int chainId = default(int), string externalOwnerAddress = default(string), DataAccountTypes? accountType = default(DataAccountTypes?), string tokenContract = default(string), long tokenId = default(long), string player = default(string))
+        /// <param name="chainId">The chain ID. Must be a [supported chain](/chains). (required).</param>
+        /// <param name="externalOwnerAddress">Use this parameter to create a new Account for Player with the provided owner address..</param>
+        /// <param name="accountType">The type of smart account that will be created (e.g. ERC6551V1, ManagedV5, UpgradeableV5). Defaults to UpgradeableV5..</param>
+        /// <param name="defaultGuardian">For account types that support social recovery, wether to enable Openfort as guardian or not. Defaults to false..</param>
+        /// <param name="tokenContract">If ERC6551, the address of the NFT contract to use.</param>
+        /// <param name="tokenId">If ERC6551, the tokenId from the NFT contract that will serve as owner.</param>
+        /// <param name="player">ID of the player this account belongs to (starts with &#x60;pla_&#x60;). If none is provided, a new player will be created..</param>
+        public CreateAccountRequest(int chainId = default(int), string externalOwnerAddress = default(string), string accountType = default(string), bool defaultGuardian = default(bool), string tokenContract = default(string), long tokenId = default(long), string player = default(string))
         {
             this.ChainId = chainId;
-            // to ensure "player" is required (not null)
-            if (player == null)
-            {
-                throw new ArgumentNullException("player is a required property for CreateAccountRequest and cannot be null");
-            }
-            this.Player = player;
             this.ExternalOwnerAddress = externalOwnerAddress;
             this.AccountType = accountType;
+            this.DefaultGuardian = defaultGuardian;
             this.TokenContract = tokenContract;
             this.TokenId = tokenId;
+            this.Player = player;
         }
 
         /// <summary>
-        /// The chain id
+        /// The chain ID. Must be a [supported chain](/chains).
         /// </summary>
-        /// <value>The chain id</value>
+        /// <value>The chain ID. Must be a [supported chain](/chains).</value>
+        /// <example>80001</example>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
         public int ChainId { get; set; }
 
         /// <summary>
-        /// The address of the external owner
+        /// Use this parameter to create a new Account for Player with the provided owner address.
         /// </summary>
-        /// <value>The address of the external owner</value>
+        /// <value>Use this parameter to create a new Account for Player with the provided owner address.</value>
+        /// <example>&quot;0x662D24Bf7Ea2dD6a7D0935F680a6056b94fE934d&quot;</example>
         [DataMember(Name = "externalOwnerAddress", EmitDefaultValue = false)]
         public string ExternalOwnerAddress { get; set; }
 
         /// <summary>
-        /// If ERC6551, the NFT contract to use
+        /// The type of smart account that will be created (e.g. ERC6551V1, ManagedV5, UpgradeableV5). Defaults to UpgradeableV5.
         /// </summary>
-        /// <value>If ERC6551, the NFT contract to use</value>
+        /// <value>The type of smart account that will be created (e.g. ERC6551V1, ManagedV5, UpgradeableV5). Defaults to UpgradeableV5.</value>
+        /// <example>&quot;UpgradeableV5&quot;</example>
+        [DataMember(Name = "accountType", EmitDefaultValue = false)]
+        public string AccountType { get; set; }
+
+        /// <summary>
+        /// For account types that support social recovery, wether to enable Openfort as guardian or not. Defaults to false.
+        /// </summary>
+        /// <value>For account types that support social recovery, wether to enable Openfort as guardian or not. Defaults to false.</value>
+        /// <example>true</example>
+        [DataMember(Name = "defaultGuardian", EmitDefaultValue = true)]
+        public bool DefaultGuardian { get; set; }
+
+        /// <summary>
+        /// If ERC6551, the address of the NFT contract to use
+        /// </summary>
+        /// <value>If ERC6551, the address of the NFT contract to use</value>
+        /// <example>&quot;0x662D24Bf7Ea2dD6a7D0135F680a6056b94fE934d&quot;</example>
         [DataMember(Name = "tokenContract", EmitDefaultValue = false)]
         public string TokenContract { get; set; }
 
         /// <summary>
-        /// If ERC6551, the tokenID to serve as owner
+        /// If ERC6551, the tokenId from the NFT contract that will serve as owner
         /// </summary>
-        /// <value>If ERC6551, the tokenID to serve as owner</value>
+        /// <value>If ERC6551, the tokenId from the NFT contract that will serve as owner</value>
+        /// <example>1</example>
         [DataMember(Name = "tokenId", EmitDefaultValue = false)]
         public long TokenId { get; set; }
 
         /// <summary>
-        /// The player ID (starts with pla_)
+        /// ID of the player this account belongs to (starts with &#x60;pla_&#x60;). If none is provided, a new player will be created.
         /// </summary>
-        /// <value>The player ID (starts with pla_)</value>
-        [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>ID of the player this account belongs to (starts with &#x60;pla_&#x60;). If none is provided, a new player will be created.</value>
+        /// <example>&quot;pla_e0b84653-1741-4a3d-9e91-2b0fd2942f60&quot;</example>
+        [DataMember(Name = "player", EmitDefaultValue = false)]
         public string Player { get; set; }
 
         /// <summary>
@@ -112,6 +124,7 @@ namespace Openfort.Model
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  ExternalOwnerAddress: ").Append(ExternalOwnerAddress).Append("\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");
+            sb.Append("  DefaultGuardian: ").Append(DefaultGuardian).Append("\n");
             sb.Append("  TokenContract: ").Append(TokenContract).Append("\n");
             sb.Append("  TokenId: ").Append(TokenId).Append("\n");
             sb.Append("  Player: ").Append(Player).Append("\n");
@@ -161,7 +174,12 @@ namespace Openfort.Model
                 ) && 
                 (
                     this.AccountType == input.AccountType ||
-                    this.AccountType.Equals(input.AccountType)
+                    (this.AccountType != null &&
+                    this.AccountType.Equals(input.AccountType))
+                ) && 
+                (
+                    this.DefaultGuardian == input.DefaultGuardian ||
+                    this.DefaultGuardian.Equals(input.DefaultGuardian)
                 ) && 
                 (
                     this.TokenContract == input.TokenContract ||
@@ -193,7 +211,11 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.ExternalOwnerAddress.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                if (this.AccountType != null)
+                {
+                    hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.DefaultGuardian.GetHashCode();
                 if (this.TokenContract != null)
                 {
                     hashCode = (hashCode * 59) + this.TokenContract.GetHashCode();

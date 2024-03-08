@@ -40,7 +40,7 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="SubmitWeb3ActionRequest" /> class.
         /// </summary>
         /// <param name="approve">True to approve the action, false to reject it. (required).</param>
-        /// <param name="policy">The policy ID (starts with pol_).</param>
+        /// <param name="policy">ID of the Policy that defines the gas sponsorship strategy (starts with &#x60;pol_&#x60;). If no Policy is provided, the own Account native token funds will be used to pay for gas..</param>
         /// <param name="signature">signed data by the owner.</param>
         public SubmitWeb3ActionRequest(bool approve = default(bool), string policy = default(string), string signature = default(string))
         {
@@ -53,13 +53,15 @@ namespace Openfort.Model
         /// True to approve the action, false to reject it.
         /// </summary>
         /// <value>True to approve the action, false to reject it.</value>
+        /// <example>true</example>
         [DataMember(Name = "approve", IsRequired = true, EmitDefaultValue = true)]
         public bool Approve { get; set; }
 
         /// <summary>
-        /// The policy ID (starts with pol_)
+        /// ID of the Policy that defines the gas sponsorship strategy (starts with &#x60;pol_&#x60;). If no Policy is provided, the own Account native token funds will be used to pay for gas.
         /// </summary>
-        /// <value>The policy ID (starts with pol_)</value>
+        /// <value>ID of the Policy that defines the gas sponsorship strategy (starts with &#x60;pol_&#x60;). If no Policy is provided, the own Account native token funds will be used to pay for gas.</value>
+        /// <example>&quot;pol_7e07ae30-2a4d-48fa-803f-361da94905dd&quot;</example>
         [DataMember(Name = "policy", EmitDefaultValue = false)]
         public string Policy { get; set; }
 
@@ -67,6 +69,7 @@ namespace Openfort.Model
         /// signed data by the owner
         /// </summary>
         /// <value>signed data by the owner</value>
+        /// <example>&quot;0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef&quot;</example>
         [DataMember(Name = "signature", EmitDefaultValue = false)]
         public string Signature { get; set; }
 

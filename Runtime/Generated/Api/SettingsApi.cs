@@ -28,87 +28,120 @@ namespace Openfort.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Add depositor address.
+        /// Create a developer account.
         /// </summary>
         /// <remarks>
-        /// Verify signature and add a depositor address to the current project environment.
+        /// Create or add a developer account. Developer accounts can be used as for escrow, minting and transferring assets. To add your own external account, add a signature and the address of the account. This verified account can then be used as a verified depositor
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="paymasterDepositorCreateRequest"></param>
-        /// <returns>PaymasterDepositorResponse</returns>
-        PaymasterDepositorResponse AddDepositorAddress(PaymasterDepositorCreateRequest paymasterDepositorCreateRequest);
+        /// <param name="developerAccountCreateRequest"></param>
+        /// <returns>DeveloperAccountResponse</returns>
+        DeveloperAccountResponse CreateDeveloperAccount(DeveloperAccountCreateRequest developerAccountCreateRequest);
 
         /// <summary>
-        /// Add depositor address.
+        /// Create a developer account.
         /// </summary>
         /// <remarks>
-        /// Verify signature and add a depositor address to the current project environment.
+        /// Create or add a developer account. Developer accounts can be used as for escrow, minting and transferring assets. To add your own external account, add a signature and the address of the account. This verified account can then be used as a verified depositor
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="paymasterDepositorCreateRequest"></param>
-        /// <returns>ApiResponse of PaymasterDepositorResponse</returns>
-        ApiResponse<PaymasterDepositorResponse> AddDepositorAddressWithHttpInfo(PaymasterDepositorCreateRequest paymasterDepositorCreateRequest);
+        /// <param name="developerAccountCreateRequest"></param>
+        /// <returns>ApiResponse of DeveloperAccountResponse</returns>
+        ApiResponse<DeveloperAccountResponse> CreateDeveloperAccountWithHttpInfo(DeveloperAccountCreateRequest developerAccountCreateRequest);
         /// <summary>
-        /// List of depositor addresses.
+        /// Delete a developer account.
         /// </summary>
         /// <remarks>
-        /// Retrieve the list of the depositor addresses for the current project environment.
+        /// Delete a developer account from the current project.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>PaymasterDepositorListResponse</returns>
-        PaymasterDepositorListResponse GetDepositorAddresses();
+        /// <param name="id">Specifies a unique developer account (starts with dac_).</param>
+        /// <returns>DeveloperAccountDeleteResponse</returns>
+        DeveloperAccountDeleteResponse DeleteDeveloperAccount(string id);
 
         /// <summary>
-        /// List of depositor addresses.
+        /// Delete a developer account.
         /// </summary>
         /// <remarks>
-        /// Retrieve the list of the depositor addresses for the current project environment.
+        /// Delete a developer account from the current project.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of PaymasterDepositorListResponse</returns>
-        ApiResponse<PaymasterDepositorListResponse> GetDepositorAddressesWithHttpInfo();
+        /// <param name="id">Specifies a unique developer account (starts with dac_).</param>
+        /// <returns>ApiResponse of DeveloperAccountDeleteResponse</returns>
+        ApiResponse<DeveloperAccountDeleteResponse> DeleteDeveloperAccountWithHttpInfo(string id);
+        /// <summary>
+        /// Get existing developer account.
+        /// </summary>
+        /// <remarks>
+        /// Retrieve a developer account.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique developer account ID (starts with dac_).</param>
+        /// <param name="expand"> (optional)</param>
+        /// <returns>DeveloperAccountResponse</returns>
+        DeveloperAccountResponse GetDeveloperAccount(string id, List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>));
+
+        /// <summary>
+        /// Get existing developer account.
+        /// </summary>
+        /// <remarks>
+        /// Retrieve a developer account.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique developer account ID (starts with dac_).</param>
+        /// <param name="expand"> (optional)</param>
+        /// <returns>ApiResponse of DeveloperAccountResponse</returns>
+        ApiResponse<DeveloperAccountResponse> GetDeveloperAccountWithHttpInfo(string id, List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>));
+        /// <summary>
+        /// List of developer accounts.
+        /// </summary>
+        /// <remarks>
+        /// Retrieve the list of the developer accounts for the current project.  By default, a maximum of 10 accounts are shown per page.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted dev accounts. (optional)</param>
+        /// <returns>DeveloperAccountListResponse</returns>
+        DeveloperAccountListResponse GetDeveloperAccounts(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>), bool? deleted = default(bool?));
+
+        /// <summary>
+        /// List of developer accounts.
+        /// </summary>
+        /// <remarks>
+        /// Retrieve the list of the developer accounts for the current project.  By default, a maximum of 10 accounts are shown per page.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted dev accounts. (optional)</param>
+        /// <returns>ApiResponse of DeveloperAccountListResponse</returns>
+        ApiResponse<DeveloperAccountListResponse> GetDeveloperAccountsWithHttpInfo(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>), bool? deleted = default(bool?));
         /// <summary>
         /// Generate message to sign
         /// </summary>
         /// <remarks>
-        /// Generate message, which should be signed for verification of the address ownership.
+        /// Generate message, which should be signed by the account your want to add as a developer account.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="address">Specifies the paymaster depositor address</param>
-        /// <returns>PaymasterDepositorGetMessageResponse</returns>
-        PaymasterDepositorGetMessageResponse GetMessageForSigningDepositorAddress(string address);
+        /// <param name="address">Specifies the address</param>
+        /// <returns>DeveloperAccountGetMessageResponse</returns>
+        DeveloperAccountGetMessageResponse GetVerificationPayload(string address);
 
         /// <summary>
         /// Generate message to sign
         /// </summary>
         /// <remarks>
-        /// Generate message, which should be signed for verification of the address ownership.
+        /// Generate message, which should be signed by the account your want to add as a developer account.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="address">Specifies the paymaster depositor address</param>
-        /// <returns>ApiResponse of PaymasterDepositorGetMessageResponse</returns>
-        ApiResponse<PaymasterDepositorGetMessageResponse> GetMessageForSigningDepositorAddressWithHttpInfo(string address);
-        /// <summary>
-        /// Removes depositor address.
-        /// </summary>
-        /// <remarks>
-        /// Remove a depositor address from the current project environment.
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies unique identifier of depositor address.</param>
-        /// <returns>PaymasterDepositorDeleteResponse</returns>
-        PaymasterDepositorDeleteResponse RemoveDepositorAddress(string id);
-
-        /// <summary>
-        /// Removes depositor address.
-        /// </summary>
-        /// <remarks>
-        /// Remove a depositor address from the current project environment.
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies unique identifier of depositor address.</param>
-        /// <returns>ApiResponse of PaymasterDepositorDeleteResponse</returns>
-        ApiResponse<PaymasterDepositorDeleteResponse> RemoveDepositorAddressWithHttpInfo(string id);
+        /// <param name="address">Specifies the address</param>
+        /// <returns>ApiResponse of DeveloperAccountGetMessageResponse</returns>
+        ApiResponse<DeveloperAccountGetMessageResponse> GetVerificationPayloadWithHttpInfo(string address);
         /// <summary>
         /// Removes webhook.
         /// </summary>
@@ -159,95 +192,130 @@ namespace Openfort.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Add depositor address.
+        /// Create a developer account.
         /// </summary>
         /// <remarks>
-        /// Verify signature and add a depositor address to the current project environment.
+        /// Create or add a developer account. Developer accounts can be used as for escrow, minting and transferring assets. To add your own external account, add a signature and the address of the account. This verified account can then be used as a verified depositor
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="paymasterDepositorCreateRequest"></param>
+        /// <param name="developerAccountCreateRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PaymasterDepositorResponse</returns>
-        System.Threading.Tasks.Task<PaymasterDepositorResponse> AddDepositorAddressAsync(PaymasterDepositorCreateRequest paymasterDepositorCreateRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of DeveloperAccountResponse</returns>
+        System.Threading.Tasks.Task<DeveloperAccountResponse> CreateDeveloperAccountAsync(DeveloperAccountCreateRequest developerAccountCreateRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Add depositor address.
+        /// Create a developer account.
         /// </summary>
         /// <remarks>
-        /// Verify signature and add a depositor address to the current project environment.
+        /// Create or add a developer account. Developer accounts can be used as for escrow, minting and transferring assets. To add your own external account, add a signature and the address of the account. This verified account can then be used as a verified depositor
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="paymasterDepositorCreateRequest"></param>
+        /// <param name="developerAccountCreateRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PaymasterDepositorResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PaymasterDepositorResponse>> AddDepositorAddressWithHttpInfoAsync(PaymasterDepositorCreateRequest paymasterDepositorCreateRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (DeveloperAccountResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeveloperAccountResponse>> CreateDeveloperAccountWithHttpInfoAsync(DeveloperAccountCreateRequest developerAccountCreateRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// List of depositor addresses.
+        /// Delete a developer account.
         /// </summary>
         /// <remarks>
-        /// Retrieve the list of the depositor addresses for the current project environment.
+        /// Delete a developer account from the current project.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies a unique developer account (starts with dac_).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PaymasterDepositorListResponse</returns>
-        System.Threading.Tasks.Task<PaymasterDepositorListResponse> GetDepositorAddressesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of DeveloperAccountDeleteResponse</returns>
+        System.Threading.Tasks.Task<DeveloperAccountDeleteResponse> DeleteDeveloperAccountAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// List of depositor addresses.
+        /// Delete a developer account.
         /// </summary>
         /// <remarks>
-        /// Retrieve the list of the depositor addresses for the current project environment.
+        /// Delete a developer account from the current project.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies a unique developer account (starts with dac_).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PaymasterDepositorListResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PaymasterDepositorListResponse>> GetDepositorAddressesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (DeveloperAccountDeleteResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeveloperAccountDeleteResponse>> DeleteDeveloperAccountWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Get existing developer account.
+        /// </summary>
+        /// <remarks>
+        /// Retrieve a developer account.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique developer account ID (starts with dac_).</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeveloperAccountResponse</returns>
+        System.Threading.Tasks.Task<DeveloperAccountResponse> GetDeveloperAccountAsync(string id, List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get existing developer account.
+        /// </summary>
+        /// <remarks>
+        /// Retrieve a developer account.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique developer account ID (starts with dac_).</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeveloperAccountResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeveloperAccountResponse>> GetDeveloperAccountWithHttpInfoAsync(string id, List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// List of developer accounts.
+        /// </summary>
+        /// <remarks>
+        /// Retrieve the list of the developer accounts for the current project.  By default, a maximum of 10 accounts are shown per page.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted dev accounts. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeveloperAccountListResponse</returns>
+        System.Threading.Tasks.Task<DeveloperAccountListResponse> GetDeveloperAccountsAsync(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>), bool? deleted = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// List of developer accounts.
+        /// </summary>
+        /// <remarks>
+        /// Retrieve the list of the developer accounts for the current project.  By default, a maximum of 10 accounts are shown per page.
+        /// </remarks>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted dev accounts. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeveloperAccountListResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeveloperAccountListResponse>> GetDeveloperAccountsWithHttpInfoAsync(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>), bool? deleted = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Generate message to sign
         /// </summary>
         /// <remarks>
-        /// Generate message, which should be signed for verification of the address ownership.
+        /// Generate message, which should be signed by the account your want to add as a developer account.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="address">Specifies the paymaster depositor address</param>
+        /// <param name="address">Specifies the address</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PaymasterDepositorGetMessageResponse</returns>
-        System.Threading.Tasks.Task<PaymasterDepositorGetMessageResponse> GetMessageForSigningDepositorAddressAsync(string address, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of DeveloperAccountGetMessageResponse</returns>
+        System.Threading.Tasks.Task<DeveloperAccountGetMessageResponse> GetVerificationPayloadAsync(string address, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Generate message to sign
         /// </summary>
         /// <remarks>
-        /// Generate message, which should be signed for verification of the address ownership.
+        /// Generate message, which should be signed by the account your want to add as a developer account.
         /// </remarks>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="address">Specifies the paymaster depositor address</param>
+        /// <param name="address">Specifies the address</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PaymasterDepositorGetMessageResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PaymasterDepositorGetMessageResponse>> GetMessageForSigningDepositorAddressWithHttpInfoAsync(string address, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-        /// <summary>
-        /// Removes depositor address.
-        /// </summary>
-        /// <remarks>
-        /// Remove a depositor address from the current project environment.
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies unique identifier of depositor address.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PaymasterDepositorDeleteResponse</returns>
-        System.Threading.Tasks.Task<PaymasterDepositorDeleteResponse> RemoveDepositorAddressAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <summary>
-        /// Removes depositor address.
-        /// </summary>
-        /// <remarks>
-        /// Remove a depositor address from the current project environment.
-        /// </remarks>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies unique identifier of depositor address.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PaymasterDepositorDeleteResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PaymasterDepositorDeleteResponse>> RemoveDepositorAddressWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (DeveloperAccountGetMessageResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeveloperAccountGetMessageResponse>> GetVerificationPayloadWithHttpInfoAsync(string address, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Removes webhook.
         /// </summary>
@@ -437,28 +505,28 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Add depositor address. Verify signature and add a depositor address to the current project environment.
+        /// Create a developer account. Create or add a developer account. Developer accounts can be used as for escrow, minting and transferring assets. To add your own external account, add a signature and the address of the account. This verified account can then be used as a verified depositor
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="paymasterDepositorCreateRequest"></param>
-        /// <returns>PaymasterDepositorResponse</returns>
-        public PaymasterDepositorResponse AddDepositorAddress(PaymasterDepositorCreateRequest paymasterDepositorCreateRequest)
+        /// <param name="developerAccountCreateRequest"></param>
+        /// <returns>DeveloperAccountResponse</returns>
+        public DeveloperAccountResponse CreateDeveloperAccount(DeveloperAccountCreateRequest developerAccountCreateRequest)
         {
-            Openfort.Client.ApiResponse<PaymasterDepositorResponse> localVarResponse = AddDepositorAddressWithHttpInfo(paymasterDepositorCreateRequest);
+            Openfort.Client.ApiResponse<DeveloperAccountResponse> localVarResponse = CreateDeveloperAccountWithHttpInfo(developerAccountCreateRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Add depositor address. Verify signature and add a depositor address to the current project environment.
+        /// Create a developer account. Create or add a developer account. Developer accounts can be used as for escrow, minting and transferring assets. To add your own external account, add a signature and the address of the account. This verified account can then be used as a verified depositor
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="paymasterDepositorCreateRequest"></param>
-        /// <returns>ApiResponse of PaymasterDepositorResponse</returns>
-        public Openfort.Client.ApiResponse<PaymasterDepositorResponse> AddDepositorAddressWithHttpInfo(PaymasterDepositorCreateRequest paymasterDepositorCreateRequest)
+        /// <param name="developerAccountCreateRequest"></param>
+        /// <returns>ApiResponse of DeveloperAccountResponse</returns>
+        public Openfort.Client.ApiResponse<DeveloperAccountResponse> CreateDeveloperAccountWithHttpInfo(DeveloperAccountCreateRequest developerAccountCreateRequest)
         {
-            // verify the required parameter 'paymasterDepositorCreateRequest' is set
-            if (paymasterDepositorCreateRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'paymasterDepositorCreateRequest' when calling SettingsApi->AddDepositorAddress");
+            // verify the required parameter 'developerAccountCreateRequest' is set
+            if (developerAccountCreateRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'developerAccountCreateRequest' when calling SettingsApi->CreateDeveloperAccount");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -477,7 +545,7 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = paymasterDepositorCreateRequest;
+            localVarRequestOptions.Data = developerAccountCreateRequest;
 
             // authentication (sk) required
             // bearer authentication required
@@ -487,11 +555,11 @@ namespace Openfort.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<PaymasterDepositorResponse>("/v1/settings/depositor_addresses", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<DeveloperAccountResponse>("/v1/settings/developer_accounts", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("AddDepositorAddress", localVarResponse);
+                Exception _exception = this.ExceptionFactory("CreateDeveloperAccount", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -499,35 +567,35 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Add depositor address. Verify signature and add a depositor address to the current project environment.
+        /// Create a developer account. Create or add a developer account. Developer accounts can be used as for escrow, minting and transferring assets. To add your own external account, add a signature and the address of the account. This verified account can then be used as a verified depositor
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="paymasterDepositorCreateRequest"></param>
+        /// <param name="developerAccountCreateRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PaymasterDepositorResponse</returns>
-        public async System.Threading.Tasks.Task<PaymasterDepositorResponse> AddDepositorAddressAsync(PaymasterDepositorCreateRequest paymasterDepositorCreateRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of DeveloperAccountResponse</returns>
+        public async System.Threading.Tasks.Task<DeveloperAccountResponse> CreateDeveloperAccountAsync(DeveloperAccountCreateRequest developerAccountCreateRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = AddDepositorAddressWithHttpInfoAsync(paymasterDepositorCreateRequest, cancellationToken);
+            var task = CreateDeveloperAccountWithHttpInfoAsync(developerAccountCreateRequest, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<PaymasterDepositorResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<DeveloperAccountResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            Openfort.Client.ApiResponse<PaymasterDepositorResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<DeveloperAccountResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Add depositor address. Verify signature and add a depositor address to the current project environment.
+        /// Create a developer account. Create or add a developer account. Developer accounts can be used as for escrow, minting and transferring assets. To add your own external account, add a signature and the address of the account. This verified account can then be used as a verified depositor
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="paymasterDepositorCreateRequest"></param>
+        /// <param name="developerAccountCreateRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PaymasterDepositorResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PaymasterDepositorResponse>> AddDepositorAddressWithHttpInfoAsync(PaymasterDepositorCreateRequest paymasterDepositorCreateRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (DeveloperAccountResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<DeveloperAccountResponse>> CreateDeveloperAccountWithHttpInfoAsync(DeveloperAccountCreateRequest developerAccountCreateRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'paymasterDepositorCreateRequest' is set
-            if (paymasterDepositorCreateRequest == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'paymasterDepositorCreateRequest' when calling SettingsApi->AddDepositorAddress");
+            // verify the required parameter 'developerAccountCreateRequest' is set
+            if (developerAccountCreateRequest == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'developerAccountCreateRequest' when calling SettingsApi->CreateDeveloperAccount");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -548,7 +616,7 @@ namespace Openfort.Api
             var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = paymasterDepositorCreateRequest;
+            localVarRequestOptions.Data = developerAccountCreateRequest;
 
             // authentication (sk) required
             // bearer authentication required
@@ -559,131 +627,7 @@ namespace Openfort.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<PaymasterDepositorResponse>("/v1/settings/depositor_addresses", localVarRequestOptions, this.Configuration, cancellationToken);
-
-#if UNITY_EDITOR || !UNITY_WEBGL
-            var localVarResponse = await task.ConfigureAwait(false);
-#else
-            var localVarResponse = await task;
-#endif
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("AddDepositorAddress", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// List of depositor addresses. Retrieve the list of the depositor addresses for the current project environment.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>PaymasterDepositorListResponse</returns>
-        public PaymasterDepositorListResponse GetDepositorAddresses()
-        {
-            Openfort.Client.ApiResponse<PaymasterDepositorListResponse> localVarResponse = GetDepositorAddressesWithHttpInfo();
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// List of depositor addresses. Retrieve the list of the depositor addresses for the current project environment.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of PaymasterDepositorListResponse</returns>
-        public Openfort.Client.ApiResponse<PaymasterDepositorListResponse> GetDepositorAddressesWithHttpInfo()
-        {
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-
-            // authentication (sk) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Get<PaymasterDepositorListResponse>("/v1/settings/depositor_addresses", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetDepositorAddresses", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// List of depositor addresses. Retrieve the list of the depositor addresses for the current project environment.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PaymasterDepositorListResponse</returns>
-        public async System.Threading.Tasks.Task<PaymasterDepositorListResponse> GetDepositorAddressesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            var task = GetDepositorAddressesWithHttpInfoAsync(cancellationToken);
-#if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<PaymasterDepositorListResponse> localVarResponse = await task.ConfigureAwait(false);
-#else
-            Openfort.Client.ApiResponse<PaymasterDepositorListResponse> localVarResponse = await task;
-#endif
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// List of depositor addresses. Retrieve the list of the depositor addresses for the current project environment.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PaymasterDepositorListResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PaymasterDepositorListResponse>> GetDepositorAddressesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-
-            // authentication (sk) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-
-            var task = this.AsynchronousClient.GetAsync<PaymasterDepositorListResponse>("/v1/settings/depositor_addresses", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<DeveloperAccountResponse>("/v1/settings/developer_accounts", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -693,7 +637,7 @@ namespace Openfort.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("GetDepositorAddresses", localVarResponse);
+                Exception _exception = this.ExceptionFactory("CreateDeveloperAccount", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -701,166 +645,28 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Generate message to sign Generate message, which should be signed for verification of the address ownership.
+        /// Delete a developer account. Delete a developer account from the current project.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="address">Specifies the paymaster depositor address</param>
-        /// <returns>PaymasterDepositorGetMessageResponse</returns>
-        public PaymasterDepositorGetMessageResponse GetMessageForSigningDepositorAddress(string address)
+        /// <param name="id">Specifies a unique developer account (starts with dac_).</param>
+        /// <returns>DeveloperAccountDeleteResponse</returns>
+        public DeveloperAccountDeleteResponse DeleteDeveloperAccount(string id)
         {
-            Openfort.Client.ApiResponse<PaymasterDepositorGetMessageResponse> localVarResponse = GetMessageForSigningDepositorAddressWithHttpInfo(address);
+            Openfort.Client.ApiResponse<DeveloperAccountDeleteResponse> localVarResponse = DeleteDeveloperAccountWithHttpInfo(id);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Generate message to sign Generate message, which should be signed for verification of the address ownership.
+        /// Delete a developer account. Delete a developer account from the current project.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="address">Specifies the paymaster depositor address</param>
-        /// <returns>ApiResponse of PaymasterDepositorGetMessageResponse</returns>
-        public Openfort.Client.ApiResponse<PaymasterDepositorGetMessageResponse> GetMessageForSigningDepositorAddressWithHttpInfo(string address)
-        {
-            // verify the required parameter 'address' is set
-            if (address == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'address' when calling SettingsApi->GetMessageForSigningDepositorAddress");
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "address", address));
-
-            // authentication (sk) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Get<PaymasterDepositorGetMessageResponse>("/v1/settings/depositor_addresses/message_to_sign", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetMessageForSigningDepositorAddress", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Generate message to sign Generate message, which should be signed for verification of the address ownership.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="address">Specifies the paymaster depositor address</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PaymasterDepositorGetMessageResponse</returns>
-        public async System.Threading.Tasks.Task<PaymasterDepositorGetMessageResponse> GetMessageForSigningDepositorAddressAsync(string address, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            var task = GetMessageForSigningDepositorAddressWithHttpInfoAsync(address, cancellationToken);
-#if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<PaymasterDepositorGetMessageResponse> localVarResponse = await task.ConfigureAwait(false);
-#else
-            Openfort.Client.ApiResponse<PaymasterDepositorGetMessageResponse> localVarResponse = await task;
-#endif
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Generate message to sign Generate message, which should be signed for verification of the address ownership.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="address">Specifies the paymaster depositor address</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PaymasterDepositorGetMessageResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PaymasterDepositorGetMessageResponse>> GetMessageForSigningDepositorAddressWithHttpInfoAsync(string address, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'address' is set
-            if (address == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'address' when calling SettingsApi->GetMessageForSigningDepositorAddress");
-
-
-            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "address", address));
-
-            // authentication (sk) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-
-            var task = this.AsynchronousClient.GetAsync<PaymasterDepositorGetMessageResponse>("/v1/settings/depositor_addresses/message_to_sign", localVarRequestOptions, this.Configuration, cancellationToken);
-
-#if UNITY_EDITOR || !UNITY_WEBGL
-            var localVarResponse = await task.ConfigureAwait(false);
-#else
-            var localVarResponse = await task;
-#endif
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetMessageForSigningDepositorAddress", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Removes depositor address. Remove a depositor address from the current project environment.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies unique identifier of depositor address.</param>
-        /// <returns>PaymasterDepositorDeleteResponse</returns>
-        public PaymasterDepositorDeleteResponse RemoveDepositorAddress(string id)
-        {
-            Openfort.Client.ApiResponse<PaymasterDepositorDeleteResponse> localVarResponse = RemoveDepositorAddressWithHttpInfo(id);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Removes depositor address. Remove a depositor address from the current project environment.
-        /// </summary>
-        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies unique identifier of depositor address.</param>
-        /// <returns>ApiResponse of PaymasterDepositorDeleteResponse</returns>
-        public Openfort.Client.ApiResponse<PaymasterDepositorDeleteResponse> RemoveDepositorAddressWithHttpInfo(string id)
+        /// <param name="id">Specifies a unique developer account (starts with dac_).</param>
+        /// <returns>ApiResponse of DeveloperAccountDeleteResponse</returns>
+        public Openfort.Client.ApiResponse<DeveloperAccountDeleteResponse> DeleteDeveloperAccountWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling SettingsApi->RemoveDepositorAddress");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling SettingsApi->DeleteDeveloperAccount");
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
 
@@ -888,11 +694,11 @@ namespace Openfort.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<PaymasterDepositorDeleteResponse>("/v1/settings/depositor_addresses/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<DeveloperAccountDeleteResponse>("/v1/settings/developer_accounts/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("RemoveDepositorAddress", localVarResponse);
+                Exception _exception = this.ExceptionFactory("DeleteDeveloperAccount", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -900,35 +706,35 @@ namespace Openfort.Api
         }
 
         /// <summary>
-        /// Removes depositor address. Remove a depositor address from the current project environment.
+        /// Delete a developer account. Delete a developer account from the current project.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies unique identifier of depositor address.</param>
+        /// <param name="id">Specifies a unique developer account (starts with dac_).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PaymasterDepositorDeleteResponse</returns>
-        public async System.Threading.Tasks.Task<PaymasterDepositorDeleteResponse> RemoveDepositorAddressAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of DeveloperAccountDeleteResponse</returns>
+        public async System.Threading.Tasks.Task<DeveloperAccountDeleteResponse> DeleteDeveloperAccountAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = RemoveDepositorAddressWithHttpInfoAsync(id, cancellationToken);
+            var task = DeleteDeveloperAccountWithHttpInfoAsync(id, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            Openfort.Client.ApiResponse<PaymasterDepositorDeleteResponse> localVarResponse = await task.ConfigureAwait(false);
+            Openfort.Client.ApiResponse<DeveloperAccountDeleteResponse> localVarResponse = await task.ConfigureAwait(false);
 #else
-            Openfort.Client.ApiResponse<PaymasterDepositorDeleteResponse> localVarResponse = await task;
+            Openfort.Client.ApiResponse<DeveloperAccountDeleteResponse> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Removes depositor address. Remove a depositor address from the current project environment.
+        /// Delete a developer account. Delete a developer account from the current project.
         /// </summary>
         /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Specifies unique identifier of depositor address.</param>
+        /// <param name="id">Specifies a unique developer account (starts with dac_).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PaymasterDepositorDeleteResponse)</returns>
-        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<PaymasterDepositorDeleteResponse>> RemoveDepositorAddressWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (DeveloperAccountDeleteResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<DeveloperAccountDeleteResponse>> DeleteDeveloperAccountWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling SettingsApi->RemoveDepositorAddress");
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling SettingsApi->DeleteDeveloperAccount");
 
 
             Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
@@ -959,7 +765,7 @@ namespace Openfort.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.DeleteAsync<PaymasterDepositorDeleteResponse>("/v1/settings/depositor_addresses/{id}", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.DeleteAsync<DeveloperAccountDeleteResponse>("/v1/settings/developer_accounts/{id}", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
@@ -969,7 +775,479 @@ namespace Openfort.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("RemoveDepositorAddress", localVarResponse);
+                Exception _exception = this.ExceptionFactory("DeleteDeveloperAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get existing developer account. Retrieve a developer account.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique developer account ID (starts with dac_).</param>
+        /// <param name="expand"> (optional)</param>
+        /// <returns>DeveloperAccountResponse</returns>
+        public DeveloperAccountResponse GetDeveloperAccount(string id, List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>))
+        {
+            Openfort.Client.ApiResponse<DeveloperAccountResponse> localVarResponse = GetDeveloperAccountWithHttpInfo(id, expand);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get existing developer account. Retrieve a developer account.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique developer account ID (starts with dac_).</param>
+        /// <param name="expand"> (optional)</param>
+        /// <returns>ApiResponse of DeveloperAccountResponse</returns>
+        public Openfort.Client.ApiResponse<DeveloperAccountResponse> GetDeveloperAccountWithHttpInfo(string id, List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling SettingsApi->GetDeveloperAccount");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<DeveloperAccountResponse>("/v1/settings/developer_accounts/{id}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetDeveloperAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get existing developer account. Retrieve a developer account.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique developer account ID (starts with dac_).</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeveloperAccountResponse</returns>
+        public async System.Threading.Tasks.Task<DeveloperAccountResponse> GetDeveloperAccountAsync(string id, List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = GetDeveloperAccountWithHttpInfoAsync(id, expand, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<DeveloperAccountResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<DeveloperAccountResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get existing developer account. Retrieve a developer account.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Specifies the unique developer account ID (starts with dac_).</param>
+        /// <param name="expand"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeveloperAccountResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<DeveloperAccountResponse>> GetDeveloperAccountWithHttpInfoAsync(string id, List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'id' when calling SettingsApi->GetDeveloperAccount");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Openfort.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<DeveloperAccountResponse>("/v1/settings/developer_accounts/{id}", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetDeveloperAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List of developer accounts. Retrieve the list of the developer accounts for the current project.  By default, a maximum of 10 accounts are shown per page.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted dev accounts. (optional)</param>
+        /// <returns>DeveloperAccountListResponse</returns>
+        public DeveloperAccountListResponse GetDeveloperAccounts(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>), bool? deleted = default(bool?))
+        {
+            Openfort.Client.ApiResponse<DeveloperAccountListResponse> localVarResponse = GetDeveloperAccountsWithHttpInfo(limit, skip, order, expand, deleted);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List of developer accounts. Retrieve the list of the developer accounts for the current project.  By default, a maximum of 10 accounts are shown per page.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted dev accounts. (optional)</param>
+        /// <returns>ApiResponse of DeveloperAccountListResponse</returns>
+        public Openfort.Client.ApiResponse<DeveloperAccountListResponse> GetDeveloperAccountsWithHttpInfo(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>), bool? deleted = default(bool?))
+        {
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+            }
+            if (order != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
+            }
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            if (deleted != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "deleted", deleted));
+            }
+
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<DeveloperAccountListResponse>("/v1/settings/developer_accounts", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetDeveloperAccounts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List of developer accounts. Retrieve the list of the developer accounts for the current project.  By default, a maximum of 10 accounts are shown per page.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted dev accounts. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeveloperAccountListResponse</returns>
+        public async System.Threading.Tasks.Task<DeveloperAccountListResponse> GetDeveloperAccountsAsync(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>), bool? deleted = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = GetDeveloperAccountsWithHttpInfoAsync(limit, skip, order, expand, deleted, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<DeveloperAccountListResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<DeveloperAccountListResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List of developer accounts. Retrieve the list of the developer accounts for the current project.  By default, a maximum of 10 accounts are shown per page.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Specifies the maximum number of records to return. (optional)</param>
+        /// <param name="skip">Specifies the offset for the first records to return. (optional)</param>
+        /// <param name="order">Specifies the order in which to sort the results. (optional)</param>
+        /// <param name="expand">Specifies the fields to expand in the response. (optional)</param>
+        /// <param name="deleted">Specifies whether to include deleted dev accounts. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeveloperAccountListResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<DeveloperAccountListResponse>> GetDeveloperAccountsWithHttpInfoAsync(int? limit = default(int?), int? skip = default(int?), SortOrder? order = default(SortOrder?), List<DeveloperAccountResponseExpandable> expand = default(List<DeveloperAccountResponseExpandable>), bool? deleted = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+            }
+            if (order != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "order", order));
+            }
+            if (expand != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("multi", "expand", expand));
+            }
+            if (deleted != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "deleted", deleted));
+            }
+
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<DeveloperAccountListResponse>("/v1/settings/developer_accounts", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetDeveloperAccounts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Generate message to sign Generate message, which should be signed by the account your want to add as a developer account.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="address">Specifies the address</param>
+        /// <returns>DeveloperAccountGetMessageResponse</returns>
+        public DeveloperAccountGetMessageResponse GetVerificationPayload(string address)
+        {
+            Openfort.Client.ApiResponse<DeveloperAccountGetMessageResponse> localVarResponse = GetVerificationPayloadWithHttpInfo(address);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Generate message to sign Generate message, which should be signed by the account your want to add as a developer account.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="address">Specifies the address</param>
+        /// <returns>ApiResponse of DeveloperAccountGetMessageResponse</returns>
+        public Openfort.Client.ApiResponse<DeveloperAccountGetMessageResponse> GetVerificationPayloadWithHttpInfo(string address)
+        {
+            // verify the required parameter 'address' is set
+            if (address == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'address' when calling SettingsApi->GetVerificationPayload");
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "address", address));
+
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<DeveloperAccountGetMessageResponse>("/v1/settings/developer_accounts/message_to_sign", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetVerificationPayload", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Generate message to sign Generate message, which should be signed by the account your want to add as a developer account.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="address">Specifies the address</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeveloperAccountGetMessageResponse</returns>
+        public async System.Threading.Tasks.Task<DeveloperAccountGetMessageResponse> GetVerificationPayloadAsync(string address, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = GetVerificationPayloadWithHttpInfoAsync(address, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            Openfort.Client.ApiResponse<DeveloperAccountGetMessageResponse> localVarResponse = await task.ConfigureAwait(false);
+#else
+            Openfort.Client.ApiResponse<DeveloperAccountGetMessageResponse> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Generate message to sign Generate message, which should be signed by the account your want to add as a developer account.
+        /// </summary>
+        /// <exception cref="Openfort.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="address">Specifies the address</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeveloperAccountGetMessageResponse)</returns>
+        public async System.Threading.Tasks.Task<Openfort.Client.ApiResponse<DeveloperAccountGetMessageResponse>> GetVerificationPayloadWithHttpInfoAsync(string address, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'address' is set
+            if (address == null)
+                throw new Openfort.Client.ApiException(400, "Missing required parameter 'address' when calling SettingsApi->GetVerificationPayload");
+
+
+            Openfort.Client.RequestOptions localVarRequestOptions = new Openfort.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Openfort.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Openfort.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Openfort.Client.ClientUtils.ParameterToMultiMap("", "address", address));
+
+            // authentication (sk) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<DeveloperAccountGetMessageResponse>("/v1/settings/developer_accounts/message_to_sign", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetVerificationPayload", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

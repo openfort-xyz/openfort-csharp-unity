@@ -40,7 +40,7 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="CreateContractRequest" /> class.
         /// </summary>
         /// <param name="name">Specifies the name of the contract (Only for display purposes). (required).</param>
-        /// <param name="chainId">Specifies the chain ID of the contract. (required).</param>
+        /// <param name="chainId">Specifies the chain ID of the contract. Must be a [supported chain](/chains). (required).</param>
         /// <param name="address">Specifies the address of the contract. (required).</param>
         /// <param name="abi">Specifies the ABI of the contract..</param>
         /// <param name="publicVerification">Specifies whether to verify the contract publicly..</param>
@@ -67,13 +67,15 @@ namespace Openfort.Model
         /// Specifies the name of the contract (Only for display purposes).
         /// </summary>
         /// <value>Specifies the name of the contract (Only for display purposes).</value>
+        /// <example>&quot;NFT Contract&quot;</example>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Specifies the chain ID of the contract.
+        /// Specifies the chain ID of the contract. Must be a [supported chain](/chains).
         /// </summary>
-        /// <value>Specifies the chain ID of the contract.</value>
+        /// <value>Specifies the chain ID of the contract. Must be a [supported chain](/chains).</value>
+        /// <example>80001</example>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
         public int ChainId { get; set; }
 
@@ -81,6 +83,7 @@ namespace Openfort.Model
         /// Specifies the address of the contract.
         /// </summary>
         /// <value>Specifies the address of the contract.</value>
+        /// <example>&quot;0x742e6e61d760164d56f44801054bcf40fa821d97&quot;</example>
         [DataMember(Name = "address", IsRequired = true, EmitDefaultValue = true)]
         public string Address { get; set; }
 

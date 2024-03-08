@@ -40,7 +40,7 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="ContractReadQueries" /> class.
         /// </summary>
         /// <param name="functionName">The function name of the contract. (required).</param>
-        /// <param name="functionArgs">The function arguments of the contract..</param>
+        /// <param name="functionArgs">The function arguments of the contract, in string format. Accepts pla_, con_ and acc_ IDs..</param>
         public ContractReadQueries(string functionName = default(string), List<Object> functionArgs = default(List<Object>))
         {
             // to ensure "functionName" is required (not null)
@@ -61,9 +61,9 @@ namespace Openfort.Model
         public string FunctionName { get; set; }
 
         /// <summary>
-        /// The function arguments of the contract.
+        /// The function arguments of the contract, in string format. Accepts pla_, con_ and acc_ IDs.
         /// </summary>
-        /// <value>The function arguments of the contract.</value>
+        /// <value>The function arguments of the contract, in string format. Accepts pla_, con_ and acc_ IDs.</value>
         [DataMember(Name = "functionArgs", EmitDefaultValue = false)]
         public List<Object> FunctionArgs { get; set; }
 

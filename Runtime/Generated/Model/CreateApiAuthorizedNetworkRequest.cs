@@ -39,8 +39,8 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateApiAuthorizedNetworkRequest" /> class.
         /// </summary>
-        /// <param name="name">name (required).</param>
-        /// <param name="network">network (required).</param>
+        /// <param name="name">The name of the authorized network. (required).</param>
+        /// <param name="network">The network address. (required).</param>
         public CreateApiAuthorizedNetworkRequest(string name = default(string), string network = default(string))
         {
             // to ensure "name" is required (not null)
@@ -58,14 +58,17 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// The name of the authorized network.
         /// </summary>
+        /// <value>The name of the authorized network.</value>
+        /// <example>&quot;My Authorized Network&quot;</example>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Network
+        /// The network address.
         /// </summary>
+        /// <value>The network address.</value>
         [DataMember(Name = "network", IsRequired = true, EmitDefaultValue = true)]
         public string Network { get; set; }
 

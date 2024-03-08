@@ -50,41 +50,53 @@ And add these urls:
 
 `https://github.com/openfort-xyz/openfort-csharp-unity.git`
 
+## Usage
 
-## Getting Started
-
-1. Retrieve your openfort credentials at the [dashboard](https://www.openfort.xyz/docs/guides/platform/keys)
-
-2. Set credentials in `Edit > Project Settings > Openfort`
-
-3. Generate keypair for player and register session
-
+With the Openfort Unity SDK, you can sign transaction intents using one of four methods or signers:
 ```csharp
-using System.Collections;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using UnityEngine;
-using Openfort;
+var sdk = new Openfort("pk_test_XXXXXXX");
+```
 
-public class OpenfortHelloWorld : MonoBehaviour
+### 1. Session Signer
+The Session Signer allows you to use external signing keys, without needing to provide it every time. Here's how to use it:
+
+- **Configure the Session Key**: Call `ConfigureSessionKey()`. This method returns an Ethereum address and a boolean indicating whether you need to register the key from the backend.
+```csharp
+var sessionKey = sdk.ConfigureSessionKey();
+```
+- **Register Key and Send Signature Session Request**: If `sessionKey.IsRegistered` boolean is false, register the key from the backend. Refer to the documentation for [session management](https://www.openfort.xyz/docs/guides/accounts/sessions).
+- **Send Signature Transaction Intent Request**: When calling SendSignatureTransactionIntentRequest, pass the transaction intent ID and the user operation hash. The session signer will handle the signing.
+
+### 2. External Sign
+
+This method allows you to externally sign transaction intents without logging in or additional configurations:
+
+- **Call SendSignatureTransactionIntentRequest**: Simply pass the transaction intent ID and the signature.
+```csharp
+var response = await sdk.SendSignatureTransactionIntentRequest("transaction_intent_id", signature: "your_signature");
+```
+
+### 3. Embedded Signer
+The Embedded Signer uses SSS to manage the private key on the client side. To learn more, visit our [security documentation](https://www.openfort.xyz/docs/security).
+- **Login and Configure the Embedded Signer**: First, ensure the user is logged in, using `LoginWithEmailPassword`, `LoginWithOAuth` or if not registred `SignUpWithEmailPassword`. Then call `ConfigureEmbeddedSigner`. If a `MissingRecoveryMethod` exception is thrown, it indicates there's no share on the device and you have to call `ConfigureEmbeddedRecovery` to provide a recovery method.
+```csharp
+try
 {
-    async UniTaskVoid Start()
-    {
-        var openfort = new OpenfortClient("pk_test_XXXXXXX");
-        if (openfort.LoadSessionKey() == null) { // Load player key from Player prefs
-            openfort.CreateSessionKey();
-            // To get session address use sessionKey.Address property
-            openfort.SaveSessionKey();
-
-            // After registering the session key, you can then use it like:
-            var signature = openfort.SignMessage(message);
-            openfort.SendSignatureSessionRequest(sessionId, signature);
-        }
-    }
+    sdk.LoginWithEmailPassword("user_email", "user_password");
+    sdk.ConfigureEmbeddedSigner(chainId);
+}
+catch (MissingRecoveryMethod)
+{
+    await sdk.ConfigureEmbeddedRecovery(new PasswordRecovery("user_password"));
 }
 ```
-## Support
+For now the only recovery method available is the `PasswordRecovery` method.
+- **Send Signature Transaction Intent Request**: Similar to the session signer, pass the transaction intent ID and the user operation hash. The embedded signer reconstructs the key and signs the transaction.
+```csharp
+var response = await sdk.SendSignatureTransactionIntentRequest("transaction_intent_id", "user_op");
+```
 
+## Support
 The Unity SDK is a work in progress. For support, [open an issue](https://github.com/openfort-xyz/openfort-csharp-unity/issues).
 
 ## Example

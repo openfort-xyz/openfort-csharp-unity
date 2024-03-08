@@ -39,37 +39,50 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthResponse" /> class.
         /// </summary>
-        /// <param name="playerId">Player&#39;s identifier. (required).</param>
-        /// <param name="token">JWT token. (required).</param>
-        public AuthResponse(string playerId = default(string), string token = default(string))
+        /// <param name="player">player (required).</param>
+        /// <param name="token">JWT access token. (required).</param>
+        /// <param name="refreshToken">Refresh token. (required).</param>
+        public AuthResponse(AuthPlayerResponse player = default(AuthPlayerResponse), string token = default(string), string refreshToken = default(string))
         {
-            // to ensure "playerId" is required (not null)
-            if (playerId == null)
+            // to ensure "player" is required (not null)
+            if (player == null)
             {
-                throw new ArgumentNullException("playerId is a required property for AuthResponse and cannot be null");
+                throw new ArgumentNullException("player is a required property for AuthResponse and cannot be null");
             }
-            this.PlayerId = playerId;
+            this.Player = player;
             // to ensure "token" is required (not null)
             if (token == null)
             {
                 throw new ArgumentNullException("token is a required property for AuthResponse and cannot be null");
             }
             this.Token = token;
+            // to ensure "refreshToken" is required (not null)
+            if (refreshToken == null)
+            {
+                throw new ArgumentNullException("refreshToken is a required property for AuthResponse and cannot be null");
+            }
+            this.RefreshToken = refreshToken;
         }
 
         /// <summary>
-        /// Player&#39;s identifier.
+        /// Gets or Sets Player
         /// </summary>
-        /// <value>Player&#39;s identifier.</value>
-        [DataMember(Name = "playerId", IsRequired = true, EmitDefaultValue = true)]
-        public string PlayerId { get; set; }
+        [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
+        public AuthPlayerResponse Player { get; set; }
 
         /// <summary>
-        /// JWT token.
+        /// JWT access token.
         /// </summary>
-        /// <value>JWT token.</value>
+        /// <value>JWT access token.</value>
         [DataMember(Name = "token", IsRequired = true, EmitDefaultValue = true)]
         public string Token { get; set; }
+
+        /// <summary>
+        /// Refresh token.
+        /// </summary>
+        /// <value>Refresh token.</value>
+        [DataMember(Name = "refreshToken", IsRequired = true, EmitDefaultValue = true)]
+        public string RefreshToken { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -79,8 +92,9 @@ namespace Openfort.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AuthResponse {\n");
-            sb.Append("  PlayerId: ").Append(PlayerId).Append("\n");
+            sb.Append("  Player: ").Append(Player).Append("\n");
             sb.Append("  Token: ").Append(Token).Append("\n");
+            sb.Append("  RefreshToken: ").Append(RefreshToken).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -117,14 +131,19 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.PlayerId == input.PlayerId ||
-                    (this.PlayerId != null &&
-                    this.PlayerId.Equals(input.PlayerId))
+                    this.Player == input.Player ||
+                    (this.Player != null &&
+                    this.Player.Equals(input.Player))
                 ) && 
                 (
                     this.Token == input.Token ||
                     (this.Token != null &&
                     this.Token.Equals(input.Token))
+                ) && 
+                (
+                    this.RefreshToken == input.RefreshToken ||
+                    (this.RefreshToken != null &&
+                    this.RefreshToken.Equals(input.RefreshToken))
                 );
         }
 
@@ -137,13 +156,17 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.PlayerId != null)
+                if (this.Player != null)
                 {
-                    hashCode = (hashCode * 59) + this.PlayerId.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Player.GetHashCode();
                 }
                 if (this.Token != null)
                 {
                     hashCode = (hashCode * 59) + this.Token.GetHashCode();
+                }
+                if (this.RefreshToken != null)
+                {
+                    hashCode = (hashCode * 59) + this.RefreshToken.GetHashCode();
                 }
                 return hashCode;
             }

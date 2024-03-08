@@ -34,7 +34,7 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectWebhookRequest" /> class.
         /// </summary>
-        /// <param name="url">url.</param>
+        /// <param name="url">The webhook url..</param>
         /// <param name="apiKey">apiKey.</param>
         public ProjectWebhookRequest(string url = default(string), string apiKey = default(string))
         {
@@ -43,8 +43,10 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// The webhook url.
         /// </summary>
+        /// <value>The webhook url.</value>
+        /// <example>&quot;https://example.com&quot;</example>
         [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 

@@ -93,6 +93,7 @@ namespace Openfort.Model
         /// <summary>
         /// Gets or Sets PrimaryType
         /// </summary>
+        /// <example>&quot;Mail&quot;</example>
         [DataMember(Name = "primaryType", IsRequired = true, EmitDefaultValue = true)]
         public string PrimaryType { get; set; }
 
@@ -106,6 +107,7 @@ namespace Openfort.Model
         /// Hash to verify and that will be signed
         /// </summary>
         /// <value>Hash to verify and that will be signed</value>
+        /// <example>&quot;0x3d8c6cab96bc24c87162c529bed5ba88b4617a7ea8bef66489a541d043ac6e8b&quot;</example>
         [DataMember(Name = "hash", IsRequired = true, EmitDefaultValue = true)]
         public string Hash { get; set; }
 

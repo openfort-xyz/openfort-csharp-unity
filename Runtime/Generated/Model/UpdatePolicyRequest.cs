@@ -35,7 +35,7 @@ namespace Openfort.Model
         /// Initializes a new instance of the <see cref="UpdatePolicyRequest" /> class.
         /// </summary>
         /// <param name="name">Specifies the name of the policy..</param>
-        /// <param name="chainId">The chain ID of the policy..</param>
+        /// <param name="chainId">The chain ID. Must be a [supported chain](/chains)..</param>
         /// <param name="strategy">strategy.</param>
         /// <param name="deleted">Specifies whether to delete the policy..</param>
         public UpdatePolicyRequest(string name = default(string), int chainId = default(int), PolicyStrategyRequest strategy = default(PolicyStrategyRequest), bool deleted = default(bool))
@@ -50,13 +50,15 @@ namespace Openfort.Model
         /// Specifies the name of the policy.
         /// </summary>
         /// <value>Specifies the name of the policy.</value>
+        /// <example>&quot;My Policy&quot;</example>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
-        /// The chain ID of the policy.
+        /// The chain ID. Must be a [supported chain](/chains).
         /// </summary>
-        /// <value>The chain ID of the policy.</value>
+        /// <value>The chain ID. Must be a [supported chain](/chains).</value>
+        /// <example>80001</example>
         [DataMember(Name = "chainId", EmitDefaultValue = false)]
         public int ChainId { get; set; }
 
@@ -70,6 +72,7 @@ namespace Openfort.Model
         /// Specifies whether to delete the policy.
         /// </summary>
         /// <value>Specifies whether to delete the policy.</value>
+        /// <example>false</example>
         [DataMember(Name = "deleted", EmitDefaultValue = true)]
         public bool Deleted { get; set; }
 

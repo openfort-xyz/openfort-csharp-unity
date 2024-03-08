@@ -39,10 +39,10 @@ namespace Openfort.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PlayerTransferOwnershipRequest" /> class.
         /// </summary>
-        /// <param name="policy">The policy ID (starts with pol_) (required).</param>
-        /// <param name="chainId">The chain id where the account is. (required).</param>
+        /// <param name="policy">ID of the Policy that defines the gas sponsorship strategy (starts with &#x60;pol_&#x60;). A policy must be provided. (required).</param>
+        /// <param name="chainId">The chain ID. Must be a [supported chain](/chains). (required).</param>
         /// <param name="newOwnerAddress">The address of the new owner (required).</param>
-        /// <param name="player">The player ID (starts with pla_).</param>
+        /// <param name="player">ID of the Player that has the Account you want to transfer ownership from (starts with &#x60;pla_&#x60;)..</param>
         public PlayerTransferOwnershipRequest(string policy = default(string), int chainId = default(int), string newOwnerAddress = default(string), string player = default(string))
         {
             // to ensure "policy" is required (not null)
@@ -62,16 +62,18 @@ namespace Openfort.Model
         }
 
         /// <summary>
-        /// The policy ID (starts with pol_)
+        /// ID of the Policy that defines the gas sponsorship strategy (starts with &#x60;pol_&#x60;). A policy must be provided.
         /// </summary>
-        /// <value>The policy ID (starts with pol_)</value>
+        /// <value>ID of the Policy that defines the gas sponsorship strategy (starts with &#x60;pol_&#x60;). A policy must be provided.</value>
+        /// <example>&quot;pol_7e07ae30-2a4d-48fa-803f-361da94905dd&quot;</example>
         [DataMember(Name = "policy", IsRequired = true, EmitDefaultValue = true)]
         public string Policy { get; set; }
 
         /// <summary>
-        /// The chain id where the account is.
+        /// The chain ID. Must be a [supported chain](/chains).
         /// </summary>
-        /// <value>The chain id where the account is.</value>
+        /// <value>The chain ID. Must be a [supported chain](/chains).</value>
+        /// <example>80001</example>
         [DataMember(Name = "chainId", IsRequired = true, EmitDefaultValue = true)]
         public int ChainId { get; set; }
 
@@ -79,13 +81,15 @@ namespace Openfort.Model
         /// The address of the new owner
         /// </summary>
         /// <value>The address of the new owner</value>
+        /// <example>&quot;0x1234567890abcdef1234567890abcdef12345678&quot;</example>
         [DataMember(Name = "newOwnerAddress", IsRequired = true, EmitDefaultValue = true)]
         public string NewOwnerAddress { get; set; }
 
         /// <summary>
-        /// The player ID (starts with pla_)
+        /// ID of the Player that has the Account you want to transfer ownership from (starts with &#x60;pla_&#x60;).
         /// </summary>
-        /// <value>The player ID (starts with pla_)</value>
+        /// <value>ID of the Player that has the Account you want to transfer ownership from (starts with &#x60;pla_&#x60;).</value>
+        /// <example>&quot;pla_e0b84653-1741-4a3d-9e91-2b0fd2942f60&quot;</example>
         [DataMember(Name = "player", EmitDefaultValue = false)]
         public string Player { get; set; }
 
