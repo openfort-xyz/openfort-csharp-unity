@@ -90,7 +90,7 @@ namespace Openfort
             }
         }
 
-        public async void ConfigureEmbeddedRecovery(IRecovery recovery)
+        public async Task ConfigureEmbeddedRecovery(IRecovery recovery)
         {
             if (_signer == null)
             {
@@ -108,19 +108,19 @@ namespace Openfort
             await embeddedSigner.EnsureEmbeddedAccount();
         }
         
-        public async void LoginWithEmailPassword(string username, string password)
+        public async Task LoginWithEmailPassword(string username, string password)
         {
             var auth = await _openfortAuth.Login(username, password);
             StoreCredentials(auth);
         }
         
-        public async void LoginWithOAuth(OAuthProvider provider, string token)
+        public async Task LoginWithOAuth(OAuthProvider provider, string token)
         {
             var auth = await _openfortAuth.Login(provider, token);
             StoreCredentials(auth);
         }
         
-        public async void SignUp(string username, string password)
+        public async Task SignUp(string username, string password)
         {
             var auth = await _openfortAuth.SignUp(username, password);
             StoreCredentials(auth);
