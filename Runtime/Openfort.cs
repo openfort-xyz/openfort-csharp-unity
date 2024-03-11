@@ -165,7 +165,7 @@ namespace Openfort
         {
             if (IsAuthenticated())
             { 
-                await _openfortAuth.Logout(_storage.Get(Keys.RefreshToken));
+                await _openfortAuth.Logout(_storage.Get(Keys.AuthToken),_storage.Get(Keys.RefreshToken));
             }
             _signer.Logout();
             _storage.Delete(Keys.AuthToken);
