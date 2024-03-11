@@ -14,8 +14,7 @@ namespace Openfort.Signer
 {
     internal class EmbeddedSigner : ISigner
     {
-        private readonly int _chainId;
-        private readonly string _accessToken;
+        private int _chainId;
         private IRecovery _recovery;
         private string _deviceId;
         private readonly string _publishableKey;
@@ -36,7 +35,12 @@ namespace Openfort.Signer
             _publishableKey = publishableKey;
             ConfigureAPIs();
         }
-
+        
+        public string GetDeviceId()
+        {
+            return _deviceId;
+        }
+        
         private void ConfigureAPIs()
         {
             var apiConfiguration = new Configuration(
@@ -60,6 +64,7 @@ namespace Openfort.Signer
         {
             _storage.Delete(Keys.DeviceId);
             _storage.Delete(Keys.Share);
+            _deviceId = string.Empty;
         }
         
         public bool IsLoaded()

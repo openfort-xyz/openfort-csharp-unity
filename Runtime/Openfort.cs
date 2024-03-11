@@ -47,7 +47,7 @@ namespace Openfort
 
         public SessionKey ConfigureSessionKey()
         {
-            var signer = new SessionSigner(_storage);
+            var signer = new SessionSigner(_storage, _publishableKey);
             _signer = signer;
 
             var key = signer.LoadKeys();
@@ -70,7 +70,7 @@ namespace Openfort
 
         public void ConfigureEmbeddedSigner(int chainId)
         {
-            if (!IsLoggedIn())
+            if (!CredentialsProvided())
             {
                 throw new NotLoggedIn("Must be logged in to configure embedded signer");
             }
@@ -123,6 +123,18 @@ namespace Openfort
             return auth.Token;
         }
 
+        public async Task<InitAuthResponse> InitOAuth(OAuthProvider provider)
+        {
+            return await _openfortAuth.GetAuthenticationURL(provider);
+        }
+
+        public async Task<string> AuthenticateOAuth(OAuthProvider provider, string key)
+        {
+            var auth = await _openfortAuth.GetTokenAfterSocialLogin(provider, key);
+            StoreCredentials(auth);
+            return auth.Token;
+        }
+
         private void StoreCredentials(Authentication authentication)
         {
             _storage.Set(Keys.AuthToken, authentication.Token);
@@ -130,20 +142,54 @@ namespace Openfort
             _storage.Set(Keys.PlayerId, authentication.PlayerId);
         }
 
-        private bool IsLoggedIn()
+        public string GetAccessToken()
+        {
+            return _storage.Get(Keys.AuthToken);
+        }
+
+        public bool IsLoaded()
+        {
+            return _openfortAuth.Jwks() != null;
+        }
+
+        private bool CredentialsProvided()
         {
             var token = _storage.Get(Keys.AuthToken);
             var refreshToken = _storage.Get(Keys.RefreshToken);
             var playerId = _storage.Get(Keys.PlayerId);
             return !string.IsNullOrEmpty(token) && !string.IsNullOrEmpty(refreshToken) && !string.IsNullOrEmpty(playerId);
         }
-
-        private void Logout()
+        
+        public bool IsAuthenticated()
         {
+            if (!CredentialsProvided())
+            {
+                return false;
+            }
+            
+            if (_signer != null && _signer.GetSignerType() == Signer.Signer.Embedded)
+            {
+                var embeddedSigner = (EmbeddedSigner)_signer;
+                if (string.IsNullOrEmpty(embeddedSigner.GetDeviceId()))
+                {
+                    return false;
+                }
+            }
+           
+            return true;
+        }
+
+
+        public async void Logout()
+        {
+            if (CredentialsProvided())
+            { 
+                await _openfortAuth.Logout(_storage.Get(Keys.AuthToken),_storage.Get(Keys.RefreshToken));
+            }
+            _signer.Logout();
             _storage.Delete(Keys.AuthToken);
             _storage.Delete(Keys.RefreshToken);
             _storage.Delete(Keys.PlayerId);
-            _signer.Logout();
         }
 
         public async Task<SessionResponse> SendSignatureSessionRequest(string sessionId, string signature)
@@ -176,7 +222,7 @@ namespace Openfort
 
         private async Task ValidateAndRefreshToken()
         {
-            if (!IsLoggedIn())
+            if (!CredentialsProvided())
             {
                 return;
             }
