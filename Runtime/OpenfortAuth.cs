@@ -8,13 +8,15 @@ using Openfort.Model;
 using Openfort.Api;
 
 
-internal struct Authentication {
+internal struct Authentication
+{
     public string Token;
     public string RefreshToken;
     public string PlayerId;
 }
 
-public struct InitAuthResponse {
+public struct InitAuthResponse
+{
     public string Url;
     public string Key;
 }
@@ -39,14 +41,14 @@ namespace Openfort
             GetJwks().ContinueWith(task => _jwks = task.Result);
         }
 
-        internal async Task<InitAuthResponse> GetAuthenticationURL(OAuthProvider provider)
+        internal async Task<InitAuthResponse> InitOAuth(OAuthProvider provider)
         {
             var request = new OAuthInitRequest(provider: provider);
             var response = await _authenticationApi.InitOAuthAsync(request);
             return new InitAuthResponse { Url = response.Url, Key = response.Key };
         }
-        
-        internal async Task<Authentication> GetTokenAfterSocialLogin(OAuthProvider provider, string key)
+
+        internal async Task<Authentication> AuthenticateOAuth(OAuthProvider provider, string key)
         {
             var request = new AuthenticateOAuthRequest(provider: provider, token: key);
             var response = await _authenticationApi.AuthenticateOAuthAsync(request);
@@ -54,26 +56,18 @@ namespace Openfort
             return authentication;
         }
 
-        internal async Task<Authentication> Login(string username, string password)
+        internal async Task<Authentication> LoginEmailPassword(string email, string password)
         {
-            var request = new LoginRequest(username, password);
+            var request = new LoginRequest(email, password);
             var response = await _authenticationApi.LoginEmailPasswordAsync(request);
             var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
             return authentication;
         }
-        
-        internal async Task<Authentication> SignUp(string email, string password)
+
+        internal async Task<Authentication> SignupEmailPassword(string email, string password, string name)
         {
-            var request = new SignupRequest(email, password);
+            var request = new SignupRequest(email, password, name);
             var response = await _authenticationApi.SignupEmailPasswordAsync(request);
-            var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
-            return authentication;
-        }
-        
-        internal async Task<Authentication> Login(OAuthProvider provider, string token)
-        {
-            var request = new AuthenticateOAuthRequest(provider, token);
-            var response = await _authenticationApi.AuthenticateOAuthAsync(request);
             var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
             return authentication;
         }
@@ -85,10 +79,10 @@ namespace Openfort
             {
                 throw new Exception("No keys found");
             }
-            
+
             return jwtks.Keys[0];
         }
-        
+
         internal JwtKey Jwks()
         {
             return _jwks;
@@ -101,16 +95,19 @@ namespace Openfort
             {
                 var playerId = Jwt.Validate(accessToken, _jwks.X, _jwks.Y, _jwks.Crv);
                 authentication = new Authentication { Token = accessToken, RefreshToken = refreshToken, PlayerId = playerId };
-            } catch (TokenExpiredException) {
+            }
+            catch (TokenExpiredException)
+            {
                 var request = new RefreshTokenRequest { RefreshToken = refreshToken };
                 var response = await _authenticationApi.RefreshAsync(request);
                 authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Debug.Log("Error validating token: " + e.Message);
                 throw;
             }
-            
+
             return authentication;
         }
 
