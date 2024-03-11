@@ -109,11 +109,6 @@ namespace Openfort
             return auth.Token;
         }
 
-        public async Task<InitAuthResponse> GetAuthenticationURL(OAuthProvider provider)
-        {
-            return await _openfortAuth.GetAuthenticationURL(provider);
-        }
-
         public async Task<string> LoginWithOAuth(OAuthProvider provider, string token)
         {
             var auth = await _openfortAuth.Login(provider, token);
@@ -128,7 +123,12 @@ namespace Openfort
             return auth.Token;
         }
 
-        public async Task<string> GetTokenAfterSocialLogin(OAuthProvider provider, string key)
+        public async Task<InitAuthResponse> InitOAuth(OAuthProvider provider)
+        {
+            return await _openfortAuth.GetAuthenticationURL(provider);
+        }
+
+        public async Task<string> AuthenticateOAuth(OAuthProvider provider, string key)
         {
             var auth = await _openfortAuth.GetTokenAfterSocialLogin(provider, key);
             StoreCredentials(auth);
