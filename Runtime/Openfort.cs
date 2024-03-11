@@ -129,6 +129,11 @@ namespace Openfort
             _storage.Set(Keys.RefreshToken, authentication.RefreshToken);
             _storage.Set(Keys.PlayerId, authentication.PlayerId);
         }
+        
+        public string GetAccessToken()
+        {
+            return _storage.Get(Keys.AuthToken);
+        }
 
         public bool IsLoaded()
         {
