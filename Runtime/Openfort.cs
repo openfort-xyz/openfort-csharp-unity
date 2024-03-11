@@ -161,12 +161,12 @@ namespace Openfort
         }
 
 
-        public void Logout()
+        public async void Logout()
         {
+            await _signer.Logout(); // must be done BEFORE deleting the tokens
             _storage.Delete(Keys.AuthToken);
             _storage.Delete(Keys.RefreshToken);
             _storage.Delete(Keys.PlayerId);
-            _signer.Logout();
         }
 
         public async Task<SessionResponse> SendSignatureSessionRequest(string sessionId, string signature)

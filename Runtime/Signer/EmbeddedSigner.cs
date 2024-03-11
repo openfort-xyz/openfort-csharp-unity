@@ -22,6 +22,7 @@ namespace Openfort.Signer
         private readonly IStorage _storage;
         private AccountsApi _accountsApi;
         private EmbeddedApi _embeddedApi;
+        private AuthenticationApi _authenticationApi;
         private const int Threshold = 2;
         private const int Shares = 3;
         private const int DeviceShareIndex = 0;
@@ -53,13 +54,16 @@ namespace Openfort.Signer
             var api = new ApiClient(apiConfiguration.BasePath);
             
             _accountsApi = new AccountsApi(api, api, apiConfiguration);
+            _authenticationApi = new AuthenticationApi(api, api, apiConfiguration);
             _embeddedApi = new EmbeddedApi(api, api, apiConfiguration); 
         }
         
-        public void Logout()
+        public async Task Logout()
         {
+            await _authenticationApi.LogoutAsync(new LogoutRequest(refreshToken: _storage.Get(Keys.RefreshToken)));
             _storage.Delete(Keys.DeviceId);
             _storage.Delete(Keys.Share);
+            _deviceId = string.Empty;
         }
         
         public bool IsLoaded()

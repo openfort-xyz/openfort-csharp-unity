@@ -31,12 +31,11 @@ namespace Openfort.Signer
             return Task.FromResult(signature);
         }
         
-        public void Logout()
+        public Task Logout()
         {
-            var request = new RevokeSessionRequest(_keyPair.PublicHex);
-            _sessionApi.RevokeSession(request);
             _storage.Delete(Keys.SessionKey);
             _keyPair = null;
+            return Task.CompletedTask;
         }
         
         public string LoadKeys()

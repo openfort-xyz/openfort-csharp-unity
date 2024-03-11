@@ -10,7 +10,7 @@ namespace Openfort.Signer
     internal interface ISigner
     {
         Task<string> Sign(string message);
-        void Logout();
+        Task Logout();
         Signer GetSignerType();
         bool UseCredentials();
         void UpdateAuthentication(Authentication auth);
