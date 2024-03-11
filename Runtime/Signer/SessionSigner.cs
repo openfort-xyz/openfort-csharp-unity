@@ -1,5 +1,9 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Openfort.Api;
+using Openfort.Client;
 using Openfort.Crypto;
+using Openfort.Model;
 using Openfort.Storage;
 
 namespace Openfort.Signer
@@ -8,10 +12,17 @@ namespace Openfort.Signer
     {
         private KeyPair _keyPair;
         private readonly IStorage _storage;
+        private readonly SessionsApi _sessionApi;
         
-        public SessionSigner(IStorage storage)
+        public SessionSigner(IStorage storage, string publishableKey)
         {
             _storage = storage;
+            var configuration = new Configuration(
+                new Dictionary<string, string> {{ "Authorization", "Bearer " + publishableKey }},
+                new Dictionary<string, string> { { "Authorization", publishableKey } },
+                new Dictionary<string, string> { { "Authorization", "Bearer" } }
+            );
+            _sessionApi = new SessionsApi(configuration);
         }
         
         public Task<string> Sign(string message)
@@ -22,7 +33,10 @@ namespace Openfort.Signer
         
         public void Logout()
         {
+            var request = new RevokeSessionRequest(_keyPair.PublicHex);
+            _sessionApi.RevokeSession(request);
             _storage.Delete(Keys.SessionKey);
+            _keyPair = null;
         }
         
         public string LoadKeys()

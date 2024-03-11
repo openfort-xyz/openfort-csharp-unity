@@ -47,7 +47,7 @@ namespace Openfort
 
         public SessionKey ConfigureSessionKey()
         {
-            var signer = new SessionSigner(_storage);
+            var signer = new SessionSigner(_storage, _publishableKey);
             _signer = signer;
 
             var key = signer.LoadKeys();
