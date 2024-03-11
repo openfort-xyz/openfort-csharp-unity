@@ -109,7 +109,7 @@ namespace Openfort
             return auth.Token;
         }
 
-        public async Task<string> SignUpWithEmailPassword(string email, string password, string name)
+        public async Task<string> SignUpWithEmailPassword(string email, string password, string name = null)
         {
             var auth = await _openfortAuth.SignupEmailPassword(email, password, name);
             StoreCredentials(auth);
