@@ -70,7 +70,7 @@ namespace Openfort
 
         public void ConfigureEmbeddedSigner(int chainId)
         {
-            if (!IsAuthenticated())
+            if (!CredentialsProvided())
             {
                 throw new NotLoggedIn("Must be logged in to configure embedded signer");
             }
@@ -152,18 +152,37 @@ namespace Openfort
             return _openfortAuth.Jwks() != null;
         }
 
-        public bool IsAuthenticated()
+        private bool CredentialsProvided()
         {
             var token = _storage.Get(Keys.AuthToken);
             var refreshToken = _storage.Get(Keys.RefreshToken);
             var playerId = _storage.Get(Keys.PlayerId);
             return !string.IsNullOrEmpty(token) && !string.IsNullOrEmpty(refreshToken) && !string.IsNullOrEmpty(playerId);
         }
+        
+        public bool IsAuthenticated()
+        {
+            if (!CredentialsProvided())
+            {
+                return false;
+            }
+            
+            if (_signer != null && _signer.GetSignerType() == Signer.Signer.Embedded)
+            {
+                var embeddedSigner = (EmbeddedSigner)_signer;
+                if (string.IsNullOrEmpty(embeddedSigner.GetDeviceId()))
+                {
+                    return false;
+                }
+            }
+           
+            return true;
+        }
 
 
         public async void Logout()
         {
-            if (IsAuthenticated())
+            if (CredentialsProvided())
             { 
                 await _openfortAuth.Logout(_storage.Get(Keys.AuthToken),_storage.Get(Keys.RefreshToken));
             }
@@ -203,7 +222,7 @@ namespace Openfort
 
         private async Task ValidateAndRefreshToken()
         {
-            if (!IsAuthenticated())
+            if (!CredentialsProvided())
             {
                 return;
             }

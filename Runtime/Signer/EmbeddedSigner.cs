@@ -35,7 +35,12 @@ namespace Openfort.Signer
             _publishableKey = publishableKey;
             ConfigureAPIs();
         }
-
+        
+        public string GetDeviceId()
+        {
+            return _deviceId;
+        }
+        
         private void ConfigureAPIs()
         {
             var apiConfiguration = new Configuration(
@@ -60,7 +65,6 @@ namespace Openfort.Signer
             _storage.Delete(Keys.DeviceId);
             _storage.Delete(Keys.Share);
             _deviceId = string.Empty;
-            _chainId = 0;
         }
         
         public bool IsLoaded()
