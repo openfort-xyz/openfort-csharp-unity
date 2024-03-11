@@ -102,35 +102,28 @@ namespace Openfort
             await embeddedSigner.EnsureEmbeddedAccount();
         }
 
-        public async Task<string> LoginWithEmailPassword(string username, string password)
+        public async Task<string> LoginWithEmailPassword(string email, string password)
         {
-            var auth = await _openfortAuth.Login(username, password);
+            var auth = await _openfortAuth.LoginEmailPassword(email, password);
             StoreCredentials(auth);
             return auth.Token;
         }
 
-        public async Task<string> LoginWithOAuth(OAuthProvider provider, string token)
+        public async Task<string> SignUpWithEmailPassword(string email, string password, string name)
         {
-            var auth = await _openfortAuth.Login(provider, token);
-            StoreCredentials(auth);
-            return auth.Token;
-        }
-
-        public async Task<string> SignUpWithEmailPassword(string username, string password)
-        {
-            var auth = await _openfortAuth.SignUp(username, password);
+            var auth = await _openfortAuth.SignupEmailPassword(email, password, name);
             StoreCredentials(auth);
             return auth.Token;
         }
 
         public async Task<InitAuthResponse> InitOAuth(OAuthProvider provider)
         {
-            return await _openfortAuth.GetAuthenticationURL(provider);
+            return await _openfortAuth.InitOAuth(provider);
         }
 
         public async Task<string> AuthenticateOAuth(OAuthProvider provider, string key)
         {
-            var auth = await _openfortAuth.GetTokenAfterSocialLogin(provider, key);
+            var auth = await _openfortAuth.AuthenticateOAuth(provider, key);
             StoreCredentials(auth);
             return auth.Token;
         }
@@ -159,14 +152,14 @@ namespace Openfort
             var playerId = _storage.Get(Keys.PlayerId);
             return !string.IsNullOrEmpty(token) && !string.IsNullOrEmpty(refreshToken) && !string.IsNullOrEmpty(playerId);
         }
-        
+
         public bool IsAuthenticated()
         {
             if (!CredentialsProvided())
             {
                 return false;
             }
-            
+
             if (_signer != null && _signer.GetSignerType() == Signer.Signer.Embedded)
             {
                 var embeddedSigner = (EmbeddedSigner)_signer;
@@ -175,7 +168,7 @@ namespace Openfort
                     return false;
                 }
             }
-           
+
             return true;
         }
 
@@ -183,8 +176,8 @@ namespace Openfort
         public async void Logout()
         {
             if (CredentialsProvided())
-            { 
-                await _openfortAuth.Logout(_storage.Get(Keys.AuthToken),_storage.Get(Keys.RefreshToken));
+            {
+                await _openfortAuth.Logout(_storage.Get(Keys.AuthToken), _storage.Get(Keys.RefreshToken));
             }
             _signer.Logout();
             _storage.Delete(Keys.AuthToken);
