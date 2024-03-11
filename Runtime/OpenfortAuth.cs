@@ -113,5 +113,10 @@ namespace Openfort
             
             return authentication;
         }
+
+        public async Task Logout(string refreshToken)
+        {
+            await _authenticationApi.LogoutAsync(new LogoutRequest(refreshToken: refreshToken));
+        }
     }
 }

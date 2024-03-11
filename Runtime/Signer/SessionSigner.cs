@@ -31,11 +31,10 @@ namespace Openfort.Signer
             return Task.FromResult(signature);
         }
         
-        public Task Logout()
+        public void Logout()
         {
             _storage.Delete(Keys.SessionKey);
             _keyPair = null;
-            return Task.CompletedTask;
         }
         
         public string LoadKeys()

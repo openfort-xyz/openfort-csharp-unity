@@ -14,15 +14,13 @@ namespace Openfort.Signer
 {
     internal class EmbeddedSigner : ISigner
     {
-        private readonly int _chainId;
-        private readonly string _accessToken;
+        private int _chainId;
         private IRecovery _recovery;
         private string _deviceId;
         private readonly string _publishableKey;
         private readonly IStorage _storage;
         private AccountsApi _accountsApi;
         private EmbeddedApi _embeddedApi;
-        private AuthenticationApi _authenticationApi;
         private const int Threshold = 2;
         private const int Shares = 3;
         private const int DeviceShareIndex = 0;
@@ -54,16 +52,15 @@ namespace Openfort.Signer
             var api = new ApiClient(apiConfiguration.BasePath);
             
             _accountsApi = new AccountsApi(api, api, apiConfiguration);
-            _authenticationApi = new AuthenticationApi(api, api, apiConfiguration);
             _embeddedApi = new EmbeddedApi(api, api, apiConfiguration); 
         }
         
-        public async Task Logout()
+        public void Logout()
         {
-            await _authenticationApi.LogoutAsync(new LogoutRequest(refreshToken: _storage.Get(Keys.RefreshToken)));
             _storage.Delete(Keys.DeviceId);
             _storage.Delete(Keys.Share);
             _deviceId = string.Empty;
+            _chainId = 0;
         }
         
         public bool IsLoaded()

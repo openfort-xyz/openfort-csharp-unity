@@ -163,7 +163,11 @@ namespace Openfort
 
         public async void Logout()
         {
-            await _signer.Logout(); // must be done BEFORE deleting the tokens
+            if (IsAuthenticated())
+            { 
+                await _openfortAuth.Logout(_storage.Get(Keys.RefreshToken));
+            }
+            _signer.Logout();
             _storage.Delete(Keys.AuthToken);
             _storage.Delete(Keys.RefreshToken);
             _storage.Delete(Keys.PlayerId);
