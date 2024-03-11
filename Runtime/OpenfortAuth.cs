@@ -46,11 +46,12 @@ namespace Openfort
             return new InitAuthResponse { Url = response.Url, Key = response.Key };
         }
         
-        internal async Task<string> GetTokenAfterSocialLogin(OAuthProvider provider, string key)
+        internal async Task<Authentication> GetTokenAfterSocialLogin(OAuthProvider provider, string key)
         {
             var request = new AuthenticateOAuthRequest(provider: provider, token: key);
             var response = await _authenticationApi.AuthenticateOAuthAsync(request);
-            return response.Token;
+            var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
+            return authentication;
         }
 
         internal async Task<Authentication> Login(string username, string password)

@@ -109,6 +109,11 @@ namespace Openfort
             return auth.Token;
         }
 
+        public async Task<InitAuthResponse> GetAuthenticationURL(OAuthProvider provider)
+        {
+            return await _openfortAuth.GetAuthenticationURL(provider);
+        }
+
         public async Task<string> LoginWithOAuth(OAuthProvider provider, string token)
         {
             var auth = await _openfortAuth.Login(provider, token);
@@ -123,13 +128,20 @@ namespace Openfort
             return auth.Token;
         }
 
+        public async Task<string> GetTokenAfterSocialLogin(OAuthProvider provider, string key)
+        {
+            var auth = await _openfortAuth.GetTokenAfterSocialLogin(provider, key);
+            StoreCredentials(auth);
+            return auth.Token;
+        }
+
         private void StoreCredentials(Authentication authentication)
         {
             _storage.Set(Keys.AuthToken, authentication.Token);
             _storage.Set(Keys.RefreshToken, authentication.RefreshToken);
             _storage.Set(Keys.PlayerId, authentication.PlayerId);
         }
-        
+
         public string GetAccessToken()
         {
             return _storage.Get(Keys.AuthToken);
@@ -139,7 +151,7 @@ namespace Openfort
         {
             return _openfortAuth.Jwks() != null;
         }
-        
+
         public bool IsAuthenticated()
         {
             var token = _storage.Get(Keys.AuthToken);
@@ -147,16 +159,7 @@ namespace Openfort
             var playerId = _storage.Get(Keys.PlayerId);
             return !string.IsNullOrEmpty(token) && !string.IsNullOrEmpty(refreshToken) && !string.IsNullOrEmpty(playerId);
         }
-        
-        public async Task<InitAuthResponse> GetAuthenticationURL(OAuthProvider provider)
-        {
-            return await _openfortAuth.GetAuthenticationURL(provider);
-        }
-        
-        public async Task<string> GetTokenAfterSocialLogin(OAuthProvider provider, string key)
-        {
-            return await _openfortAuth.GetTokenAfterSocialLogin(provider, key);
-        }
+
 
         public void Logout()
         {
