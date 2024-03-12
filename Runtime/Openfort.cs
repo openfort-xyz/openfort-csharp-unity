@@ -116,14 +116,26 @@ namespace Openfort
             return auth.Token;
         }
 
-        public async Task<InitAuthResponse> InitOAuth(OAuthProvider provider)
+        public async Task<OAuthInitResponse> InitOAuth(OAuthProvider provider, OAuthInitRequestOptions options = default(OAuthInitRequestOptions))
         {
-            return await _openfortAuth.InitOAuth(provider);
+            return await _openfortAuth.InitOAuth(provider, options: options);
         }
 
-        public async Task<string> AuthenticateOAuth(OAuthProvider provider, string key)
+        public async Task<string> AuthenticateWithOAuth(OAuthProvider provider, string key)
         {
             var auth = await _openfortAuth.AuthenticateOAuth(provider, key);
+            StoreCredentials(auth);
+            return auth.Token;
+        }
+
+        public async Task<SIWEInitResponse> InitOAuth(string address)
+        {
+            return await _openfortAuth.InitSIWE(address);
+        }
+
+        public async Task<string> AuthenticateWithSIWE(string signature, string message, string walletClientType, string connectorType)
+        {
+            var auth = await _openfortAuth.AuthenticateSIWE(signature, message, walletClientType, connectorType);
             StoreCredentials(auth);
             return auth.Token;
         }

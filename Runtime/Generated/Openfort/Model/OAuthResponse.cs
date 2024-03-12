@@ -26,45 +26,48 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// The request to verify access token
+    /// OAuthResponse
     /// </summary>
-    [DataContract(Name = "LinkRequest")]
-    public partial class LinkRequest : IEquatable<LinkRequest>
+    [DataContract(Name = "OAuthResponse")]
+    public partial class OAuthResponse : IEquatable<OAuthResponse>
     {
-
         /// <summary>
-        /// Gets or Sets Provider
-        /// </summary>
-        [DataMember(Name = "provider", IsRequired = true, EmitDefaultValue = true)]
-        public OAuthProvider Provider { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LinkRequest" /> class.
+        /// Initializes a new instance of the <see cref="OAuthResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected LinkRequest() { }
+        protected OAuthResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="LinkRequest" /> class.
+        /// Initializes a new instance of the <see cref="OAuthResponse" /> class.
         /// </summary>
-        /// <param name="provider">provider (required).</param>
-        /// <param name="externalUserId">external user id (required).</param>
-        public LinkRequest(OAuthProvider provider = default(OAuthProvider), string externalUserId = default(string))
+        /// <param name="url">url (required).</param>
+        /// <param name="key">key (required).</param>
+        public OAuthResponse(string url = default(string), string key = default(string))
         {
-            this.Provider = provider;
-            // to ensure "externalUserId" is required (not null)
-            if (externalUserId == null)
+            // to ensure "url" is required (not null)
+            if (url == null)
             {
-                throw new ArgumentNullException("externalUserId is a required property for LinkRequest and cannot be null");
+                throw new ArgumentNullException("url is a required property for OAuthResponse and cannot be null");
             }
-            this.ExternalUserId = externalUserId;
+            this.Url = url;
+            // to ensure "key" is required (not null)
+            if (key == null)
+            {
+                throw new ArgumentNullException("key is a required property for OAuthResponse and cannot be null");
+            }
+            this.Key = key;
         }
 
         /// <summary>
-        /// external user id
+        /// Gets or Sets Url
         /// </summary>
-        /// <value>external user id</value>
-        /// <example>&quot;1234567890&quot;</example>
-        [DataMember(Name = "externalUserId", IsRequired = true, EmitDefaultValue = true)]
-        public string ExternalUserId { get; set; }
+        [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
+        public string Url { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Key
+        /// </summary>
+        [DataMember(Name = "key", IsRequired = true, EmitDefaultValue = true)]
+        public string Key { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -73,9 +76,9 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class LinkRequest {\n");
-            sb.Append("  Provider: ").Append(Provider).Append("\n");
-            sb.Append("  ExternalUserId: ").Append(ExternalUserId).Append("\n");
+            sb.Append("class OAuthResponse {\n");
+            sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("  Key: ").Append(Key).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -96,15 +99,15 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as LinkRequest);
+            return this.Equals(input as OAuthResponse);
         }
 
         /// <summary>
-        /// Returns true if LinkRequest instances are equal
+        /// Returns true if OAuthResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of LinkRequest to be compared</param>
+        /// <param name="input">Instance of OAuthResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(LinkRequest input)
+        public bool Equals(OAuthResponse input)
         {
             if (input == null)
             {
@@ -112,13 +115,14 @@ namespace Openfort.Model
             }
             return 
                 (
-                    this.Provider == input.Provider ||
-                    this.Provider.Equals(input.Provider)
+                    this.Url == input.Url ||
+                    (this.Url != null &&
+                    this.Url.Equals(input.Url))
                 ) && 
                 (
-                    this.ExternalUserId == input.ExternalUserId ||
-                    (this.ExternalUserId != null &&
-                    this.ExternalUserId.Equals(input.ExternalUserId))
+                    this.Key == input.Key ||
+                    (this.Key != null &&
+                    this.Key.Equals(input.Key))
                 );
         }
 
@@ -131,10 +135,13 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Provider.GetHashCode();
-                if (this.ExternalUserId != null)
+                if (this.Url != null)
                 {
-                    hashCode = (hashCode * 59) + this.ExternalUserId.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
+                }
+                if (this.Key != null)
+                {
+                    hashCode = (hashCode * 59) + this.Key.GetHashCode();
                 }
                 return hashCode;
             }

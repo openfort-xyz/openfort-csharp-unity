@@ -41,7 +41,7 @@ namespace Openfort.Model
         public UserProjectCreateRequestRole(UserProjectRoleMEMBER actualInstance)
         {
             this.IsNullable = false;
-            this.SchemaType= "anyOf";
+            this.SchemaType = "anyOf";
             this.ActualInstance = actualInstance;
         }
 
@@ -53,7 +53,7 @@ namespace Openfort.Model
         public UserProjectCreateRequestRole(UserProjectRoleADMIN actualInstance)
         {
             this.IsNullable = false;
-            this.SchemaType= "anyOf";
+            this.SchemaType = "anyOf";
             this.ActualInstance = actualInstance;
         }
 
@@ -236,7 +236,7 @@ namespace Openfort.Model
         /// <returns>The object converted from the JSON string</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if(reader.TokenType != JsonToken.Null)
+            if (reader.TokenType != JsonToken.Null)
             {
                 return UserProjectCreateRequestRole.FromJson(JObject.Load(reader).ToString(Formatting.None));
             }

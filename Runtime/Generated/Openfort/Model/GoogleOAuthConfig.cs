@@ -49,8 +49,7 @@ namespace Openfort.Model
         /// <param name="provider">provider (required).</param>
         /// <param name="clientId">Google API client ID. (required).</param>
         /// <param name="clientSecret">Google API client secret. (required).</param>
-        /// <param name="redirectUri">The URI to redirect to after completing the auth request. You can use Openfort redirect URL: https://openfort.xyz/iam/v1/oauth/google/callback (required).</param>
-        public GoogleOAuthConfig(bool enabled = default(bool), OAuthProviderGOOGLE provider = default(OAuthProviderGOOGLE), string clientId = default(string), string clientSecret = default(string), string redirectUri = default(string))
+        public GoogleOAuthConfig(bool enabled = default(bool), OAuthProviderGOOGLE provider = default(OAuthProviderGOOGLE), string clientId = default(string), string clientSecret = default(string))
         {
             this.Enabled = enabled;
             this.Provider = provider;
@@ -66,12 +65,6 @@ namespace Openfort.Model
                 throw new ArgumentNullException("clientSecret is a required property for GoogleOAuthConfig and cannot be null");
             }
             this.ClientSecret = clientSecret;
-            // to ensure "redirectUri" is required (not null)
-            if (redirectUri == null)
-            {
-                throw new ArgumentNullException("redirectUri is a required property for GoogleOAuthConfig and cannot be null");
-            }
-            this.RedirectUri = redirectUri;
         }
 
         /// <summary>
@@ -96,13 +89,6 @@ namespace Openfort.Model
         public string ClientSecret { get; set; }
 
         /// <summary>
-        /// The URI to redirect to after completing the auth request. You can use Openfort redirect URL: https://openfort.xyz/iam/v1/oauth/google/callback
-        /// </summary>
-        /// <value>The URI to redirect to after completing the auth request. You can use Openfort redirect URL: https://openfort.xyz/iam/v1/oauth/google/callback</value>
-        [DataMember(Name = "redirectUri", IsRequired = true, EmitDefaultValue = true)]
-        public string RedirectUri { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -114,7 +100,6 @@ namespace Openfort.Model
             sb.Append("  Provider: ").Append(Provider).Append("\n");
             sb.Append("  ClientId: ").Append(ClientId).Append("\n");
             sb.Append("  ClientSecret: ").Append(ClientSecret).Append("\n");
-            sb.Append("  RedirectUri: ").Append(RedirectUri).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -167,11 +152,6 @@ namespace Openfort.Model
                     this.ClientSecret == input.ClientSecret ||
                     (this.ClientSecret != null &&
                     this.ClientSecret.Equals(input.ClientSecret))
-                ) && 
-                (
-                    this.RedirectUri == input.RedirectUri ||
-                    (this.RedirectUri != null &&
-                    this.RedirectUri.Equals(input.RedirectUri))
                 );
         }
 
@@ -193,10 +173,6 @@ namespace Openfort.Model
                 if (this.ClientSecret != null)
                 {
                     hashCode = (hashCode * 59) + this.ClientSecret.GetHashCode();
-                }
-                if (this.RedirectUri != null)
-                {
-                    hashCode = (hashCode * 59) + this.RedirectUri.GetHashCode();
                 }
                 return hashCode;
             }

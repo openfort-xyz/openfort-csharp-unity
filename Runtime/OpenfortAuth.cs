@@ -15,11 +15,18 @@ internal struct Authentication
     public string PlayerId;
 }
 
-public struct InitAuthResponse
+public struct OAuthInitResponse
 {
     public string Url;
     public string Key;
 }
+
+public struct SIWEInitResponse
+{
+    public string Address;
+    public string Nonce;
+    public double ExpiresAt;
+};
 
 namespace Openfort
 {
@@ -35,23 +42,36 @@ namespace Openfort
                 new Dictionary<string, string> { { "Authorization", "Bearer " + publishableKey } },
                 new Dictionary<string, string> { { "Authorization", publishableKey } },
                 new Dictionary<string, string> { { "Authorization", "Bearer" } });
-            var apiClient = new ApiClient(configuration.BasePath);
             _publishableKey = publishableKey;
-            _authenticationApi = new AuthenticationApi(publishableKey);
-            GetJwks().ContinueWith(task => _jwks = task.Result);
+            _authenticationApi = new AuthenticationApi(configuration);
         }
 
-        internal async Task<InitAuthResponse> InitOAuth(OAuthProvider provider)
+        internal async Task<OAuthInitResponse> InitOAuth(OAuthProvider provider, OAuthInitRequestOptions options = default(OAuthInitRequestOptions))
         {
-            var request = new OAuthInitRequest(provider: provider);
+            var request = new OAuthInitRequest(provider: provider, options: options);
             var response = await _authenticationApi.InitOAuthAsync(request);
-            return new InitAuthResponse { Url = response.Url, Key = response.Key };
+            return new OAuthInitResponse { Url = response.Url, Key = response.Key };
         }
 
         internal async Task<Authentication> AuthenticateOAuth(OAuthProvider provider, string key)
         {
             var request = new AuthenticateOAuthRequest(provider: provider, token: key);
             var response = await _authenticationApi.AuthenticateOAuthAsync(request);
+            var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
+            return authentication;
+        }
+
+        internal async Task<SIWEInitResponse> InitSIWE(string address)
+        {
+            var request = new SIWERequest(address: address);
+            var response = await _authenticationApi.InitSIWEAsync(request);
+            return new SIWEInitResponse { Address = response.Address, Nonce = response.Nonce, ExpiresAt = response.ExpiresAt };
+        }
+
+        internal async Task<Authentication> AuthenticateSIWE(string signature, string message, string walletClientType, string connectorType)
+        {
+            var request = new SIWEAuthenticateRequest(signature: signature, message: message, walletClientType: walletClientType, connectorType: connectorType);
+            var response = await _authenticationApi.AuthenticateSIWEAsync(request);
             var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
             return authentication;
         }
@@ -90,6 +110,10 @@ namespace Openfort
 
         internal async Task<Authentication> ValidateAndRefreshToken(string accessToken, string refreshToken)
         {
+            if (_jwks == null)
+            {
+                _jwks = await GetJwks();
+            }
             Authentication authentication;
             try
             {

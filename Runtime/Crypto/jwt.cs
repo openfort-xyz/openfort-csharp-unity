@@ -16,29 +16,28 @@ namespace Openfort.Crypto
     {
         public TokenExpiredException(string message) : base(message)
         {
-            
+
         }
     }
-    
+
     public class TokenInvalidException : Exception
     {
         public TokenInvalidException(string message) : base(message)
         {
-            
+
         }
     }
     public static class Jwt
     {
         public static string Validate(string token, string x, string y, string curve)
         {
-            Debug.Log("token: " + token);
             var parts = token.Split('.');
             if (parts.Length != 3)
             {
                 Debug.Log("Invalid token, len is: " + parts.Length);
                 throw new TokenInvalidException("Invalid format");
             }
-            
+
             var signature = parts[2];
 
             var headerJson = Encoding.UTF8.GetString(Base64UrlDecode(parts[0]));
@@ -61,7 +60,7 @@ namespace Openfort.Crypto
             {
                 throw new TokenInvalidException("Invalid issuer");
             }
-            
+
             var expiring = long.Parse(payloadData["exp"]);
             var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             var expirationTime = epoch.AddSeconds(expiring);
@@ -71,18 +70,18 @@ namespace Openfort.Crypto
                 throw new TokenExpiredException("Token expired at: " + expirationTime);
             }
 
-            
+
             var headerAndPayload = parts[0] + "." + parts[1];
             if (!VerifySignature(headerAndPayload, signature, x, y, curve))
             {
                 throw new TokenInvalidException("Invalid signature");
             }
-            
-            
+
+
 
             return subject;
         }
-        
+
         private static bool VerifySignature(string data, string signature, string x, string y, string curve)
         {
             try
@@ -98,10 +97,10 @@ namespace Openfort.Crypto
                 var signer = SignerUtilities.GetSigner("SHA-256withECDSA");
 
                 signer.Init(false, publicKeyParameters);
-                
+
                 var dataBytes = Encoding.UTF8.GetBytes(data);
                 signer.BlockUpdate(dataBytes, 0, dataBytes.Length);
-                
+
                 var decodedSignature = Base64UrlDecode(signature);
                 var derSignature = new DerSequence(new DerInteger(new BigInteger(1, decodedSignature.Take(32).ToArray())), new DerInteger(new BigInteger(1, decodedSignature.Skip(32).ToArray()))).GetDerEncoded();
                 var result = signer.VerifySignature(derSignature);
@@ -113,8 +112,8 @@ namespace Openfort.Crypto
                 return false;
             }
         }
-        
-        
+
+
         private static byte[] Base64UrlDecode(string input)
         {
             var output = input;
@@ -129,6 +128,6 @@ namespace Openfort.Crypto
             return Convert.FromBase64String(output);
         }
     }
-    
+
 
 }

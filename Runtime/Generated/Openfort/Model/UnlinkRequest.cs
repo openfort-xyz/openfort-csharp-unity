@@ -26,10 +26,10 @@ using OpenAPIDateConverter = Openfort.Client.OpenAPIDateConverter;
 namespace Openfort.Model
 {
     /// <summary>
-    /// OAuthInitRequest
+    /// The request to verify access token
     /// </summary>
-    [DataContract(Name = "OAuthInitRequest")]
-    public partial class OAuthInitRequest : IEquatable<OAuthInitRequest>
+    [DataContract(Name = "UnlinkRequest")]
+    public partial class UnlinkRequest : IEquatable<UnlinkRequest>
     {
 
         /// <summary>
@@ -38,26 +38,18 @@ namespace Openfort.Model
         [DataMember(Name = "provider", IsRequired = true, EmitDefaultValue = true)]
         public OAuthProvider Provider { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="OAuthInitRequest" /> class.
+        /// Initializes a new instance of the <see cref="UnlinkRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected OAuthInitRequest() { }
+        protected UnlinkRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="OAuthInitRequest" /> class.
+        /// Initializes a new instance of the <see cref="UnlinkRequest" /> class.
         /// </summary>
-        /// <param name="options">options.</param>
         /// <param name="provider">provider (required).</param>
-        public OAuthInitRequest(OAuthInitRequestOptions options = default(OAuthInitRequestOptions), OAuthProvider provider = default(OAuthProvider))
+        public UnlinkRequest(OAuthProvider provider = default(OAuthProvider))
         {
             this.Provider = provider;
-            this.Options = options;
         }
-
-        /// <summary>
-        /// Gets or Sets Options
-        /// </summary>
-        [DataMember(Name = "options", EmitDefaultValue = false)]
-        public OAuthInitRequestOptions Options { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,8 +58,7 @@ namespace Openfort.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class OAuthInitRequest {\n");
-            sb.Append("  Options: ").Append(Options).Append("\n");
+            sb.Append("class UnlinkRequest {\n");
             sb.Append("  Provider: ").Append(Provider).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -89,26 +80,21 @@ namespace Openfort.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as OAuthInitRequest);
+            return this.Equals(input as UnlinkRequest);
         }
 
         /// <summary>
-        /// Returns true if OAuthInitRequest instances are equal
+        /// Returns true if UnlinkRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of OAuthInitRequest to be compared</param>
+        /// <param name="input">Instance of UnlinkRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(OAuthInitRequest input)
+        public bool Equals(UnlinkRequest input)
         {
             if (input == null)
             {
                 return false;
             }
             return 
-                (
-                    this.Options == input.Options ||
-                    (this.Options != null &&
-                    this.Options.Equals(input.Options))
-                ) && 
                 (
                     this.Provider == input.Provider ||
                     this.Provider.Equals(input.Provider)
@@ -124,10 +110,6 @@ namespace Openfort.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Options != null)
-                {
-                    hashCode = (hashCode * 59) + this.Options.GetHashCode();
-                }
                 hashCode = (hashCode * 59) + this.Provider.GetHashCode();
                 return hashCode;
             }
