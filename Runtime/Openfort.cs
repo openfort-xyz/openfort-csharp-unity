@@ -185,7 +185,7 @@ namespace Openfort
         }
 
 
-        public async void Logout()
+        public async Task Logout()
         {
             if (CredentialsProvided())
             {
