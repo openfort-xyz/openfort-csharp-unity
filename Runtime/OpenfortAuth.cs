@@ -138,10 +138,8 @@ namespace Openfort
         public async Task Logout(string accessToken, string refreshToken)
         {
             var configuration = new Configuration(
-                new Dictionary<string, string> { { "Authorization", "Bearer " + _publishableKey } },
-                new Dictionary<string, string> {
-                {"Authorization", _publishableKey},
-                {"player-token", accessToken}},
+                new Dictionary<string, string> { { "Authorization", "Bearer " + _publishableKey }, { "player-token", accessToken } },
+                new Dictionary<string, string> { { "Authorization", _publishableKey } },
                 new Dictionary<string, string> { { "Authorization", "Bearer" } });
             var authenticationApiWithPlayerToken = new AuthenticationApi(configuration);
             await authenticationApiWithPlayerToken.LogoutAsync(new LogoutRequest(refreshToken: refreshToken));
