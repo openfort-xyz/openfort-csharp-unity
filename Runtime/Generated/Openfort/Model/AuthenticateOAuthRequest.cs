@@ -37,6 +37,12 @@ namespace Openfort.Model
         /// </summary>
         [DataMember(Name = "provider", IsRequired = true, EmitDefaultValue = true)]
         public OAuthProvider Provider { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TokenType
+        /// </summary>
+        [DataMember(Name = "tokenType", IsRequired = true, EmitDefaultValue = true)]
+        public TokenType TokenType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticateOAuthRequest" /> class.
         /// </summary>
@@ -47,7 +53,8 @@ namespace Openfort.Model
         /// </summary>
         /// <param name="provider">provider (required).</param>
         /// <param name="token">Token to be verified (required).</param>
-        public AuthenticateOAuthRequest(OAuthProvider provider = default(OAuthProvider), string token = default(string))
+        /// <param name="tokenType">tokenType (required).</param>
+        public AuthenticateOAuthRequest(OAuthProvider provider = default(OAuthProvider), string token = default(string), TokenType tokenType = default(TokenType))
         {
             this.Provider = provider;
             // to ensure "token" is required (not null)
@@ -56,6 +63,7 @@ namespace Openfort.Model
                 throw new ArgumentNullException("token is a required property for AuthenticateOAuthRequest and cannot be null");
             }
             this.Token = token;
+            this.TokenType = tokenType;
         }
 
         /// <summary>
@@ -76,6 +84,7 @@ namespace Openfort.Model
             sb.Append("class AuthenticateOAuthRequest {\n");
             sb.Append("  Provider: ").Append(Provider).Append("\n");
             sb.Append("  Token: ").Append(Token).Append("\n");
+            sb.Append("  TokenType: ").Append(TokenType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -119,6 +128,10 @@ namespace Openfort.Model
                     this.Token == input.Token ||
                     (this.Token != null &&
                     this.Token.Equals(input.Token))
+                ) && 
+                (
+                    this.TokenType == input.TokenType ||
+                    this.TokenType.Equals(input.TokenType)
                 );
         }
 
@@ -136,6 +149,7 @@ namespace Openfort.Model
                 {
                     hashCode = (hashCode * 59) + this.Token.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.TokenType.GetHashCode();
                 return hashCode;
             }
         }

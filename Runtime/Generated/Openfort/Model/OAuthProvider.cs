@@ -60,7 +60,19 @@ namespace Openfort.Model
         /// Enum Playfab for value: playfab
         /// </summary>
         [EnumMember(Value = "playfab")]
-        Playfab = 5
+        Playfab = 5,
+
+        /// <summary>
+        /// Enum Custom for value: custom
+        /// </summary>
+        [EnumMember(Value = "custom")]
+        Custom = 6,
+
+        /// <summary>
+        /// Enum Oidc for value: oidc
+        /// </summary>
+        [EnumMember(Value = "oidc")]
+        Oidc = 7
 
     }
 

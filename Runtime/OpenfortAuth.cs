@@ -53,9 +53,9 @@ namespace Openfort
             return new OAuthInitResponse { Url = response.Url, Key = response.Key };
         }
 
-        internal async Task<Authentication> AuthenticateOAuth(OAuthProvider provider, string key)
+        internal async Task<Authentication> AuthenticateOAuth(OAuthProvider provider, string key, TokenType tokenType)
         {
-            var request = new AuthenticateOAuthRequest(provider: provider, token: key);
+            var request = new AuthenticateOAuthRequest(provider: provider, token: key, tokenType: tokenType);
             var response = await _authenticationApi.AuthenticateOAuthAsync(request);
             var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
             return authentication;

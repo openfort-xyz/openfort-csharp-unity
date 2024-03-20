@@ -52,12 +52,13 @@ namespace Openfort.Model
         /// <param name="ownerAddress">ownerAddress (required).</param>
         /// <param name="deployed">deployed (required).</param>
         /// <param name="custodial">custodial (required).</param>
+        /// <param name="embeddedSigner">embeddedSigner (required).</param>
         /// <param name="chainId">The chain ID. (required).</param>
         /// <param name="accountType">accountType (required).</param>
         /// <param name="pendingOwnerAddress">pendingOwnerAddress.</param>
         /// <param name="transactionIntents">transactionIntents.</param>
         /// <param name="player">player (required).</param>
-        public Account(string id = default(string), EntityTypeACCOUNT _object = default(EntityTypeACCOUNT), int createdAt = default(int), string address = default(string), string ownerAddress = default(string), bool deployed = default(bool), bool custodial = default(bool), int chainId = default(int), string accountType = default(string), string pendingOwnerAddress = default(string), List<EntityIdResponse> transactionIntents = default(List<EntityIdResponse>), EntityIdResponse player = default(EntityIdResponse))
+        public Account(string id = default(string), EntityTypeACCOUNT _object = default(EntityTypeACCOUNT), int createdAt = default(int), string address = default(string), string ownerAddress = default(string), bool deployed = default(bool), bool custodial = default(bool), bool embeddedSigner = default(bool), int chainId = default(int), string accountType = default(string), string pendingOwnerAddress = default(string), List<EntityIdResponse> transactionIntents = default(List<EntityIdResponse>), EntityIdResponse player = default(EntityIdResponse))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -81,6 +82,7 @@ namespace Openfort.Model
             this.OwnerAddress = ownerAddress;
             this.Deployed = deployed;
             this.Custodial = custodial;
+            this.EmbeddedSigner = embeddedSigner;
             this.ChainId = chainId;
             // to ensure "accountType" is required (not null)
             if (accountType == null)
@@ -135,6 +137,12 @@ namespace Openfort.Model
         public bool Custodial { get; set; }
 
         /// <summary>
+        /// Gets or Sets EmbeddedSigner
+        /// </summary>
+        [DataMember(Name = "embeddedSigner", IsRequired = true, EmitDefaultValue = true)]
+        public bool EmbeddedSigner { get; set; }
+
+        /// <summary>
         /// The chain ID.
         /// </summary>
         /// <value>The chain ID.</value>
@@ -180,6 +188,7 @@ namespace Openfort.Model
             sb.Append("  OwnerAddress: ").Append(OwnerAddress).Append("\n");
             sb.Append("  Deployed: ").Append(Deployed).Append("\n");
             sb.Append("  Custodial: ").Append(Custodial).Append("\n");
+            sb.Append("  EmbeddedSigner: ").Append(EmbeddedSigner).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");
             sb.Append("  PendingOwnerAddress: ").Append(PendingOwnerAddress).Append("\n");
@@ -252,6 +261,10 @@ namespace Openfort.Model
                     this.Custodial.Equals(input.Custodial)
                 ) && 
                 (
+                    this.EmbeddedSigner == input.EmbeddedSigner ||
+                    this.EmbeddedSigner.Equals(input.EmbeddedSigner)
+                ) && 
+                (
                     this.ChainId == input.ChainId ||
                     this.ChainId.Equals(input.ChainId)
                 ) && 
@@ -303,6 +316,7 @@ namespace Openfort.Model
                 }
                 hashCode = (hashCode * 59) + this.Deployed.GetHashCode();
                 hashCode = (hashCode * 59) + this.Custodial.GetHashCode();
+                hashCode = (hashCode * 59) + this.EmbeddedSigner.GetHashCode();
                 hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
                 if (this.AccountType != null)
                 {

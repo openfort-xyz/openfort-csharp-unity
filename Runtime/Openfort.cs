@@ -121,9 +121,9 @@ namespace Openfort
             return await _openfortAuth.InitOAuth(provider, options: options);
         }
 
-        public async Task<string> AuthenticateWithOAuth(OAuthProvider provider, string key)
+        public async Task<string> AuthenticateWithOAuth(OAuthProvider provider, string key, TokenType tokenType)
         {
-            var auth = await _openfortAuth.AuthenticateOAuth(provider, key);
+            var auth = await _openfortAuth.AuthenticateOAuth(provider, key, tokenType);
             StoreCredentials(auth);
             return auth.Token;
         }
