@@ -45,14 +45,13 @@ namespace Clients
             return JsonConvert.DeserializeObject<Share>(request.downloadHandler.text);
         }
 
-        [CanBeNull]
         public async Task<Share> StoreSecret(Share share, ShieldAuthOptions auth)
         {
             var json = JsonConvert.SerializeObject(share);
-            var request = new UnityWebRequest($"{_baseURL}/shares", "POST");
-            var bodyRaw = new UTF8Encoding().GetBytes(json);
-            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-            request.downloadHandler = new DownloadHandlerBuffer();
+            var request = UnityWebRequest.Post($"{_baseURL}/shares", json);
+            // var bodyRaw = new UTF8Encoding().GetBytes(json);
+            // request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            // request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
 
             foreach (var header in GetAuthHeaders(auth))
