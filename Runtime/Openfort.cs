@@ -131,7 +131,7 @@ namespace Openfort
             _signer = signer;
         }
         
-        public async void AuthenticateWithThirdPartyProvider(string provider, string token, TokenType tokenType)
+        public async Task AuthenticateWithThirdPartyProvider(string provider, string token, TokenType tokenType)
         {
             var playerId = await new Clients.Openfort(_publishableKey, baseURL: _openfortURL).VerifyThirdParty(token, provider, tokenType.ToString());
             _storage.Set(Keys.PlayerId, playerId);
