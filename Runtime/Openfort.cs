@@ -133,7 +133,13 @@ namespace Openfort
         
         public async Task AuthenticateWithThirdPartyProvider(string provider, string token, TokenType tokenType)
         {
-            var playerId = await new Clients.Openfort(_publishableKey, baseURL: _openfortURL).VerifyThirdParty(token, provider, tokenType.ToString());
+            var tokenTypeStr = tokenType switch
+            {
+                TokenType.IdToken => "idToken",
+                TokenType.CustomToken => "accessToken",
+                _ => throw new Exception("Invalid token type")
+            };
+            var playerId = await new Clients.Openfort(_publishableKey, baseURL: _openfortURL).VerifyThirdParty(token, provider, tokenTypeStr);
             _storage.Set(Keys.PlayerId, playerId);
             _storage.Set(Keys.ThirdPartyProvider, provider);
             _storage.Set(Keys.AuthToken, token);
