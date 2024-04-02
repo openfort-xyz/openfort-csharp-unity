@@ -82,7 +82,7 @@ namespace Clients
             var headers = new Dictionary<string, string>
             {
                 ["x-api-key"] = _apiKey,
-                ["x-auth-provider"] = options.authProvider.ToString(),
+                ["x-auth-provider"] = options.authProvider.ToFormattedString(),
                 ["Access-Control-Allow-Origin"] = _baseURL
             };
 
@@ -91,11 +91,11 @@ namespace Clients
                 headers["Authorization"] = $"Bearer {openfortOptions.openfortOAuthToken}";
                 if (openfortOptions.openfortOAuthProvider != OpenfortOAuthProvider.None)
                 {
-                    headers["x-openfort-provider"] = openfortOptions.openfortOAuthProvider.ToString();    
+                    headers["x-openfort-provider"] = openfortOptions.openfortOAuthProvider.ToFormattedString();    
                 }
                 if (openfortOptions.openfortOAuthTokenType != OpenfortOAuthTokenType.None)
                 {
-                    headers["x-openfort-token-type"] = openfortOptions.openfortOAuthTokenType.ToString();    
+                    headers["x-openfort-token-type"] = openfortOptions.openfortOAuthTokenType.ToFormattedString();    
                 }
                 // Additional headers if needed
             } else if (options is CustomAuthOptions customOptions)
@@ -181,6 +181,48 @@ namespace Clients
             CustomToken
         }
 
+
+
+
+    }
+    public static class EnumExtensions
+    {
+        public static string ToFormattedString(this Shield.OpenfortOAuthProvider provider)
+        {
+            switch (provider)
+            {
+                case Shield.OpenfortOAuthProvider.None: return "none";
+                case Shield.OpenfortOAuthProvider.Accelbyte: return "accelbyte";
+                case Shield.OpenfortOAuthProvider.Firebase: return "firebase";
+                case Shield.OpenfortOAuthProvider.Google: return "google";
+                case Shield.OpenfortOAuthProvider.Lootlocker: return "lootlocker";
+                case Shield.OpenfortOAuthProvider.Playfab: return "playfab";
+                case Shield.OpenfortOAuthProvider.Custom: return "custom";
+                case Shield.OpenfortOAuthProvider.Oidc: return "oidc";
+                default: throw new ArgumentOutOfRangeException(nameof(provider), provider, null);
+            }
+        }
+
+        public static string ToFormattedString(this Shield.OpenfortOAuthTokenType tokenType)
+        {
+            switch (tokenType)
+            {
+                case Shield.OpenfortOAuthTokenType.None: return "none";
+                case Shield.OpenfortOAuthTokenType.IdToken: return "idToken";
+                case Shield.OpenfortOAuthTokenType.CustomToken: return "customToken";
+                default: throw new ArgumentOutOfRangeException(nameof(tokenType), tokenType, null);
+            }
+        }
+
+        public static string ToFormattedString(this Shield.ShieldAuthProvider provider)
+        {
+            switch (provider)
+            {
+                case Shield.ShieldAuthProvider.Openfort: return "openfort";
+                case Shield.ShieldAuthProvider.Custom: return "custom";
+                default: throw new ArgumentOutOfRangeException(nameof(provider), provider, null);
+            }
+        }
     }
 
 }
