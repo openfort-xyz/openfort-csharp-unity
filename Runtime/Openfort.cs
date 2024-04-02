@@ -136,7 +136,7 @@ namespace Openfort
             var tokenTypeStr = tokenType switch
             {
                 TokenType.IdToken => "idToken",
-                await TokenType.CustomToken => "accessToken",
+                TokenType.CustomToken => "accessToken",
                 _ => throw new Exception("Invalid token type")
             };
             var playerId = await new Clients.Openfort(_publishableKey, baseURL: _openfortURL).VerifyThirdParty(token, provider, tokenTypeStr);
