@@ -78,7 +78,7 @@ namespace Openfort
             };
         }
 
-        public async void ConfigureEmbeddedSigner(int chainId, Shield.ShieldAuthOptions auth = null)
+        public async Task ConfigureEmbeddedSigner(int chainId, Shield.ShieldAuthOptions auth = null)
         {
             if (!CredentialsProvided())
             {
@@ -95,7 +95,7 @@ namespace Openfort
                 switch (e)
                 {
                     case RecoveryNotConfigured:
-                        throw new EmbeddedNotConfigured("Recovery not configured");
+                        throw new EmbeddedNotConfigured("Recovery not configured: " + e.Message);
                     case Signer.MissingRecoveryPassword:
                         throw new MissingRecoveryPassword("Recovery is encrypted, must provide recovery password");
                     default:
@@ -136,7 +136,7 @@ namespace Openfort
             var tokenTypeStr = tokenType switch
             {
                 TokenType.IdToken => "idToken",
-                TokenType.CustomToken => "accessToken",
+                await TokenType.CustomToken => "accessToken",
                 _ => throw new Exception("Invalid token type")
             };
             var playerId = await new Clients.Openfort(_publishableKey, baseURL: _openfortURL).VerifyThirdParty(token, provider, tokenTypeStr);
