@@ -277,9 +277,15 @@ namespace Openfort
             {
                 return;
             }
+            var accessToken = _storage.Get(Keys.AuthToken);
+            var refreshToken = _storage.Get(Keys.RefreshToken);
+            
+            if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(refreshToken))
+            {
+                return;
+            }
 
-            var auth = await _openfortAuth.ValidateAndRefreshToken(accessToken: _storage.Get(Keys.AuthToken),
-                refreshToken: _storage.Get(Keys.RefreshToken));
+            var auth = await _openfortAuth.ValidateAndRefreshToken(accessToken, refreshToken);
             if (auth.Token != _storage.Get(Keys.AuthToken))
             {
                 StoreCredentials(auth);
