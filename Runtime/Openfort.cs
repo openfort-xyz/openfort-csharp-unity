@@ -85,7 +85,7 @@ namespace Openfort
                 throw new NotLoggedIn("Must be logged in to configure embedded signer");
             }
 
-            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage);
+            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage, _shieldAPIKey, _openfortURL, _shieldURL);
             try
             {
                 await signer.EnsureEmbeddedAccount(auth: auth);
@@ -113,7 +113,7 @@ namespace Openfort
                 throw new NotLoggedIn("Must be logged in to configure embedded signer");
             }
 
-            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage);
+            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage, _shieldAPIKey, _openfortURL, _shieldURL);
             try
             {
                 await signer.EnsureEmbeddedAccount(recoveryPassword, auth);
