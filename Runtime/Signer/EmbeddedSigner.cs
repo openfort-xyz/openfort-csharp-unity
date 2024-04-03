@@ -119,11 +119,13 @@ namespace Openfort.Signer
 
             if (!string.IsNullOrEmpty(salt))
             {
-                share.encryptionParameters = new Shield.EncryptionParameters();
-                share.encryptionParameters.salt = salt;
-                share.encryptionParameters.iterations = 1000;
-                share.encryptionParameters.length = 8;
-                share.encryptionParameters.digest = "SHA256";
+                share.encryptionParameters = new Shield.EncryptionParameters
+                {
+                    salt = salt,
+                    iterations = 1000,
+                    length = 256,
+                    digest = "SHA-256"
+                };
             }
             await _shield.StoreSecret(share, auth)!;
             _storage.Set("deviceId", _deviceId);
