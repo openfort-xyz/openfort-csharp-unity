@@ -98,10 +98,13 @@ namespace Openfort.Signer
             var deviceShare = shares[DeviceShareIndex];
             var authShare = shares[AuthShareIndex];
             var recoveryShare = shares[RecoveryShareIndex];
-            
+
+            var salt = "";
             if (!string.IsNullOrEmpty(recoveryPassword))
             {
-                recoveryShare = Cypher.Encrypt(recoveryPassword,recoveryShare);
+                salt = Cypher.GenerateRandomSalt();
+                var encryptionKey = Cypher.DeriveKey(recoveryPassword, salt);
+                recoveryShare = Cypher.Encrypt(encryptionKey,recoveryShare);
             }
 
             var account = await _openfort.CreateAccount(_chainId, key.GetPublicAddress());
@@ -113,6 +116,15 @@ namespace Openfort.Signer
                 secret = recoveryShare,
                 userEntropy = !string.IsNullOrEmpty(recoveryPassword)
             };
+
+            if (!string.IsNullOrEmpty(salt))
+            {
+                share.encryptionParameters = new Shield.EncryptionParameters();
+                share.encryptionParameters.salt = salt;
+                share.encryptionParameters.iterations = 1000;
+                share.encryptionParameters.length = 8;
+                share.encryptionParameters.digest = "SHA256";
+            }
             await _shield.StoreSecret(share, auth)!;
             _storage.Set("deviceId", _deviceId);
             _storage.Set("share", deviceShare);
@@ -123,11 +135,13 @@ namespace Openfort.Signer
             var primaryDevice = await _openfort.GetPrimaryDevice(accountId);
             var recoveryShare = await _shield.GetSecret(auth);
             
-            if (recoveryShare.userEntropy && string.IsNullOrEmpty(recoveryPassword)) throw new MissingRecoveryPassword("Recovery password required");
-            
             if (recoveryShare.userEntropy)
             {
-                recoveryShare.secret = Cypher.Decrypt(recoveryPassword,recoveryShare.secret);
+                if (string.IsNullOrEmpty(recoveryPassword)) throw new MissingRecoveryPassword("Recovery password required");
+                var salt = recoveryShare.encryptionParameters.salt;
+                if (string.IsNullOrEmpty(salt)) throw new MissingRecoveryPassword("Recovery salt required");
+                var encryptionKey = Cypher.DeriveKey(recoveryPassword, salt);
+                recoveryShare.secret = Cypher.Decrypt(encryptionKey,recoveryShare.secret);
             }
 
             var privateKey = ShamirSecretSharing.CombinePrivateKey(new[] { recoveryShare.secret, primaryDevice.share });
