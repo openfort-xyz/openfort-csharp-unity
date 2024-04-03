@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Clients;
 using Openfort.Api;
 using Openfort.Client;
 using Openfort.Model;
@@ -19,23 +20,29 @@ namespace Openfort
     public class NotLoggedIn : Exception { public NotLoggedIn(string message) : base(message) { } }
     public class MissingRecoveryMethod : Exception { public MissingRecoveryMethod(string message) : base(message) { } }
     public class EmbeddedNotConfigured : Exception { public EmbeddedNotConfigured(string message) : base(message) { } }
+    public class MissingRecoveryPassword : Exception { public MissingRecoveryPassword(string message) : base(message) { } }
     public class NoSignerConfigured : Exception { public NoSignerConfigured(string message) : base(message) { } }
     public class NothingToSign : Exception { public NothingToSign(string message) : base(message) { } }
     public class OpenfortSDK
     {
         private ISigner _signer;
         private readonly string _publishableKey;
+        private readonly string _openfortURL;
+        private readonly string _shieldAPIKey;
+        private readonly string _shieldURL;
         private readonly OpenfortAuth _openfortAuth;
         private readonly IStorage _storage;
         private readonly SessionsApi _sessionApi;
         private readonly TransactionIntentsApi _transactionIntentsApi;
 
-
-        public OpenfortSDK(string publishableKey)
+        public OpenfortSDK(string publishableKey, string shieldAPIKey = null, string openfortURL = "https://api.openfort.xyz", string shieldURL = "https://shield.openfort.xyz")
         {
             _publishableKey = publishableKey;
-            _openfortAuth = new OpenfortAuth(publishableKey);
+            _openfortURL = openfortURL;
+            _shieldAPIKey = shieldAPIKey;
+            _shieldURL = shieldURL;
             _storage = new PlayerPreferencesStorage();
+            _openfortAuth = new OpenfortAuth(publishableKey);
             var configuration = new Configuration(
                 new Dictionary<string, string> { { "Authorization", "Bearer " + _publishableKey } },
                 new Dictionary<string, string> { { "Authorization", _publishableKey } },
@@ -43,7 +50,10 @@ namespace Openfort
 
             _sessionApi = new SessionsApi(configuration);
             _transactionIntentsApi = new TransactionIntentsApi(configuration);
+
         }
+        
+        public string PlayerID => _storage.Get(Keys.PlayerId);
 
         public SessionKey ConfigureSessionKey()
         {
@@ -68,38 +78,72 @@ namespace Openfort
             };
         }
 
-        public void ConfigureEmbeddedSigner(int chainId)
+        public async Task ConfigureEmbeddedSigner(int chainId, Shield.ShieldAuthOptions auth = null)
         {
             if (!CredentialsProvided())
             {
                 throw new NotLoggedIn("Must be logged in to configure embedded signer");
             }
 
-            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage);
-            _signer = signer;
-
-            if (!signer.IsLoaded())
+            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage, _shieldAPIKey, _openfortURL, _shieldURL);
+            try
             {
-                throw new MissingRecoveryMethod("This device has not been configured, in order to recover your account or create a new one you must provide recovery method");
+                await signer.EnsureEmbeddedAccount(auth: auth);
             }
+            catch (Exception e)
+            {
+                switch (e)
+                {
+                    case RecoveryNotConfigured:
+                        throw new EmbeddedNotConfigured("Recovery not configured: " + e.Message);
+                    case Signer.MissingRecoveryPassword:
+                        throw new MissingRecoveryPassword("Recovery is encrypted, must provide recovery password");
+                    default:
+                        throw;
+                }
+            }
+            
+            _signer = signer;
         }
 
-        public async Task ConfigureEmbeddedRecovery(IRecovery recovery)
+        public async Task ConfigureEmbeddedSignerRecovery(int chainId, Shield.ShieldAuthOptions auth, string recoveryPassword)
         {
-            if (_signer == null)
+            if (!CredentialsProvided())
             {
-                throw new EmbeddedNotConfigured("No embedded signer configured");
+                throw new NotLoggedIn("Must be logged in to configure embedded signer");
             }
 
-            if (_signer.GetSignerType() != Signer.Signer.Embedded)
+            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage, _shieldAPIKey, _openfortURL, _shieldURL);
+            try
             {
-                throw new EmbeddedNotConfigured("Signer must be embedded signer");
+                await signer.EnsureEmbeddedAccount(recoveryPassword, auth);
             }
-
-            var embeddedSigner = (EmbeddedSigner)_signer;
-            embeddedSigner.SetRecovery(recovery);
-            await ValidateAndRefreshToken();
-            await embeddedSigner.EnsureEmbeddedAccount();
+            catch (Exception e)
+            {
+                if (e is RecoveryNotConfigured)
+                {
+                    throw new EmbeddedNotConfigured("Recovery not configured");
+                }
+                
+                throw;
+            }
+            
+            _signer = signer;
+        }
+        
+        public async Task AuthenticateWithThirdPartyProvider(string provider, string token, TokenType tokenType)
+        {
+            var tokenTypeStr = tokenType switch
+            {
+                TokenType.IdToken => "idToken",
+                TokenType.CustomToken => "accessToken",
+                _ => throw new Exception("Invalid token type")
+            };
+            var playerId = await new Clients.Openfort(_publishableKey, baseURL: _openfortURL).VerifyThirdParty(token, provider, tokenTypeStr);
+            _storage.Set(Keys.PlayerId, playerId);
+            _storage.Set(Keys.ThirdPartyProvider, provider);
+            _storage.Set(Keys.AuthToken, token);
+            _storage.Set(Keys.ThirdPartyTokenType, tokenType.ToString());
         }
 
         public async Task<string> LoginWithEmailPassword(string email, string password)
@@ -160,9 +204,11 @@ namespace Openfort
         private bool CredentialsProvided()
         {
             var token = _storage.Get(Keys.AuthToken);
+            var thirdPartyProvider = _storage.Get(Keys.ThirdPartyProvider);
+            var tokenType = _storage.Get(Keys.ThirdPartyTokenType);
             var refreshToken = _storage.Get(Keys.RefreshToken);
             var playerId = _storage.Get(Keys.PlayerId);
-            return !string.IsNullOrEmpty(token) && !string.IsNullOrEmpty(refreshToken) && !string.IsNullOrEmpty(playerId);
+            return !string.IsNullOrEmpty(token) && (!string.IsNullOrEmpty(refreshToken) || (!string.IsNullOrEmpty(thirdPartyProvider) && !string.IsNullOrEmpty(tokenType))) && !string.IsNullOrEmpty(playerId);
         }
 
         public bool IsAuthenticated()
@@ -231,9 +277,15 @@ namespace Openfort
             {
                 return;
             }
+            var accessToken = _storage.Get(Keys.AuthToken);
+            var refreshToken = _storage.Get(Keys.RefreshToken);
+            
+            if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(refreshToken))
+            {
+                return;
+            }
 
-            var auth = await _openfortAuth.ValidateAndRefreshToken(accessToken: _storage.Get(Keys.AuthToken),
-                refreshToken: _storage.Get(Keys.RefreshToken));
+            var auth = await _openfortAuth.ValidateAndRefreshToken(accessToken, refreshToken);
             if (auth.Token != _storage.Get(Keys.AuthToken))
             {
                 StoreCredentials(auth);

@@ -82,15 +82,24 @@ The Embedded Signer uses SSS to manage the private key on the client side. To le
 ```csharp
 try
 {
-    sdk.LoginWithEmailPassword("user_email", "user_password");
-    sdk.ConfigureEmbeddedSigner(chainId);
+    const token = sdk.LoginWithEmailPassword("user_email", "user_password");
+    var auth = new Shield.OpenfortAuthOptions
+       {
+           authProvider = Shield.ShieldAuthProvider.Openfort,
+           openfortOAuthToken = token,
+       };
+    sdk.ConfigureEmbeddedSigner(chainId, auth);
 }
-catch (MissingRecoveryMethod)
+catch (MissingRecoveryPassword)
 {
-    await sdk.ConfigureEmbeddedRecovery(new PasswordRecovery("user_password"));
+    await sdk.ConfigureEmbeddedRecovery(chainId, auth, "user_password");
 }
 ```
-For now the only recovery method available is the `PasswordRecovery` method.
+For now the available methods are the `AutomaticRecovery` and the `PasswordRecovery` method.
+* To use the `AutomaticRecovery` method, you don't need to provide the `recoveryPassword` when setting up the recovery method. 
+* To use the `PasswordRecovery` method, you need to provide the `recoveryPassword` when setting up the recovery method. When recovering the key, if you don't provide the `recoveryPassword` you will get a `MissingRecoveryPassword` exception to indicate that you need to provide the `recoveryPassword`.
+
+```csharp
 - **Send Signature Transaction Intent Request**: Similar to the session signer, pass the transaction intent ID and the user operation hash. The embedded signer reconstructs the key and signs the transaction.
 ```csharp
 var response = await sdk.SendSignatureTransactionIntentRequest("transaction_intent_id", "user_op");

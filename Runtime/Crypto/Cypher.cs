@@ -4,20 +4,18 @@ using System.Text;
 
 namespace Openfort.Crypto
 {
-    public class Cypher
+    public static class Cypher
     {
-        public static byte[] DeriveKey(string password)
+        public static string DeriveKey(string password, string salt)
         {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                return sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-            }
+            using var rfc2898 = new Rfc2898DeriveBytes(password, Convert.FromBase64String(salt), 1000, HashAlgorithmName.SHA256);
+            return Convert.ToBase64String(rfc2898.GetBytes(256 / 8));
         }
 
         public static string Encrypt(string key, string data)
         {
             var aes = Aes.Create();
-            aes.Key = DeriveKey(key);
+            aes.Key = Convert.FromBase64String(key);
             aes.GenerateIV();
         
             var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
@@ -30,11 +28,11 @@ namespace Openfort.Crypto
             return Convert.ToBase64String(result);
         }
 
-        public static string Decrypt(string key, string data)
+        public static string Decrypt(string key, string encryptedData)
         {
-            var combined = Convert.FromBase64String(data);
+            var combined = Convert.FromBase64String(encryptedData);
             var aes = Aes.Create();
-            aes.Key = DeriveKey(key);
+            aes.Key = Convert.FromBase64String(key);
 
             byte[] iv = new byte[aes.BlockSize / 8];
             byte[] encrypted = new byte[combined.Length - iv.Length];
@@ -47,6 +45,14 @@ namespace Openfort.Crypto
 
             var decrypted = decryptor.TransformFinalBlock(encrypted, 0, encrypted.Length);
             return Encoding.UTF8.GetString(decrypted);
-        }    
+        }
+
+        public static string GenerateRandomSalt(int size = 16) 
+        {
+            var rng = RandomNumberGenerator.Create();
+            var buffer = new byte[size];
+            rng.GetBytes(buffer);
+            return Convert.ToBase64String(buffer);
+        }
     }
 }
