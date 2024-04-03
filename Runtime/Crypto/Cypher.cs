@@ -47,7 +47,7 @@ namespace Openfort.Crypto
             return Encoding.UTF8.GetString(decrypted);
         }
 
-        public static string GenerateRandomSalt(int size = 16) // Default size of 16 bytes (128 bits)
+        public static string GenerateRandomSalt(int size = 16) 
         {
             var rng = RandomNumberGenerator.Create();
             var buffer = new byte[size];

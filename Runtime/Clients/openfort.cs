@@ -221,7 +221,7 @@ namespace Clients
             public string id;
             [JsonProperty("object")]
             public string objectType;
-            public long createdAt; // Assuming the number represents a Unix timestamp
+            public long createdAt; 
             public string address;
             public string ownerAddress;
             public int chainId;
@@ -230,7 +230,7 @@ namespace Clients
             public ID player;
             public bool deployed;
             public string accountType;
-            public ID[] transactionIntents; // Optional, may be null
+            public ID[] transactionIntents;
         }
 
         [Serializable]
@@ -241,7 +241,7 @@ namespace Clients
             public string objectType;
             public string share;
             public bool isPrimary;
-            public long createdAt; // Assuming the number represents a Unix timestamp
+            public long createdAt;
             public string account;
         }
 

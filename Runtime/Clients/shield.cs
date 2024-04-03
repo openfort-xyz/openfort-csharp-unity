@@ -173,7 +173,8 @@ namespace Clients
             Lootlocker,
             Playfab,
             Custom,
-            Oidc
+            Oidc,
+            Supabase
         }
 
         public enum OpenfortOAuthTokenType
@@ -201,6 +202,7 @@ namespace Clients
                 case Shield.OpenfortOAuthProvider.Playfab: return "playfab";
                 case Shield.OpenfortOAuthProvider.Custom: return "custom";
                 case Shield.OpenfortOAuthProvider.Oidc: return "oidc";
+                case Shield.OpenfortOAuthProvider.Supabase: return "supabase";
                 default: throw new ArgumentOutOfRangeException(nameof(provider), provider, null);
             }
         }
