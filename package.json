@@ -1,6 +1,6 @@
 {
   "name": "com.openfort.sdk",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "displayName": "Openfort SDK",
   "description": "Official Unity SDK for Openfort.\n\nDetails at openfort.xyz",
   "unity": "2020.3",
