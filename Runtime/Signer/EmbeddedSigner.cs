@@ -100,45 +100,35 @@ namespace Openfort.Signer
             var deviceShare = shares[DeviceShareIndex];
             var authShare = shares[AuthShareIndex];
             var recoveryShare = shares[RecoveryShareIndex];
+            var shieldShare = new Shield.Share
+            {
+                secret = recoveryShare,
+                entropy = "none"
+            };
 
-            var salt = "";
             if (!string.IsNullOrEmpty(recoveryPassword))
             {
-                salt = Cypher.GenerateRandomSalt();
+                var salt = Cypher.GenerateRandomSalt();
                 var encryptionKey = Cypher.DeriveKey(recoveryPassword, salt);
-                recoveryShare = Cypher.Encrypt(encryptionKey,recoveryShare);
+                shieldShare.secret = Cypher.Encrypt(encryptionKey,recoveryShare);
+                shieldShare.entropy = "user";
+                shieldShare.salt = salt;
+                shieldShare.iterations = 1000;
+                shieldShare.length = 256;
+                shieldShare.digest = "SHA-256";
             }
 
             var account = await _openfort.CreateAccount(_chainId, key.GetPublicAddress());
             var device = await _openfort.CreateDevice(account.id, authShare);
             _deviceId = device.id;
 
-            var entropy = "none";
-            if (!string.IsNullOrEmpty(recoveryPassword))
+            if (!string.IsNullOrEmpty(_encryptionShare) && shieldShare.entropy != "user")
             {
-                entropy = "user";
-            } else if (!string.IsNullOrEmpty(_encryptionShare))
-            {
-                entropy = "project";
+                shieldShare.entropy = "project";
+                shieldShare.encryptionPart = _encryptionShare;
             }
-            
-            var share = new Shield.Share
-            {
-                secret = recoveryShare,
-                entropy = entropy
-            };
 
-            if (!string.IsNullOrEmpty(salt))
-            {
-                share.encryptionParameters = new Shield.EncryptionParameters
-                {
-                    salt = salt,
-                    iterations = 1000,
-                    length = 256,
-                    digest = "SHA-256"
-                };
-            }
-            await _shield.StoreSecret(share, auth)!;
+            await _shield.StoreSecret(shieldShare, auth)!;
             _storage.Set("deviceId", _deviceId);
             _storage.Set("share", deviceShare);
         }
@@ -151,7 +141,7 @@ namespace Openfort.Signer
             if (recoveryShare.entropy == "user")
             {
                 if (string.IsNullOrEmpty(recoveryPassword)) throw new MissingRecoveryPassword("Recovery password required");
-                var salt = recoveryShare.encryptionParameters.salt;
+                var salt = recoveryShare.salt;
                 if (string.IsNullOrEmpty(salt)) throw new MissingRecoveryPassword("Recovery salt required");
                 var encryptionKey = Cypher.DeriveKey(recoveryPassword, salt);
                 recoveryShare.secret = Cypher.Decrypt(encryptionKey,recoveryShare.secret);

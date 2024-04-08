@@ -131,8 +131,12 @@ namespace Clients
         {
             public string secret;
             public string entropy;
-            [JsonProperty("encryption_parameters")]
-            public EncryptionParameters encryptionParameters;
+            public string salt;
+            public int iterations;
+            public int length;
+            public string digest;
+            [JsonProperty("encryption_part")]
+            public string encryptionPart;
         }
 
         [Serializable]
