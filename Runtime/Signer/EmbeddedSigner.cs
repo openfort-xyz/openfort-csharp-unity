@@ -36,6 +36,7 @@ namespace Openfort.Signer
             _chainId = chainId;
             _deviceId = string.Empty;
             _storage = storage;
+            _encryptionShare = encryptionShare;
             _publishableKey = publishableKey;
             _openfort = new Clients.Openfort(publishableKey, _storage.Get(Keys.AuthToken), _storage.Get(Keys.ThirdPartyProvider), _storage.Get(Keys.ThirdPartyTokenType), openfortURL);
             if (shieldAPIKey != null)
