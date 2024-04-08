@@ -30,17 +30,19 @@ namespace Openfort
         private readonly string _openfortURL;
         private readonly string _shieldAPIKey;
         private readonly string _shieldURL;
+        private readonly string _encryptionShare;
         private readonly OpenfortAuth _openfortAuth;
         private readonly IStorage _storage;
         private readonly SessionsApi _sessionApi;
         private readonly TransactionIntentsApi _transactionIntentsApi;
 
-        public OpenfortSDK(string publishableKey, string shieldAPIKey = null, string openfortURL = "https://api.openfort.xyz", string shieldURL = "https://shield.openfort.xyz")
+        public OpenfortSDK(string publishableKey, string shieldAPIKey = null, string encryptionShare = null, string openfortURL = "https://api.openfort.xyz", string shieldURL = "https://shield.openfort.xyz")
         {
             _publishableKey = publishableKey;
             _openfortURL = openfortURL;
             _shieldAPIKey = shieldAPIKey;
             _shieldURL = shieldURL;
+            _encryptionShare = encryptionShare;
             _storage = new PlayerPreferencesStorage();
             _openfortAuth = new OpenfortAuth(publishableKey);
             var configuration = new Configuration(
@@ -85,7 +87,7 @@ namespace Openfort
                 throw new NotLoggedIn("Must be logged in to configure embedded signer");
             }
 
-            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage, _shieldAPIKey, _openfortURL, _shieldURL);
+            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage, _shieldAPIKey, _encryptionShare,_openfortURL, _shieldURL);
             try
             {
                 await signer.EnsureEmbeddedAccount(auth: auth);
@@ -113,7 +115,7 @@ namespace Openfort
                 throw new NotLoggedIn("Must be logged in to configure embedded signer");
             }
 
-            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage, _shieldAPIKey, _openfortURL, _shieldURL);
+            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage, _shieldAPIKey, _encryptionShare, _openfortURL, _shieldURL);
             try
             {
                 await signer.EnsureEmbeddedAccount(recoveryPassword, auth);

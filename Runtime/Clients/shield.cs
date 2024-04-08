@@ -13,11 +13,13 @@ namespace Clients
     {
         private readonly string _baseURL;
         private readonly string _apiKey;
+        private readonly string _encryptionShare;
 
-        public Shield(string apiKey, string baseURL = "https://shield.openfort.xyz")
+        public Shield(string apiKey, string baseURL = "https://shield.openfort.xyz", string encryptionShare = null)
         {
             _baseURL = baseURL;
             _apiKey = apiKey;
+            _encryptionShare = encryptionShare;
         }
 
         public async Task<Share> GetSecret(ShieldAuthOptions auth)
@@ -88,6 +90,11 @@ namespace Clients
                 ["Access-Control-Allow-Origin"] = _baseURL
             };
 
+            if (!string.IsNullOrEmpty(_encryptionShare))
+            {
+                headers["x-encryption-part"] = _encryptionShare;
+            }
+
             if (options is OpenfortAuthOptions openfortOptions)
             {
                 headers["Authorization"] = $"Bearer {openfortOptions.openfortOAuthToken}";
@@ -123,10 +130,13 @@ namespace Clients
         public class Share
         {
             public string secret;
-            [JsonProperty("user_entropy")]
-            public bool userEntropy;
-            [JsonProperty("encryption_parameters")]
-            public EncryptionParameters encryptionParameters;
+            public string entropy;
+            public string salt;
+            public int iterations;
+            public int length;
+            public string digest;
+            [JsonProperty("encryption_part")]
+            public string encryptionPart;
         }
 
         [Serializable]
