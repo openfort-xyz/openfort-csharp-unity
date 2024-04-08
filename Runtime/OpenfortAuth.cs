@@ -7,8 +7,7 @@ using Openfort.Crypto;
 using Openfort.Model;
 using Openfort.Api;
 
-
-internal struct Authentication
+public struct Authentication
 {
     public string Token;
     public string RefreshToken;
@@ -53,12 +52,11 @@ namespace Openfort
             return new OAuthInitResponse { Url = response.Url, Key = response.Key };
         }
 
-        internal async Task<Authentication> AuthenticateOAuth(OAuthProvider provider, string key, TokenType tokenType)
+        internal async Task<AuthResponse> AuthenticateOAuth(OAuthProvider provider, string key, TokenType tokenType)
         {
             var request = new AuthenticateOAuthRequest(provider: provider, token: key, tokenType: tokenType);
             var response = await _authenticationApi.AuthenticateOAuthAsync(request);
-            var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
-            return authentication;
+            return response;
         }
 
         internal async Task<SIWEInitResponse> InitSIWE(string address)
@@ -68,28 +66,25 @@ namespace Openfort
             return new SIWEInitResponse { Address = response.Address, Nonce = response.Nonce, ExpiresAt = response.ExpiresAt };
         }
 
-        internal async Task<Authentication> AuthenticateSIWE(string signature, string message, string walletClientType, string connectorType)
+        internal async Task<AuthResponse> AuthenticateSIWE(string signature, string message, string walletClientType, string connectorType)
         {
             var request = new SIWEAuthenticateRequest(signature: signature, message: message, walletClientType: walletClientType, connectorType: connectorType);
             var response = await _authenticationApi.AuthenticateSIWEAsync(request);
-            var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
-            return authentication;
+            return response;
         }
 
-        internal async Task<Authentication> LoginEmailPassword(string email, string password)
+        internal async Task<AuthResponse> LoginEmailPassword(string email, string password)
         {
             var request = new LoginRequest(email, password);
             var response = await _authenticationApi.LoginEmailPasswordAsync(request);
-            var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
-            return authentication;
+            return response;
         }
 
-        internal async Task<Authentication> SignupEmailPassword(string email, string password, string name)
+        internal async Task<AuthResponse> SignupEmailPassword(string email, string password, string name)
         {
             var request = new SignupRequest(email, password, name);
             var response = await _authenticationApi.SignupEmailPasswordAsync(request);
-            var authentication = new Authentication { Token = response.Token, RefreshToken = response.RefreshToken, PlayerId = response.Player.Id };
-            return authentication;
+            return response;
         }
 
         internal async Task<JwtKey> GetJwks()
