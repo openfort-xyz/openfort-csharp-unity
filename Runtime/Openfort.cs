@@ -239,9 +239,15 @@ namespace Openfort
 
         public async Task Logout()
         {
-            if (CredentialsProvided())
+            if (CredentialsProvided() && !string.IsNullOrEmpty(_storage.Get(Keys.RefreshToken)))
             {
-                await _openfortAuth.Logout(_storage.Get(Keys.AuthToken), _storage.Get(Keys.RefreshToken));
+                try
+                {
+                    await _openfortAuth.Logout(_storage.Get(Keys.AuthToken), _storage.Get(Keys.RefreshToken));
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
             _signer.Logout();
             _storage.Delete(Keys.AuthToken);
