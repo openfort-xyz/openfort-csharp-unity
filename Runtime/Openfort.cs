@@ -133,7 +133,7 @@ namespace Openfort
             _signer = signer;
         }
 
-        public async Task AuthenticateWithThirdPartyProvider(string provider, string token, TokenType tokenType)
+        public async Task<Clients.Openfort.ThirdPartyAuth> AuthenticateWithThirdPartyProvider(string provider, string token, TokenType tokenType)
         {
             var tokenTypeStr = tokenType switch
             {
@@ -141,11 +141,12 @@ namespace Openfort
                 TokenType.CustomToken => "accessToken",
                 _ => throw new Exception("Invalid token type")
             };
-            var playerId = await new Clients.Openfort(_publishableKey, baseURL: _openfortURL).VerifyThirdParty(token, provider, tokenTypeStr);
-            _storage.Set(Keys.PlayerId, playerId);
+            var auth = await new Clients.Openfort(_publishableKey, baseURL: _openfortURL).VerifyThirdParty(token, provider, tokenTypeStr);
+            _storage.Set(Keys.PlayerId, auth.id);
             _storage.Set(Keys.ThirdPartyProvider, provider);
             _storage.Set(Keys.AuthToken, token);
             _storage.Set(Keys.ThirdPartyTokenType, tokenType.ToString());
+            return auth;
         }
 
         public async Task<AuthResponse> LoginWithEmailPassword(string email, string password)

@@ -151,7 +151,7 @@ namespace Clients
             return Jwt.Validate(accessToken, response.keys[0].x, response.keys[0].y, response.keys[0].crv);
         }
 
-        public async Task<string> VerifyThirdParty(string token, string thirdPartyProvider, string thirdPartyTokenType)
+        public async Task<ThirdPartyAuth> VerifyThirdParty(string token, string thirdPartyProvider, string thirdPartyTokenType)
         {
             var json = JsonConvert.SerializeObject(new { token, provider = thirdPartyProvider, tokenType = thirdPartyTokenType });
             var request = new UnityWebRequest($"{_baseURL}/iam/v1/oauth/third_party", "POST");
@@ -171,8 +171,8 @@ namespace Clients
                 throw new Exception($"Unexpected response: {request.responseCode}: {request.error}");
             }
             
-            var idResponse = JsonConvert.DeserializeObject<ID>(request.downloadHandler.text);
-            return idResponse.id;
+            var idResponse = JsonConvert.DeserializeObject<ThirdPartyAuth>(request.downloadHandler.text);
+            return idResponse;
         }
 
         private void SetRequestHeaders(UnityWebRequest request)
@@ -243,6 +243,28 @@ namespace Clients
             public bool isPrimary;
             public long createdAt;
             public string account;
+        }
+        
+        [Serializable]
+        public class ThirdPartyAuth
+        {
+           public string id;
+           [JsonProperty("object")]
+           public string objectType;
+           public long createdAt;
+           public LinkedAccount[] linkedAccounts;
+        }
+        
+        [Serializable]
+        public class LinkedAccount
+        {
+            public string provider;
+            public string email;
+            public string externalUserId;
+            public bool disabled;
+            public long updatedAt;
+            public string address;
+            public object metadata;
         }
 
         [Serializable]
