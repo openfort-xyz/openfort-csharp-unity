@@ -1,16 +1,12 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Clients;
 using Nethereum.Signer;
-using Openfort.Api;
-using Openfort.Client;
+using Nethereum.Signer.EIP712;
+using Nethereum.Util;
 using Openfort.Crypto;
-using Openfort.Model;
-using Openfort.Recovery;
 using Openfort.Storage;
-using Org.BouncyCastle.Utilities.Encoders;
 
 namespace Openfort.Signer
 {
@@ -24,13 +20,13 @@ namespace Openfort.Signer
         private readonly IStorage _storage;
         private readonly Clients.Openfort _openfort;
         private readonly string _encryptionShare;
-        private readonly Clients.Shield _shield;
+        private readonly Shield _shield;
         private const int Threshold = 2;
         private const int Shares = 3;
         private const int DeviceShareIndex = 0;
         private const int AuthShareIndex = 1;
         private const int RecoveryShareIndex = 2;
-        
+
         public EmbeddedSigner(int chainId, string publishableKey, IStorage storage, string shieldAPIKey = null, string encryptionShare = null, string openfortURL = "https://api.openfort.xyz", string shieldURL = "https://shield.openfort.xyz")
         {
             _chainId = chainId;
@@ -41,22 +37,22 @@ namespace Openfort.Signer
             _openfort = new Clients.Openfort(publishableKey, _storage.Get(Keys.AuthToken), _storage.Get(Keys.ThirdPartyProvider), _storage.Get(Keys.ThirdPartyTokenType), openfortURL);
             if (shieldAPIKey != null)
             {
-                _shield = new Clients.Shield(shieldAPIKey, shieldURL, encryptionShare);
+                _shield = new Shield(shieldAPIKey, shieldURL, encryptionShare);
             }
         }
-        
+
         public string GetDeviceId()
         {
             return _deviceId;
         }
-        
+
         public void Logout()
         {
             _storage.Delete(Keys.DeviceId);
             _storage.Delete(Keys.Share);
             _deviceId = string.Empty;
         }
-        
+
         public bool IsLoaded()
         {
             return !string.IsNullOrEmpty(_deviceId) || !string.IsNullOrEmpty(_storage.Get(Keys.DeviceId));
@@ -65,17 +61,17 @@ namespace Openfort.Signer
         public async Task<string> EnsureEmbeddedAccount(string recoveryPassword = null, Shield.ShieldAuthOptions auth = null)
         {
             if (!string.IsNullOrEmpty(_deviceId)) return _deviceId;
-            
+
             _deviceId = _storage.Get(Keys.DeviceId);
             if (!string.IsNullOrEmpty(_deviceId)) return _deviceId;
-            
+
             var playerId = _storage.Get(Keys.PlayerId);
 
             if (_shield == null)
             {
                 throw new RecoveryNotConfigured("Shield API not configured");
             }
-            
+
             if (auth == null)
             {
                 throw new RecoveryNotConfigured("Auth options required");
@@ -87,7 +83,7 @@ namespace Openfort.Signer
                 await RecoverAccount(account.id, recoveryPassword, auth);
                 return _deviceId;
             }
-            
+
             await CreateAccount(recoveryPassword, auth);
             return _deviceId;
         }
@@ -96,7 +92,7 @@ namespace Openfort.Signer
         {
             var key = EthECKey.GenerateKey();
             var shares = ShamirSecretSharing.SplitPrivateKey(key.GetPrivateKey(), Shares, Threshold);
-            
+
             var deviceShare = shares[DeviceShareIndex];
             var authShare = shares[AuthShareIndex];
             var recoveryShare = shares[RecoveryShareIndex];
@@ -110,7 +106,7 @@ namespace Openfort.Signer
             {
                 var salt = Cypher.GenerateRandomSalt();
                 var encryptionKey = Cypher.DeriveKey(recoveryPassword, salt);
-                shieldShare.secret = Cypher.Encrypt(encryptionKey,recoveryShare);
+                shieldShare.secret = Cypher.Encrypt(encryptionKey, recoveryShare);
                 shieldShare.entropy = "user";
                 shieldShare.salt = salt;
                 shieldShare.iterations = 1000;
@@ -137,46 +133,52 @@ namespace Openfort.Signer
         {
             var primaryDevice = await _openfort.GetPrimaryDevice(accountId);
             var recoveryShare = await _shield.GetSecret(auth);
-            
+
             if (recoveryShare.entropy == "user")
             {
                 if (string.IsNullOrEmpty(recoveryPassword)) throw new MissingRecoveryPassword("Recovery password required");
                 var salt = recoveryShare.salt;
                 if (string.IsNullOrEmpty(salt)) throw new MissingRecoveryPassword("Recovery salt required");
                 var encryptionKey = Cypher.DeriveKey(recoveryPassword, salt);
-                recoveryShare.secret = Cypher.Decrypt(encryptionKey,recoveryShare.secret);
+                recoveryShare.secret = Cypher.Decrypt(encryptionKey, recoveryShare.secret);
             }
 
             var privateKey = ShamirSecretSharing.CombinePrivateKey(new[] { recoveryShare.secret, primaryDevice.share });
             var newShares = ShamirSecretSharing.SplitPrivateKey(privateKey, Shares, Threshold);
-            
+
             var newDeviceShare = newShares[DeviceShareIndex];
             var newAuthShare = newShares[AuthShareIndex];
-          
+
             var newDevice = await _openfort.CreateDevice(accountId, newAuthShare);
             _deviceId = newDevice.id;
             _storage.Set("deviceId", _deviceId);
             _storage.Set("share", newDeviceShare);
         }
-        
-        public async Task<string> Sign(string message)
+
+        public async Task<string> Sign(byte[] message, bool typedData = false)
         {
             await EnsureEmbeddedAccount();
-            
+
             var deviceShare = _storage.Get("share");
             if (string.IsNullOrEmpty(deviceShare)) throw new System.Exception("Device share not found");
-            
+
             var device = await _openfort.GetDevice(_deviceId);
             var privateKey = ShamirSecretSharing.CombinePrivateKey(new[] { deviceShare, device.share });
 
-            var bytes = Hex.Decode(message.TrimHexPrefix());
-            
             var keyPair = new EthECKey(privateKey);
-            
-            var signer = new EthereumMessageSigner();
-            return signer.Sign(bytes, keyPair);
+            if (typedData)
+            {
+                return EthECDSASignature.CreateStringSignature(keyPair.SignAndCalculateV(Sha3Keccack.Current.CalculateHash(message)));
+            }
+            else
+            {
+                EthereumMessageSigner signer = new EthereumMessageSigner();
+                return signer.Sign(message, keyPair);
+            }
+
+
         }
-        
+
         public Signer GetSignerType()
         {
             return Signer.Embedded;

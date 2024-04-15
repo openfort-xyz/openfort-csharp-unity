@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Clients;
+using Nethereum.ABI.EIP712;
+using Nethereum.Util;
 using Openfort.Api;
 using Openfort.Client;
+using Openfort.Crypto;
 using Openfort.Model;
-using Openfort.Recovery;
 using Openfort.Signer;
 using Openfort.Storage;
+using Org.BouncyCastle.Utilities.Encoders;
 
 namespace Openfort
 {
@@ -263,6 +266,18 @@ namespace Openfort
             return result;
         }
 
+        public async Task<string> SignTypedData(TypedData<Domain> typedData)
+        {
+            if (_signer == null)
+            {
+                throw new NoSignerConfigured("In order to sign a transaction intent, a signer must be configured");
+            }
+
+            await ValidateAndRefreshToken();
+            byte[] bytes = Eip712TypedDataEncoder.Current.EncodeTypedData(typedData);
+            return await _signer.Sign(bytes, true);
+        }
+
         public async Task<string> SignMessage(string message)
         {
             if (_signer == null)
@@ -271,7 +286,9 @@ namespace Openfort
             }
 
             await ValidateAndRefreshToken();
-            return await _signer.Sign(message);
+            var bytes = Hex.Decode(message.TrimHexPrefix());
+
+            return await _signer.Sign(bytes, false);
 
         }
 
@@ -290,7 +307,9 @@ namespace Openfort
                 }
 
                 await ValidateAndRefreshToken();
-                signature = await _signer.Sign(userOperationHash);
+                var msgBytes = Hex.Decode(userOperationHash.TrimHexPrefix());
+
+                signature = await _signer.Sign(msgBytes, false);
             }
 
             var result = await _transactionIntentsApi.SignatureAsync(sessionId, new SignatureRequest(signature));
