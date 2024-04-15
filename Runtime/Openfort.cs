@@ -87,7 +87,7 @@ namespace Openfort
                 throw new NotLoggedIn("Must be logged in to configure embedded signer");
             }
 
-            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage, _shieldAPIKey, _encryptionShare,_openfortURL, _shieldURL);
+            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage, _shieldAPIKey, _encryptionShare, _openfortURL, _shieldURL);
             try
             {
                 await signer.EnsureEmbeddedAccount(auth: auth);
@@ -245,7 +245,8 @@ namespace Openfort
                 try
                 {
                     await _openfortAuth.Logout(_storage.Get(Keys.AuthToken), _storage.Get(Keys.RefreshToken));
-                } catch (Exception e)
+                }
+                catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }
@@ -256,17 +257,29 @@ namespace Openfort
             _storage.Delete(Keys.PlayerId);
         }
 
-        public async Task<SessionResponse> SendSignatureSessionRequest(string sessionId, string signature)
+        public async Task<SessionResponse> SendRegisterSessionRequest(string sessionId, string signature)
         {
             var result = await _sessionApi.SignatureSessionAsync(sessionId, new SignatureRequest(signature));
             return result;
         }
 
-        public async Task<TransactionIntentResponse> SendSignatureTransactionIntentRequest(string sessionId, string userOp = null, string signature = null)
+        public async Task<string> SignMessage(string message)
+        {
+            if (_signer == null)
+            {
+                throw new NoSignerConfigured("In order to sign a transaction intent, a signer must be configured");
+            }
+
+            await ValidateAndRefreshToken();
+            return await _signer.Sign(message);
+
+        }
+
+        public async Task<TransactionIntentResponse> SendSignatureTransactionIntentRequest(string sessionId, string userOperationHash = null, string signature = null)
         {
             if (signature == null)
             {
-                if (userOp == null)
+                if (userOperationHash == null)
                 {
                     throw new NothingToSign("No user operation or signature provided");
                 }
@@ -277,7 +290,7 @@ namespace Openfort
                 }
 
                 await ValidateAndRefreshToken();
-                signature = await _signer.Sign(userOp);
+                signature = await _signer.Sign(userOperationHash);
             }
 
             var result = await _transactionIntentsApi.SignatureAsync(sessionId, new SignatureRequest(signature));
