@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Clients;
 using Nethereum.ABI.EIP712;
+using Nethereum.Signer;
 using Nethereum.Util;
 using Openfort.Api;
 using Openfort.Client;
@@ -286,7 +288,8 @@ namespace Openfort
             }
 
             await ValidateAndRefreshToken();
-            var bytes = Hex.Decode(message.TrimHexPrefix());
+
+            var bytes = Encoding.UTF8.GetBytes(message);
 
             return await _signer.Sign(bytes, false);
 
