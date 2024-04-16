@@ -51,9 +51,8 @@ namespace Openfort.Crypto
             return new KeyPair(keyPair);
         }
 
-        public string Sign(string msg)
+        public string Sign(byte[] msgBytes)
         {
-            var msgBytes = Hex.Decode(msg.TrimHexPrefix());
             var signer = new EthereumMessageSigner();
             var ethEcKey = new EthECKey(_private.D.ToByteArray(), true);
             return signer.Sign(msgBytes, ethEcKey);

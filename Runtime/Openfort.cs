@@ -1,13 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Clients;
+using Nethereum.ABI.EIP712;
+using Nethereum.Signer;
+using Nethereum.Util;
 using Openfort.Api;
 using Openfort.Client;
+using Openfort.Crypto;
 using Openfort.Model;
-using Openfort.Recovery;
 using Openfort.Signer;
 using Openfort.Storage;
+using Org.BouncyCastle.Utilities.Encoders;
 
 namespace Openfort
 {
@@ -87,7 +92,7 @@ namespace Openfort
                 throw new NotLoggedIn("Must be logged in to configure embedded signer");
             }
 
-            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage, _shieldAPIKey, _encryptionShare,_openfortURL, _shieldURL);
+            var signer = new EmbeddedSigner(chainId, _publishableKey, _storage, _shieldAPIKey, _encryptionShare, _openfortURL, _shieldURL);
             try
             {
                 await signer.EnsureEmbeddedAccount(auth: auth);
@@ -133,7 +138,7 @@ namespace Openfort
             _signer = signer;
         }
 
-        public async Task AuthenticateWithThirdPartyProvider(string provider, string token, TokenType tokenType)
+        public async Task<Clients.Openfort.ThirdPartyAuth> AuthenticateWithThirdPartyProvider(string provider, string token, TokenType tokenType)
         {
             var tokenTypeStr = tokenType switch
             {
@@ -141,11 +146,12 @@ namespace Openfort
                 TokenType.CustomToken => "accessToken",
                 _ => throw new Exception("Invalid token type")
             };
-            var playerId = await new Clients.Openfort(_publishableKey, baseURL: _openfortURL).VerifyThirdParty(token, provider, tokenTypeStr);
-            _storage.Set(Keys.PlayerId, playerId);
+            var auth = await new Clients.Openfort(_publishableKey, baseURL: _openfortURL).VerifyThirdParty(token, provider, tokenTypeStr);
+            _storage.Set(Keys.PlayerId, auth.id);
             _storage.Set(Keys.ThirdPartyProvider, provider);
             _storage.Set(Keys.AuthToken, token);
             _storage.Set(Keys.ThirdPartyTokenType, tokenType.ToString());
+            return auth;
         }
 
         public async Task<AuthResponse> LoginWithEmailPassword(string email, string password)
@@ -244,7 +250,8 @@ namespace Openfort
                 try
                 {
                     await _openfortAuth.Logout(_storage.Get(Keys.AuthToken), _storage.Get(Keys.RefreshToken));
-                } catch (Exception e)
+                }
+                catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }
@@ -255,17 +262,44 @@ namespace Openfort
             _storage.Delete(Keys.PlayerId);
         }
 
-        public async Task<SessionResponse> SendSignatureSessionRequest(string sessionId, string signature)
+        public async Task<SessionResponse> SendRegisterSessionRequest(string sessionId, string signature)
         {
             var result = await _sessionApi.SignatureSessionAsync(sessionId, new SignatureRequest(signature));
             return result;
         }
 
-        public async Task<TransactionIntentResponse> SendSignatureTransactionIntentRequest(string sessionId, string userOp = null, string signature = null)
+        public async Task<string> SignTypedData(TypedData<Domain> typedData)
+        {
+            if (_signer == null)
+            {
+                throw new NoSignerConfigured("In order to sign a transaction intent, a signer must be configured");
+            }
+
+            await ValidateAndRefreshToken();
+            byte[] bytes = Eip712TypedDataEncoder.Current.EncodeTypedData(typedData);
+            return await _signer.Sign(bytes, true);
+        }
+
+        public async Task<string> SignMessage(string message)
+        {
+            if (_signer == null)
+            {
+                throw new NoSignerConfigured("In order to sign a transaction intent, a signer must be configured");
+            }
+
+            await ValidateAndRefreshToken();
+
+            var bytes = Encoding.UTF8.GetBytes(message);
+
+            return await _signer.Sign(bytes, false);
+
+        }
+
+        public async Task<TransactionIntentResponse> SendSignatureTransactionIntentRequest(string sessionId, string userOperationHash = null, string signature = null)
         {
             if (signature == null)
             {
-                if (userOp == null)
+                if (userOperationHash == null)
                 {
                     throw new NothingToSign("No user operation or signature provided");
                 }
@@ -276,7 +310,9 @@ namespace Openfort
                 }
 
                 await ValidateAndRefreshToken();
-                signature = await _signer.Sign(userOp);
+                var msgBytes = Hex.Decode(userOperationHash.TrimHexPrefix());
+
+                signature = await _signer.Sign(msgBytes, false);
             }
 
             var result = await _transactionIntentsApi.SignatureAsync(sessionId, new SignatureRequest(signature));
