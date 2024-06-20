@@ -477,11 +477,12 @@ namespace Openfort.OpenfortSDK
             string response = await communicationsManager.Call(OpenfortFunction.GET_ACCESS_TOKEN);
             return response.GetStringResult();
         }
-        public async UniTask<AuthResponse> ValidateAndRefreshToken()
+        public async UniTask<AuthResponse> ValidateAndRefreshToken(ValidateAndRefreshTokenRequest request)
         {
             string functionName = "validateAndRefreshToken";
             string callResponse = await communicationsManager.Call(
-                functionName
+                functionName,
+                JsonUtility.ToJson(request)
             );
             return callResponse.OptDeserializeObject<AuthResponse>();
         }
@@ -493,12 +494,8 @@ namespace Openfort.OpenfortSDK
                 JsonConvert.SerializeObject(request)
             );
 
+            // This is likely not needed when stripping is set to minimum
             string modifiedResponse = JsonHelpers.RemoveKeysFromJson(callResponse, "responseFor", "requestId", "success");
-
-            Debug.Log("------ CACA ------");
-            Debug.Log(modifiedResponse);
-            // From callResponse, delete "responseFor","requestId","success" keys 
-            // and return the rest of the object as a TransactionIntentResponse object
 
             return modifiedResponse.OptDeserializeObject<TransactionIntentResponse>();
         }

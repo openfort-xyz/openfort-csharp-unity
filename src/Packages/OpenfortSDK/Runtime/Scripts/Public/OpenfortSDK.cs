@@ -341,9 +341,9 @@ namespace Openfort.OpenfortSDK
         /// <summary>
         /// Validates and refreshes the access token.
         /// </summary>
-        public async UniTask<AuthResponse> ValidateAndRefreshToken()
+        public async UniTask<AuthResponse> ValidateAndRefreshToken(ValidateAndRefreshTokenRequest request)
         {
-            return await GetOpenfortImpl().ValidateAndRefreshToken();
+            return await GetOpenfortImpl().ValidateAndRefreshToken(request);
         }
 
         /// <summary>
