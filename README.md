@@ -24,17 +24,19 @@
 
 # Openfort Unity SDK
 
-## Installation (Unity Package Manager)
+## Installation
 
-**Option 1 - File System**
+### Via UPM window
 
-Open `Packages/manifest.json` and add these lines:
+Since .dll files are stored on Git Large File Storage, you must download and install git-lfs from [here](https://git-lfs.github.com/).
+1. Open the Package Manager
+2. Click the add + button and select "Add package from git URL..."
+Enter https://github.com/openfort-xyz/openfort-csharp-unity.git?path=/src/Packages/OpenfortSDK and click 'Add'
 
-```
-"com.openfort.sdk": "https://github.com/openfort-xyz/openfort-csharp-unity.git",
-"com.unity.nuget.newtonsoft-json": "3.0.1",
-"com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.3.3"
-```
+### Via manifest.json
+Since .dll files are stored on Git Large File Storage, you must download and install git-lfs from [here](https://git-lfs.github.com/).
+1. Open your project's Packages/manifest.json file
+2. Add "com.immutable.passport": "https://github.com/immutable/unity-immutable-sdk.git?path=/src/Packages/Passport" in the dependencies block
 
 ## Set up
 
