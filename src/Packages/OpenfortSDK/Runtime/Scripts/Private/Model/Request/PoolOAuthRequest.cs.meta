@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 20dead0b7162d4d579b50163b475057f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+
+
+class Auth { public string Player { get; set; } public string AccessToken { get; set; } public string RefreshToken { get; set; } }

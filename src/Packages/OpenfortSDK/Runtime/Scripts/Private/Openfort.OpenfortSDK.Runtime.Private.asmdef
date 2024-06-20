@@ -1,0 +1,27 @@
+{
+    "name": "Openfort.OpenfortSDK.Runtime.Private",
+    "rootNamespace": "Openfort.OpenfortSDK",
+    "references": [
+        "VoltstroStudios.UnityWebBrowser",
+        "UniTask",
+        "Openfort.Browser.Core",
+        "unity-webview"
+    ],
+    "includePlatforms": [
+        "Android",
+        "Editor",
+        "iOS",
+        "macOSStandalone",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
