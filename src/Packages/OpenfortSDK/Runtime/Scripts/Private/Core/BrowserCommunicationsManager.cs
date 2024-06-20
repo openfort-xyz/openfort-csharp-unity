@@ -44,7 +44,7 @@ namespace Openfort.OpenfortSDK.Core
         public event OnBrowserReadyDelegate OnReady;
 
         /// <summary>
-        ///  PKCE in some platforms such as iOS and macOS will not trigger a deeplink and a proper callback needs to be
+        ///  In some platforms such as iOS and macOS will not trigger a deeplink and a proper callback needs to be
         ///  setup.
         /// </summary>
         public event OnUnityPostMessageDelegate OnAuthPostMessage;

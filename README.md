@@ -36,7 +36,7 @@ Enter https://github.com/openfort-xyz/openfort-csharp-unity.git?path=/src/Packag
 ### Via manifest.json
 Since .dll files are stored on Git Large File Storage, you must download and install git-lfs from [here](https://git-lfs.github.com/).
 1. Open your project's Packages/manifest.json file
-2. Add "com.immutable.passport": "https://github.com/immutable/unity-immutable-sdk.git?path=/src/Packages/Passport" in the dependencies block
+2. Add "com.openfort.sdk": "https://github.com/openfort-xyz/openfort-csharp-unity.git?path=/src/Packages/OpenfortSDK" in the dependencies block
 
 ## Set up
 
