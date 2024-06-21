@@ -374,12 +374,12 @@ namespace Openfort.OpenfortSDK
         }
 
         /// <summary>
-        /// Sends a register session request.
+        /// Sends a transaction signed by a session.
         /// </summary>
         /// <param name="request">Register session request</param>
-        public async UniTask<SessionResponse> SendRegisterSessionRequest(RegisterSessionRequest request)
+        public async UniTask<SessionResponse> SendSignatureSessionRequest(RegisterSessionRequest request)
         {
-            return await GetOpenfortImpl().SendRegisterSessionRequest(request);
+            return await GetOpenfortImpl().SendSignatureSessionRequest(request);
         }
 
         /// <summary>

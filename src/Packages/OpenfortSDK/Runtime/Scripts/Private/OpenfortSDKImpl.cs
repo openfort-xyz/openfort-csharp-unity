@@ -517,9 +517,9 @@ namespace Openfort.OpenfortSDK
             );
             return callResponse.GetStringResult();
         }
-        public async UniTask<SessionResponse> SendRegisterSessionRequest(RegisterSessionRequest request)
+        public async UniTask<SessionResponse> SendSignatureSessionRequest(RegisterSessionRequest request)
         {
-            string functionName = "sendRegisterSessionRequest";
+            string functionName = "sendSignatureSessionRequest";
             string callResponse = await communicationsManager.Call(
                 functionName,
                 JsonUtility.ToJson(request)

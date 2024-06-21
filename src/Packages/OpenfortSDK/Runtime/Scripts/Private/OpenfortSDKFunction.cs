@@ -39,7 +39,7 @@ namespace Openfort.OpenfortSDK
         public const string SEND_SIGNATURE_TRANSACTION_INTENT_REQUEST = "sendSignatureTransactionIntentRequest";
         public const string SIGN_MESSAGE = "signMessage";
         public const string SIGN_TYPED_DATA = "signTypedData";
-        public const string SEND_REGISTER_SESSION_REQUEST = "sendRegisterSessionRequest";
+        public const string SEND_SIGNATURE_SESSION_REQUEST = "sendSignatureSessionRequest";
         public const string GET_EMBEDDED_STATE = "getEmbeddedState";
         public const string GET_ETHEREUM_PROVIDER = "getEthereumProvider";
         public const string CONFIGURE_SESSION_KEY = "configureSessionKey";
