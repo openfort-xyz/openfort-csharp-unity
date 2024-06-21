@@ -107,6 +107,30 @@ namespace Openfort.OpenfortSDK.Model
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OAuthConfig" /> class
+        /// with the <see cref="DiscordOAuthConfig" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of DiscordOAuthConfig.</param>
+        public OAuthConfig(DiscordOAuthConfig actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType = "anyOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OAuthConfig" /> class
+        /// with the <see cref="EpicGamesOAuthConfig" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of EpicGamesOAuthConfig.</param>
+        public OAuthConfig(EpicGamesOAuthConfig actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType = "anyOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OAuthConfig" /> class
         /// with the <see cref="PlayFabOAuthConfig" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of PlayFabOAuthConfig.</param>
@@ -175,6 +199,14 @@ namespace Openfort.OpenfortSDK.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(DiscordOAuthConfig))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(EpicGamesOAuthConfig))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(FacebookOAuthConfig))
                 {
                     this._actualInstance = value;
@@ -209,7 +241,7 @@ namespace Openfort.OpenfortSDK.Model
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AccelbyteOAuthConfig, CustomAuthConfig, FacebookOAuthConfig, FirebaseOAuthConfig, GoogleOAuthConfig, LootLockerOAuthConfig, OIDCAuthConfig, PlayFabOAuthConfig, SupabaseAuthConfig, TwitterOAuthConfig");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AccelbyteOAuthConfig, CustomAuthConfig, DiscordOAuthConfig, EpicGamesOAuthConfig, FacebookOAuthConfig, FirebaseOAuthConfig, GoogleOAuthConfig, LootLockerOAuthConfig, OIDCAuthConfig, PlayFabOAuthConfig, SupabaseAuthConfig, TwitterOAuthConfig");
                 }
             }
         }
@@ -272,6 +304,26 @@ namespace Openfort.OpenfortSDK.Model
         public FacebookOAuthConfig GetFacebookOAuthConfig()
         {
             return (FacebookOAuthConfig)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `DiscordOAuthConfig`. If the actual instance is not `DiscordOAuthConfig`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of DiscordOAuthConfig</returns>
+        public DiscordOAuthConfig GetDiscordOAuthConfig()
+        {
+            return (DiscordOAuthConfig)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `EpicGamesOAuthConfig`. If the actual instance is not `EpicGamesOAuthConfig`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of EpicGamesOAuthConfig</returns>
+        public EpicGamesOAuthConfig GetEpicGamesOAuthConfig()
+        {
+            return (EpicGamesOAuthConfig)this.ActualInstance;
         }
 
         /// <summary>
@@ -372,6 +424,30 @@ namespace Openfort.OpenfortSDK.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into CustomAuthConfig: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                newOAuthConfig = new OAuthConfig(JsonConvert.DeserializeObject<DiscordOAuthConfig>(jsonString, OAuthConfig.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newOAuthConfig;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into DiscordOAuthConfig: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                newOAuthConfig = new OAuthConfig(JsonConvert.DeserializeObject<EpicGamesOAuthConfig>(jsonString, OAuthConfig.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newOAuthConfig;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into EpicGamesOAuthConfig: {1}", jsonString, exception.ToString()));
             }
 
             try

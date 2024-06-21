@@ -26,41 +26,16 @@ using Newtonsoft.Json.Linq;
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
-    /// Enum of the supporting OAuth providers.
+    /// Defines OAuthProvider.EPIC_GAMES
     /// </summary>
-    /// <value>Enum of the supporting OAuth providers.</value>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum OAuthProvider
+    public enum OAuthProviderEPICGAMES
     {
-        /// <summary>
-        /// Enum Google for value: google
-        /// </summary>
-        [EnumMember(Value = "google")]
-        Google = 1,
-
-        /// <summary>
-        /// Enum Twitter for value: twitter
-        /// </summary>
-        [EnumMember(Value = "twitter")]
-        Twitter = 2,
-
-        /// <summary>
-        /// Enum Facebook for value: facebook
-        /// </summary>
-        [EnumMember(Value = "facebook")]
-        Facebook = 3,
-
-        /// <summary>
-        /// Enum Discord for value: discord
-        /// </summary>
-        [EnumMember(Value = "discord")]
-        Discord = 4,
-
         /// <summary>
         /// Enum EpicGames for value: epic_games
         /// </summary>
         [EnumMember(Value = "epic_games")]
-        EpicGames = 5
+        EpicGames = 1
 
     }
 

@@ -39,8 +39,9 @@ namespace Openfort.OpenfortSDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RefreshTokenRequest" /> class.
         /// </summary>
-        /// <param name="refreshToken">Specifies the session. (required).</param>
-        public RefreshTokenRequest(string refreshToken = default(string))
+        /// <param name="refreshToken">Specifies the session refresh token. (required).</param>
+        /// <param name="forceRefresh">Specifies whether to force refresh the session..</param>
+        public RefreshTokenRequest(string refreshToken = default(string), bool forceRefresh = default(bool))
         {
             // to ensure "refreshToken" is required (not null)
             if (refreshToken == null)
@@ -48,15 +49,24 @@ namespace Openfort.OpenfortSDK.Model
                 throw new ArgumentNullException("refreshToken is a required property for RefreshTokenRequest and cannot be null");
             }
             this.RefreshToken = refreshToken;
+            this.ForceRefresh = forceRefresh;
         }
 
         /// <summary>
-        /// Specifies the session.
+        /// Specifies the session refresh token.
         /// </summary>
-        /// <value>Specifies the session.</value>
+        /// <value>Specifies the session refresh token.</value>
         /// <example>&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9&quot;</example>
         [DataMember(Name = "refreshToken", IsRequired = true, EmitDefaultValue = true)]
         public string RefreshToken { get; set; }
+
+        /// <summary>
+        /// Specifies whether to force refresh the session.
+        /// </summary>
+        /// <value>Specifies whether to force refresh the session.</value>
+        /// <example>false</example>
+        [DataMember(Name = "forceRefresh", EmitDefaultValue = true)]
+        public bool ForceRefresh { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -67,6 +77,7 @@ namespace Openfort.OpenfortSDK.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class RefreshTokenRequest {\n");
             sb.Append("  RefreshToken: ").Append(RefreshToken).Append("\n");
+            sb.Append("  ForceRefresh: ").Append(ForceRefresh).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -106,6 +117,10 @@ namespace Openfort.OpenfortSDK.Model
                     this.RefreshToken == input.RefreshToken ||
                     (this.RefreshToken != null &&
                     this.RefreshToken.Equals(input.RefreshToken))
+                ) &&
+                (
+                    this.ForceRefresh == input.ForceRefresh ||
+                    this.ForceRefresh.Equals(input.ForceRefresh)
                 );
         }
 
@@ -122,6 +137,7 @@ namespace Openfort.OpenfortSDK.Model
                 {
                     hashCode = (hashCode * 59) + this.RefreshToken.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.ForceRefresh.GetHashCode();
                 return hashCode;
             }
         }
