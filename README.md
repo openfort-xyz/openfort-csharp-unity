@@ -117,7 +117,6 @@ We have added compilation flags to the Unity SDK to ensure that specific Unity e
 For example, the SDK allows you to build iOS games using a macOS Unity Editor, but you cannot use the Windows Unity Editor.
 
 Target Platform: The platform you're building for
-Here is the table formatted in markdown:
 
 | Target Platform      | Windows | macOS | Android | iOS |
 | -------------------- | ------- | ----- | ------- | --- |
