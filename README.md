@@ -101,6 +101,28 @@ Ensure your IL2CPP settings are configured to not strip too aggressively:
 - Open Player Settings: Go to Edit > Project Settings > Player.
 - Other Settings: Under Other Settings, find the Managed Stripping Level and set it to Low or Disabled.
 
+## Supported platforms
+- Windows (64-bit)
+- macOS (minimum version 12.5)
+- Android (minimum version 5.1)
+- iOS (minimum version 15.2)
+
+## Supported Unity Versions
+- Unity 2021.3 or newer for Windows, macOS, Android and iOS
+- Unity 2019.4 or newer for macOS, Android, and iOS. Windows isn't supported on Unity versions from 2019.4 up through 2021.2.
+
+## Target platform VS Unity editor platform
+We have added compilation flags to the Unity SDK to ensure that specific Unity editors can only build certain platform targets. Please note that the table below indicates which editor you can use to build a platform target, but it does not determine whether you can run the SDK in that editor.
+
+For example, the SDK allows you to build iOS games using a macOS Unity Editor, but you cannot use the Windows Unity Editor.
+
+Target Platform: The platform you're building for
+Here is the table formatted in markdown:
+
+| Target Platform      | Windows | macOS | Android | iOS |
+| -------------------- | ------- | ----- | ------- | --- |
+| Windows Unity Editor | ✅       | ❌     | ✅       | ❌   |
+| macOS Unity Editor   | ❌       | ✅     | ✅       | ✅   |
 
 ## Support
 The Unity SDK is a work in progress. For support, [open an issue](https://github.com/openfort-xyz/openfort-csharp-unity/issues).
