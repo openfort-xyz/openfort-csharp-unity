@@ -1,7 +1,0 @@
-{
-    "name": "Openfort",
-    "overrideReferences": true,
-    "precompiledReferences": [
-        "Newtonsoft.Json.dll"
-    ]
-}

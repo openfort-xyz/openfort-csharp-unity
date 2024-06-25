@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0853c2abce62c4aab99153aa8e37b0ea
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+
+
+class SessionKey { public string Address { get; set; } public bool IsRegistered { get; set; } }
