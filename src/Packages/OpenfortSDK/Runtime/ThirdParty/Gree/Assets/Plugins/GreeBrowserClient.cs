@@ -2,6 +2,10 @@ using Openfort.Browser.Core;
 using UnityEngine;
 using System.IO;
 
+#if (UNITY_IPHONE || UNITY_ANDROID) && !UNITY_EDITOR
+#define GREE_MOBILE
+#endif
+
 namespace Openfort.Browser.Gree
 {
     public class GreeBrowserClient : IWebBrowserClient
@@ -21,7 +25,9 @@ namespace Openfort.Browser.Gree
             Debug.LogWarning("Native Android and iOS WebViews cannot run in the Editor, so the macOS WebView is currently used to save your development time." + 
                 " Testing your game on an actual device or emulator is recommended to ensure proper functionality.");
 #endif
-            webViewObject = new WebViewObject();
+            var go = new GameObject("WebViewObject", typeof(WebViewObject));
+            Object.DontDestroyOnLoad(go);
+            webViewObject = go.GetComponent<WebViewObject>();
             webViewObject.Init(
                 cb: InvokeOnUnityPostMessage,
                 httpErr: InvokeOnPostMessageError,
@@ -38,6 +44,8 @@ namespace Openfort.Browser.Gree
             filePath = filePath.Replace(" ", "%20");
 #elif UNITY_IPHONE
             string filePath = Path.GetFullPath(Application.dataPath) + Constants.OPENFORTSDK_DATA_DIRECTORY_NAME + Constants.OPENFORTSDK_HTML_FILE_NAME;
+#elif UNITY_WEBGL
+            string filePath = Path.Combine(Application.streamingAssetsPath, "index.html");
 #else
             string filePath = Constants.SCHEME_FILE + Path.GetFullPath(Application.dataPath) + Constants.OPENFORTSDK_DATA_DIRECTORY_NAME + Constants.OPENFORTSDK_HTML_FILE_NAME;
 #endif
@@ -83,17 +91,19 @@ namespace Openfort.Browser.Gree
             webViewObject.LaunchAuthURL(url, redirectUri);
         }
 
-#if (UNITY_IPHONE && !UNITY_EDITOR) || (UNITY_ANDROID && !UNITY_EDITOR)
         public void ClearCache(bool includeDiskFiles)
         {
+#if GREE_MOBILE
             webViewObject.ClearCache(includeDiskFiles);
+#endif
         }
 
         public void ClearStorage()
         {
+#if GREE_MOBILE
             webViewObject.ClearStorage();
-        }
 #endif
+        }
 
     }
 }
