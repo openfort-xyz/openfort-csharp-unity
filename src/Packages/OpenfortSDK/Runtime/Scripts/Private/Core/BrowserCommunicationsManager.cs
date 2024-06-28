@@ -24,10 +24,8 @@ namespace Openfort.OpenfortSDK.Core
         void SetCallTimeout(int ms);
         void LaunchAuthURL(string url, string redirectUri);
         UniTask<string> Call(string fxName, string data = null, bool ignoreTimeout = false);
-#if (UNITY_IPHONE && !UNITY_EDITOR) || (UNITY_ANDROID && !UNITY_EDITOR)
         void ClearCache(bool includeDiskFiles);
         void ClearStorage();
-#endif
     }
 
     [Preserve]
@@ -106,7 +104,6 @@ namespace Openfort.OpenfortSDK.Core
             webBrowserClient.LaunchAuthURL(url, redirectUri);
         }
 
-#if (UNITY_IPHONE && !UNITY_EDITOR) || (UNITY_ANDROID && !UNITY_EDITOR)
         public void ClearCache(bool includeDiskFiles)
         {
             webBrowserClient.ClearCache(includeDiskFiles);
@@ -116,7 +113,6 @@ namespace Openfort.OpenfortSDK.Core
         {
             webBrowserClient.ClearStorage();
         }
-#endif
 
         #endregion
 

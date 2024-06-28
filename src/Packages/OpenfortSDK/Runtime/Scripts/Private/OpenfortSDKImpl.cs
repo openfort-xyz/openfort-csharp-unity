@@ -656,7 +656,6 @@ namespace Openfort.OpenfortSDK
             customTabLauncher.CallStatic("startActivity", activity, url, new AndroidCallback(this));
         }
 #endif
-#if (UNITY_IPHONE && !UNITY_EDITOR) || (UNITY_ANDROID && !UNITY_EDITOR)
         public void ClearCache(bool includeDiskFiles)
         {
             communicationsManager.ClearCache(includeDiskFiles);
@@ -666,8 +665,6 @@ namespace Openfort.OpenfortSDK
         {
             communicationsManager.ClearStorage();
         }
-#endif
-
     }
 #if UNITY_ANDROID
     public interface Callback

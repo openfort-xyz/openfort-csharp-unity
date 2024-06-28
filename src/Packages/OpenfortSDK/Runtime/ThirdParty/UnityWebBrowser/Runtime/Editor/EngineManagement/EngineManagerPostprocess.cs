@@ -3,7 +3,7 @@
 // 
 // This project is under the MIT license. See the LICENSE.md file for more details.
 
-#if UNITY_EDITOR && UNITY_STANDALONE_WIN
+#if UNITY_EDITOR
 
 using System.Collections.Generic;
 using System.IO;
@@ -114,5 +114,3 @@ namespace VoltstroStudios.UnityWebBrowser.Editor.EngineManagement
         }
     }
 }
-
-#endif
