@@ -50,46 +50,58 @@ namespace Openfort.OpenfortSDK.Model
         Facebook = 3,
 
         /// <summary>
+        /// Enum Discord for value: discord
+        /// </summary>
+        [EnumMember(Value = "discord")]
+        Discord = 4,
+
+        /// <summary>
+        /// Enum EpicGames for value: epic_games
+        /// </summary>
+        [EnumMember(Value = "epic_games")]
+        EpicGames = 5,
+
+        /// <summary>
         /// Enum Accelbyte for value: accelbyte
         /// </summary>
         [EnumMember(Value = "accelbyte")]
-        Accelbyte = 4,
+        Accelbyte = 6,
 
         /// <summary>
         /// Enum Firebase for value: firebase
         /// </summary>
         [EnumMember(Value = "firebase")]
-        Firebase = 5,
+        Firebase = 7,
 
         /// <summary>
         /// Enum Lootlocker for value: lootlocker
         /// </summary>
         [EnumMember(Value = "lootlocker")]
-        Lootlocker = 6,
+        Lootlocker = 8,
 
         /// <summary>
         /// Enum Playfab for value: playfab
         /// </summary>
         [EnumMember(Value = "playfab")]
-        Playfab = 7,
+        Playfab = 9,
 
         /// <summary>
         /// Enum Supabase for value: supabase
         /// </summary>
         [EnumMember(Value = "supabase")]
-        Supabase = 8,
+        Supabase = 10,
 
         /// <summary>
         /// Enum Custom for value: custom
         /// </summary>
         [EnumMember(Value = "custom")]
-        Custom = 9,
+        Custom = 11,
 
         /// <summary>
         /// Enum Oidc for value: oidc
         /// </summary>
         [EnumMember(Value = "oidc")]
-        Oidc = 10
+        Oidc = 12
 
     }
 

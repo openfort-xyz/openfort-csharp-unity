@@ -26,97 +26,76 @@ using Newtonsoft.Json.Linq;
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
-    /// SMTPConfigResponse
+    /// UpsertSMTPConfigRequest
     /// </summary>
-    [DataContract(Name = "SMTPConfigResponse")]
-    public partial class SMTPConfigResponse : IEquatable<SMTPConfigResponse>
+    [DataContract(Name = "UpsertSMTPConfigRequest")]
+    public partial class UpsertSMTPConfigRequest : IEquatable<UpsertSMTPConfigRequest>
     {
-
         /// <summary>
-        /// Gets or Sets Object
+        /// Initializes a new instance of the <see cref="UpsertSMTPConfigRequest" /> class.
         /// </summary>
-        [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public EntityTypeSMTPCONFIG Object { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SMTPConfigResponse" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected SMTPConfigResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SMTPConfigResponse" /> class.
-        /// </summary>
-        /// <param name="user">user (required).</param>
-        /// <param name="pass">pass (required).</param>
-        /// <param name="host">host (required).</param>
-        /// <param name="port">port (required).</param>
-        /// <param name="from">from (required).</param>
-        /// <param name="useSSL">useSSL (required).</param>
-        /// <param name="_object">_object (required).</param>
-        public SMTPConfigResponse(string user = default(string), string pass = default(string), string host = default(string), double port = default(double), string from = default(string), bool useSSL = default(bool), EntityTypeSMTPCONFIG _object = default(EntityTypeSMTPCONFIG))
+        /// <param name="user">Specifies the user name.</param>
+        /// <param name="pass">Specifies the password.</param>
+        /// <param name="host">Specifies the host.</param>
+        /// <param name="from">Specifies the from.</param>
+        /// <param name="port">Specifies the port.</param>
+        /// <param name="useSSL">Specifies the use SSL.</param>
+        public UpsertSMTPConfigRequest(string user = default(string), string pass = default(string), string host = default(string), string from = default(string), double port = default(double), bool useSSL = default(bool))
         {
-            // to ensure "user" is required (not null)
-            if (user == null)
-            {
-                throw new ArgumentNullException("user is a required property for SMTPConfigResponse and cannot be null");
-            }
             this.User = user;
-            // to ensure "pass" is required (not null)
-            if (pass == null)
-            {
-                throw new ArgumentNullException("pass is a required property for SMTPConfigResponse and cannot be null");
-            }
             this.Pass = pass;
-            // to ensure "host" is required (not null)
-            if (host == null)
-            {
-                throw new ArgumentNullException("host is a required property for SMTPConfigResponse and cannot be null");
-            }
             this.Host = host;
-            this.Port = port;
-            // to ensure "from" is required (not null)
-            if (from == null)
-            {
-                throw new ArgumentNullException("from is a required property for SMTPConfigResponse and cannot be null");
-            }
             this.From = from;
+            this.Port = port;
             this.UseSSL = useSSL;
-            this.Object = _object;
         }
 
         /// <summary>
-        /// Gets or Sets User
+        /// Specifies the user name
         /// </summary>
-        [DataMember(Name = "user", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Specifies the user name</value>
+        /// <example>&quot;user&quot;</example>
+        [DataMember(Name = "user", EmitDefaultValue = false)]
         public string User { get; set; }
 
         /// <summary>
-        /// Gets or Sets Pass
+        /// Specifies the password
         /// </summary>
-        [DataMember(Name = "pass", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Specifies the password</value>
+        /// <example>&quot;pass&quot;</example>
+        [DataMember(Name = "pass", EmitDefaultValue = false)]
         public string Pass { get; set; }
 
         /// <summary>
-        /// Gets or Sets Host
+        /// Specifies the host
         /// </summary>
-        [DataMember(Name = "host", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Specifies the host</value>
+        /// <example>&quot;host&quot;</example>
+        [DataMember(Name = "host", EmitDefaultValue = false)]
         public string Host { get; set; }
 
         /// <summary>
-        /// Gets or Sets Port
+        /// Specifies the from
         /// </summary>
-        [DataMember(Name = "port", IsRequired = true, EmitDefaultValue = true)]
-        public double Port { get; set; }
-
-        /// <summary>
-        /// Gets or Sets From
-        /// </summary>
-        [DataMember(Name = "from", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Specifies the from</value>
+        /// <example>&quot;from&quot;</example>
+        [DataMember(Name = "from", EmitDefaultValue = false)]
         public string From { get; set; }
 
         /// <summary>
-        /// Gets or Sets UseSSL
+        /// Specifies the port
         /// </summary>
-        [DataMember(Name = "useSSL", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Specifies the port</value>
+        /// <example>0</example>
+        [DataMember(Name = "port", EmitDefaultValue = false)]
+        public double Port { get; set; }
+
+        /// <summary>
+        /// Specifies the use SSL
+        /// </summary>
+        /// <value>Specifies the use SSL</value>
+        /// <example>true</example>
+        [DataMember(Name = "useSSL", EmitDefaultValue = true)]
         public bool UseSSL { get; set; }
 
         /// <summary>
@@ -126,14 +105,13 @@ namespace Openfort.OpenfortSDK.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SMTPConfigResponse {\n");
+            sb.Append("class UpsertSMTPConfigRequest {\n");
             sb.Append("  User: ").Append(User).Append("\n");
             sb.Append("  Pass: ").Append(Pass).Append("\n");
             sb.Append("  Host: ").Append(Host).Append("\n");
-            sb.Append("  Port: ").Append(Port).Append("\n");
             sb.Append("  From: ").Append(From).Append("\n");
+            sb.Append("  Port: ").Append(Port).Append("\n");
             sb.Append("  UseSSL: ").Append(UseSSL).Append("\n");
-            sb.Append("  Object: ").Append(Object).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -154,15 +132,15 @@ namespace Openfort.OpenfortSDK.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SMTPConfigResponse);
+            return this.Equals(input as UpsertSMTPConfigRequest);
         }
 
         /// <summary>
-        /// Returns true if SMTPConfigResponse instances are equal
+        /// Returns true if UpsertSMTPConfigRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of SMTPConfigResponse to be compared</param>
+        /// <param name="input">Instance of UpsertSMTPConfigRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SMTPConfigResponse input)
+        public bool Equals(UpsertSMTPConfigRequest input)
         {
             if (input == null)
             {
@@ -185,21 +163,17 @@ namespace Openfort.OpenfortSDK.Model
                     this.Host.Equals(input.Host))
                 ) &&
                 (
-                    this.Port == input.Port ||
-                    this.Port.Equals(input.Port)
-                ) &&
-                (
                     this.From == input.From ||
                     (this.From != null &&
                     this.From.Equals(input.From))
                 ) &&
                 (
-                    this.UseSSL == input.UseSSL ||
-                    this.UseSSL.Equals(input.UseSSL)
+                    this.Port == input.Port ||
+                    this.Port.Equals(input.Port)
                 ) &&
                 (
-                    this.Object == input.Object ||
-                    this.Object.Equals(input.Object)
+                    this.UseSSL == input.UseSSL ||
+                    this.UseSSL.Equals(input.UseSSL)
                 );
         }
 
@@ -224,13 +198,12 @@ namespace Openfort.OpenfortSDK.Model
                 {
                     hashCode = (hashCode * 59) + this.Host.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Port.GetHashCode();
                 if (this.From != null)
                 {
                     hashCode = (hashCode * 59) + this.From.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Port.GetHashCode();
                 hashCode = (hashCode * 59) + this.UseSSL.GetHashCode();
-                hashCode = (hashCode * 59) + this.Object.GetHashCode();
                 return hashCode;
             }
         }

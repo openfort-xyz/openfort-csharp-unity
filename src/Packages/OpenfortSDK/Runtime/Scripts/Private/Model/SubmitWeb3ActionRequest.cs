@@ -41,7 +41,7 @@ namespace Openfort.OpenfortSDK.Model
         /// </summary>
         /// <param name="approve">True to approve the action, false to reject it. (required).</param>
         /// <param name="policy">ID of the Policy that defines the gas sponsorship strategy (starts with &#x60;pol_&#x60;). If no Policy is provided, the own Account native token funds will be used to pay for gas..</param>
-        /// <param name="signature">signed data by the owner.</param>
+        /// <param name="signature">signed repositories by the owner.</param>
         public SubmitWeb3ActionRequest(bool approve = default(bool), string policy = default(string), string signature = default(string))
         {
             this.Approve = approve;
@@ -66,9 +66,9 @@ namespace Openfort.OpenfortSDK.Model
         public string Policy { get; set; }
 
         /// <summary>
-        /// signed data by the owner
+        /// signed repositories by the owner
         /// </summary>
-        /// <value>signed data by the owner</value>
+        /// <value>signed repositories by the owner</value>
         /// <example>&quot;0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef&quot;</example>
         [DataMember(Name = "signature", EmitDefaultValue = false)]
         public string Signature { get; set; }

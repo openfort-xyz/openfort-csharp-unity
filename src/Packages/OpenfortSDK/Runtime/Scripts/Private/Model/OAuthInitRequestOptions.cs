@@ -34,24 +34,13 @@ namespace Openfort.OpenfortSDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="OAuthInitRequestOptions" /> class.
         /// </summary>
-        /// <param name="skipBrowserRedirect">If set to true does not immediately redirect the current browser context to visit the OAuth authorization page for the provider..</param>
         /// <param name="queryParams">An object of query params.</param>
-        /// <param name="scopes">A space-separated list of scopes granted to the OAuth application..</param>
         /// <param name="redirectTo">A URL to send the user to after they are confirmed..</param>
-        public OAuthInitRequestOptions(bool skipBrowserRedirect = default(bool), Dictionary<string, string> queryParams = default(Dictionary<string, string>), string scopes = default(string), string redirectTo = default(string))
+        public OAuthInitRequestOptions(Dictionary<string, string> queryParams = default(Dictionary<string, string>), string redirectTo = default(string))
         {
-            this.SkipBrowserRedirect = skipBrowserRedirect;
             this.QueryParams = queryParams;
-            this.Scopes = scopes;
             this.RedirectTo = redirectTo;
         }
-
-        /// <summary>
-        /// If set to true does not immediately redirect the current browser context to visit the OAuth authorization page for the provider.
-        /// </summary>
-        /// <value>If set to true does not immediately redirect the current browser context to visit the OAuth authorization page for the provider.</value>
-        [DataMember(Name = "skipBrowserRedirect", EmitDefaultValue = true)]
-        public bool SkipBrowserRedirect { get; set; }
 
         /// <summary>
         /// An object of query params
@@ -59,13 +48,6 @@ namespace Openfort.OpenfortSDK.Model
         /// <value>An object of query params</value>
         [DataMember(Name = "queryParams", EmitDefaultValue = false)]
         public Dictionary<string, string> QueryParams { get; set; }
-
-        /// <summary>
-        /// A space-separated list of scopes granted to the OAuth application.
-        /// </summary>
-        /// <value>A space-separated list of scopes granted to the OAuth application.</value>
-        [DataMember(Name = "scopes", EmitDefaultValue = false)]
-        public string Scopes { get; set; }
 
         /// <summary>
         /// A URL to send the user to after they are confirmed.
@@ -82,9 +64,7 @@ namespace Openfort.OpenfortSDK.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class OAuthInitRequestOptions {\n");
-            sb.Append("  SkipBrowserRedirect: ").Append(SkipBrowserRedirect).Append("\n");
             sb.Append("  QueryParams: ").Append(QueryParams).Append("\n");
-            sb.Append("  Scopes: ").Append(Scopes).Append("\n");
             sb.Append("  RedirectTo: ").Append(RedirectTo).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -122,19 +102,10 @@ namespace Openfort.OpenfortSDK.Model
             }
             return
                 (
-                    this.SkipBrowserRedirect == input.SkipBrowserRedirect ||
-                    this.SkipBrowserRedirect.Equals(input.SkipBrowserRedirect)
-                ) &&
-                (
                     this.QueryParams == input.QueryParams ||
                     this.QueryParams != null &&
                     input.QueryParams != null &&
                     this.QueryParams.SequenceEqual(input.QueryParams)
-                ) &&
-                (
-                    this.Scopes == input.Scopes ||
-                    (this.Scopes != null &&
-                    this.Scopes.Equals(input.Scopes))
                 ) &&
                 (
                     this.RedirectTo == input.RedirectTo ||
@@ -152,14 +123,9 @@ namespace Openfort.OpenfortSDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.SkipBrowserRedirect.GetHashCode();
                 if (this.QueryParams != null)
                 {
                     hashCode = (hashCode * 59) + this.QueryParams.GetHashCode();
-                }
-                if (this.Scopes != null)
-                {
-                    hashCode = (hashCode * 59) + this.Scopes.GetHashCode();
                 }
                 if (this.RedirectTo != null)
                 {

@@ -49,12 +49,12 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="updatedAt">updatedAt (required).</param>
-        /// <param name="isActive">isActive.</param>
+        /// <param name="isActive">isActive (required).</param>
         /// <param name="address">address (required).</param>
-        /// <param name="validAfter">validAfter.</param>
-        /// <param name="validUntil">validUntil.</param>
-        /// <param name="whitelist">whitelist.</param>
-        /// <param name="limit">limit.</param>
+        /// <param name="validAfter">validAfter (required).</param>
+        /// <param name="validUntil">validUntil (required).</param>
+        /// <param name="whitelist">whitelist (required).</param>
+        /// <param name="limit">limit (required).</param>
         /// <param name="nextAction">nextAction.</param>
         /// <param name="transactionIntents">transactionIntents.</param>
         public SessionResponse(string id = default(string), EntityTypeSESSION _object = default(EntityTypeSESSION), int createdAt = default(int), int updatedAt = default(int), bool isActive = default(bool), string address = default(string), string validAfter = default(string), string validUntil = default(string), List<string> whitelist = default(List<string>), int limit = default(int), NextActionResponse nextAction = default(NextActionResponse), List<PlayerResponseTransactionIntentsInner> transactionIntents = default(List<PlayerResponseTransactionIntentsInner>))
@@ -68,15 +68,30 @@ namespace Openfort.OpenfortSDK.Model
             this.Object = _object;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
+            this.IsActive = isActive;
             // to ensure "address" is required (not null)
             if (address == null)
             {
                 throw new ArgumentNullException("address is a required property for SessionResponse and cannot be null");
             }
             this.Address = address;
-            this.IsActive = isActive;
+            // to ensure "validAfter" is required (not null)
+            if (validAfter == null)
+            {
+                throw new ArgumentNullException("validAfter is a required property for SessionResponse and cannot be null");
+            }
             this.ValidAfter = validAfter;
+            // to ensure "validUntil" is required (not null)
+            if (validUntil == null)
+            {
+                throw new ArgumentNullException("validUntil is a required property for SessionResponse and cannot be null");
+            }
             this.ValidUntil = validUntil;
+            // to ensure "whitelist" is required (not null)
+            if (whitelist == null)
+            {
+                throw new ArgumentNullException("whitelist is a required property for SessionResponse and cannot be null");
+            }
             this.Whitelist = whitelist;
             this.Limit = limit;
             this.NextAction = nextAction;
@@ -104,7 +119,7 @@ namespace Openfort.OpenfortSDK.Model
         /// <summary>
         /// Gets or Sets IsActive
         /// </summary>
-        [DataMember(Name = "isActive", EmitDefaultValue = true)]
+        [DataMember(Name = "isActive", IsRequired = true, EmitDefaultValue = true)]
         public bool IsActive { get; set; }
 
         /// <summary>
@@ -116,25 +131,25 @@ namespace Openfort.OpenfortSDK.Model
         /// <summary>
         /// Gets or Sets ValidAfter
         /// </summary>
-        [DataMember(Name = "validAfter", EmitDefaultValue = false)]
+        [DataMember(Name = "validAfter", IsRequired = true, EmitDefaultValue = true)]
         public string ValidAfter { get; set; }
 
         /// <summary>
         /// Gets or Sets ValidUntil
         /// </summary>
-        [DataMember(Name = "validUntil", EmitDefaultValue = false)]
+        [DataMember(Name = "validUntil", IsRequired = true, EmitDefaultValue = true)]
         public string ValidUntil { get; set; }
 
         /// <summary>
         /// Gets or Sets Whitelist
         /// </summary>
-        [DataMember(Name = "whitelist", EmitDefaultValue = false)]
+        [DataMember(Name = "whitelist", IsRequired = true, EmitDefaultValue = true)]
         public List<string> Whitelist { get; set; }
 
         /// <summary>
         /// Gets or Sets Limit
         /// </summary>
-        [DataMember(Name = "limit", EmitDefaultValue = false)]
+        [DataMember(Name = "limit", IsRequired = true, EmitDefaultValue = true)]
         public int Limit { get; set; }
 
         /// <summary>
