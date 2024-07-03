@@ -1,10 +1,10 @@
-using Openfort.Browser.Core;
-using UnityEngine;
-using System.IO;
-
 #if (UNITY_IPHONE || UNITY_ANDROID) && !UNITY_EDITOR
 #define GREE_MOBILE
 #endif
+
+using Openfort.Browser.Core;
+using UnityEngine;
+using System.IO;
 
 namespace Openfort.Browser.Gree
 {
