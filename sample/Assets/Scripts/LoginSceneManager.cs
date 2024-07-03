@@ -118,7 +118,7 @@ public class LoginSceneManager : MonoBehaviour
     private async Task SetAutomaticRecoveryMethod()
     {
         int chainId = 80002;
-        ShieldAuthentication shieldConfig = new ShieldAuthentication(AuthType.Openfort, accessToken);
+        ShieldAuthentication shieldConfig = new ShieldAuthentication(ShieldAuthType.Openfort, accessToken);
         EmbeddedSignerRequest request = new EmbeddedSignerRequest(chainId, shieldConfig);
         await openfort.ConfigureEmbeddedSigner(request);
     }
