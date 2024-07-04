@@ -102,7 +102,7 @@ public class WebViewObject : MonoBehaviour
     private static extern void _CWebViewPlugin_ClearCache(IntPtr instance, bool includeDiskFiles);
     [DllImport("__Internal")]
     private static extern void _CWebViewPlugin_ClearStorage(IntPtr instance);
-#elif UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX || UNITY_ANDROID || UNITY_IPHONE
+#elif UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
     [DllImport("WebView")]
     private static extern IntPtr _CWebViewPlugin_Init(string ua);
     [DllImport("WebView")]
@@ -374,31 +374,31 @@ public class WebViewObject : MonoBehaviour
 
     public void ClearCache(bool includeDiskFiles)
     {
-#if UNITY_IPHONE && !UNITY_EDITOR
+#if !UNITY_EDITOR
+#if UNITY_IPHONE
         if (webView == IntPtr.Zero)
             return;
         _CWebViewPlugin_ClearCache(webView, includeDiskFiles);
-#elif UNITY_ANDROID && !UNITY_EDITOR
+#elif UNITY_ANDROID
         if (webView == null)
             return;
         webView.Call("ClearCache", includeDiskFiles);
-#else
-        throw new NotSupportedException();
+#endif
 #endif
     }
 
     public void ClearStorage()
     {
-#if UNITY_IPHONE && !UNITY_EDITOR
+#if !UNITY_EDITOR
+#if UNITY_IPHONE
         if (webView == IntPtr.Zero)
             return;
         _CWebViewPlugin_ClearStorage(webView);
-#elif UNITY_ANDROID && !UNITY_EDITOR
+#elif UNITY_ANDROID
         if (webView == null)
             return;
         webView.Call("ClearStorage");
-#else
-        throw new NotSupportedException();
+#endif
 #endif
     }
 }
