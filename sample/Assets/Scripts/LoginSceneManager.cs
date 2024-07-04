@@ -79,7 +79,6 @@ public class LoginSceneManager : MonoBehaviour
     {
         googleButton.interactable = false;
         loadingPanel.SetActive(true);
-
         OAuthInitRequest request = new OAuthInitRequest()
         {
 #if UNITY_WEBGL || UNITY_STANDALONE_WIN
