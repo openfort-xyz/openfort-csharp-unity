@@ -1,8 +1,12 @@
-using System.Collections.Generic;
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
+#define OPENFORT_USE_UWB
+#elif UNITY_WEBGL || UNITY_IOS || UNITY_ANDROID || UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+#define OPENFORT_USE_GREE
+#endif
 using System;
-#if UNITY_STANDALONE_WIN || (UNITY_ANDROID && UNITY_EDITOR_WIN) || (UNITY_IPHONE && UNITY_EDITOR_WIN)
+#if OPENFORT_USE_UWB
 using VoltstroStudios.UnityWebBrowser.Core;
-#else
+#elif OPENFORT_USE_GREE
 using Openfort.Browser.Gree;
 #endif
 using Openfort.OpenfortSDK.Event;
@@ -21,11 +25,8 @@ namespace Openfort.OpenfortSDK
 
         public static OpenfortSDK Instance { get; private set; }
 
-#if UNITY_STANDALONE_WIN || (UNITY_ANDROID && UNITY_EDITOR_WIN) || (UNITY_IPHONE && UNITY_EDITOR_WIN)
-        private readonly IWebBrowserClient webBrowserClient = new WebBrowserClient();
-#else
-        private readonly IWebBrowserClient webBrowserClient = new GreeBrowserClient();
-#endif        
+        private IWebBrowserClient webBrowserClient;
+       
         // Keeps track of the latest received deeplink
         private static string deeplink = null;
         private static bool readySignalReceived = false;
@@ -35,9 +36,8 @@ namespace Openfort.OpenfortSDK
 
         private OpenfortSDK()
         {
-#if UNITY_STANDALONE_WIN || (UNITY_ANDROID && UNITY_EDITOR_WIN) || (UNITY_IPHONE && UNITY_EDITOR_WIN)
             Application.quitting += OnQuit;
-#elif UNITY_IPHONE || UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+#if UNITY_IPHONE || UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
             Application.deepLinkActivated += OnDeepLinkActivated;
             if (!string.IsNullOrEmpty(Application.absoluteURL))
             {
@@ -59,9 +59,9 @@ namespace Openfort.OpenfortSDK
         /// <param name="shieldUrl">Shield URL</param>
         /// <param name="engineStartupTimeoutMs">(Windows only) Timeout time for waiting for the engine to start (in milliseconds)</param>
         public static UniTask<OpenfortSDK> Init(
-#if UNITY_STANDALONE_WIN || (UNITY_ANDROID && UNITY_EDITOR_WIN) || (UNITY_IPHONE && UNITY_EDITOR_WIN)
+#if OPENFORT_USE_UWB
             string publishableKey, string shieldPublishableKey = null, string shieldEncryptionKey = null, bool shieldDebug = false, string backendUrl = "https://api.openfort.xyz", string iframeUrl = "https://iframe.openfort.xyz", string shieldUrl = "https://shield.openfort.xyz", int engineStartupTimeoutMs = 4000
-#else
+#elif OPENFORT_USE_GREE
             string publishableKey, string shieldPublishableKey = null, string shieldEncryptionKey = null, bool shieldDebug = false, string backendUrl = "https://api.openfort.xyz", string iframeUrl = "https://iframe.openfort.xyz", string shieldUrl = "https://shield.openfort.xyz"
 #endif
         )
@@ -71,7 +71,7 @@ namespace Openfort.OpenfortSDK
                 Debug.Log($"{TAG} Initializing Openfort...");
                 Instance = new OpenfortSDK();
                 return Instance.Initialize(
-#if UNITY_STANDALONE_WIN || (UNITY_ANDROID && UNITY_EDITOR_WIN) || (UNITY_IPHONE && UNITY_EDITOR_WIN)
+#if OPENFORT_USE_UWB
                         engineStartupTimeoutMs
 #endif
                     )
@@ -102,16 +102,21 @@ namespace Openfort.OpenfortSDK
         }
 
         private async UniTask Initialize(
-#if UNITY_STANDALONE_WIN || (UNITY_ANDROID && UNITY_EDITOR_WIN) || (UNITY_IPHONE && UNITY_EDITOR_WIN)
+#if OPENFORT_USE_UWB
             int engineStartupTimeoutMs
 #endif
         )
         {
             try
             {
+#if OPENFORT_USE_UWB
+                webBrowserClient = new WebBrowserClient();
+#elif OPENFORT_USE_GREE
+                webBrowserClient = new GreeBrowserClient();
+#endif 
                 BrowserCommunicationsManager communicationsManager = new BrowserCommunicationsManager(webBrowserClient);
                 communicationsManager.OnReady += () => readySignalReceived = true;
-#if UNITY_STANDALONE_WIN || (UNITY_ANDROID && UNITY_EDITOR_WIN) || (UNITY_IPHONE && UNITY_EDITOR_WIN)
+#if OPENFORT_USE_UWB
                 await ((WebBrowserClient)webBrowserClient).Init(engineStartupTimeoutMs);
 #endif
                 openfortImpl = new OpenfortImpl(communicationsManager);
@@ -125,13 +130,13 @@ namespace Openfort.OpenfortSDK
             }
         }
 
-#if UNITY_STANDALONE_WIN || (UNITY_ANDROID && UNITY_EDITOR_WIN) || (UNITY_IPHONE && UNITY_EDITOR_WIN)
         private void OnQuit()
         {
+#if OPENFORT_USE_UWB
             Debug.Log($"{TAG} Quitting the Player");
             ((WebBrowserClient)webBrowserClient).Dispose();
-        }
 #endif
+        }
 
         /// <summary>
         /// Sets the timeout time for waiting for each call to respond (in milliseconds).
@@ -408,7 +413,6 @@ namespace Openfort.OpenfortSDK
             await GetOpenfortImpl().ConfigureEmbeddedSigner(request);
         }
 
-#if (UNITY_IPHONE && !UNITY_EDITOR) || (UNITY_ANDROID && !UNITY_EDITOR)
         /// <summary>
         /// Clears the underlying WebView resource cache.
         /// Android: Note that the cache is per-application, so this will clear the cache for all WebViews used.
@@ -427,7 +431,6 @@ namespace Openfort.OpenfortSDK
         {
             GetOpenfortImpl().ClearStorage();
         }
-#endif
 
         private OpenfortImpl GetOpenfortImpl()
         {

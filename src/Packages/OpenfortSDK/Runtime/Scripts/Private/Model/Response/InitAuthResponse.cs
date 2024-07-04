@@ -1,7 +1,9 @@
 using System;
+using UnityEngine.Scripting;
 
 namespace Openfort.OpenfortSDK.Model
 {
+    [Preserve]
     [Serializable]
     public class InitAuthResponse
     {
