@@ -1,4 +1,4 @@
-![Openfort Protocol][banner-image]
+![Openfort][banner-image]
 
 <div align="center">
   <h4>
@@ -24,90 +24,104 @@
 
 # Openfort Unity SDK
 
-## Installation (Unity Package Manager)
+## Installation
 
-**Option 1 - File System**
+### Via UPM window
 
-Open `Packages/manifest.json` and add these lines:
+Since .dll files are stored on Git Large File Storage, you must download and install git-lfs from [here](https://git-lfs.github.com/).
+1. Open the Package Manager
+2. Click the add + button and select "Add package from git URL..."
+Enter https://github.com/openfort-xyz/openfort-csharp-unity.git?path=/src/Packages/OpenfortSDK and click 'Add'
+
+### Via manifest.json
+Since .dll files are stored on Git Large File Storage, you must download and install git-lfs from [here](https://git-lfs.github.com/).
+1. Open your project's Packages/manifest.json file
+2. Add "com.openfort.sdk": "https://github.com/openfort-xyz/openfort-csharp-unity.git?path=/src/Packages/OpenfortSDK" in the dependencies block
+
+## Set up
+
+### Android setup
+
+On Android, we utilize Chrome [Custom Tabs](https://developer.chrome.com/docs/android/custom-tabs/) (if available) to seamlessly connect gamers to OpenfortSDK from within the game.
+
+1. In Unity go to Build Settings -> Player Settings -> Android -> Publishing Settings -> Enable Custom Main Manifest and Custom Main Gradle Template under the Build section
+2. Open the newly generated Assets/Plugins/Android/AndroidManifest.xml file. Add the following code inside the <application> element:
 
 ```
-"com.openfort.sdk": "https://github.com/openfort-xyz/openfort-csharp-unity.git",
-"com.unity.nuget.newtonsoft-json": "3.0.1",
-"com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.3.3"
+<activity
+  android:name="com.openfort.unity.RedirectActivity"
+  android:exported="true" >
+  <intent-filter android:autoVerify="true">
+    <action android:name="android.intent.action.VIEW" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <category android:name="android.intent.category.BROWSABLE" />
+    <data android:scheme="mygame" android:host="callback" />
+    <data android:scheme="mygame" android:host="logout" />
+  </intent-filter>
+</activity>
 ```
 
-**Option 2 - Editor UI**
+3. Open the newly generated Assets/Plugins/Android/mainTemplate.gradle file. Add the following code inside dependencies block:
 
-Follow this instructions:
-
-https://docs.unity3d.com/Manual/upm-ui-giturl.html
-
-And add these urls:
-
-`https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.3.3`
-
-`https://github.com/needle-mirror/com.unity.nuget.newtonsoft-json.git`
-
-`https://github.com/openfort-xyz/openfort-csharp-unity.git`
-
-## Usage
-
-With the Openfort Unity SDK, you can sign transaction intents using one of four methods or signers:
-```csharp
-var sdk = new Openfort("pk_test_XXXXXXX");
+```
+implementation('androidx.browser:browser:1.5.0')
 ```
 
-### 1. Session Signer
-The Session Signer allows you to use external signing keys, without needing to provide it every time. Here's how to use it:
 
-- **Configure the Session Key**: Call `ConfigureSessionKey()`. This method returns an Ethereum address and a boolean indicating whether you need to register the key from the backend.
-```csharp
-var sessionKey = sdk.ConfigureSessionKey();
+For this version of the Chrome Custom Tabs to work, the compileSdkVersion must be at least 33. This is usually the same value as the targetSdkVersion, which you can set in Build Settings -> Player Settings -> Android -> Other Settings -> Target API Level.
+
+**Proguard**
+
+If you enable Minify in your project settings, you will need to add a custom Proguard file to your project.
+
+In Unity go to Build Settings -> Player Settings -> Android -> Publishing Settings -> Enable Custom Proguard File under the Build section
+Open the newly generated Assets/Plugins/Android/proguard-user.txt file. Add the following code inside the <application> element
+-dontwarn com.openfort.**
+-keep class com.openfort.** { *; }
+-keep interface com.openfort.** { *; }
+
 ```
-- **Register Key and Send Signature Session Request**: If `sessionKey.IsRegistered` boolean is false, register the key from the backend. Refer to the documentation for [session management](https://www.openfort.xyz/docs/guides/accounts/sessions).
-- **Send Signature Transaction Intent Request**: When calling SendSignatureTransactionIntentRequest, pass the transaction intent ID and the user operation hash. The session signer will handle the signing.
-
-### 2. External Sign
-
-This method allows you to externally sign transaction intents without logging in or additional configurations:
-
-- **Call SendSignatureTransactionIntentRequest**: Simply pass the transaction intent ID and the signature.
-```csharp
-var response = await sdk.SendSignatureTransactionIntentRequest("transaction_intent_id", signature: "your_signature");
+-dontwarn androidx.**
+-keep class androidx.** { *; }
+-keep interface androidx.** { *; }
 ```
 
-### 3. Embedded Signer
-The Embedded Signer uses SSS to manage the private key on the client side. To learn more, visit our [security documentation](https://www.openfort.xyz/docs/security).
-- **Login and Configure the Embedded Signer**: First, ensure the user is logged in, using `LoginWithEmailPassword`, `LoginWithOAuth` or if not registred `SignUpWithEmailPassword`. Then call `ConfigureEmbeddedSigner`. If a `MissingRecoveryMethod` exception is thrown, it indicates there's no share on the device and you have to call `ConfigureEmbeddedRecovery` to provide a recovery method.
-```csharp
-try
-{
-    const token = sdk.LoginWithEmailPassword("user_email", "user_password");
-    var auth = new Shield.OpenfortAuthOptions
-       {
-           authProvider = Shield.ShieldAuthProvider.Openfort,
-           openfortOAuthToken = token,
-       };
-    sdk.ConfigureEmbeddedSigner(chainId, auth);
-}
-catch (MissingRecoveryPassword)
-{
-    await sdk.ConfigureEmbeddedRecovery(chainId, auth, "user_password");
-}
-```
-For now the available methods are the `AutomaticRecovery` and the `PasswordRecovery` method.
-* To use the `AutomaticRecovery` method, you don't need to provide the `recoveryPassword` when setting up the recovery method. 
-* To use the `PasswordRecovery` method, you need to provide the `recoveryPassword` when setting up the recovery method. When recovering the key, if you don't provide the `recoveryPassword` you will get a `MissingRecoveryPassword` exception to indicate that you need to provide the `recoveryPassword`.
 
-```csharp
-- **Send Signature Transaction Intent Request**: Similar to the session signer, pass the transaction intent ID and the user operation hash. The embedded signer reconstructs the key and signs the transaction.
-```csharp
-var response = await sdk.SendSignatureTransactionIntentRequest("transaction_intent_id", "user_op");
-```
+### iOS setup
+
+In Unity go to Build Settings -> Player Settings -> iOS -> Other Settings -> Supported URL schemes
+Increment the Size number
+Add your URL scheme in the Element field, e.g. if the deeplink URL is mygame://callback, add the scheme mygame to the field.
+
+
+## IL2CPP Settings
+
+Ensure your IL2CPP settings are configured to not strip too aggressively:
+
+- Open Player Settings: Go to Edit > Project Settings > Player.
+- Other Settings: Under Other Settings, find the Managed Stripping Level and set it to Low or Disabled.
+
+## Supported platforms
+- Windows (64-bit)
+- macOS (minimum version 12.5)
+- Android (minimum version 5.1)
+- iOS (minimum version 15.2)
+
+## Supported Unity Versions
+- Unity 2021.3 or newer for Windows, macOS, Android and iOS
+- Unity 2019.4 or newer for macOS, Android, and iOS. Windows isn't supported on Unity versions from 2019.4 up through 2021.2.
+
+## Target platform VS Unity editor platform
+We have added compilation flags to the Unity SDK to ensure that specific Unity editors can only build certain platform targets. Please note that the table below indicates which editor you can use to build a platform target, but it does not determine whether you can run the SDK in that editor.
+
+For example, the SDK allows you to build iOS games using a macOS Unity Editor, but you cannot use the Windows Unity Editor.
+
+Target Platform: The platform you're building for
+
+| Target Platform      | Windows | macOS | Android | iOS |
+| -------------------- | ------- | ----- | ------- | --- |
+| Windows Unity Editor | ✅       | ❌     | ✅       | ❌   |
+| macOS Unity Editor   | ❌       | ✅     | ✅       | ✅   |
 
 ## Support
 The Unity SDK is a work in progress. For support, [open an issue](https://github.com/openfort-xyz/openfort-csharp-unity/issues).
-
-## Example
-
-For a working example using the Openfort Unity SDK, please refer to [Lost Dungeon repository](https://github.com/openfort-xyz/lost-dungeon)

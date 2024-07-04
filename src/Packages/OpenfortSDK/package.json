@@ -1,0 +1,25 @@
+{
+  "name": "com.openfort.sdk",
+  "version": "0.3.0",
+  "description": "The Openfort SDK for Unity helps you integrate your game with Openfort sdk.",
+  "displayName": "Openfort sdk",
+  "scopedRegistries": [
+    {
+      "name": "Open UPM Packages",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.cysharp.unitask"
+      ]
+    }
+  ],
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.0",
+    "com.cysharp.unitask": "2.3.3"
+  },
+  "keywords": [
+    "unity",
+    "openfort",
+    "openfortSDK"
+  ],
+  "unity": "2021.3"
+}
