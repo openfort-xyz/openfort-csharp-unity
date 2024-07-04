@@ -52,7 +52,9 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="name">name (required).</param>
         /// <param name="apikeys">apikeys.</param>
         /// <param name="webhook">webhook.</param>
-        public ProjectResponse(string id = default(string), EntityTypePROJECT _object = default(EntityTypePROJECT), int createdAt = default(int), int updatedAt = default(int), string name = default(string), List<ApiKeyResponse> apikeys = default(List<ApiKeyResponse>), List<WebhookResponse> webhook = default(List<WebhookResponse>))
+        /// <param name="parentProject">parentProject.</param>
+        /// <param name="childProjects">childProjects.</param>
+        public ProjectResponse(string id = default(string), EntityTypePROJECT _object = default(EntityTypePROJECT), int createdAt = default(int), int updatedAt = default(int), string name = default(string), List<ApiKeyResponse> apikeys = default(List<ApiKeyResponse>), List<WebhookResponse> webhook = default(List<WebhookResponse>), string parentProject = default(string), ProjectListResponse childProjects = default(ProjectListResponse))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -71,6 +73,8 @@ namespace Openfort.OpenfortSDK.Model
             this.Name = name;
             this.Apikeys = apikeys;
             this.Webhook = webhook;
+            this.ParentProject = parentProject;
+            this.ChildProjects = childProjects;
         }
 
         /// <summary>
@@ -110,6 +114,18 @@ namespace Openfort.OpenfortSDK.Model
         public List<WebhookResponse> Webhook { get; set; }
 
         /// <summary>
+        /// Gets or Sets ParentProject
+        /// </summary>
+        [DataMember(Name = "parentProject", EmitDefaultValue = false)]
+        public string ParentProject { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ChildProjects
+        /// </summary>
+        [DataMember(Name = "childProjects", EmitDefaultValue = false)]
+        public ProjectListResponse ChildProjects { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -124,6 +140,8 @@ namespace Openfort.OpenfortSDK.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Apikeys: ").Append(Apikeys).Append("\n");
             sb.Append("  Webhook: ").Append(Webhook).Append("\n");
+            sb.Append("  ParentProject: ").Append(ParentProject).Append("\n");
+            sb.Append("  ChildProjects: ").Append(ChildProjects).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -192,6 +210,16 @@ namespace Openfort.OpenfortSDK.Model
                     this.Webhook != null &&
                     input.Webhook != null &&
                     this.Webhook.SequenceEqual(input.Webhook)
+                ) &&
+                (
+                    this.ParentProject == input.ParentProject ||
+                    (this.ParentProject != null &&
+                    this.ParentProject.Equals(input.ParentProject))
+                ) &&
+                (
+                    this.ChildProjects == input.ChildProjects ||
+                    (this.ChildProjects != null &&
+                    this.ChildProjects.Equals(input.ChildProjects))
                 );
         }
 
@@ -222,6 +250,14 @@ namespace Openfort.OpenfortSDK.Model
                 if (this.Webhook != null)
                 {
                     hashCode = (hashCode * 59) + this.Webhook.GetHashCode();
+                }
+                if (this.ParentProject != null)
+                {
+                    hashCode = (hashCode * 59) + this.ParentProject.GetHashCode();
+                }
+                if (this.ChildProjects != null)
+                {
+                    hashCode = (hashCode * 59) + this.ChildProjects.GetHashCode();
                 }
                 return hashCode;
             }

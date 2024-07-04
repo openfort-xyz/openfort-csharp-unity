@@ -221,7 +221,7 @@ namespace Openfort.OpenfortSDK
             try
             {
                 InitAuthResponse deviceConnectResponse = await InitOAuth(request);
-#if (!UNITY_STANDALONE_WIN)
+#if (!UNITY_STANDALONE_WIN && !UNITY_WEBGL)
                 if (request.Options != null && request.Options.RedirectTo != null)
                 {
                     redirectUri = request.Options.RedirectTo;

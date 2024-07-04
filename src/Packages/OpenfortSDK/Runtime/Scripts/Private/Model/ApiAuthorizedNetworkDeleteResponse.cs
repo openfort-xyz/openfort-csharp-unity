@@ -26,10 +26,10 @@ using Newtonsoft.Json.Linq;
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
-    /// ApiAuthorizedNetworkResponse
+    /// ApiAuthorizedNetworkDeleteResponse
     /// </summary>
-    [DataContract(Name = "ApiAuthorizedNetworkResponse")]
-    public partial class ApiAuthorizedNetworkResponse : IEquatable<ApiAuthorizedNetworkResponse>
+    [DataContract(Name = "ApiAuthorizedNetworkDeleteResponse")]
+    public partial class ApiAuthorizedNetworkDeleteResponse : IEquatable<ApiAuthorizedNetworkDeleteResponse>
     {
 
         /// <summary>
@@ -38,40 +38,26 @@ namespace Openfort.OpenfortSDK.Model
         [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
         public EntityTypePROJECT Object { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiAuthorizedNetworkResponse" /> class.
+        /// Initializes a new instance of the <see cref="ApiAuthorizedNetworkDeleteResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected ApiAuthorizedNetworkResponse() { }
+        protected ApiAuthorizedNetworkDeleteResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiAuthorizedNetworkResponse" /> class.
+        /// Initializes a new instance of the <see cref="ApiAuthorizedNetworkDeleteResponse" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
         /// <param name="_object">_object (required).</param>
-        /// <param name="createdAt">createdAt (required).</param>
-        /// <param name="name">name (required).</param>
-        /// <param name="network">network (required).</param>
-        public ApiAuthorizedNetworkResponse(string id = default(string), EntityTypePROJECT _object = default(EntityTypePROJECT), int createdAt = default(int), string name = default(string), string network = default(string))
+        /// <param name="deleted">deleted (required).</param>
+        public ApiAuthorizedNetworkDeleteResponse(string id = default(string), EntityTypePROJECT _object = default(EntityTypePROJECT), bool deleted = default(bool))
         {
             // to ensure "id" is required (not null)
             if (id == null)
             {
-                throw new ArgumentNullException("id is a required property for ApiAuthorizedNetworkResponse and cannot be null");
+                throw new ArgumentNullException("id is a required property for ApiAuthorizedNetworkDeleteResponse and cannot be null");
             }
             this.Id = id;
             this.Object = _object;
-            this.CreatedAt = createdAt;
-            // to ensure "name" is required (not null)
-            if (name == null)
-            {
-                throw new ArgumentNullException("name is a required property for ApiAuthorizedNetworkResponse and cannot be null");
-            }
-            this.Name = name;
-            // to ensure "network" is required (not null)
-            if (network == null)
-            {
-                throw new ArgumentNullException("network is a required property for ApiAuthorizedNetworkResponse and cannot be null");
-            }
-            this.Network = network;
+            this.Deleted = deleted;
         }
 
         /// <summary>
@@ -81,22 +67,10 @@ namespace Openfort.OpenfortSDK.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets CreatedAt
+        /// Gets or Sets Deleted
         /// </summary>
-        [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
-        public int CreatedAt { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Name
-        /// </summary>
-        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Network
-        /// </summary>
-        [DataMember(Name = "network", IsRequired = true, EmitDefaultValue = true)]
-        public string Network { get; set; }
+        [DataMember(Name = "deleted", IsRequired = true, EmitDefaultValue = true)]
+        public bool Deleted { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -105,12 +79,10 @@ namespace Openfort.OpenfortSDK.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ApiAuthorizedNetworkResponse {\n");
+            sb.Append("class ApiAuthorizedNetworkDeleteResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Object: ").Append(Object).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Network: ").Append(Network).Append("\n");
+            sb.Append("  Deleted: ").Append(Deleted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -131,15 +103,15 @@ namespace Openfort.OpenfortSDK.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ApiAuthorizedNetworkResponse);
+            return this.Equals(input as ApiAuthorizedNetworkDeleteResponse);
         }
 
         /// <summary>
-        /// Returns true if ApiAuthorizedNetworkResponse instances are equal
+        /// Returns true if ApiAuthorizedNetworkDeleteResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of ApiAuthorizedNetworkResponse to be compared</param>
+        /// <param name="input">Instance of ApiAuthorizedNetworkDeleteResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ApiAuthorizedNetworkResponse input)
+        public bool Equals(ApiAuthorizedNetworkDeleteResponse input)
         {
             if (input == null)
             {
@@ -156,18 +128,8 @@ namespace Openfort.OpenfortSDK.Model
                     this.Object.Equals(input.Object)
                 ) &&
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    this.CreatedAt.Equals(input.CreatedAt)
-                ) &&
-                (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) &&
-                (
-                    this.Network == input.Network ||
-                    (this.Network != null &&
-                    this.Network.Equals(input.Network))
+                    this.Deleted == input.Deleted ||
+                    this.Deleted.Equals(input.Deleted)
                 );
         }
 
@@ -185,15 +147,7 @@ namespace Openfort.OpenfortSDK.Model
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Object.GetHashCode();
-                hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.Network != null)
-                {
-                    hashCode = (hashCode * 59) + this.Network.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Deleted.GetHashCode();
                 return hashCode;
             }
         }

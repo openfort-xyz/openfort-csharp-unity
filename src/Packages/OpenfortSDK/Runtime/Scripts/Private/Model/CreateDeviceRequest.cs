@@ -40,7 +40,7 @@ namespace Openfort.OpenfortSDK.Model
         /// Initializes a new instance of the <see cref="CreateDeviceRequest" /> class.
         /// </summary>
         /// <param name="account">Specifies the unique account ID (starts with acc_) (required).</param>
-        /// <param name="share">Specifies the share data (required).</param>
+        /// <param name="share">Specifies the share repositories (required).</param>
         public CreateDeviceRequest(string account = default(string), string share = default(string))
         {
             // to ensure "account" is required (not null)
@@ -66,9 +66,9 @@ namespace Openfort.OpenfortSDK.Model
         public string Account { get; set; }
 
         /// <summary>
-        /// Specifies the share data
+        /// Specifies the share repositories
         /// </summary>
-        /// <value>Specifies the share data</value>
+        /// <value>Specifies the share repositories</value>
         /// <example>&quot;7d526b7e99fbf52850a183...&quot;</example>
         [DataMember(Name = "share", IsRequired = true, EmitDefaultValue = true)]
         public string Share { get; set; }

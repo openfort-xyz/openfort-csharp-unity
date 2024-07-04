@@ -51,7 +51,7 @@ namespace Openfort.OpenfortSDK.Model
         /**
         * Authentication type
         */
-        public AuthType auth;
+        public ShieldAuthType auth;
 
         /**
         * Token
@@ -69,7 +69,7 @@ namespace Openfort.OpenfortSDK.Model
         public string tokenType;
 
         public ShieldAuthentication(
-            AuthType auth,
+            ShieldAuthType auth,
             string token,
             string authProvider = null,
             string tokenType = null
@@ -82,7 +82,7 @@ namespace Openfort.OpenfortSDK.Model
         }
     }
 
-    public enum AuthType
+    public enum ShieldAuthType
     {
         /// <summary>
         /// Enum Openfort for value: openfort

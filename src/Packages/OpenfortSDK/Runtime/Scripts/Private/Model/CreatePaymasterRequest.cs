@@ -41,8 +41,9 @@ namespace Openfort.OpenfortSDK.Model
         /// </summary>
         /// <param name="address">Specifies the address of the paymaster (required).</param>
         /// <param name="url">Specifies the paymaster URL (required).</param>
-        /// <param name="context">Specifies the context, that is, the arbitrary data that the specific paymaster may require.</param>
-        public CreatePaymasterRequest(string address = default(string), string url = default(string), Object context = default(Object))
+        /// <param name="context">Specifies the context, that is, the arbitrary repositories that the specific paymaster may require.</param>
+        /// <param name="name">Specifies the name of the paymaster.</param>
+        public CreatePaymasterRequest(string address = default(string), string url = default(string), Object context = default(Object), string name = default(string))
         {
             // to ensure "address" is required (not null)
             if (address == null)
@@ -57,6 +58,7 @@ namespace Openfort.OpenfortSDK.Model
             }
             this.Url = url;
             this.Context = context;
+            this.Name = name;
         }
 
         /// <summary>
@@ -76,11 +78,18 @@ namespace Openfort.OpenfortSDK.Model
         public string Url { get; set; }
 
         /// <summary>
-        /// Specifies the context, that is, the arbitrary data that the specific paymaster may require
+        /// Specifies the context, that is, the arbitrary repositories that the specific paymaster may require
         /// </summary>
-        /// <value>Specifies the context, that is, the arbitrary data that the specific paymaster may require</value>
+        /// <value>Specifies the context, that is, the arbitrary repositories that the specific paymaster may require</value>
         [DataMember(Name = "context", EmitDefaultValue = false)]
         public Object Context { get; set; }
+
+        /// <summary>
+        /// Specifies the name of the paymaster
+        /// </summary>
+        /// <value>Specifies the name of the paymaster</value>
+        [DataMember(Name = "name", EmitDefaultValue = false)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,6 +102,7 @@ namespace Openfort.OpenfortSDK.Model
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  Context: ").Append(Context).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -142,6 +152,11 @@ namespace Openfort.OpenfortSDK.Model
                     this.Context == input.Context ||
                     (this.Context != null &&
                     this.Context.Equals(input.Context))
+                ) &&
+                (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 );
         }
 
@@ -165,6 +180,10 @@ namespace Openfort.OpenfortSDK.Model
                 if (this.Context != null)
                 {
                     hashCode = (hashCode * 59) + this.Context.GetHashCode();
+                }
+                if (this.Name != null)
+                {
+                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
                 return hashCode;
             }
