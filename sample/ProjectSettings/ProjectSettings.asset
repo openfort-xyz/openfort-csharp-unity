@@ -774,7 +774,7 @@ PlayerSettings:
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
-  webGLTemplate: APPLICATION:Default
+  webGLTemplate: PROJECT:Openfort
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 0
@@ -806,7 +806,7 @@ PlayerSettings:
     QNX: 1
     Stadia: 1
     VisionOS: 1
-    WebGL: 1
+    WebGL: 4
     Windows Store Apps: 1
     XboxOne: 1
     iPhone: 4
