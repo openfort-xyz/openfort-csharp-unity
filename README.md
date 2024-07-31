@@ -38,6 +38,13 @@ Since .dll files are stored on Git Large File Storage, you must download and ins
 1. Open your project's Packages/manifest.json file
 2. Add "com.openfort.sdk": "https://github.com/openfort-xyz/openfort-csharp-unity.git?path=/src/Packages/OpenfortSDK" in the dependencies block
 
+
+**Dependencies**
+The Unity SDK requires [UniTask](https://github.com/Cysharp/UniTask) package (version 2.3.3) as specified in package.json.
+
+How to install UniTask:
+Follow the instructions [here](https://github.com/Cysharp/UniTask#upm-package).
+
 ## Set up
 
 ### Android setup

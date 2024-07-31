@@ -249,7 +249,7 @@ public class LoginSceneManager : MonoBehaviour
         loadingPanel.SetActive(true);
         mintButton.interactable = false;
         statusTextLabel.text = "Requesting encoded transaction";
-        var webRequest = UnityWebRequest.PostWwwForm("https://descriptive-night-production.up.railway.app/mint", "");
+        var webRequest = UnityWebRequest.PostWwwForm("https://openfort-auth-non-custodial.vercel.app/api/protected-collect", "");
         webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
         webRequest.SetRequestHeader("Content-Type", "application/json");
         webRequest.SetRequestHeader("Accept", "application/json");
