@@ -24,7 +24,7 @@ namespace VoltstroStudios.UnityWebBrowser.Editor.EngineManagement
             if (report.summary.result is BuildResult.Failed or BuildResult.Cancelled)
                 return;
 
-            if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.StandaloneWindows ||
+            if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.StandaloneWindows &&
                 EditorUserBuildSettings.activeBuildTarget != BuildTarget.StandaloneWindows64)
                 return;
 
