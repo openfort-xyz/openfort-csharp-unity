@@ -26,7 +26,6 @@ namespace Openfort.OpenfortSDK
         public static OpenfortSDK Instance { get; private set; }
 
         private IWebBrowserClient webBrowserClient;
-       
         // Keeps track of the latest received deeplink
         private static string deeplink = null;
         private static bool readySignalReceived = false;
@@ -268,7 +267,7 @@ namespace Openfort.OpenfortSDK
         /// Authenticates the user with a third-party provider.
         /// </summary>
         /// <param name="request">Third-party provider authentication request</param>
-        public async UniTask<AuthResponse> AuthenticateWithThirdPartyProvider(ThirdPartyProviderRequest request)
+        public async UniTask<AuthResponse> AuthenticateWithThirdPartyProvider(ThirdPartyOAuthRequest request)
         {
             return await GetOpenfortImpl().AuthenticateWithThirdPartyProvider(request);
         }

@@ -306,7 +306,7 @@ namespace Openfort.OpenfortSDK
             );
             return callResponse.OptDeserializeObject<InitAuthResponse>();
         }
-        public async UniTask<AuthResponse> AuthenticateWithThirdPartyProvider(ThirdPartyProviderRequest request)
+        public async UniTask<AuthResponse> AuthenticateWithThirdPartyProvider(ThirdPartyOAuthRequest request)
         {
             string functionName = "authenticateWithThirdPartyProvider";
             string callResponse = await communicationsManager.Call(
