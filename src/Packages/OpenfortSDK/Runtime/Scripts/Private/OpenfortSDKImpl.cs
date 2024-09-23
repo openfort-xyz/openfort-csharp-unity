@@ -311,7 +311,7 @@ namespace Openfort.OpenfortSDK
             string functionName = "authenticateWithThirdPartyProvider";
             string callResponse = await communicationsManager.Call(
                 functionName,
-                JsonUtility.ToJson(request)
+                JsonConvert.SerializeObject(request)
             );
             return callResponse.OptDeserializeObject<AuthResponse>();
         }
