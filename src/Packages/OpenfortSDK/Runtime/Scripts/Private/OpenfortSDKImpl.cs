@@ -306,14 +306,14 @@ namespace Openfort.OpenfortSDK
             );
             return callResponse.OptDeserializeObject<InitAuthResponse>();
         }
-        public async UniTask<AuthResponse> AuthenticateWithThirdPartyProvider(ThirdPartyOAuthRequest request)
+        public async UniTask<AuthPlayerResponse> AuthenticateWithThirdPartyProvider(ThirdPartyOAuthRequest request)
         {
             string functionName = "authenticateWithThirdPartyProvider";
             string callResponse = await communicationsManager.Call(
                 functionName,
                 JsonConvert.SerializeObject(request)
             );
-            return callResponse.OptDeserializeObject<AuthResponse>();
+            return callResponse.OptDeserializeObject<AuthPlayerResponse>();
         }
         public async UniTask<InitSiweResponse> InitSiwe(InitSiweRequest request)
         {

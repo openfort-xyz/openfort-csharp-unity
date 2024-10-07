@@ -267,7 +267,7 @@ namespace Openfort.OpenfortSDK
         /// Authenticates the user with a third-party provider.
         /// </summary>
         /// <param name="request">Third-party provider authentication request</param>
-        public async UniTask<AuthResponse> AuthenticateWithThirdPartyProvider(ThirdPartyOAuthRequest request)
+        public async UniTask<AuthPlayerResponse> AuthenticateWithThirdPartyProvider(ThirdPartyOAuthRequest request)
         {
             return await GetOpenfortImpl().AuthenticateWithThirdPartyProvider(request);
         }
