@@ -148,6 +148,14 @@ namespace Openfort.OpenfortSDK
         }
 
         /// <summary>
+        /// Logs the user into Openfort via a guest account.
+        /// </summary>
+        public async UniTask<AuthResponse> SignUpGuest()
+        {
+            return await GetOpenfortImpl().SignUpGuest();
+        }
+
+        /// <summary>
         /// Logs the user into Openfort via LoginWithEmailPassword.
         /// </summary>
         /// <param name="email">User email</param>

@@ -75,6 +75,28 @@ public class LoginSceneManager : MonoBehaviour
     /// Note: in this flow if no account is found, it will ask them to register.
     /// </summary>
 
+    public async void OnSignUpGuest()
+    {
+        loadingPanel.SetActive(true);
+        registerButton.interactable = false;
+        statusTextLabel.text = $"Logging In As Guest ...";
+        try
+        {
+            AuthResponse authResponse = await openfort.SignUpGuest();
+            accessToken = authResponse.Token;
+            await SetAutomaticRecoveryMethod();
+            loginPanel.SetActive(false);
+            statusTextLabel.text = $"Logged In As Guest";
+            loggedinPanel.SetActive(true);
+        }
+        catch (System.Exception)
+        {
+            loginPanel.SetActive(false);
+            registerPanel.SetActive(true);
+        }
+        signinButton.interactable = true;
+        loadingPanel.SetActive(false);
+    }
     public async void OnGoogleClicked()
     {
         googleButton.interactable = false;

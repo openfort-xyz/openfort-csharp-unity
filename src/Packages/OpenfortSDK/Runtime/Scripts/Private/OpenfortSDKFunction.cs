@@ -7,6 +7,7 @@ namespace Openfort.OpenfortSDK
         // EMAIL METHODS
         public const string LOGIN_WITH_EMAIL_PASSWORD = "logInWithEmailPassword";
         public const string SIGNUP_WITH_EMAIL_PASSWORD = "signUpWithEmailPassword";
+        public const string SIGNUP_GUEST = "signUpGuest";
         public const string LINK_EMAIL_PASSWORD = "linkEmailPassword";
         public const string UNLINK_EMAIL_PASSWORD = "unlinkEmailPassword";
         public const string REQUEST_RESET_PASSWORD = "requestResetPassword";

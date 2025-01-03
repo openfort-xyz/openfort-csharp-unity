@@ -99,7 +99,17 @@ namespace Openfort.OpenfortSDK
                 Debug.LogError($"{TAG} OnDeepLinkActivated error {url}: {e.Message}");
             }
         }
+        public async UniTask<AuthResponse> SignUpGuest()
+        {
+            string functionName = "signUpGuest";
+            SendAuthEvent(OpenfortAuthEvent.LoggingIn);
 
+            string callResponse = await communicationsManager.Call(
+                functionName
+            );
+
+            return callResponse.OptDeserializeObject<AuthResponse>();
+        }
         public async UniTask<AuthResponse> LogInWithEmailPassword(string email, string password)
         {
             string functionName = "logInWithEmailPassword";
