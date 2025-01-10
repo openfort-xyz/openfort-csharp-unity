@@ -21,13 +21,12 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-
 using System.Reflection;
 
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
-    /// Matches any valid value that can be used as an input for operations like create and update as the value of a JSON field. Unlike &#x60;JsonValue&#x60;, this type allows read-only arrays and read-only object properties and disallows &#x60;null&#x60; at the top level.  &#x60;null&#x60; cannot be used as the value of a JSON field because its meaning would be ambiguous. Use &#x60;Prisma.JsonNull&#x60; to store the JSON null value or &#x60;Prisma.DbNull&#x60; to clear the JSON value and set the field to the database NULL value instead.
+    /// Matches any valid value that can be used as an input for operations like  create and update as the value of a JSON field. Unlike \\&#x60;JsonValue\\&#x60;, this  type allows read-only arrays and read-only object properties and disallows  \\&#x60;null\\&#x60; at the top level.    \\&#x60;null\\&#x60; cannot be used as the value of a JSON field because its meaning  would be ambiguous. Use \\&#x60;Prisma.JsonNull\\&#x60; to store the JSON null value or  \\&#x60;Prisma.DbNull\\&#x60; to clear the JSON value and set the field to the database  NULL value instead.
     /// </summary>
     [JsonConverter(typeof(PrismaInputJsonValueJsonConverter))]
     [DataContract(Name = "Prisma.InputJsonValue")]
@@ -42,7 +41,11 @@ namespace Openfort.OpenfortSDK.Model
         {
             this.IsNullable = false;
             this.SchemaType = "anyOf";
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+            if (actualInstance == null)
+            {
+                throw new ArgumentException("Invalid instance found. Must not be null.");
+            }
+            this.ActualInstance = actualInstance;
         }
 
         /// <summary>
@@ -78,7 +81,11 @@ namespace Openfort.OpenfortSDK.Model
         {
             this.IsNullable = false;
             this.SchemaType = "anyOf";
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+            if (actualInstance == null)
+            {
+                throw new ArgumentException("Invalid instance found. Must not be null.");
+            }
+            this.ActualInstance = actualInstance;
         }
 
 

@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -40,7 +39,7 @@ namespace Openfort.OpenfortSDK.Model
         /// Initializes a new instance of the <see cref="CreatePaymasterRequest" /> class.
         /// </summary>
         /// <param name="address">Specifies the address of the paymaster (required).</param>
-        /// <param name="url">Specifies the paymaster URL (required).</param>
+        /// <param name="url">Specifies the paymaster URL.</param>
         /// <param name="context">Specifies the context, that is, the arbitrary repositories that the specific paymaster may require.</param>
         /// <param name="name">Specifies the name of the paymaster.</param>
         public CreatePaymasterRequest(string address = default(string), string url = default(string), Object context = default(Object), string name = default(string))
@@ -51,11 +50,6 @@ namespace Openfort.OpenfortSDK.Model
                 throw new ArgumentNullException("address is a required property for CreatePaymasterRequest and cannot be null");
             }
             this.Address = address;
-            // to ensure "url" is required (not null)
-            if (url == null)
-            {
-                throw new ArgumentNullException("url is a required property for CreatePaymasterRequest and cannot be null");
-            }
             this.Url = url;
             this.Context = context;
             this.Name = name;
@@ -74,7 +68,7 @@ namespace Openfort.OpenfortSDK.Model
         /// </summary>
         /// <value>Specifies the paymaster URL</value>
         /// <example>&quot;https://rpc.mypaymaster.xyz&quot;</example>
-        [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 
         /// <summary>

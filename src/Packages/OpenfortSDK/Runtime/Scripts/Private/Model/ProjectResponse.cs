@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -54,7 +53,7 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="webhook">webhook.</param>
         /// <param name="parentProject">parentProject.</param>
         /// <param name="childProjects">childProjects.</param>
-        public ProjectResponse(string id = default(string), EntityTypePROJECT _object = default(EntityTypePROJECT), int createdAt = default(int), int updatedAt = default(int), string name = default(string), List<ApiKeyResponse> apikeys = default(List<ApiKeyResponse>), List<WebhookResponse> webhook = default(List<WebhookResponse>), string parentProject = default(string), ProjectListResponse childProjects = default(ProjectListResponse))
+        public ProjectResponse(string id = default(string), EntityTypePROJECT _object = default(EntityTypePROJECT), int createdAt = default(int), int updatedAt = default(int), string name = default(string), List<ApiKeyResponse> apikeys = default(List<ApiKeyResponse>), List<WebhookResponse> webhook = default(List<WebhookResponse>), string parentProject = default(string), ChildProjectListResponse childProjects = default(ChildProjectListResponse))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -123,7 +122,7 @@ namespace Openfort.OpenfortSDK.Model
         /// Gets or Sets ChildProjects
         /// </summary>
         [DataMember(Name = "childProjects", EmitDefaultValue = false)]
-        public ProjectListResponse ChildProjects { get; set; }
+        public ChildProjectListResponse ChildProjects { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

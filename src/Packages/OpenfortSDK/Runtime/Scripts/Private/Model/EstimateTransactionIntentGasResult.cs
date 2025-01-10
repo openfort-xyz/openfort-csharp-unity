@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -39,12 +38,12 @@ namespace Openfort.OpenfortSDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EstimateTransactionIntentGasResult" /> class.
         /// </summary>
-        /// <param name="preVerificationGas">the preVerification gas used by this UserOperation. (required).</param>
-        /// <param name="verificationGas">gas used for validation of this UserOperation, including account creation (required).</param>
-        /// <param name="validUntil">the deadline after which this UserOperation is invalid (not a gas estimation parameter, but returned by validation.</param>
-        /// <param name="validAfter">the deadline after which this UserOperation is valid (not a gas estimation parameter, but returned by validation.</param>
-        /// <param name="callGasLimit">estimated cost of calling the account with the given callData (required).</param>
-        /// <param name="verificationGasLimit">returned by some bundlers (e.g. Biconomy&#39;s).</param>
+        /// <param name="preVerificationGas">preVerificationGas.</param>
+        /// <param name="verificationGas">verificationGas.</param>
+        /// <param name="validUntil">validUntil.</param>
+        /// <param name="validAfter">validAfter.</param>
+        /// <param name="callGasLimit">callGasLimit.</param>
+        /// <param name="verificationGasLimit">verificationGasLimit.</param>
         /// <param name="estimatedTXGas">estimated TX gas cost (required).</param>
         /// <param name="estimatedTXGasFee">estimated TX gas cost in the chain native token (WEI) (required).</param>
         /// <param name="estimatedTXGasFeeUSD">estimated TX gas cost in USD (required).</param>
@@ -52,24 +51,6 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="gasPrice">gas price used for the estimation (required).</param>
         public EstimateTransactionIntentGasResult(string preVerificationGas = default(string), string verificationGas = default(string), string validUntil = default(string), string validAfter = default(string), string callGasLimit = default(string), string verificationGasLimit = default(string), string estimatedTXGas = default(string), string estimatedTXGasFee = default(string), string estimatedTXGasFeeUSD = default(string), string estimatedTXGasFeeToken = default(string), string gasPrice = default(string))
         {
-            // to ensure "preVerificationGas" is required (not null)
-            if (preVerificationGas == null)
-            {
-                throw new ArgumentNullException("preVerificationGas is a required property for EstimateTransactionIntentGasResult and cannot be null");
-            }
-            this.PreVerificationGas = preVerificationGas;
-            // to ensure "verificationGas" is required (not null)
-            if (verificationGas == null)
-            {
-                throw new ArgumentNullException("verificationGas is a required property for EstimateTransactionIntentGasResult and cannot be null");
-            }
-            this.VerificationGas = verificationGas;
-            // to ensure "callGasLimit" is required (not null)
-            if (callGasLimit == null)
-            {
-                throw new ArgumentNullException("callGasLimit is a required property for EstimateTransactionIntentGasResult and cannot be null");
-            }
-            this.CallGasLimit = callGasLimit;
             // to ensure "estimatedTXGas" is required (not null)
             if (estimatedTXGas == null)
             {
@@ -94,52 +75,55 @@ namespace Openfort.OpenfortSDK.Model
                 throw new ArgumentNullException("gasPrice is a required property for EstimateTransactionIntentGasResult and cannot be null");
             }
             this.GasPrice = gasPrice;
+            this.PreVerificationGas = preVerificationGas;
+            this.VerificationGas = verificationGas;
             this.ValidUntil = validUntil;
             this.ValidAfter = validAfter;
+            this.CallGasLimit = callGasLimit;
             this.VerificationGasLimit = verificationGasLimit;
             this.EstimatedTXGasFeeToken = estimatedTXGasFeeToken;
         }
 
         /// <summary>
-        /// the preVerification gas used by this UserOperation.
+        /// Gets or Sets PreVerificationGas
         /// </summary>
-        /// <value>the preVerification gas used by this UserOperation.</value>
-        [DataMember(Name = "preVerificationGas", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "preVerificationGas", EmitDefaultValue = false)]
+        [Obsolete]
         public string PreVerificationGas { get; set; }
 
         /// <summary>
-        /// gas used for validation of this UserOperation, including account creation
+        /// Gets or Sets VerificationGas
         /// </summary>
-        /// <value>gas used for validation of this UserOperation, including account creation</value>
-        [DataMember(Name = "verificationGas", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "verificationGas", EmitDefaultValue = false)]
+        [Obsolete]
         public string VerificationGas { get; set; }
 
         /// <summary>
-        /// the deadline after which this UserOperation is invalid (not a gas estimation parameter, but returned by validation
+        /// Gets or Sets ValidUntil
         /// </summary>
-        /// <value>the deadline after which this UserOperation is invalid (not a gas estimation parameter, but returned by validation</value>
         [DataMember(Name = "validUntil", EmitDefaultValue = false)]
+        [Obsolete]
         public string ValidUntil { get; set; }
 
         /// <summary>
-        /// the deadline after which this UserOperation is valid (not a gas estimation parameter, but returned by validation
+        /// Gets or Sets ValidAfter
         /// </summary>
-        /// <value>the deadline after which this UserOperation is valid (not a gas estimation parameter, but returned by validation</value>
         [DataMember(Name = "validAfter", EmitDefaultValue = false)]
+        [Obsolete]
         public string ValidAfter { get; set; }
 
         /// <summary>
-        /// estimated cost of calling the account with the given callData
+        /// Gets or Sets CallGasLimit
         /// </summary>
-        /// <value>estimated cost of calling the account with the given callData</value>
-        [DataMember(Name = "callGasLimit", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "callGasLimit", EmitDefaultValue = false)]
+        [Obsolete]
         public string CallGasLimit { get; set; }
 
         /// <summary>
-        /// returned by some bundlers (e.g. Biconomy&#39;s)
+        /// Gets or Sets VerificationGasLimit
         /// </summary>
-        /// <value>returned by some bundlers (e.g. Biconomy&#39;s)</value>
         [DataMember(Name = "verificationGasLimit", EmitDefaultValue = false)]
+        [Obsolete]
         public string VerificationGasLimit { get; set; }
 
         /// <summary>

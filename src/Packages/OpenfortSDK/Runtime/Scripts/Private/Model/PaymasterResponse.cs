@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -49,7 +48,7 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="address">address (required).</param>
-        /// <param name="url">url (required).</param>
+        /// <param name="url">url.</param>
         /// <param name="context">context.</param>
         public PaymasterResponse(string id = default(string), EntityTypePAYMASTER _object = default(EntityTypePAYMASTER), int createdAt = default(int), string address = default(string), string url = default(string), Object context = default(Object))
         {
@@ -67,11 +66,6 @@ namespace Openfort.OpenfortSDK.Model
                 throw new ArgumentNullException("address is a required property for PaymasterResponse and cannot be null");
             }
             this.Address = address;
-            // to ensure "url" is required (not null)
-            if (url == null)
-            {
-                throw new ArgumentNullException("url is a required property for PaymasterResponse and cannot be null");
-            }
             this.Url = url;
             this.Context = context;
         }
@@ -97,7 +91,7 @@ namespace Openfort.OpenfortSDK.Model
         /// <summary>
         /// Gets or Sets Url
         /// </summary>
-        [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 
         /// <summary>

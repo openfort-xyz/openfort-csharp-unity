@@ -21,15 +21,12 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using UnityEngine.Scripting;
-
 
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
     /// AuthResponse
     /// </summary>
-    [Preserve]
     [DataContract(Name = "AuthResponse")]
     public partial class AuthResponse : IEquatable<AuthResponse>
     {

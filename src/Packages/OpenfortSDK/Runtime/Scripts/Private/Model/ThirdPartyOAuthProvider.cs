@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -72,7 +71,13 @@ namespace Openfort.OpenfortSDK.Model
         /// Enum Oidc for value: oidc
         /// </summary>
         [EnumMember(Value = "oidc")]
-        Oidc = 7
+        Oidc = 7,
+
+        /// <summary>
+        /// Enum TelegramMiniApp for value: telegramMiniApp
+        /// </summary>
+        [EnumMember(Value = "telegramMiniApp")]
+        TelegramMiniApp = 8
 
     }
 

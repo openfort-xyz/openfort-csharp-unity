@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -37,6 +36,12 @@ namespace Openfort.OpenfortSDK.Model
         /// </summary>
         [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
         public EntityTypeTRANSACTIONINTENT Object { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AbstractionType
+        /// </summary>
+        [DataMember(Name = "abstractionType", IsRequired = true, EmitDefaultValue = true)]
+        public TransactionAbstractionType AbstractionType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionIntent" /> class.
         /// </summary>
@@ -50,7 +55,9 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="updatedAt">The unix timestamp in seconds when the transactionIntent was created. (required).</param>
         /// <param name="chainId">The chain ID. (required).</param>
-        /// <param name="userOperationHash">The hashed userOperation..</param>
+        /// <param name="abstractionType">abstractionType (required).</param>
+        /// <param name="details">details.</param>
+        /// <param name="userOperationHash">userOperationHash.</param>
         /// <param name="userOperation">userOperation.</param>
         /// <param name="response">response.</param>
         /// <param name="interactions">interactions.</param>
@@ -58,7 +65,7 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="policy">policy.</param>
         /// <param name="player">player.</param>
         /// <param name="account">account (required).</param>
-        public TransactionIntent(string id = default(string), EntityTypeTRANSACTIONINTENT _object = default(EntityTypeTRANSACTIONINTENT), int createdAt = default(int), int updatedAt = default(int), int chainId = default(int), string userOperationHash = default(string), Object userOperation = default(Object), ResponseResponse response = default(ResponseResponse), List<Interaction> interactions = default(List<Interaction>), NextActionResponse nextAction = default(NextActionResponse), EntityIdResponse policy = default(EntityIdResponse), EntityIdResponse player = default(EntityIdResponse), EntityIdResponse account = default(EntityIdResponse))
+        public TransactionIntent(string id = default(string), EntityTypeTRANSACTIONINTENT _object = default(EntityTypeTRANSACTIONINTENT), int createdAt = default(int), int updatedAt = default(int), int chainId = default(int), TransactionAbstractionType abstractionType = default(TransactionAbstractionType), TransactionIntentDetails details = default(TransactionIntentDetails), string userOperationHash = default(string), Object userOperation = default(Object), ResponseResponse response = default(ResponseResponse), List<Interaction> interactions = default(List<Interaction>), NextActionResponse nextAction = default(NextActionResponse), EntityIdResponse policy = default(EntityIdResponse), EntityIdResponse player = default(EntityIdResponse), EntityIdResponse account = default(EntityIdResponse))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -70,12 +77,14 @@ namespace Openfort.OpenfortSDK.Model
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
             this.ChainId = chainId;
+            this.AbstractionType = abstractionType;
             // to ensure "account" is required (not null)
             if (account == null)
             {
                 throw new ArgumentNullException("account is a required property for TransactionIntent and cannot be null");
             }
             this.Account = account;
+            this.Details = details;
             this.UserOperationHash = userOperationHash;
             this.UserOperation = userOperation;
             this.Response = response;
@@ -113,16 +122,23 @@ namespace Openfort.OpenfortSDK.Model
         public int ChainId { get; set; }
 
         /// <summary>
-        /// The hashed userOperation.
+        /// Gets or Sets Details
         /// </summary>
-        /// <value>The hashed userOperation.</value>
+        [DataMember(Name = "details", EmitDefaultValue = false)]
+        public TransactionIntentDetails Details { get; set; }
+
+        /// <summary>
+        /// Gets or Sets UserOperationHash
+        /// </summary>
         [DataMember(Name = "userOperationHash", EmitDefaultValue = false)]
+        [Obsolete]
         public string UserOperationHash { get; set; }
 
         /// <summary>
         /// Gets or Sets UserOperation
         /// </summary>
         [DataMember(Name = "userOperation", EmitDefaultValue = true)]
+        [Obsolete]
         public Object UserOperation { get; set; }
 
         /// <summary>
@@ -174,6 +190,8 @@ namespace Openfort.OpenfortSDK.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
+            sb.Append("  AbstractionType: ").Append(AbstractionType).Append("\n");
+            sb.Append("  Details: ").Append(Details).Append("\n");
             sb.Append("  UserOperationHash: ").Append(UserOperationHash).Append("\n");
             sb.Append("  UserOperation: ").Append(UserOperation).Append("\n");
             sb.Append("  Response: ").Append(Response).Append("\n");
@@ -239,6 +257,15 @@ namespace Openfort.OpenfortSDK.Model
                     this.ChainId.Equals(input.ChainId)
                 ) &&
                 (
+                    this.AbstractionType == input.AbstractionType ||
+                    this.AbstractionType.Equals(input.AbstractionType)
+                ) &&
+                (
+                    this.Details == input.Details ||
+                    (this.Details != null &&
+                    this.Details.Equals(input.Details))
+                ) &&
+                (
                     this.UserOperationHash == input.UserOperationHash ||
                     (this.UserOperationHash != null &&
                     this.UserOperationHash.Equals(input.UserOperationHash))
@@ -298,6 +325,11 @@ namespace Openfort.OpenfortSDK.Model
                 hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
                 hashCode = (hashCode * 59) + this.ChainId.GetHashCode();
+                hashCode = (hashCode * 59) + this.AbstractionType.GetHashCode();
+                if (this.Details != null)
+                {
+                    hashCode = (hashCode * 59) + this.Details.GetHashCode();
+                }
                 if (this.UserOperationHash != null)
                 {
                     hashCode = (hashCode * 59) + this.UserOperationHash.GetHashCode();

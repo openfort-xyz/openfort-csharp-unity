@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -62,46 +61,58 @@ namespace Openfort.OpenfortSDK.Model
         EpicGames = 5,
 
         /// <summary>
+        /// Enum Telegram for value: telegram
+        /// </summary>
+        [EnumMember(Value = "telegram")]
+        Telegram = 6,
+
+        /// <summary>
         /// Enum Accelbyte for value: accelbyte
         /// </summary>
         [EnumMember(Value = "accelbyte")]
-        Accelbyte = 6,
+        Accelbyte = 7,
 
         /// <summary>
         /// Enum Firebase for value: firebase
         /// </summary>
         [EnumMember(Value = "firebase")]
-        Firebase = 7,
+        Firebase = 8,
 
         /// <summary>
         /// Enum Lootlocker for value: lootlocker
         /// </summary>
         [EnumMember(Value = "lootlocker")]
-        Lootlocker = 8,
+        Lootlocker = 9,
 
         /// <summary>
         /// Enum Playfab for value: playfab
         /// </summary>
         [EnumMember(Value = "playfab")]
-        Playfab = 9,
+        Playfab = 10,
 
         /// <summary>
         /// Enum Supabase for value: supabase
         /// </summary>
         [EnumMember(Value = "supabase")]
-        Supabase = 10,
+        Supabase = 11,
 
         /// <summary>
         /// Enum Custom for value: custom
         /// </summary>
         [EnumMember(Value = "custom")]
-        Custom = 11,
+        Custom = 12,
 
         /// <summary>
         /// Enum Oidc for value: oidc
         /// </summary>
         [EnumMember(Value = "oidc")]
-        Oidc = 12
+        Oidc = 13,
+
+        /// <summary>
+        /// Enum TelegramMiniApp for value: telegramMiniApp
+        /// </summary>
+        [EnumMember(Value = "telegramMiniApp")]
+        TelegramMiniApp = 14
 
     }
 

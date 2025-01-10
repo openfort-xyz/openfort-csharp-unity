@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -54,15 +53,17 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="type">type (required).</param>
         /// <param name="functionName">Name of the function in the contract to allow. If you want to allow all functions, use the wildcard &#39;All functions&#39;..</param>
         /// <param name="contract">The contract ID you want to interact with. Must have been added to Openfort first, starts with &#x60;con_&#x60;..</param>
+        /// <param name="wildcard">When using &#x60;contract_functions&#x60; type, set this to &#x60;true&#x60; to allow all contracts..</param>
         /// <param name="gasLimit">Gas limit in WEI (i.e. factor 10^18)..</param>
         /// <param name="countLimit">Number of times the function will be sponsored..</param>
         /// <param name="timeIntervalType">timeIntervalType.</param>
         /// <param name="timeIntervalValue">Time interval value..</param>
-        public UpdatePolicyRuleRequest(PolicyRuleType type = default(PolicyRuleType), string functionName = default(string), string contract = default(string), string gasLimit = default(string), int countLimit = default(int), TimeIntervalType? timeIntervalType = default(TimeIntervalType?), int timeIntervalValue = default(int))
+        public UpdatePolicyRuleRequest(PolicyRuleType type = default(PolicyRuleType), string functionName = default(string), string contract = default(string), bool wildcard = default(bool), string gasLimit = default(string), int countLimit = default(int), TimeIntervalType? timeIntervalType = default(TimeIntervalType?), int timeIntervalValue = default(int))
         {
             this.Type = type;
             this.FunctionName = functionName;
             this.Contract = contract;
+            this.Wildcard = wildcard;
             this.GasLimit = gasLimit;
             this.CountLimit = countLimit;
             this.TimeIntervalType = timeIntervalType;
@@ -84,6 +85,14 @@ namespace Openfort.OpenfortSDK.Model
         /// <example>&quot;con_0cddb398-1dc6-4e6f-8726-9ec7cea85f35&quot;</example>
         [DataMember(Name = "contract", EmitDefaultValue = false)]
         public string Contract { get; set; }
+
+        /// <summary>
+        /// When using &#x60;contract_functions&#x60; type, set this to &#x60;true&#x60; to allow all contracts.
+        /// </summary>
+        /// <value>When using &#x60;contract_functions&#x60; type, set this to &#x60;true&#x60; to allow all contracts.</value>
+        /// <example>true</example>
+        [DataMember(Name = "wildcard", EmitDefaultValue = true)]
+        public bool Wildcard { get; set; }
 
         /// <summary>
         /// Gas limit in WEI (i.e. factor 10^18).
@@ -120,6 +129,7 @@ namespace Openfort.OpenfortSDK.Model
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  FunctionName: ").Append(FunctionName).Append("\n");
             sb.Append("  Contract: ").Append(Contract).Append("\n");
+            sb.Append("  Wildcard: ").Append(Wildcard).Append("\n");
             sb.Append("  GasLimit: ").Append(GasLimit).Append("\n");
             sb.Append("  CountLimit: ").Append(CountLimit).Append("\n");
             sb.Append("  TimeIntervalType: ").Append(TimeIntervalType).Append("\n");
@@ -174,6 +184,10 @@ namespace Openfort.OpenfortSDK.Model
                     this.Contract.Equals(input.Contract))
                 ) &&
                 (
+                    this.Wildcard == input.Wildcard ||
+                    this.Wildcard.Equals(input.Wildcard)
+                ) &&
+                (
                     this.GasLimit == input.GasLimit ||
                     (this.GasLimit != null &&
                     this.GasLimit.Equals(input.GasLimit))
@@ -210,6 +224,7 @@ namespace Openfort.OpenfortSDK.Model
                 {
                     hashCode = (hashCode * 59) + this.Contract.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Wildcard.GetHashCode();
                 if (this.GasLimit != null)
                 {
                     hashCode = (hashCode * 59) + this.GasLimit.GetHashCode();

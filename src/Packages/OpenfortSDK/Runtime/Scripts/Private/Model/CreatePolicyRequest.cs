@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -43,7 +42,8 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="chainId">The chain ID. Must be a [supported chain](/chains). (required).</param>
         /// <param name="strategy">strategy (required).</param>
         /// <param name="paymaster">The ID of the paymaster..</param>
-        public CreatePolicyRequest(string name = default(string), int chainId = default(int), PolicyStrategyRequest strategy = default(PolicyStrategyRequest), string paymaster = default(string))
+        /// <param name="forwarderContract">The ID of the forwarder contract..</param>
+        public CreatePolicyRequest(string name = default(string), int chainId = default(int), PolicyStrategyRequest strategy = default(PolicyStrategyRequest), string paymaster = default(string), string forwarderContract = default(string))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -59,6 +59,7 @@ namespace Openfort.OpenfortSDK.Model
             }
             this.Strategy = strategy;
             this.Paymaster = paymaster;
+            this.ForwarderContract = forwarderContract;
         }
 
         /// <summary>
@@ -92,6 +93,14 @@ namespace Openfort.OpenfortSDK.Model
         public string Paymaster { get; set; }
 
         /// <summary>
+        /// The ID of the forwarder contract.
+        /// </summary>
+        /// <value>The ID of the forwarder contract.</value>
+        /// <example>&quot;cfo_f0f89cf2-c185-40f4-beef-2a250d7a472b&quot;</example>
+        [DataMember(Name = "forwarderContract", EmitDefaultValue = false)]
+        public string ForwarderContract { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -103,6 +112,7 @@ namespace Openfort.OpenfortSDK.Model
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  Strategy: ").Append(Strategy).Append("\n");
             sb.Append("  Paymaster: ").Append(Paymaster).Append("\n");
+            sb.Append("  ForwarderContract: ").Append(ForwarderContract).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -156,6 +166,11 @@ namespace Openfort.OpenfortSDK.Model
                     this.Paymaster == input.Paymaster ||
                     (this.Paymaster != null &&
                     this.Paymaster.Equals(input.Paymaster))
+                ) &&
+                (
+                    this.ForwarderContract == input.ForwarderContract ||
+                    (this.ForwarderContract != null &&
+                    this.ForwarderContract.Equals(input.ForwarderContract))
                 );
         }
 
@@ -180,6 +195,10 @@ namespace Openfort.OpenfortSDK.Model
                 if (this.Paymaster != null)
                 {
                     hashCode = (hashCode * 59) + this.Paymaster.GetHashCode();
+                }
+                if (this.ForwarderContract != null)
+                {
+                    hashCode = (hashCode * 59) + this.ForwarderContract.GetHashCode();
                 }
                 return hashCode;
             }

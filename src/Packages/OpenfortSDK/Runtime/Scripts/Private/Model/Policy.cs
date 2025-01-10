@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -53,10 +52,11 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="enabled">enabled (required).</param>
         /// <param name="chainId">The chain ID. (required).</param>
         /// <param name="paymaster">paymaster.</param>
+        /// <param name="forwarderContract">forwarderContract.</param>
         /// <param name="strategy">strategy (required).</param>
         /// <param name="transactionIntents">transactionIntents (required).</param>
         /// <param name="policyRules">policyRules (required).</param>
-        public Policy(string id = default(string), EntityTypePOLICY _object = default(EntityTypePOLICY), int createdAt = default(int), string name = default(string), bool deleted = default(bool), bool enabled = default(bool), int chainId = default(int), EntityIdResponse paymaster = default(EntityIdResponse), PolicyStrategy strategy = default(PolicyStrategy), List<EntityIdResponse> transactionIntents = default(List<EntityIdResponse>), List<EntityIdResponse> policyRules = default(List<EntityIdResponse>))
+        public Policy(string id = default(string), EntityTypePOLICY _object = default(EntityTypePOLICY), int createdAt = default(int), string name = default(string), bool deleted = default(bool), bool enabled = default(bool), int chainId = default(int), EntityIdResponse paymaster = default(EntityIdResponse), EntityIdResponse forwarderContract = default(EntityIdResponse), PolicyStrategy strategy = default(PolicyStrategy), List<EntityIdResponse> transactionIntents = default(List<EntityIdResponse>), List<EntityIdResponse> policyRules = default(List<EntityIdResponse>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -94,6 +94,7 @@ namespace Openfort.OpenfortSDK.Model
             }
             this.PolicyRules = policyRules;
             this.Paymaster = paymaster;
+            this.ForwarderContract = forwarderContract;
         }
 
         /// <summary>
@@ -140,6 +141,12 @@ namespace Openfort.OpenfortSDK.Model
         public EntityIdResponse Paymaster { get; set; }
 
         /// <summary>
+        /// Gets or Sets ForwarderContract
+        /// </summary>
+        [DataMember(Name = "forwarderContract", EmitDefaultValue = false)]
+        public EntityIdResponse ForwarderContract { get; set; }
+
+        /// <summary>
         /// Gets or Sets Strategy
         /// </summary>
         [DataMember(Name = "strategy", IsRequired = true, EmitDefaultValue = true)]
@@ -173,6 +180,7 @@ namespace Openfort.OpenfortSDK.Model
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  Paymaster: ").Append(Paymaster).Append("\n");
+            sb.Append("  ForwarderContract: ").Append(ForwarderContract).Append("\n");
             sb.Append("  Strategy: ").Append(Strategy).Append("\n");
             sb.Append("  TransactionIntents: ").Append(TransactionIntents).Append("\n");
             sb.Append("  PolicyRules: ").Append(PolicyRules).Append("\n");
@@ -247,6 +255,11 @@ namespace Openfort.OpenfortSDK.Model
                     this.Paymaster.Equals(input.Paymaster))
                 ) &&
                 (
+                    this.ForwarderContract == input.ForwarderContract ||
+                    (this.ForwarderContract != null &&
+                    this.ForwarderContract.Equals(input.ForwarderContract))
+                ) &&
+                (
                     this.Strategy == input.Strategy ||
                     (this.Strategy != null &&
                     this.Strategy.Equals(input.Strategy))
@@ -290,6 +303,10 @@ namespace Openfort.OpenfortSDK.Model
                 if (this.Paymaster != null)
                 {
                     hashCode = (hashCode * 59) + this.Paymaster.GetHashCode();
+                }
+                if (this.ForwarderContract != null)
+                {
+                    hashCode = (hashCode * 59) + this.ForwarderContract.GetHashCode();
                 }
                 if (this.Strategy != null)
                 {

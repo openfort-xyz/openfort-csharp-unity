@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -41,7 +40,7 @@ namespace Openfort.OpenfortSDK.Model
         /// </summary>
         /// <param name="chainId">The chain ID. Must be a [supported chain](/chains). (required).</param>
         /// <param name="externalOwnerAddress">Use this parameter to create a new Account for Player with the provided owner address..</param>
-        /// <param name="accountType">The type of smart account that will be created (e.g. ERC6551V1, ManagedV5, UpgradeableV5). Defaults to UpgradeableV5..</param>
+        /// <param name="accountType">The type of smart account that will be created (e.g. ERC6551V1, UpgradeableV6, UpgradeableV5, ZKSyncUpgradeableV1). Defaults to UpgradeableV6..</param>
         /// <param name="defaultGuardian">For account types that support social recovery, wether to enable Openfort as guardian or not. Defaults to false..</param>
         /// <param name="tokenContract">If ERC6551, the address of the NFT contract to use.</param>
         /// <param name="tokenId">If ERC6551, the tokenId from the NFT contract that will serve as owner.</param>
@@ -74,10 +73,10 @@ namespace Openfort.OpenfortSDK.Model
         public string ExternalOwnerAddress { get; set; }
 
         /// <summary>
-        /// The type of smart account that will be created (e.g. ERC6551V1, ManagedV5, UpgradeableV5). Defaults to UpgradeableV5.
+        /// The type of smart account that will be created (e.g. ERC6551V1, UpgradeableV6, UpgradeableV5, ZKSyncUpgradeableV1). Defaults to UpgradeableV6.
         /// </summary>
-        /// <value>The type of smart account that will be created (e.g. ERC6551V1, ManagedV5, UpgradeableV5). Defaults to UpgradeableV5.</value>
-        /// <example>&quot;UpgradeableV5&quot;</example>
+        /// <value>The type of smart account that will be created (e.g. ERC6551V1, UpgradeableV6, UpgradeableV5, ZKSyncUpgradeableV1). Defaults to UpgradeableV6.</value>
+        /// <example>&quot;UpgradeableV6&quot;</example>
         [DataMember(Name = "accountType", EmitDefaultValue = false)]
         public string AccountType { get; set; }
 

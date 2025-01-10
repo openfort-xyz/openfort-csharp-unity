@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -48,7 +47,7 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="validAfter">The unix timestamp in seconds when the session key becomes valid. (required).</param>
         /// <param name="validUntil">The unix timestamp in seconds when the session key expires. (required).</param>
         /// <param name="whitelist">The list of whitelisted addresses (contracts the session key can interact with)..</param>
-        /// <param name="player">The player ID (starts with pla_). (required).</param>
+        /// <param name="player">The player ID (starts with pla_)..</param>
         public CreateSessionRequest(string address = default(string), int chainId = default(int), string externalOwnerAddress = default(string), int limit = default(int), bool optimistic = default(bool), string policy = default(string), int validAfter = default(int), int validUntil = default(int), List<string> whitelist = default(List<string>), string player = default(string))
         {
             // to ensure "address" is required (not null)
@@ -60,17 +59,12 @@ namespace Openfort.OpenfortSDK.Model
             this.ChainId = chainId;
             this.ValidAfter = validAfter;
             this.ValidUntil = validUntil;
-            // to ensure "player" is required (not null)
-            if (player == null)
-            {
-                throw new ArgumentNullException("player is a required property for CreateSessionRequest and cannot be null");
-            }
-            this.Player = player;
             this.ExternalOwnerAddress = externalOwnerAddress;
             this.Limit = limit;
             this.Optimistic = optimistic;
             this.Policy = policy;
             this.Whitelist = whitelist;
+            this.Player = player;
         }
 
         /// <summary>
@@ -149,7 +143,7 @@ namespace Openfort.OpenfortSDK.Model
         /// </summary>
         /// <value>The player ID (starts with pla_).</value>
         /// <example>&quot;pla_e0b84653-1741-4a3d-9e91-2b0fd2942f60&quot;</example>
-        [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "player", EmitDefaultValue = false)]
         public string Player { get; set; }
 
         /// <summary>

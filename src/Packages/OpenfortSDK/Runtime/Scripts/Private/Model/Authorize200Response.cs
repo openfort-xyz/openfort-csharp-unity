@@ -21,7 +21,6 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-
 using System.Reflection;
 
 namespace Openfort.OpenfortSDK.Model
@@ -42,33 +41,27 @@ namespace Openfort.OpenfortSDK.Model
         {
             this.IsNullable = false;
             this.SchemaType = "anyOf";
-            if (this.ActualInstance != null)
-            {
-                this.ActualInstance = actualInstance;
-            }
-            else
+            if (actualInstance == null)
             {
                 throw new ArgumentException("Invalid instance found. Must not be null.");
             }
+            this.ActualInstance = actualInstance;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Authorize200Response" /> class
-        /// with the <see cref="AuthResponse" /> class
+        /// with the <see cref="AuthenticatedPlayerResponse" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of AuthResponse.</param>
-        public Authorize200Response(AuthResponse actualInstance)
+        /// <param name="actualInstance">An instance of AuthenticatedPlayerResponse.</param>
+        public Authorize200Response(AuthenticatedPlayerResponse actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType = "anyOf";
-            if (this.ActualInstance != null)
-            {
-                this.ActualInstance = actualInstance;
-            }
-            else
+            if (actualInstance == null)
             {
                 throw new ArgumentException("Invalid instance found. Must not be null.");
             }
+            this.ActualInstance = actualInstance;
         }
 
 
@@ -89,13 +82,13 @@ namespace Openfort.OpenfortSDK.Model
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(AuthResponse))
+                else if (value.GetType() == typeof(AuthenticatedPlayerResponse))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AuthPlayerResponse, AuthResponse");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AuthPlayerResponse, AuthenticatedPlayerResponse");
                 }
             }
         }
@@ -111,13 +104,13 @@ namespace Openfort.OpenfortSDK.Model
         }
 
         /// <summary>
-        /// Get the actual instance of `AuthResponse`. If the actual instance is not `AuthResponse`,
+        /// Get the actual instance of `AuthenticatedPlayerResponse`. If the actual instance is not `AuthenticatedPlayerResponse`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of AuthResponse</returns>
-        public AuthResponse GetAuthResponse()
+        /// <returns>An instance of AuthenticatedPlayerResponse</returns>
+        public AuthenticatedPlayerResponse GetAuthenticatedPlayerResponse()
         {
-            return (AuthResponse)this.ActualInstance;
+            return (AuthenticatedPlayerResponse)this.ActualInstance;
         }
 
         /// <summary>
@@ -170,14 +163,14 @@ namespace Openfort.OpenfortSDK.Model
 
             try
             {
-                newAuthorize200Response = new Authorize200Response(JsonConvert.DeserializeObject<AuthResponse>(jsonString, Authorize200Response.SerializerSettings));
+                newAuthorize200Response = new Authorize200Response(JsonConvert.DeserializeObject<AuthenticatedPlayerResponse>(jsonString, Authorize200Response.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
                 return newAuthorize200Response;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into AuthResponse: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into AuthenticatedPlayerResponse: {1}", jsonString, exception.ToString()));
             }
 
             // no match found, throw an exception

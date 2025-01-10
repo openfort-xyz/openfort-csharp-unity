@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -45,7 +44,7 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="totalTransactionFee">totalTransactionFee (required).</param>
         /// <param name="totalTransactionFeeInUSD">totalTransactionFeeInUSD (required).</param>
         /// <param name="transactionIntents">transactionIntents (required).</param>
-        public GasReport(MonthRange period = default(MonthRange), string averageTransactionFee = default(string), string totalTransactionFeeInCustomTokens = default(string), string totalTransactionFee = default(string), string totalTransactionFeeInUSD = default(string), List<GasReportTransactionIntentsInner> transactionIntents = default(List<GasReportTransactionIntentsInner>))
+        public GasReport(MonthRange period = default(MonthRange), string averageTransactionFee = default(string), string totalTransactionFeeInCustomTokens = default(string), string totalTransactionFee = default(string), string totalTransactionFeeInUSD = default(string), List<GasReportTransactionIntents> transactionIntents = default(List<GasReportTransactionIntents>))
         {
             // to ensure "period" is required (not null)
             if (period == null)
@@ -119,7 +118,8 @@ namespace Openfort.OpenfortSDK.Model
         /// Gets or Sets TransactionIntents
         /// </summary>
         [DataMember(Name = "transactionIntents", IsRequired = true, EmitDefaultValue = true)]
-        public List<GasReportTransactionIntentsInner> TransactionIntents { get; set; }
+        [Obsolete]
+        public List<GasReportTransactionIntents> TransactionIntents { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

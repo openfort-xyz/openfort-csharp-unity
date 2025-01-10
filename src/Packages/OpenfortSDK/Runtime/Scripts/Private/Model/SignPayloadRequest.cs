@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -43,8 +42,8 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="types">types (required).</param>
         /// <param name="primaryType">primaryType (required).</param>
         /// <param name="value">value (required).</param>
-        /// <param name="hash">Hash to verify and that will be signed (required).</param>
-        public SignPayloadRequest(DomainData domain = default(DomainData), Dictionary<string, List<TypedDataField>> types = default(Dictionary<string, List<TypedDataField>>), string primaryType = default(string), Dictionary<string, Object> value = default(Dictionary<string, Object>), string hash = default(string))
+        /// <param name="hash">Hash to verify and that will be signed.</param>
+        public SignPayloadRequest(TypedDomainData domain = default(TypedDomainData), Dictionary<string, List<TypedDataField>> types = default(Dictionary<string, List<TypedDataField>>), string primaryType = default(string), Dictionary<string, Object> value = default(Dictionary<string, Object>), string hash = default(string))
         {
             // to ensure "domain" is required (not null)
             if (domain == null)
@@ -70,11 +69,6 @@ namespace Openfort.OpenfortSDK.Model
                 throw new ArgumentNullException("value is a required property for SignPayloadRequest and cannot be null");
             }
             this.Value = value;
-            // to ensure "hash" is required (not null)
-            if (hash == null)
-            {
-                throw new ArgumentNullException("hash is a required property for SignPayloadRequest and cannot be null");
-            }
             this.Hash = hash;
         }
 
@@ -82,7 +76,7 @@ namespace Openfort.OpenfortSDK.Model
         /// Gets or Sets Domain
         /// </summary>
         [DataMember(Name = "domain", IsRequired = true, EmitDefaultValue = true)]
-        public DomainData Domain { get; set; }
+        public TypedDomainData Domain { get; set; }
 
         /// <summary>
         /// Gets or Sets Types
@@ -108,7 +102,7 @@ namespace Openfort.OpenfortSDK.Model
         /// </summary>
         /// <value>Hash to verify and that will be signed</value>
         /// <example>&quot;0x3d8c6cab96bc24c87162c529bed5ba88b4617a7ea8bef66489a541d043ac6e8b&quot;</example>
-        [DataMember(Name = "hash", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "hash", EmitDefaultValue = false)]
         public string Hash { get; set; }
 
         /// <summary>

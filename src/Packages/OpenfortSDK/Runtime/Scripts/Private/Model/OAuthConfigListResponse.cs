@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -40,7 +39,7 @@ namespace Openfort.OpenfortSDK.Model
         /// Initializes a new instance of the <see cref="OAuthConfigListResponse" /> class.
         /// </summary>
         /// <param name="data">List of the OAuth providers configurations (required).</param>
-        public OAuthConfigListResponse(List<OAuthConfig> data = default(List<OAuthConfig>))
+        public OAuthConfigListResponse(List<AuthConfig> data = default(List<AuthConfig>))
         {
             // to ensure "data" is required (not null)
             if (data == null)
@@ -55,7 +54,7 @@ namespace Openfort.OpenfortSDK.Model
         /// </summary>
         /// <value>List of the OAuth providers configurations</value>
         [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
-        public List<OAuthConfig> Data { get; set; }
+        public List<AuthConfig> Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

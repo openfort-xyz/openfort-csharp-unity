@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -60,7 +59,19 @@ namespace Openfort.OpenfortSDK.Model
         /// Enum EpicGames for value: epic_games
         /// </summary>
         [EnumMember(Value = "epic_games")]
-        EpicGames = 5
+        EpicGames = 5,
+
+        /// <summary>
+        /// Enum Telegram for value: telegram
+        /// </summary>
+        [EnumMember(Value = "telegram")]
+        Telegram = 6,
+
+        /// <summary>
+        /// Enum Line for value: line
+        /// </summary>
+        [EnumMember(Value = "line")]
+        Line = 7
 
     }
 

@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -55,9 +54,10 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="_object">_object (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="type">type (required).</param>
-        /// <param name="contract">contract (required).</param>
-        /// <param name="functionName">functionName (required).</param>
-        public ContractPolicyRuleResponse(string id = default(string), EntityTypePOLICYRULE _object = default(EntityTypePOLICYRULE), int createdAt = default(int), PolicyRuleTypeCONTRACT type = default(PolicyRuleTypeCONTRACT), ContractPolicyRuleResponseContract contract = default(ContractPolicyRuleResponseContract), string functionName = default(string))
+        /// <param name="contract">contract.</param>
+        /// <param name="functionName">functionName.</param>
+        /// <param name="wildcard">wildcard (required).</param>
+        public ContractPolicyRuleResponse(string id = default(string), EntityTypePOLICYRULE _object = default(EntityTypePOLICYRULE), int createdAt = default(int), PolicyRuleTypeCONTRACT type = default(PolicyRuleTypeCONTRACT), ContractPolicyRuleResponseContract contract = default(ContractPolicyRuleResponseContract), string functionName = default(string), bool wildcard = default(bool))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -68,17 +68,8 @@ namespace Openfort.OpenfortSDK.Model
             this.Object = _object;
             this.CreatedAt = createdAt;
             this.Type = type;
-            // to ensure "contract" is required (not null)
-            if (contract == null)
-            {
-                throw new ArgumentNullException("contract is a required property for ContractPolicyRuleResponse and cannot be null");
-            }
+            this.Wildcard = wildcard;
             this.Contract = contract;
-            // to ensure "functionName" is required (not null)
-            if (functionName == null)
-            {
-                throw new ArgumentNullException("functionName is a required property for ContractPolicyRuleResponse and cannot be null");
-            }
             this.FunctionName = functionName;
         }
 
@@ -97,14 +88,20 @@ namespace Openfort.OpenfortSDK.Model
         /// <summary>
         /// Gets or Sets Contract
         /// </summary>
-        [DataMember(Name = "contract", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "contract", EmitDefaultValue = false)]
         public ContractPolicyRuleResponseContract Contract { get; set; }
 
         /// <summary>
         /// Gets or Sets FunctionName
         /// </summary>
-        [DataMember(Name = "functionName", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "functionName", EmitDefaultValue = false)]
         public string FunctionName { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Wildcard
+        /// </summary>
+        [DataMember(Name = "wildcard", IsRequired = true, EmitDefaultValue = true)]
+        public bool Wildcard { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -120,6 +117,7 @@ namespace Openfort.OpenfortSDK.Model
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Contract: ").Append(Contract).Append("\n");
             sb.Append("  FunctionName: ").Append(FunctionName).Append("\n");
+            sb.Append("  Wildcard: ").Append(Wildcard).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -181,6 +179,10 @@ namespace Openfort.OpenfortSDK.Model
                     this.FunctionName == input.FunctionName ||
                     (this.FunctionName != null &&
                     this.FunctionName.Equals(input.FunctionName))
+                ) &&
+                (
+                    this.Wildcard == input.Wildcard ||
+                    this.Wildcard.Equals(input.Wildcard)
                 );
         }
 
@@ -208,6 +210,7 @@ namespace Openfort.OpenfortSDK.Model
                 {
                     hashCode = (hashCode * 59) + this.FunctionName.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Wildcard.GetHashCode();
                 return hashCode;
             }
         }

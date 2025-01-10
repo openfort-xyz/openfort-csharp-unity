@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -44,7 +43,26 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="primaryColorForeground">Primary color foreground of the ecosystem. (required).</param>
         /// <param name="radius">Radius of the ecosystem. (required).</param>
         /// <param name="logoUrl">Logo URL of the ecosystem. (required).</param>
-        public EcosystemConfigurationResponse(string customDomain = default(string), string primaryColor = default(string), string primaryColorForeground = default(string), string radius = default(string), string logoUrl = default(string))
+        /// <param name="ecosystemWalletDomains">Whitelisted frontend domains of the ecosystem. (required).</param>
+        /// <param name="termsOfServiceUrl">Terms of service URL.</param>
+        /// <param name="privacyPolicyUrl">Privacy policy URL.</param>
+        /// <param name="faviconUrl">Favicon URL.</param>
+        /// <param name="dashboardExamples">Examples of the ecosystem..</param>
+        /// <param name="dashboardSDKs">SDKs of the ecosystem..</param>
+
+        public EcosystemConfigurationResponse(
+            string customDomain = default(string),
+            string primaryColor = default(string),
+            string primaryColorForeground = default(string),
+            string radius = default(string),
+            string logoUrl = default(string),
+            List<string> ecosystemWalletDomains = default(List<string>),
+            string termsOfServiceUrl = default(string),
+            string privacyPolicyUrl = default(string),
+            string faviconUrl = default(string),
+            List<Dictionary<string, object>> dashboardExamples = default(List<Dictionary<string, object>>),
+            List<Dictionary<string, object>> dashboardSDKs = default
+        )
         {
             // to ensure "customDomain" is required (not null)
             if (customDomain == null)
@@ -76,8 +94,18 @@ namespace Openfort.OpenfortSDK.Model
                 throw new ArgumentNullException("logoUrl is a required property for EcosystemConfigurationResponse and cannot be null");
             }
             this.LogoUrl = logoUrl;
+            // to ensure "ecosystemWalletDomains" is required (not null)
+            if (ecosystemWalletDomains == null)
+            {
+                throw new ArgumentNullException("ecosystemWalletDomains is a required property for EcosystemConfigurationResponse and cannot be null");
+            }
+            this.EcosystemWalletDomains = ecosystemWalletDomains;
+            this.TermsOfServiceUrl = termsOfServiceUrl;
+            this.PrivacyPolicyUrl = privacyPolicyUrl;
+            this.FaviconUrl = faviconUrl;
+            this.DashboardExamples = dashboardExamples;
+            this.DashboardSDKs = dashboardSDKs;
         }
-
         /// <summary>
         /// Subdomain of the ecosystem.
         /// </summary>
@@ -114,6 +142,51 @@ namespace Openfort.OpenfortSDK.Model
         public string LogoUrl { get; set; }
 
         /// <summary>
+        /// Whitelisted frontend domains of the ecosystem.
+        /// </summary>
+        /// <value>Whitelisted frontend domains of the ecosystem.</value>
+        [DataMember(Name = "ecosystemWalletDomains", IsRequired = true, EmitDefaultValue = true)]
+        public List<string> EcosystemWalletDomains { get; set; }
+
+        /// <summary>
+        /// Terms of service URL
+        /// </summary>
+        /// <value>Terms of service URL</value>
+        /// <example>&quot;https://example.com/terms&quot;</example>
+        [DataMember(Name = "termsOfServiceUrl", EmitDefaultValue = false)]
+        public string TermsOfServiceUrl { get; set; }
+
+        /// <summary>
+        /// Privacy policy URL
+        /// </summary>
+        /// <value>Privacy policy URL</value>
+        /// <example>&quot;https://example.com/privacy&quot;</example>
+        [DataMember(Name = "privacyPolicyUrl", EmitDefaultValue = false)]
+        public string PrivacyPolicyUrl { get; set; }
+
+        /// <summary>
+        /// Favicon URL
+        /// </summary>
+        /// <value>Favicon URL</value>
+        /// <example>&quot;https://example.com/favicon.ico&quot;</example>
+        [DataMember(Name = "faviconUrl", EmitDefaultValue = false)]
+        public string FaviconUrl { get; set; }
+
+        /// <summary>
+        /// Examples of the ecosystem.
+        /// </summary>
+        /// <value>Examples of the ecosystem.</value>
+        [DataMember(Name = "dashboardExamples", EmitDefaultValue = false)]
+        public List<Dictionary<string, object>> DashboardExamples { get; set; }
+
+        /// <summary>
+        /// SDKs of the ecosystem.
+        /// </summary>
+        /// <value>SDKs of the ecosystem.</value>
+        [DataMember(Name = "dashboardSDKs", EmitDefaultValue = false)]
+        public List<Dictionary<string, object>> DashboardSDKs { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -126,6 +199,12 @@ namespace Openfort.OpenfortSDK.Model
             sb.Append("  PrimaryColorForeground: ").Append(PrimaryColorForeground).Append("\n");
             sb.Append("  Radius: ").Append(Radius).Append("\n");
             sb.Append("  LogoUrl: ").Append(LogoUrl).Append("\n");
+            sb.Append("  EcosystemWalletDomains: ").Append(EcosystemWalletDomains).Append("\n");
+            sb.Append("  TermsOfServiceUrl: ").Append(TermsOfServiceUrl).Append("\n");
+            sb.Append("  PrivacyPolicyUrl: ").Append(PrivacyPolicyUrl).Append("\n");
+            sb.Append("  FaviconUrl: ").Append(FaviconUrl).Append("\n");
+            sb.Append("  DashboardExamples: ").Append(DashboardExamples).Append("\n");
+            sb.Append("  DashboardSDKs: ").Append(DashboardSDKs).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -185,6 +264,39 @@ namespace Openfort.OpenfortSDK.Model
                     this.LogoUrl == input.LogoUrl ||
                     (this.LogoUrl != null &&
                     this.LogoUrl.Equals(input.LogoUrl))
+                ) &&
+                (
+                    this.EcosystemWalletDomains == input.EcosystemWalletDomains ||
+                    this.EcosystemWalletDomains != null &&
+                    input.EcosystemWalletDomains != null &&
+                    this.EcosystemWalletDomains.SequenceEqual(input.EcosystemWalletDomains)
+                ) &&
+                (
+                    this.TermsOfServiceUrl == input.TermsOfServiceUrl ||
+                    (this.TermsOfServiceUrl != null &&
+                    this.TermsOfServiceUrl.Equals(input.TermsOfServiceUrl))
+                ) &&
+                (
+                    this.PrivacyPolicyUrl == input.PrivacyPolicyUrl ||
+                    (this.PrivacyPolicyUrl != null &&
+                    this.PrivacyPolicyUrl.Equals(input.PrivacyPolicyUrl))
+                ) &&
+                (
+                    this.FaviconUrl == input.FaviconUrl ||
+                    (this.FaviconUrl != null &&
+                    this.FaviconUrl.Equals(input.FaviconUrl))
+                ) &&
+                (
+                    this.DashboardExamples == input.DashboardExamples ||
+                    this.DashboardExamples != null &&
+                    input.DashboardExamples != null &&
+                    this.DashboardExamples.SequenceEqual(input.DashboardExamples)
+                ) &&
+                (
+                    this.DashboardSDKs == input.DashboardSDKs ||
+                    this.DashboardSDKs != null &&
+                    input.DashboardSDKs != null &&
+                    this.DashboardSDKs.SequenceEqual(input.DashboardSDKs)
                 );
         }
 
@@ -216,6 +328,30 @@ namespace Openfort.OpenfortSDK.Model
                 if (this.LogoUrl != null)
                 {
                     hashCode = (hashCode * 59) + this.LogoUrl.GetHashCode();
+                }
+                if (this.EcosystemWalletDomains != null)
+                {
+                    hashCode = (hashCode * 59) + this.EcosystemWalletDomains.GetHashCode();
+                }
+                if (this.TermsOfServiceUrl != null)
+                {
+                    hashCode = (hashCode * 59) + this.TermsOfServiceUrl.GetHashCode();
+                }
+                if (this.PrivacyPolicyUrl != null)
+                {
+                    hashCode = (hashCode * 59) + this.PrivacyPolicyUrl.GetHashCode();
+                }
+                if (this.FaviconUrl != null)
+                {
+                    hashCode = (hashCode * 59) + this.FaviconUrl.GetHashCode();
+                }
+                if (this.DashboardExamples != null)
+                {
+                    hashCode = (hashCode * 59) + this.DashboardExamples.GetHashCode();
+                }
+                if (this.DashboardSDKs != null)
+                {
+                    hashCode = (hashCode * 59) + this.DashboardSDKs.GetHashCode();
                 }
                 return hashCode;
             }

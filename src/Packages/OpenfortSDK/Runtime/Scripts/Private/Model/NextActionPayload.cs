@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -38,12 +37,14 @@ namespace Openfort.OpenfortSDK.Model
         /// <param name="userOpHash">userOpHash.</param>
         /// <param name="userOperation">The userOperation..</param>
         /// <param name="userOperationHash">The hashed userOperation..</param>
-        public NextActionPayload(Object userOp = default(Object), string userOpHash = default(string), Object userOperation = default(Object), string userOperationHash = default(string))
+        /// <param name="signableHash">chain-agnostic hash to sign..</param>
+        public NextActionPayload(Object userOp = default(Object), string userOpHash = default(string), Object userOperation = default(Object), string userOperationHash = default(string), string signableHash = default(string))
         {
             this.UserOp = userOp;
             this.UserOpHash = userOpHash;
             this.UserOperation = userOperation;
             this.UserOperationHash = userOperationHash;
+            this.SignableHash = signableHash;
         }
 
         /// <summary>
@@ -75,6 +76,13 @@ namespace Openfort.OpenfortSDK.Model
         public string UserOperationHash { get; set; }
 
         /// <summary>
+        /// chain-agnostic hash to sign.
+        /// </summary>
+        /// <value>chain-agnostic hash to sign.</value>
+        [DataMember(Name = "signableHash", EmitDefaultValue = false)]
+        public string SignableHash { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -86,6 +94,7 @@ namespace Openfort.OpenfortSDK.Model
             sb.Append("  UserOpHash: ").Append(UserOpHash).Append("\n");
             sb.Append("  UserOperation: ").Append(UserOperation).Append("\n");
             sb.Append("  UserOperationHash: ").Append(UserOperationHash).Append("\n");
+            sb.Append("  SignableHash: ").Append(SignableHash).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -140,6 +149,11 @@ namespace Openfort.OpenfortSDK.Model
                     this.UserOperationHash == input.UserOperationHash ||
                     (this.UserOperationHash != null &&
                     this.UserOperationHash.Equals(input.UserOperationHash))
+                ) &&
+                (
+                    this.SignableHash == input.SignableHash ||
+                    (this.SignableHash != null &&
+                    this.SignableHash.Equals(input.SignableHash))
                 );
         }
 
@@ -167,6 +181,10 @@ namespace Openfort.OpenfortSDK.Model
                 if (this.UserOperationHash != null)
                 {
                     hashCode = (hashCode * 59) + this.UserOperationHash.GetHashCode();
+                }
+                if (this.SignableHash != null)
+                {
+                    hashCode = (hashCode * 59) + this.SignableHash.GetHashCode();
                 }
                 return hashCode;
             }

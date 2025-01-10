@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
@@ -34,13 +33,22 @@ namespace Openfort.OpenfortSDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="OAuthInitRequestOptions" /> class.
         /// </summary>
+        /// <param name="callbackTo">A URL to custom handle the provider callback.</param>
         /// <param name="queryParams">An object of query params.</param>
         /// <param name="redirectTo">A URL to send the user to after they are confirmed..</param>
-        public OAuthInitRequestOptions(Dictionary<string, string> queryParams = default(Dictionary<string, string>), string redirectTo = default(string))
+        public OAuthInitRequestOptions(string callbackTo = default(string), Dictionary<string, string> queryParams = default(Dictionary<string, string>), string redirectTo = default(string))
         {
+            this.CallbackTo = callbackTo;
             this.QueryParams = queryParams;
             this.RedirectTo = redirectTo;
         }
+
+        /// <summary>
+        /// A URL to custom handle the provider callback
+        /// </summary>
+        /// <value>A URL to custom handle the provider callback</value>
+        [DataMember(Name = "callbackTo", EmitDefaultValue = false)]
+        public string CallbackTo { get; set; }
 
         /// <summary>
         /// An object of query params
@@ -64,6 +72,7 @@ namespace Openfort.OpenfortSDK.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class OAuthInitRequestOptions {\n");
+            sb.Append("  CallbackTo: ").Append(CallbackTo).Append("\n");
             sb.Append("  QueryParams: ").Append(QueryParams).Append("\n");
             sb.Append("  RedirectTo: ").Append(RedirectTo).Append("\n");
             sb.Append("}\n");
@@ -102,6 +111,11 @@ namespace Openfort.OpenfortSDK.Model
             }
             return
                 (
+                    this.CallbackTo == input.CallbackTo ||
+                    (this.CallbackTo != null &&
+                    this.CallbackTo.Equals(input.CallbackTo))
+                ) &&
+                (
                     this.QueryParams == input.QueryParams ||
                     this.QueryParams != null &&
                     input.QueryParams != null &&
@@ -123,6 +137,10 @@ namespace Openfort.OpenfortSDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.CallbackTo != null)
+                {
+                    hashCode = (hashCode * 59) + this.CallbackTo.GetHashCode();
+                }
                 if (this.QueryParams != null)
                 {
                     hashCode = (hashCode * 59) + this.QueryParams.GetHashCode();
