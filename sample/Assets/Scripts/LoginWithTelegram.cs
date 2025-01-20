@@ -144,8 +144,7 @@ public class LoginWithTelegram : MonoBehaviour
 
     public class RootObject
     {
-        public string transactionIntentId { get; set; }
-        public string userOperationHash { get; set; }
+        public TransactionIntentResponse data { get; set; }
     }
 
     public async void OnMintClicked()
@@ -154,8 +153,12 @@ public class LoginWithTelegram : MonoBehaviour
         mintButton.interactable = false;
         statusTextLabel.text = "Requesting encoded transaction";
 
+        // set up your api url. In this example we are using a the sample telegram backend:
+        // https://github.com/openfort-xyz/sample-telegram/tree/main/backend
+        // You can use this backend to mint a token with the unity webGL build
+        // in backend/src/public folder, and tunneling it with ngrok
+
         var apiUrl = "";
-        // var apiUrl = "https://openfort-auth-non-custodial.vercel.app";
 
         var webRequest = UnityWebRequest.PostWwwForm(apiUrl + "/api/protected-collect", "");
         webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
@@ -179,11 +182,11 @@ public class LoginWithTelegram : MonoBehaviour
 
         var responseText = webRequest.downloadHandler.text;
         Debug.Log("Mint Response: " + responseText);
-        var responseJson = JsonConvert.DeserializeObject<RootObject>(responseText);
+        var responseJson = JsonConvert.DeserializeObject<RootObject>(responseText).data;
         statusTextLabel.text = "Signing and broadcasting transaction";
         SignatureTransactionIntentRequest request = new SignatureTransactionIntentRequest(
-            responseJson.transactionIntentId,
-            responseJson.userOperationHash
+            responseJson.Id,
+            responseJson.NextAction.Payload.UserOperationHash
         );
         TransactionIntentResponse intentResponse =
             await openfort.SendSignatureTransactionIntentRequest(request);
