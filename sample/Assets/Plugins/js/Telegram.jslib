@@ -1,11 +1,4 @@
 mergeInto(LibraryManager.library, {
-    ShowAlert: function (message) {
-        var returnStr = "bla" + UTF8ToString(message);
-        var bufferSize = lengthBytesUTF8(returnStr) + 1;
-        var buffer = _malloc(bufferSize);
-        stringToUTF8(returnStr, buffer, bufferSize);
-        return buffer;
-    },
     InitTelegramApp: function () {
         const telegramSDK = telegramApps.sdk;
         try {
@@ -19,16 +12,10 @@ mergeInto(LibraryManager.library, {
                 console.log('User Info:', user.firstName, user.lastName);
             }
 
-            // Notify Telegram that the app is ready
-            // telegramSDK.initMiniApp();
-            // console.log(miniApp);
-            
-            console.log("Buffer for", launchParams.initDataRaw);
-
-            var bufferSize2 = lengthBytesUTF8(launchParams.initDataRaw) + 1;
-            var buffer2 = _malloc(bufferSize2);
-            stringToUTF8(launchParams.initDataRaw, buffer2, bufferSize2);
-            return buffer2
+            var bufferSize = lengthBytesUTF8(launchParams.initDataRaw) + 1;
+            var buffer = _malloc(bufferSize);
+            stringToUTF8(launchParams.initDataRaw, buffer, bufferSize);
+            return buffer
         } catch (error) {
             console.error('Error initializing app:', error);
         }
