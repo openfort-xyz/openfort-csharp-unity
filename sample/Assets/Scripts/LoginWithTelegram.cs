@@ -15,6 +15,16 @@ public class LoginWithTelegram : MonoBehaviour
     private string accessToken;
     private OpenfortSDK openfort;
 
+    [Header("Openfort Configuration")]
+    [SerializeField]
+    string projectPublishableKey;
+
+    [SerializeField]
+    string shieldPublishableKey;
+
+    [SerializeField]
+    string shieldEncryptionShare;
+
     [Header("Loading")]
     public GameObject loadingPanel;
 
@@ -23,7 +33,6 @@ public class LoginWithTelegram : MonoBehaviour
     public GameObject openLinkButton;
     public Text playerLabel;
     public Button mintButton;
-    public Button logoutButton;
     public Button getUserButton;
     public Button signMessageButton;
     public Button signTypedDataButton;
@@ -44,18 +53,12 @@ public class LoginWithTelegram : MonoBehaviour
         {
             openfort = OpenfortSDK.Instance;
         }
-        openfort = await OpenfortSDK.Init( // Embedded signer
-            "pk_test_505bc088-905e-5a43-b60b-4c37ed1f887a",
-            "a4b75269-65e7-49c4-a600-6b5d9d6eec66",
-            "/cC/ElEv1bCHxvbE/UUH+bLIf8nSLZOrxj8TkKChiY4="
+        openfort = await OpenfortSDK.Init(
+            projectPublishableKey,
+            shieldPublishableKey,
+            shieldEncryptionShare
         );
-        // openfort = await OpenfortSDK.Init(
-        //     "pk_test_723b5e8f-3d14-5ee9-a6ca-55da56782097",
-        //     "78e5f750-4b64-4c5a-bca9-23710cad8e3c",
-        //     "Au2zQ+aE+1WXxAt08c6BTummUBulVTy9NKhgSrhYDEVU"
-        // );
 
-        Debug.Log("Embedded state: " + await openfort.GetEmbeddedState());
         // Hide all our panels until we know what UI to display
         loggedinPanel.SetActive(false);
         openLinkButton.SetActive(false);
@@ -85,10 +88,6 @@ public class LoginWithTelegram : MonoBehaviour
 
             Debug.Log("User: " + authPlayerResponse);
 
-            // Debug.Log("Sending Mint request");
-            // Debug.Log("Authorization: " + "Bearer " + accessToken);
-            // Debug.Log("access token: " + await openfort.GetAccessToken());
-
             accessToken = telegramAuth;
             statusTextLabel.text = $"Logged In With Telegram";
             Debug.Log("Logged In With Telegram: " + accessToken);
@@ -102,10 +101,29 @@ public class LoginWithTelegram : MonoBehaviour
             Debug.LogError("Error logging in with Telegram");
         }
 #else
-        // Create a custom object as a context
+        // If we are not on WebGL, we can log in as a guest for testing
         Debug.LogWarning(
             "Telegram auth is only available on WebGL. Please run this on a telegram mini app"
         );
+
+        loadingPanel.SetActive(true);
+        statusTextLabel.text = $"Logging In As Guest ...";
+        try
+        {
+            AuthResponse authResponse = await openfort.SignUpGuest();
+            accessToken = authResponse.Token;
+            await SetAutomaticRecoveryMethod();
+            var embeddedState = await openfort.GetEmbeddedState();
+            Debug.Log("Logged In as guest: " + accessToken);
+            Debug.Log("Embedded state: " + embeddedState);
+            statusTextLabel.text = $"Logged In As Guest";
+            loggedinPanel.SetActive(true);
+        }
+        catch (System.Exception)
+        {
+            Debug.LogError("Error logging in as guest");
+        }
+        loadingPanel.SetActive(false);
 #endif
     }
     #endregion
@@ -123,32 +141,6 @@ public class LoginWithTelegram : MonoBehaviour
     }
 
     #region PUBLIC_BUTTON_METHODS
-    public void LogoutClicked()
-    {
-        loadingPanel.SetActive(true);
-        var logoutTask = OnLogoutClicked();
-        HandleTask(logoutTask);
-    }
-
-    private async void HandleTask(Task task)
-    {
-        try
-        {
-            // Await the task, allowing any exceptions to propagate.
-            await task;
-        }
-        catch (Exception ex)
-        {
-            // Log or handle the exception as appropriate.
-            Debug.LogError($"Error during logout: {ex.Message}");
-        }
-    }
-
-    private Task OnLogoutClicked()
-    {
-        Debug.Log("Logging out");
-        throw new NotImplementedException();
-    }
 
     public class RootObject
     {
@@ -161,17 +153,17 @@ public class LoginWithTelegram : MonoBehaviour
         loadingPanel.SetActive(true);
         mintButton.interactable = false;
         statusTextLabel.text = "Requesting encoded transaction";
-        var webRequest = UnityWebRequest.PostWwwForm(
-            "https://openfort-auth-non-custodial.vercel.app/api/protected-collect",
-            ""
-        );
+
+        var apiUrl = "";
+        // var apiUrl = "https://openfort-auth-non-custodial.vercel.app";
+
+        var webRequest = UnityWebRequest.PostWwwForm(apiUrl + "/api/protected-collect", "");
         webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
         webRequest.SetRequestHeader("Content-Type", "application/json");
         webRequest.SetRequestHeader("Accept", "application/json");
 
         Debug.Log("Sending Mint request");
         Debug.Log("Authorization: " + "Bearer " + accessToken);
-        Debug.Log("access token: " + await openfort.GetAccessToken());
 
         await SendWebRequestAsync(webRequest);
 

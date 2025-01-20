@@ -234,7 +234,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -140, y: -43}
+  m_AnchoredPosition: {x: 0, y: -43}
   m_SizeDelta: {x: 182.2108, y: 34.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &33086746
@@ -1380,7 +1380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &328285735
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1968,7 +1968,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 137, y: -137}
+  m_AnchoredPosition: {x: 0, y: -137}
   m_SizeDelta: {x: 182.2108, y: 34.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &419187972
@@ -2947,7 +2947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082b26b637c354377b62b2d6f319f516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingPanel: {fileID: 157903877}
+  loadingPanel: {fileID: 0}
   loginPanel: {fileID: 1079474619}
   email: {fileID: 526539801}
   password: {fileID: 1512064295}
@@ -2980,12 +2980,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671b273ae3b70417e9b54da19e7b2768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectPublishableKey: pk_test_1e5a401b-b7d6-5d2f-bc8a-52810a1bdc35
+  shieldPublishableKey: 8046545d-4c1e-4ef3-9665-448ea83b8528
+  shieldEncryptionShare: AhDcDjqULhJ3f6tFo6BofgujEPGBA4pYm99FNdpU0VCK
   loadingPanel: {fileID: 157903877}
   loggedinPanel: {fileID: 1448070766}
   openLinkButton: {fileID: 1842795749}
   playerLabel: {fileID: 1842795751}
   mintButton: {fileID: 2124153571}
-  logoutButton: {fileID: 328285736}
   getUserButton: {fileID: 33086746}
   signMessageButton: {fileID: 419187972}
   signTypedDataButton: {fileID: 2042472478}
@@ -3571,7 +3573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1448070767
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4516,8 +4518,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1006710630}
-        m_TargetAssemblyTypeName: LoginSceneManager, Assembly-CSharp
+      - m_Target: {fileID: 1006710631}
+        m_TargetAssemblyTypeName: LoginWithTelegram, Assembly-CSharp
         m_MethodName: OpenLink
         m_Mode: 1
         m_Arguments:
@@ -4872,7 +4874,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 135, y: -90}
+  m_AnchoredPosition: {x: 0, y: -90}
   m_SizeDelta: {x: 182.2108, y: 34.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2042472478
@@ -5084,7 +5086,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 135, y: -43}
+  m_AnchoredPosition: {x: 0, y: 4}
   m_SizeDelta: {x: 182.2108, y: 34.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2124153571
