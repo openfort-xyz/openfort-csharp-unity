@@ -3,25 +3,25 @@
 
 <div align="center">
   <h4>
-    <a href="https://www.openfort.xyz/">
+    <a href="https://www.openfort.io/">
       Website
     </a>
     <span> | </span>
-    <a href="https://www.openfort.xyz/docs">
+    <a href="https://www.openfort.io/docs">
       Documentation
     </a>
     <span> | </span>
-    <a href="https://www.openfort.xyz/docs/reference/api/authentication">
+    <a href="https://www.openfort.io/docs/products/embedded-wallet/unity">
       API Docs
     </a>
     <span> | </span>
-    <a href="https://twitter.com/openfortxyz">
+    <a href="https://x.com/openfort_hq">
       Twitter
     </a>
   </h4>
 </div>
 
-[banner-image]: https://blog-cms.openfort.xyz/uploads/1_38e40747b6.png
+[banner-image]: https://blog-cms.openfort.io/uploads/1_38e40747b6.png
 
 # Openfort Unity SDK
 
