@@ -7,12 +7,8 @@
       Website
     </a>
     <span> | </span>
-    <a href="https://www.openfort.io/docs">
-      Documentation
-    </a>
-    <span> | </span>
     <a href="https://www.openfort.io/docs/products/embedded-wallet/unity">
-      API Docs
+      Documentation
     </a>
     <span> | </span>
     <a href="https://x.com/openfort_hq">
