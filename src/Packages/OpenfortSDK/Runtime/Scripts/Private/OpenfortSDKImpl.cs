@@ -527,15 +527,6 @@ namespace Openfort.OpenfortSDK
             );
             return callResponse.GetStringResult();
         }
-        public async UniTask<SessionResponse> SendSignatureSessionRequest(RegisterSessionRequest request)
-        {
-            string functionName = "sendSignatureSessionRequest";
-            string callResponse = await communicationsManager.Call(
-                functionName,
-                JsonUtility.ToJson(request)
-            );
-            return callResponse.OptDeserializeObject<SessionResponse>();
-        }
         public async UniTask<EmbeddedState> GetEmbeddedState()
         {
             string functionName = "getEmbeddedState";
@@ -552,11 +543,44 @@ namespace Openfort.OpenfortSDK
             );
             return callResponse.OptDeserializeObject<Provider>();
         }
-        public async UniTask ConfigureEmbeddedSigner(EmbeddedSignerRequest request)
+        public async UniTask<EmbeddedAccount> CreateEmbeddedWallet(CreateEmbeddedWalletRequest request)
+        {
+            string functionName = "createEmbeddedWallet";
+            string callResponse = await communicationsManager.Call(
+                functionName,
+                JsonConvert.SerializeObject(request)
+            );
+            return callResponse.OptDeserializeObject<EmbeddedAccount>();
+        }
+        public async UniTask<EmbeddedAccount> RecoverEmbeddedWallet(RecoverEmbeddedWalletRequest request)
+        {
+            string functionName = "recoverEmbeddedWallet";
+            string callResponse = await communicationsManager.Call(
+                functionName,
+                JsonConvert.SerializeObject(request)
+            );
+            return callResponse.OptDeserializeObject<EmbeddedAccount>();
+        }
+        public async UniTask<EmbeddedAccount> GetWallet()
+        {
+            string functionName = "getWallet";
+            string callResponse = await communicationsManager.Call(functionName);
+            return callResponse.OptDeserializeObject<EmbeddedAccount>();
+        }
+        public async UniTask<EmbeddedAccount[]> ListWallets(ListWalletsRequest request)
+        {
+            string functionName = "listWallets";
+            string callResponse = await communicationsManager.Call(
+                functionName,
+                JsonConvert.SerializeObject(request)
+            );
+            return callResponse.OptDeserializeObject<EmbeddedAccount[]>();
+        }
+        public async UniTask ConfigureEmbeddedWallet(ConfigureEmbeddedWalletRequest request)
         {
             string x = JsonUtility.ToJson(request);
 
-            string functionName = "configureEmbeddedSigner";
+            string functionName = "configureEmbeddedWallet";
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
                 Converters = new List<JsonConverter> { new StringEnumConverter() }
@@ -564,7 +588,7 @@ namespace Openfort.OpenfortSDK
 
             string response = await communicationsManager.Call(
                 functionName,
-                Newtonsoft.Json.JsonConvert.SerializeObject(request, settings)
+                JsonConvert.SerializeObject(request, settings)
             );
 
             BrowserResponse browserResponse = response.OptDeserializeObject<BrowserResponse>();

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Openfort.OpenfortSDK.Model
 {
     [Serializable]
-    public class EmbeddedSignerRequest
+    public class ConfigureEmbeddedWalletRequest
     {
         /**
         * Chain ID
@@ -21,7 +21,7 @@ namespace Openfort.OpenfortSDK.Model
         */
         public string recoveryPassword;
 
-        public EmbeddedSignerRequest(
+        public ConfigureEmbeddedWalletRequest(
             int chainId,
             ShieldAuthentication shieldAuthentication,
             string recoveryPassword = null
@@ -35,13 +35,13 @@ namespace Openfort.OpenfortSDK.Model
         /**
         * Creates a new EmbeddedSignerRequest with the provided properties
         */
-        public static EmbeddedSignerRequest Create(
+        public static ConfigureEmbeddedWalletRequest Create(
             int chainId,
             ShieldAuthentication shieldAuthentication,
             string recoveryPassword = null
         )
         {
-            return new EmbeddedSignerRequest(chainId, shieldAuthentication, recoveryPassword);
+            return new ConfigureEmbeddedWalletRequest(chainId, shieldAuthentication, recoveryPassword);
         }
     }
 

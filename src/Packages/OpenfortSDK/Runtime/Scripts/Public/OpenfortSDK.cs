@@ -386,15 +386,6 @@ namespace Openfort.OpenfortSDK
         }
 
         /// <summary>
-        /// Sends a transaction signed by a session.
-        /// </summary>
-        /// <param name="request">Register session request</param>
-        public async UniTask<SessionResponse> SendSignatureSessionRequest(RegisterSessionRequest request)
-        {
-            return await GetOpenfortImpl().SendSignatureSessionRequest(request);
-        }
-
-        /// <summary>
         /// Gets the embedded state.
         /// </summary>
         public async UniTask<EmbeddedState> GetEmbeddedState()
@@ -411,13 +402,33 @@ namespace Openfort.OpenfortSDK
             return await GetOpenfortImpl().GetEthereumProvider(request);
         }
 
+        public async UniTask<EmbeddedAccount> CreateEmbeddedWallet(CreateEmbeddedWalletRequest request)
+        {
+            return await GetOpenfortImpl().CreateEmbeddedWallet(request);
+        }
+
+        public async UniTask<EmbeddedAccount> RecoverEmbeddedWallet(RecoverEmbeddedWalletRequest request)
+        {
+            return await GetOpenfortImpl().RecoverEmbeddedWallet(request);
+        }
+
+        public async UniTask<EmbeddedAccount> GetEmbeddedWallet()
+        {
+            return await GetOpenfortImpl().GetWallet();
+        }
+
+        public async UniTask<EmbeddedAccount[]> ListWallets(ListWalletsRequest request)
+        {
+            return await GetOpenfortImpl().ListWallets(request);
+        }
+
         /// <summary>
         /// Configures the embedded signer.
         /// </summary>
         /// <param name="request">Embedded signer request</param>
-        public async UniTask ConfigureEmbeddedSigner(EmbeddedSignerRequest request)
+        public async UniTask ConfigureEmbeddedWallet(ConfigureEmbeddedWalletRequest request)
         {
-            await GetOpenfortImpl().ConfigureEmbeddedSigner(request);
+            await GetOpenfortImpl().ConfigureEmbeddedWallet(request);
         }
 
         /// <summary>
