@@ -55,7 +55,6 @@ namespace Openfort.OpenfortSDK
             {
                 publishableKey = publishableKey,
                 shieldPublishableKey = shieldPublishableKey,
-                shieldEncryptionKey = shieldEncryptionKey,
                 shieldDebug = shieldDebug,
                 backendUrl = backendUrl,
                 iframeUrl = iframeUrl,
