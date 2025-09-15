@@ -136,8 +136,8 @@ public class LoginWithTelegram : MonoBehaviour
             ShieldAuthType.Openfort,
             accessToken
         );
-        EmbeddedSignerRequest request = new EmbeddedSignerRequest(chainId, shieldConfig);
-        await openfort.ConfigureEmbeddedSigner(request);
+        ConfigureEmbeddedWalletRequest request = new ConfigureEmbeddedWalletRequest(chainId, shieldConfig);
+        await openfort.ConfigureEmbeddedWallet(request);
     }
 
     #region PUBLIC_BUTTON_METHODS

@@ -140,8 +140,8 @@ public class LoginSceneManager : MonoBehaviour
     {
         int chainId = 80002;
         ShieldAuthentication shieldConfig = new ShieldAuthentication(ShieldAuthType.Openfort, accessToken);
-        EmbeddedSignerRequest request = new EmbeddedSignerRequest(chainId, shieldConfig);
-        await openfort.ConfigureEmbeddedSigner(request);
+        ConfigureEmbeddedWalletRequest request = new ConfigureEmbeddedWalletRequest(chainId, shieldConfig);
+        await openfort.ConfigureEmbeddedWallet(request);
     }
 
     public void LogoutClicked()
