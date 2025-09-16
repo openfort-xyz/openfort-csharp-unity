@@ -8,6 +8,7 @@ using Openfort.OpenfortSDK.Core;
 using Openfort.OpenfortSDK.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using Cysharp.Threading.Tasks;
 #if UNITY_ANDROID
 using UnityEngine.Android;
@@ -22,6 +23,13 @@ namespace Openfort.OpenfortSDK
 #endif
     {
         private const string TAG = "[Openfort Implementation]";
+
+        static readonly JsonSerializerSettings s_JsonSettings = new JsonSerializerSettings()
+        {
+            NullValueHandling = NullValueHandling.Ignore,
+            ContractResolver = new CamelCasePropertyNamesContractResolver(),
+        };
+
         public readonly IBrowserCommunicationsManager communicationsManager;
 
         private UniTaskCompletionSource<bool> deviceFlowCompletionSource;
@@ -547,33 +555,33 @@ namespace Openfort.OpenfortSDK
             string functionName = "createEmbeddedWallet";
             string callResponse = await communicationsManager.Call(
                 functionName,
-                JsonConvert.SerializeObject(request)
+                JsonConvert.SerializeObject(request, s_JsonSettings)
             );
-            return callResponse.OptDeserializeObject<EmbeddedAccount>();
+            return callResponse.OptDeserializeObject<EmbeddedAccount>(s_JsonSettings);
         }
         public async UniTask<EmbeddedAccount> RecoverEmbeddedWallet(RecoverEmbeddedWalletRequest request)
         {
             string functionName = "recoverEmbeddedWallet";
             string callResponse = await communicationsManager.Call(
                 functionName,
-                JsonConvert.SerializeObject(request)
+                JsonConvert.SerializeObject(request, s_JsonSettings)
             );
-            return callResponse.OptDeserializeObject<EmbeddedAccount>();
+            return callResponse.OptDeserializeObject<EmbeddedAccount>(s_JsonSettings);
         }
         public async UniTask<EmbeddedAccount> GetWallet()
         {
             string functionName = "getWallet";
             string callResponse = await communicationsManager.Call(functionName);
-            return callResponse.OptDeserializeObject<EmbeddedAccount>();
+            return callResponse.OptDeserializeObject<EmbeddedAccount>(s_JsonSettings);
         }
         public async UniTask<EmbeddedAccount[]> ListWallets(ListWalletsRequest request)
         {
             string functionName = "listWallets";
             string callResponse = await communicationsManager.Call(
                 functionName,
-                JsonConvert.SerializeObject(request)
+                JsonConvert.SerializeObject(request, s_JsonSettings)
             );
-            return callResponse.OptDeserializeObject<EmbeddedAccount[]>();
+            return callResponse.OptDeserializeObject<EmbeddedAccount[]>(s_JsonSettings);
         }
         public async UniTask ConfigureEmbeddedWallet(ConfigureEmbeddedWalletRequest request)
         {
