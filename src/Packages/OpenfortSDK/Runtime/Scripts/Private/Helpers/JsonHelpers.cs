@@ -10,11 +10,11 @@ namespace Openfort.OpenfortSDK.Helpers
         /// <summary>
         /// Return null if the deserialization fails.
         /// </summary>
-        public static T OptDeserializeObject<T>(this string json) where T : class
+        public static T OptDeserializeObject<T>(this string json, JsonSerializerSettings settings = null) where T : class
         {
             try
             {
-                return JsonConvert.DeserializeObject<T>(json);
+                return JsonConvert.DeserializeObject<T>(json, settings);
             }
             catch (Exception e)
             {
