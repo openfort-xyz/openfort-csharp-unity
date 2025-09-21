@@ -58,7 +58,7 @@ public class LoginSceneManager : MonoBehaviour
         {
             openfort = OpenfortSDK.Instance;
         }
-        openfort = await OpenfortSDK.Init("pk_test_505bc088-905e-5a43-b60b-4c37ed1f887a", "a4b75269-65e7-49c4-a600-6b5d9d6eec66", "/cC/ElEv1bCHxvbE/UUH+bLIf8nSLZOrxj8TkKChiY4=");
+        openfort = await OpenfortSDK.Init("pk_test_505bc088-905e-5a43-b60b-4c37ed1f887a", "a4b75269-65e7-49c4-a600-6b5d9d6eec66");
         // Hide all our panels until we know what UI to display
         registerPanel.SetActive(false);
         loggedinPanel.SetActive(false);

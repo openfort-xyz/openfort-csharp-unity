@@ -15,6 +15,7 @@ using Openfort.OpenfortSDK.Model;
 using Openfort.OpenfortSDK.Core;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Openfort.OpenfortSDK
 {
@@ -51,17 +52,21 @@ namespace Openfort.OpenfortSDK
         /// </summary>
         /// <param name="publishableKey">Openfort publishable key</param>
         /// <param name="shieldPublishableKey">Shield publishable key</param>
-        /// <param name="shieldEncryptionKey">Shield encryption key</param>
         /// <param name="shieldDebug">Enable shield debug mode</param>
         /// <param name="backendUrl">Backend URL</param>
         /// <param name="iframeUrl">Iframe URL</param>
         /// <param name="shieldUrl">Shield URL</param>
         /// <param name="engineStartupTimeoutMs">(Windows only) Timeout time for waiting for the engine to start (in milliseconds)</param>
         public static UniTask<OpenfortSDK> Init(
+            string publishableKey
+            , string shieldPublishableKey = null
+            , bool shieldDebug = false
+            , string backendUrl = "https://api.openfort.xyz"
+            , string iframeUrl = "https://iframe.openfort.xyz"
+            , string shieldUrl = "https://shield.openfort.xyz"
+            , Func<string, Task<string>> getThirdPartyToken = null
 #if OPENFORT_USE_UWB
-            string publishableKey, string shieldPublishableKey = null, string shieldEncryptionKey = null, bool shieldDebug = false, string backendUrl = "https://api.openfort.xyz", string iframeUrl = "https://iframe.openfort.xyz", string shieldUrl = "https://shield.openfort.xyz", int engineStartupTimeoutMs = 4000
-#elif OPENFORT_USE_GREE
-            string publishableKey, string shieldPublishableKey = null, string shieldEncryptionKey = null, bool shieldDebug = false, string backendUrl = "https://api.openfort.xyz", string iframeUrl = "https://iframe.openfort.xyz", string shieldUrl = "https://shield.openfort.xyz"
+            , int engineStartupTimeoutMs = 4000
 #endif
         )
         {
@@ -83,7 +88,15 @@ namespace Openfort.OpenfortSDK
                     {
                         if (readySignalReceived == true)
                         {
-                            await Instance.GetOpenfortImpl().Init(publishableKey, shieldPublishableKey, shieldEncryptionKey, shieldDebug, backendUrl, iframeUrl, shieldUrl, deeplink);
+                            await Instance.GetOpenfortImpl().Init(publishableKey,
+                                shieldPublishableKey,
+                                shieldDebug,
+                                backendUrl,
+                                iframeUrl,
+                                shieldUrl,
+                                deeplink,
+                                getThirdPartyToken);
+
                             return Instance;
                         }
                         else

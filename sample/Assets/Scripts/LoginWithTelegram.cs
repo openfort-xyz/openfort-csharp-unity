@@ -22,9 +22,6 @@ public class LoginWithTelegram : MonoBehaviour
     [SerializeField]
     string shieldPublishableKey;
 
-    [SerializeField]
-    string shieldEncryptionShare;
-
     [Header("Loading")]
     public GameObject loadingPanel;
 
@@ -55,8 +52,7 @@ public class LoginWithTelegram : MonoBehaviour
         }
         openfort = await OpenfortSDK.Init(
             projectPublishableKey,
-            shieldPublishableKey,
-            shieldEncryptionShare
+            shieldPublishableKey
         );
 
         // Hide all our panels until we know what UI to display

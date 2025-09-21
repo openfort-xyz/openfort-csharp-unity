@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using Openfort.OpenfortSDK.Event;
 using Openfort.OpenfortSDK.Model;
@@ -34,6 +35,7 @@ namespace Openfort.OpenfortSDK
 
         private UniTaskCompletionSource<bool> deviceFlowCompletionSource;
         private string redirectUri = null;
+        private Func<string, Task<string>> _getThirdPartyToken;
 
 
 #if UNITY_ANDROID
@@ -52,10 +54,21 @@ namespace Openfort.OpenfortSDK
             this.communicationsManager = communicationsManager;
         }
 
-        public async UniTask Init(string publishableKey, string shieldPublishableKey = null, string shieldEncryptionKey = null, bool shieldDebug = false, string backendUrl = "https://api.openfort.xyz", string iframeUrl = "https://iframe.openfort.xyz", string shieldUrl = "https://shield.openfort.xyz", string deeplink = null)
+        public async UniTask Init(string publishableKey,
+            string shieldPublishableKey = null,
+            bool shieldDebug = false,
+            string backendUrl = "https://api.openfort.xyz",
+            string iframeUrl = "https://iframe.openfort.xyz",
+            string shieldUrl = "https://shield.openfort.xyz",
+            string deeplink = null,
+            Func<string, Task<string>> getThirdPartyToken = null
+            )
         {
-            this.communicationsManager.OnPostMessageError += OnPostMessageError;
-            this.communicationsManager.OnAuthPostMessage += OnDeepLinkActivated;
+            communicationsManager.OnPostMessageError += OnPostMessageError;
+            communicationsManager.OnAuthPostMessage += OnDeepLinkActivated;
+            communicationsManager.OnThirdPartyTokenRequested += OnThirdPartyTokenRequested;
+
+            _getThirdPartyToken = getThirdPartyToken;
 
             string initRequest;
 
@@ -106,6 +119,28 @@ namespace Openfort.OpenfortSDK
                 Debug.LogError($"{TAG} OnDeepLinkActivated error {url}: {e.Message}");
             }
         }
+
+        private async void OnThirdPartyTokenRequested(string requestId)
+        {
+            var token = string.Empty;
+
+            if (_getThirdPartyToken != null)
+            {
+                try
+                {
+                    token = await _getThirdPartyToken(requestId);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"{TAG} Get third party token error: {ex.Message}");
+                }
+            }
+
+            communicationsManager.CallFunction(requestId,
+                OpenfortFunction.SET_THIRD_PARTY_TOKEN,
+                JsonConvert.SerializeObject(new SetThirdPartyTokenRequest() { Token = token }, s_JsonSettings));
+        }
+
         public async UniTask<AuthResponse> SignUpGuest()
         {
             string functionName = "signUpGuest";
