@@ -61,9 +61,9 @@ namespace Openfort.OpenfortSDK
             string publishableKey
             , string shieldPublishableKey = null
             , bool shieldDebug = false
-            , string backendUrl = "https://api.openfort.xyz"
-            , string iframeUrl = "https://iframe.openfort.xyz"
-            , string shieldUrl = "https://shield.openfort.xyz"
+            , string backendUrl = "https://api.openfort.io"
+            , string iframeUrl = "https://embed.openfort.io"
+            , string shieldUrl = "https://shield.openfort.io"
             , Func<string, Task<string>> getThirdPartyToken = null
 #if OPENFORT_USE_UWB
             , int engineStartupTimeoutMs = 4000

@@ -55,13 +55,13 @@ namespace Openfort.OpenfortSDK
         }
 
         public async UniTask Init(string publishableKey,
-            string shieldPublishableKey = null,
-            bool shieldDebug = false,
-            string backendUrl = "https://api.openfort.xyz",
-            string iframeUrl = "https://iframe.openfort.xyz",
-            string shieldUrl = "https://shield.openfort.xyz",
-            string deeplink = null,
-            Func<string, Task<string>> getThirdPartyToken = null
+            string shieldPublishableKey,
+            bool shieldDebug,
+            string backendUrl,
+            string iframeUrl,
+            string shieldUrl,
+            string deeplink,
+            Func<string, Task<string>> getThirdPartyToken
             )
         {
             communicationsManager.OnPostMessageError += OnPostMessageError;
