@@ -12,7 +12,6 @@ using System.Collections.Generic;
 public class LoginSceneManager : MonoBehaviour
 {
     // Reference to our Authentication service
-    private string accessToken;
     private OpenfortSDK openfort;
 
     [Header("Loading")]
@@ -58,8 +57,29 @@ public class LoginSceneManager : MonoBehaviour
         {
             openfort = OpenfortSDK.Instance;
         }
-        openfort = await OpenfortSDK.Init("pk_test_505bc088-905e-5a43-b60b-4c37ed1f887a", "a4b75269-65e7-49c4-a600-6b5d9d6eec66", "/cC/ElEv1bCHxvbE/UUH+bLIf8nSLZOrxj8TkKChiY4=");
-        // Hide all our panels until we know what UI to display
+        openfort = await OpenfortSDK.Init("pk_test_505bc088-905e-5a43-b60b-4c37ed1f887a", "a4b75269-65e7-49c4-a600-6b5d9d6eec66", true, "https://api.openfort.io", "https://development-iframe.vercel.app", "https://shield.openfort.io");
+        // Check if user is already logged in
+        try
+        {
+            AuthPlayerResponse user = await openfort.GetUser();
+            if (user != null)
+            {
+                // User is logged in, get access token and go to logged in panel
+                await SetAutomaticRecoveryMethod();
+                registerPanel.SetActive(false);
+                loginPanel.SetActive(false);
+                openLinkButton.SetActive(false);
+                loadingPanel.SetActive(false);
+                loggedinPanel.SetActive(true);
+                statusTextLabel.text = "Already logged in";
+                return;
+            }
+        }
+        catch (Exception)
+        {
+            // User is not logged in, continue with normal flow
+        }
+
         registerPanel.SetActive(false);
         loggedinPanel.SetActive(false);
         openLinkButton.SetActive(false);
@@ -83,7 +103,6 @@ public class LoginSceneManager : MonoBehaviour
         try
         {
             AuthResponse authResponse = await openfort.SignUpGuest();
-            accessToken = authResponse.Token;
             await SetAutomaticRecoveryMethod();
             loginPanel.SetActive(false);
             statusTextLabel.text = $"Logged In As Guest";
@@ -119,7 +138,6 @@ public class LoginSceneManager : MonoBehaviour
         {
             await openfort.AuthenticateWithOAuth(request);
             AuthPlayerResponse authPlayerResponse = await openfort.GetUser();
-            accessToken = await openfort.GetAccessToken();
             statusTextLabel.text = $"Logged In With Google";
             await SetAutomaticRecoveryMethod();
             loginPanel.SetActive(false);
@@ -139,9 +157,33 @@ public class LoginSceneManager : MonoBehaviour
     private async Task SetAutomaticRecoveryMethod()
     {
         int chainId = 80002;
-        ShieldAuthentication shieldConfig = new ShieldAuthentication(ShieldAuthType.Openfort, accessToken);
-        EmbeddedSignerRequest request = new EmbeddedSignerRequest(chainId, shieldConfig);
-        await openfort.ConfigureEmbeddedSigner(request);
+
+        // Get encryption session from API
+        var webRequest = UnityWebRequest.PostWwwForm("https://create-next-app.openfort.io/api/protected-create-encryption-session", "");
+        string accessToken = await openfort.GetAccessToken();
+        webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+        webRequest.SetRequestHeader("Content-Type", "application/json");
+        webRequest.SetRequestHeader("Accept", "application/json");
+        await SendWebRequestAsync(webRequest);
+
+        if (webRequest.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Failed to get encryption session: " + webRequest.error);
+            throw new Exception("Failed to get encryption session");
+        }
+
+        var responseText = webRequest.downloadHandler.text;
+        var responseJson = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseText);
+        var encryptionSession = responseJson["session"];
+        Debug.Log("Encryption session: " + encryptionSession);
+
+        var recoveryParams = new AutomaticRecoveryParams(encryptionSession);
+
+        ConfigureEmbeddedWalletRequest request = new ConfigureEmbeddedWalletRequest(
+            recoveryParams: recoveryParams,
+            chainId: chainId
+        );
+        await openfort.ConfigureEmbeddedWallet(request);
     }
 
     public void LogoutClicked()
@@ -191,7 +233,6 @@ public class LoginSceneManager : MonoBehaviour
         try
         {
             AuthResponse authResponse = await openfort.LogInWithEmailPassword(email.text, password.text);
-            accessToken = authResponse.Token;
             await SetAutomaticRecoveryMethod();
             loginPanel.SetActive(false);
             statusTextLabel.text = $"Logged In As {email.text}";
@@ -221,8 +262,7 @@ public class LoginSceneManager : MonoBehaviour
         }
 
         statusTextLabel.text = $"Registering User {email.text} ...";
-        AuthResponse authResponse = await openfort.SignUpWithEmailPassword(email.text, password.text);
-        accessToken = authResponse.Token;
+        await openfort.SignUpWithEmailPassword(email.text, password.text);
         await SetAutomaticRecoveryMethod();
         statusTextLabel.text = $"Logged In As {email.text}";
 
@@ -271,7 +311,8 @@ public class LoginSceneManager : MonoBehaviour
         loadingPanel.SetActive(true);
         mintButton.interactable = false;
         statusTextLabel.text = "Requesting encoded transaction";
-        var webRequest = UnityWebRequest.PostWwwForm("https://openfort-auth-non-custodial.vercel.app/api/protected-collect", "");
+        var webRequest = UnityWebRequest.PostWwwForm("https://create-next-app.openfort.io/api/protected-collect", "");
+        string accessToken = await openfort.GetAccessToken();
         webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
         webRequest.SetRequestHeader("Content-Type", "application/json");
         webRequest.SetRequestHeader("Accept", "application/json");

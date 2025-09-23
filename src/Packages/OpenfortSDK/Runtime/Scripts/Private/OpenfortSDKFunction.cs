@@ -45,5 +45,7 @@ namespace Openfort.OpenfortSDK
         public const string GET_ETHEREUM_PROVIDER = "getEthereumProvider";
         public const string CONFIGURE_SESSION_KEY = "configureSessionKey";
         public const string CONFIGURE_EMBEDDED_SIGNER = "configureEmbeddedSigner";
+
+        public const string SET_THIRD_PARTY_TOKEN = "setThirdPartyToken";
     }
 }

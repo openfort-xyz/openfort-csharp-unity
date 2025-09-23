@@ -15,6 +15,7 @@ using Openfort.OpenfortSDK.Model;
 using Openfort.OpenfortSDK.Core;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Openfort.OpenfortSDK
 {
@@ -51,17 +52,21 @@ namespace Openfort.OpenfortSDK
         /// </summary>
         /// <param name="publishableKey">Openfort publishable key</param>
         /// <param name="shieldPublishableKey">Shield publishable key</param>
-        /// <param name="shieldEncryptionKey">Shield encryption key</param>
         /// <param name="shieldDebug">Enable shield debug mode</param>
         /// <param name="backendUrl">Backend URL</param>
         /// <param name="iframeUrl">Iframe URL</param>
         /// <param name="shieldUrl">Shield URL</param>
         /// <param name="engineStartupTimeoutMs">(Windows only) Timeout time for waiting for the engine to start (in milliseconds)</param>
         public static UniTask<OpenfortSDK> Init(
+            string publishableKey
+            , string shieldPublishableKey = null
+            , bool shieldDebug = false
+            , string backendUrl = "https://api.openfort.io"
+            , string iframeUrl = "https://embed.openfort.io"
+            , string shieldUrl = "https://shield.openfort.io"
+            , Func<string, Task<string>> getThirdPartyToken = null
 #if OPENFORT_USE_UWB
-            string publishableKey, string shieldPublishableKey = null, string shieldEncryptionKey = null, bool shieldDebug = false, string backendUrl = "https://api.openfort.xyz", string iframeUrl = "https://iframe.openfort.xyz", string shieldUrl = "https://shield.openfort.xyz", int engineStartupTimeoutMs = 4000
-#elif OPENFORT_USE_GREE
-            string publishableKey, string shieldPublishableKey = null, string shieldEncryptionKey = null, bool shieldDebug = false, string backendUrl = "https://api.openfort.xyz", string iframeUrl = "https://iframe.openfort.xyz", string shieldUrl = "https://shield.openfort.xyz"
+            , int engineStartupTimeoutMs = 4000
 #endif
         )
         {
@@ -83,7 +88,15 @@ namespace Openfort.OpenfortSDK
                     {
                         if (readySignalReceived == true)
                         {
-                            await Instance.GetOpenfortImpl().Init(publishableKey, shieldPublishableKey, shieldEncryptionKey, shieldDebug, backendUrl, iframeUrl, shieldUrl, deeplink);
+                            await Instance.GetOpenfortImpl().Init(publishableKey,
+                                shieldPublishableKey,
+                                shieldDebug,
+                                backendUrl,
+                                iframeUrl,
+                                shieldUrl,
+                                deeplink,
+                                getThirdPartyToken);
+
                             return Instance;
                         }
                         else
@@ -386,15 +399,6 @@ namespace Openfort.OpenfortSDK
         }
 
         /// <summary>
-        /// Sends a transaction signed by a session.
-        /// </summary>
-        /// <param name="request">Register session request</param>
-        public async UniTask<SessionResponse> SendSignatureSessionRequest(RegisterSessionRequest request)
-        {
-            return await GetOpenfortImpl().SendSignatureSessionRequest(request);
-        }
-
-        /// <summary>
         /// Gets the embedded state.
         /// </summary>
         public async UniTask<EmbeddedState> GetEmbeddedState()
@@ -411,13 +415,33 @@ namespace Openfort.OpenfortSDK
             return await GetOpenfortImpl().GetEthereumProvider(request);
         }
 
+        public async UniTask<EmbeddedAccount> CreateEmbeddedWallet(CreateEmbeddedWalletRequest request)
+        {
+            return await GetOpenfortImpl().CreateEmbeddedWallet(request);
+        }
+
+        public async UniTask<EmbeddedAccount> RecoverEmbeddedWallet(RecoverEmbeddedWalletRequest request)
+        {
+            return await GetOpenfortImpl().RecoverEmbeddedWallet(request);
+        }
+
+        public async UniTask<EmbeddedAccount> GetEmbeddedWallet()
+        {
+            return await GetOpenfortImpl().GetWallet();
+        }
+
+        public async UniTask<EmbeddedAccount[]> ListWallets(ListWalletsRequest request)
+        {
+            return await GetOpenfortImpl().ListWallets(request);
+        }
+
         /// <summary>
         /// Configures the embedded signer.
         /// </summary>
         /// <param name="request">Embedded signer request</param>
-        public async UniTask ConfigureEmbeddedSigner(EmbeddedSignerRequest request)
+        public async UniTask ConfigureEmbeddedWallet(ConfigureEmbeddedWalletRequest request)
         {
-            await GetOpenfortImpl().ConfigureEmbeddedSigner(request);
+            await GetOpenfortImpl().ConfigureEmbeddedWallet(request);
         }
 
         /// <summary>

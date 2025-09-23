@@ -1,4 +1,3 @@
-using System.Net;
 using System;
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
@@ -21,9 +20,11 @@ namespace Openfort.OpenfortSDK.Core
     {
         event OnUnityPostMessageDelegate OnAuthPostMessage;
         event OnUnityPostMessageErrorDelegate OnPostMessageError;
+        event Action<string> OnThirdPartyTokenRequested;
         void SetCallTimeout(int ms);
         void LaunchAuthURL(string url, string redirectUri);
         UniTask<string> Call(string fxName, string data = null, bool ignoreTimeout = false);
+        void CallFunction(string requestId, string fxName, string data);
         void ClearCache(bool includeDiskFiles);
         void ClearStorage();
     }
@@ -34,12 +35,12 @@ namespace Openfort.OpenfortSDK.Core
         private const string TAG = "[Browser Communications Manager]";
 
         // Used to notify that index.js file is loaded
-        public const string INIT = "init";
         public const string INIT_REQUEST_ID = "1";
 
         private readonly IDictionary<string, UniTaskCompletionSource<string>> requestTaskMap = new Dictionary<string, UniTaskCompletionSource<string>>();
         private readonly IWebBrowserClient webBrowserClient;
         public event OnBrowserReadyDelegate OnReady;
+        public event Action<string> OnThirdPartyTokenRequested;
 
         /// <summary>
         ///  In some platforms such as iOS and macOS will not trigger a deeplink and a proper callback needs to be
@@ -82,7 +83,7 @@ namespace Openfort.OpenfortSDK.Core
                 return t.Task.Timeout(TimeSpan.FromMilliseconds(callTimeout));
         }
 
-        private void CallFunction(string requestId, string fxName, string data = null)
+        public void CallFunction(string requestId, string fxName, string data = null)
         {
             BrowserRequest request = new BrowserRequest()
             {
@@ -154,7 +155,7 @@ namespace Openfort.OpenfortSDK.Core
             }
 
             // Special case to detect if index.js is loaded
-            if (response.responseFor == INIT && response.requestId == INIT_REQUEST_ID)
+            if (response.responseFor == OpenfortFunction.INIT && response.requestId == INIT_REQUEST_ID)
             {
                 Debug.Log($"{TAG} Browser is ready");
                 if (OnReady != null)
@@ -170,6 +171,10 @@ namespace Openfort.OpenfortSDK.Core
             if (requestTaskMap.ContainsKey(requestId))
             {
                 NotifyRequestResult(requestId, message, exception);
+            }
+            else if (response.responseFor == OpenfortFunction.SET_THIRD_PARTY_TOKEN)
+            {
+                OnThirdPartyTokenRequested?.Invoke(requestId);
             }
             else
             {
