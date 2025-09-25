@@ -569,12 +569,36 @@ namespace Openfort.OpenfortSDK
             );
             return callResponse.GetStringResult();
         }
+        [Serializable]
+        public class EmbeddedStateResponse
+        {
+            public string responseFor;
+            public string requestId;
+            public bool success;
+            public int result;
+        }
+
         public async UniTask<EmbeddedState> GetEmbeddedState()
         {
             string functionName = "getEmbeddedState";
             string callResponse = await communicationsManager.Call(functionName);
+            Debug.Log($"{TAG} getEmbeddedState response: {callResponse}");
 
-            return Enum.TryParse(callResponse, out EmbeddedState result) ? result : EmbeddedState.NONE;
+            try
+            {
+                EmbeddedStateResponse response = JsonConvert.DeserializeObject<EmbeddedStateResponse>(callResponse);
+
+                if (response != null && response.success)
+                {
+                    return (EmbeddedState)response.result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"{TAG} Error parsing embedded state: {ex.Message}");
+            }
+
+            return EmbeddedState.NONE;
         }
         public async UniTask<Provider> GetEthereumProvider(EthereumProviderRequest request)
         {
