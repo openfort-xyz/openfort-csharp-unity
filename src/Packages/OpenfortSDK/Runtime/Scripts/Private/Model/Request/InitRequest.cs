@@ -11,5 +11,12 @@ namespace Openfort.OpenfortSDK.Model
         public string backendUrl;
         public string iframeUrl;
         public string shieldUrl;
+        public ThirdPartyAuth thirdPartyAuth;
+    }
+
+    [Serializable]
+    internal class ThirdPartyAuth
+    {
+        public string provider;
     }
 }

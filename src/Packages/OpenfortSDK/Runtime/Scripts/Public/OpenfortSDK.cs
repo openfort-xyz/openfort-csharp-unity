@@ -64,6 +64,7 @@ namespace Openfort.OpenfortSDK
             , string backendUrl = "https://api.openfort.io"
             , string iframeUrl = "https://embed.openfort.io"
             , string shieldUrl = "https://shield.openfort.io"
+            , string thirdPartyProvider = null
             , Func<string, Task<string>> getThirdPartyToken = null
 #if OPENFORT_USE_UWB
             , int engineStartupTimeoutMs = 4000
@@ -95,6 +96,7 @@ namespace Openfort.OpenfortSDK
                                 iframeUrl,
                                 shieldUrl,
                                 deeplink,
+                                thirdPartyProvider,
                                 getThirdPartyToken);
 
                             return Instance;
@@ -282,15 +284,6 @@ namespace Openfort.OpenfortSDK
         public async UniTask<InitAuthResponse> InitLinkOAuth(InitLinkOAuthRequest request)
         {
             return await GetOpenfortImpl().InitLinkOAuth(request);
-        }
-
-        /// <summary>
-        /// Authenticates the user with a third-party provider.
-        /// </summary>
-        /// <param name="request">Third-party provider authentication request</param>
-        public async UniTask<AuthPlayerResponse> AuthenticateWithThirdPartyProvider(ThirdPartyOAuthRequest request)
-        {
-            return await GetOpenfortImpl().AuthenticateWithThirdPartyProvider(request);
         }
 
         /// <summary>

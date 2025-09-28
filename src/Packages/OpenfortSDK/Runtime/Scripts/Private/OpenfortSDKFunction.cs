@@ -21,9 +21,6 @@ namespace Openfort.OpenfortSDK
         public const string UNLINK_OAUTH = "unlinkOAuth";
         public const string POOL_OAUTH = "poolOAuth";
 
-        // THIRD PARTY AUTH METHODS
-        public const string AUTHENTICATE_WITH_THIRD_PARTY_PROVIDER = "authenticateWithThirdPartyProvider";
-
         // SIWE METHODS
         public const string INIT_SIWE = "initSIWE";
         public const string AUTHENTICATE_WITH_SIWE = "authenticateWithSIWE";

@@ -61,6 +61,7 @@ namespace Openfort.OpenfortSDK
             string iframeUrl,
             string shieldUrl,
             string deeplink,
+            string thirdPartyProvider,
             Func<string, Task<string>> getThirdPartyToken
             )
         {
@@ -79,7 +80,8 @@ namespace Openfort.OpenfortSDK
                 shieldDebug = shieldDebug,
                 backendUrl = backendUrl,
                 iframeUrl = iframeUrl,
-                shieldUrl = shieldUrl
+                shieldUrl = shieldUrl,
+                thirdPartyAuth = new ThirdPartyAuth { provider = thirdPartyProvider }
             };
             initRequest = JsonUtility.ToJson(request);
 
@@ -357,15 +359,6 @@ namespace Openfort.OpenfortSDK
                 JsonUtility.ToJson(request)
             );
             return callResponse.OptDeserializeObject<InitAuthResponse>();
-        }
-        public async UniTask<AuthPlayerResponse> AuthenticateWithThirdPartyProvider(ThirdPartyOAuthRequest request)
-        {
-            string functionName = "authenticateWithThirdPartyProvider";
-            string callResponse = await communicationsManager.Call(
-                functionName,
-                JsonConvert.SerializeObject(request)
-            );
-            return callResponse.OptDeserializeObject<AuthPlayerResponse>();
         }
         public async UniTask<InitSiweResponse> InitSiwe(InitSiweRequest request)
         {
