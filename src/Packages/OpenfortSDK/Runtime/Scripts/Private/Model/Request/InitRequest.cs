@@ -12,6 +12,7 @@ namespace Openfort.OpenfortSDK.Model
         public string iframeUrl;
         public string shieldUrl;
         public ThirdPartyAuth thirdPartyAuth;
+        public string nativeAppIdentifier;
     }
 
     [Serializable]

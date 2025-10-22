@@ -81,7 +81,8 @@ namespace Openfort.OpenfortSDK
                 backendUrl = backendUrl,
                 iframeUrl = iframeUrl,
                 shieldUrl = shieldUrl,
-                thirdPartyAuth = new ThirdPartyAuth { provider = thirdPartyProvider }
+                thirdPartyAuth = new ThirdPartyAuth { provider = thirdPartyProvider },
+                nativeAppIdentifier = Application.identifier
             };
             initRequest = JsonUtility.ToJson(request);
 
