@@ -57,7 +57,7 @@ public class LoginSceneManager : MonoBehaviour
         {
             openfort = OpenfortSDK.Instance;
         }
-        openfort = await OpenfortSDK.Init("pk_test_505bc088-905e-5a43-b60b-4c37ed1f887a", "a4b75269-65e7-49c4-a600-6b5d9d6eec66", true, "https://api.openfort.io", "https://development-iframe.vercel.app", "https://shield.openfort.io");
+        openfort = await OpenfortSDK.Init("pk_test_f3728acf-3e4f-5e18-b47a-04519e832fce", "a4b75269-65e7-49c4-a600-6b5d9d6eec66", true);
         // Check if user is already logged in
         try
         {
