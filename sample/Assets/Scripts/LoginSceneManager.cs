@@ -213,7 +213,8 @@ public class LoginSceneManager : MonoBehaviour
         int chainId = 80002;
 
         // Get encryption session for automatic embedded wallet recovery
-        // https://github.com/openfort-xyz/openfort-backend-quickstart
+        // Learn more about embedded wallet recovery methods: https://www.openfort.io/docs/configuration/recovery-methods#automatic-recovery
+        // backend sample: https://github.com/openfort-xyz/openfort-backend-quickstart
         var webRequest = UnityWebRequest.PostWwwForm("https://create-next-app.openfort.io/api/protected-create-encryption-session", "");
         string accessToken = await openfort.GetAccessToken();
         webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
@@ -448,6 +449,9 @@ public class LoginSceneManager : MonoBehaviour
 
         try
         {
+            // Get encryption session for automatic embedded wallet recovery
+            // Learn more about embedded wallet recovery methods: https://www.openfort.io/docs/configuration/recovery-methods#automatic-recovery
+            // backend sample: https://github.com/openfort-xyz/openfort-backend-quickstart
             var webRequest = UnityWebRequest.PostWwwForm("https://create-next-app.openfort.io/api/protected-collect", "");
             string accessToken = await openfort.GetAccessToken();
             webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
