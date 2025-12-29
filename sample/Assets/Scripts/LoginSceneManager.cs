@@ -60,10 +60,8 @@ public class LoginSceneManager : MonoBehaviour
 
         string publishable_key_openfort;
 #if UNITY_WEBGL && !UNITY_EDITOR
-        Debug.Log("not nice");
         publishable_key_openfort = "pk_test_b070c245-3948-5855-93a0-8ae25a22043e";
 #else
-        Debug.Log("cool");
         publishable_key_openfort = "pk_test_f3728acf-3e4f-5e18-b47a-04519e832fce";
 #endif
         openfort = await OpenfortSDK.Init(
