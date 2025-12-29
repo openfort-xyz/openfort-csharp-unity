@@ -57,22 +57,41 @@ public class LoginSceneManager : MonoBehaviour
         {
             openfort = OpenfortSDK.Instance;
         }
-        openfort = await OpenfortSDK.Init("pk_test_f3728acf-3e4f-5e18-b47a-04519e832fce", "a4b75269-65e7-49c4-a600-6b5d9d6eec66", true);
+
+        string publishable_key_openfort;
+#if UNITY_WEBGL && !UNITY_EDITOR
+        Debug.Log("not nice");
+        publishable_key_openfort = "pk_test_b070c245-3948-5855-93a0-8ae25a22043e";
+#else
+        Debug.Log("cool");
+        publishable_key_openfort = "pk_test_f3728acf-3e4f-5e18-b47a-04519e832fce";
+#endif
+        openfort = await OpenfortSDK.Init(publishable_key_openfort, "a4b75269-65e7-49c4-a600-6b5d9d6eec66", true);
+
         // Check if user is already logged in
         try
         {
             AuthPlayerResponse user = await openfort.GetUser();
             if (user != null)
             {
-                // User is logged in, get access token and go to logged in panel
-                await SetAutomaticRecoveryMethod();
-                registerPanel.SetActive(false);
-                loginPanel.SetActive(false);
-                openLinkButton.SetActive(false);
-                loadingPanel.SetActive(false);
-                loggedinPanel.SetActive(true);
-                statusTextLabel.text = "Already logged in";
-                return;
+                // User is logged in, now set up wallet
+                try
+                {
+                    await SetAutomaticRecoveryMethod();
+                    registerPanel.SetActive(false);
+                    loginPanel.SetActive(false);
+                    openLinkButton.SetActive(false);
+                    loadingPanel.SetActive(false);
+                    loggedinPanel.SetActive(true);
+                    statusTextLabel.text = "Already logged in";
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"Wallet setup failed on auto-login: {ex.Message}");
+                    statusTextLabel.text = "Wallet setup failed. Please log in again.";
+                    await LogoutSilently();
+                }
             }
         }
         catch (Exception)
@@ -85,7 +104,6 @@ public class LoginSceneManager : MonoBehaviour
         openLinkButton.SetActive(false);
         loadingPanel.SetActive(false);
         loginPanel.SetActive(true);
-
     }
     #endregion
 
@@ -98,23 +116,41 @@ public class LoginSceneManager : MonoBehaviour
     public async void OnSignUpGuest()
     {
         loadingPanel.SetActive(true);
-        registerButton.interactable = false;
-        statusTextLabel.text = $"Logging In As Guest ...";
+        signinButton.interactable = false;
+        statusTextLabel.text = "Logging In As Guest...";
+
         try
         {
-            AuthResponse authResponse = await openfort.SignUpGuest();
+            await openfort.SignUpGuest();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Guest signup failed: {ex.Message}");
+            statusTextLabel.text = "Guest login failed. Please try again.";
+            signinButton.interactable = true;
+            loadingPanel.SetActive(false);
+            return;
+        }
+
+        try
+        {
+            statusTextLabel.text = "Setting up wallet...";
             await SetAutomaticRecoveryMethod();
             loginPanel.SetActive(false);
-            statusTextLabel.text = $"Logged In As Guest";
+            statusTextLabel.text = "Logged In As Guest";
             loggedinPanel.SetActive(true);
         }
-        catch (System.Exception)
+        catch (Exception ex)
         {
-            loginPanel.SetActive(false);
-            registerPanel.SetActive(true);
+            Debug.LogError($"Wallet setup failed: {ex.Message}");
+            statusTextLabel.text = "Wallet setup failed. Please try again.";
+            await LogoutSilently();
         }
-        signinButton.interactable = true;
-        loadingPanel.SetActive(false);
+        finally
+        {
+            signinButton.interactable = true;
+            loadingPanel.SetActive(false);
+        }
     }
     public async void OnGoogleClicked()
     {
@@ -137,28 +173,45 @@ public class LoginSceneManager : MonoBehaviour
         try
         {
             await openfort.AuthenticateWithOAuth(request);
-            AuthPlayerResponse authPlayerResponse = await openfort.GetUser();
-            statusTextLabel.text = $"Logged In With Google";
+            await openfort.GetUser();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Google authentication failed: {ex.Message}");
+            statusTextLabel.text = "Google login failed. Please try again.";
+            googleButton.interactable = true;
+            loadingPanel.SetActive(false);
+            return;
+        }
+
+        try
+        {
+            statusTextLabel.text = "Setting up wallet...";
             await SetAutomaticRecoveryMethod();
             loginPanel.SetActive(false);
             registerPanel.SetActive(false);
+            statusTextLabel.text = "Logged In With Google";
             loggedinPanel.SetActive(true);
-            loadingPanel.SetActive(false);
-            googleButton.interactable = false;
         }
-        catch (System.Exception)
+        catch (Exception ex)
         {
-
+            Debug.LogError($"Wallet setup failed: {ex.Message}");
+            statusTextLabel.text = "Wallet setup failed. Please try again.";
+            await LogoutSilently();
         }
-        googleButton.interactable = true;
-        loadingPanel.SetActive(false);
+        finally
+        {
+            googleButton.interactable = true;
+            loadingPanel.SetActive(false);
+        }
     }
 
     private async Task SetAutomaticRecoveryMethod()
     {
         int chainId = 80002;
 
-        // Get encryption session from API
+        // Get encryption session for automatic embedded wallet recovery
+        // https://github.com/openfort-xyz/openfort-backend-quickstart
         var webRequest = UnityWebRequest.PostWwwForm("https://create-next-app.openfort.io/api/protected-create-encryption-session", "");
         string accessToken = await openfort.GetAccessToken();
         webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
@@ -207,45 +260,88 @@ public class LoginSceneManager : MonoBehaviour
         }
     }
 
-    // This remains your async Task method which should not be directly used with UI event listeners.
     private async Task OnLogoutClicked()
     {
         logoutButton.interactable = false;
-        await openfort.Logout();
-        statusTextLabel.text = "";
-        logoutButton.interactable = true;
-        loginPanel.SetActive(true);
-        loggedinPanel.SetActive(false);
-        loadingPanel.SetActive(false);
+
+        try
+        {
+            await openfort.Logout();
+            statusTextLabel.text = "";
+            loginPanel.SetActive(true);
+            loggedinPanel.SetActive(false);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Logout failed: {ex.Message}");
+            statusTextLabel.text = "Logout failed. Please try again.";
+        }
+        finally
+        {
+            logoutButton.interactable = true;
+            loadingPanel.SetActive(false);
+        }
+    }
+
+    private async Task LogoutSilently()
+    {
+        try
+        {
+            await openfort.Logout();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Silent logout failed: {ex.Message}");
+        }
     }
 
     public async void OnLoginClicked()
     {
         loadingPanel.SetActive(true);
         signinButton.interactable = false;
+
         if (string.IsNullOrEmpty(email.text) || string.IsNullOrEmpty(password.text))
         {
-            statusTextLabel.text = "Please provide a correct email/password";
+            statusTextLabel.text = "Please provide a valid email and password";
+            signinButton.interactable = true;
+            loadingPanel.SetActive(false);
             return;
         }
-        statusTextLabel.text = $"Logging In As {email.text} ...";
+
+        statusTextLabel.text = $"Logging In As {email.text}...";
 
         try
         {
-            AuthResponse authResponse = await openfort.LogInWithEmailPassword(email.text, password.text);
+            await openfort.LogInWithEmailPassword(email.text, password.text);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Login failed: {ex.Message}");
+            statusTextLabel.text = "Login failed. Check your credentials and try again.";
+            signinButton.interactable = true;
+            loadingPanel.SetActive(false);
+            return;
+        }
+
+        try
+        {
+            statusTextLabel.text = "Setting up wallet...";
             await SetAutomaticRecoveryMethod();
             loginPanel.SetActive(false);
             statusTextLabel.text = $"Logged In As {email.text}";
-
             loggedinPanel.SetActive(true);
         }
-        catch (System.Exception)
+        catch (Exception ex)
         {
-            loginPanel.SetActive(false);
-            registerPanel.SetActive(true);
+            Debug.LogError($"Wallet setup failed: {ex.Message}");
+            statusTextLabel.text = "Wallet setup failed. Please try again.";
+            await LogoutSilently();
         }
-        signinButton.interactable = true;
-        loadingPanel.SetActive(false);
+        finally
+        {
+            signinButton.interactable = true;
+            loadingPanel.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -255,21 +351,57 @@ public class LoginSceneManager : MonoBehaviour
     {
         loadingPanel.SetActive(true);
         registerButton.interactable = false;
-        if (password.text != confirmPassword.text)
+
+        if (string.IsNullOrEmpty(email.text) || string.IsNullOrEmpty(password.text))
         {
-            statusTextLabel.text = "Passwords do not Match.";
+            statusTextLabel.text = "Please provide a valid email and password";
+            registerButton.interactable = true;
+            loadingPanel.SetActive(false);
             return;
         }
 
-        statusTextLabel.text = $"Registering User {email.text} ...";
-        await openfort.SignUpWithEmailPassword(email.text, password.text);
-        await SetAutomaticRecoveryMethod();
-        statusTextLabel.text = $"Logged In As {email.text}";
+        if (password.text != confirmPassword.text)
+        {
+            statusTextLabel.text = "Passwords do not match";
+            registerButton.interactable = true;
+            loadingPanel.SetActive(false);
+            return;
+        }
 
-        registerPanel.SetActive(false);
-        loggedinPanel.SetActive(true);
-        registerButton.interactable = true;
-        loadingPanel.SetActive(false);
+        statusTextLabel.text = $"Registering User {email.text}...";
+
+        try
+        {
+            await openfort.SignUpWithEmailPassword(email.text, password.text);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Registration failed: {ex.Message}");
+            statusTextLabel.text = "Registration failed. Please try again.";
+            registerButton.interactable = true;
+            loadingPanel.SetActive(false);
+            return;
+        }
+
+        try
+        {
+            statusTextLabel.text = "Setting up wallet...";
+            await SetAutomaticRecoveryMethod();
+            statusTextLabel.text = $"Logged In As {email.text}";
+            registerPanel.SetActive(false);
+            loggedinPanel.SetActive(true);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Wallet setup failed: {ex.Message}");
+            statusTextLabel.text = "Wallet setup failed. Please try again.";
+            await LogoutSilently();
+        }
+        finally
+        {
+            registerButton.interactable = true;
+            loadingPanel.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -311,97 +443,142 @@ public class LoginSceneManager : MonoBehaviour
         loadingPanel.SetActive(true);
         mintButton.interactable = false;
         statusTextLabel.text = "Requesting encoded transaction";
-        var webRequest = UnityWebRequest.PostWwwForm("https://create-next-app.openfort.io/api/protected-collect", "");
-        string accessToken = await openfort.GetAccessToken();
-        webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
-        webRequest.SetRequestHeader("Content-Type", "application/json");
-        webRequest.SetRequestHeader("Accept", "application/json");
-        await SendWebRequestAsync(webRequest);
 
-        Debug.Log("Mint request sent");
-        if (webRequest.result != UnityWebRequest.Result.Success)
+        try
         {
-            Debug.Log("Mint Failed: " + webRequest.error);
-            return;
+            var webRequest = UnityWebRequest.PostWwwForm("https://create-next-app.openfort.io/api/protected-collect", "");
+            string accessToken = await openfort.GetAccessToken();
+            webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+            webRequest.SetRequestHeader("Content-Type", "application/json");
+            webRequest.SetRequestHeader("Accept", "application/json");
+            await SendWebRequestAsync(webRequest);
+
+            Debug.Log("Mint request sent");
+            if (webRequest.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError($"Mint request failed: {webRequest.error}");
+                statusTextLabel.text = "Mint request failed. Please try again.";
+                return;
+            }
+
+            var responseText = webRequest.downloadHandler.text;
+            Debug.Log("Mint Response: " + responseText);
+            var responseJson = JsonConvert.DeserializeObject<RootObject>(responseText);
+            statusTextLabel.text = "Signing and broadcasting transaction";
+            SignatureTransactionIntentRequest request = new SignatureTransactionIntentRequest(responseJson.transactionIntentId, responseJson.userOperationHash);
+            TransactionIntentResponse intentResponse = await openfort.SendSignatureTransactionIntentRequest(request);
+            statusTextLabel.text = $"{intentResponse.Response.TransactionHash}";
+            transactionHash = intentResponse.Response.TransactionHash;
+            openLinkButton.SetActive(true);
         }
-
-
-        var responseText = webRequest.downloadHandler.text;
-        Debug.Log("Mint Response: " + responseText);
-        var responseJson = JsonConvert.DeserializeObject<RootObject>(responseText);
-        statusTextLabel.text = "Signing and broadcasting transaction";
-        SignatureTransactionIntentRequest request = new SignatureTransactionIntentRequest(responseJson.transactionIntentId, responseJson.userOperationHash);
-        TransactionIntentResponse intentResponse = await openfort.SendSignatureTransactionIntentRequest(request);
-        statusTextLabel.text = $"{intentResponse.Response.TransactionHash}";
-        transactionHash = intentResponse.Response.TransactionHash;
-        openLinkButton.SetActive(true);
-        mintButton.interactable = true;
-        loadingPanel.SetActive(false);
+        catch (Exception ex)
+        {
+            Debug.LogError($"Mint failed: {ex.Message}");
+            statusTextLabel.text = "Mint failed. Please try again.";
+        }
+        finally
+        {
+            mintButton.interactable = true;
+            loadingPanel.SetActive(false);
+        }
     }
     public async void OnSignMessageClicked()
     {
         loadingPanel.SetActive(true);
         signMessageButton.interactable = false;
-        SignMessageRequest signMessageRequest = new SignMessageRequest("Hello World!");
-        var signature = await openfort.SignMessage(signMessageRequest);
-        statusTextLabel.text = $"Signature: {signature}";
-        signMessageButton.interactable = true;
-        loadingPanel.SetActive(false);
+
+        try
+        {
+            SignMessageRequest signMessageRequest = new SignMessageRequest("Hello World!");
+            var signature = await openfort.SignMessage(signMessageRequest);
+            statusTextLabel.text = $"Signature: {signature}";
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Sign message failed: {ex.Message}");
+            statusTextLabel.text = "Failed to sign message. Please try again.";
+        }
+        finally
+        {
+            signMessageButton.interactable = true;
+            loadingPanel.SetActive(false);
+        }
     }
     public async void OnGetUserClicked()
     {
         loadingPanel.SetActive(true);
         getUserButton.interactable = false;
-        AuthPlayerResponse user = await openfort.GetUser();
-        statusTextLabel.text = $"User: {user}";
-        getUserButton.interactable = true;
-        loadingPanel.SetActive(false);
+
+        try
+        {
+            AuthPlayerResponse user = await openfort.GetUser();
+            statusTextLabel.text = $"User: {user}";
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Get user failed: {ex.Message}");
+            statusTextLabel.text = "Failed to get user info. Please try again.";
+        }
+        finally
+        {
+            getUserButton.interactable = true;
+            loadingPanel.SetActive(false);
+        }
     }
     public async void OnSignTypedDataMessageClicked()
     {
         loadingPanel.SetActive(true);
-        signMessageButton.interactable = false;
+        signTypedDataButton.interactable = false;
 
-        var domain = new TypedDataDomain(
-            name: "Openfort",
-            version: "0.5",
-            chainId: 80002,
-            verifyingContract: "0x9b5AB198e042fCF795E4a0Fa4269764A4E8037D2"
-        );
-
-        var types = new Dictionary<string, List<TypedDataField>>
+        try
         {
-            {
-                "Mail", new List<TypedDataField>
-                {
-                    new TypedDataField("from", "Person"),
-                    new TypedDataField("to", "Person"),
-                    new TypedDataField("content", "string")
-                }
-            },
-            {
-                "Person", new List<TypedDataField>
-                {
-                    new TypedDataField("name", "string"),
-                    new TypedDataField("wallet", "address")
-                }
-            }
-        };
+            var domain = new TypedDataDomain(
+                name: "Openfort",
+                version: "0.5",
+                chainId: 80002,
+                verifyingContract: "0x9b5AB198e042fCF795E4a0Fa4269764A4E8037D2"
+            );
 
-        var message = new Dictionary<string, object>
+            var types = new Dictionary<string, List<TypedDataField>>
+            {
+                {
+                    "Mail", new List<TypedDataField>
+                    {
+                        new TypedDataField("from", "Person"),
+                        new TypedDataField("to", "Person"),
+                        new TypedDataField("content", "string")
+                    }
+                },
+                {
+                    "Person", new List<TypedDataField>
+                    {
+                        new TypedDataField("name", "string"),
+                        new TypedDataField("wallet", "address")
+                    }
+                }
+            };
+
+            var message = new Dictionary<string, object>
+            {
+                { "from", new Dictionary<string, object> { { "name", "Alice" }, { "wallet", "0x2111111111111111111111111111111111111111" } } },
+                { "to", new Dictionary<string, object> { { "name", "Bob" }, { "wallet", "0x3111111111111111111111111111111111111111" } } },
+                { "content", "Hello!" }
+            };
+
+            var signTypedDataRequest = new SignTypedDataRequest(domain, types, message);
+            var signature = await openfort.SignTypedData(signTypedDataRequest);
+            statusTextLabel.text = $"Signature: {signature}";
+        }
+        catch (Exception ex)
         {
-            { "from", new Dictionary<string, object> { { "name", "Alice" }, { "wallet", "0x2111111111111111111111111111111111111111" } } },
-            { "to", new Dictionary<string, object> { { "name", "Bob" }, { "wallet", "0x3111111111111111111111111111111111111111" } } },
-            { "content", "Hello!" }
-        };
-
-        var signTypedDataRequest = new SignTypedDataRequest(domain, types, message);
-
-        var signature = await openfort.SignTypedData(signTypedDataRequest);
-
-        statusTextLabel.text = $"Signature: {signature}";
-        signMessageButton.interactable = true;
-        loadingPanel.SetActive(false);
+            Debug.LogError($"Sign typed data failed: {ex.Message}");
+            statusTextLabel.text = "Failed to sign typed data. Please try again.";
+        }
+        finally
+        {
+            signTypedDataButton.interactable = true;
+            loadingPanel.SetActive(false);
+        }
     }
     public void OpenLink()
     {
