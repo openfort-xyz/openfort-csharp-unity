@@ -449,9 +449,8 @@ public class LoginSceneManager : MonoBehaviour
 
         try
         {
-            // Get encryption session for automatic embedded wallet recovery
-            // Learn more about embedded wallet recovery methods: https://www.openfort.io/docs/configuration/recovery-methods#automatic-recovery
-            // backend sample: https://github.com/openfort-xyz/openfort-backend-quickstart
+            // Create a transaction intent and respond with payload to sign
+            // https://github.com/openfort-xyz/openfort-js/blob/main/examples/apps/auth-sample/src/pages/api/protected-collect.ts
             var webRequest = UnityWebRequest.PostWwwForm("https://create-next-app.openfort.io/api/protected-collect", "");
             string accessToken = await openfort.GetAccessToken();
             webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
