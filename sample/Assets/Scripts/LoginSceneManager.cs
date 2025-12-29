@@ -66,7 +66,11 @@ public class LoginSceneManager : MonoBehaviour
         Debug.Log("cool");
         publishable_key_openfort = "pk_test_f3728acf-3e4f-5e18-b47a-04519e832fce";
 #endif
-        openfort = await OpenfortSDK.Init(publishable_key_openfort, "a4b75269-65e7-49c4-a600-6b5d9d6eec66", true);
+        openfort = await OpenfortSDK.Init(
+            publishableKey: publishable_key_openfort,
+            shieldPublishableKey: "a4b75269-65e7-49c4-a600-6b5d9d6eec66",
+            shieldDebug: true
+        );
 
         // Check if user is already logged in
         try
