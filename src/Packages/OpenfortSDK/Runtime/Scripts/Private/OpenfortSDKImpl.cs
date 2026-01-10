@@ -202,24 +202,6 @@ namespace Openfort.OpenfortSDK
             }
 
         }
-        public async UniTask<AuthPlayerResponse> LinkEmailPassword(LinkEmailPasswordRequest request)
-        {
-            string functionName = "linkEmailPassword";
-            string callResponse = await communicationsManager.Call(
-                functionName,
-                JsonUtility.ToJson(request)
-            );
-            return callResponse.OptDeserializeObject<AuthPlayerResponse>();
-        }
-        public async UniTask<AuthPlayerResponse> UnlinkEmailPassword(UnlinkEmailPasswordRequest request)
-        {
-            string functionName = "unlinkEmailPassword";
-            string callResponse = await communicationsManager.Call(
-                functionName,
-                JsonUtility.ToJson(request)
-            );
-            return callResponse.OptDeserializeObject<AuthPlayerResponse>();
-        }
         public async UniTask RequestResetPassword(ResetPasswordRequest request)
         {
             string functionName = "requestResetPassword";
@@ -236,14 +218,21 @@ namespace Openfort.OpenfortSDK
                 );
             }
         }
-        public async UniTask<AuthPlayerResponse> ResetPassword(ResetPasswordRequest request)
+        public async UniTask ResetPassword(ResetPasswordRequest request)
         {
             string functionName = "resetPassword";
             string callResponse = await communicationsManager.Call(
                 functionName,
                 JsonUtility.ToJson(request)
             );
-            return callResponse.OptDeserializeObject<AuthPlayerResponse>();
+            BrowserResponse response = callResponse.OptDeserializeObject<BrowserResponse>();
+            if (response == null || response?.success == false)
+            {
+                throw new OpenfortException(
+                    response?.error ?? "Unable to reset password",
+                    OpenfortErrorType.AUTHENTICATION_ERROR
+                );
+            }
         }
         public async UniTask RequestEmailVerification(RequestEmailVerificationRequest request)
         {
@@ -261,14 +250,21 @@ namespace Openfort.OpenfortSDK
                 );
             }
         }
-        public async UniTask<AuthPlayerResponse> VerifyEmail(VerifyEmailRequest request)
+        public async UniTask VerifyEmail(VerifyEmailRequest request)
         {
             string functionName = "verifyEmail";
             string callResponse = await communicationsManager.Call(
                 functionName,
                 JsonUtility.ToJson(request)
             );
-            return callResponse.OptDeserializeObject<AuthPlayerResponse>();
+            BrowserResponse response = callResponse.OptDeserializeObject<BrowserResponse>();
+            if (response == null || response?.success == false)
+            {
+                throw new OpenfortException(
+                    response?.error ?? "Unable to verify email",
+                    OpenfortErrorType.AUTHENTICATION_ERROR
+                );
+            }
         }
 
         public async UniTask<bool> AuthenticateWithOAuth(OAuthInitRequest request)
@@ -276,7 +272,6 @@ namespace Openfort.OpenfortSDK
             try
             {
                 InitAuthResponse deviceConnectResponse = await InitOAuth(request);
-#if (!UNITY_STANDALONE_WIN && !UNITY_WEBGL)
                 if (request.Options != null && request.Options.RedirectTo != null)
                 {
                     redirectUri = request.Options.RedirectTo;
@@ -285,17 +280,6 @@ namespace Openfort.OpenfortSDK
                 deviceFlowCompletionSource = task;
                 _ = LaunchAuthUrl(deviceConnectResponse.url);
                 return await task.Task;
-#else
-                OpenUrl(deviceConnectResponse.url);
-                if (deviceConnectResponse == null)
-                {
-                    throw new OpenfortException($"Unable to confirm code, call AuthenticateWithOAuth again", OpenfortErrorType.AUTHENTICATION_ERROR);
-                }
-                PoolOAuthRequest poolRequest = new PoolOAuthRequest(deviceConnectResponse.key);
-                AuthResponse authResponse = await PoolOAuth(poolRequest);
-                isLoggedIn = true;
-                return true;
-#endif
             }
             catch (Exception ex)
             {
@@ -334,23 +318,14 @@ namespace Openfort.OpenfortSDK
             );
             return callResponse.OptDeserializeObject<InitAuthResponse>();
         }
-        public async UniTask<AuthPlayerResponse> UnlinkOAuth(UnlinkOAuthRequest request)
+        public async UniTask<User> UnlinkOAuth(UnlinkOAuthRequest request)
         {
             string functionName = "unlinkOAuth";
             string callResponse = await communicationsManager.Call(
                 functionName,
                 JsonUtility.ToJson(request)
             );
-            return callResponse.OptDeserializeObject<AuthPlayerResponse>();
-        }
-        public async UniTask<AuthResponse> PoolOAuth(PoolOAuthRequest request)
-        {
-            string functionName = "poolOAuth";
-            string callResponse = await communicationsManager.Call(
-                functionName,
-                JsonUtility.ToJson(request)
-            );
-            return callResponse.OptDeserializeObject<AuthResponse>();
+            return callResponse.OptDeserializeObject<User>();
         }
         public async UniTask<InitAuthResponse> InitLinkOAuth(InitLinkOAuthRequest request)
         {
@@ -379,24 +354,166 @@ namespace Openfort.OpenfortSDK
             );
             return callResponse.OptDeserializeObject<AuthResponse>();
         }
-        public async UniTask<AuthPlayerResponse> LinkWallet(LinkWalletRequest request)
+        public async UniTask<User> LinkWallet(LinkWalletRequest request)
         {
             string functionName = "linkWallet";
             string callResponse = await communicationsManager.Call(
                 functionName,
                 JsonUtility.ToJson(request)
             );
-            return callResponse.OptDeserializeObject<AuthPlayerResponse>();
+            return callResponse.OptDeserializeObject<User>();
         }
-        public async UniTask<AuthPlayerResponse> UnlinkWallet(UnlinkWalletRequest request)
+        public async UniTask<User> UnlinkWallet(UnlinkWalletRequest request)
         {
             string functionName = "unlinkWallet";
             string callResponse = await communicationsManager.Call(
                 functionName,
                 JsonUtility.ToJson(request)
             );
-            return callResponse.OptDeserializeObject<AuthPlayerResponse>();
+            return callResponse.OptDeserializeObject<User>();
         }
+
+        public async UniTask<InitSiweResponse> LinkSiwe(LinkSiweRequest request)
+        {
+            string callResponse = await communicationsManager.Call(
+                OpenfortFunction.LINK_SIWE,
+                JsonUtility.ToJson(request)
+            );
+            return callResponse.OptDeserializeObject<InitSiweResponse>();
+        }
+
+        // Email OTP Methods
+        public async UniTask RequestEmailOtp(EmailOtpRequest request)
+        {
+            string callResponse = await communicationsManager.Call(
+                OpenfortFunction.REQUEST_EMAIL_OTP,
+                JsonUtility.ToJson(request)
+            );
+            BrowserResponse response = callResponse.OptDeserializeObject<BrowserResponse>();
+            if (response == null || response?.success == false)
+            {
+                throw new OpenfortException(
+                    response?.error ?? "Unable to request email OTP",
+                    OpenfortErrorType.AUTHENTICATION_ERROR
+                );
+            }
+        }
+
+        public async UniTask<AuthResponse> LogInWithEmailOtp(LoginEmailOtpRequest request)
+        {
+            SendAuthEvent(OpenfortAuthEvent.LoggingIn);
+            string callResponse = await communicationsManager.Call(
+                OpenfortFunction.LOGIN_WITH_EMAIL_OTP,
+                JsonUtility.ToJson(request)
+            );
+            AuthResponse authResponse = callResponse.OptDeserializeObject<AuthResponse>();
+            if (authResponse == null)
+            {
+                SendAuthEvent(OpenfortAuthEvent.LoginFailed);
+                throw new OpenfortException(
+                    "Unable to login with email OTP",
+                    OpenfortErrorType.AUTHENTICATION_ERROR
+                );
+            }
+            SendAuthEvent(OpenfortAuthEvent.LoginSuccess);
+            isLoggedIn = true;
+            return authResponse;
+        }
+
+        public async UniTask VerifyEmailOtp(VerifyEmailOtpRequest request)
+        {
+            string callResponse = await communicationsManager.Call(
+                OpenfortFunction.VERIFY_EMAIL_OTP,
+                JsonUtility.ToJson(request)
+            );
+            BrowserResponse response = callResponse.OptDeserializeObject<BrowserResponse>();
+            if (response == null || response?.success == false)
+            {
+                throw new OpenfortException(
+                    response?.error ?? "Unable to verify email OTP",
+                    OpenfortErrorType.AUTHENTICATION_ERROR
+                );
+            }
+        }
+
+        public async UniTask<User> AddEmail(AddEmailRequest request)
+        {
+            string callResponse = await communicationsManager.Call(
+                OpenfortFunction.ADD_EMAIL,
+                JsonUtility.ToJson(request)
+            );
+            return callResponse.OptDeserializeObject<User>();
+        }
+
+        // Phone OTP Methods
+        public async UniTask RequestPhoneOtp(PhoneOtpRequest request)
+        {
+            string callResponse = await communicationsManager.Call(
+                OpenfortFunction.REQUEST_PHONE_OTP,
+                JsonUtility.ToJson(request)
+            );
+            BrowserResponse response = callResponse.OptDeserializeObject<BrowserResponse>();
+            if (response == null || response?.success == false)
+            {
+                throw new OpenfortException(
+                    response?.error ?? "Unable to request phone OTP",
+                    OpenfortErrorType.AUTHENTICATION_ERROR
+                );
+            }
+        }
+
+        public async UniTask<AuthResponse> LogInWithPhoneOtp(LoginPhoneOtpRequest request)
+        {
+            SendAuthEvent(OpenfortAuthEvent.LoggingIn);
+            string callResponse = await communicationsManager.Call(
+                OpenfortFunction.LOGIN_WITH_PHONE_OTP,
+                JsonUtility.ToJson(request)
+            );
+            AuthResponse authResponse = callResponse.OptDeserializeObject<AuthResponse>();
+            if (authResponse == null)
+            {
+                SendAuthEvent(OpenfortAuthEvent.LoginFailed);
+                throw new OpenfortException(
+                    "Unable to login with phone OTP",
+                    OpenfortErrorType.AUTHENTICATION_ERROR
+                );
+            }
+            SendAuthEvent(OpenfortAuthEvent.LoginSuccess);
+            isLoggedIn = true;
+            return authResponse;
+        }
+
+        public async UniTask<AuthResponse> LinkPhoneOtp(LinkPhoneOtpRequest request)
+        {
+            string callResponse = await communicationsManager.Call(
+                OpenfortFunction.LINK_PHONE_OTP,
+                JsonUtility.ToJson(request)
+            );
+            return callResponse.OptDeserializeObject<AuthResponse>();
+        }
+
+        // ID Token Methods
+        public async UniTask<AuthResponse> LogInWithIdToken(LoginIdTokenRequest request)
+        {
+            SendAuthEvent(OpenfortAuthEvent.LoggingIn);
+            string callResponse = await communicationsManager.Call(
+                OpenfortFunction.LOGIN_WITH_ID_TOKEN,
+                JsonUtility.ToJson(request)
+            );
+            AuthResponse authResponse = callResponse.OptDeserializeObject<AuthResponse>();
+            if (authResponse == null)
+            {
+                SendAuthEvent(OpenfortAuthEvent.LoginFailed);
+                throw new OpenfortException(
+                    "Unable to login with ID token",
+                    OpenfortErrorType.AUTHENTICATION_ERROR
+                );
+            }
+            SendAuthEvent(OpenfortAuthEvent.LoginSuccess);
+            isLoggedIn = true;
+            return authResponse;
+        }
+
         public async UniTask StoreCredentials(AuthCredentialsRequest request)
         {
             string functionName = "storeCredentials";
@@ -405,13 +522,13 @@ namespace Openfort.OpenfortSDK
                 JsonUtility.ToJson(request)
             );
         }
-        public async UniTask<AuthPlayerResponse> GetUser()
+        public async UniTask<User> GetUser()
         {
             string functionName = "getUser";
             string callResponse = await communicationsManager.Call(
                 functionName
             );
-            return callResponse.OptDeserializeObject<AuthPlayerResponse>();
+            return callResponse.OptDeserializeObject<User>();
         }
         public async UniTask Logout()
         {

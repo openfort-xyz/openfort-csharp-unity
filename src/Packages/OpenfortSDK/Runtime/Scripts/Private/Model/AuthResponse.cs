@@ -26,7 +26,7 @@ using UnityEngine.Scripting;
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
-    /// AuthResponse
+    /// AuthResponse - Authentication response returned by SDK auth methods
     /// </summary>
     [Preserve]
     [DataContract(Name = "AuthResponse")]
@@ -36,54 +36,38 @@ namespace Openfort.OpenfortSDK.Model
         /// Initializes a new instance of the <see cref="AuthResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected AuthResponse() { }
+        public AuthResponse() { }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthResponse" /> class.
         /// </summary>
-        /// <param name="player">player (required).</param>
-        /// <param name="token">JWT access token. (required).</param>
-        /// <param name="refreshToken">Refresh token. (required).</param>
-        public AuthResponse(AuthPlayerResponse player = default(AuthPlayerResponse), string token = default(string), string refreshToken = default(string))
+        /// <param name="token">Session token for authentication.</param>
+        /// <param name="user">User profile information.</param>
+        /// <param name="session">Session information.</param>
+        public AuthResponse(string token, User user, Session session = null)
         {
-            // to ensure "player" is required (not null)
-            if (player == null)
-            {
-                throw new ArgumentNullException("player is a required property for AuthResponse and cannot be null");
-            }
-            this.Player = player;
-            // to ensure "token" is required (not null)
-            if (token == null)
-            {
-                throw new ArgumentNullException("token is a required property for AuthResponse and cannot be null");
-            }
             this.Token = token;
-            // to ensure "refreshToken" is required (not null)
-            if (refreshToken == null)
-            {
-                throw new ArgumentNullException("refreshToken is a required property for AuthResponse and cannot be null");
-            }
-            this.RefreshToken = refreshToken;
+            this.User = user;
+            this.Session = session;
         }
 
         /// <summary>
-        /// Gets or Sets Player
+        /// Session token for authentication.
         /// </summary>
-        [DataMember(Name = "player", IsRequired = true, EmitDefaultValue = true)]
-        public AuthPlayerResponse Player { get; set; }
-
-        /// <summary>
-        /// JWT access token.
-        /// </summary>
-        /// <value>JWT access token.</value>
-        [DataMember(Name = "token", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "token", EmitDefaultValue = false)]
         public string Token { get; set; }
 
         /// <summary>
-        /// Refresh token.
+        /// User profile information.
         /// </summary>
-        /// <value>Refresh token.</value>
-        [DataMember(Name = "refreshToken", IsRequired = true, EmitDefaultValue = true)]
-        public string RefreshToken { get; set; }
+        [DataMember(Name = "user", EmitDefaultValue = false)]
+        public User User { get; set; }
+
+        /// <summary>
+        /// Session information.
+        /// </summary>
+        [DataMember(Name = "session", EmitDefaultValue = false)]
+        public Session Session { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,9 +77,9 @@ namespace Openfort.OpenfortSDK.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AuthResponse {\n");
-            sb.Append("  Player: ").Append(Player).Append("\n");
             sb.Append("  Token: ").Append(Token).Append("\n");
-            sb.Append("  RefreshToken: ").Append(RefreshToken).Append("\n");
+            sb.Append("  User: ").Append(User).Append("\n");
+            sb.Append("  Session: ").Append(Session).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -132,19 +116,19 @@ namespace Openfort.OpenfortSDK.Model
             }
             return
                 (
-                    this.Player == input.Player ||
-                    (this.Player != null &&
-                    this.Player.Equals(input.Player))
-                ) &&
-                (
                     this.Token == input.Token ||
                     (this.Token != null &&
                     this.Token.Equals(input.Token))
                 ) &&
                 (
-                    this.RefreshToken == input.RefreshToken ||
-                    (this.RefreshToken != null &&
-                    this.RefreshToken.Equals(input.RefreshToken))
+                    this.User == input.User ||
+                    (this.User != null &&
+                    this.User.Equals(input.User))
+                ) &&
+                (
+                    this.Session == input.Session ||
+                    (this.Session != null &&
+                    this.Session.Equals(input.Session))
                 );
         }
 
@@ -154,25 +138,23 @@ namespace Openfort.OpenfortSDK.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            unchecked // Overflow is fine, just wrap
+            unchecked
             {
                 int hashCode = 41;
-                if (this.Player != null)
-                {
-                    hashCode = (hashCode * 59) + this.Player.GetHashCode();
-                }
                 if (this.Token != null)
                 {
                     hashCode = (hashCode * 59) + this.Token.GetHashCode();
                 }
-                if (this.RefreshToken != null)
+                if (this.User != null)
                 {
-                    hashCode = (hashCode * 59) + this.RefreshToken.GetHashCode();
+                    hashCode = (hashCode * 59) + this.User.GetHashCode();
+                }
+                if (this.Session != null)
+                {
+                    hashCode = (hashCode * 59) + this.Session.GetHashCode();
                 }
                 return hashCode;
             }
         }
-
     }
-
 }

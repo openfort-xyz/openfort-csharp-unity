@@ -24,8 +24,23 @@ namespace Openfort.OpenfortSDK
         // SIWE METHODS
         public const string INIT_SIWE = "initSIWE";
         public const string AUTHENTICATE_WITH_SIWE = "authenticateWithSIWE";
+        public const string LINK_SIWE = "linkSIWE";
         public const string LINK_WALLET = "linkWallet";
         public const string UNLINK_WALLET = "unlinkWallet";
+
+        // EMAIL OTP METHODS
+        public const string REQUEST_EMAIL_OTP = "requestEmailOtp";
+        public const string LOGIN_WITH_EMAIL_OTP = "logInWithEmailOtp";
+        public const string VERIFY_EMAIL_OTP = "verifyEmailOtp";
+        public const string ADD_EMAIL = "addEmail";
+
+        // PHONE OTP METHODS
+        public const string REQUEST_PHONE_OTP = "requestPhoneOtp";
+        public const string LOGIN_WITH_PHONE_OTP = "logInWithPhoneOtp";
+        public const string LINK_PHONE_OTP = "linkPhoneOtp";
+
+        // ID TOKEN METHODS
+        public const string LOGIN_WITH_ID_TOKEN = "logInWithIdToken";
 
         // GENERAL AUTH METHODS
         public const string STORE_CREDENTIALS = "storeCredentials";
