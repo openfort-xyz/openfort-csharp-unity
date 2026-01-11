@@ -638,7 +638,8 @@ namespace Openfort.OpenfortSDK
         public async UniTask<string> GetAccessToken()
         {
             string response = await communicationsManager.Call(OpenfortFunction.GET_ACCESS_TOKEN);
-            return response.GetStringResult();
+            string token = response.GetStringResult();
+            return token != null ? Uri.EscapeDataString(token) : null;
         }
         public async UniTask<AuthResponse> ValidateAndRefreshToken(ValidateAndRefreshTokenRequest request)
         {
