@@ -60,20 +60,20 @@ public class LoginSceneManager : MonoBehaviour
 
         string publishable_key_openfort;
 #if UNITY_WEBGL && !UNITY_EDITOR
-        publishable_key_openfort = "pk_test_b070c245-3948-5855-93a0-8ae25a22043e";
+        publishable_key_openfort = "pk_test_4cbab7f5-e100-5a0c-ac4c-440ebbe8b4be";
 #else
-        publishable_key_openfort = "pk_test_f3728acf-3e4f-5e18-b47a-04519e832fce";
+        publishable_key_openfort = "pk_test_b9ffe6eb-ce05-5c93-b7d4-26f6616218b7";
 #endif
         openfort = await OpenfortSDK.Init(
             publishableKey: publishable_key_openfort,
-            shieldPublishableKey: "a4b75269-65e7-49c4-a600-6b5d9d6eec66",
+            shieldPublishableKey: "41d616bd-8886-4387-a1ea-a66c94b88760",
             shieldDebug: true
         );
 
         // Check if user is already logged in
         try
         {
-            AuthPlayerResponse user = await openfort.GetUser();
+            User user = await openfort.GetUser();
             if (user != null)
             {
                 // User is logged in, now set up wallet
@@ -215,7 +215,7 @@ public class LoginSceneManager : MonoBehaviour
         // Get encryption session for automatic embedded wallet recovery
         // Learn more about embedded wallet recovery methods: https://www.openfort.io/docs/configuration/recovery-methods#automatic-recovery
         // backend sample: https://github.com/openfort-xyz/openfort-backend-quickstart
-        var webRequest = UnityWebRequest.PostWwwForm("https://create-next-app.openfort.io/api/protected-create-encryption-session", "");
+        var webRequest = UnityWebRequest.PostWwwForm("https://openfort-js-auth-sample.vercel.app/api/protected-create-encryption-session", "");
         string accessToken = await openfort.GetAccessToken();
         webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
         webRequest.SetRequestHeader("Content-Type", "application/json");
@@ -451,7 +451,7 @@ public class LoginSceneManager : MonoBehaviour
         {
             // Create a transaction intent and respond with payload to sign
             // https://github.com/openfort-xyz/openfort-js/blob/main/examples/apps/auth-sample/src/pages/api/protected-collect.ts
-            var webRequest = UnityWebRequest.PostWwwForm("https://create-next-app.openfort.io/api/protected-collect", "");
+            var webRequest = UnityWebRequest.PostWwwForm("https://openfort-js-auth-sample.vercel.app/api/protected-collect", "");
             string accessToken = await openfort.GetAccessToken();
             webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
             webRequest.SetRequestHeader("Content-Type", "application/json");
@@ -516,7 +516,7 @@ public class LoginSceneManager : MonoBehaviour
 
         try
         {
-            AuthPlayerResponse user = await openfort.GetUser();
+            User user = await openfort.GetUser();
             statusTextLabel.text = $"User: {user}";
         }
         catch (Exception ex)
