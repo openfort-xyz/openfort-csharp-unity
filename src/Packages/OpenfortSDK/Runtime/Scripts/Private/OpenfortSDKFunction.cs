@@ -8,18 +8,10 @@ namespace Openfort.OpenfortSDK
         public const string LOGIN_WITH_EMAIL_PASSWORD = "logInWithEmailPassword";
         public const string SIGNUP_WITH_EMAIL_PASSWORD = "signUpWithEmailPassword";
         public const string SIGNUP_GUEST = "signUpGuest";
-        public const string LINK_EMAIL_PASSWORD = "linkEmailPassword";
-        public const string UNLINK_EMAIL_PASSWORD = "unlinkEmailPassword";
         public const string REQUEST_RESET_PASSWORD = "requestResetPassword";
         public const string RESET_PASSWORD = "resetPassword";
         public const string REQUEST_EMAIL_VERIFICATION = "requestEmailVerification";
         public const string VERIFY_EMAIL = "verifyEmail";
-
-        // OAUTH METHODS
-        public const string INIT_OAUTH = "initOAuth";
-        public const string INIT_LINK_OAUTH = "initLinkOAuth";
-        public const string UNLINK_OAUTH = "unlinkOAuth";
-        public const string POOL_OAUTH = "poolOAuth";
 
         // SIWE METHODS
         public const string INIT_SIWE = "initSIWE";

@@ -27,8 +27,6 @@ namespace Openfort.OpenfortSDK
         public static OpenfortSDK Instance { get; private set; }
 
         private IWebBrowserClient webBrowserClient;
-        // Keeps track of the latest received deeplink
-        private static string deeplink = null;
         private static bool readySignalReceived = false;
         private OpenfortImpl openfortImpl = null;
 
@@ -37,14 +35,6 @@ namespace Openfort.OpenfortSDK
         private OpenfortSDK()
         {
             Application.quitting += OnQuit;
-#if UNITY_IPHONE || UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
-            Application.deepLinkActivated += OnDeepLinkActivated;
-            if (!string.IsNullOrEmpty(Application.absoluteURL))
-            {
-                // Cold start and Application.absoluteURL not null so process Deep Link.
-                OnDeepLinkActivated(Application.absoluteURL);
-            }
-#endif
         }
 
         /// <summary>
@@ -95,7 +85,6 @@ namespace Openfort.OpenfortSDK
                                 backendUrl,
                                 iframeUrl,
                                 shieldUrl,
-                                deeplink,
                                 thirdPartyProvider,
                                 getThirdPartyToken);
 
@@ -225,38 +214,6 @@ namespace Openfort.OpenfortSDK
         public async UniTask VerifyEmail(VerifyEmailRequest request)
         {
             await GetOpenfortImpl().VerifyEmail(request);
-        }
-
-        /// <summary>
-        /// Initializes OAuth for the user.
-        /// </summary>
-        /// <param name="request">OAuth initialization request</param>
-        public async UniTask<InitAuthResponse> InitOAuth(OAuthInitRequest request)
-        {
-            return await GetOpenfortImpl().InitOAuth(request);
-        }
-
-        public async UniTask<bool> AuthenticateWithOAuth(OAuthInitRequest request)
-        {
-            return await GetOpenfortImpl().AuthenticateWithOAuth(request);
-        }
-
-        /// <summary>
-        /// Unlinks OAuth from the user account.
-        /// </summary>
-        /// <param name="request">Unlink OAuth request</param>
-        public async UniTask<User> UnlinkOAuth(UnlinkOAuthRequest request)
-        {
-            return await GetOpenfortImpl().UnlinkOAuth(request);
-        }
-
-        /// <summary>
-        /// Initializes the link OAuth process.
-        /// </summary>
-        /// <param name="request">Link OAuth initialization request</param>
-        public async UniTask<InitAuthResponse> InitLinkOAuth(InitLinkOAuthRequest request)
-        {
-            return await GetOpenfortImpl().InitLinkOAuth(request);
         }
 
         /// <summary>
@@ -521,16 +478,6 @@ namespace Openfort.OpenfortSDK
                 return openfortImpl;
             }
             throw new OpenfortException("Openfort not initialized");
-        }
-
-        private void OnDeepLinkActivated(string url)
-        {
-            deeplink = url;
-
-            if (openfortImpl != null)
-            {
-                GetOpenfortImpl().OnDeepLinkActivated(url);
-            }
         }
 
         private void OnOpenfortAuthEvent(OpenfortAuthEvent authEvent)

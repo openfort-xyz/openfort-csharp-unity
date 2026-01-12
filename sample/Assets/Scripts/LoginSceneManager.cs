@@ -154,60 +154,6 @@ public class LoginSceneManager : MonoBehaviour
             loadingPanel.SetActive(false);
         }
     }
-    public async void OnGoogleClicked()
-    {
-        googleButton.interactable = false;
-        loadingPanel.SetActive(true);
-        OAuthInitRequest request = new OAuthInitRequest()
-        {
-#if UNITY_WEBGL || UNITY_STANDALONE_WIN
-            Provider = OAuthProvider.Google,
-            UsePooling = true,
-#else
-            Provider = OAuthProvider.Google,
-            UsePooling = false,
-            Options = new OAuthInitRequestOptions()
-            {
-                RedirectTo = "mygame://callback"
-            },
-#endif
-        };
-        try
-        {
-            await openfort.AuthenticateWithOAuth(request);
-            await openfort.GetUser();
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Google authentication failed: {ex.Message}");
-            statusTextLabel.text = "Google login failed. Please try again.";
-            googleButton.interactable = true;
-            loadingPanel.SetActive(false);
-            return;
-        }
-
-        try
-        {
-            statusTextLabel.text = "Setting up wallet...";
-            await SetAutomaticRecoveryMethod();
-            loginPanel.SetActive(false);
-            registerPanel.SetActive(false);
-            statusTextLabel.text = "Logged In With Google";
-            loggedinPanel.SetActive(true);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Wallet setup failed: {ex.Message}");
-            statusTextLabel.text = "Wallet setup failed. Please try again.";
-            await LogoutSilently();
-        }
-        finally
-        {
-            googleButton.interactable = true;
-            loadingPanel.SetActive(false);
-        }
-    }
-
     private async Task SetAutomaticRecoveryMethod()
     {
         int chainId = 80002;
