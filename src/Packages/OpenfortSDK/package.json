@@ -1,6 +1,6 @@
 {
   "name": "com.openfort.sdk",
-  "version": "0.3.18",
+  "version": "0.4.0",
   "description": "The Openfort SDK for Unity helps you integrate your game with Openfort sdk.",
   "displayName": "Openfort sdk",
   "scopedRegistries": [

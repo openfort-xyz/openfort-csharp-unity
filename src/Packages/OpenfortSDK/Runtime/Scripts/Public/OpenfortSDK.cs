@@ -27,8 +27,6 @@ namespace Openfort.OpenfortSDK
         public static OpenfortSDK Instance { get; private set; }
 
         private IWebBrowserClient webBrowserClient;
-        // Keeps track of the latest received deeplink
-        private static string deeplink = null;
         private static bool readySignalReceived = false;
         private OpenfortImpl openfortImpl = null;
 
@@ -37,14 +35,6 @@ namespace Openfort.OpenfortSDK
         private OpenfortSDK()
         {
             Application.quitting += OnQuit;
-#if UNITY_IPHONE || UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
-            Application.deepLinkActivated += OnDeepLinkActivated;
-            if (!string.IsNullOrEmpty(Application.absoluteURL))
-            {
-                // Cold start and Application.absoluteURL not null so process Deep Link.
-                OnDeepLinkActivated(Application.absoluteURL);
-            }
-#endif
         }
 
         /// <summary>
@@ -95,7 +85,6 @@ namespace Openfort.OpenfortSDK
                                 backendUrl,
                                 iframeUrl,
                                 shieldUrl,
-                                deeplink,
                                 thirdPartyProvider,
                                 getThirdPartyToken);
 
@@ -192,24 +181,6 @@ namespace Openfort.OpenfortSDK
         }
 
         /// <summary>
-        /// Links an email and password to the user account.
-        /// </summary>
-        /// <param name="request">Link email and password request</param>
-        public async UniTask<AuthPlayerResponse> LinkEmailPassword(LinkEmailPasswordRequest request)
-        {
-            return await GetOpenfortImpl().LinkEmailPassword(request);
-        }
-
-        /// <summary>
-        /// Unlinks an email and password from the user account.
-        /// </summary>
-        /// <param name="request">Unlink email and password request</param>
-        public async UniTask<AuthPlayerResponse> UnlinkEmailPassword(UnlinkEmailPasswordRequest request)
-        {
-            return await GetOpenfortImpl().UnlinkEmailPassword(request);
-        }
-
-        /// <summary>
         /// Requests a password reset.
         /// </summary>
         /// <param name="request">Password reset request</param>
@@ -222,9 +193,9 @@ namespace Openfort.OpenfortSDK
         /// Resets the user password.
         /// </summary>
         /// <param name="request">Reset password request</param>
-        public async UniTask<AuthPlayerResponse> ResetPassword(ResetPasswordRequest request)
+        public async UniTask ResetPassword(ResetPasswordRequest request)
         {
-            return await GetOpenfortImpl().ResetPassword(request);
+            await GetOpenfortImpl().ResetPassword(request);
         }
 
         /// <summary>
@@ -240,50 +211,9 @@ namespace Openfort.OpenfortSDK
         /// Verifies the user email.
         /// </summary>
         /// <param name="request">Verify email request</param>
-        public async UniTask<AuthPlayerResponse> VerifyEmail(VerifyEmailRequest request)
+        public async UniTask VerifyEmail(VerifyEmailRequest request)
         {
-            return await GetOpenfortImpl().VerifyEmail(request);
-        }
-
-        /// <summary>
-        /// Initializes OAuth for the user.
-        /// </summary>
-        /// <param name="request">OAuth initialization request</param>
-        public async UniTask<InitAuthResponse> InitOAuth(OAuthInitRequest request)
-        {
-            return await GetOpenfortImpl().InitOAuth(request);
-        }
-
-        public async UniTask<bool> AuthenticateWithOAuth(OAuthInitRequest request)
-        {
-            return await GetOpenfortImpl().AuthenticateWithOAuth(request);
-        }
-
-        /// <summary>
-        /// Unlinks OAuth from the user account.
-        /// </summary>
-        /// <param name="request">Unlink OAuth request</param>
-        public async UniTask<AuthPlayerResponse> UnlinkOAuth(UnlinkOAuthRequest request)
-        {
-            return await GetOpenfortImpl().UnlinkOAuth(request);
-        }
-
-        /// <summary>
-        /// Pools OAuth for the user account.
-        /// </summary>
-        /// <param name="request">Pool OAuth request</param>
-        public async UniTask<AuthResponse> PoolOAuth(PoolOAuthRequest request)
-        {
-            return await GetOpenfortImpl().PoolOAuth(request);
-        }
-
-        /// <summary>
-        /// Initializes the link OAuth process.
-        /// </summary>
-        /// <param name="request">Link OAuth initialization request</param>
-        public async UniTask<InitAuthResponse> InitLinkOAuth(InitLinkOAuthRequest request)
-        {
-            return await GetOpenfortImpl().InitLinkOAuth(request);
+            await GetOpenfortImpl().VerifyEmail(request);
         }
 
         /// <summary>
@@ -308,7 +238,7 @@ namespace Openfort.OpenfortSDK
         /// Links a wallet to the user account.
         /// </summary>
         /// <param name="request">Link wallet request</param>
-        public async UniTask<AuthPlayerResponse> LinkWallet(LinkWalletRequest request)
+        public async UniTask<User> LinkWallet(LinkWalletRequest request)
         {
             return await GetOpenfortImpl().LinkWallet(request);
         }
@@ -317,9 +247,94 @@ namespace Openfort.OpenfortSDK
         /// Unlinks a wallet from the user account.
         /// </summary>
         /// <param name="request">Unlink wallet request</param>
-        public async UniTask<AuthPlayerResponse> UnlinkWallet(UnlinkWalletRequest request)
+        public async UniTask<User> UnlinkWallet(UnlinkWalletRequest request)
         {
             return await GetOpenfortImpl().UnlinkWallet(request);
+        }
+
+        /// <summary>
+        /// Links a SIWE wallet to the user account.
+        /// </summary>
+        /// <param name="request">Link SIWE request containing the wallet address</param>
+        public async UniTask<InitSiweResponse> LinkSiwe(LinkSiweRequest request)
+        {
+            return await GetOpenfortImpl().LinkSiwe(request);
+        }
+
+        /// <summary>
+        /// Requests an OTP to be sent to the specified email address.
+        /// </summary>
+        /// <param name="email">Email address to send OTP to</param>
+        public async UniTask RequestEmailOtp(string email)
+        {
+            await GetOpenfortImpl().RequestEmailOtp(new EmailOtpRequest(email));
+        }
+
+        /// <summary>
+        /// Logs in the user using email and OTP.
+        /// </summary>
+        /// <param name="email">User email</param>
+        /// <param name="otp">One-time password received via email</param>
+        public async UniTask<AuthResponse> LogInWithEmailOtp(string email, string otp)
+        {
+            return await GetOpenfortImpl().LogInWithEmailOtp(new LoginEmailOtpRequest(email, otp));
+        }
+
+        /// <summary>
+        /// Verifies the user's email using OTP.
+        /// </summary>
+        /// <param name="email">Email address to verify</param>
+        /// <param name="otp">One-time password received via email</param>
+        public async UniTask VerifyEmailOtp(string email, string otp)
+        {
+            await GetOpenfortImpl().VerifyEmailOtp(new VerifyEmailOtpRequest(email, otp));
+        }
+
+        /// <summary>
+        /// Adds an additional email to the user account.
+        /// </summary>
+        /// <param name="request">Add email request</param>
+        public async UniTask<User> AddEmail(AddEmailRequest request)
+        {
+            return await GetOpenfortImpl().AddEmail(request);
+        }
+
+        /// <summary>
+        /// Requests an OTP to be sent to the specified phone number.
+        /// </summary>
+        /// <param name="phoneNumber">Phone number to send OTP to</param>
+        public async UniTask RequestPhoneOtp(string phoneNumber)
+        {
+            await GetOpenfortImpl().RequestPhoneOtp(new PhoneOtpRequest(phoneNumber));
+        }
+
+        /// <summary>
+        /// Logs in the user using phone number and OTP.
+        /// </summary>
+        /// <param name="phoneNumber">User phone number</param>
+        /// <param name="otp">One-time password received via SMS</param>
+        public async UniTask<AuthResponse> LogInWithPhoneOtp(string phoneNumber, string otp)
+        {
+            return await GetOpenfortImpl().LogInWithPhoneOtp(new LoginPhoneOtpRequest(phoneNumber, otp));
+        }
+
+        /// <summary>
+        /// Links a phone number to the user account using OTP.
+        /// </summary>
+        /// <param name="request">Link phone OTP request</param>
+        public async UniTask<AuthResponse> LinkPhoneOtp(LinkPhoneOtpRequest request)
+        {
+            return await GetOpenfortImpl().LinkPhoneOtp(request);
+        }
+
+        /// <summary>
+        /// Logs in the user using an ID token from an external identity provider.
+        /// </summary>
+        /// <param name="provider">Identity provider (e.g., "google", "facebook", "apple")</param>
+        /// <param name="token">ID token from the identity provider</param>
+        public async UniTask<AuthResponse> LogInWithIdToken(string provider, string token)
+        {
+            return await GetOpenfortImpl().LogInWithIdToken(new LoginIdTokenRequest(provider, token));
         }
 
         /// <summary>
@@ -334,7 +349,7 @@ namespace Openfort.OpenfortSDK
         /// <summary>
         /// Gets the user information.
         /// </summary>
-        public async UniTask<AuthPlayerResponse> GetUser()
+        public async UniTask<User> GetUser()
         {
             return await GetOpenfortImpl().GetUser();
         }
@@ -463,16 +478,6 @@ namespace Openfort.OpenfortSDK
                 return openfortImpl;
             }
             throw new OpenfortException("Openfort not initialized");
-        }
-
-        private void OnDeepLinkActivated(string url)
-        {
-            deeplink = url;
-
-            if (openfortImpl != null)
-            {
-                GetOpenfortImpl().OnDeepLinkActivated(url);
-            }
         }
 
         private void OnOpenfortAuthEvent(OpenfortAuthEvent authEvent)

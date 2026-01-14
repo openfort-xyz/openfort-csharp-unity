@@ -20,19 +20,15 @@ public class LoginSceneManager : MonoBehaviour
     [Header("Login")]
     public GameObject loginPanel;
     public InputField email;
-    public InputField password;
     public Button signinButton;
-    public Button googleButton;
 
-    [Header("Register")]
-    public GameObject registerPanel;
-    public InputField confirmPassword;
-    public Button registerButton;
+    public Button signupGuestButton;
 
-    [Header("Forgot Password")]
-    public GameObject ForgotPasswordPanel;
-    public InputField emailRecover;
-    public Button requestButton;
+    [Header("OTP Verification")]
+    public GameObject otpPanel;
+    public InputField otpInput;
+    public Button verifyOtpButton;
+    private string otpEmail; // Store email for OTP verification
 
     [Header("LoggedIn")]
     public GameObject loggedinPanel;
@@ -60,28 +56,28 @@ public class LoginSceneManager : MonoBehaviour
 
         string publishable_key_openfort;
 #if UNITY_WEBGL && !UNITY_EDITOR
-        publishable_key_openfort = "pk_test_b070c245-3948-5855-93a0-8ae25a22043e";
+        publishable_key_openfort = "pk_test_4cbab7f5-e100-5a0c-ac4c-440ebbe8b4be";
 #else
-        publishable_key_openfort = "pk_test_f3728acf-3e4f-5e18-b47a-04519e832fce";
+        publishable_key_openfort = "pk_test_b9ffe6eb-ce05-5c93-b7d4-26f6616218b7";
 #endif
         openfort = await OpenfortSDK.Init(
             publishableKey: publishable_key_openfort,
-            shieldPublishableKey: "a4b75269-65e7-49c4-a600-6b5d9d6eec66",
+            shieldPublishableKey: "41d616bd-8886-4387-a1ea-a66c94b88760",
             shieldDebug: true
         );
 
         // Check if user is already logged in
         try
         {
-            AuthPlayerResponse user = await openfort.GetUser();
+            User user = await openfort.GetUser();
             if (user != null)
             {
                 // User is logged in, now set up wallet
                 try
                 {
                     await SetAutomaticRecoveryMethod();
-                    registerPanel.SetActive(false);
                     loginPanel.SetActive(false);
+                    otpPanel.SetActive(false);
                     openLinkButton.SetActive(false);
                     loadingPanel.SetActive(false);
                     loggedinPanel.SetActive(true);
@@ -101,19 +97,15 @@ public class LoginSceneManager : MonoBehaviour
             // User is not logged in, continue with normal flow
         }
 
-        registerPanel.SetActive(false);
         loggedinPanel.SetActive(false);
         openLinkButton.SetActive(false);
         loadingPanel.SetActive(false);
+        otpPanel.SetActive(false);
         loginPanel.SetActive(true);
     }
     #endregion
 
     #region PUBLIC_BUTTON_METHODS
-    /// <summary>
-    /// Login Button means they've selected to submit a email (email) / password combo
-    /// Note: in this flow if no account is found, it will ask them to register.
-    /// </summary>
 
     public async void OnSignUpGuest()
     {
@@ -154,60 +146,6 @@ public class LoginSceneManager : MonoBehaviour
             loadingPanel.SetActive(false);
         }
     }
-    public async void OnGoogleClicked()
-    {
-        googleButton.interactable = false;
-        loadingPanel.SetActive(true);
-        OAuthInitRequest request = new OAuthInitRequest()
-        {
-#if UNITY_WEBGL || UNITY_STANDALONE_WIN
-            Provider = OAuthProvider.Google,
-            UsePooling = true,
-#else
-            Provider = OAuthProvider.Google,
-            UsePooling = false,
-            Options = new OAuthInitRequestOptions()
-            {
-                RedirectTo = "mygame://callback"
-            },
-#endif
-        };
-        try
-        {
-            await openfort.AuthenticateWithOAuth(request);
-            await openfort.GetUser();
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Google authentication failed: {ex.Message}");
-            statusTextLabel.text = "Google login failed. Please try again.";
-            googleButton.interactable = true;
-            loadingPanel.SetActive(false);
-            return;
-        }
-
-        try
-        {
-            statusTextLabel.text = "Setting up wallet...";
-            await SetAutomaticRecoveryMethod();
-            loginPanel.SetActive(false);
-            registerPanel.SetActive(false);
-            statusTextLabel.text = "Logged In With Google";
-            loggedinPanel.SetActive(true);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Wallet setup failed: {ex.Message}");
-            statusTextLabel.text = "Wallet setup failed. Please try again.";
-            await LogoutSilently();
-        }
-        finally
-        {
-            googleButton.interactable = true;
-            loadingPanel.SetActive(false);
-        }
-    }
-
     private async Task SetAutomaticRecoveryMethod()
     {
         int chainId = 80002;
@@ -298,47 +236,33 @@ public class LoginSceneManager : MonoBehaviour
         }
     }
 
-    public async void OnLoginClicked()
+    public async void OnLoginOTPClicked()
     {
         loadingPanel.SetActive(true);
         signinButton.interactable = false;
 
-        if (string.IsNullOrEmpty(email.text) || string.IsNullOrEmpty(password.text))
+        if (string.IsNullOrEmpty(email.text))
         {
-            statusTextLabel.text = "Please provide a valid email and password";
+            statusTextLabel.text = "Please provide a valid email";
             signinButton.interactable = true;
             loadingPanel.SetActive(false);
             return;
         }
 
-        statusTextLabel.text = $"Logging In As {email.text}...";
+        statusTextLabel.text = $"Requesting OTP To {email.text}...";
 
         try
         {
-            await openfort.LogInWithEmailPassword(email.text, password.text);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Login failed: {ex.Message}");
-            statusTextLabel.text = "Login failed. Check your credentials and try again.";
-            signinButton.interactable = true;
-            loadingPanel.SetActive(false);
-            return;
-        }
-
-        try
-        {
-            statusTextLabel.text = "Setting up wallet...";
-            await SetAutomaticRecoveryMethod();
+            await openfort.RequestEmailOtp(email.text);
+            otpEmail = email.text; // Store email for verification
             loginPanel.SetActive(false);
-            statusTextLabel.text = $"Logged In As {email.text}";
-            loggedinPanel.SetActive(true);
+            otpPanel.SetActive(true);
+            statusTextLabel.text = "OTP sent! Please check your email and enter the code.";
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Wallet setup failed: {ex.Message}");
-            statusTextLabel.text = "Wallet setup failed. Please try again.";
-            await LogoutSilently();
+            Debug.LogError($"Request failed: {ex.Message}");
+            statusTextLabel.text = "Request OTP failed.";
         }
         finally
         {
@@ -347,41 +271,30 @@ public class LoginSceneManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// No account was found, and they have selected to register a email (email) / password combo.
-    /// </summary>
-    public async void OnRegisterButtonClicked()
+    public async void OnVerifyOtpClicked()
     {
         loadingPanel.SetActive(true);
-        registerButton.interactable = false;
+        verifyOtpButton.interactable = false;
 
-        if (string.IsNullOrEmpty(email.text) || string.IsNullOrEmpty(password.text))
+        if (string.IsNullOrEmpty(otpInput.text))
         {
-            statusTextLabel.text = "Please provide a valid email and password";
-            registerButton.interactable = true;
+            statusTextLabel.text = "Please enter the OTP code";
+            verifyOtpButton.interactable = true;
             loadingPanel.SetActive(false);
             return;
         }
 
-        if (password.text != confirmPassword.text)
-        {
-            statusTextLabel.text = "Passwords do not match";
-            registerButton.interactable = true;
-            loadingPanel.SetActive(false);
-            return;
-        }
-
-        statusTextLabel.text = $"Registering User {email.text}...";
+        statusTextLabel.text = "Verifying OTP...";
 
         try
         {
-            await openfort.SignUpWithEmailPassword(email.text, password.text);
+            await openfort.LogInWithEmailOtp(otpEmail, otpInput.text);
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Registration failed: {ex.Message}");
-            statusTextLabel.text = "Registration failed. Please try again.";
-            registerButton.interactable = true;
+            Debug.LogError($"OTP verification failed: {ex.Message}");
+            statusTextLabel.text = "OTP verification failed. Please try again.";
+            verifyOtpButton.interactable = true;
             loadingPanel.SetActive(false);
             return;
         }
@@ -390,8 +303,8 @@ public class LoginSceneManager : MonoBehaviour
         {
             statusTextLabel.text = "Setting up wallet...";
             await SetAutomaticRecoveryMethod();
-            statusTextLabel.text = $"Logged In As {email.text}";
-            registerPanel.SetActive(false);
+            otpPanel.SetActive(false);
+            statusTextLabel.text = $"Logged In As {otpEmail}";
             loggedinPanel.SetActive(true);
         }
         catch (Exception ex)
@@ -402,21 +315,18 @@ public class LoginSceneManager : MonoBehaviour
         }
         finally
         {
-            registerButton.interactable = true;
+            verifyOtpButton.interactable = true;
             loadingPanel.SetActive(false);
         }
     }
 
-    /// <summary>
-    /// They have opted to cancel the Registration process.
-    /// Possibly they typed the email address incorrectly.
-    /// </summary>
-    public void OnCancelRegisterButtonClicked()
+    public void OnCancelOtpClicked()
     {
-        ResetFormsAndStatusLabel();
-
-        registerPanel.SetActive(false);
+        otpPanel.SetActive(false);
+        otpInput.text = string.Empty;
+        otpEmail = string.Empty;
         loginPanel.SetActive(true);
+        statusTextLabel.text = string.Empty;
     }
 
     public void OnBackToLoginClicked()
@@ -429,8 +339,8 @@ public class LoginSceneManager : MonoBehaviour
     {
         // Reset all forms
         email.text = string.Empty;
-        password.text = string.Empty;
-        confirmPassword.text = string.Empty;
+        otpInput.text = string.Empty;
+        otpEmail = string.Empty;
         // Reset logged in player label
         playerLabel.text = string.Empty;
         // Reset status text
@@ -516,7 +426,7 @@ public class LoginSceneManager : MonoBehaviour
 
         try
         {
-            AuthPlayerResponse user = await openfort.GetUser();
+            User user = await openfort.GetUser();
             statusTextLabel.text = $"User: {user}";
         }
         catch (Exception ex)

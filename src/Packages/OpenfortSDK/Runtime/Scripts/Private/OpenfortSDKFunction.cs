@@ -8,24 +8,31 @@ namespace Openfort.OpenfortSDK
         public const string LOGIN_WITH_EMAIL_PASSWORD = "logInWithEmailPassword";
         public const string SIGNUP_WITH_EMAIL_PASSWORD = "signUpWithEmailPassword";
         public const string SIGNUP_GUEST = "signUpGuest";
-        public const string LINK_EMAIL_PASSWORD = "linkEmailPassword";
-        public const string UNLINK_EMAIL_PASSWORD = "unlinkEmailPassword";
         public const string REQUEST_RESET_PASSWORD = "requestResetPassword";
         public const string RESET_PASSWORD = "resetPassword";
         public const string REQUEST_EMAIL_VERIFICATION = "requestEmailVerification";
         public const string VERIFY_EMAIL = "verifyEmail";
 
-        // OAUTH METHODS
-        public const string INIT_OAUTH = "initOAuth";
-        public const string INIT_LINK_OAUTH = "initLinkOAuth";
-        public const string UNLINK_OAUTH = "unlinkOAuth";
-        public const string POOL_OAUTH = "poolOAuth";
-
         // SIWE METHODS
         public const string INIT_SIWE = "initSIWE";
         public const string AUTHENTICATE_WITH_SIWE = "authenticateWithSIWE";
+        public const string LINK_SIWE = "linkSIWE";
         public const string LINK_WALLET = "linkWallet";
         public const string UNLINK_WALLET = "unlinkWallet";
+
+        // EMAIL OTP METHODS
+        public const string REQUEST_EMAIL_OTP = "requestEmailOtp";
+        public const string LOGIN_WITH_EMAIL_OTP = "logInWithEmailOtp";
+        public const string VERIFY_EMAIL_OTP = "verifyEmailOtp";
+        public const string ADD_EMAIL = "addEmail";
+
+        // PHONE OTP METHODS
+        public const string REQUEST_PHONE_OTP = "requestPhoneOtp";
+        public const string LOGIN_WITH_PHONE_OTP = "logInWithPhoneOtp";
+        public const string LINK_PHONE_OTP = "linkPhoneOtp";
+
+        // ID TOKEN METHODS
+        public const string LOGIN_WITH_ID_TOKEN = "logInWithIdToken";
 
         // GENERAL AUTH METHODS
         public const string STORE_CREDENTIALS = "storeCredentials";
