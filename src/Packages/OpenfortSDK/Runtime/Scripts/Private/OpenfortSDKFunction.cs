@@ -13,11 +13,16 @@ namespace Openfort.OpenfortSDK
         public const string REQUEST_EMAIL_VERIFICATION = "requestEmailVerification";
         public const string VERIFY_EMAIL = "verifyEmail";
 
+        // OAUTH METHODS
+        public const string INIT_OAUTH = "initOAuth";
+        public const string INIT_LINK_OAUTH = "initLinkOAuth";
+        public const string UNLINK_OAUTH = "unlinkOAuth";
+
         // SIWE METHODS
-        public const string INIT_SIWE = "initSIWE";
-        public const string AUTHENTICATE_WITH_SIWE = "authenticateWithSIWE";
-        public const string LINK_SIWE = "linkSIWE";
-        public const string LINK_WALLET = "linkWallet";
+        public const string INIT_SIWE = "initSiwe";
+        public const string LOGIN_WITH_SIWE = "loginWithSiwe";
+        public const string INIT_LINK_SIWE = "initLinkSiwe";
+        public const string LINK_WITH_SIWE = "linkWithSiwe";
         public const string UNLINK_WALLET = "unlinkWallet";
 
         // EMAIL OTP METHODS
@@ -41,14 +46,19 @@ namespace Openfort.OpenfortSDK
         public const string LOGOUT = "logout";
         public const string VALIDATE_AND_REFRESH_TOKEN = "validateAndRefreshToken";
 
+        // TRANSACTION METHODS
         public const string SEND_SIGNATURE_TRANSACTION_INTENT_REQUEST = "sendSignatureTransactionIntentRequest";
         public const string SIGN_MESSAGE = "signMessage";
         public const string SIGN_TYPED_DATA = "signTypedData";
-        public const string SEND_SIGNATURE_SESSION_REQUEST = "sendSignatureSessionRequest";
+
+        // EMBEDDED WALLET METHODS
         public const string GET_EMBEDDED_STATE = "getEmbeddedState";
         public const string GET_ETHEREUM_PROVIDER = "getEthereumProvider";
-        public const string CONFIGURE_SESSION_KEY = "configureSessionKey";
-        public const string CONFIGURE_EMBEDDED_SIGNER = "configureEmbeddedSigner";
+        public const string CONFIGURE_EMBEDDED_WALLET = "configureEmbeddedWallet";
+        public const string CREATE_EMBEDDED_WALLET = "createEmbeddedWallet";
+        public const string RECOVER_EMBEDDED_WALLET = "recoverEmbeddedWallet";
+        public const string LIST_WALLETS = "listWallets";
+        public const string GET_WALLET = "getWallet";
 
         public const string SET_THIRD_PARTY_TOKEN = "setThirdPartyToken";
     }

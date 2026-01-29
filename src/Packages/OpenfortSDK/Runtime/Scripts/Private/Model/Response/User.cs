@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
@@ -6,6 +7,62 @@ using UnityEngine.Scripting;
 
 namespace Openfort.OpenfortSDK.Model
 {
+    /// <summary>
+    /// Linked account information
+    /// </summary>
+    [Preserve]
+    [DataContract(Name = "UserAccount")]
+    public class UserAccount
+    {
+        /// <summary>
+        /// The provider of the linked account
+        /// </summary>
+        [DataMember(Name = "provider", EmitDefaultValue = false)]
+        public string Provider { get; set; }
+
+        /// <summary>
+        /// Timestamp when the account was created
+        /// </summary>
+        [DataMember(Name = "createdAt", EmitDefaultValue = false)]
+        public long? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Timestamp when the account was last updated
+        /// </summary>
+        [DataMember(Name = "updatedAt", EmitDefaultValue = false)]
+        public long? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// The account ID
+        /// </summary>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
+
+        /// <summary>
+        /// The chain type (EVM, SVM, etc.)
+        /// </summary>
+        [DataMember(Name = "chainType", EmitDefaultValue = false)]
+        public string ChainType { get; set; }
+
+        /// <summary>
+        /// The chain ID
+        /// </summary>
+        [DataMember(Name = "chainId", EmitDefaultValue = false)]
+        public string ChainId { get; set; }
+
+        /// <summary>
+        /// The connector type
+        /// </summary>
+        [DataMember(Name = "connectorType", EmitDefaultValue = false)]
+        public string ConnectorType { get; set; }
+
+        /// <summary>
+        /// The wallet client type
+        /// </summary>
+        [DataMember(Name = "walletClientType", EmitDefaultValue = false)]
+        public string WalletClientType { get; set; }
+    }
+
     /// <summary>
     /// User profile information
     /// </summary>
@@ -32,7 +89,8 @@ namespace Openfort.OpenfortSDK.Model
             string updatedAt = null,
             bool? isAnonymous = null,
             string phoneNumber = null,
-            bool? phoneNumberVerified = null)
+            bool? phoneNumberVerified = null,
+            List<UserAccount> linkedAccounts = null)
         {
             this.Id = id;
             this.Email = email;
@@ -44,6 +102,7 @@ namespace Openfort.OpenfortSDK.Model
             this.IsAnonymous = isAnonymous;
             this.PhoneNumber = phoneNumber;
             this.PhoneNumberVerified = phoneNumberVerified;
+            this.LinkedAccounts = linkedAccounts;
         }
 
         /// <summary>
@@ -107,6 +166,12 @@ namespace Openfort.OpenfortSDK.Model
         public bool? PhoneNumberVerified { get; set; }
 
         /// <summary>
+        /// List of linked accounts
+        /// </summary>
+        [DataMember(Name = "linkedAccounts", EmitDefaultValue = false)]
+        public List<UserAccount> LinkedAccounts { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         public override string ToString()
@@ -123,6 +188,7 @@ namespace Openfort.OpenfortSDK.Model
             sb.Append("  IsAnonymous: ").Append(IsAnonymous).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  PhoneNumberVerified: ").Append(PhoneNumberVerified).Append("\n");
+            sb.Append("  LinkedAccounts: ").Append(LinkedAccounts).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -162,7 +228,8 @@ namespace Openfort.OpenfortSDK.Model
                 (this.UpdatedAt == input.UpdatedAt || (this.UpdatedAt != null && this.UpdatedAt.Equals(input.UpdatedAt))) &&
                 (this.IsAnonymous == input.IsAnonymous || (this.IsAnonymous != null && this.IsAnonymous.Equals(input.IsAnonymous))) &&
                 (this.PhoneNumber == input.PhoneNumber || (this.PhoneNumber != null && this.PhoneNumber.Equals(input.PhoneNumber))) &&
-                (this.PhoneNumberVerified == input.PhoneNumberVerified || (this.PhoneNumberVerified != null && this.PhoneNumberVerified.Equals(input.PhoneNumberVerified)));
+                (this.PhoneNumberVerified == input.PhoneNumberVerified || (this.PhoneNumberVerified != null && this.PhoneNumberVerified.Equals(input.PhoneNumberVerified))) &&
+                (this.LinkedAccounts == input.LinkedAccounts || (this.LinkedAccounts != null && this.LinkedAccounts.Equals(input.LinkedAccounts)));
         }
 
         /// <summary>
@@ -183,6 +250,7 @@ namespace Openfort.OpenfortSDK.Model
                 if (this.IsAnonymous != null) hashCode = (hashCode * 59) + this.IsAnonymous.GetHashCode();
                 if (this.PhoneNumber != null) hashCode = (hashCode * 59) + this.PhoneNumber.GetHashCode();
                 if (this.PhoneNumberVerified != null) hashCode = (hashCode * 59) + this.PhoneNumberVerified.GetHashCode();
+                if (this.LinkedAccounts != null) hashCode = (hashCode * 59) + this.LinkedAccounts.GetHashCode();
                 return hashCode;
             }
         }

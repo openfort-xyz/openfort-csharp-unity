@@ -129,21 +129,19 @@ namespace Openfort.OpenfortSDK
 
             return callResponse.OptDeserializeObject<AuthResponse>();
         }
-        public async UniTask<AuthResponse> SignUpWithEmailPassword(string email, string password, string name = null)
+        public async UniTask<AuthResponse> SignUpWithEmailPassword(string email, string password, string name = null, string callbackURL = null)
         {
-            string functionName = "signUpWithEmailPassword";
             SendAuthEvent(OpenfortAuthEvent.LoggingIn);
             SignupEmailPasswordRequest request = new SignupEmailPasswordRequest(
                 email: email,
                 password: password,
-                options: new Options(
-                    data: new Data(name)
-                )
+                name: name,
+                callbackURL: callbackURL
             );
 
             string callResponse = await communicationsManager.Call(
-                functionName,
-                JsonUtility.ToJson(request)
+                OpenfortFunction.SIGNUP_WITH_EMAIL_PASSWORD,
+                JsonConvert.SerializeObject(request, s_JsonSettings)
             );
             AuthResponse authResponse = callResponse.OptDeserializeObject<AuthResponse>();
 
@@ -151,7 +149,7 @@ namespace Openfort.OpenfortSDK
             {
                 SendAuthEvent(OpenfortAuthEvent.LoginFailed);
                 throw new OpenfortException(
-                    "Unable to login, call {functionName} again",
+                    "Unable to sign up",
                     OpenfortErrorType.AUTHENTICATION_ERROR
                 );
             }
@@ -161,7 +159,6 @@ namespace Openfort.OpenfortSDK
                 isLoggedIn = true;
                 return authResponse;
             }
-
         }
         public async UniTask RequestResetPassword(ResetPasswordRequest request)
         {
@@ -228,50 +225,110 @@ namespace Openfort.OpenfortSDK
             }
         }
 
+        // OAuth Methods
+        public async UniTask<string> InitOAuth(InitOAuthRequest request)
+        {
+            string callResponse = await communicationsManager.Call(
+                OpenfortFunction.INIT_OAUTH,
+                JsonConvert.SerializeObject(request, s_JsonSettings)
+            );
+            return callResponse.GetStringResult();
+        }
+
+        public async UniTask<string> InitLinkOAuth(InitOAuthRequest request)
+        {
+            string callResponse = await communicationsManager.Call(
+                OpenfortFunction.INIT_LINK_OAUTH,
+                JsonConvert.SerializeObject(request, s_JsonSettings)
+            );
+            return callResponse.GetStringResult();
+        }
+
+        public async UniTask<User> UnlinkOAuth(UnlinkOAuthRequest request)
+        {
+            string callResponse = await communicationsManager.Call(
+                OpenfortFunction.UNLINK_OAUTH,
+                JsonConvert.SerializeObject(request, s_JsonSettings)
+            );
+            return callResponse.OptDeserializeObject<User>();
+        }
+
+        // SIWE Methods
         public async UniTask<InitSiweResponse> InitSiwe(InitSiweRequest request)
         {
-            string functionName = "initSIWE";
             string callResponse = await communicationsManager.Call(
-                functionName,
+                OpenfortFunction.INIT_SIWE,
                 JsonUtility.ToJson(request)
             );
             return callResponse.OptDeserializeObject<InitSiweResponse>();
         }
+
+        public async UniTask<AuthResponse> LoginWithSiwe(LoginWithSiweRequest request)
+        {
+            SendAuthEvent(OpenfortAuthEvent.LoggingIn);
+            string callResponse = await communicationsManager.Call(
+                OpenfortFunction.LOGIN_WITH_SIWE,
+                JsonUtility.ToJson(request)
+            );
+            AuthResponse authResponse = callResponse.OptDeserializeObject<AuthResponse>();
+            if (authResponse != null)
+            {
+                SendAuthEvent(OpenfortAuthEvent.LoginSuccess);
+                isLoggedIn = true;
+            }
+            else
+            {
+                SendAuthEvent(OpenfortAuthEvent.LoginFailed);
+            }
+            return authResponse;
+        }
+
+        [Obsolete("Use LoginWithSiwe instead")]
         public async UniTask<AuthResponse> AuthenticateWithSiwe(AuthenticateWithSiweRequest request)
         {
-            string functionName = "authenticateWithSIWE";
+            // Convert to new request format
+            var newRequest = new LoginWithSiweRequest(
+                request.signature,
+                request.message,
+                request.walletClientType,
+                request.connectorType,
+                request.address ?? ""
+            );
+            return await LoginWithSiwe(newRequest);
+        }
+
+        public async UniTask<InitSiweResponse> InitLinkSiwe(InitLinkSiweRequest request)
+        {
             string callResponse = await communicationsManager.Call(
-                functionName,
+                OpenfortFunction.INIT_LINK_SIWE,
                 JsonUtility.ToJson(request)
             );
-            return callResponse.OptDeserializeObject<AuthResponse>();
+            return callResponse.OptDeserializeObject<InitSiweResponse>();
         }
-        public async UniTask<User> LinkWallet(LinkWalletRequest request)
+
+        [Obsolete("Use InitLinkSiwe instead")]
+        public async UniTask<InitSiweResponse> LinkSiwe(LinkSiweRequest request)
         {
-            string functionName = "linkWallet";
-            string callResponse = await communicationsManager.Call(
-                functionName,
-                JsonUtility.ToJson(request)
-            );
-            return callResponse.OptDeserializeObject<User>();
+            var newRequest = new InitLinkSiweRequest(request.address);
+            return await InitLinkSiwe(newRequest);
         }
-        public async UniTask<User> UnlinkWallet(UnlinkWalletRequest request)
+
+        public async UniTask<User> LinkWithSiwe(LinkWithSiweRequest request)
         {
-            string functionName = "unlinkWallet";
             string callResponse = await communicationsManager.Call(
-                functionName,
+                OpenfortFunction.LINK_WITH_SIWE,
                 JsonUtility.ToJson(request)
             );
             return callResponse.OptDeserializeObject<User>();
         }
 
-        public async UniTask<InitSiweResponse> LinkSiwe(LinkSiweRequest request)
+        public async UniTask<User> UnlinkWallet(UnlinkWalletRequest request)
         {
             string callResponse = await communicationsManager.Call(
-                OpenfortFunction.LINK_SIWE,
+                OpenfortFunction.UNLINK_WALLET,
                 JsonUtility.ToJson(request)
             );
-            return callResponse.OptDeserializeObject<InitSiweResponse>();
+            return callResponse.OptDeserializeObject<User>();
         }
 
         // Email OTP Methods
@@ -445,14 +502,20 @@ namespace Openfort.OpenfortSDK
             string token = response.GetStringResult();
             return token != null ? Uri.EscapeDataString(token) : null;
         }
-        public async UniTask<AuthResponse> ValidateAndRefreshToken(ValidateAndRefreshTokenRequest request)
+        public async UniTask ValidateAndRefreshToken(ValidateAndRefreshTokenRequest request)
         {
-            string functionName = "validateAndRefreshToken";
             string callResponse = await communicationsManager.Call(
-                functionName,
+                OpenfortFunction.VALIDATE_AND_REFRESH_TOKEN,
                 JsonUtility.ToJson(request)
             );
-            return callResponse.OptDeserializeObject<AuthResponse>();
+            BrowserResponse response = callResponse.OptDeserializeObject<BrowserResponse>();
+            if (response == null || response?.success == false)
+            {
+                throw new OpenfortException(
+                    response?.error ?? "Unable to validate and refresh token",
+                    OpenfortErrorType.REFRESH_TOKEN_ERROR
+                );
+            }
         }
         public async UniTask<TransactionIntentResponse> SendSignatureTransactionIntentRequest(SignatureTransactionIntentRequest request)
         {
@@ -560,23 +623,22 @@ namespace Openfort.OpenfortSDK
         }
         public async UniTask ConfigureEmbeddedWallet(ConfigureEmbeddedWalletRequest request)
         {
-            string x = JsonUtility.ToJson(request);
-
-            string functionName = "configureEmbeddedWallet";
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
+                NullValueHandling = NullValueHandling.Ignore,
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
                 Converters = new List<JsonConverter> { new StringEnumConverter() }
             };
 
             string response = await communicationsManager.Call(
-                functionName,
+                OpenfortFunction.CONFIGURE_EMBEDDED_WALLET,
                 JsonConvert.SerializeObject(request, settings)
             );
 
             BrowserResponse browserResponse = response.OptDeserializeObject<BrowserResponse>();
-            if (browserResponse.success == false)
+            if (browserResponse?.success == false)
             {
-                throw new OpenfortException(browserResponse.error ?? "Unable to configure embedded signer");
+                throw new OpenfortException(browserResponse.error ?? "Unable to configure embedded wallet");
             }
         }
         private void SendAuthEvent(OpenfortAuthEvent authEvent)

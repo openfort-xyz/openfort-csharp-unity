@@ -21,7 +21,10 @@ namespace Openfort.OpenfortSDK.Model
         EOA,
 
         [EnumMember(Value = "Smart Account")]
-        SMART_ACCOUNT
+        SMART_ACCOUNT,
+
+        [EnumMember(Value = "Delegated Account")]
+        DELEGATED_ACCOUNT
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
@@ -29,34 +32,45 @@ namespace Openfort.OpenfortSDK.Model
     {
         [EnumMember(Value = "password")]
         PASSWORD,
-        
+
         [EnumMember(Value = "automatic")]
         AUTOMATIC,
-        
+
         [EnumMember(Value = "passkey")]
         PASSKEY
+    }
+
+    public class PasskeyEnv
+    {
+        public string Name { get; set; }
+        public string Os { get; set; }
+        public string OsVersion { get; set; }
+        public string Device { get; set; }
     }
 
     public class RecoveryMethodDetails
     {
         public string PasskeyId { get; set; }
-        public string PasskeyEnv { get; set; }
+        public PasskeyEnv PasskeyEnv { get; set; }
     }
 
     public class EmbeddedAccount
     {
-        public string User { get; set; }
         public string Id { get; set; }
         public ChainType ChainType { get; set; }
         public string Address { get; set; }
         public long? CreatedAt { get; set; }
         public string ImplementationType { get; set; }
         public string FactoryAddress { get; set; }
+        public string ImplementationAddress { get; set; }
         public string Salt { get; set; }
         public AccountType AccountType { get; set; }
-        public RecoveryMethod RecoveryMethod { get; set; }
+        public RecoveryMethod? RecoveryMethod { get; set; }
         public RecoveryMethodDetails RecoveryMethodDetails { get; set; }
         public int? ChainId { get; set; }
-
+        [System.Obsolete("Use Address instead")]
+        public string OwnerAddress { get; set; }
+        [System.Obsolete("Use ImplementationType instead")]
+        public string Type { get; set; }
     }
 }

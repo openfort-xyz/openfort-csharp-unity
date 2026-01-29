@@ -5,28 +5,28 @@ namespace Openfort.OpenfortSDK.Model
     [Serializable]
     public class UnlinkWalletRequest
     {
-        /**
-        * Address of the wallet to be unlinked
-        */
+        /// <summary>
+        /// Address of the wallet to be unlinked
+        /// </summary>
         public string address;
 
-        /**
-        * Authentication token of the user
-        */
-        public string authToken;
+        /// <summary>
+        /// Chain ID of the wallet
+        /// </summary>
+        public int chainId;
 
-        public UnlinkWalletRequest(string address, string authToken)
+        public UnlinkWalletRequest(string address, int chainId)
         {
             this.address = address;
-            this.authToken = authToken;
+            this.chainId = chainId;
         }
 
-        /**
-        * Creates a new UnlinkWalletRequest with the provided address and authToken
-        */
-        public static UnlinkWalletRequest Create(string address, string authToken)
+        /// <summary>
+        /// Creates a new UnlinkWalletRequest with the provided address and chainId
+        /// </summary>
+        public static UnlinkWalletRequest Create(string address, int chainId)
         {
-            return new UnlinkWalletRequest(address, authToken);
+            return new UnlinkWalletRequest(address, chainId);
         }
     }
 }
