@@ -11,7 +11,7 @@ namespace Openfort.OpenfortSDK.Model
         public AccountType? accountType;
 
         public ConfigureEmbeddedWalletRequest(
-            RecoveryParams recoveryParams,
+            RecoveryParams recoveryParams = null,
             int? chainId = null,
             ChainType? chainType = null,
             AccountType? accountType = null
@@ -24,13 +24,36 @@ namespace Openfort.OpenfortSDK.Model
         }
 
         public static ConfigureEmbeddedWalletRequest Create(
-            RecoveryParams recoveryParams,
+            RecoveryParams recoveryParams = null,
             int? chainId = null,
             ChainType? chainType = null,
             AccountType? accountType = null
         )
         {
             return new ConfigureEmbeddedWalletRequest(recoveryParams, chainId, chainType, accountType);
+        }
+    }
+
+    /// <summary>
+    /// Passkey info for recovery
+    /// </summary>
+    [Serializable]
+    public class PasskeyInfo
+    {
+        /// <summary>
+        /// The passkey ID
+        /// </summary>
+        public string passkeyId;
+
+        /// <summary>
+        /// The passkey key (optional, used during creation)
+        /// </summary>
+        public byte[] passkeyKey;
+
+        public PasskeyInfo(string passkeyId, byte[] passkeyKey = null)
+        {
+            this.passkeyId = passkeyId;
+            this.passkeyKey = passkeyKey;
         }
     }
 
@@ -45,7 +68,7 @@ namespace Openfort.OpenfortSDK.Model
     {
         public string encryptionSession;
 
-        public AutomaticRecoveryParams(string encryptionSession)
+        public AutomaticRecoveryParams(string encryptionSession = null)
         {
             this.recoveryMethod = RecoveryMethod.AUTOMATIC;
             this.encryptionSession = encryptionSession;
@@ -61,6 +84,18 @@ namespace Openfort.OpenfortSDK.Model
         {
             this.recoveryMethod = RecoveryMethod.PASSWORD;
             this.password = password;
+        }
+    }
+
+    [Serializable]
+    public class PasskeyRecoveryParams : RecoveryParams
+    {
+        public PasskeyInfo passkeyInfo;
+
+        public PasskeyRecoveryParams(PasskeyInfo passkeyInfo = null)
+        {
+            this.recoveryMethod = RecoveryMethod.PASSKEY;
+            this.passkeyInfo = passkeyInfo;
         }
     }
 }

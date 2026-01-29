@@ -5,43 +5,53 @@ namespace Openfort.OpenfortSDK.Model
     [Serializable]
     public class SignupEmailPasswordRequest
     {
-        /**
-        * Email of the user
-        */
+        /// <summary>
+        /// Email of the user
+        /// </summary>
         public string email;
 
-        /**
-        * Password of the user
-        */
+        /// <summary>
+        /// Password of the user
+        /// </summary>
         public string password;
 
-        /**
-        * Optional data for the signup request
-        */
-        public Options options;
+        /// <summary>
+        /// Name of the user
+        /// </summary>
+        public string name;
 
-        public SignupEmailPasswordRequest(string email, string password, Options options = null)
+        /// <summary>
+        /// Callback URL for email verification
+        /// </summary>
+        public string callbackURL;
+
+        public SignupEmailPasswordRequest(string email, string password, string name = null, string callbackURL = null)
         {
             this.email = email;
             this.password = password;
-            this.options = options;
+            this.name = name;
+            this.callbackURL = callbackURL;
         }
 
-        /**
-        * Creates a new SignupEmailPasswordRequest with the provided email, password, and options
-        */
-        public static SignupEmailPasswordRequest Create(string email, string password, Options options = null)
+        /// <summary>
+        /// Creates a new SignupEmailPasswordRequest with the provided parameters
+        /// </summary>
+        public static SignupEmailPasswordRequest Create(string email, string password, string name = null, string callbackURL = null)
         {
-            return new SignupEmailPasswordRequest(email, password, options);
+            return new SignupEmailPasswordRequest(email, password, name, callbackURL);
         }
     }
 
+    /// <summary>
+    /// Deprecated: Use direct parameters in SignupEmailPasswordRequest instead
+    /// </summary>
+    [Obsolete("Use direct parameters in SignupEmailPasswordRequest instead")]
     [Serializable]
     public class Options
     {
-        /**
-        * Data containing additional information
-        */
+        /// <summary>
+        /// Data containing additional information
+        /// </summary>
         public Data data;
 
         public Options(Data data)
@@ -50,12 +60,16 @@ namespace Openfort.OpenfortSDK.Model
         }
     }
 
+    /// <summary>
+    /// Deprecated: Use direct parameters in SignupEmailPasswordRequest instead
+    /// </summary>
+    [Obsolete("Use direct parameters in SignupEmailPasswordRequest instead")]
     [Serializable]
     public class Data
     {
-        /**
-        * Name of the user
-        */
+        /// <summary>
+        /// Name of the user
+        /// </summary>
         public string name;
 
         public Data(string name)

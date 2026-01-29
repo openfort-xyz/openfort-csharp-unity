@@ -170,14 +170,15 @@ namespace Openfort.OpenfortSDK
         }
 
         /// <summary>
-        /// Logs the user into Openfort via SignUpWithEmailPassword.
+        /// Signs up a new user via email and password.
         /// </summary>
         /// <param name="email">User email</param>
         /// <param name="password">User password</param>
-        /// <param name="name">User name</param>
-        public async UniTask<AuthResponse> SignUpWithEmailPassword(string email, string password, string name = null)
+        /// <param name="name">User name (optional)</param>
+        /// <param name="callbackURL">Callback URL for email verification (optional)</param>
+        public async UniTask<AuthResponse> SignUpWithEmailPassword(string email, string password, string name = null, string callbackURL = null)
         {
-            return await GetOpenfortImpl().SignUpWithEmailPassword(email, password, name);
+            return await GetOpenfortImpl().SignUpWithEmailPassword(email, password, name, callbackURL);
         }
 
         /// <summary>
@@ -216,6 +217,43 @@ namespace Openfort.OpenfortSDK
             await GetOpenfortImpl().VerifyEmail(request);
         }
 
+        // OAuth Methods
+
+        /// <summary>
+        /// Initializes OAuth authentication flow.
+        /// </summary>
+        /// <param name="provider">The OAuth provider to use</param>
+        /// <param name="redirectTo">The URL to redirect to after authentication</param>
+        /// <param name="options">Optional OAuth options</param>
+        /// <returns>The OAuth URL to redirect the user to</returns>
+        public async UniTask<string> InitOAuth(OAuthProvider provider, string redirectTo, InitializeOAuthOptions options = null)
+        {
+            return await GetOpenfortImpl().InitOAuth(new InitOAuthRequest(provider, redirectTo, options));
+        }
+
+        /// <summary>
+        /// Initializes OAuth linking flow for an authenticated user.
+        /// </summary>
+        /// <param name="provider">The OAuth provider to link</param>
+        /// <param name="redirectTo">The URL to redirect to after linking</param>
+        /// <param name="options">Optional OAuth options</param>
+        /// <returns>The OAuth URL to redirect the user to</returns>
+        public async UniTask<string> InitLinkOAuth(OAuthProvider provider, string redirectTo, InitializeOAuthOptions options = null)
+        {
+            return await GetOpenfortImpl().InitLinkOAuth(new InitOAuthRequest(provider, redirectTo, options));
+        }
+
+        /// <summary>
+        /// Unlinks an OAuth provider from the user account.
+        /// </summary>
+        /// <param name="provider">The OAuth provider to unlink</param>
+        public async UniTask<User> UnlinkOAuth(OAuthProvider provider)
+        {
+            return await GetOpenfortImpl().UnlinkOAuth(new UnlinkOAuthRequest(provider));
+        }
+
+        // SIWE Methods
+
         /// <summary>
         /// Initializes Sign-In with Ethereum (SIWE).
         /// </summary>
@@ -226,21 +264,54 @@ namespace Openfort.OpenfortSDK
         }
 
         /// <summary>
-        /// Authenticates the user with SIWE.
+        /// Logs in the user with SIWE (Sign-In With Ethereum).
         /// </summary>
-        /// <param name="request">SIWE authentication request</param>
-        public async UniTask<AuthResponse> AuthenticateWithSiwe(AuthenticateWithSiweRequest request)
+        /// <param name="request">SIWE login request</param>
+        public async UniTask<AuthResponse> LoginWithSiwe(LoginWithSiweRequest request)
         {
-            return await GetOpenfortImpl().AuthenticateWithSiwe(request);
+            return await GetOpenfortImpl().LoginWithSiwe(request);
         }
 
         /// <summary>
-        /// Links a wallet to the user account.
+        /// Authenticates the user with SIWE.
         /// </summary>
-        /// <param name="request">Link wallet request</param>
-        public async UniTask<User> LinkWallet(LinkWalletRequest request)
+        /// <param name="request">SIWE authentication request</param>
+        [Obsolete("Use LoginWithSiwe instead")]
+        public async UniTask<AuthResponse> AuthenticateWithSiwe(AuthenticateWithSiweRequest request)
         {
-            return await GetOpenfortImpl().LinkWallet(request);
+#pragma warning disable CS0618 // Type or member is obsolete
+            return await GetOpenfortImpl().AuthenticateWithSiwe(request);
+#pragma warning restore CS0618
+        }
+
+        /// <summary>
+        /// Initializes SIWE linking for an authenticated user.
+        /// </summary>
+        /// <param name="request">Init link SIWE request containing the wallet address</param>
+        public async UniTask<InitSiweResponse> InitLinkSiwe(InitLinkSiweRequest request)
+        {
+            return await GetOpenfortImpl().InitLinkSiwe(request);
+        }
+
+        /// <summary>
+        /// Links a SIWE wallet to the user account.
+        /// </summary>
+        /// <param name="request">Link SIWE request containing the wallet address</param>
+        [Obsolete("Use InitLinkSiwe instead")]
+        public async UniTask<InitSiweResponse> LinkSiwe(LinkSiweRequest request)
+        {
+#pragma warning disable CS0618 // Type or member is obsolete
+            return await GetOpenfortImpl().LinkSiwe(request);
+#pragma warning restore CS0618
+        }
+
+        /// <summary>
+        /// Links a wallet to the user account using SIWE.
+        /// </summary>
+        /// <param name="request">Link with SIWE request</param>
+        public async UniTask<User> LinkWithSiwe(LinkWithSiweRequest request)
+        {
+            return await GetOpenfortImpl().LinkWithSiwe(request);
         }
 
         /// <summary>
@@ -250,15 +321,6 @@ namespace Openfort.OpenfortSDK
         public async UniTask<User> UnlinkWallet(UnlinkWalletRequest request)
         {
             return await GetOpenfortImpl().UnlinkWallet(request);
-        }
-
-        /// <summary>
-        /// Links a SIWE wallet to the user account.
-        /// </summary>
-        /// <param name="request">Link SIWE request containing the wallet address</param>
-        public async UniTask<InitSiweResponse> LinkSiwe(LinkSiweRequest request)
-        {
-            return await GetOpenfortImpl().LinkSiwe(request);
         }
 
         /// <summary>
@@ -374,9 +436,10 @@ namespace Openfort.OpenfortSDK
         /// <summary>
         /// Validates and refreshes the access token.
         /// </summary>
-        public async UniTask<AuthResponse> ValidateAndRefreshToken(ValidateAndRefreshTokenRequest request)
+        /// <param name="forceRefresh">Whether to force refresh the token</param>
+        public async UniTask ValidateAndRefreshToken(bool forceRefresh = false)
         {
-            return await GetOpenfortImpl().ValidateAndRefreshToken(request);
+            await GetOpenfortImpl().ValidateAndRefreshToken(new ValidateAndRefreshTokenRequest(forceRefresh));
         }
 
         /// <summary>
@@ -444,9 +507,9 @@ namespace Openfort.OpenfortSDK
         }
 
         /// <summary>
-        /// Configures the embedded signer.
+        /// Configures the embedded wallet.
         /// </summary>
-        /// <param name="request">Embedded signer request</param>
+        /// <param name="request">Embedded wallet configuration request</param>
         public async UniTask ConfigureEmbeddedWallet(ConfigureEmbeddedWalletRequest request)
         {
             await GetOpenfortImpl().ConfigureEmbeddedWallet(request);
