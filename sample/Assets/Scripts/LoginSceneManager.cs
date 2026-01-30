@@ -153,8 +153,16 @@ public class LoginSceneManager : MonoBehaviour
         // Get encryption session for automatic embedded wallet recovery
         // Learn more about embedded wallet recovery methods: https://www.openfort.io/docs/configuration/recovery-methods#automatic-recovery
         // backend sample: https://github.com/openfort-xyz/openfort-backend-quickstart
-        var webRequest = UnityWebRequest.PostWwwForm("https://create-next-app.openfort.io/api/protected-create-encryption-session", "");
         string accessToken = await openfort.GetAccessToken();
+        User user = await openfort.GetUser();
+
+        var requestBody = new Dictionary<string, string> { { "user_id", user.Id } };
+        string jsonBody = JsonConvert.SerializeObject(requestBody);
+
+        var webRequest = new UnityWebRequest("https://create-next-app.openfort.io/api/protected-create-encryption-session", "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonBody);
+        webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        webRequest.downloadHandler = new DownloadHandlerBuffer();
         webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
         webRequest.SetRequestHeader("Content-Type", "application/json");
         webRequest.SetRequestHeader("Accept", "application/json");
@@ -361,8 +369,16 @@ public class LoginSceneManager : MonoBehaviour
         {
             // Create a transaction intent and respond with payload to sign
             // https://github.com/openfort-xyz/openfort-js/blob/main/examples/apps/auth-sample/src/pages/api/protected-collect.ts
-            var webRequest = UnityWebRequest.PostWwwForm("https://create-next-app.openfort.io/api/protected-collect", "");
             string accessToken = await openfort.GetAccessToken();
+            EmbeddedAccount account = await openfort.GetEmbeddedWallet();
+
+            var requestBody = new Dictionary<string, string> { { "account_id", account.Id } };
+            string jsonBody = JsonConvert.SerializeObject(requestBody);
+
+            var webRequest = new UnityWebRequest("https://create-next-app.openfort.io/api/protected-collect", "POST");
+            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonBody);
+            webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            webRequest.downloadHandler = new DownloadHandlerBuffer();
             webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
             webRequest.SetRequestHeader("Content-Type", "application/json");
             webRequest.SetRequestHeader("Accept", "application/json");
