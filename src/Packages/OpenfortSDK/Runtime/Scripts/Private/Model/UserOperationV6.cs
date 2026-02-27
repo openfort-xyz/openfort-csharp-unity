@@ -187,6 +187,13 @@ namespace Openfort.OpenfortSDK.Model
         public string VerificationGasLimit { get; set; }
 
         /// <summary>
+        /// Valid until timestamp.
+        /// </summary>
+        /// <value>Valid until timestamp.</value>
+        [DataMember(Name = "validUntil", EmitDefaultValue = false)]
+        public string ValidUntil { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
