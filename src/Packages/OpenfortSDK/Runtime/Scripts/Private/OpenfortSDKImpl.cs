@@ -28,9 +28,6 @@ namespace Openfort.OpenfortSDK
 
         private Func<string, Task<string>> _getThirdPartyToken;
 
-        // Used to prevent calling login functions multiple times
-        private bool isLoggedIn = false;
-
         public event OnAuthEventDelegate OnAuthEvent;
 
         public OpenfortImpl(IBrowserCommunicationsManager communicationsManager)
@@ -149,7 +146,6 @@ namespace Openfort.OpenfortSDK
             else
             {
                 SendAuthEvent(OpenfortAuthEvent.LoginSuccess);
-                isLoggedIn = true;
                 return authResponse;
             }
         }
@@ -267,7 +263,6 @@ namespace Openfort.OpenfortSDK
             if (authResponse != null)
             {
                 SendAuthEvent(OpenfortAuthEvent.LoginSuccess);
-                isLoggedIn = true;
             }
             else
             {
@@ -358,7 +353,6 @@ namespace Openfort.OpenfortSDK
                 );
             }
             SendAuthEvent(OpenfortAuthEvent.LoginSuccess);
-            isLoggedIn = true;
             return authResponse;
         }
 
@@ -421,7 +415,6 @@ namespace Openfort.OpenfortSDK
                 );
             }
             SendAuthEvent(OpenfortAuthEvent.LoginSuccess);
-            isLoggedIn = true;
             return authResponse;
         }
 
@@ -452,7 +445,6 @@ namespace Openfort.OpenfortSDK
                 );
             }
             SendAuthEvent(OpenfortAuthEvent.LoginSuccess);
-            isLoggedIn = true;
             return authResponse;
         }
 
@@ -486,7 +478,6 @@ namespace Openfort.OpenfortSDK
                     OpenfortErrorType.AUTHENTICATION_ERROR
                 );
             }
-            isLoggedIn = false;
         }
 
         public async UniTask<string> GetAccessToken()
@@ -642,11 +633,6 @@ namespace Openfort.OpenfortSDK
                 OnAuthEvent.Invoke(authEvent);
             }
         }
-        protected virtual void OpenUrl(string url)
-        {
-            Application.OpenURL(url);
-        }
-
         public void ClearCache(bool includeDiskFiles)
         {
             communicationsManager.ClearCache(includeDiskFiles);
