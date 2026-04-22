@@ -11,17 +11,10 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Cysharp.Threading.Tasks;
-#if UNITY_ANDROID
-using UnityEngine.Android;
-#endif
 
 namespace Openfort.OpenfortSDK
 {
-#if UNITY_ANDROID
-    public class OpenfortImpl : Callback
-#else
     public class OpenfortImpl
-#endif
     {
         private const string TAG = "[Openfort Implementation]";
 
@@ -654,16 +647,6 @@ namespace Openfort.OpenfortSDK
             Application.OpenURL(url);
         }
 
-
-#if UNITY_ANDROID
-        private void LaunchAndroidUrl(string url)
-        {
-            AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            AndroidJavaObject activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-            AndroidJavaClass customTabLauncher = new AndroidJavaClass("com.openfort.unity.OpenfortActivity");
-            customTabLauncher.CallStatic("startActivity", activity, url, new AndroidCallback(this));
-        }
-#endif
         public void ClearCache(bool includeDiskFiles)
         {
             communicationsManager.ClearCache(includeDiskFiles);
@@ -674,47 +657,4 @@ namespace Openfort.OpenfortSDK
             communicationsManager.ClearStorage();
         }
     }
-#if UNITY_ANDROID
-    public interface Callback
-    {
-
-        /// <summary>
-        /// Called when the Android Chrome Custom Tabs is hidden. 
-        /// Note that you won't be able to tell whether it was closed by the user or the SDK.
-        /// <param name="completing">True if the user has entered everything required (e.g. email address),
-        /// Chrome Custom Tabs have closed, and the SDK is trying to complete the flow.
-        /// </summary>
-        void OnLoginDismissed(bool completing);
-
-        void OnDeeplinkResult(string url);
-    }
-
-    class AndroidCallback : AndroidJavaProxy
-    {
-        private Callback callback;
-
-        public AndroidCallback(Callback callback) : base("com.openfort.unity.OpenfortActivity$Callback")
-        {
-            this.callback = callback;
-        }
-
-        async void onCustomTabsDismissed(string url)
-        {
-            await UniTask.SwitchToMainThread();
-
-            // To differentiate what triggered this
-            if (url == OpenfortImpl.loginDeviceFlowUrl)
-            {
-                // Custom tabs dismissed for login flow
-                callback.OnLoginDismissed(OpenfortImpl.completingDeviceFlow);
-            }
-        }
-
-        async void onDeeplinkResult(string url)
-        {
-            await UniTask.SwitchToMainThread();
-            callback.OnDeeplinkResult(url);
-        }
-    }
-#endif
 }
