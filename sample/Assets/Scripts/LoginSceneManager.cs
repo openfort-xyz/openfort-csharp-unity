@@ -356,8 +356,8 @@ public class LoginSceneManager : MonoBehaviour
     }
     public class RootObject
     {
-        public string transactionIntentId { get; set; }
-        public string userOperationHash { get; set; }
+        public string transactionId { get; set; }
+        public string hash { get; set; }
     }
     public async void OnMintClicked()
     {
@@ -396,10 +396,10 @@ public class LoginSceneManager : MonoBehaviour
             Debug.Log("Mint Response: " + responseText);
             var responseJson = JsonConvert.DeserializeObject<RootObject>(responseText);
             statusTextLabel.text = "Signing and broadcasting transaction";
-            SignatureTransactionIntentRequest request = new SignatureTransactionIntentRequest(responseJson.transactionIntentId, responseJson.userOperationHash);
-            TransactionIntentResponse intentResponse = await openfort.SendSignatureTransactionIntentRequest(request);
-            statusTextLabel.text = $"{intentResponse.Response.TransactionHash}";
-            transactionHash = intentResponse.Response.TransactionHash;
+            TransactionSignatureRequest request = new TransactionSignatureRequest(responseJson.transactionId, responseJson.hash);
+            TransactionResponse transaction = await openfort.SendTransactionSignatureRequest(request);
+            statusTextLabel.text = $"{transaction.Receipt.TransactionHash}";
+            transactionHash = transaction.Receipt.TransactionHash;
             openLinkButton.SetActive(true);
         }
         catch (Exception ex)
