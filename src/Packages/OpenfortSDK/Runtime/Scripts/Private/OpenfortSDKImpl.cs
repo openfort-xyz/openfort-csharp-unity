@@ -501,18 +501,17 @@ namespace Openfort.OpenfortSDK
                 );
             }
         }
-        public async UniTask<TransactionIntentResponse> SendSignatureTransactionIntentRequest(SignatureTransactionIntentRequest request)
+        public async UniTask<TransactionResponse> SendTransactionSignatureRequest(TransactionSignatureRequest request)
         {
-            string functionName = "sendSignatureTransactionIntentRequest";
             string callResponse = await communicationsManager.Call(
-                functionName,
+                OpenfortFunction.SEND_TRANSACTION_SIGNATURE_REQUEST,
                 JsonConvert.SerializeObject(request)
             );
 
             // This is likely not needed when stripping is set to minimum
             string modifiedResponse = JsonHelpers.RemoveKeysFromJson(callResponse, "responseFor", "requestId", "success");
 
-            return modifiedResponse.OptDeserializeObject<TransactionIntentResponse>();
+            return modifiedResponse.OptDeserializeObject<TransactionResponse>();
         }
         public async UniTask<string> SignMessage(SignMessageRequest request)
         {

@@ -443,12 +443,13 @@ namespace Openfort.OpenfortSDK
         }
 
         /// <summary>
-        /// Sends a signature transaction intent request.
+        /// Signs (when no signature is given) and submits the signature of a /v2/transactions
+        /// transaction created by your backend, then broadcasts it.
         /// </summary>
-        /// <param name="request">Signature transaction intent request</param>
-        public async UniTask<TransactionIntentResponse> SendSignatureTransactionIntentRequest(SignatureTransactionIntentRequest request)
+        /// <param name="request">Transaction ID plus the nextAction.hash to sign, or a ready-made signature</param>
+        public async UniTask<TransactionResponse> SendTransactionSignatureRequest(TransactionSignatureRequest request)
         {
-            return await GetOpenfortImpl().SendSignatureTransactionIntentRequest(request);
+            return await GetOpenfortImpl().SendTransactionSignatureRequest(request);
         }
 
         /// <summary>

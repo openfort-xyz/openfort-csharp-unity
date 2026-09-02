@@ -47,7 +47,8 @@ namespace Openfort.OpenfortSDK
         public const string VALIDATE_AND_REFRESH_TOKEN = "validateAndRefreshToken";
 
         // TRANSACTION METHODS
-        public const string SEND_SIGNATURE_TRANSACTION_INTENT_REQUEST = "sendSignatureTransactionIntentRequest";
+        // The bridge still registers this handler under its v1 name; it submits to /v2/transactions.
+        public const string SEND_TRANSACTION_SIGNATURE_REQUEST = "sendSignatureTransactionIntentRequest";
         public const string SIGN_MESSAGE = "signMessage";
         public const string SIGN_TYPED_DATA = "signTypedData";
 
