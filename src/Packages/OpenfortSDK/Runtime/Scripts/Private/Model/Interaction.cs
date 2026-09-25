@@ -35,16 +35,16 @@ namespace Openfort.OpenfortSDK.Model
         /// </summary>
         /// <param name="to">The address of the recipient of native tokens. Use *only* to transfer native tokens. If you provide one of a &#x60;pla_...&#x60;,  or &#x60;acc_...&#x60; it will be converted to the corresponding address..</param>
         /// <param name="value">The value intended to be sent with the transaction. Should be a stringified number in WEI (i.e. factor 10^18). * @example \&quot;1000000000000000000\&quot;.</param>
-        /// <param name="contract">The contract ID you want to interact with. Must have been added to Openfort first, starts with &#x60;con_&#x60;..</param>
+        /// <param name="contractId">The contract ID you want to interact with. Must have been added to Openfort first, starts with &#x60;con_&#x60;..</param>
         /// <param name="functionName">The function name of the contract. Accepts a a function signature as well (e.g. mint(address))..</param>
         /// <param name="functionArgs">The function arguments of the contract, in string format. If you provide one of a &#x60;pla_...&#x60;, &#x60;con_...&#x60; or &#x60;acc_...&#x60; it will be converted to the corresponding address..</param>
         /// <param name="dataSuffix">Data to append to the end of the calldata. Useful for [adding a \&quot;domain\&quot; tag](https://opensea.notion.site/opensea/Seaport-Order-Attributions-ec2d69bf455041a5baa490941aad307f).</param>
         /// <param name="data">The encoded calldata of the contract..</param>
-        public Interaction(string to = default(string), string value = default(string), string contract = default(string), string functionName = default(string), List<Object> functionArgs = default(List<Object>), string dataSuffix = default(string), string data = default(string))
+        public Interaction(string to = default(string), string value = default(string), string contractId = default(string), string functionName = default(string), List<Object> functionArgs = default(List<Object>), string dataSuffix = default(string), string data = default(string))
         {
             this.To = to;
             this.Value = value;
-            this.Contract = contract;
+            this.ContractId = contractId;
             this.FunctionName = functionName;
             this.FunctionArgs = functionArgs;
             this.DataSuffix = dataSuffix;
@@ -70,8 +70,8 @@ namespace Openfort.OpenfortSDK.Model
         /// </summary>
         /// <value>The contract ID you want to interact with. Must have been added to Openfort first, starts with &#x60;con_&#x60;.</value>
         /// <example>&quot;con_0cddb398-1dc6-4e6f-8726-9ec7cea85f35&quot;</example>
-        [DataMember(Name = "contract", EmitDefaultValue = false)]
-        public string Contract { get; set; }
+        [DataMember(Name = "contractId", EmitDefaultValue = false)]
+        public string ContractId { get; set; }
 
         /// <summary>
         /// The function name of the contract. Accepts a a function signature as well (e.g. mint(address)).
@@ -112,7 +112,7 @@ namespace Openfort.OpenfortSDK.Model
             sb.Append("class Interaction {\n");
             sb.Append("  To: ").Append(To).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
-            sb.Append("  Contract: ").Append(Contract).Append("\n");
+            sb.Append("  ContractId: ").Append(ContractId).Append("\n");
             sb.Append("  FunctionName: ").Append(FunctionName).Append("\n");
             sb.Append("  FunctionArgs: ").Append(FunctionArgs).Append("\n");
             sb.Append("  DataSuffix: ").Append(DataSuffix).Append("\n");
@@ -163,9 +163,9 @@ namespace Openfort.OpenfortSDK.Model
                     this.Value.Equals(input.Value))
                 ) &&
                 (
-                    this.Contract == input.Contract ||
-                    (this.Contract != null &&
-                    this.Contract.Equals(input.Contract))
+                    this.ContractId == input.ContractId ||
+                    (this.ContractId != null &&
+                    this.ContractId.Equals(input.ContractId))
                 ) &&
                 (
                     this.FunctionName == input.FunctionName ||
@@ -207,9 +207,9 @@ namespace Openfort.OpenfortSDK.Model
                 {
                     hashCode = (hashCode * 59) + this.Value.GetHashCode();
                 }
-                if (this.Contract != null)
+                if (this.ContractId != null)
                 {
-                    hashCode = (hashCode * 59) + this.Contract.GetHashCode();
+                    hashCode = (hashCode * 59) + this.ContractId.GetHashCode();
                 }
                 if (this.FunctionName != null)
                 {

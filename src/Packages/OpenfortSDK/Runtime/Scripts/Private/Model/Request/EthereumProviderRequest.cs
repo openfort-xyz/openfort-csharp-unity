@@ -33,14 +33,14 @@ namespace Openfort.OpenfortSDK.Model
         public bool announceProvider;
 
         /**
-        * Policy for the Ethereum provider, can be null
+        * Fee sponsorship ID (pol_...) used to sponsor gas, can be null
         */
-        public string policy;
+        public string feeSponsorship;
 
-        public EthereumProviderOptions(bool announceProvider = true, string policy = null)
+        public EthereumProviderOptions(bool announceProvider = true, string feeSponsorship = null)
         {
             this.announceProvider = announceProvider;
-            this.policy = policy;
+            this.feeSponsorship = feeSponsorship;
         }
     }
 }
