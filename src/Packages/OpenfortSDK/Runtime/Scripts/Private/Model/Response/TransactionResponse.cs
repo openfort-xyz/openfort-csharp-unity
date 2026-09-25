@@ -5,6 +5,19 @@ using UnityEngine.Scripting;
 namespace Openfort.OpenfortSDK.Model
 {
     /// <summary>
+    /// Values of TransactionResponse.Status. Terminal: Succeeded, Reverted, Failed, Expired.
+    /// </summary>
+    public static class TransactionStatus
+    {
+        public const string AwaitingSignature = "awaiting_signature";
+        public const string Submitted = "submitted";
+        public const string Succeeded = "succeeded";
+        public const string Reverted = "reverted";
+        public const string Failed = "failed";
+        public const string Expired = "expired";
+    }
+
+    /// <summary>
     /// Action the caller must take before the transaction can be submitted.
     /// </summary>
     [Preserve]
