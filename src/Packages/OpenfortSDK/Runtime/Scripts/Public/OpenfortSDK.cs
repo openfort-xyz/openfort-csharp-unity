@@ -443,12 +443,15 @@ namespace Openfort.OpenfortSDK
         }
 
         /// <summary>
-        /// Sends a signature transaction intent request.
+        /// Signs and submits a transaction that your backend created with POST /v2/transactions.
+        /// The backend response has status "awaiting_signature" and a nextAction.hash; the SDK signs that hash
+        /// with the embedded signer and broadcasts the transaction.
         /// </summary>
-        /// <param name="request">Signature transaction intent request</param>
-        public async UniTask<TransactionIntentResponse> SendSignatureTransactionIntentRequest(SignatureTransactionIntentRequest request)
+        /// <param name="request">Transaction ID plus the nextAction.hash to sign</param>
+        /// <returns>The transaction, with Status and Receipt.TransactionHash once mined</returns>
+        public async UniTask<TransactionResponse> SendTransactionSignatureRequest(TransactionSignatureRequest request)
         {
-            return await GetOpenfortImpl().SendSignatureTransactionIntentRequest(request);
+            return await GetOpenfortImpl().SendTransactionSignatureRequest(request);
         }
 
         /// <summary>

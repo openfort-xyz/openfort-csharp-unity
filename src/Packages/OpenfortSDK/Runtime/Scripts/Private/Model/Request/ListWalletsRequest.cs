@@ -20,7 +20,7 @@ namespace Openfort.OpenfortSDK.Model
         public AccountType? AccountType { get; set; }
         public ChainType? ChainType { get; set; }
         public int? ChainId { get; set; }
-        public SortOrdering? SortOrder { get; set; }
+        public SortOrdering? Order { get; set; }
         public int? Limit { get; set; }
         public int? Skip { get; set; }
     }

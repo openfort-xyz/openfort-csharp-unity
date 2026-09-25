@@ -354,10 +354,10 @@ public class LoginSceneManager : MonoBehaviour
         // Reset status text
         statusTextLabel.text = string.Empty;
     }
-    public class RootObject
+    public class ProtectedCollectResponse
     {
-        public string transactionIntentId { get; set; }
-        public string userOperationHash { get; set; }
+        public string transactionId { get; set; }
+        public string hash { get; set; }
     }
     public async void OnMintClicked()
     {
@@ -367,7 +367,7 @@ public class LoginSceneManager : MonoBehaviour
 
         try
         {
-            // Create a transaction intent and respond with payload to sign
+            // Create a transaction and respond with the hash to sign
             // https://github.com/openfort-xyz/openfort-js/blob/main/examples/apps/auth-sample/src/pages/api/protected-collect.ts
             string accessToken = await openfort.GetAccessToken();
             EmbeddedAccount account = await openfort.GetEmbeddedWallet();
@@ -394,12 +394,12 @@ public class LoginSceneManager : MonoBehaviour
 
             var responseText = webRequest.downloadHandler.text;
             Debug.Log("Mint Response: " + responseText);
-            var responseJson = JsonConvert.DeserializeObject<RootObject>(responseText);
+            var responseJson = JsonConvert.DeserializeObject<ProtectedCollectResponse>(responseText);
             statusTextLabel.text = "Signing and broadcasting transaction";
-            SignatureTransactionIntentRequest request = new SignatureTransactionIntentRequest(responseJson.transactionIntentId, responseJson.userOperationHash);
-            TransactionIntentResponse intentResponse = await openfort.SendSignatureTransactionIntentRequest(request);
-            statusTextLabel.text = $"{intentResponse.Response.TransactionHash}";
-            transactionHash = intentResponse.Response.TransactionHash;
+            TransactionSignatureRequest request = new TransactionSignatureRequest(responseJson.transactionId, responseJson.hash);
+            TransactionResponse transaction = await openfort.SendTransactionSignatureRequest(request);
+            transactionHash = transaction.Receipt?.TransactionHash;
+            statusTextLabel.text = transactionHash ?? $"Transaction {transaction.Id} is {transaction.Status}";
             openLinkButton.SetActive(true);
         }
         catch (Exception ex)
