@@ -103,7 +103,7 @@ Add your URL scheme in the Element field, e.g. if the deeplink URL is mygame://c
 Ensure your IL2CPP settings are configured to not strip too aggressively:
 
 - Open Player Settings: Go to Edit > Project Settings > Player.
-- Other Settings: Under Other Settings, find the Managed Stripping Level and set it to Low or Disabled.
+- Other Settings: Under Other Settings, find the Managed Stripping Level and set it to Minimal (use Low on Unity versions that don't offer Minimal). Disabled is only available with the Mono backend.
 
 ## Supported platforms
 - Windows (64-bit)
