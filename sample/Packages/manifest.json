@@ -53,5 +53,8 @@
         "com.cysharp.unitask"
       ]
     }
+  ],
+  "testables": [
+    "com.openfort.sdk"
   ]
 }
